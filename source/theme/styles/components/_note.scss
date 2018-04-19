@@ -1,0 +1,20 @@
+@import "mixins/visually-hidden";
+
+.admonition.note {
+  background-color: #fffefc;
+  border: 1px solid #efcca5;
+  padding: 11px 15px;
+  color: #e0994c;
+  font-size: 15px;
+  line-height: 20px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.admonition.note .admonition-title {
+  @include visually-hidden;
+}
+
+.admonition.note p {
+  margin: 0;
+}
