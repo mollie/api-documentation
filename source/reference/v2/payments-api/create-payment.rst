@@ -56,8 +56,16 @@ Parameters
             - A string containing the exact amount you want to charge in the given currency. Make sure to send the right
               amount of decimals. Non-string values are not accepted.
 
-   * - | ``description``
-       | string
+   * - ``description``
+
+       .. container:: type
+
+        string
+
+       .. container:: optional
+
+        optional
+
      - The description of the payment you're creating. This will be shown to the consumer on their card or bank
        statement when possible, and in any exports you generate.
 
