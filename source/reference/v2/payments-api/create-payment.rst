@@ -172,48 +172,70 @@ Credit card
    :widths: auto
 
    * - | ``billingAddress``
-       | string
-     - Optional – The card holder's address. We advise to provide these details to improve the credit card fraud
+       | address object
+     - Optional – The card holder's address details. We advise to provide these details to improve the credit card fraud
        protection, and thus improve conversion.
 
-   * - | ``billingCity``
-       | string
-     - Optional – The card holder's city.
+       The following fields can be added to the object:
 
-   * - | ``billingRegion``
-       | string
-     - Optional – The card holder's region.
+       .. list-table::
+          :widths: auto
 
-   * - | ``billingPostal``
-       | string
-     - Optional – The card holder's postal code.
+          * - | ``streetAndNumber``
+              | string
+            - Optional – The card holder's street and street number.
 
-   * - | ``billingCountry``
-       | string
-     - Optional – The card holder's country in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_
-       format.
+          * - | ``postalCode``
+              | string
+            - Optional – The card holder's postal code.
+
+          * - | ``city``
+              | string
+            - Optional – The card holder's city.
+
+          * - | ``region``
+              | string
+            - Optional – The card holder's region.
+
+          * - | ``country``
+              | string
+            - Optional – The card holder's country in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+
+       Please refer to the documentation of the :ref:`address object <address-object>`
+       for more information on which inputs are accepted inputs.
 
    * - | ``shippingAddress``
-       | string
-     - Optional – The shipping address. We advise to provide these details to improve the credit card fraud protection,
-       and thus improve conversion.
+       | address object
+     - Optional – The shipping address details. We advise to provide these details to improve the credit card fraud
+       protection, and thus improve conversion.
 
-   * - | ``shippingCity``
-       | string
-     - Optional – The city of the shipping address.
+       The following fields can be added to the object:
 
-   * - | ``shippingRegion``
-       | string
-     - Optional – The region of the shipping address.
+       .. list-table::
+          :widths: auto
 
-   * - | ``shippingPostal``
-       | string
-     - Optional – The postal code of the shipping address.
+          * - | ``streetAndNumber``
+              | string
+            - Optional – The street and street number of the shipping address.
 
-   * - | ``shippingCountry``
-       | string
-     - Optional – The country of the shipping address, in
-       `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+          * - | ``postalCode``
+              | string
+            - Optional – The postal code of the shipping address.
+
+          * - | ``city``
+              | string
+            - Optional – The city of the shipping address.
+
+          * - | ``region``
+              | string
+            - Optional – The region of the shipping address.
+
+          * - | ``country``
+              | string
+            - Optional – The country of the shipping address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+
+       Please refer to the documentation of the :ref:`address object <address-object>`
+       for more information on which inputs are accepted inputs.
 
 Gift cards
 """"""""""
@@ -271,28 +293,39 @@ PayPal
    :widths: auto
 
    * - | ``shippingAddress``
-       | string
-     - Optional – The shipping address. We advise to provide these details to improve PayPal's fraud protection, and
-       thus improve conversion. The maximum character length is 128.
+       | address object
+     - Optional – The shipping address details. We advise to provide these details to improve PayPal's fraud
+       protection, and thus improve conversion.
 
-   * - | ``shippingCity``
-       | string
-     - Optional – The city of the shipping address. The maximum character length is 100.
+       The following fields can be added to the object:
 
-   * - | ``shippingRegion``
-       | string
-     - Optional – The region of the shipping address. The maximum character length is 100. This field is required if the
-       ``shippingCountry`` is one of the following countries: ``AR`` ``BR`` ``CA`` ``CN`` ``ID`` ``IN`` ``JP`` ``MX``
-       ``TH`` ``US``
+       .. list-table::
+          :widths: auto
 
-   * - | ``shippingPostal``
-       | string
-     - Optional – The postal code of the shipping address. The maximum character length is 20.
+          * - | ``streetAndNumber``
+              | string
+            - Optional – The street and street number of the shipping address. The maximum character length is 128.
 
-   * - | ``shippingCountry``
-       | string
-     - Optional – The country of the shipping address, in
-       `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+          * - | ``postalCode``
+              | string
+            - Optional – The postal code of the shipping address. The maximum character length is 20.
+
+          * - | ``city``
+              | string
+            - Optional – The city of the shipping address. The maximum character length is 100.
+
+          * - | ``region``
+              | string
+            - Optional – The region of the shipping address. The maximum character length is 100.
+              **Please note**: this field is required if ``country`` is one of the following countries:
+              ``AR`` ``BR`` ``CA`` ``CN`` ``ID`` ``IN`` ``JP`` ``MX`` ``TH`` ``US``
+
+          * - | ``country``
+              | string
+            - Optional – The country of the shipping address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+
+       Please refer to the documentation of the :ref:`address object <address-object>`
+       for more information on which inputs are accepted inputs.
 
 paysafecard
 """""""""""
