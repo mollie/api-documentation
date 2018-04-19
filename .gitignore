@@ -3,4 +3,6 @@
 /build
 source/_static/style.css
 source/_static/
+!source/_static/img/*
+!source/_static/fonts/*
 /node_modules
