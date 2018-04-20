@@ -81,6 +81,11 @@ a.headerlink {
   display: none;
 }
 
+body.mobile-menu-opened .main-navigation__logo-wrapper,
+body.mobile-menu-opened .main__sidebar {
+  transform: translateX(calc(100vw - 40px));
+}
+
 /**
  * Typography
  */
@@ -109,3 +114,5 @@ a.headerlink {
 @import "components/highlight";
 @import "components/searchbox";
 @import "components/hamburger-menu";
+@import "components/note";
+@import "components/github-link";

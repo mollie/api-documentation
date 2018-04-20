@@ -1,0 +1,16 @@
+.github-link {
+  position: absolute;
+  right: 30px;
+  top: 9px;
+  display: none;
+
+  @media (min-width: 1200px) {
+    display: block;
+  }
+}
+
+.github-link__permalink {
+  color: #999999;
+  font-size: 14px;
+  margin-left: 5px;
+}

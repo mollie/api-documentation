@@ -25,6 +25,41 @@ In v2 endpoints, an amount object is always represented as follows.
        | string
      - A string containing the exact amount in the given currency.
 
+.. _address-object:
+
+Address object
+--------------
+In the v2 endpoints, an address object is always represented as follows.
+
+.. list-table::
+   :widths: auto
+
+   * - | ``streetAndNumber``
+       | string
+     - The street and street number of the address.
+
+   * - | ``postalCode``
+       | string
+     - The postal code of the address.
+
+   * - | ``city``
+       | string
+     - The city of the address.
+
+   * - | ``region``
+       | string
+     - The region of the address.
+
+   * - | ``country``
+       | string
+     - The country of the address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+
+When providing an address object as parameter to a request, the following conditions must be met:
+
+* If any of the fields is provided, all fields have to be provided, with exception of the ``region`` field.
+* If only the ``region`` field is given, one should provide all the other fields, per the previous condition.
+* In the case of certain PayPal payments, the ``region`` field is required, please see the :ref:`Create payment documentation <v2/payments-create>`.
+
 Boolean
 -------
 

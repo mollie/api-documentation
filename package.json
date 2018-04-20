@@ -20,7 +20,13 @@
   },
   "homepage": "https://www.mollie.com",
   "devDependencies": {
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "node-sass": "^4.8.3",
     "parcel-bundler": "^1.7.0"
+  },
+  "dependencies": {
+    "client": "0.0.1",
+    "sticky-sidebar": "^3.3.1"
   }
 }

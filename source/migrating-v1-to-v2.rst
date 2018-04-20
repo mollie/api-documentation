@@ -67,6 +67,24 @@ The following changes have been made in regards to the status of payments:
 * If you want to see if a payment has any chargebacks, the payment will have the ``chargebacks`` key in the ``_links``
   property, which will point you to the chargeback resource where you can view the refund details.
 
+The individual billing and shipping address parameters that can be used when creating a credit card or PayPal payment have been replaced by address objects. Instead of passing ``billingAddress``, ``billingPostal``, ``billingCity``, ``billingRegion`` and/or ``billingCountry`` (or the equivalent fields starting with ``shipping``), one should now pass a ``billingAddress`` (and/or ``shippingAddress``) object, as follows:
+
+.. code-block:: json
+
+    {
+        "amount": {"currency": "USD", "value": "100.00"},
+        ...
+        "billingAddress": {
+            "streetAndNumber": "Dorpstraat 1",
+            "postalCode": "1122 AA",
+            "city": "Amsterdam",
+            "region": "Noord",
+            "country": "NL",
+        }
+    }
+
+**Please note**: the usage of the address object parameters remains optional. Please refer to the :ref:`Create payment documentation <v2/payments-create>` for exact specifications on what input is accepted.
+
 The following fields have been changed, renamed or moved:
 
 * ``cancelledDatetime`` has been renamed to ``canceledAt``.

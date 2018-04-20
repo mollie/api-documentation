@@ -1,25 +1,36 @@
 @import 'variables';
 
+.rst-content dl.docutils dd {
+  padding-bottom: 30px;
+  padding-top: 10px;
+}
+
 .rst-content table.docutils {
   width: 100%;
 }
 
 .rst-content table.docutils,
+.rst-content table.docutils th,
 .rst-content table.docutils tr,
 .rst-content table.docutils td {
   border: 0;
 }
 
+.rst-content table.docutils > thead > tr > th {
+  padding-bottom: 20px;
+}
+
 .rst-content table.docutils > tbody > tr > td {
   border-top: 1px solid #e9edef;
   padding-top: 30px;
-}
-
-.rst-content .section > .wy-table-responsive > table > tbody > tr > td {
   padding-bottom: 30px;
 }
 
-.rst-content .section > .wy-table-responsive > table {
+.rst-content .section table > tbody > tr > td {
+  padding-bottom: 30px;
+}
+
+.rst-content .section table {
   margin-top: 30px;
 }
 
@@ -31,13 +42,13 @@
   margin-bottom: 0;
 }
 
-.rst-content .section > .wy-table-responsive > table > tbody > tr > td:first-child {
+.rst-content .section table > tbody > tr > td:first-child {
   max-width: 145px;
   padding-right: 40px;
   text-align: right;
 }
 
-.rst-content .section > .wy-table-responsive > table > tbody > tr > td:first-child p {
+.rst-content .section table > tbody > tr > td:first-child p {
   margin-bottom: 0;
 }
 

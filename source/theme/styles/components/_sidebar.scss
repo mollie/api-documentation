@@ -7,8 +7,10 @@
   color: #fff;
   position: relative;
   padding-top: 60px;
-  padding-left: 60px;
+  padding-left: 100px;
   padding-right: 60px;
+  height: 100%;
+  padding-bottom: 45px;
 
   @media (min-width: breakpoint("medium")) {
     padding-left: 0;
@@ -75,6 +77,11 @@
   margin-left: -63px;
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
+  margin-right: -61px;
+
+  @media (min-width: breakpoint('medium')) {
+    margin-right: 0;
+  }
 }
 
 .sidebar ul.current a.current {

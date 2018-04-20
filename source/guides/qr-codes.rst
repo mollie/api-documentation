@@ -27,7 +27,7 @@ Supported payment methods
 |             |app and the payment flow is then transferred to the mobile banking app installed on the phone.          |
 +-------------+--------------------------------------------------------------------------------------------------------+
 |Bancontact   |Bancontact QR codes can be scanned using the Bancontact app, Belgian mobile banking apps or the iPhone  |
-|             |camera app directly.                                                                                    |
+|             |camera app directly. The QR code only applies for payments under €500.-.                                |
 +-------------+--------------------------------------------------------------------------------------------------------+
 |Bank transfer|Many mobile banking apps support scanning EPC QR codes for SEPA credit transfers. Note that there is no |
 |             |real-time feedback for this payment method.                                                             |

@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./js"]
+      }
+    ],
+    "transform-object-rest-spread"
+  ]
+}

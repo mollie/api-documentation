@@ -1,6 +1,14 @@
 @import "functions/breakpoint";
 
 .main {
+  transform: translateX(-100vw);
+
+  @media (min-width: breakpoint("medium")) {
+    transform: translateX(0);
+  }
+}
+
+.main__inner {
   display: flex;
   flex-wrap: nowrap;
   width: 200vw;
@@ -13,13 +21,14 @@
 .main__sidebar {
   width: 100vw;
   min-width: 300px;
-  max-height: 100vh;
-  overflow: scroll;
+  transform: translateX(0);
+  position: relative;
+  z-index: 2;
+  transition: 300ms transform ease-in-out;
 
   @media (min-width: breakpoint("medium")) {
     width: 300px;
-    max-height: none;
-    overflow: visible;
+    z-index: auto;
   }
 }
 

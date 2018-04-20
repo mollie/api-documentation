@@ -17,9 +17,11 @@ $max-navigation-width: 915px;
   left: 0;
   background: #fcfcfc;
   width: 200vw;
+  transform: translateX(-100vw);
 
   @media (min-width: breakpoint("medium")) {
     width: 100%;
+    transform: translateX(0);
   }
 }
 
@@ -35,6 +37,23 @@ $max-navigation-width: 915px;
 .main-navigation__logo {
   display: flex;
   align-items: center;
+  position: relative;
+}
+
+.main-navigation__logo::after {
+  position: absolute;
+  content: "Docs";
+  text-transform: uppercase;
+  background: $brand-primary;
+  padding: 2px 5px;
+  font-size: 11px;
+  color: white;
+  font-weight: bold;
+  border-radius: 3px;
+  height: 15px;
+  line-height: 1;
+  right: -50px;
+  top: 2px;
 }
 
 .main-navigation__logo-wrapper {
@@ -44,14 +63,18 @@ $max-navigation-width: 915px;
   align-items: center;
   position: relative;
   width: 100vw;
-  padding-left: 60px;
+  padding-left: 100px;
   justify-content: flex-start;
+  transform: translateX(0);
+  position: relative;
+  z-index: 2;
+  transition: 300ms transform ease-in-out;
 
   @media (min-width: breakpoint("medium")) {
     width: 300px;
     min-width: 300px;
-    justify-content: center;
     padding-left: 0;
+    z-index: auto;
   }
 }
 
@@ -122,13 +145,16 @@ $max-navigation-width: 915px;
 
 .main-navigation__search-wrapper::after {
   content: "";
-  border-bottom: 1px solid #e6e6e6;
   height: 46px;
   width: 100vw;
   position: absolute;
   left: 0;
   top: 0;
   z-index: -1;
+
+  @media (min-width: breakpoint("medium")) {
+    border-bottom: 1px solid #e6e6e6;
+  }
 }
 
 .main-navigation__search-wrapper-inner {
