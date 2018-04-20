@@ -3,7 +3,9 @@
 # Minimal makefile for Sphinx documentation
 #
 
-# You can set these variables from the command line.
+# You can set these variables from the command line. When editing extensions, it is
+# recommended to use the "-E" flag to force a rebuild every time you run 'Make', as
+# it is not guaranteed it will rebuild when no '.rst' files have changed.
 SPHINXOPTS    = -W -j auto
 SPHINXBUILD   = python -msphinx
 SPHINXPROJ    = api-documentation
