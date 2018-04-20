@@ -26,6 +26,7 @@
     "parcel-bundler": "^1.7.0"
   },
   "dependencies": {
-    "client": "0.0.1"
+    "client": "0.0.1",
+    "sticky-sidebar": "^3.3.1"
   }
 }

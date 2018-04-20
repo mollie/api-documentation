@@ -1,11 +1,11 @@
 import { bindHandlers, executeEnhancers, makeEnhancers, makeHandlers } from "./utils";
 
 import toggleMobileMenu from "./toggleMobileMenu";
-import { footer, languageSwitch } from "./footer";
+import sidebar from "./sidebar";
 
 const handlers = makeHandlers([toggleMobileMenu]);
 
-const enhancers = makeEnhancers([footer]);
+const enhancers = makeEnhancers([]);
 
 const main = () => {
   bindHandlers(handlers);
