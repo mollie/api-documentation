@@ -24,6 +24,9 @@
 import os
 import sys
 import pygments
+
+# The parent directory has to be included for 'sphinx-autobuild' to work.
+sys.path.insert(0, os.path.abspath("../"))
 sys.path.insert(0, os.path.abspath("extensions"))
 
 # -- General configuration ------------------------------------------------

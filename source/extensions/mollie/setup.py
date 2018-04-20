@@ -1,4 +1,4 @@
-import source.extensions.mollie as mollie
+from . import ApiEndpointDirective, AuthenticationDirective, DataTypeDirective
 
 
 def setup(app):
@@ -7,9 +7,9 @@ def setup(app):
     :rtype: dict
     """
     # Add the directives.
-    app.add_directive('endpoint', mollie.ApiEndpointDirective)
-    app.add_directive('authentication', mollie.AuthenticationDirective)
-    app.add_directive('type', mollie.DataTypeDirective)
+    app.add_directive('endpoint', ApiEndpointDirective)
+    app.add_directive('authentication', AuthenticationDirective)
+    app.add_directive('type', DataTypeDirective)
 
     # When debugging, it is best to disable parallel reading and writing.
     return {
