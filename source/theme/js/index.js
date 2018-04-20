@@ -1,7 +1,6 @@
 import { bindHandlers, executeEnhancers, makeEnhancers, makeHandlers } from "./utils";
 
 import toggleMobileMenu from "./toggleMobileMenu";
-import sidebar from "./sidebar";
 
 const handlers = makeHandlers([toggleMobileMenu]);
 
