@@ -16,11 +16,11 @@ BUILDDIR      = build
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-css:
-	@./node_modules/.bin/parcel build source/theme/styles/main.scss --out-dir source/_static --out-file style --detailed-report
+source/_static/style.css: source/theme/styles/main.scss
+	./node_modules/.bin/parcel build source/theme/styles/main.scss --out-dir source/_static --out-file style --detailed-report
 
-js:
-	@./node_modules/.bin/parcel build source/theme/js/index.js --out-dir source/_static --out-file index --detailed-report
+source/_static/index.js: source/theme/js/index.js
+	./node_modules/.bin/parcel build source/theme/js/index.js --out-dir source/_static --out-file index --detailed-report
 
 css-reload:
 	@./node_modules/.bin/parcel source/theme/styles/main.scss --out-dir build/_static --out-file style --no-hmr --port 8001
@@ -35,7 +35,5 @@ html-reload:
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
-%: Makefile
-	make css
-	make js
+html: Makefile source/_static/style.css source/_static/index.js
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)

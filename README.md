@@ -31,7 +31,8 @@ If you made any changes, and want to check out if it can be successfully built a
 following steps:
 
 1. Install Sphinx, if you don't have it yet: `pip install -U -r requirements.txt`
-2. Run `make` to create the HTML files that make up the documentation.
+2. Install `npm` using `nvm` (needed for editing styles and Javascript)
+3. Run `make html` to create the HTML files that make up the documentation.
 
 ## Support
 
