@@ -8,6 +8,7 @@ env:
     - secure: xGU7E+6E9jzjUmPaT3JPcr2EYfX0XaqsKekFuRcDvs904ky8LsDN2xpa9FvlGn0G3qgv5lDhqjyV6b8C8X4Dy3HNJrsMaE0AYVm5Sz89t+CBBSoDUvqBzOYRS8e3+oXILR2DjMxp+TPl+NmYM4LmrjHWcSPAEFoe2B3ofqW3DBM5ecxoqGA6eB4xz9pGtU7YQTWAe9OFBwcYBmQNmhRQHYDtdHvsVtaRuLeOT3qif6qhS3cCm1SVXkPj3j+JFrhJE/el7RT9kHhMF73FhFjPAQ7WTJxRc6s70SEQBT7lMlOA2L65g/aS63GOAl0qMwjSDf4n+SaynF4E6e9VbVZrM57G/XreEIDaOrfodwKtowwHFon3TSNinTXPJH/tp6+TudgYpjjzK6MqieAcd8vWIjEhpFVUEe2tCNf1K/69SZj21PTxZastQ0QTifT+8UVdMY6pDFy7KRr0gfDwIn2pjGvPagXMjBqwd7+eku1+32Hk2wD8GAir/dE4oAsWOEeWvnQDolH7pfdcneTxSNbDjjp1UKQGQ0d5DiXdcEEGnY3kzgA9jEEYT8oK4KaEzxpUtZ82ZCeF3l0A6YY1Ock/IJ0zjgJRxA4lD6y1pco9uiEXGZkxjmOBtBjc6KQpKvV/hZpPmYfZtwnAHeahzJZy3vDZWJlDUfRV8pxEvbieRd8=
 install:
   - nvm install $(cat .nvmrc)
+  - npm install
   - pip install -r requirements.txt
 script:
   - make html
