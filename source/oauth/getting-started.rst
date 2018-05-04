@@ -27,7 +27,7 @@ Use the details below to configure your app to work with our platform.
 Getting a merchant’s consent
 ----------------------------
 After having registered and configured your app, you can send the merchant to Mollie through the default authorization
-URL as configured in your OAuth app. Good practice is to show a *Connect with Mollie* button which redirects the
+URL as configured in your OAuth app. Good practice is to show a `*Connect with Mollie* button <www.idontknowhowtolinktohttps://github.com/mollie/api-documentation/blob/master/source/oauth/getting-started.rst>` which redirects the
 merchant to :ref:`the authorization screen <oauth2/authorize>`.
 
 When you send a merchant to the authorization screen, Mollie will tell the merchant what data your app has requested
