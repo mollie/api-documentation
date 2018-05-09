@@ -27,19 +27,11 @@ $menu-breakpoint: 715px;
 }
 
 .sub-navigation--small .sub-navigation__items {
-  transform: translateY(40px);
+  transform: translateY(5px);
 }
 
 .sub-navigation:hover {
   transform: translateY(0);
-}
-
-.sub-navigation:hover .sub-navigation__items {
-  transform: translateY(0);
-}
-
-.sub-navigation:hover .sub-navigation__item::before {
-  opacity: 1;
 }
 
 .sub-navigation__items {

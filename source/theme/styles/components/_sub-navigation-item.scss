@@ -14,13 +14,13 @@
 .sub-navigation-item__text {
   font-size: 14px;
   color: #000;
-  opacity: 1;
-  transition: opacity 0.1s 0.05s ease;
 }
 
 .sub-navigation-item__icon {
   margin-top: 20px;
   margin-bottom: 14px;
+  opacity: 1;
+  transition: opacity 0.1s 0.05s ease;
 }
 
 .sub-navigation-item__path {
@@ -44,11 +44,11 @@
   fill: $grey-boulder;
 }
 
-.sub-navigation-item--small .sub-navigation-item__text {
+.sub-navigation-item--small .sub-navigation-item__icon {
   opacity: 0;
 }
 
-.sub-navigation:hover .sub-navigation-item__text {
+.sub-navigation:hover .sub-navigation-item__icon {
   opacity: 1;
 }
 
@@ -65,6 +65,10 @@
   transform: translateY(-50%);
   transition: opacity 0.2s ease;
   height: 60%;
+}
+
+.sub-navigation:hover .sub-navigation-item--github::before {
+  opacity: 1;
 }
 
 .sub-navigation-item--small.sub-navigation-item--github::before {
