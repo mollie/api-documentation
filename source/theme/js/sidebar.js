@@ -46,7 +46,6 @@ const scrollToSection = event => {
     },
   });
 
-  event.preventDefault();
 };
 
 const toggleSidebarGroup = event => {
