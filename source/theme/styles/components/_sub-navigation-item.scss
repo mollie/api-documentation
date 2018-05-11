@@ -12,7 +12,7 @@
 }
 
 .sub-navigation-item__text {
-  font-size: 14px;
+  font-size: 16px;
   color: #000;
 }
 
@@ -57,7 +57,7 @@
 }
 
 .sub-navigation-item--github::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 50%;

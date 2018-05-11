@@ -1,19 +1,19 @@
-@import "functions/tint";
+@import 'functions/tint';
 
 /**
  * Breakpoints
  */
 $breakpoints: (
-  "small": 540px,
-  "<small": 539px,
-  "medium": 720px,
-  "<medium": 719px,
-  "large": 960px,
-  "<large": 959px,
-  "extra-large": 1160px,
-  "<extra-large": 1159px,
-  "huge": 1440px,
-  "<huge": 1439px
+  'small': 540px,
+  '<small': 539px,
+  'medium': 720px,
+  '<medium': 719px,
+  'large': 960px,
+  '<large': 959px,
+  'extra-large': 1160px,
+  '<extra-large': 1159px,
+  'huge': 1440px,
+  '<huge': 1439px
 );
 
 $mobile-navigation-breakpoint: 980px;
@@ -43,7 +43,7 @@ $blackish: #262626;
 $orange-reno-sand: #a25d11;
 $orange-pancho: #efcca5;
 $orange-anzac: #e0994c;
-$blue-cornflower: #7373FF;
+$blue-cornflower: #7373ff;
 
 $text-color: $blackish;
 
@@ -63,14 +63,14 @@ $text-color-recurring: #733517;
 /**
  * Type
  */
-$font-family-default: "Calibre", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-  Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family-default: 'Calibre', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+  Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 
 // No max line-length for monospace fonts
 // stylelint-disable-next-line max-line-length
-$font-family-monospace: "SFMono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+$font-family-monospace: 'SFMono', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 
-$line-height-default: 26;
+$line-height-default: 1.5;
 
 $font-weight-light: 300;
 $font-weight-medium: 500;
