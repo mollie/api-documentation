@@ -3,14 +3,13 @@
   // Prevent horizontal overflow in Edge
   overflow: hidden;
   padding: 40px 0 0;
-  background: #000;
-  color: #fff;
+  color: #000;
 
-  @media (min-width: breakpoint('small')) {
+  @media (min-width: breakpoint("small")) {
     padding-top: 50px;
   }
 
-  @media (min-width: breakpoint('large')) {
+  @media (min-width: breakpoint("large")) {
     padding-top: 100px;
   }
 }
@@ -32,7 +31,7 @@
 
 .footer a:focus,
 .footer a:hover {
-  color: #fff;
+  color: #000;
   text-decoration: none;
 }
 
@@ -50,7 +49,7 @@
   flex-direction: row;
   flex-wrap: wrap;
 
-  @media (min-width: breakpoint('small')) {
+  @media (min-width: breakpoint("small")) {
     justify-content: space-between;
   }
 }
@@ -59,12 +58,12 @@
   flex: 0 0 100%;
   font-size: 16px;
 
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     flex: 0 1 auto;
     padding-right: 10px;
   }
 
-  @media (min-width: breakpoint('large')) {
+  @media (min-width: breakpoint("large")) {
     padding-right: 30px;
     font-size: 18px;
   }
@@ -82,7 +81,7 @@
   font-weight: bold;
   line-height: 40px;
 
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     border-bottom: none;
     font-size: 22px;
     line-height: 1;
@@ -91,7 +90,7 @@
 }
 
 .is-enhanced .footer__heading {
-  @media (max-width: breakpoint('<medium')) {
+  @media (max-width: breakpoint("<medium")) {
     cursor: pointer;
   }
 }
@@ -102,7 +101,7 @@
   width: 100%;
   text-align: center;
 
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     margin-bottom: 20px;
     text-align: left;
   }
@@ -111,24 +110,24 @@
 .footer__column:nth-child(5) {
   display: none;
 
-  @media (max-width: breakpoint('medium')) {
+  @media (max-width: breakpoint("medium")) {
     display: block;
   }
 }
 
 .footer__column:nth-child(6) .footer__heading {
-  @media (max-width: breakpoint('<medium')) {
+  @media (max-width: breakpoint("<medium")) {
     display: none;
   }
 }
 
 .footer__column:not(:first-child) .footer__heading::after {
-  @media (max-width: breakpoint('<medium')) {
-    content: '';
+  @media (max-width: breakpoint("<medium")) {
+    content: "";
     position: absolute;
     right: 15px;
     top: calc(50% - 4px);
-    border: 2px solid #fff;
+    border: 2px solid #000;
     border-width: 0 2px 2px 0;
     display: inline-block;
     height: 6px;
@@ -139,14 +138,14 @@
 }
 
 .footer__column:not(:first-child) .footer__heading.is-active {
-  @media (max-width: breakpoint('<medium')) {
+  @media (max-width: breakpoint("<medium")) {
     border-bottom: none;
     font-weight: bold;
   }
 }
 
 .footer__column:not(:first-child) .footer__heading.is-active::after {
-  @media (max-width: breakpoint('<medium')) {
+  @media (max-width: breakpoint("<medium")) {
     border-width: 2px 0 0 2px;
   }
 }
@@ -156,7 +155,7 @@
   width: 80px;
   height: 23px;
 
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     width: 69px;
     // IE11 needs explicit height
     height: 20px;
@@ -169,7 +168,7 @@
   margin-bottom: 0;
   padding-bottom: 15px;
 
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     border-bottom: none;
     margin-bottom: 0;
     padding: 0;
@@ -186,7 +185,7 @@
   overflow: hidden;
   transition: max-height 0.15s;
 
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     display: block;
     max-height: none;
   }
@@ -199,7 +198,7 @@
 
 .footer .footer__column:nth-child(6) ul,
 .footer.is-enhanced .footer__column:nth-child(6) ul {
-  @media (max-width: breakpoint('<medium')) {
+  @media (max-width: breakpoint("<medium")) {
     display: flex;
     justify-content: space-between;
     margin: 30px 0;
@@ -208,13 +207,13 @@
 }
 
 .footer__column li:not(:first-child) {
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     margin-top: 0.75em;
   }
 }
 
 .footer .footer__column:nth-child(6) ul a {
-  @media (max-width: breakpoint('<medium')) {
+  @media (max-width: breakpoint("<medium")) {
     display: block;
     height: 32px;
     width: 32px;
@@ -226,19 +225,18 @@
 
 .footer__column a {
   display: block;
-  color: rgba(255, 255, 255, 0.7);
   font-size: 16px;
   line-height: 1;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .footer__column a {
-  @media (max-width: breakpoint('<medium')) {
+  @media (max-width: breakpoint("<medium")) {
     display: block;
     font-size: 18px;
     line-height: 40px;
   }
 }
-
 
 /**
  * Seperator - <hr>
@@ -246,14 +244,14 @@
 .footer__separator {
   display: none;
 
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     display: block;
     border: 0;
-    border-top: 1px solid $grey-darkest;
+    border-top: 1px solid $grey-medium;
     margin: 40px 0;
   }
 
-  @media (min-width: breakpoint('huge')) {
+  @media (min-width: breakpoint("huge")) {
     margin-top: 50px;
     margin-bottom: 50px;
   }
@@ -268,13 +266,14 @@
   font-size: 14px;
   line-height: 2;
   justify-content: space-between;
+  color: rgba(0, 0, 0, 0.8);
 
-  @media (min-width: breakpoint('small')) {
+  @media (min-width: breakpoint("small")) {
     margin-left: -30px;
     margin-right: -30px;
   }
 
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     margin-left: 0;
     margin-right: 0;
     padding: 0 0 50px;
@@ -291,7 +290,7 @@
 .footer__copyright {
   flex: 0 0 80px;
   font-weight: bold;
-  color: $grey-medium-light;
+  color: #000;
 }
 
 /**
@@ -300,7 +299,7 @@
 .footer .footer__legal-links {
   display: none;
 
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     display: flex;
     flex: 1 1 auto;
     justify-content: flex-end;
@@ -310,19 +309,19 @@
 }
 
 .footer__legal-links li {
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     display: inline;
   }
 }
 
 .footer__legal-links li:not(:last-child) {
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     margin-right: 30px;
   }
 }
 
 .footer__legal-links a {
-  color: $grey-medium-light;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 /**
@@ -336,6 +335,7 @@
 .footer__language-switcher,
 .footer__language-label {
   font-weight: normal;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .footer__language-switcher {
@@ -343,16 +343,14 @@
   position: relative;
   padding: 0;
   text-align: center;
-  color: $grey-light;
 }
 
 .footer__language-label {
   flex: 1 0 auto;
   text-align: right;
-  color: $grey-medium-light;
   cursor: pointer;
 
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     flex: 0 1 auto;
   }
 }
@@ -364,11 +362,10 @@
   font-size: 16px;
   font-weight: bold;
   background-color: transparent;
-  color: #fff;
   cursor: pointer;
   outline: none;
 
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     padding-right: 0;
   }
 }
@@ -386,13 +383,13 @@
   border-radius: 6px;
   margin: 0;
   width: 180px;
-  background-color: #fff;
+  background-color: #000;
   transform: scale(0.8);
   opacity: 0;
   transform-origin: bottom right;
   transition: opacity 0.15s ease-out, transform 0.15s ease-out;
 
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     left: 50%;
     right: auto;
     transform: translateX(-50%) scale(0.8);
@@ -404,11 +401,11 @@
   opacity: 1;
   transform: scale(1);
 
-  @media (min-width: breakpoint('small')) {
+  @media (min-width: breakpoint("small")) {
     transform: scale(1);
   }
 
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     transform: scale(1) translateX(-50%);
   }
 }
@@ -437,22 +434,22 @@
   bottom: -6px;
   left: 75%;
   position: absolute;
-  content: '';
+  content: "";
   display: block;
   height: 0;
   width: 0;
   border-style: solid;
   border-width: 6px 6px 0;
-  border-color: #fff transparent transparent;
+  border-color: #000 transparent transparent;
   transform: translateX(-50%);
 
-  @media (min-width: breakpoint('small')) {
+  @media (min-width: breakpoint("small")) {
     left: auto;
     right: 20%;
     transform: none;
   }
 
-  @media (min-width: breakpoint('medium')) {
+  @media (min-width: breakpoint("medium")) {
     left: 50%;
     right: auto;
     transform: translateX(-50%);
@@ -468,21 +465,20 @@
   display: block;
   height: 0;
   padding: 0 15px;
-  background-color: #fff;
-  color: $text-color;
+  background-color: #000;
+  color: #fff;
   font-size: 16px;
   font-weight: normal;
   line-height: 35px;
   white-space: nowrap;
 }
 
-.footer__language-list.is-visible
-.footer__language-item a {
+.footer__language-list.is-visible .footer__language-item a {
   height: 35px;
 }
 
 .footer__language-list .footer__language-item a.is-active {
-  background-color: $grey-lightest;
+  background-color: $brand-primary;
 }
 
 .footer__language-list .footer__language-item a:hover,
