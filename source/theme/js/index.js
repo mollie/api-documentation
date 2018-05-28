@@ -8,15 +8,23 @@ import * as mobileNavigation from "./mobileNavigation";
 import toggleClass from "./toggleClass";
 import linkDropdown from "./linkDropdown";
 import sidebar from "./sidebar";
+import { footer, languageSwitch } from "./footer";
 
-const handlers = makeHandlers([toggleClass, mobileNavigation.hide, mobileNavigation.show]);
+const handlers = makeHandlers([
+  toggleClass,
+  mobileNavigation.hide,
+  mobileNavigation.show,
+  languageSwitch,
+]);
+
 const enhancers = makeEnhancers([
   navLoggedIn,
   productsNavigation,
   subNavigation,
   mobileNavigationButton,
   sidebar,
-  linkDropdown
+  linkDropdown,
+  footer,
 ]);
 
 const main = () => {
