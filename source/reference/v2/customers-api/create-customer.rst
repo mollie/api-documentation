@@ -44,7 +44,7 @@ Parameters
        parameter is not provided, the browser language will be used instead in the payment flow (which is usually more
        accurate).
 
-       Possible values: ``en_US`` ``de_AT`` ``de_CH`` ``de_DE`` ``es_ES`` ``fr_BE`` ``fr_FR`` ``nl_BE`` ``nl_NL``
+       Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``es_ES`` ``ca_ES`` ``pt_PT`` ``it_IT`` ``no_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV`` ``lt_LT``
 
    * - | ``metadata``
 
