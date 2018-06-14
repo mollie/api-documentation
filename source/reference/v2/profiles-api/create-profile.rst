@@ -50,7 +50,7 @@ Parameters
    * - | ``categoryCode``
 
        .. type:: integer
-          :required: true
+          :required: false
 
      - The industry associated with the profile's tradename or brand.
 

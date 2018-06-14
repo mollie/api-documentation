@@ -54,7 +54,7 @@ Replace ``id`` in the endpoint URL by the payment profile's ID, for example ``pf
    * - | ``categoryCode``
 
        .. type:: integer
-          :required: true
+          :required: false
 
      - The new industry identifier associated with the profile's tradename or brand.
 

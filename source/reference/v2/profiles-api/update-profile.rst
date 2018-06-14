@@ -52,7 +52,7 @@ Replace ``id`` in the endpoint URL by the profile's ID, for example ``pfl_v9hTwC
    * - | ``categoryCode``
 
        .. type:: integer
-          :required: true
+          :required: false
 
      - The new industry identifier associated with the profile's tradename or brand.
 
