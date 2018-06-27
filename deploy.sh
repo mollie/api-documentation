@@ -24,3 +24,7 @@ aws s3 cp build/html s3://${AWS_BUCKET}/ --recursive ${AWS_OPTIONS} \
 # Upload static assets
 aws s3 cp build/html/_images s3://${AWS_BUCKET}/_images/ --recursive ${AWS_OPTIONS}
 aws s3 cp build/html/_static s3://${AWS_BUCKET}/_static/ --recursive ${AWS_OPTIONS}
+
+# Upload static conetent to assets directory
+aws s3 cp build/html/_images s3://${AWS_BUCKET}/assets/_images/ --recursive ${AWS_OPTIONS}
+aws s3 cp build/html/_static s3://${AWS_BUCKET}/assets/_static/ --recursive ${AWS_OPTIONS}
