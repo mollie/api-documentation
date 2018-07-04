@@ -6,7 +6,7 @@ $menu-breakpoint: 715px;
   background: #fafafa;
   box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease-out;
-  height: 100px;
+  height: 150px;
   position: sticky;
   position: -webkit-sticky;
   position: -moz-sticky;
@@ -23,7 +23,7 @@ $menu-breakpoint: 715px;
 }
 
 .sub-navigation--small {
-  transform: translateY(-50px);
+  transform: translateY(-100px);
 }
 
 .sub-navigation--small .sub-navigation__items {
@@ -32,6 +32,16 @@ $menu-breakpoint: 715px;
 
 .sub-navigation:hover {
   transform: translateY(0);
+}
+
+.sub-navigation__warning {
+  background: #911305;
+  color: #fff;
+  height: 50px;
+  line-height: 30px;
+  padding: 10px 0;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(0, 0, 0, .2);
 }
 
 .sub-navigation__items {
