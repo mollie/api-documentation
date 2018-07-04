@@ -154,6 +154,87 @@ Parameters
      - When creating recurring payments, the ID of a specific :doc:`Mandate </reference/v2/mandates-api/get-mandate>`
        may be supplied to indicate which of the consumer's accounts should be credited.
 
+   * - ``routing``
+
+       .. type:: array
+          :required: false
+
+     - An optional routing configuration which enables you to route a successful payment to a specific
+       :doc:`balance </reference/v2/balances-api/create-balance>` and split the payment between multiple balances.
+       Additionally, you can schedule (parts of) the payment to become available on the balance on a future date.
+
+       See the :doc:`Mollie Payouts </guides/payouts>` guide for more information on payment routing.
+
+       If a routing array is supplied, it must contain one or more
+       :doc:`routing objects </reference/v2/payments-api/get-payment-route>` with the following parameters:
+
+       .. list-table::
+          :widths: auto
+
+          * - ``amount``
+
+              .. type:: amount object
+                 :required: false
+
+            - If more than one routing object is given, the routing objects must indicate what portion of the total
+              payment amount is being routed.
+
+              .. list-table::
+                 :widths: auto
+
+                 * - ``currency``
+
+                     .. type:: string
+                        :required: true
+
+                   - An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code. Currently only ``EUR``
+                     payments can be routed.
+
+                 * - ``value``
+
+                     .. type:: string
+                        :required: true
+
+                   - A string containing the exact amount of this portion of the payment in the given currency. Make
+                     sure to send the right amount of decimals. Non-string values are not accepted.
+
+          * - ``destination``
+
+              .. type:: object
+                 :required: true
+
+            - The destination of this portion of the payment.
+
+              .. list-table::
+                 :widths: auto
+
+                 * - ``type``
+
+                     .. type:: string
+                        :required: true
+
+                   - The type of destination. Currently only the destination type ``balance`` is supported.
+
+                     Possible values: ``balance``
+
+                 * - ``balanceId``
+
+                     .. type:: string
+                        :required: false
+
+                   - Required for destination type ``balance``. The ID of the balance the funds should be routed to, for
+                     example ``bal_8irzh1y2`` or ``default``.
+
+          * - ``releaseDate``
+
+              .. type:: date
+                 :required: false
+
+            - Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+              date must be given in ``YYYY-MM-DD`` format.
+
+              If no date is given, the funds become available to the balance as soon as the payment succeeds.
+
 Payment method specific parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you specify the ``method`` parameter, optional parameters may be available for the payment method. If no method is
