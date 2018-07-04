@@ -344,6 +344,70 @@ Response
 
             - The description of the application fee as specified during payment creation.
 
+   * - ``routing``
+
+       .. type:: array
+
+     - The routing configuration as specified during payment creation.
+
+       See the :doc:`Mollie Payouts </guides/payouts>` guide for more information on payment routing.
+
+       If specified, the routing array contains one or more routing objects with the following parameters:
+
+       .. list-table::
+          :widths: auto
+
+          * - ``amount``
+
+              .. type:: amount object
+
+            - If more than one routing object is given, the routing objects must indicate what portion of the total
+              payment amount is being routed.
+
+              .. list-table::
+                 :widths: auto
+
+                 * - ``currency``
+
+                     .. type:: string
+
+                   - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+
+                 * - ``value``
+
+                     .. type:: string
+
+                   - A string containing the exact amount of this portion of the payment in the given currency.
+
+          * - ``destination``
+
+              .. type:: object
+
+            - The destination of this portion of the payment.
+
+              .. list-table::
+                 :widths: auto
+
+                 * - ``type``
+
+                     .. type:: string
+
+                   - The type of destination.
+
+                     Possible values: ``balance``
+
+                 * - ``balanceId``
+
+                     .. type:: string
+
+                   - In case of destination type ``balance``, the ID of the balance the funds are routed to.
+
+          * - ``releaseDate``
+
+              .. type:: date
+
+            - The optional release date specified during payment creation. The funds will be released on this date.
+
    * - ``_links``
 
        .. type:: object

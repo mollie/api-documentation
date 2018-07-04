@@ -4,6 +4,18 @@ Changelog
 Occasionally, we will add new resources, new fields, or new possible values to existing fields to the v2 Mollie API. All
 changes are documented here.
 
+July 2018
+=========
+
+Wednesday, 4th
+--------------
+- Created a guide for :doc:`Mollie Payouts </guides/payouts>`.
+- Introduced the :doc:`Balances API </reference/v2/balances-api/create-balance>` for Mollie Payouts.
+- Introduced the :doc:`Transfers API </reference/v2/transfers-api/create-transfer>` for Mollie Payouts.
+- Added support for payment routing using the new ``routing`` parameter on the 
+  :doc:`Payments API </reference/v2/payments-api/create-payment>` for Mollie Payouts.
+- Introduced the :doc:`payment route subresource </reference/v2/payments-api/get-payment-route>` for Mollie Payouts.
+
 June 2018
 =========
 

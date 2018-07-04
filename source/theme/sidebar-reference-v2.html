@@ -27,6 +27,21 @@
 			'List payments',
 			'GET /v2/payments'
 		) }}
+		{{ sidebar_item(
+			'reference/v2/payments-api/get-payment-route',
+			'Get payment route',
+			'GET /v2/payments/*/routes/*'
+		) }}
+		{{ sidebar_item(
+			'reference/v2/payments-api/update-payment-route',
+			'Update payment route',
+			'POST /v2/payments/*/routes/*'
+		) }}
+		{{ sidebar_item(
+			'reference/v2/payments-api/list-payment-routes',
+			'List payment routes',
+			'GET /v2/payments/*/routes'
+		) }}
 	</ul>
 </div>
 
@@ -329,6 +344,62 @@
 			'reference/v2/invoices-api/list-invoices',
 			'List invoices',
 			'GET /v2/invoices'
+		) }}
+	</ul>
+</div>
+
+<div class="sidebar__spacing"></div>
+
+<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/balances-api/') }}">
+	<p><a href="javascript:void(0)">Balances API</a></p>
+
+	<ul>
+		{{ sidebar_item(
+		'reference/v2/balances-api/create-balance',
+		'Create balance',
+		'POST /v2/balances'
+		) }}
+		{{ sidebar_item(
+		'reference/v2/balances-api/get-balance',
+		'Get balance',
+		'GET /v2/balances/*'
+		) }}
+		{{ sidebar_item(
+		'reference/v2/balances-api/get-default-balance',
+		'Get default balance',
+		'GET /v2/balances/default'
+		) }}
+		{{ sidebar_item(
+		'reference/v2/balances-api/update-balance',
+		'Update balance',
+		'POST /v2/balances/*'
+		) }}
+		{{ sidebar_item(
+		'reference/v2/balances-api/list-balances',
+		'List balances',
+		'GET /v2/balances'
+		) }}
+	</ul>
+</div>
+
+<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/balances-api/') }}">
+	<p><a href="javascript:void(0)">Transfers API</a></p>
+
+	<ul>
+		{{ sidebar_item(
+		'reference/v2/transfers-api/create-transfer',
+		'Create transfer',
+		'POST /v2/transfers'
+		) }}
+		{{ sidebar_item(
+		'reference/v2/transfers-api/get-transfer',
+		'Get transfer',
+		'GET /v2/transfers/*'
+		) }}
+		{{ sidebar_item(
+		'reference/v2/transfers-api/list-transfers',
+		'List transfers',
+		'GET /v2/transfers'
 		) }}
 	</ul>
 </div>
