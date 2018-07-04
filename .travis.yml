@@ -24,7 +24,7 @@ script:
   - make write-gtm
 deploy:
   on:
-    branch: master
+    branch: deploy-to-private-cloudfront
   provider: script
   script: bash deploy.sh
   skip_cleanup: true
