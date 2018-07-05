@@ -39,9 +39,12 @@ $menu-breakpoint: 715px;
   color: #fff;
   height: 50px;
   line-height: 30px;
+  overflow: hidden;
   padding: 10px 0;
   text-align: center;
+  text-overflow: ellipsis;
   text-shadow: 0 0 5px rgba(0, 0, 0, .2);
+  white-space: nowrap;
 }
 
 .sub-navigation__items {
