@@ -100,7 +100,7 @@
   color: $grey-darkest;
 }
 
-.sidebar__group ul li a > code {
+.sidebar__group ul li a > .sidebar__subtitle {
   color: $grey-medium-light;
   display: block;
   font-size: 12px;
@@ -150,6 +150,20 @@
 
 .sidebar__group--collapse > ul {
   display: none;
+}
+
+.sidebar__tag {
+  background: #f1fafd;
+  border-radius: 3px;
+  color: #00508a;
+  display: inline-block;
+  font-family: $font-family-monospace;
+  font-size: 11px;
+  height: 20px;
+  line-height: 20px;
+  margin-left: 5px;
+  padding: 0 6px;
+  vertical-align: middle;
 }
 
 .sidebar__spacing {
