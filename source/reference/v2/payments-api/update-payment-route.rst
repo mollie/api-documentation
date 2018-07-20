@@ -25,14 +25,13 @@ Replace ``paymentId`` in the endpoint URL by the payment's ID, and replace ``id`
    * - ``releaseDate``
 
        .. type:: date
-          :required: false
+          :required: true
 
-     - Update or add an optional future release date to delay routing of this part of the payment to a later date. The
-       date must be given in ``YYYY-MM-DD`` format.
+     - Update a future release date to delay routing of this part of the payment to a later date. The date must be given
+       in ``YYYY-MM-DD`` format.
 
-       If no date is given, the funds become available to the balance as soon as the payment succeeds.
-
-       If the funds have already been released or are about to be released, the date can no longer be changed.
+       The ``releaseDate`` cannot be added if it wasn't previously set. If the funds have already been released or are
+       about to be released, the date can no longer be updated either.
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

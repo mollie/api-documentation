@@ -235,6 +235,10 @@ Parameters
 
               If no date is given, the funds become available to the balance as soon as the payment succeeds.
 
+              Note the ``releaseDate`` can be updated via the
+              :doc:`Update payment route </reference/v2/payments-api/update-payment-route>` call, but only if it was set
+              initially.
+
 Payment method specific parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you specify the ``method`` parameter, optional parameters may be available for the payment method. If no method is
