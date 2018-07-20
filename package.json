@@ -30,7 +30,7 @@
     "eslint-config-mollie-node": "0.0.1-alpha.2",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
-    "node-sass": "git+https://github.com/sass/node-sass.git",
+    "node-sass": "^4.9.1",
     "parcel-bundler": "^1.8.0",
     "replace-in-file": "^3.4.0"
   },
