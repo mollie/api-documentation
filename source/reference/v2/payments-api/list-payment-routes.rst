@@ -160,10 +160,6 @@ Response
                        "payment": {
                            "href": "https://api.mollie.com/v2/payments/tr_7UhSN1zuXS",
                            "type": "application/hal+json"
-                       },
-                       "documentation": {
-                           "href": "https://docs.mollie.com/reference/v2/payments-api/get-payment-route",
-                           "type": "text/html"
                        }
                    }
                },
