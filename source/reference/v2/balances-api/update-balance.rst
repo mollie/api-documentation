@@ -15,7 +15,7 @@ Update the configuration of a balance.
 
 Parameters
 ----------
-Replace ``paymentId`` in the endpoint URL by the balance's ID, for example: ``bal_8irzh1y2``.
+Replace ``id`` in the endpoint URL by the balance's ID, for example: ``bal_8irzh1y2``.
 
 .. list-table::
    :widths: auto
