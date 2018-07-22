@@ -99,10 +99,17 @@ Response
        Possible values:
 
        * ``daily`` Every business day.
-       * ``semiweekly`` Twice a week.
-       * ``weekly`` Once a week.
-       * ``semimonthly`` Every two weeks.
-       * ``monthly`` First business day of the month.
+       * ``twice-a-week`` Every Tuesday and Friday.
+       * ``every-monday`` Every Monday.
+       * ``every-tuesday`` Every Tuesday.
+       * ``every-wednesday`` Every Wednesday.
+       * ``every-thursday`` Every Thursday.
+       * ``every-friday`` Every Friday.
+       * ``twice-a-month`` On the first and the fifteenth of the month.
+       * ``monthly`` On the first of the month.
+
+       .. note:: If the transfer is created in a weekend or during a bank holiday, the actual payout will take place on
+                 the next business day.
 
    * - ``payoutThreshold``
 
