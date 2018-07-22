@@ -107,6 +107,7 @@ Response
        * ``every-friday`` Every Friday.
        * ``twice-a-month`` On the first and the fifteenth of the month.
        * ``monthly`` On the first of the month.
+       * ``never`` Payouts are paused for this balance.
 
        .. note:: If the transfer is created in a weekend or during a bank holiday, the actual payout will take place on
                  the next business day.
