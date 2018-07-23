@@ -5,7 +5,7 @@ Create transfers
 
 .. endpoint::
    :method: POST
-   :url: https://api.mollie.com/v2/transfers/*id*
+   :url: https://api.mollie.com/v2/transfers
 
 .. authentication::
    :api_keys: true
