@@ -144,7 +144,7 @@ Response
                "type": "application/hal+json"
            },
            "documentation": {
-               "href": "https://docs.mollie.com/reference/v2/balances-api/get-balance",
+               "href": "https://docs.mollie.com/reference/v2/balances-api/update-balance",
                "type": "text/html"
            }
        }
