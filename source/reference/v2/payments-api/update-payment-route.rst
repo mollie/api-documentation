@@ -4,7 +4,7 @@ Update payment route
    :version: 2
 
 .. endpoint::
-   :method: POST
+   :method: PATCH
    :url: https://api.mollie.com/v2/payments/*paymentId*/routes/*id*
 
 .. authentication::
@@ -64,7 +64,7 @@ Request
 .. code-block:: bash
    :linenos:
 
-   curl -X POST https://api.mollie.com/v2/payments/tr_7UhSN1zuXS/routes/rt_9dk4al1n \
+   curl -X PATCH https://api.mollie.com/v2/payments/tr_7UhSN1zuXS/routes/rt_9dk4al1n \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
        -d "releaseDate=2018-08-01"
 

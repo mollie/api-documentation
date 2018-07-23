@@ -4,7 +4,7 @@ Update balance
    :version: 2
 
 .. endpoint::
-   :method: POST
+   :method: PATCH
    :url: https://api.mollie.com/v2/balances/*id*
 
 .. authentication::
@@ -108,7 +108,7 @@ Request
 .. code-block:: bash
    :linenos:
 
-   curl -X POST https://api.mollie.com/v2/balances/bal_8irzh1y2 \
+   curl -X PATCH https://api.mollie.com/v2/balances/bal_8irzh1y2 \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
        -d "description=My updated balance" \
        -d "payoutFrequency=monthly"
