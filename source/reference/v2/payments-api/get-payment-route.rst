@@ -194,6 +194,7 @@ Response
            "balanceId": "bal_8irzh1y2"
        },
        "releaseDate": "2018-03-22",
+       "paymentId": "tr_7UhSN1zuXS",
        "_links": {
            "self": {
                "href": "https://api.mollie.com/v2/payments/tr_7UhSN1zuXS/routes/rt_9dk4al1n",
