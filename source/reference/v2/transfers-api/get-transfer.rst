@@ -77,7 +77,8 @@ Response
 
        Possible values:
 
-       * ``open`` The transfer will be picked up for processing with the next daily payout round.
+       * ``open`` In case of a transfer to an external bank account, this status indicates the transfer will be picked
+         up for processing with the next daily payout round.
        * ``pending`` The transfer has been picked up and is being processed.
        * ``completed`` The transfer has been completed.
        * ``failed`` The transfer could not be processed.
@@ -140,9 +141,9 @@ Response
 
               .. type:: string
 
-            - The type of transfer destination. Can currently only be ``bankaccount``.
+            - The type of transfer destination. Can currently only be ``bank-account``.
 
-              Possible values: ``bankaccount``
+              Possible values: ``bank-account``
 
           * - ``bankAccount``
 
@@ -208,7 +209,7 @@ Response
            "balanceId": "bal_8irzh1y2"
        },
        "destination": {
-           "type": "bankaccount",
+           "type": "bank-account",
            "bankAccount": "NL53INGB0654422370"
        },
        "_links": {

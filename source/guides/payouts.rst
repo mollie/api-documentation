@@ -24,9 +24,9 @@ beneficiary first:
    curl -X POST https://api.mollie.com/v2/balances \
        -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
        -d "description=My beneficiary's balance" \
-       -d "payoutFrequency=weekly" \
-       -d "payoutMethod[type]=bankaccount" \
-       -d "payoutMethod[bankAccount]=NL53INGB0654422370"
+       -d "transferFrequency=weekly" \
+       -d "transferDestination[type]=bank-account" \
+       -d "transferDestination[bankAccount]=NL53INGB0654422370"
 
 .. code-block:: http
    :linenos:
@@ -39,9 +39,9 @@ beneficiary first:
        "id": "bal_8irzh1y2",
        "currency": "EUR",
        "description": "My beneficiary's balance",
-       "payoutFrequency": "weekly",
-       "payoutMethod": {
-           "type": "bankaccount",
+       "transferFrequency": "weekly",
+       "transferDestination": {
+           "type": "bank-account",
            "bankAccount": "NL53INGB0654422370"
        },
        "availableAmount": {
@@ -125,9 +125,9 @@ has been moved to the custom balance:
    {
        "resource": "balance",
        "id": "bal_8irzh1y2",
-       "payoutFrequency": "weekly",
-       "payoutMethod": {
-           "type": "bankaccount",
+       "transferFrequency": "weekly",
+       "transferDestination": {
+           "type": "bank-account",
            "bankAccount": "NL53INGB0654422370"
        },
        "availableAmount": {
@@ -180,7 +180,7 @@ to track the payout status.
                        "balanceId": "bal_8irzh1y2"
                    },
                    "destination": {
-                       "type": "bankaccount",
+                       "type": "bank-account",
                        "bankAccount": "NL53INGB0654422370"
                    },
                    "...": { }
@@ -223,7 +223,7 @@ below.
            "balanceId": "bal_8irzh1y2"
        },
        "destination": {
-           "type": "bankaccount",
+           "type": "bank-account",
            "bankAccount": "NL53INGB0654422370"
        },
        "...": { }

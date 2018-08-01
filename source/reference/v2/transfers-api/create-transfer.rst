@@ -11,7 +11,7 @@ Create transfers
    :api_keys: true
    :oauth: true
 
-Trigger a payout of funds on a balance by creating a transfer.
+Transfer funds away from a balance by creating a transfer.
 
 See the guide on :doc:`Mollie Payouts </guides/payouts>` for more details on managing transfers for custom balances.
 
@@ -130,7 +130,7 @@ Response
            "balanceId": "bal_8irzh1y2"
        },
        "destination": {
-           "type": "bankaccount",
+           "type": "bank-account",
            "bankAccount": "NL53INGB0654422370"
        },
        "_links": {

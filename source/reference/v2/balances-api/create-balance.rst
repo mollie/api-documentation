@@ -27,13 +27,13 @@ Parameters
 
      - The balance's unique description.
 
-   * - ``payoutFrequency``
+   * - ``transferFrequency``
 
        .. type:: string
           :required: false
 
-     - The frequency with which this balance should be paid out using the configured payout method. See
-       ``payoutMethod``. Defaults to ``twice-a-week``.
+     - The frequency at which the available amount on the balance will be transfered away to the configured transfer
+       destination. See ``transferDestination``. Defaults to ``twice-a-week``.
 
        Possible values:
 
@@ -47,17 +47,17 @@ Parameters
        * ``twice-a-month`` On the first and the fifteenth of the month.
        * ``monthly`` On the first of the month.
 
-       .. note:: If the transfer is created in a weekend or during a bank holiday, the actual payout will take place on
-                 the next business day.
+       .. note:: If the transfer is for an external destination, and the transfer is created in a weekend or during a
+                 bank holiday, the actual bank transfer will take place on the next business day.
 
-   * - ``payoutThreshold``
+   * - ``transferThreshold``
 
        .. type:: amount object
           :required: false
 
-     - Configure a minimum amount for scheduled balance payouts. As soon as the amount on the balance exceeds this
-       threshold, the complete balance will be paid out according to the configured ``payoutFrequency`` and
-       ``payoutMethod``.
+     - Configure a minimum amount for scheduled automatic balance transfers. As soon as the amount on the balance
+       exceeds this threshold, the complete balance will be paid out to the ``transferDestination`` according to the
+       configured ``transferFrequency``.
 
        .. list-table::
           :widths: auto
@@ -75,16 +75,16 @@ Parameters
               .. type:: string
                  :required: true
 
-            - A string containing the exact EUR amount you want to charge in. Make sure to send the right amount of
-              decimals. Non-string values are not accepted.
+            - A string containing the exact EUR threshold. Make sure to send the right amount of decimals. Non-string
+              values are not accepted.
 
-   * - ``payoutMethod``
+   * - ``transferDestination``
 
        .. type:: object
           :required: true
 
-     - The method used to pay out the balance, once the balance is eligible for payout according to its
-       ``payoutFrequency`` and ``payoutThreshold``.
+     - The destination where the available amount will be automatically transfered to if a ``transferFrequency`` is
+       configured.
 
        .. list-table::
           :widths: auto
@@ -94,19 +94,19 @@ Parameters
               .. type:: string
                  :required: true
 
-            - The type of method used to pay out the balance. Currently only ``bankaccount`` is supported.
+            - The default destination of automatic scheduled transfers. Currently only ``bank-account`` is supported.
 
               Possible values:
 
-              * ``bankaccount`` Transfer the balance amount to an external bank account.
+              * ``bank-account`` Transfer the balance amount to an external bank account.
 
           * - ``bankAccount``
 
               .. type:: string
                  :required: false
 
-            - Required for payout method ``bankaccount``. The bank account number of the beneficiary the balance amount
-              is to be transferred to.
+            - Required for transfer method ``bank-account``. The bank account number of the beneficiary the balance
+              amount is to be transferred to.
 
               Currently only IBANs are accepted.
 
@@ -142,8 +142,8 @@ Request
    curl -X POST https://api.mollie.com/v2/balances \
        -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
        -d "description=My custom balance" \
-       -d "payoutMethod[type]=bankaccount" \
-       -d "payoutMethod[bankAccount]=NL53INGB0654422370"
+       -d "transferDestination[type]=bank-account" \
+       -d "transferDestination[bankAccount]=NL53INGB0654422370"
 
 Response
 ^^^^^^^^
@@ -161,9 +161,9 @@ Response
        "type": "custom",
        "currency": "EUR",
        "description": "My custom balance",
-       "payoutFrequency": "twice-a-week",
-       "payoutMethod": {
-           "type": "bankaccount",
+       "transferFrequency": "twice-a-week",
+       "transferDestination": {
+           "type": "bank-account",
            "bankAccount": "NL53INGB0654422370"
        },
        "availableAmount": {

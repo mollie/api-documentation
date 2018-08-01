@@ -152,7 +152,7 @@ Response
                         "balanceId": "bal_8irzh1y2"
                     },
                     "destination": {
-                        "type": "bankaccount",
+                        "type": "bank-account",
                         "bankAccount": "NL53INGB0654422370"
                     },
                     "_links": {

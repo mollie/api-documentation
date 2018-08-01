@@ -89,12 +89,12 @@ Response
 
      - The description specified during balance creation.
 
-   * - ``payoutFrequency``
+   * - ``transferFrequency``
 
        .. type:: string
 
-     - The frequency with which this balance is configured to be paid out using the configured payout method. See
-       ``payoutMethod``.
+     - The frequency at which the available amount on the balance will be transfered away to the configured transfer
+       destination. See ``transferDestination``.
 
        Possible values:
 
@@ -107,18 +107,18 @@ Response
        * ``every-friday`` Every Friday.
        * ``twice-a-month`` On the first and the fifteenth of the month.
        * ``monthly`` On the first of the month.
-       * ``never`` Payouts are paused for this balance.
+       * ``never`` Automatic balance transfers are paused for this balance.
 
-       .. note:: If the transfer is created in a weekend or during a bank holiday, the actual payout will take place on
-                 the next business day.
+       .. note:: If the transfer is for an external destination, and the transfer is created in a weekend or during a
+                 bank holiday, the actual bank transfer will take place on the next business day.
 
-   * - ``payoutThreshold``
+   * - ``transferThreshold``
 
        .. type:: amount object
 
-     - The minimum amount configured for scheduled balance payouts. As soon as the amount on the balance exceeds this
-       threshold, the complete balance will be paid out according to the configured ``payoutFrequency`` and
-       ``payoutMethod``.
+     - The minimum amount configured for scheduled automatic balance transfers. As soon as the amount on the balance
+       exceeds this threshold, the complete balance will be paid out to the ``transferDestination`` according to the
+       configured ``transferFrequency``.
 
        .. list-table::
           :widths: auto
@@ -134,15 +134,15 @@ Response
 
               .. type:: string
 
-            - A string containing the exact EUR amount you want to charge in. Make sure to send the right amount of
-              decimals. Non-string values are not accepted.
+            - A string containing the exact EUR threshold. Make sure to send the right amount of decimals. Non-string
+              values are not accepted.
 
-   * - ``payoutMethod``
+   * - ``transferDestination``
 
        .. type:: object
 
-     - The method configured to be used to pay out the balance, once the balance is eligible for payout according to its
-       ``payoutFrequency`` and ``payoutThreshold``.
+     - The destination where the available amount will be automatically transfered to if a ``transferFrequency`` is
+       configured.
 
        .. list-table::
           :widths: auto
@@ -151,17 +151,17 @@ Response
 
               .. type:: string
 
-            - The type of method configured to pay out the balance. Currently only ``bankaccount`` is supported.
+            - The default destination of automatic scheduled transfers. Currently only ``bank-account`` is supported.
 
               Possible values:
 
-              * ``bankaccount`` Transfer the balance amount to an external bank account.
+              * ``bank-account`` Transfer the balance amount to an external bank account.
 
           * - ``bankAccount``
 
               .. type:: string
 
-            - Required for payout method ``bankaccount``. The configured bank account number of the beneficiary the
+            - Required for transfer method ``bank-account``. The configured bank account number of the beneficiary the
               balance amount is to be transferred to.
 
    * - ``availableAmount``
@@ -213,7 +213,7 @@ Response
        .. type:: amount object
 
      - The total amount that is in the process of being transferred from your balance to its destination, either because
-       of a scheduled payout or because of a manually triggered payout.
+       of an automatically scheduled transfer or because of a manually triggered transfer.
 
        .. list-table::
           :widths: auto

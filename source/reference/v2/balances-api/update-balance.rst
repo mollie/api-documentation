@@ -27,13 +27,13 @@ Replace ``id`` in the endpoint URL by the balance's ID, for example: ``bal_8irzh
 
      - The balance's unique description.
 
-   * - ``payoutFrequency``
+   * - ``transferFrequency``
 
        .. type:: string
           :required: false
 
-     - The frequency with which this balance should be paid out using the configured payout method. See
-       ``payoutMethod``.
+     - The frequency at which the available amount on the balance will be transfered away to the configured transfer
+       destination. See ``transferDestination``.
 
        Possible values:
 
@@ -47,17 +47,17 @@ Replace ``id`` in the endpoint URL by the balance's ID, for example: ``bal_8irzh
        * ``twice-a-month`` On the first and the fifteenth of the month.
        * ``monthly`` On the first of the month.
 
-       .. note:: If the transfer is created in a weekend or during a bank holiday, the actual payout will take place on
-                 the next business day.
+       .. note:: If the transfer is for an external destination, and the transfer is created in a weekend or during a
+                 bank holiday, the actual bank transfer will take place on the next business day.
 
-   * - ``payoutThreshold``
+   * - ``transferThreshold``
 
        .. type:: amount object
           :required: false
 
-     - Configure a minimum amount for scheduled balance payouts. As soon as the amount on the balance exceeds this
-       threshold, the complete balance will be paid out according to the configured ``payoutFrequency`` and
-       ``payoutMethod``.
+     - Configure a minimum amount for scheduled automatic balance transfers. As soon as the amount on the balance
+       exceeds this threshold, the complete balance will be paid out to the ``transferDestination`` according to the
+       configured ``transferFrequency``.
 
        .. list-table::
           :widths: auto
@@ -75,8 +75,8 @@ Replace ``id`` in the endpoint URL by the balance's ID, for example: ``bal_8irzh
               .. type:: string
                  :required: true
 
-            - A string containing the exact EUR amount you want to charge in. Make sure to send the right amount of
-              decimals. Non-string values are not accepted.
+            - A string containing the exact EUR threshold. Make sure to send the right amount of decimals. Non-string
+              values are not accepted.
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -111,7 +111,7 @@ Request
    curl -X PATCH https://api.mollie.com/v2/balances/bal_8irzh1y2 \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
        -d "description=My updated balance" \
-       -d "payoutFrequency=monthly"
+       -d "transferFrequency=monthly"
 
 Response
 ^^^^^^^^
@@ -133,9 +133,9 @@ Response
            "value": "49.12",
            "currency": "EUR"
        },
-       "payoutFrequency": "monthly",
-       "payoutMethod": {
-           "type": "bankaccount",
+       "transferFrequency": "monthly",
+       "transferDestination": {
+           "type": "bank-account",
            "bankAccount": "NL53INGB0654422370"
        },
        "_links": {
