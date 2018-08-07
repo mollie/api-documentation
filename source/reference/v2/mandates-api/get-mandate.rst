@@ -59,7 +59,7 @@ Response
        .. type:: string
 
      - The status of the mandate. Please note that a status can be ``pending`` for subscription mandates when there is
-       no first payment. See our :ref:`subscription guide <guides/recurring/charging-periodically>`.
+       no first payment. See our :ref:`subscription guide <payments/recurring/charging-periodically>`.
 
        Possible values: ``valid`` ``pending`` ``invalid``
 
@@ -187,13 +187,24 @@ Response
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/customers/cst_4qqhO89gsT/mandates/mdt_h3gAaD5zP \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+    $customer = $mollie->customers->get("cst_4qqhO89gsT");
+    $mandate = $customer->getMandate("mdt_h3gAaD5zP");
 
 Response
 ^^^^^^^^

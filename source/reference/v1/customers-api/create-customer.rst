@@ -8,7 +8,7 @@ Create customer
 
              The documentation for creating customers in the new v2 API can be found
              :doc:`here </reference/v2/customers-api/create-customer>`. For more information on the v2 API, refer to our
-             :doc:`v2 migration guide </migrating-v1-to-v2>`.
+             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: POST
@@ -47,7 +47,7 @@ Parameters
        .. type:: string
           :required: false
 
-     - Allows you to preset the language to be used in the payment screens shown to the consumer. When this
+     - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. When this
        parameter is not provided, the browser language will be used instead in the payment flow (which is usually more
        accurate).
 
@@ -57,10 +57,10 @@ Parameters
 
    * - ``metadata``
 
-       .. type:: object
+       .. type:: mixed
           :required: false
 
-     - Provide any data you like in JSON notation, and we will save the data alongside the customer. Whenever
+     - Provide any data you like, and we will save the data alongside the customer. Whenever
        you fetch the customer with our API, we'll also include the metadata. You can use up to 1kB of JSON.
 
 Mollie Connect/OAuth parameters

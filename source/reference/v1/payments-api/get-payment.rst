@@ -8,7 +8,7 @@ Get payment
 
              The documentation for retrieving payments in the new v2 API can be found
              :doc:`here </reference/v2/payments-api/get-payment>`. For more information on the v2 API, refer to our
-             :doc:`v2 migration guide </migrating-v1-to-v2>`.
+             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: GET
@@ -20,7 +20,7 @@ Get payment
 
 Retrieve a single payment object by its payment token.
 
-.. note:: We call your webhook when the :doc:`payment status changes </guides/payment-status-changes>`, so there's no
+.. note:: We call your webhook when the :doc:`payment status changes </payments/status-changes>`, so there's no
           need to poll this endpoint for status changes.
 
 Parameters
@@ -176,7 +176,7 @@ Response
 
    * - ``metadata``
 
-       .. type:: object
+       .. type:: mixed
 
      - The optional metadata you provided upon payment creation. Metadata can for example be used to link an order to a
        payment.
@@ -220,7 +220,7 @@ Response
        .. type:: string
 
      - This field indicates the position of the payment in a recurring stream. Refer to the
-       :doc:`recurring payments guide </guides/recurring>` for more information.
+       :doc:`recurring payments guide </payments/recurring>` for more information.
 
        Possible values: ``null`` ``first`` ``recurring``
 
@@ -431,7 +431,7 @@ Bank transfer
 
               .. type:: string
 
-            - Only available if filled out in the API or by the consumer – The email address which the consumer asked
+            - Only available if filled out in the API or by your customer – The email address which your customer asked
               the payment instructions to be sent to.
 
 Belfius Pay Button

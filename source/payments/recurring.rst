@@ -18,12 +18,12 @@ How to get started
 ------------------
 In the following sections we explain the following topics.
 
-* :ref:`Setting up the first payment <guides/recurring/first-payment>`
-* :ref:`Charging immediately on-demand <guides/recurring/charging-on-demand>`
-* :ref:`Charging periodically with subscriptions <guides/recurring/charging-periodically>`
-* :ref:`How do webhooks for subscriptions work? <guides/recurring/subscription-webhooks>`
+* :ref:`Setting up the first payment <payments/recurring/first-payment>`
+* :ref:`Charging immediately on-demand <payments/recurring/charging-on-demand>`
+* :ref:`Charging periodically with subscriptions <payments/recurring/charging-periodically>`
+* :ref:`How do webhooks for subscriptions work? <payments/recurring/subscription-webhooks>`
 
-.. _guides/recurring/first-payment:
+.. _payments/recurring/first-payment:
 
 Setting up the first payment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -76,7 +76,7 @@ periodically through *subscriptions*.
           support a first payment and are thus allowed as a value for the ``method`` parameter of a first payment:
           ``bancontact`` ``belfius`` ``creditcard`` ``eps`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``sofort``
 
-.. _guides/recurring/charging-on-demand:
+.. _payments/recurring/charging-on-demand:
 
 Charging immediately on-demand
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -115,9 +115,9 @@ Please note that in order to do recurring payments, direct debit or credit card 
               \"webhookUrl\": \"https://webshop.example.org/payments/webhook/\"
           }"
 
-#. Like regular payments your :doc:`webhook </guides/webhooks>` is called for retrieving status updates.
+#. Like regular payments your :doc:`webhook </payments/webhooks>` is called for retrieving status updates.
 
-.. _guides/recurring/charging-periodically:
+.. _payments/recurring/charging-periodically:
 
 Charging periodically with subscriptions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -161,7 +161,7 @@ automatically at the specified frequency, and will show up in your Dashboard.
 
 Refer to the documentation of the API client you are using for more examples.
 
-.. _guides/recurring/subscription-webhooks:
+.. _payments/recurring/subscription-webhooks:
 
 How do webhooks for subscriptions work?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

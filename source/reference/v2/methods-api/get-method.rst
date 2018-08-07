@@ -11,7 +11,7 @@ Get payment method
    :api_keys: true
    :oauth: true
 
-Retrieve a single method by its ID. Note that if a method is not available on the payment profile a status
+Retrieve a single method by its ID. Note that if a method is not available on the website profile a status
 ``404 Not found`` is returned. When the method is not enabled, a status ``403 Forbidden`` is returned.
 
 If you do not know the method's ID, you can use the
@@ -51,7 +51,7 @@ Organizations can have multiple profiles for each of their websites. See
        .. type:: string
           :required: true
 
-     - The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``. This field is mandatory.
+     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``. This field is mandatory.
 
    * - ``testmode``
 
@@ -140,13 +140,23 @@ Response
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/methods/ideal?include=issuers \
        -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+    $mollie->methods->get("ideal", ["include" => "issuers"]);
 
 Response
 ^^^^^^^^

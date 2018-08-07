@@ -55,8 +55,7 @@ Response
 
        .. type:: string
 
-     - The mode used to create this customer. Mode determines whether a customer is *real* (live mode) or a *test*
-       customer.
+     - The mode used to create this customer.
 
        Possible values: ``live`` ``test``
 
@@ -76,7 +75,7 @@ Response
 
        .. type:: string
 
-     - Allows you to preset the language to be used in the payment screens shown to the consumer. If this parameter was
+     - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. If this parameter was
        not provided when the customer was created, the browser language will be used instead in the payment flow (which
        is usually more accurate).
 
@@ -86,15 +85,15 @@ Response
 
    * - ``metadata``
 
-       .. type:: object
+       .. type:: mixed
 
-     - Data provided during the customer creation in JSON notation.
+     - Data provided during the customer creation.
 
    * - ``createdAt``
 
        .. type:: datetime
 
-     - The customer record's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+     - The customer's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
    * - ``_links``
 
@@ -142,13 +141,23 @@ Response
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/customers/cst_kEn1PlbGa \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+    $customer = $mollie->customers->get("cst_kEn1PlbGa");
 
 Response
 ^^^^^^^^

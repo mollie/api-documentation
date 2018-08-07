@@ -8,7 +8,7 @@ Get mandate
 
              The documentation for retrieving mandates in the new v2 API can be found
              :doc:`here </reference/v2/mandates-api/get-mandate>`. For more information on the v2 API, refer to our
-             :doc:`v2 migration guide </migrating-v1-to-v2>`.
+             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: GET
@@ -66,7 +66,7 @@ Response
        .. type:: string
 
      - The status of the mandate. Please note that a status can be ``pending`` for subscription mandates when there is
-       no first payment. See our :ref:`subscription guide <guides/recurring/charging-periodically>`.
+       no first payment. See our :ref:`subscription guide <payments/recurring/charging-periodically>`.
 
        Possible values: ``valid`` ``pending`` ``invalid``
 

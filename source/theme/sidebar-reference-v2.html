@@ -108,6 +108,30 @@
 
 <div class="sidebar__spacing"></div>
 
+<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/orders-api/') }}">
+	<p><a href="javascript:void(0)">Orders API</a></p>
+
+	<ul>
+		{{ sidebar_item(
+			'reference/v2/orders-api/create-order',
+			'Create order',
+			'POST /v2/orders'
+		) }}
+		{{ sidebar_item(
+			'reference/v2/orders-api/get-order',
+			'Get order',
+			'GET /v2/orders/*'
+		) }}
+		{{ sidebar_item(
+			'reference/v2/orders-api/list-orders',
+			'LIST orders',
+			'GET /v2/orders'
+		) }}
+	</ul>
+</div>
+
+<div class="sidebar__spacing"></div>
+
 <div class="sidebar__group {{ sidebar_collapse_group('reference/v2/customers-api/') }}">
 	<p><a href="javascript:void(0)">Customers API</a></p>
 
@@ -201,6 +225,11 @@
 			'List subscriptions',
 			'GET /v2/customers/*/subscriptions'
 		) }}
+		{{ sidebar_item(
+			'reference/v2/subscriptions-api/update-subscription',
+			'Update subscription',
+			'PATCH /v2/customers/*/subscriptions/*'
+		) }}
 	</ul>
 </div>
 
@@ -247,7 +276,7 @@
 		{{ sidebar_item(
 			'reference/v2/organizations-api/current-organization',
 			'Get current organization',
-			'GET /v2/organizations/*'
+			'GET /v2/organizations/me'
 		) }}
 		{{ sidebar_item(
 			'reference/v2/organizations-api/get-organization',

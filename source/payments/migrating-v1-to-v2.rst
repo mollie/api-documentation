@@ -5,7 +5,7 @@ Why upgrade to v2?
 ------------------
 The Mollie API ``v2`` offers some compelling new features compared to the older ``v1`` API:
 
-* Fully supports :doc:`multicurrency </guides/multicurrency>`. You can create payments, subscriptions, and refunds in
+* Fully supports :doc:`multicurrency </payments/multicurrency>`. You can create payments, subscriptions, and refunds in
   non-``EUR`` currencies. Your account will still be settled in ``EUR``, so new fields have been added in the API to
   reflect the settlement amount for various resources.
 * Improved support for accessing large sets of objects, now uses :doc:`cursor-based pagination </guides/pagination>`
@@ -45,7 +45,7 @@ All amounts in the API are passed as a map containing both a ``currency`` and a 
 This example object describes an amount of €10.00.
 
 .. note:: If you specify an amount, you must specify the *correct* number of decimals. We strongly recommend sending
-          ``value`` as a string. Note that even though most currencies use two decimals, some use three or none, like
+          ``value`` as a string. And even though most currencies use two decimals, some use three or none, like
           ``JPY``.
 
 All amounts returned in the ``v2`` API will use this format.
@@ -106,7 +106,7 @@ The following fields have been changed, renamed or moved:
 * ``paidDatetime`` has been renamed to ``paidAt``.
 * ``canBeCancelled`` has been renamed to ``isCancelable``.
 * ``recurringType`` has been renamed to ``sequenceType``. This field is now always present. A one-off payment (not the
-  start of a recurring sequence and not a :doc:`recurring payment </guides/recurring>`) will have the value ``oneoff``.
+  start of a recurring sequence and not a :doc:`recurring payment </payments/recurring>`) will have the value ``oneoff``.
 * ``redirectUrl`` and ``webhookUrl`` are now part of the top-level object for Payments.
 * ``links.paymentUrl`` has been renamed to ``_links.checkout`` as per HAL specifications.
 * ``failureReason`` has been moved from the Payment resource to the credit card detail object, and no longer available
@@ -206,6 +206,7 @@ Changes in the Customers API
 The following fields have been changed, renamed or moved:
 
 * ``createdDatetime`` has been renamed to ``createdAt``.
+* ``recentlyUsedMethods`` has been removed. 
 
 Changes in the Subscriptions API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -253,7 +254,7 @@ Changes in the Organizations API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * The fields ``country``, ``registrationDate`` and ``registrationType`` have been removed.
-* The field ``address`` is now an :ref:`Address object <address-object>`.
+* The field ``address`` is now an :ref:`address-object`.
 
 Changes in the Permissions API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -266,8 +267,8 @@ Changes in the Invoice API
 * ``issuedDate`` has been renamed to ``issuedAt``.
 * ``paidDate`` has been renamed to ``paidAt``.
 * ``dueDate`` has been renamed to ``dueAt``.
-* ``amount.net``, ``amount.vat`` and ``amount.gross`` have been moved one level up as ``amountNet``, ``amountVat`` and
-  ``amountGross``.
+* ``amount.net``, ``amount.vat`` and ``amount.gross`` have been moved one level up as ``netAmount``, ``vatAmount`` and
+  ``grossAmount``.
 * ``pdf`` has been moved into the ``_links`` property.
 
 Changes in error reporting

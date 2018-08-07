@@ -13,7 +13,8 @@ List API keys
 
 List the active API keys for the given payment profile.
 
-**Note that you cannot retrieve API keys for a different account than your own, even if you have a valid OAuth token.**
+.. note::
+   You cannot retrieve API keys for a different account than your own, even if you have a valid OAuth token.
 
 If you wish to create a payment on behalf of a different merchant, use your app's access token and the ``profileId`` of
 one of the merchant's payment profiles when :doc:`creating a payment </reference/v1/payments-api/create-payment>`.

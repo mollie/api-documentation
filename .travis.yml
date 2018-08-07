@@ -4,6 +4,8 @@ python:
 cache:
   - pip
   - npm
+  - directories:
+    - .cache
 env:
   global:
     # Upload credentials
@@ -16,12 +18,13 @@ env:
     - AWS_REGION="eu-central-1"
 install:
   - nvm install $(cat .nvmrc)
-  - npm install --no-optional
+  - travis_retry npm install --no-optional
   - pip install -r requirements.txt
-  - pip install awscli
 script:
   - make html-production
   - make write-gtm
+before_deploy:
+  - pip install awscli
 deploy:
   on:
     branch: master

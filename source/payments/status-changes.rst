@@ -8,7 +8,7 @@ them. Then we will show you how the statuses are connected.
 
 ``open``
     The payment has been created, but nothing else has happened yet. This is not a status Mollie will call your
-    :doc:`webhook </guides/webhooks>` for.
+    :doc:`webhook </payments/webhooks>` for.
 
 ``canceled``
     Your customer has canceled the payment. This is a definitive status. Mollie will call your webhook when this status

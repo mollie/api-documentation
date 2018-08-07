@@ -40,7 +40,7 @@ Parameters
        .. type:: string
           :required: false
 
-     - Allows you to preset the language to be used in the payment screens shown to the consumer. When this
+     - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. When this
        parameter is not provided, the browser language will be used instead in the payment flow (which is usually more
        accurate).
 
@@ -53,7 +53,7 @@ Parameters
        .. type:: object
           :required: false
 
-     - Provide any data you like in JSON notation, and we will save the data alongside the customer. Whenever
+     - Provide any data you like, and we will save the data alongside the customer. Whenever
        you fetch the customer with our API, we'll also include the metadata. You can use up to 1kB of JSON.
 
 Mollie Connect/OAuth parameters
@@ -80,8 +80,8 @@ A customer object is returned, as described in :doc:`Get customer </reference/v2
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
@@ -89,6 +89,19 @@ Request
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
        -d "name=Customer A" \
        -d "email=customer@example.org"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+    $customer = $mollie->customers->create([
+      "name" => "Customer A",
+      "email" => "customer@example.org",
+    ]);
 
 Response
 ^^^^^^^^

@@ -11,11 +11,16 @@ Create payment
    :api_keys: true
    :oauth: true
 
-Payment creation is elemental to the Mollie API: this is where most payment implementations start off. Note optional
-parameters are accepted for certain payment methods.
+Payment creation is elemental to the Mollie API: this is where most payment implementations start off.
+
+Once you have created a payment, you should redirect your customer to the URL in the ``_links.checkout`` property from
+the response.
 
 To wrap your head around the payment process, an explanation and flow charts can be found in the
-:doc:`Overview </index>`.
+:doc:`Overview </payments/overview>`.
+
+.. note::
+   :ref:`Optional parameters<payment-method-specific-parameters>` are accepted for certain payment methods.
 
 Parameters
 ----------
@@ -24,7 +29,7 @@ Parameters
 
    * - ``amount``
 
-       .. type:: object
+       .. type:: amount object
           :required: true
 
      - The amount that you want to charge, e.g. ``{"currency":"EUR", "value":"100.00"}`` if you would want to charge
@@ -54,12 +59,12 @@ Parameters
        .. type:: string
           :required: true
 
-     - The description of the payment you're creating. This will be shown to the consumer on their card or bank
+     - The description of the payment you're creating. This will be shown to your customer on their card or bank
        statement when possible. We truncate the description automatically according to the limits of the used payment
        method. The description is also visible in any exports you generate.
 
-       We recommend you use a unique identifier so that you can always link the payment to the order. This is
-       particularly useful for bookkeeping.
+       We recommend you use a unique identifier so that you can always link the payment to the order in your back
+       office. This is particularly useful for bookkeeping.
 
    * - ``redirectUrl``
 
@@ -91,10 +96,10 @@ Parameters
        .. type:: string
           :required: false
 
-     - Allows you to preset the language to be used in the payment screens shown to the consumer. Setting a
+     - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. Setting a
        locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted, the
        browser language will be used instead if supported by the payment method. You can provide any ISO 15897 locale,
-       but our payment screen currently only supports the following languages:
+       but our hosted payment pages currently only support the following languages:
 
        Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
        ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
@@ -128,12 +133,12 @@ Parameters
           :required: false
 
      - Indicate which type of payment this is in a recurring sequence. If set to ``first``, a
-       :ref:`first payment <guides/recurring/first-payment>` is created for the customer, allowing the customer to agree
+       :ref:`first payment <payments/recurring/first-payment>` is created for the customer, allowing the customer to agree
        to automatic recurring charges taking place on their account in the future. If set to ``recurring``, the
        customer's card is charged automatically.
 
        Defaults to ``oneoff``, which is a regular non-recurring payment (see also:
-       :doc:`Recurring </guides/recurring>`).
+       :doc:`Recurring </payments/recurring>`).
 
        Possible values: ``oneoff`` ``first`` ``recurring``
 
@@ -143,7 +148,7 @@ Parameters
           :required: false
 
      - The ID of the :doc:`Customer </reference/v2/customers-api/get-customer>` for whom the payment is being created.
-       This is used for :doc:`recurring payments </guides/recurring>` and
+       This is used for :doc:`recurring payments </payments/recurring>` and
        :doc:`single click payments </guides/checkout>`.
 
    * - ``mandateId``
@@ -239,6 +244,8 @@ Parameters
               :doc:`Update payment route </reference/v2/payments-api/update-payment-route>` call, but only if it was set
               initially.
 
+.. _payment-method-specific-parameters:
+
 Payment method specific parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you specify the ``method`` parameter, optional parameters may be available for the payment method. If no method is
@@ -265,7 +272,7 @@ Bank transfer
        .. type:: string
           :required: false
 
-     - The date the payment should :doc:`expire </guides/payment-status-changes>`, in ``YYYY-MM-DD`` format.
+     - The date the payment should :doc:`expire </payments/status-changes>`, in ``YYYY-MM-DD`` format.
        **Please note:** the minimum date is tomorrow and the maximum date is 100 days after tomorrow.
 
    * - ``locale``
@@ -466,10 +473,12 @@ KBC/CBC Payment Button
        .. type:: string
           :required: false
 
-     - The issuer to use for the KBC/CBC payment. These issuers are not dynamically available through the
-       Issuers API, but can be retrieved by using the ``issuers`` include in the Methods API.
+     - The issuer to use for the KBC/CBC payment.The full list of issuers can be retrieved via the
+       :doc:`Methods API </reference/v2/methods-api/get-method>` by using the optional ``issuers`` include.
 
        Possible values: ``kbc`` ``cbc``
+
+.. _paypal-method-details:
 
 PayPal
 """"""
@@ -562,7 +571,7 @@ SEPA Direct Debit
     One-off SEPA Direct Debit payments using Mollie Checkout can only be created if this is enabled on your account. In
     general, it is not very useful for webshops but may be useful for charities.
 
-    If you want to use recurring payments, take a look at our :doc:`Recurring payments guide </guides/recurring>`.
+    If you want to use recurring payments, take a look at our :doc:`Recurring payments guide </payments/recurring>`.
 
 .. list-table::
    :widths: auto
@@ -598,7 +607,7 @@ information.
        .. type:: string
           :required: true
 
-     - The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``. This field is mandatory.
+     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``. This field is mandatory.
 
    * - ``testmode``
 
@@ -674,8 +683,8 @@ A payment object is returned, as described in :doc:`Get payment </reference/v2/p
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
@@ -683,10 +692,31 @@ Request
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
        -d "amount[currency]=EUR" \
        -d "amount[value]=10.00" \
-       -d "description=My first payment" \
+       -d "description=Order #12345" \
        -d "redirectUrl=https://webshop.example.org/order/12345/" \
        -d "webhookUrl=https://webshop.example.org/payments/webhook/" \
        -d "metadata={\"order_id\": \"12345\"}"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+    $payment = $mollie->payments->create([
+      "amount" => [
+          "currency" => "EUR",
+          "value" => "10.00" // You must send the correct number of decimals, thus we enforce the use of strings
+      ],
+      "description" => "My first payment",
+      "redirectUrl" => "https://webshop.example.org/order/12345/",
+      "webhookUrl" => "https://webshop.example.org/payments/webhook/",
+      "metadata" => [
+          "order_id" => "12345",
+      ],
+    ]);
 
 Response
 ^^^^^^^^
@@ -705,7 +735,7 @@ Response
            "value": "10.00",
            "currency": "EUR"
        },
-       "description": "My first payment",
+       "description": "Order #12345",
        "method": null,
        "metadata": {
            "order_id": "12345"

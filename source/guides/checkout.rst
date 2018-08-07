@@ -7,7 +7,7 @@ For more information, visit our product page on `Mollie Checkout <https://www.mo
 
 Benefits of payments via the Mollie Checkout
 --------------------------------------------
-* The payment screens are suitable for web, smartphones and tablets.
+* Mollie's hosted payment pages are suitable for web, smartphones and tablets.
 
 * All payment methods you have enabled are – when relevant – shown to your customers. A newly activated payment method
   is available immediately for all of your visitors.

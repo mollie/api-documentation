@@ -21,7 +21,7 @@ When using the ``first`` sequence type, methods will be returned if they can be 
 sequence and if they are enabled in the Dashboard.
 
 When using the ``recurring`` sequence type, methods that can be used for recurring payments or subscriptions will be
-returned. Enabling / disabling methods in the dashboard does not affect how they can be used for recurring payments. 
+returned. Enabling / disabling methods in the dashboard does not affect how they can be used for recurring payments.
 
 Parameters
 ----------
@@ -54,7 +54,7 @@ Parameters
 
    * - ``amount``
 
-       .. type:: object
+       .. type:: amount object
           :required: false
 
      - An object containing ``value`` and ``currency``. Only methods that support the amount and currency
@@ -77,7 +77,7 @@ Organizations can have multiple profiles for each of their websites. See
        .. type:: string
           :required: true
 
-     - The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``. This field is mandatory.
+     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``. This field is mandatory.
 
    * - ``testmode``
 
@@ -146,13 +146,23 @@ Response
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/methods \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+    $methods = $mollie->methods->all();
 
 Response
 ^^^^^^^^
@@ -171,8 +181,9 @@ Response
                     "id": "ideal",
                     "description": "iDEAL",
                     "image": {
-                        "size1x": "https://mollie.com/images/payscreen/methods/ideal.png",
-                        "size2x": "https://mollie.com/images/payscreen/methods/ideal%402x.png"
+                        "size1x": "https://mollie.com/external/icons/payment-methods/ideal.png",
+                        "size2x": "https://mollie.com/external/icons/payment-methods/ideal%402x.png",
+                        "svg": "https://mollie.com/external/icons/payment-methods/ideal.svg"
                     },
                     "_links": {
                         "self": {

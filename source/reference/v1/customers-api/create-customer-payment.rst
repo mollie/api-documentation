@@ -8,7 +8,7 @@ Create customer payment
 
              The documentation for creating payments for a customer in the new v2 API can be found
              :doc:`here </reference/v2/customers-api/create-customer-payment>`. For more information on the v2 API,
-             refer to our :doc:`v2 migration guide </migrating-v1-to-v2>`.
+             refer to our :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: POST
@@ -26,7 +26,7 @@ Linking customers to payments enables a number of
 * Keeping track of payment preferences for your customers.
 * Enabling your customers to charge a previously used credit card with a single click.
 * Improved payment insights in your dashboard.
-* :doc:`Recurring payments </guides/recurring>`.
+* :doc:`Recurring payments </payments/recurring>`.
 
 .. note:: This endpoint is a shortcut for :doc:`creating a payment </reference/v1/payments-api/create-payment>` with a
           ``customerId`` parameter.

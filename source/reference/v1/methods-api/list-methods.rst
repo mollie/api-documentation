@@ -8,7 +8,7 @@ List payment methods
 
              The documentation for listing payment methods in the new v2 API can be found
              :doc:`here </reference/v2/methods-api/list-methods>`. For more information on the v2 API, refer to our
-             :doc:`v2 migration guide </migrating-v1-to-v2>`.
+             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: GET
@@ -41,7 +41,7 @@ Parameters
           :required: false
 
      - Passing ``first`` will only show payment methods eligible for making a
-       :ref:`first payment <guides/recurring/first-payment>`. Passing ``recurring`` shows payment methods which can be
+       :ref:`first payment <payments/recurring/first-payment>`. Passing ``recurring`` shows payment methods which can be
        used to automatically charge your customer's account when authorization has been given.
 
        Possible values: ``first`` ``recurring``

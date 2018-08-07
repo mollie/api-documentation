@@ -30,13 +30,23 @@ A payment object is returned, as described in :doc:`Get payment </reference/v2/p
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X DELETE https://api.mollie.com/v2/payments/tr_WDqYK6vllg \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+    $canceled_payment = $mollie->payments->delete("tr_WDqYK6vllg");
 
 Response
 ^^^^^^^^

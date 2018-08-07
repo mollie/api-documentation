@@ -78,7 +78,7 @@ Response
 
    * - ``amount``
 
-       .. type:: object
+       .. type:: amount object
 
      - The constant amount that is charged with each subscription payment, e.g.
        ``{"currency":"EUR", "value":"10.00"}`` for a €10.00 subscription.
@@ -179,17 +179,29 @@ Response
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/customers/cst_stTC2WHAuS/subscriptions/sub_rVKGtNd6s3 \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
 
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+
+    $customer = $mollie->customers->get("cst_stTC2WHAuS");
+    $subscription = $customer->getSubscription("sub_rVKGtNd6s3");
+
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: json
    :linenos:
 
    HTTP/1.1 200 OK

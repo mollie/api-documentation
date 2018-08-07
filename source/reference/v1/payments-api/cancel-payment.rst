@@ -8,7 +8,7 @@ Cancel payment
 
              The documentation for canceling payments in the new v2 API can be found
              :doc:`here </reference/v2/payments-api/cancel-payment>`. For more information on the v2 API, refer to our
-             :doc:`v2 migration guide </migrating-v1-to-v2>`.
+             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: DELETE

@@ -4,7 +4,7 @@ Update customer
    :version: 2
 
 .. endpoint::
-   :method: POST
+   :method: PATCH
    :url: https://api.mollie.com/v2/customers/*id*
 
 .. authentication::
@@ -39,7 +39,7 @@ Replace ``id`` in the endpoint URL by the customer's ID, for example ``cst_8wmqc
        .. type:: string
           :required: false
 
-     - Allows you to preset the language to be used in the payment screens shown to the consumer. When this
+     - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. When this
        parameter is not provided, the browser language will be used instead in the payment flow (which is usually more
        accurate).
 
@@ -49,10 +49,10 @@ Replace ``id`` in the endpoint URL by the customer's ID, for example ``cst_8wmqc
 
    * - ``metadata``
 
-       .. type:: object
+       .. type:: mixed
           :required: false
 
-     - Provide any data you like in JSON notation, and we will save the data alongside the customer. Whenever
+     - Provide any data you like, and we will save the data alongside the customer. Whenever
        you fetch the customer with our API, we'll also include the metadata. You can use up to 1kB of JSON.
 
 Mollie Connect/OAuth parameters
@@ -79,15 +79,29 @@ A customer object is returned, as described in :doc:`Get customer </reference/v2
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
-   curl -X POST https://api.mollie.com/v2/customers/cst_8wmqcHMN4U \
+   curl -X PATCH https://api.mollie.com/v2/customers/cst_8wmqcHMN4U \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
        -d "name=Updated Customer A" \
        -d "email=updated-customer@example.org"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+
+    $customer = $mollie->customers->get("cst_8wmqcHMN4U");
+    $customer->name = "Updated Customer A";
+    $customer->email = "updated-customer@example.org";
+    $customer->update();
 
 Response
 ^^^^^^^^
@@ -105,10 +119,6 @@ Response
        "email": "updated-customer@example.org",
        "locale": "nl_NL",
        "metadata": null,
-       "recentlyUsedMethods": [
-           "creditcard",
-           "ideal"
-       ],
        "createdAt": "2018-04-06T13:23:21.0Z",
        "_links": {
            "self": {

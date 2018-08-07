@@ -117,13 +117,29 @@ Response
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/customers \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+
+    // First page
+    $customers = $mollie->customers->page();
+
+    // Next page
+    $customers->next();
+
 
 Response
 ^^^^^^^^
@@ -145,10 +161,6 @@ Response
                    "email": "customer@example.org",
                    "locale": "nl_NL",
                    "metadata": null,
-                   "recentlyUsedMethods": [
-                       "creditcard",
-                       "ideal"
-                   ],
                    "createdAt": "2018-04-06T13:23:21.0Z",
                    "_links": {
                        "self": {

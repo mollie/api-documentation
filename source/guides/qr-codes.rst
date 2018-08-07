@@ -15,7 +15,7 @@ How do QR codes work?
 #. You show the QR code to the customer during the checkout.
 #. The customer opens the app on a mobile device and scans the QR code.
 #. The customer finishes the payment in the app on the mobile device.
-#. Mollie informs you of the payment status change using the :doc:`webhook </guides/webhooks>`.
+#. Mollie informs you of the payment status change using the :doc:`webhook </payments/webhooks>`.
 #. The customer is redirected back to the webshop on their computer.
 
 Supported payment methods

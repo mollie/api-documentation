@@ -16,14 +16,16 @@ Mollie will then collect and settle the application fees to the ticketing platfo
 
 Enabling application fees
 -------------------------
-In order to enable charging application fees with your app, you must first register to become an app developer. Then,
+In order to enable charging application fees with your app, you must first register to become an app developer. This can
+be done from the `Dashboard <https://www.mollie.com/dashboard/developers/applications>`_. Then,
 `contact <https://www.mollie.com/en/contact/>`_ our support department to have charging application fees on your account
 enabled.
 
 How to create an application fee
 --------------------------------
 Application fees are created by passing additional parameters to the
-:doc:`Create payment </reference/v2/payments-api/create-payment>` endpoint:
+:doc:`Create payment </reference/v2/payments-api/create-payment>` or
+:doc:`Create order </reference/v2/orders-api/create-order>` API:
 
 .. list-table::
    :widths: auto
@@ -55,7 +57,8 @@ Application fees are created by passing additional parameters to the
                      .. type:: string
                         :required: true
 
-                   - An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+                   - An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code. For application fees, this
+                     must always be ``EUR`` regardless of the currency of the payment or order.
 
                  * - ``value``
 

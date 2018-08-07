@@ -13,7 +13,7 @@ Get payment
 
 Retrieve a single payment object by its payment token.
 
-.. note:: We call your webhook when the :doc:`payment status changes </guides/payment-status-changes>`, so there's no
+.. note:: We call your webhook when the :doc:`payment status changes </payments/status-changes>`, so there's no
           need to poll this endpoint for status changes.
 
 Parameters
@@ -286,7 +286,7 @@ Response
        .. type:: string
 
      - Indicates which type of payment this is in a recurring sequence. Set to ``first`` for
-       :ref:`first payments <guides/recurring/first-payment>` that allow the customer to agree to automatic recurring
+       :ref:`first payments <payments/recurring/first-payment>` that allow the customer to agree to automatic recurring
        charges taking place on their account in the future. Set to ``recurring`` for payments where the customer's card
        is charged automatically.
 
@@ -1171,13 +1171,23 @@ For an implemention guide, see our :doc:`QR codes guide </guides/qr-codes>`.
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/payments/tr_WDqYK6vllg \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+    $payment = $mollie->payments->get("tr_WDqYK6vllg");
 
 Response
 ^^^^^^^^
@@ -1196,7 +1206,7 @@ Response
            "value": "10.00",
            "currency": "EUR"
        },
-       "description": "My first payment",
+       "description": "Order #12345",
        "method": null,
        "metadata": {
            "order_id": "12345"
