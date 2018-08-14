@@ -78,9 +78,9 @@ html_context = {
     'github_version': 'master/source/',
 }
 
-html_logo = 'https://assets.docs.mollie.com/_static/img/mollie-logo.png'
+html_logo = '_static/img/mollie-logo.png'
 
-html_favicon = 'https://assets.docs.mollie.com/_static/img/favicon.ico'
+html_favicon = '_static/img/favicon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
