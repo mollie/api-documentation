@@ -33,14 +33,14 @@ Parameters
        .. type:: integer
           :required: false
 
-     - The number of payment profiles to skip.
+     - The number of settlements to skip.
 
    * - ``count``
 
        .. type:: integer
           :required: false
 
-     - The number of payment profiles to return (with a maximum of 250).
+     - The number of settlements to return (with a maximum of 250).
 
 Response
 --------
@@ -109,13 +109,23 @@ Response
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/settlements?limit=5 \
        -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+    $settlements = $mollie->settlements->page();
 
 Response
 ^^^^^^^^

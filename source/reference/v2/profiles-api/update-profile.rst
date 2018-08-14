@@ -4,14 +4,14 @@ Update profile
    :version: 2
 
 .. endpoint::
-   :method: POST
+   :method: PATCH
    :url: https://api.mollie.com/v2/profiles/*id*
 
 .. authentication::
    :api_keys: false
    :oauth: true
 
-A profile is required to process payments. A profile can easily be created and updated via the Dashboard manually
+A profile is required to process payments. A profile can easily be created and updated via the Dashboard manually.
 However, the Mollie API also allows automatic profile creation and updates via the Profiles API.
 
 Parameters
@@ -40,15 +40,15 @@ Replace ``id`` in the endpoint URL by the profile's ID, for example ``pfl_v9hTwC
        .. type:: string
           :required: true
 
-     - The new email address associated with the profile's tradename or brand.
+     - The new email address associated with the profile's trade name or brand.
 
    * - ``phone``
 
-       .. type:: string
+       .. type:: phone number
           :required: true
 
-     - The new phone number associated with the profile's tradename or brand. Must be in the
-         `E.164 <https://en.wikipedia.org/wiki/E.164>`_ format. For example ``+31208202070``.
+     - The new phone number associated with the profile's trade name or brand. Must be in the
+       `E.164 <https://en.wikipedia.org/wiki/E.164>`_ format. For example ``+31208202070``.
 
 
    * - ``categoryCode``
@@ -90,22 +90,35 @@ The updated profile object is returned, as described in :doc:`Get profile </refe
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
-   curl -X POST https://api.mollie.com/v2/profiles/pfl_v9hTwCvYqw \
+   curl -X PATCH https://api.mollie.com/v2/profiles/pfl_v9hTwCvYqw \
        -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ" \
-       -H "Content-Type: application/json" \
-       -d \
-       "{
-           \"name\": \"My website name - Update 1\",
-           \"website\": \"https://www.mywebsite2.com\",
-           \"email\": \"info@mywebsite2.com\",
-           \"phone\": \"+31208202070\",
-           \"categoryCode\": 5399
-       }"
+       -d "name=My website name - Update 1" \
+       -d "website=https://www.mywebsite2.com" \
+       -d "email=info@mywebsite2.com" \
+       -d "phone=+31208202070" \
+       -d "categoryCode=5399"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+    $profile = $mollie->profiles->get("pfl_v9hTwCvYqw");
+
+    $profile->name = "My website name - Update 1";
+    $profile->website = "https://www.mywebsite2.com";
+    $profile->email = "info@mywebsite2.com";
+    $profile->phone = "+31208202070";
+    $profile->categoryCode = "5399";
+    $updatedProfile = $profile->update();
 
 Response
 ^^^^^^^^

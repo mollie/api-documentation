@@ -1,4 +1,4 @@
 {
-  "extends": ["mollie-node"],
+  "extends": ["@mollie/eslint-config-node"],
   "parser": "babel-eslint"
 }

@@ -16,29 +16,20 @@ API key is preceded by ``Bearer``. For example: a valid ``Authorization`` header
 ``setApiKey`` method that will allow you to easily configure the required header.
 
 While building and testing your integration you should use the *Test API key*. This will cause your code to
-(automatically) only create test payments. Test payments come with a fake payment screen that allows you to select
+(automatically) only create test payments. Test payments come with a hosted payment page that allows you to select
 whether your test payments are successful or not without spending actual money. This way you can easily test and
 rehearse different scenarios that will occur later on when you switch to real payments. After your testing is done you
 go live by using the Live API key instead of the Test API key. Going live (or going back to testing) is as easy as
 changing keys. Nothing else needs to change.
 
-Of course it's very important to keep any API-keys :doc:`secure </security>`. Do not ever share them. However, if a key
+Of course it's very important to keep any API-keys :doc:`secure </guides/security>`. Do not ever share them. However, if a key
 leaks you can always `regenerate <https://www.mollie.com/dashboard/developers/api-keys>`_ it. Don't forget to apply new
 keys to your code. Until you do your integration will not work.
 
-Apart from the payment screen and the fact that test payments are created instead of real ones, the Mollie API behaves
+Apart from the hosted payment pages and the fact that test payments are created instead of real ones, the Mollie API behaves
 the same way regardless of whether the Test API key or the Live API key is used. Because of this, there won't be any
 technical surprises upon going live. Make a note: don't forget to start using the *Live API key* when your site goes
 public or your customers could be getting a free ride.
-
-The Mollie REST API
--------------------
-The API implements a **Representational state transfer** (REST) architecture. Sounds technical, but it's really quite
-easy. It mainly breaks down to HTTP-methods ``GET``, ``POST``, ``PUT`` and ``DELETE`` matching the operations to
-**read**, **update**, **create** and **delete**.
-
-REST also implies a nice and clean structure for URLs or endpoints. This means you can reach any part of the Mollie API
-on ``https://api.mollie.com/v2/`` adding the name of the resource you want to interact with.
 
 Example
 -------

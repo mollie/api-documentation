@@ -11,7 +11,7 @@ Create subscription
    :api_keys: true
    :oauth: true
 
-With subscriptions, you can schedule :doc:`recurring payments </guides/recurring>` to take place at regular intervals.
+With subscriptions, you can schedule :doc:`recurring payments </payments/recurring>` to take place at regular intervals.
 
 For example, by simply specifying an ``amount`` and an ``interval``, you can create an endless subscription to charge a
 monthly fee, until the consumer cancels their subscription.
@@ -38,7 +38,7 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example
 
    * - ``amount``
 
-       .. type:: object
+       .. type:: amount object
           :required: true
 
      - The amount that you want to charge, e.g. ``{"currency":"EUR", "value":"100.00"}`` if you would want to charge
@@ -93,7 +93,7 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example
           :required: true
 
      - A description unique per subscription . This will be included in the payment description along with the charge
-       date in ``YYYY-MM-DD`` format.
+       date.
 
    * - ``method``
 
@@ -127,7 +127,7 @@ information.
        .. type:: string
           :required: true
 
-     - The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``. This field is mandatory.
+     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``. This field is mandatory.
 
    * - ``testmode``
 
@@ -146,26 +146,44 @@ A subscription object is returned, as described in
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X POST https://api.mollie.com/v2/customers/cst_stTC2WHAuS/subscriptions \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
-       -H "Content-Type: application/json" \
-       -d \
-       "{
-           \"amount\": {\"currency\":\"EUR\", \"value\":\"25.00\"},
-           \"times\": 4,
-           \"interval\": \"3 months\",
-           \"description\": \"Quarterly payment\",
-           \"webhookUrl\": \"https://webshop.example.org/subscriptions/webhook/\"
-       }"
+       -d "amount[currency]=EUR" \
+       -d "amount[value]=25.00" \
+       -d "times=4" \
+       -d "interval=3 months" \
+       -d "description=Quarterly payment" \
+       -d "webhookUrl=https://webshop.example.org/subscriptions/webhook/"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+
+    $customer = $mollie->customers->get("cst_stTC2WHAuS");
+    $customer->createSubscription([
+        "amount" => [
+            "currency" => "EUR",
+            "value" => "25.00",
+        ],
+        "times" => 4,
+        "interval" => "3 months",
+        "description" => "Quarterly payment",
+        "webhookUrl" => "https://webshop.example.org/subscriptions/webhook/",
+    ]);
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: json
    :linenos:
 
    HTTP/1.1 201 Created

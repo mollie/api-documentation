@@ -1,15 +1,12 @@
-#changes-in-the-v1-api ul,
-#changes-in-the-v2-api ul {
+#changelog ul {
   @include bare-list;
 }
 
-#changes-in-the-v1-api ul li,
-#changes-in-the-v2-api ul li {
+#changelog ul li {
   position: relative;
 }
 
-#changes-in-the-v1-api ul li::before,
-#changes-in-the-v2-api ul li::before {
+#changelog ul li::before {
   height: calc(100% + 5px);
 
   @media (min-width: breakpoint('medium')) {
@@ -18,7 +15,17 @@
     display: block;
     height: 40px;
     width: 19px;
-    content: "\2022";
+    content: '\2022';
     opacity: 0.2;
   }
+}
+
+#changelog h2 {
+  margin-top: 40px;
+}
+
+#changelog h3 {
+  margin-top: 30px;
+  margin-bottom: 0.5em;
+  font-size: 19px;
 }

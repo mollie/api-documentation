@@ -40,7 +40,7 @@ Response
            "value": "1.00",
            "currency": "EUR"
        },
-       "description": "Order 66",
+       "description": "Order #66",
        "method": null,
        "metadata": null,
        "status": "open",
@@ -66,7 +66,7 @@ The response types
 The first digit of the status code indicates the type or class of the status. Using this first digit you can determine
 the best approach for dealing with an error. The following classes of codes are relevant to the Mollie API:
 
-* A code in the ``2xx``` range comes with a Mollie API response indicating success.
+* A code in the ``2xx`` range comes with a Mollie API response indicating success.
 * A code in the ``4xx`` range is an error code returned from the Mollie API where the client (your responsibility) seems
   to be causing the error. Whenever this happens you can change your code to prevent the error from happening again. The
   error for this specific request usually won't go away by itself.
@@ -92,7 +92,7 @@ Response
 .. code-block:: http
    :linenos:
 
-   HTTP/1.1 401 Authorization Required
+   HTTP/1.1 401 Unauthorized
    Content-Type: application/hal+json; charset=utf-8
 
    {
@@ -107,7 +107,7 @@ Response
        }
    }
 
-The HTTP status ``401 Authorization Required`` indicates missing or incorrect authorization to execute the desired
+The HTTP status ``401 Unauthorized`` indicates missing or incorrect authorization to execute the desired
 action.
 
 Another error that occurs often, is the well known HTTP status ``404 Not Found``, which indicates the object you're
@@ -156,7 +156,7 @@ Request
        -d \
        "{
            \"amount\": {\"currency\":\"EUR\", \"value\":\"1000000000.00\"},
-           \"description\": \"Order 66\",
+           \"description\": \"Order #66\",
            \"redirectUrl\": \"https://www.example.org/payment/completed\"
        }"
 
@@ -181,21 +181,6 @@ Response
        }
    }
 
-All error types listed
-----------------------
-The first digit of the status code indicates the type or class of the status. Using this first digit you can determine
-the best approach for dealing with an error. The following classes of codes are relevant to the Mollie API:
-
-* A code in the ``2xx``` range comes with a Mollie API response indicating success.
-* A code in the ``4xx`` range is an error code returned from the Mollie API where the client (your responsibility) seems
-  to be causing the error. Whenever this happens you can change your code to prevent the error from happening again. The
-  error for this specific request usually won't go away by itself.
-* A code in the ``5xx`` range is an error caused by the Mollie server. In the rare case you get this type of error,
-  something is wrong with the Mollie API. For instance, we may be experiencing a short service interruption. The errors
-  should subside without your mediation.
-
-The operational status of our service can be tracked at `status.mollie.com <https://status.mollie.com/>`_.
-
 All possible status codes
 -------------------------
 The Mollie API will only ever return a subset of all legal HTTP status codes. Here's the full list:
@@ -211,8 +196,7 @@ The Mollie API will only ever return a subset of all legal HTTP status codes. He
 +---+------------------------------------------------------------------------------------------------------------------+
 |401|Unauthorized – Your request wasn't executed due to failed authentication. Check your API key.                     |
 +---+------------------------------------------------------------------------------------------------------------------+
-|403|Forbidden – You do not have access to the requested resource, for example if you're trying to create a payment for|
-|   |payment method that you did not activate yet.                                                                     |
+|403|Forbidden – You do not have access to the requested resource.                                                     |
 +---+------------------------------------------------------------------------------------------------------------------+
 |404|Not Found – The object referenced by your URL does not exist.                                                     |
 +---+------------------------------------------------------------------------------------------------------------------+

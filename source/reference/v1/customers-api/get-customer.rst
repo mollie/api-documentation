@@ -8,7 +8,7 @@ Get customer
 
              The documentation for retrieving customers in the new v2 API can be found
              :doc:`here </reference/v2/customers-api/get-customer>`. For more information on the v2 API, refer to our
-             :doc:`v2 migration guide </migrating-v1-to-v2>`.
+             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: GET
@@ -62,8 +62,7 @@ Response
 
        .. type:: string
 
-     - The mode used to create this customer. Mode determines whether a customer is *real* (live mode) or a *test*
-       customer.
+     - The mode used to create this customer.
 
        Possible values: ``live`` ``test``
 
@@ -83,7 +82,7 @@ Response
 
        .. type:: string
 
-     - Allows you to preset the language to be used in the payment screens shown to the consumer. If this parameter was
+     - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. If this parameter was
        not provided when the customer was created, the browser language will be used instead in the payment flow (which
        is usually more accurate).
 
@@ -93,9 +92,9 @@ Response
 
    * - ``metadata``
 
-       .. type:: object
+       .. type:: mixed
 
-     - Data provided during the customer creation in JSON notation.
+     - Data provided during the customer creation.
 
    * - ``recentlyUsedMethods``
 

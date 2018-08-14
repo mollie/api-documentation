@@ -11,16 +11,19 @@ Create refund
    :api_keys: true
    :oauth: true
 
-Most payment methods support refunds. This means you can request your payment to be refunded to the consumer. The amount
-of the refund will be withheld from your next settlement.
+Most payment methods support refunds. This means you can request your payment to be refunded to your customer.
+The refunded amount will be withheld from your next settlement.
 
 Refunds are not available at all for Bitcoin, paysafecard and gift cards. If you need to refund direct debit payments,
 please contact our support department.
 
-Refunds support descriptions, which we will show in the Dashboard, your exports and pass to the consumer if possible.
+Refunds support descriptions, which we will show in the Dashboard, your exports and pass to your customer if possible.
 
 If you have insufficient balance with Mollie to perform the refund, the refund will be ``queued``. We will automatically
 process the refund once your balance increases.
+
+Any payments created for Orders can also be refunded using the Payment Refunds API. However, we recommend using the Order
+Refund API in those cases so you can pass the order lines you are refunding too.
 
 Possible errors
 ---------------
@@ -29,10 +32,7 @@ will be returned. Some of these situations are illustrated here:
 
 * There might not be enough balance on your account with the payment provider (e.g. PayPal).
 * You may have forgotten to grant the appropriate rights to Mollie for the payment provider (PayPal only).
-* It is possible that the payment has already been (partially) refunded either directly through Mollie or through the
-  payment provider (e.g. PayPal).
-* If your account with the payment provider is not set up correctly, it might be possible that Mollie is not
-  authenticated to perform refunds for that specific payment method.
+* It is possible that the payment has already been (partially) refunded.
 * It is not always possible to do a partial refund.
 
 If you perform many refunds in parallel, you may get an HTTP ``503 Service unavailable`` error. In this case, you can be
@@ -107,15 +107,32 @@ A refund object is returned, as described in :doc:`Get refund </reference/v2/ref
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X POST https://api.mollie.com/v2/payments/tr_WDqYK6vllg/refunds \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
-       -H "Content-Type: application/json" \
-       -d "{\"amount\":{\"currency\":\"EUR\",\"value\":\"5.95\"}}"
+       -d "amount[currency]=EUR" \
+       -d "amount[value]=5.95"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+
+    $payment = $mollie->payments->get("tr_WDqYK6vllg");
+    $refund = $payment->refund([
+      "amount" => [
+        "currency" => "EUR",
+        "value" => "5.95" // You must send the correct number of decimals, thus we enforce the use of strings
+      ]
+    ]);
 
 Response
 ^^^^^^^^
@@ -134,7 +151,7 @@ Response
        },
        "status": "pending",
        "createdAt": "2018-03-14T17:09:02.0Z",
-       "description": "Order",
+       "description": "Order #33",
        "paymentId": "tr_WDqYK6vllg",
        "_links": {
            "self": {

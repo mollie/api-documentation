@@ -42,10 +42,10 @@ Parameters
 
    * - ``phone``
 
-       .. type:: string
+       .. type:: phone number
           :required: true
 
-     - The phone number associated with the profile's tradename or brand. Must be in the
+     - The phone number associated with the profile's trade name or brand. Must be in the
        `E.164 <https://en.wikipedia.org/wiki/E.164>`_ format. For example ``+31208202070``.
 
    * - ``categoryCode``
@@ -87,23 +87,36 @@ A profile object is returned, as described in :doc:`Get profile </reference/v2/p
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X POST https://api.mollie.com/v2/profiles \
        -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ" \
-       -H "Content-Type: application/json" \
-       -d \
-       "{
-           \"name\": \"My website name\",
-           \"website\": \"https://www.mywebsite.com\",
-           \"email\": \"info@mywebsite.com\",
-           \"phone\": \"+31208202070\",
-           \"categoryCode\": 5399,
-           \"mode\": \"live\"
-       }"
+       -d "name=My website name" \
+       -d "website=https://www.mywebsite.com" \
+       -d "email=info@mywebsite.com" \
+       -d "phone=+31208202070" \
+       -d "categoryCode=5399" \
+       -d "mode=live"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+    $profile = $mollie->profiles->create([
+      "name" => "My website name",
+      "website" => "https://www.mywebsite.com",
+      "email" => "info@mywebsite.com",
+      "phone" => "+31208202070",
+      "categoryCode" => "5399",
+      "mode" => "live",
+    ]);
 
 Response
 ^^^^^^^^

@@ -4,13 +4,21 @@ Changelog
 Occasionally, we will add new resources, new fields, or new possible values to existing fields to the v1 Mollie API. All
 changes are documented here.
 
+July 2018
+=========
+
+Tuesday, 31st
+-------------
+
+- Test payments are no longer cleaned up after 2 weeks. Just like live payments they will never be removed.
+
 June 2018
 =========
 
 Monday, 25th
 ------------
 
-- Added the new payment methods Giropay (``giropay``) and eps (``eps``). Note that this method may not be available on
+- Added the new payment methods Giropay (``giropay``) and EPS (``eps``). Note that this method may not be available on
   your account straight away. If it is not, contact our support department to get it activated for your account.
 
 - Passing a payment description in the form of ``Order <order number>`` will now pass the order number to PayPal in the
@@ -107,7 +115,7 @@ another payment method.
 
 Tuesday, 17th
 -------------
-- Updated the payment screens for payments created in test mode. All screens are now available in English, Dutch,
+- Updated the hosted payment pages for payments created in test mode. All screens are now available in English, Dutch,
   French and German. No changes in the API are needed to use these new screens.
 
 Tuesday, 10th

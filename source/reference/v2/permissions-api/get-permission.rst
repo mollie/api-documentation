@@ -40,7 +40,7 @@ Response
      - The permission's unique identifier, for example ``payments.read``. See
        :doc:`Permissions </oauth/permissions>` for details about the available permissions.
 
-       Possible values: ``apikeys.read`` ``apikeys.write`` ``customers.read`` ``customers.write`` ``mandates.read``
+       Possible values: ``customers.read`` ``customers.write`` ``invoices.read`` ``mandates.read``
        ``mandates.write`` ``organizations.read`` ``organizations.write`` ``payments.read`` ``payments.write``
        ``profiles.read`` ``profiles.write`` ``refunds.read`` ``refunds.write`` ``settlements.read``
 

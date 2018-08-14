@@ -51,7 +51,7 @@ Response
 
        .. type:: amount object
 
-     - The amount refunded to the consumer with this refund.
+     - The amount refunded to your customer with this refund.
 
        .. list-table::
           :widths: auto
@@ -103,7 +103,7 @@ Response
 
        .. type:: string
 
-     - The description of the refund that may be shown to the consumer, depending on the payment method used.
+     - The description of the refund that may be shown to your customer, depending on the payment method used.
 
    * - ``status``
 
@@ -117,7 +117,7 @@ Response
        * ``pending`` The refund will be processed soon (usually the next business day). You can still cancel this
          refund.
        * ``processing`` The refund is being processed. Cancellation is no longer possible.
-       * ``refunded`` The refund has been paid out to the consumer.
+       * ``refunded`` The refund has been paid out to your customer.
        * ``failed`` The refund has failed during processing.
 
    * - ``createdAt``
@@ -170,13 +170,23 @@ Response
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/payments/tr_WDqYK6vllg/refunds/re_4qqhO89gsT \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+    $refund = $mollie->payments->get("tr_WDqYK6vllg")->getRefund("re_4qqhO89gsT");
 
 Response
 ^^^^^^^^
@@ -195,7 +205,7 @@ Response
        },
        "status": "pending",
        "createdAt": "2018-03-14T17:09:02.0Z",
-       "description": "Order",
+       "description": "Order #33",
        "paymentId": "tr_WDqYK6vllg",
        "_links": {
            "self": {

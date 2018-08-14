@@ -19,7 +19,7 @@ Linking customers to payments enables a number of
 * Keeping track of payment preferences for your customers.
 * Enabling your customers to charge a previously used credit card with a single click.
 * Improved payment insights in your dashboard.
-* :doc:`Recurring payments </guides/recurring>`.
+* :doc:`Recurring payments </payments/recurring>`.
 
 .. note:: This endpoint is a shortcut for :doc:`creating a payment </reference/v2/payments-api/create-payment>` with a
           ``customerId`` parameter.
@@ -34,29 +34,21 @@ endpoint. For recurring payments, the following parameters have notable differen
 .. list-table::
    :widths: auto
 
-   * - ``recurringType``
+   * - ``sequenceType``
 
        .. type:: string
           :required: false
 
      - Enables recurring payments. If set to ``first``, a first payment for the customer is created, allowing
        the customer to agree to automatic recurring charges taking place on their account in the future. If set to
-       ``recurring``, the customer's card is charged automatically.
-
-   * - ``amount``
-
-       .. type:: decimal
-          :required: true
-
-     - If the ``recurringType`` parameter is set to ``first`` then the minimal amount is €0.01 for iDEAL, credit card
-       and Belfius Pay Button, €0.02 for Bancontact, or €0.10 for SOFORT Banking.
+       ``recurring``, the customer is charged automatically.
 
    * - ``redirectUrl``
 
        .. type:: string
-          :required: true
+          :required: false
 
-     - If the ``recurringType`` parameter is set to ``recurring``, this parameter is ignored. Since the payment will
+     - If the ``recurringType`` parameter is set to ``recurring``, this parameter can be omitted. Since the payment will
        take place without customer interaction, a redirect is not needed.
 
 Response
@@ -68,21 +60,39 @@ A payment object is returned, as described in :doc:`Get payment </reference/v2/p
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X POST https://api.mollie.com/v2/customers/cst_8wmqcHMN4U/payments \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
-       -H "Content-Type: application/json" \
-       -d \
-       "{
-           \"amount\": {\"currency\":\"EUR\", \"value\":\"10.00\"},
-           \"description\": \"My first payment\",
-           \"redirectUrl\": \"https://webshop.example.org/order/12345/\",
-           \"webhookUrl\": \"https://webshop.example.org/payments/webhook/\"
-       }"
+       -d "amount[currency]=EUR" \
+       -d "amount[value]=10.00" \
+       -d "description=Order #12345" \
+       -d "sequenceType=first" \
+       -d "redirectUrl=https://webshop.example.org/order/12345/" \
+       -d "webhookUrl=https://webshop.example.org/payments/webhook/"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+
+    $payment = $mollie->customers->get("cst_8wmqcHMN4U")->createPayment([
+      "amount" => [
+        "currency" => "EUR",
+        "value" => "10.00",
+      ],
+      "description" => "Order #12345",
+      "sequenceType" => "first",
+      "redirectUrl" => "https://webshop.example.org/order/12345/",
+      "webhookUrl => "https://webshop.example.org/payments/webhook/",
+    ]);
 
 Response
 ^^^^^^^^
@@ -101,7 +111,7 @@ Response
            "value": "10.00",
            "currency": "EUR"
        },
-       "description": "My first payment",
+       "description": "Order #12345",
        "method": null,
        "metadata": {
            "order_id": "12345"
@@ -112,7 +122,7 @@ Response
        "details": null,
        "profileId": "pfl_QkEhN94Ba",
        "customerId": "cst_8wmqcHMN4U",
-       "sequenceType": "oneoff",
+       "sequenceType": "first",
        "redirectUrl": "https://webshop.example.org/order/12345/",
        "webhookUrl": "https://webshop.example.org/payments/webhook/",
        "_links": {

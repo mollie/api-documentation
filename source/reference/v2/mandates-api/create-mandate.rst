@@ -15,7 +15,7 @@ Create a mandate for a specific customer. Mandates allow you to charge a custome
 recurrently.
 
 It is only possible to create mandates for IBANs with this endpoint. To create mandates for credit cards, have your
-customers perform a :ref:`'first payment' <guides/recurring/first-payment>` with their credit card.
+customers perform a :ref:`'first payment' <payments/recurring/first-payment>` with their credit card.
 
 Parameters
 ----------
@@ -92,8 +92,8 @@ A mandate object is returned, as described in :doc:`Get mandate </reference/v2/m
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
@@ -105,6 +105,23 @@ Request
        -d "consumerBic=INGBNL2A" \
        -d "signatureDate=2018-05-07" \
        -d "mandateReference=YOUR-COMPANY-MD13804"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+    $mandate = $mollie->customers->get("cst_4qqhO89gsT")->createMandate([
+        "method" => \Mollie\Api\Types\MandateMethod::DIRECTDEBIT,
+        "consumerName" => "John Doe",
+        "consumerAccount" => "NL55INGB0000000000",
+        "consumerBic" => "INGBNL2A",
+        "signatureDate" => "2018-05-07",
+        "mandateReference" => "YOUR-COMPANY-MD13804",
+    ]);
 
 Response
 ^^^^^^^^

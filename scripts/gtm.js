@@ -1,22 +1,11 @@
-// Renders the Google Tag Manager snippet in all HTML files during the deploy step
-const fs = require("fs");
-const pify = require("pify");
+// Renders the Google Tag Manager script tag in all HTML files during the deploy step
 const replace = require("replace-in-file");
 
 async function run() {
-  // fs.readFile does not return a Promise natively, wrap it in `pify` so it does.
-  const gtm = await pify(fs.readFile)("./source/theme/google-tag-manager.html", "utf-8");
-
-  if (typeof gtm !== "string") {
-    throw new Error(
-      `Could not load Google Tag Manager snippet from \`./source/theme/google-tag-manager.html\`, expected a string but got \`${typeof gtm}\``
-    );
-  }
-
   const changedFiles = await replace({
     files: "build/**/*[!.]",
     from: "<!-- GOOGLE_TAG_MANAGER -->",
-    to: gtm
+    to: '<script type="text/javascript" src="/_static/gtm.js" async></script>'
   });
 
   if (!changedFiles.length) {

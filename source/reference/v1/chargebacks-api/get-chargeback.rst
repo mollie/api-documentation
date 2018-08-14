@@ -8,7 +8,7 @@ Get chargeback
 
              The documentation for retrieving chargebacks in the new v2 API can be found
              :doc:`here </reference/v2/chargebacks-api/get-chargeback>`. For more information on the v2 API, refer to
-             our :doc:`v2 migration guide </migrating-v1-to-v2>`.
+             our :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: GET

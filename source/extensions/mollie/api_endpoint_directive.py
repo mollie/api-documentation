@@ -9,7 +9,7 @@ def validate_http_method(argument):
     :type argument: string
     :type: string
     """
-    http_methods = ["GET", "POST", "PUT", "DELETE"]
+    http_methods = ["GET", "POST", "PUT", "DELETE", "PATCH"]
     return utilities.exists_in_list(argument, http_methods)
 
 

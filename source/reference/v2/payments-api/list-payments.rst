@@ -11,7 +11,7 @@ List payments
    :api_keys: true
    :oauth: true
 
-Retrieve all payments created with the current payment profile, ordered from newest to oldest.
+Retrieve all payments created with the current website profile, ordered from newest to oldest.
 
 The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
 
@@ -51,7 +51,7 @@ information.
        .. type:: string
           :required: false
 
-     - The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
+     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
 
    * - ``testmode``
 
@@ -143,13 +143,28 @@ Response
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/payments?limit=5 \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+
+    // get the first page
+    $payments = $mollie->payments->page();
+
+    // get the next page
+    $next_payments = $payments->next();
 
 Response
 ^^^^^^^^
@@ -175,7 +190,7 @@ Response
                        "value": "75.00",
                        "currency": "GBP"
                    },
-                   "description": "test",
+                   "description": "Order #12345",
                    "method": "ideal",
                    "metadata": null,
                    "details": null,

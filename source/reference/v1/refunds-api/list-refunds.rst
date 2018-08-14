@@ -8,7 +8,7 @@ List refunds
 
              The documentation for listing refunds in the new v2 API can be found
              :doc:`here </reference/v2/refunds-api/list-refunds>`. For more information on the v2 API, refer to our
-             :doc:`v2 migration guide </migrating-v1-to-v2>`.
+             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: GET
@@ -147,7 +147,7 @@ Response
                    "amount": "35.07",
                    "amountRefunded": "5.95",
                    "amountRemaining": "54.12",
-                   "description": "Order",
+                   "description": "Order #33",
                    "method": "ideal",
                    "metadata": {
                        "order_id": "33"

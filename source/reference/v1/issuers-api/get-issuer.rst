@@ -9,7 +9,7 @@ Get issuer
              The new v2 API no longer supports retrieving issuers separately. Instead, issuers can be retrieved by using
              the ``issuers`` include on the Methods API. Documentation for the Methods API v2 can be found
              :doc:`here </reference/v2/methods-api/list-methods>`. For more information on the v2 API, refer to our
-             :doc:`v2 migration guide </migrating-v1-to-v2>`.
+             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: GET

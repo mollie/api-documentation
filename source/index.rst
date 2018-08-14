@@ -13,6 +13,15 @@ allows you to still be in control without reinventing the wheel.
 If you have any questions about integrating our API, please `contact us <https://www.mollie.com/en/contact/>`_. We're
 happy to help!
 
+The Mollie REST API
+-------------------
+The API implements a **Representational state transfer** (REST) architecture. Sounds technical, but it's really quite
+easy. It mainly breaks down to HTTP-methods ``GET``, ``PATCH``, ``POST`` and ``DELETE`` matching the operations to
+**read**, **update**, **create** and **delete**.
+
+REST also implies a nice and clean structure for URLs or endpoints. This means you can reach any part of the Mollie API
+on ``https://api.mollie.com/v2/`` adding the name of the resource you want to interact with.
+
 .. _clients:
 
 Clients, modules and plugins
@@ -33,7 +42,7 @@ Mollie is always adding new payment methods. The Mollie API currently supports t
 * `Bitcoin <https://www.mollie.com/en/payments/bitcoin>`_
 * `Credit card <https://www.mollie.com/en/payments/credit-card>`_ (VISA, MasterCard, Maestro and American Express)
 * `SEPA Direct Debit <https://www.mollie.com/en/payments/direct-debit>`_
-* `eps <https://www.mollie.com/en/payments/eps>`_
+* `EPS <https://www.mollie.com/en/payments/eps>`_
 * `Gift cards <https://www.mollie.com/en/payments/gift-cards>`_ (Webshop Giftcard, Podium Cadeaukaart, VVV Cadeaukaart,
   YourGift etc.)
 * `Giropay <https://www.mollie.com/en/payments/giropay>`_

@@ -18,12 +18,14 @@ In v2 endpoints, an amount object is always represented as follows.
    * - ``currency``
 
        .. type:: string
+          :required: true
 
      - An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
    * - ``value``
 
        .. type:: string
+          :required: true
 
      - A string containing the exact amount in the given currency.
 
@@ -39,30 +41,42 @@ In the v2 endpoints, an address object is always represented as follows.
    * - ``streetAndNumber``
 
        .. type:: string
+          :required: true
 
      - The street and street number of the address.
+
+   * - ``streetAdditional``
+
+       .. type:: string
+          :required: false
+
+     - Any additional addressing details, for example an apartment number.
 
    * - ``postalCode``
 
        .. type:: string
+          :required: true
 
      - The postal code of the address.
 
    * - ``city``
 
        .. type:: string
+          :required: true
 
      - The city of the address.
 
    * - ``region``
 
        .. type:: string
+          :required: false
 
      - The region of the address.
 
    * - ``country``
 
        .. type:: string
+          :required: true
 
      - The country of the address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
 
@@ -71,7 +85,7 @@ When providing an address object as parameter to a request, the following condit
 * If any of the fields is provided, all fields have to be provided with exception of the ``region`` field.
 * If only the ``region`` field is given, one should provide all the other fields as per the previous condition.
 * For certain PayPal payments the ``region`` field is required. Please see the
-  :doc:`Create payment documentation </reference/v2/payments-api/create-payment>` for more information.
+  :ref:`Create payment documentation <paypal-method-details>` for more information.
 
 Boolean
 -------
@@ -93,6 +107,11 @@ A string representing the country and language in `ISO 15897 <https://en.wikiped
 
 Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES`` ``ca_ES``
 ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV`` ``lt_LT``.
+
+Phone number
+------------
+All phone numbers must passed as strings in the `E.164 <https://en.wikipedia.org/wiki/E.164>`_ format. For example,
+``+31208202070``.
 
 QR code object
 --------------

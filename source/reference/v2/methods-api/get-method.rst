@@ -11,7 +11,7 @@ Get payment method
    :api_keys: true
    :oauth: true
 
-Retrieve a single method by its ID. Note that if a method is not available on the payment profile a status
+Retrieve a single method by its ID. Note that if a method is not available on the website profile a status
 ``404 Not found`` is returned. When the method is not enabled, a status ``403 Forbidden`` is returned.
 
 If you do not know the method's ID, you can use the
@@ -51,7 +51,7 @@ Organizations can have multiple profiles for each of their websites. See
        .. type:: string
           :required: true
 
-     - The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``. This field is mandatory.
+     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``. This field is mandatory.
 
    * - ``testmode``
 
@@ -107,13 +107,19 @@ Response
 
               .. type:: string
 
-            - The URL for a payment method icon of 55x37 pixels.
+            - The URL for a payment method icon of 32x24 pixels.
 
           * - ``size2x``
 
               .. type:: string
 
-            - The URL for a payment method icon of 110x74 pixels. Use this for high resolution screens.
+            - The URL for a payment method icon of 64x48 pixels.
+            
+          * - ``svg``
+
+              .. type:: string
+
+            - The URL for a payment method icon in vector format. Usage of this format is preferred since it can scale to                 any desired size.
 
    * - ``_links``
 
@@ -140,13 +146,23 @@ Response
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/methods/ideal?include=issuers \
        -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+    $mollie->methods->get("ideal", ["include" => "issuers"]);
 
 Response
 ^^^^^^^^
@@ -161,8 +177,9 @@ Response
         "id": "ideal",
         "description": "iDEAL",
         "image": {
-            "size1x": "https://www.mollie.com/images/payscreen/methods/ideal.png",
-            "size2x": "https://www.mollie.com/images/payscreen/methods/ideal%402x.png"
+            "size1x": "https://www.mollie.com/external/icons/payment-methods/ideal.png",
+            "size2x": "https://www.mollie.com/external/icons/payment-methods/ideal%402x.png",
+            "svg": "https://www.mollie.com/external/icons/payment-methods/ideal.svg"
         },
         "issuers": [
             {
@@ -170,8 +187,9 @@ Response
                 "id": "ideal_ABNANL2A",
                 "name": "ABN AMRO",
                 "image": {
-                    "size1x": "https://www.mollie.com/images/checkout/v2/ideal-issuer-icons/ABNANL2A.png",
-                    "size2x": "https://www.mollie.com/images/checkout/v2/ideal-issuer-icons/ABNANL2A.png"
+                    "size1x": "https://www.mollie.com/external/icons/ideal-issuers/ABNANL2A.png",
+                    "size2x": "https://www.mollie.com/external/icons/ideal-issuers/ABNANL2A%402x.png",
+                    "svg": "https://www.mollie.com/external/icons/ideal-issuers/ABNANL2A.svg"                    
                 }
             },
             {
@@ -179,8 +197,9 @@ Response
                 "id": "ideal_ASNBNL21",
                 "name": "ASN Bank",
                 "image": {
-                    "size1x": "https://www.mollie.com/images/checkout/v2/ideal-issuer-icons/ASNBNL21.png",
-                    "size2x": "https://www.mollie.com/images/checkout/v2/ideal-issuer-icons/ASNBNL21.png"
+                    "size1x": "https://www.mollie.com/external/icons/ideal-issuers/ASNBNL21.png",
+                    "size2x": "https://www.mollie.com/external/icons/ideal-issuers/ASNBNL21%402x.png",
+                    "svg": "https://www.mollie.com/external/icons/ideal-issuers/ASNBNL21.svg"
                 }
             },
             { },

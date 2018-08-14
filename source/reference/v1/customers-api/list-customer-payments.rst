@@ -8,7 +8,7 @@ List customer payments
 
              The documentation for listing payments of a customer in the new v2 API can be found
              :doc:`here </reference/v2/customers-api/list-customer-payments>`. For more information on the v2 API, refer
-             to our :doc:`v2 migration guide </migrating-v1-to-v2>`.
+             to our :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: GET
@@ -66,7 +66,7 @@ Response
                "status": "open",
                "expiryPeriod": "PT15M",
                "amount": "10.00",
-               "description": "My first payment",
+               "description": "Order #12345",
                "metadata": {
                    "order_id": "12345"
                },

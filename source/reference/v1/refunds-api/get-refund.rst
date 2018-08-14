@@ -8,7 +8,7 @@ Get refund
 
              The documentation for retrieving refunds in the new v2 API can be found
              :doc:`here </reference/v2/refunds-api/get-refund>`. For more information on the v2 API, refer to our
-             :doc:`v2 migration guide </migrating-v1-to-v2>`.
+             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: GET
@@ -56,7 +56,7 @@ Response
               .. type:: decimal
 
             - The total amount in EUR that is already refunded. For some payment methods, this amount may be higher than
-              the payment amount, for example to allow reimbursement of the costs for a return shipment to the consumer.
+              the payment amount, for example to allow reimbursement of the costs for a return shipment to your customer.
 
           * - ``amountRemaining``
 
@@ -127,7 +127,7 @@ Response
            "amount": "35.07",
            "amountRefunded": "5.95",
            "amountRemaining": "54.12",
-           "description": "Order",
+           "description": "Order #33",
            "method": "ideal",
            "metadata": {
                "order_id": "33"

@@ -8,7 +8,7 @@ Create payment
 
              The documentation for creating payments in the new v2 API can be found
              :doc:`here </reference/v2/payments-api/create-payment>`. For more information on the v2 API, refer to our
-             :doc:`v2 migration guide </migrating-v1-to-v2>`.
+             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: POST
@@ -22,7 +22,7 @@ Payment creation is elemental to the Mollie API: this is where most payment impl
 parameters are accepted for certain payment methods.
 
 To wrap your head around the payment process, an explanation and flow charts can be found in the
-:doc:`Overview </index>`.
+:doc:`Overview </payments/overview>`.
 
 Parameters
 ----------
@@ -73,10 +73,10 @@ Parameters
        .. type:: string
           :required: false
 
-     - Allows you to preset the language to be used in the payment screens shown to the consumer. Setting a
+     - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. Setting a
        locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted, the
        browser language will be used instead if supported by the payment method. You can provide any ISO 15897 locale,
-       but our payment screen currently only supports the following languages:
+       but our hosted payment pages currently only support the following languages:
 
        Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
        ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
@@ -97,10 +97,10 @@ Parameters
 
    * - ``metadata``
 
-       .. type:: object
+       .. type:: mixed
           :required: false
 
-     - Provide any data you like in JSON notation, and we will save the data alongside the payment. Whenever
+     - Provide any data you like, and we will save the data alongside the payment. Whenever
        you fetch the payment with our API, we'll also include the metadata. You can use up to approximately 1kB.
 
    * - ``recurringType``
@@ -156,7 +156,7 @@ Bank transfer
        .. type:: string
           :required: false
 
-     - The date the payment should :doc:`expire </guides/payment-status-changes>`, in ``YYYY-MM-DD`` format.
+     - The date the payment should :doc:`expire </payments/status-changes>`, in ``YYYY-MM-DD`` format.
        **Please note:** the minimum date is tomorrow and the maximum date is 100 days after tomorrow.
 
    * - ``locale``
@@ -395,7 +395,7 @@ SEPA Direct Debit
    One-off SEPA Direct Debit payments using Mollie Checkout can only be created if this is enabled on your account. In
    general, it is not very useful for webshops but may be useful for charities.
 
-   If you want to use recurring payments, take a look at our :doc:`Recurring payments guide </guides/recurring>`.
+   If you want to use recurring payments, take a look at our :doc:`Recurring payments guide </payments/recurring>`.
 
 .. list-table::
    :widths: auto
@@ -460,8 +460,9 @@ information.
 
             - The amount in EUR that the app wants to charge, e.g. ``10.00`` if the app would want to charge €10.00.
 
-              Note that you will need to invoice the merchant yourself. We will only collect the amount from the
-              merchant and settle the amount with you.
+              .. note::
+                 You will need to invoice the merchant yourself. We will only collect the amount from the merchant and
+                 settle the amount with you.
 
           * - ``description``
 

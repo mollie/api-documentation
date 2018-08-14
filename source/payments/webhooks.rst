@@ -12,7 +12,7 @@ accordingly.
 
 The webhook will be called with a single POST-parameter called ``id``, which for example will contain the value
 ``tr_d0b0E3EA3v``. You should use that ID to actively fetch the payment to find out about it's status. This step seems a
-little cumbersome, but :doc:`proper security </security>` dictates this flow. Since the status is not transmitted in the
+little cumbersome, but :doc:`proper security </guides/security>` dictates this flow. Since the status is not transmitted in the
 webhook, fake calls to your webhook will never result in orders being processed without being actually paid.
 
 If an endpoint supports webhooks, you can specify the webhook URL you want to receive status changes on by providing the
