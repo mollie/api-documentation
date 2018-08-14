@@ -31,7 +31,7 @@ example below shows a fully branded checkout page.
 #. Click on a **Personalize Checkout** button.
 #. Upload images within the specified restrictions.
 
-.. figure:: https://assets.docs.mollie.com/_images/mollie-checkout-example-a@2x.jpg
+.. figure:: images/mollie-checkout-example-a@2x.jpg
 
    ETQ's Checkout with their logo (up top) and wallpaper (background).
 
@@ -47,6 +47,6 @@ recognizable credit card with information gathered from the customers' previous 
 #. Returning customers are now shown the credit cards they have used in the past, enabling them to charge their card of
    choice with a single click.
 
-.. figure:: https://assets.docs.mollie.com/_images/mollie-checkout-example-b@2x.jpg
+.. figure:: images/mollie-checkout-example-b@2x.jpg
 
    An example of the credit card selection screen shown to a returning customer.

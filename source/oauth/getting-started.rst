@@ -32,7 +32,7 @@ merchant to :doc:`the authorization screen </reference/oauth2/authorize>`.
 When you send a merchant to the authorization screen, Mollie will tell the merchant what data your app has requested
 access to, and request the merchant to confirm the authorization. An example authorization is shown below.
 
-.. image:: https://assets.docs.mollie.com/_images/oauth-consent-screen@2x.png
+.. image:: images/oauth-consent-screen@2x.png
 
 Working with access tokens
 --------------------------

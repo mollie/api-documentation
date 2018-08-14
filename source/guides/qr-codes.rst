@@ -50,7 +50,7 @@ Custom implementation
 ---------------------
 The QR code flow is largely similar to normal payment flow.
 
-.. image:: https://assets.docs.mollie.com/_images/qr-flow@2x.png
+.. image:: images/qr-flow@2x.png
 
 Retrieving QR codes
 -------------------

@@ -24,7 +24,7 @@ After you've :doc:`registered your OAuth app with Mollie </oauth/getting-started
 install your app on their Mollie account. To do so, they have to follow the well known OAuth *authorization flow* as
 visualized below.
 
-.. image:: https://assets.docs.mollie.com/_images/oauth-overview-flow@2x.png
+.. image:: images/oauth-overview-flow@2x.png
 
 The authorization flow is explained in further detail in :doc:`OAuth: Getting started </oauth/getting-started>`.
 
@@ -45,7 +45,7 @@ The Connect with Mollie button
 ------------------------------
 To keep the user experience consistent, we recommend using one of the buttons below in your authorization flow.
 
-.. image:: https://assets.docs.mollie.com/_images/button-small@2x.png
+.. image:: images/button-small@2x.png
 
 `Download files <https://www.mollie.com/assets/images/branding/connect-button/connect-with-mollie.zip>`_
 
