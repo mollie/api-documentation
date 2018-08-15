@@ -34,3 +34,4 @@ deploy:
 after_deploy:
   # Bust the CloudFront edge cache, invalidate every object in the distribution
   - aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} --paths "/*"
+  - aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION_CDN_ID} --paths "/*"
