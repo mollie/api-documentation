@@ -50,6 +50,9 @@ lint-js:
 verify:
 	! find source -name '*.rst' | xargs grep --color -E '<http.*>`([^_]|$$)'
 
+write-gtm:
+	node scripts/gtm.js
+
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option. ${O} is meant as a shortcut for ${SPHINXOPTS}.
 html: Makefile source/_static/style.css source/_static/index.js source/_static/gtm.js verify
@@ -60,10 +63,3 @@ html-only:
 
 html-production: Makefile source/_static/style.css source/_static/index.js source/_static/gtm.js verify
 	@${SPHINXBUILD} -M html "${SOURCEDIR}" "${BUILDDIR}" ${SPHINXOPTS} ${SPHINXPRODOPTS} ${O}
-	# Go thru all the files, and replace the snippet with the google tag manager code
-	@LC_CTYPE=C LANG=C find build/ -type f -name '*' -exec sed -i.bak 's/<!-- GOOGLE_TAG_MANAGER -->/<script type=\"text\/javascript\" src=\"\/_static\/gtm.js\" async><\/script>/g' {} \;
-	# Go thru all the files, and replace the paths from relative to an absolute CDN path
-	@LC_CTYPE=C LANG=C find build/ -type f -name '*' -exec sed -i.bak 's/\"[\.\/]*_images/\"https:\/\/assets.docs.mollie.com\/_images/g' {} \;
-	@LC_CTYPE=C LANG=C find build/ -type f -name '*' -exec sed -i.bak 's/\"[\.\/]*_static/\"https:\/\/assets.docs.mollie.com\/_static/g' {} \;
-	# Cleanup .bak files
-	@find build/ -type f -name '*.bak' -exec rm {} \;
