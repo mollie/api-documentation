@@ -170,6 +170,14 @@ Response
            "value": "0.00",
            "currency": "EUR"
        },
+       "incomingAmount": {
+           "value": "0.00",
+           "currency": "EUR"
+       },
+       "outgoingAmount": {
+           "value": "0.00",
+           "currency": "EUR"
+       },
        "_links": {
            "self": {
                "href": "https://api.mollie.com/v2/balances/bal_8irzh1y2",

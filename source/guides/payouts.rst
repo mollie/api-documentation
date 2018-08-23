@@ -48,6 +48,14 @@ beneficiary first:
            "value": "0.00",
            "currency": "EUR"
        },
+       "incomingAmount": {
+           "value": "0.00",
+           "currency": "EUR"
+       },
+       "outgoingAmount": {
+           "value": "0.00",
+           "currency": "EUR"
+       },
        "...": { }
    }
 
@@ -132,6 +140,14 @@ has been moved to the custom balance:
        },
        "availableAmount": {
            "value": "10.00",
+           "currency": "EUR"
+       },
+       "incomingAmount": {
+           "value": "0.00",
+           "currency": "EUR"
+       },
+       "outgoingAmount": {
+           "value": "0.00",
            "currency": "EUR"
        },
        "...": { }

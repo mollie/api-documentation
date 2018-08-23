@@ -133,6 +133,14 @@ Response
            "value": "49.12",
            "currency": "EUR"
        },
+       "incomingAmount": {
+           "value": "0.00",
+           "currency": "EUR"
+       },
+       "outgoingAmount": {
+           "value": "0.00",
+           "currency": "EUR"
+       },
        "transferFrequency": "monthly",
        "transferDestination": {
            "type": "bank-account",
