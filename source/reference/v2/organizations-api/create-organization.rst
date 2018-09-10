@@ -14,14 +14,17 @@ Create organization
    :api_keys: true
    :oauth: false
 
-*Resellers* can request a registration form for their customers. The customer can create an organization
-on the Mollie platform and connect it to the Reseller who initiate the proces via that unique form.
+*Partners* can request a registration form for their customers. The customer can create an organization
+on the Mollie platform and connect it to the partner who initiate the proces via that unique form.
 
 Once you have created the form, you should redirect your customer to the URL in the ``_links.form`` property from the
 response. The customer will come back to your application or service via the OAuth authorization flow.
 
+If you want to become a partner of Mollie, please see our `website <https://www.mollie.com/en/partners/>`_ and join our
+Partner Program.
+
 .. note::
-   This API can only be used by Resellers.
+   This API can only be used by Partners.
 
 Parameters
 ----------
@@ -40,7 +43,7 @@ Parameters
        .. type:: string
           :required: true
 
-     - E-mailaddress of the organization. This will be used for the confirmation mail.
+     - E-mail address of the organization. This will be used for the confirmation mail.
 
    * - ``address``
 
@@ -82,13 +85,6 @@ Parameters
 
               For example: ``NL`` ``BE`` ``DE``
 
-   * - ``email``
-
-       .. type:: string
-          :required: true
-
-     - E-mailaddress of the organization. This will be used for the confirmation mail.
-
 
    * - ``registrationNumber``
 
@@ -104,6 +100,13 @@ Parameters
 
      - The VAT number of the organization, if based in the European Union. The VAT number has been checked with the
        `VIES <http://ec.europa.eu/taxation_customs/vies/>`_ by Mollie.
+
+   * - ``client_id``
+
+       .. type:: string
+          :required: true
+
+     - The client ID you receive when :doc:`registering your app </oauth/getting-started>`.
 
    * - ``scope``
 
@@ -165,8 +168,8 @@ Response
 
        .. type:: datetime
 
-     - The date and time the form will expire, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format. After the
-       expiry date and time the form and all it's data will be deleted.
+     - The date and time the form will expire, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format. On the
+       expiry date and time (what is 30 minutes after creation) the form and all it's data will be deleted.
 
    * - ``name``
 
@@ -178,7 +181,7 @@ Response
 
        .. type:: string
 
-     - E-mailaddress of the organization.
+     - E-mail address of the organization.
 
    * - ``address``
 
@@ -285,12 +288,7 @@ Request
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
        -d "name=Mollie B.V." \
        -d "email=info@mollie.com" \
-       -d "address[streetAndNumber]=Keizersgracht 313" \
-       -d "address[postalCode]=1016 EE" \
-       -d "address[city]=Amsterdam" \
-       -d "address[country]=NL" \
-       -d "registrationNumber=30204462" \
-       -d "vatNumber=NL815839091B01" \
+       -d "client_id=UIbrGN74t13BJO3UdGCn73" \
        -d "scope=payments.read payments.write" \
        -d "state=XudwZnQHfd" \
        -d "redirect_uri=https://webshop.example.org/registration/finish"
