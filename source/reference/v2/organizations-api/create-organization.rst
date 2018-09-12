@@ -4,7 +4,7 @@ Create organization
    :version: 2
 
 .. warning::
-   This API is currently in development and not usable yet.
+   This API is currently in development and not available yet.
 
 .. endpoint::
    :method: POST
@@ -14,17 +14,36 @@ Create organization
    :api_keys: true
    :oauth: false
 
-*Partners* can request a registration form for their customers. The customer can create an organization
-on the Mollie platform and connect it to the partner who initiate the proces via that unique form.
+Partners that wish to create accounts at Mollie for their customers, can do so via the **Create organization API**.
 
-Once you have created the form, you should redirect your customer to the URL in the ``_links.form`` property from the
-response. The customer will come back to your application or service via the OAuth authorization flow.
+Any accounts created this way will be eligible for kickback on any processed payments and your customer can allow your
+OAuth application access to his or her account at Mollie.
 
-If you want to become a partner of Mollie, please see our `website <https://www.mollie.com/en/partners/>`_ and join our
-Partner Program.
+How does it work?
+-----------------
+
+Using the Create organization API, you can submit any information you already have on the organization. Mollie will then
+provide you with a pre-filled registration form for your customer. Your customer can review and amend the information
+you send, set a password and grant access to your OAuth application. At this point, Mollie will create an Organization
+for the customer.
+
+The customer will then come back to your application or service via the :doc:`OAuth authorization flow</oauth/overview>`.
+
+Once the customer is connected, the organization will appear in the List Customers API.
+
+Authentication
+--------------
+
+The API call to create the organization should be authenticated with a **Personal access token**. Once your customer has
+created the organization and granted you access, you will receive an *auth code* which you can then exchange for an
+**access token** which is valid for the app identified with the ``client_id`` parameter.
+
+The access token will have the scopes you requested granted to it. Using this access token, you can access the new
+organization with your app.
 
 .. note::
-   This API can only be used by Partners.
+   This API can only be used by Partners. If you want to become a partner of Mollie, please see our
+   `website <https://www.mollie.com/en/partners/>`_ and join our Partner Program.
 
 Parameters
 ----------
@@ -43,7 +62,7 @@ Parameters
        .. type:: string
           :required: true
 
-     - E-mail address of the organization. This will be used for the confirmation mail.
+     - Email address of the organization. This will be used for the confirmation mail.
 
    * - ``address``
 
@@ -53,7 +72,7 @@ Parameters
      - The address of the organization.
 
        .. note::
-         All childs are required when there is at least one value set in one of the parameters.
+         All fields are required when there is at least one value set in one of the parameters.
 
        .. list-table::
           :widths: auto
@@ -98,7 +117,7 @@ Parameters
        .. type:: string
           :required: false
 
-     - The VAT number of the organization, if based in the European Union. The VAT number has been checked with the
+     - The VAT number of the organization, if based in the European Union. The VAT number will be checked with the
        `VIES <http://ec.europa.eu/taxation_customs/vies/>`_ by Mollie.
 
    * - ``client_id``
@@ -331,11 +350,3 @@ Response
             }
         }
    }
-
-Next step
-----------
-When you redirect your customer to the ``_links.form`` property from the response, they will finish the registration
-and authorization on our side. After that they will be redirect back to your application or service with the OAuth
-authorization query string parameters. See the :doc:`Connect API </reference/oauth2/authorize>` for more information.
-After this step your customer is ready to go and you can access the organization via the
-:doc:`Get Current Organization API </reference/v2/organizations-api/current-organization>` with an OAuth Access Token.
