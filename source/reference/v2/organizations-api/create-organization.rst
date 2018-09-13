@@ -260,12 +260,6 @@ Response
 
      - The URL your customer is sent back to once the process has been finished and authorized.
 
-   * - ``partnerId``
-
-       .. type:: string
-
-     - Your Partner ID based on your API key.
-
    * - ``state``
 
        .. type:: string
@@ -337,7 +331,6 @@ Response
         "registrationNumber": "30204462",
         "vatNumber": "NL815839091B01",
         "redirectUrl": "https://webshop.example.org/registration/finish",
-        "partnerId": "1234567",
         "state": "XudwZnQHfd",
         "_links": {
             "form": {
