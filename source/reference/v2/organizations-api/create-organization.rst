@@ -38,8 +38,8 @@ The API call to create the organization should be authenticated with a **Persona
 created the organization and granted you access, you will receive an *auth code* which you can then exchange for an
 **access token** which is valid for the app identified with the ``client_id`` parameter.
 
-The access token will have the scopes you requested granted to it. Using this access token, you can access the new
-organization with your app.
+The access token will have the :doc:`permissions </oauth/permissions>` you requested granted to it. Using this access
+token, you can access the new organization with your application.
 
 .. note::
    This API can only be used by Partners. If you want to become a partner of Mollie, please see our
@@ -133,7 +133,7 @@ Parameters
           :required: true
 
      - A space separated list of permissions your application or service requires. Refer to
-       :doc:`Permissions </oauth/permissions>` for more information about the available scopes.
+       :doc:`Permissions </oauth/permissions>` for more information about the available permissions.
 
    * - ``state``
 
