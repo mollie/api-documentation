@@ -149,6 +149,17 @@ Parameters
 
      - The URL your customer is sent back to once the process has been finished and authorized.
 
+   * - ``locale``
+
+       .. type:: string
+          :required: true
+
+     - Sets the language of the form. Provide this parameter in `ISO 15897 <https://en.wikipedia.org/wiki/ISO/IEC_15897>`_
+       format.
+
+       Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES`` ``ca_ES``
+       ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV`` ``lt_LT``
+
 Response
 --------
 ``200`` ``application/hal+json; charset=utf-8``
@@ -304,7 +315,8 @@ Request
        -d "client_id=UIbrGN74t13BJO3UdGCn73" \
        -d "scope=payments.read payments.write" \
        -d "state=XudwZnQHfd" \
-       -d "redirect_uri=https://webshop.example.org/registration/finish"
+       -d "redirect_uri=https://webshop.example.org/registration/finish" \
+       -d "locale=nl_NL"
 
 Response
 ^^^^^^^^
