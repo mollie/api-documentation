@@ -1,9 +1,9 @@
 'use strict';
+
 exports.handler = (event, context, callback) => {
 
     const response = event.Records[0].cf.response;
     const request = event.Records[0].cf.request;
-    const headers = response.headers;
     const baseURI = 'https://docs.mollie.com'
 
     function redirectTo(path) {
@@ -14,19 +14,19 @@ exports.handler = (event, context, callback) => {
         response.headers['location'] = [{ key: 'Location', value: baseURI + path }];
     }
 
-    //Set new headers 
-    headers['strict-transport-security'] = [{ key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubdomains; preload' }];
-    headers['content-security-policy'] = [{ key: 'Content-Security-Policy', value: "default-src 'self' assets.docs.mollie.com; img-src 'self' data: assets.docs.mollie.com https://images.ctfassets.net www.google-analytics.com https://www.gstatic.com https://www.googletagmanager.com; font-src cdn.mollie.com https://fonts.gstatic.com; script-src assets.docs.mollie.com https://www.googletagmanager.com www.google-analytics.com https://cdn.mxpnl.com 'sha256-FPgvfx+DeiJzmOHcDk2Iig1vKX6j8I0pKqPA7y33Xbc=' 'sha256-dSca7Fq9h/m8NPfsEIGN6QsOnwspkqCSOGFBGND+lps=' 'sha256-0M7Y8vfoB3jQRWrbd9UeLZorU2w32qynoWspDQn7U0g=' 'sha256-akWsBON1KU9NUSFengZbPuVOt+8KK3uSXcBP5Hc0sqQ=' 'sha256-nST9yaMPaU/xAS62+YWnvg5TxAXYYQm1Fn5Ybpu0AXM=' 'sha256-q/CGewBJOc0HL8ZusH9Fqnh2aZgLOH7lBvepoEVOrVw='; style-src assets.docs.mollie.com 'sha256-biLFinpqYMtWHmXfkA1BPeCY0/fNt46SAZ+BBk5YUog='; object-src 'none'; media-src 'none'; form-action 'none'; connect-src www.google-analytics.com https://api.mixpanel.com stats.g.doubleclick.net; report-uri https://mollie.report-uri.com/r/d/csp/enforce" }];
-    headers['x-content-type-options'] = [{ key: 'X-Content-Type-Options', value: 'nosniff' }];
-    headers['x-frame-options'] = [{ key: 'X-Frame-Options', value: 'DENY' }];
-    headers['x-xss-protection'] = [{ key: 'X-XSS-Protection', value: '1; mode=block' }];
-    headers['referrer-policy'] = [{ key: 'Referrer-Policy', value: 'same-origin' }];
-    headers['expect-ct'] = [{ key: 'Expect-CT', value: 'max-age=0, report-uri="https://mollie.report-uri.com/r/d/ct/reportOnly"' }];
+    // Set new headers 
+    response.headers['strict-transport-security'] = [{ key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubdomains; preload' }];
+    response.headers['content-security-policy'] = [{ key: 'Content-Security-Policy', value: "default-src 'self' assets.docs.mollie.com; img-src 'self' data: assets.docs.mollie.com https://images.ctfassets.net www.google-analytics.com https://www.gstatic.com https://www.googletagmanager.com; font-src cdn.mollie.com https://fonts.gstatic.com; script-src assets.docs.mollie.com https://www.googletagmanager.com www.google-analytics.com https://cdn.mxpnl.com 'sha256-FPgvfx+DeiJzmOHcDk2Iig1vKX6j8I0pKqPA7y33Xbc=' 'sha256-dSca7Fq9h/m8NPfsEIGN6QsOnwspkqCSOGFBGND+lps=' 'sha256-0M7Y8vfoB3jQRWrbd9UeLZorU2w32qynoWspDQn7U0g=' 'sha256-akWsBON1KU9NUSFengZbPuVOt+8KK3uSXcBP5Hc0sqQ=' 'sha256-nST9yaMPaU/xAS62+YWnvg5TxAXYYQm1Fn5Ybpu0AXM=' 'sha256-q/CGewBJOc0HL8ZusH9Fqnh2aZgLOH7lBvepoEVOrVw='; style-src assets.docs.mollie.com 'sha256-biLFinpqYMtWHmXfkA1BPeCY0/fNt46SAZ+BBk5YUog='; object-src 'none'; media-src 'none'; form-action 'none'; connect-src www.google-analytics.com https://api.mixpanel.com stats.g.doubleclick.net; report-uri https://mollie.report-uri.com/r/d/csp/enforce" }];
+    response.headers['x-content-type-options'] = [{ key: 'X-Content-Type-Options', value: 'nosniff' }];
+    response.headers['x-frame-options'] = [{ key: 'X-Frame-Options', value: 'DENY' }];
+    response.headers['x-xss-protection'] = [{ key: 'X-XSS-Protection', value: '1; mode=block' }];
+    response.headers['referrer-policy'] = [{ key: 'Referrer-Policy', value: 'same-origin' }];
+    response.headers['expect-ct'] = [{ key: 'Expect-CT', value: 'max-age=0, report-uri="https://mollie.report-uri.com/r/d/ct/reportOnly"' }];
 
-    delete headers["server"];
+    delete response.headers["server"];
 
     // Configure the URL redirects
-    switch (request.uri) {
+    switch (request.uri.replace(/\/$/, '')) {
         case '/migrating-v1-to-v2':
             redirectTo('/payments/migrating-v1-to-v2');
             break;
@@ -53,6 +53,6 @@ exports.handler = (event, context, callback) => {
             break;
     }
 
-    //Return modified response
+    // Return modified response
     callback(null, response);
 };
