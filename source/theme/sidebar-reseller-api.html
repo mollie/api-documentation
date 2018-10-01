@@ -2,7 +2,7 @@
 {% from 'macros/sidebar-collapse-group.html' import sidebar_collapse_group with context -%}
 
 <div class="sidebar__group {{ sidebar_collapse_group('reference/reseller-api/') }}">
-    <p><a href="javascript:void(0)">Reseller API</a></p>
+    <p><a href="javascript:void(0)">Reseller API v1</a></p>
 
     <ul>
         {{ sidebar_item(
@@ -64,6 +64,20 @@
         'reference/reseller-api/set-fees',
         'Set fees',
         'POST /reseller-api/v1/set-fees'
+        ) }}
+    </ul>
+</div>
+
+<div class="sidebar__spacing"></div>
+
+<div class="sidebar__group {{ sidebar_collapse_group('reference/reseller-api/') }}">
+    <p><a href="javascript:void(0)">Reseller API v2</a></p>
+
+    <ul>
+        {{ sidebar_item(
+        'reference/reseller-api/onboard-authorize',
+        'Onboard and Authorize',
+        'POST /v2/reseller/boarding'
         ) }}
     </ul>
 </div>
