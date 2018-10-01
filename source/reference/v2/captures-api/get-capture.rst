@@ -1,12 +1,8 @@
-Get Payment Capture
-===================
+Get capture
+===========
 
 .. api-name:: Captures API
    :version: 2
-
-.. warning::
-   This API is currently in private beta. If you are interested in participating, please contact your account manager at
-   Mollie.
 
 .. endpoint::
    :method: GET
@@ -18,8 +14,8 @@ Get Payment Capture
 
 Retrieve a single capture by its ID. Note the original payment's ID is needed as well.
 
-Captures are used for in payments that have the *authorize-then-capture* flow. The only payment methods at the moment
-that have this flow are *Klarna Pay later* and *Klarna Slice it*.
+Captures are used for payments that have the *authorize-then-capture* flow. The only payment methods at the moment
+that have this flow are **Klarna Pay later** and **Klarna Slice it**.
 
 Parameters
 ----------
@@ -28,8 +24,8 @@ Replace ``paymentId`` in the endpoint URL by the payment's ID, and replace ``id`
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter is also
-available.
+If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter is
+also available.
 
 .. list-table::
    :widths: auto
@@ -58,13 +54,13 @@ Response
 
        .. type:: string
 
-     - The order's unique identifier, for example ``cpt_4qqhO89gsT``.
+     - The capture's unique identifier, for example ``cpt_4qqhO89gsT``.
 
    * - ``mode``
 
        .. type:: string
 
-     - The mode used to create this order.
+     - The mode used to create this capture.
 
        Possible values: ``live`` ``test``
 
@@ -108,7 +104,7 @@ Response
 
        .. type:: datetime
 
-     - The order's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+     - The capture's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
    * - ``_links``
 
@@ -124,7 +120,7 @@ Response
 
               .. type:: URL object
 
-            - The API resource URL of the order itself.
+            - The API resource URL of the capture itself.
 
           * - ``payment``
 
@@ -162,6 +158,18 @@ Request (curl)
 
    curl -X GET https://api.mollie.com/v2/payments/tr_WDqYK6vllg/captures/cpt_4qqhO89gsT \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+
+    $payment = $mollie->payments->get("tr_WDqYK6vllg");
+    $capture = $payment->getCapture("cpt_4qqhO89gsT");
 
 Response
 ^^^^^^^^

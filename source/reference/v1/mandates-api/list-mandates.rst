@@ -43,8 +43,8 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``c
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter is also
-available.
+If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter is
+also available.
 
 .. list-table::
    :widths: auto
@@ -148,6 +148,7 @@ Response
            {
                "resource": "mandate",
                "id": "mdt_pO2m5jVgMa",
+               "mode": "test",
                "status": "valid",
                "method": "directdebit",
                "customerId": "cst_8wmqcHMN4U",

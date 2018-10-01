@@ -72,10 +72,10 @@ Parameters
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the only mandatory extra query string parameter is the
-``profileId`` parameter. With it, you can specify which profile you want to list the methods of. Organizations can have
-multiple profiles for each of their websites. See :doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more
-information.
+If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the only mandatory extra query string
+parameter is the ``profileId`` parameter. With it, you can specify which profile you want to list the methods of.
+Organizations can have multiple profiles for each of their websites. See
+:doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more information.
 
 .. list-table::
    :widths: auto

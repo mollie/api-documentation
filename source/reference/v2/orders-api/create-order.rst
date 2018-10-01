@@ -109,8 +109,8 @@ Parameters
        .. type:: string
           :required: true
 
-     - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. You can provide any
-       ISO 15897 locale, but our hosted payment pages currently only support the following languages:
+     - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. You can provide
+       any ISO 15897 locale, but our hosted payment pages currently only support the following languages:
 
        Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
        ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
@@ -170,7 +170,7 @@ The order lines contain the actual things that your customer bought.
 
      - The type of product bought, for example, a physical or a digital product. Must be one of the following values:
 
-       * ``physical``
+       * ``physical`` (default)
        * ``discount``
        * ``digital``
        * ``shipping_fee``
@@ -178,7 +178,8 @@ The order lines contain the actual things that your customer bought.
        * ``gift_card``
        * ``surcharge``
 
-       Will be set to ``physical`` by default.
+       For information on the ``discount``, ``store_credit`` and ``gift_card`` types, see our guide on
+       :doc:`handling discounts </orders/handling-discounts>`.
 
    * - ``name``
 
@@ -208,8 +209,8 @@ The order lines contain the actual things that your customer bought.
        .. type:: amount object
           :required: false
 
-     - Any discounts applied to the order line. For example, if you have a two-for-one sale, you should pass the amount
-       discounted as a positive amount.
+     - Any :doc:`discounts applied </orders/handling-discounts>` to the order line. For example, if you have a
+       two-for-one sale, you should pass the amount discounted as a positive amount.
 
        For example: ``{"currency":"EUR", "value":"10.00"}`` if you want to give a €10.00 discount on this order line.
 
@@ -238,19 +239,21 @@ The order lines contain the actual things that your customer bought.
        .. type:: amount object
           :required: true
 
-     - The amount of value-added tax on the line. The ``vatAmount`` should be calculated over the ``totalAmount`` using
-       the ``vatRate``. Any deviations from this will result in an error.
+     - The amount of value-added tax on the line. The ``totalAmount`` field includes VAT, so the ``vatAmount`` can be
+       calculated with the formula ``totalAmount × (vatRate / (100 + vatRate))``.
 
-       For example: ``{"currency":"EUR", "value":"35.00"}`` if the VAT amount of this order line is €35.00.
+       Any deviations from this will result in an error.
 
-       The ``vatAmount`` should match the following formula: ``totalAmount × (vatRate / 100)``
+       For example, for a ``totalAmount`` of SEK100.00 with a 25.00% VAT rate you would get a VAT amount of ``100.00 ×
+       (25 / 125)`` = SEK20.00. The amount should be passed as an amount object, so:
+       ``{"currency":"SEK", "value":"20.00"}``.
 
    * - ``sku``
 
        .. type:: string
           :required: false
 
-     - The SKU, EAN, ISBN or UPC of the product sold.
+     - The SKU, EAN, ISBN or UPC of the product sold. The maximum character length is 64.
 
    * - ``imageUrl``
 
@@ -594,7 +597,7 @@ Response
 .. code-block:: http
    :linenos:
 
-   HTTP/1.1 200 OK
+   HTTP/1.1 201 Created
    Content-Type: application/hal+json; charset=utf-8
 
    {
@@ -662,6 +665,21 @@ Response
                "status": "created",
                "isCancelable": true,
                "quantity": 2,
+               "quantityShipped": 0,
+               "amountShipped": {
+                   "value": "0.00",
+                   "currency": "EUR"
+               },
+               "quantityRefunded": 0,
+               "amountRefunded": {
+                   "value": "0.00",
+                   "currency": "EUR"
+               },
+               "quantityCanceled": 0,
+               "amountCanceled": {
+                   "value": "0.00",
+                   "currency": "EUR"
+               },
                "unitPrice": {
                    "value": "399.00",
                    "currency": "EUR"
@@ -693,6 +711,21 @@ Response
                "status": "created",
                "isCancelable": true,
                "quantity": 1,
+               "quantityShipped": 0,
+               "amountShipped": {
+                   "value": "0.00",
+                   "currency": "EUR"
+               },
+               "quantityRefunded": 0,
+               "amountRefunded": {
+                   "value": "0.00",
+                   "currency": "EUR"
+               },
+               "quantityCanceled": 0,
+               "amountCanceled": {
+                   "value": "0.00",
+                   "currency": "EUR"
+               },
                "unitPrice": {
                    "value": "329.99",
                    "currency": "EUR"

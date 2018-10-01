@@ -25,7 +25,7 @@ How does the Payments API work?
 #. The customer reaches the :doc:`checkout </guides/checkout>`, chooses a payment method and makes the payment. This
    process is entirely taken care of by Mollie. You don't need to do anything here.
 
-#. When the payment is made Mollie will call your :doc:`webhook </payments/webhooks>` informing your website about the
+#. When the payment is made Mollie will call your :doc:`webhook </guides/webhooks>` informing your website about the
    :doc:`payment's status change </payments/status-changes>`. You should define a webhook when creating the
    payment.
 

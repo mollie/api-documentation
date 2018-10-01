@@ -30,7 +30,7 @@ Setting up the first payment
 In order to get started with recurring payments you need to require the customer's consent through a first payment. It's
 similar to a regular payment, but the customer is shown information about your organization, and the customer needs to
 complete the payment with the account or card that will be used for recurring charges in the future. After the first
-payment is completed succesfully, the customer's account or card will immediately be chargeable *on-demand*, or
+payment is completed successfully, the customer's account or card will immediately be chargeable *on-demand*, or
 periodically through *subscriptions*.
 
 #. Create a unique customer using the :doc:`Customers API </reference/v2/customers-api/create-customer>`.
@@ -115,7 +115,7 @@ Please note that in order to do recurring payments, direct debit or credit card 
               \"webhookUrl\": \"https://webshop.example.org/payments/webhook/\"
           }"
 
-#. Like regular payments your :doc:`webhook </payments/webhooks>` is called for retrieving status updates.
+#. Like regular payments your :doc:`webhook </guides/webhooks>` is called for retrieving status updates.
 
 .. _payments/recurring/charging-periodically:
 
@@ -170,7 +170,7 @@ customer is charged. We will call your webhook as usual for these payments. The 
 not be known by your system yet when we call the webhook to report the payment's status.
 
 With normal payments you know the payment ID, because you've received this when creating the payment. With
-subscriptions you don't know the payment ID in advance. So you'll receive a webhook call with a payment ID that you've 
+subscriptions you don't know the payment ID in advance. So you'll receive a webhook call with a payment ID that you've
 never seen before.
 
 The payment object will, however, contain a ``subscriptionId`` field that contains the subscription ID you received when

@@ -129,12 +129,14 @@ Response
        .. type:: array
           :required: false
 
-     - An array of :ref:`order line objects<order-lines-details>` as described in :doc:`Get order </reference/v2/orders-api/get-order>`.
+     - An array of :ref:`order line objects<order-lines-details>` as described in
+       :doc:`Get order </reference/v2/orders-api/get-order>`.
 
        The lines will show the ``quantity``, ``discountAmount``, ``vatAmount`` and ``totalAmount`` refunded. If the line
        was partially refunded, these values will be different from the values in response from the Get order API.
 
-       Only available if the refund was created via the :doc:`Create Order Refund API </reference/v2/orders-api/create-order-refund>`.
+       Only available if the refund was created via the
+       :doc:`Create Order Refund API </reference/v2/orders-api/create-order-refund>`.
 
    * - ``paymentId``
 

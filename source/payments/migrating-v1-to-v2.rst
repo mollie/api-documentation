@@ -106,7 +106,8 @@ The following fields have been changed, renamed or moved:
 * ``paidDatetime`` has been renamed to ``paidAt``.
 * ``canBeCancelled`` has been renamed to ``isCancelable``.
 * ``recurringType`` has been renamed to ``sequenceType``. This field is now always present. A one-off payment (not the
-  start of a recurring sequence and not a :doc:`recurring payment </payments/recurring>`) will have the value ``oneoff``.
+  start of a recurring sequence and not a :doc:`recurring payment </payments/recurring>`) will have the value
+  ``oneoff``.
 * ``redirectUrl`` and ``webhookUrl`` are now part of the top-level object for Payments.
 * ``links.paymentUrl`` has been renamed to ``_links.checkout`` as per HAL specifications.
 * ``failureReason`` has been moved from the Payment resource to the credit card detail object, and no longer available
@@ -170,8 +171,6 @@ The following fields have been changed, renamed or moved:
   reversed.
 * ``payment``, which contained the payment ID related to the chargeback, has been renamed to ``paymentId``. The payment
   resource can easily be accessed using the ``payment`` key in the ``_links`` property.
-* Pagination has been removed, so all fields related to pagination are not available anymore. The list method will now
-  return all chargebacks.
 * The resource will contain a link to the settlement if it is settled (via the ``settlement`` key in the ``_links``
   property.
 
@@ -243,7 +242,8 @@ The following fields have been changed, renamed or moved:
 * ``amount.net``, ``amount.vat`` and ``amount.gross`` have been moved one level up as ``amountNet``, ``amountVat`` and
   ``amountGross``.
 * If the settlement has been invoiced, it will contain the ``invoice`` key in the ``_links`` property.
-* The ``reference`` parameter in the :doc:`List Settlements API </reference/v2/settlements-api/list-settlements>` has been removed.
+* The ``reference`` parameter in the :doc:`List Settlements API </reference/v2/settlements-api/list-settlements>` has
+  been removed.
 
 Changes in the Mandates API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

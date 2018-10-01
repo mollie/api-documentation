@@ -70,13 +70,23 @@ Response
 Example
 -------
 
-Request
-^^^^^^^
+Request (curl)
+^^^^^^^^^^^^^^
 .. code-block:: bash
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/permissions \
        -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+
+Request (PHP)
+^^^^^^^^^^^^^
+.. code-block:: php
+   :linenos:
+
+    <?php
+    $mollie = new \Mollie\Api\MollieApiClient();
+    $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+    $permissions = $mollie->permissions->all();
 
 Response
 ^^^^^^^^
@@ -91,12 +101,12 @@ Response
            "permissions": [
                {
                    "resource": "permission",
-                   "id": "apikeys.read",
-                   "description": "View your API keys",
+                   "id": "payments.write",
+                   "description": "Create new payments",
                    "granted": false,
                    "_links": {
                        "self": {
-                           "href": "https://api.mollie.com/v2/permissions/apikeys.read",
+                           "href": "https://api.mollie.com/v2/permissions/payments.write",
                            "type": "application/hal+json"
                        }
                    }

@@ -74,7 +74,8 @@ Response
 
               .. type:: array
 
-            - An array of refund objects as described in :doc:`Get payment refund </reference/v2/refunds-api/get-refund>`.
+            - An array of refund objects as described in
+              :doc:`Get payment refund </reference/v2/refunds-api/get-refund>`.
 
    * - ``_links``
 
@@ -154,14 +155,14 @@ Response
                    },
                    "status": "processing",
                    "createdAt": "2018-03-14T17:09:02.0Z",
-                   "description": "Item not in stock, refunding",
+                   "description": "Required quantity not in stock, refunding one photo book.",
                    "paymentId": "tr_WDqYK6vllg",
-                   "orderId": "ord_pbjz8x",
+                   "orderId": "ord_stTC2WHAuS",
                    "lines": [
                        {
                            "resource": "orderline",
                            "id": "odl_dgtxyl",
-                           "orderId": "ord_pbjz8x",
+                           "orderId": "ord_stTC2WHAuS",
                            "name": "LEGO 42083 Bugatti Chiron",
                            "productUrl": "https://shop.lego.com/nl-NL/Bugatti-Chiron-42083",
                            "imageUrl": "https://sh-s7-live-s.legocdn.com/is/image//LEGO/42083_alt1?$main$",
@@ -199,7 +200,7 @@ Response
                            "type": "application/hal+json"
                        },
                        "order": {
-                           "href": "https://api.mollie.com/v2/orders/ord_pbjz8x",
+                           "href": "https://api.mollie.com/v2/orders/ord_stTC2WHAuS",
                            "type": "application/hal+json"
                        },
                        "documentation": {

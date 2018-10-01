@@ -36,6 +36,10 @@ Parameters
 
      - The amount in EUR that you want to charge, e.g. 100.00 if you would want to charge €100.00.
 
+       .. note:: If you want to charge other currencies, upgrade to the
+                 :doc:`Create Payments v2 API</reference/v2/payments-api/create-payment>`. The v2 API fully supports
+                 :doc:`multicurrency </payments/multicurrency>`.
+
    * - ``description``
 
        .. type:: string
@@ -52,7 +56,7 @@ Parameters
        .. type:: string
           :required: true
 
-     - `The URL your customer will be redirected to after the payment process. It could make sense for the
+     - The URL your customer will be redirected to after the payment process. It could make sense for the
        ``redirectUrl`` to contain a unique identifier – like your order ID – so you can show the right page referencing
        the order when your customer returns.
 
@@ -94,6 +98,9 @@ Parameters
 
        Possible values: ``banktransfer`` ``belfius`` ``bitcoin`` ``creditcard`` ``directdebit`` ``eps`` ``giftcard``
        ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``mistercash`` ``paypal`` ``paysafecard`` ``sofort``
+
+       .. note:: If you are looking to create payments with the Klarna Pay later or Klarna Slice it payment methods,
+                 please use the :doc:`Create Order API </reference/v2/orders-api/create-order>` instead.
 
    * - ``metadata``
 

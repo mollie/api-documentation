@@ -124,6 +124,7 @@ Response
    {
        "resource": "mandate",
        "id": "mdt_pWUnw6pkBN",
+       "mode": "test",
        "status": "valid",
        "method": "directdebit",
        "customerId": "cst_stTC2WHAuS",

@@ -112,6 +112,14 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example
 
      - Use this parameter to set a webhook URL for all subscription payments.
 
+   * - ``metadata``
+
+       .. type:: mixed
+          :required: false
+
+     - Provide any data you like, and we will save the data alongside the subscription. Whenever you fetch the
+       subscription with our API, we'll also include the metadata. You can use up to 1kB of JSON.
+
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the only mandatory extra parameter is the
@@ -202,6 +210,8 @@ Response
        "times": 4,
        "interval": "3 months",
        "description": "Quarterly payment",
+       "startDate": "2016-06-01",
+       "nextPaymentDate": "2016-09-01",
        "method": null,
        "webhookUrl": "https://webshop.example.org/payments/webhook/",
        "_links": {

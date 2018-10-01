@@ -39,7 +39,8 @@ Single Click payments for returning customers
 ---------------------------------------------
 Single Click payments increase conversion. This feature allows your customers who have paid with
 `credit card <https://www.mollie.com/en/payments/credit-card>`_ to complete their next payments with just one click. A
-recognizable credit card with information gathered from the customers' previous payment is presented and allows the customer to reuse this card.
+recognizable credit card with information gathered from the customers' previous payment is presented and allows the
+customer to reuse this card.
 
 #. Create a unique customer using the :doc:`Customers API </reference/v2/customers-api/create-customer>`.
 #. Store the customer's ``id`` safely in your database. It's needed for performing Payments API calls for the customer.

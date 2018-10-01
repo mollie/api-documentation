@@ -18,8 +18,8 @@ Create refund
    :api_keys: true
    :oauth: true
 
-Most payment methods support refunds. This means you can request your payment to be refunded to your customer. The amount
-of the refund will be withheld from your next settlement.
+Most payment methods support refunds. This means you can request your payment to be refunded to your customer. The
+amount of the refund will be withheld from your next settlement.
 
 Refunds are not available at all for Bitcoin, paysafecard and gift cards. If you need to refund direct debit payments,
 please contact our support department.

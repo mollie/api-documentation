@@ -11,13 +11,14 @@ Get settlement
    :api_keys: false
    :oauth: true
 
-Successful payments are collected into *settlements*, which are then paid out according to your account's payout
+Successful payments are collected into *settlements*, which are then paid out according to your organization's payout
 schedule. By retrieving a single settlement, you can check which payments were paid out with it, when the settlement
 took place, and what invoice reference was used for it.
 
-Settlements will be transferred to your bank account with a ``reference``, for example ``1182161.1506.02``. You can use
-the :doc:`List settlements </reference/v2/settlements-api/get-settlement>` endpoint to look up a settlement by
-reference.
+Beside payments, settlements can be composed of other entities such as
+:doc:`refunds </reference/v2/settlements-api/list-settlement-refunds>`,
+:doc:`chargebacks </reference/v2/settlements-api/list-settlement-chargebacks>` or
+:doc:`captures </reference/v2/settlements-api/list-settlement-captures>`.
 
 Parameters
 ----------
@@ -262,6 +263,12 @@ Response
 
             - The API resource URL of the chargebacks that are included in this settlement.
 
+          * - ``captures``
+
+              .. type:: URL object
+
+            - The API resource URL of the captures that are included in this settlement.
+
           * - ``invoice``
 
               .. type:: URL object
@@ -307,8 +314,8 @@ Response
        "resource": "settlement",
        "id": "stl_jDk30akdN",
        "reference": "1234567.1804.03",
-       "createdDatetime": "2018-04-06T06:00:01.0Z",
-       "settledDatetime": "2018-04-06T09:41:44.0Z",
+       "createdAt": "2018-04-06T06:00:01.0Z",
+       "settledAt": "2018-04-06T09:41:44.0Z",
        "amount": {
            "currency": "EUR",
            "value": "39.75"
@@ -415,6 +422,10 @@ Response
            },
            "chargebacks": {
                "href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/chargebacks",
+               "type": "application/hal+json"
+           },
+           "captures": {
+               "href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/captures",
                "type": "application/hal+json"
            },
            "invoice": {

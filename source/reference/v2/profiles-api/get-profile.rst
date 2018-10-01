@@ -42,7 +42,10 @@ Response
 
      - Indicates whether the profile is in test or production mode.
 
-       Possible values: ``live`` ``test``
+       Possible values:
+
+       * ``live`` The profile is verified.
+       * ``test`` The profile has not been verified yet and can only be used to create test payments.
 
    * - ``name``
 

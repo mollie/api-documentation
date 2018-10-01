@@ -100,6 +100,11 @@
 			'Get capture',
 			'GET /v2/payments/*/captures/*'
 		) }}
+		{{ sidebar_item(
+			'reference/v2/captures-api/list-captures',
+			'List captures',
+			'GET /v2/payments/*/captures'
+		) }}
 	</ul>
 </div>
 
@@ -135,9 +140,9 @@
 			'GET /v2/orders'
 		) }}
 		{{ sidebar_item(
-			'reference/v2/orders-api/cancel-order-line',
-			'Cancel order line',
-			'DELETE /v2/orders/*/lines/*'
+			'reference/v2/orders-api/cancel-order-lines',
+			'Cancel order lines',
+			'DELETE /v2/orders/*/lines'
 		) }}
 		{{ sidebar_item(
 			'reference/v2/orders-api/create-order-refund',
@@ -275,6 +280,11 @@
 			'GET /v2/customers/*/subscriptions'
 		) }}
 		{{ sidebar_item(
+			'reference/v2/subscriptions-api/list-subscriptions-payments',
+			'List subscription payments',
+			'GET /v2/customers/*/subscriptions/*/payments'
+		) }}
+		{{ sidebar_item(
 			'reference/v2/subscriptions-api/update-subscription',
 			'Update subscription',
 			'PATCH /v2/customers/*/subscriptions/*'
@@ -291,7 +301,7 @@
 		{{ sidebar_item(
 			'reference/oauth2/authorize',
 			'Authorize',
-			'GET www.mollie.com/oauth2/authorize'
+			'GET /oauth2/authorize'
 		) }}
 		{{ sidebar_item(
 			'reference/oauth2/tokens',
@@ -337,6 +347,11 @@
 			'Get organization',
 			'GET /v2/organizations/*'
 		) }}
+		{{ sidebar_item(
+			'reference/v2/organizations-api/list-organizations',
+			'List organizations',
+			'GET /v2/organizations'
+		) }}
 	</ul>
 </div>
 
@@ -353,6 +368,11 @@
 			'reference/v2/profiles-api/get-profile',
 			'Get profile',
 			'GET /v2/profiles/*'
+		) }}
+		{{ sidebar_item(
+			'reference/v2/profiles-api/get-profile-me',
+			'Get current profile',
+			'GET /v2/profiles/me'
 		) }}
 		{{ sidebar_item(
 			'reference/v2/profiles-api/update-profile',
@@ -410,6 +430,11 @@
 			'reference/v2/settlements-api/list-settlement-chargebacks',
 			'List settlement chargebacks',
 			'GET /v2/settlements/*/chargebacks'
+		) }}
+		{{ sidebar_item(
+			'reference/v2/settlements-api/list-settlement-captures',
+			'List settlement captures',
+			'GET /v2/settlements/*/captures'
 		) }}
 	</ul>
 </div>

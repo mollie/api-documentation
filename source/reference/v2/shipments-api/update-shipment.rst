@@ -19,8 +19,8 @@ This endpoint can be used to update the tracking information of a shipment.
 
 Parameters
 ----------
-Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN4U`` and replace ``shipmentId`` by the
-shipment's ID, for example ``shp_3wmsgCJN4U``.
+Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN4U`` and replace ``shipmentId`` by
+the shipment's ID, for example ``shp_3wmsgCJN4U``.
 
 .. list-table::
    :widths: auto
@@ -54,11 +54,13 @@ shipment's ID, for example ``shp_3wmsgCJN4U``.
               .. type:: string
                  :required: false
 
-            - The URL where your customer can track the shipment, for example: ``http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C``.
+            - The URL where your customer can track the shipment, for example:
+              ``http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C``.
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also available.
+If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
+available.
 
 .. list-table::
    :widths: auto

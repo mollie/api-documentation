@@ -1,8 +1,8 @@
 Order status changes
 ====================
-
 Orders and order lines can go through a number of different statuses. First we will discuss the difference between
-two possible flows for orders. After that we will list all the possible statuses for both **orders** and **order lines**.
+two possible flows for orders. After that we will list all the possible statuses for both **orders** and
+**order lines**.
 
 Two flows: authorized and paid
 ------------------------------
@@ -17,8 +17,9 @@ is called a *capture*.
 If the payment method supports authorizations, the consumer will authorize a payment when the order is created. If the
 authorization is successful, the order will have status ``authorized``.
 
-Each time a shipment is created, we will automatically execute a capture too. The shipment can be for the complete order
-or for only part of the order. Only the amount that is shipped will be captured.
+Each time a :doc:`shipment is created </reference/v2/shipments-api/create-shipment>`, we will automatically execute a
+capture too. The shipment can be for the whole order or for only a part of the order. Only the amount that is shipped
+will be captured.
 
 Paid
 ^^^^
@@ -39,7 +40,7 @@ The following diagram shows how one order status leads to another:
 
     * This is not a status Mollie will call your webhook for.
     * All order lines will also be in the ``created`` state.
-    * Can transition to: ``paid``, ``authorized`` and ``canceled``.
+    * Can transition to: ``paid``, ``pending``, ``authorized``, ``expired`` and ``canceled``.
 
 .. _order-status-paid:
 
@@ -49,8 +50,20 @@ The following diagram shows how one order status leads to another:
     that does not support authorizations.
 
     * Mollie will call your webhook when the order reaches this state.
-    * Order lines can be in the state ``paid`` or ``refunded``. Not all lines are ``refunded``.
-    * Can transition to: ``shipping`` and ``refunded``.
+    * Order lines can be in the state ``paid``.
+    * Can transition to: ``shipping`` and ``completed``.
+
+.. _order-status-pending:
+
+``pending``
+^^^^^^^^^^^
+    It is possible that the payment supplier will manually check an order. In that case we will set the order to this
+    status. It can take a couple of days before the order is set to another status. Currently only *Klarna Pay later*
+    and *Klarna Slice it* use this status.
+
+    * This is not a status Mollie will call your webhook for.
+    * All order lines will be ``created``.
+    * Can transition to: ``authorized`` and ``created``. 
 
 .. _order-status-authorized:
 
@@ -72,9 +85,8 @@ The following diagram shows how one order status leads to another:
     it means that you still have some order lines that are not shipped yet.
 
     * This is not a status Mollie will call your webhook for.
-    * Order lines can be in the states ``paid``, ``authorized``, ``shipping``, ``completed``, ``refunded`` or
-      ``canceled``. At least one line should be in ``paid`` or ``authorized`` and at least one other line should be
-      ``completed``.
+    * Order lines can be in the states ``paid``, ``authorized``, ``shipping``, ``completed`` or ``canceled``.
+      At least one line should be in ``paid`` or ``authorized`` and at least one other line should be ``completed``.
     * Can transition to: ``completed``.
 
 .. _order-status-completed:
@@ -85,8 +97,7 @@ The following diagram shows how one order status leads to another:
     shipped. If all lines are canceled, the status of the order will change to ``canceled`` instead.
 
     * Mollie will call your webhook when the order reaches this state.
-    * Order lines can be in the states ``completed``, ``canceled`` or ``refunded``. At least one line should be
-      ``completed``.
+    * Order lines can be in the states ``completed`` or ``canceled``. At least one line should be ``completed``.
     * This is a final state, the order can't transition to another state.
 
 .. _order-status-canceled:
@@ -98,20 +109,6 @@ The following diagram shows how one order status leads to another:
 
     * Mollie will call your webhook when the order reaches this state.
     * All order lines will also be in the ``canceled`` state.
-    * This is a final state, the order can't transition to another state.
-
-.. _order-status-refunded:
-
-``refunded``
-^^^^^^^^^^^^
-    When an order was paid with a payment method that transfers the money immediately, but the order was completely
-    canceled, the order will be set to this status.
-
-    .. note:: This status is *not* used when you refund orders or order lines after you have shipped them. In that case
-              the status will stay at ``completed``.
-
-    * Mollie will call your webhook when the order reaches this state.
-    * All order lines will also be in the ``refunded`` state.
     * This is a final state, the order can't transition to another state.
 
 .. _order-status-expired:
@@ -129,7 +126,7 @@ Possible statuses for order lines
 ---------------------------------
 The following diagram shows how one order line status leads to another:
 
-.. image:: images/orderline-status-flow@2x.png
+.. image:: images/order-line-status-flow@2x.png
 
 .. _orderline-status-created:
 
@@ -137,7 +134,7 @@ The following diagram shows how one order line status leads to another:
 ^^^^^^^^^^^
     The order line has been created, but nothing else has happened yet.
 
-    * The order will also be in the ``created`` state.
+    * The order has status ``created`` or ``pending``.
     * Can transition to: ``paid``, ``authorized`` and ``canceled``.
 
 .. _orderline-status-paid:
@@ -148,7 +145,7 @@ The following diagram shows how one order line status leads to another:
     method that does not support authorizations.
 
     * The order has status ``paid`` or ``shipping``.
-    * Can transition to: ``shipping`` or ``refunded``.
+    * Can transition to: ``shipping``.
 
 .. _orderline-status-authorized:
 
@@ -176,7 +173,7 @@ The following diagram shows how one order line status leads to another:
 ``completed``
 ^^^^^^^^^^^^^
     When the order line is completely shipped, it will get this status. The order line will also get this status when it
-    is partially shipped and the rest of the line is ``canceled`` or ``refunded``.
+    is partially shipped and the rest of the line is ``canceled``.
 
     * The order has status ``shipping`` or ``completed``.
     * This is a final state, the order line can't transition to another state.
@@ -190,19 +187,4 @@ The following diagram shows how one order line status leads to another:
     this.
 
     * The order has status ``authorized``, ``shipping``, ``completed``, ``expired`` or ``canceled``.
-    * This is a final state, the order line can't transition to another state.
-
-.. _orderline-status-refunded:
-
-``refunded``
-^^^^^^^^^^^^
-    When an order line has status ``paid`` and is completely canceled, the order line will be set to this status.
-
-    This is only possible for payment methods that don't support captures. If the payment does support captures, the
-    order line would have been in status ``authorized`` and canceling would cause it to go to status ``canceled``.
-
-    .. note:: This status is *not* used when you refund order lines after you have shipped them. In that case the status
-              will stay at ``completed``.
-
-    * The order has status ``completed`` or ``refunded``.
     * This is a final state, the order line can't transition to another state.

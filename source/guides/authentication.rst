@@ -22,13 +22,13 @@ rehearse different scenarios that will occur later on when you switch to real pa
 go live by using the Live API key instead of the Test API key. Going live (or going back to testing) is as easy as
 changing keys. Nothing else needs to change.
 
-Of course it's very important to keep any API-keys :doc:`secure </guides/security>`. Do not ever share them. However, if a key
-leaks you can always `regenerate <https://www.mollie.com/dashboard/developers/api-keys>`_ it. Don't forget to apply new
-keys to your code. Until you do your integration will not work.
+Of course it's very important to keep any API-keys :doc:`secure </guides/security>`. Do not ever share them. However, if
+a key leaks you can always `regenerate <https://www.mollie.com/dashboard/developers/api-keys>`_ it. Don't forget to
+apply new keys to your code. Until you do your integration will not work.
 
-Apart from the hosted payment pages and the fact that test payments are created instead of real ones, the Mollie API behaves
-the same way regardless of whether the Test API key or the Live API key is used. Because of this, there won't be any
-technical surprises upon going live. Make a note: don't forget to start using the *Live API key* when your site goes
+Apart from the hosted payment pages and the fact that test payments are created instead of real ones, the Mollie API
+behaves the same way regardless of whether the Test API key or the Live API key is used. Because of this, there won't be
+any technical surprises upon going live. Make a note: don't forget to start using the *Live API key* when your site goes
 public or your customers could be getting a free ride.
 
 Example

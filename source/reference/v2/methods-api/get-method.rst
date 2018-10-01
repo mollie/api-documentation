@@ -38,9 +38,9 @@ Replace ``id`` in the endpoint URL by the methods's ID. For example: ``https://a
 
 Mollie Connect/OAuth parameters
 -------------------------------
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the following query string parameters are also
-available. With the ``profileId`` parameter, you must specify which profile you want to look at when listing methods.
-Organizations can have multiple profiles for each of their websites. See
+If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the following query string parameters are
+also available. With the ``profileId`` parameter, you must specify which profile you want to look at when listing
+methods. Organizations can have multiple profiles for each of their websites. See
 :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
 
 .. list-table::
@@ -121,7 +121,8 @@ Response
 
               .. type:: string
 
-            - The URL for a payment method icon in vector format. Usage of this format is preferred since it can scale to                 any desired size.
+            - The URL for a payment method icon in vector format. Usage of this format is preferred since it can scale
+              to any desired size.
 
    * - ``_links``
 

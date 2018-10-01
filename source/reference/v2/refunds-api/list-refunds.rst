@@ -19,8 +19,8 @@ List payment refunds
 Retrieve refunds.
 
 * If the payment-specific endpoint is used, only refunds for that specific payment are returned.
-* When using the top level endpoint ``v2/refunds`` with an API key, only refunds for the corresponding website profile and mode are
-  returned.
+* When using the top level endpoint ``v2/refunds`` with an API key, only refunds for the corresponding website profile
+  and mode are returned.
 * When using the top level endpoint with OAuth, you can specify the profile and mode with the ``profileId`` and
   ``testmode`` parameters respectively. If you omit ``profileId``, you will get all refunds for the organization.
 
@@ -51,9 +51,9 @@ When using the payment-specific endpoint, replace ``paymentId`` in the endpoint 
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the following query string parameters are also
-available. With the ``profileId`` parameter, you can specify which profile you want to look at when listing refunds.
-If you omit the ``profileId`` parameter, you will get all refunds on the organization.
+If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the following query string parameters are
+also available. With the ``profileId`` parameter, you can specify which profile you want to look at when listing
+refunds. If you omit the ``profileId`` parameter, you will get all refunds on the organization.
 
 .. list-table::
    :widths: auto
@@ -107,7 +107,8 @@ Response
 
               .. type:: array
 
-            - An array of refund objects as described in :doc:`Get payment refund </reference/v2/refunds-api/get-refund>`.
+            - An array of refund objects as described in
+              :doc:`Get payment refund </reference/v2/refunds-api/get-refund>`.
 
    * - ``_links``
 

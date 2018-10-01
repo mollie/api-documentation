@@ -41,8 +41,8 @@ Parameters
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the following query string parameters are also
-available. With the ``profileId`` parameter, you can specify which profile you want to look at when listing orders.
+If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the following query string parameters are
+also available. With the ``profileId`` parameter, you can specify which profile you want to look at when listing orders.
 If you omit the ``profileId`` parameter, you will get all orders on the organization. Organizations can have multiple
 profiles for each of their websites. See :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more
 information.

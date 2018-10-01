@@ -55,14 +55,16 @@ example: ``/v2/customers/cst_5a2pPrwaWy/subscriptions/sub_8EjeBVgtEn``.
        .. type:: integer
           :required: false
 
-     - Total number of charges for the subscription to complete. Can not be less than number of times that subscription has been charged.
+     - Total number of charges for the subscription to complete. Can not be less than number of times that subscription
+       has been charged.
 
    * - ``startDate``
 
        .. type:: date
           :required: false
 
-     - The start date of the subscription in ``YYYY-MM-DD`` format. This is the first day on which your customer will be charged. Should always be in the future.
+     - The start date of the subscription in ``YYYY-MM-DD`` format. This is the first day on which your customer will be
+       charged. Should always be in the future.
 
    * - ``description``
 
@@ -79,9 +81,18 @@ example: ``/v2/customers/cst_5a2pPrwaWy/subscriptions/sub_8EjeBVgtEn``.
 
      - Use this parameter to set a webhook URL for all subscription payments.
 
+   * - ``metadata``
+
+       .. type:: mixed
+          :required: false
+
+     - Provide any data you like, and we will save the data alongside the subscription. Whenever you fetch the
+       subscription with our API, we'll also include the metadata. You can use up to 1kB of JSON.
+
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also available.
+If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
+available.
 
 .. list-table::
    :widths: auto
@@ -163,6 +174,7 @@ Response
         "times": 42,
         "interval": "15 days",
         "startDate": "2018-12-12",
+        "nextPaymentDate": "2018-12-12",
         "webhookUrl": "https://example.org/webhook",
         "_links": {
             "self": {

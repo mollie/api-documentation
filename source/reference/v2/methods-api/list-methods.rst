@@ -20,8 +20,9 @@ Retrieve all available payment methods. The results are not paginated.
 When using the ``first`` sequence type, methods will be returned if they can be used as a first payment in a recurring
 sequence and if they are enabled in the Dashboard.
 
-When using the ``recurring`` sequence type, payment methods that can be used for recurring payments or subscriptions will be
-returned. Enabling / disabling methods in the dashboard does not affect how they can be used for recurring payments.
+When using the ``recurring`` sequence type, payment methods that can be used for recurring payments or subscriptions
+will be returned. Enabling / disabling methods in the dashboard does not affect how they can be used for recurring
+payments.
 
 Parameters
 ----------
@@ -90,9 +91,9 @@ Parameters
 
 Mollie Connect/OAuth parameters
 -------------------------------
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the following query string parameters are also
-available. With the ``profileId`` parameter, you must specify which profile you want to look at when listing payment methods.
-Organizations can have multiple profiles for each of their websites. See
+If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the following query string parameters are
+also available. With the ``profileId`` parameter, you must specify which profile you want to look at when listing
+payment methods. Organizations can have multiple profiles for each of their websites. See
 :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
 
 .. list-table::

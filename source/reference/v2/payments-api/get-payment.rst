@@ -22,8 +22,8 @@ Replace ``id`` in the endpoint URL by the payment's ID, for example ``tr_7UhSN1z
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you are creating an app with Mollie Connect (OAuth), the ``testmode`` query string parameter is available. You must pass this as a
-parameter in the query string if you want to retrieve a payment that was created in test mode.
+If you are creating an app with Mollie Connect (OAuth), the ``testmode`` query string parameter is available. You must
+pass this as a parameter in the query string if you want to retrieve a payment that was created in test mode.
 
 .. list-table::
    :widths: auto
@@ -49,8 +49,8 @@ Embedding of related resources
 This endpoint also allows for embedding additional information by appending the following values via the ``embed``
 query string parameter.
 
-* ``refunds`` Include any :doc:`refunds </reference/v2/refunds-api/get-refund>` created for the payment.
-* ``chargebacks`` Include any :doc:`chargebacks </reference/v2/chargebacks-api/get-chargeback>` issued for the payment.
+* ``refunds`` Include all :doc:`refunds </reference/v2/refunds-api/get-refund>` created for the payment.
+* ``chargebacks`` Include all :doc:`chargebacks </reference/v2/chargebacks-api/get-chargeback>` issued for the payment.
 
 Response
 --------
@@ -258,8 +258,9 @@ Response
        .. type:: string
           :required: false
 
-     - This optional field contains your customer's `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ country code,
-       detected by us during checkout. For example: ``BE``. This field is omitted if the country code was not detected.
+     - This optional field contains your customer's
+       `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ country code, detected by us during
+       checkout. For example: ``BE``. This field is omitted if the country code was not detected.
 
    * - ``profileId``
 
@@ -407,6 +408,13 @@ Response
                  :required: false
 
             - The API resource URL of the chargebacks that belong to this payment.
+
+          * - ``captures``
+
+              .. type:: URL object
+                 :required: false
+
+            - The API resource URL of the captures that belong to this payment.
 
           * - ``settlement``
 

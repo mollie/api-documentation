@@ -49,7 +49,8 @@ in the request.
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also available.
+If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
+available.
 
 .. list-table::
    :widths: auto
@@ -182,6 +183,21 @@ Response
                 "status": "created",
                 "isCancelable": true,
                 "quantity": 2,
+                "quantityShipped": 0,
+                "amountShipped": {
+                    "value": "0.00",
+                    "currency": "EUR"
+                },
+                "quantityRefunded": 0,
+                "amountRefunded": {
+                    "value": "0.00",
+                    "currency": "EUR"
+                },
+                "quantityCanceled": 0,
+                "amountCanceled": {
+                    "value": "0.00",
+                    "currency": "EUR"
+                },
                 "unitPrice": {
                     "value": "399.00",
                     "currency": "EUR"
@@ -213,6 +229,21 @@ Response
                 "status": "created",
                 "isCancelable": true,
                 "quantity": 1,
+                "quantityShipped": 0,
+                "amountShipped": {
+                    "value": "0.00",
+                    "currency": "EUR"
+                },
+                "quantityRefunded": 0,
+                "amountRefunded": {
+                    "value": "0.00",
+                    "currency": "EUR"
+                },
+                "quantityCanceled": 0,
+                "amountCanceled": {
+                    "value": "0.00",
+                    "currency": "EUR"
+                },
                 "unitPrice": {
                     "value": "329.99",
                     "currency": "EUR"

@@ -15,8 +15,8 @@ Create shipment
    :api_keys: true
    :oauth: true
 
-In addition to the :doc:`Orders API </reference/v2/orders-api/create-order>`, the create shipment endpoint can be used to ship
-order lines.
+In addition to the :doc:`Orders API </reference/v2/orders-api/create-order>`, the create shipment endpoint can be used
+to ship order lines.
 
 When using *Klarna Pay later* and *Klarna Slice it* this is mandatory for the order amount to be captured. An capture
 will automatically be created for the shipment.
@@ -64,7 +64,8 @@ Parameters
        .. type:: object
           :required: false
 
-     - An object containing tracking details for the shipment. When sent, the ``carrier`` and ``code`` parameters become required for this endpoint.
+     - An object containing tracking details for the shipment. When sent, the ``carrier`` and ``code`` parameters become
+       required for this endpoint.
 
        .. list-table::
           :widths: auto
@@ -88,7 +89,8 @@ Parameters
               .. type:: string
                  :required: false
 
-            - The URL where your customer can track the shipment, for example: ``http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C``.
+            - The URL where your customer can track the shipment, for example:
+              ``http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C``.
 
 
 Mollie Connect/OAuth parameters

@@ -23,8 +23,8 @@ Replace ``id`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter is also
-available.
+If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter is
+also available.
 
 .. list-table::
    :widths: auto
@@ -35,6 +35,13 @@ available.
           :required: false
 
      - Set this to ``true`` to retrieve a test mode order.
+
+Embedding of related resources
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This endpoint also allows for embedding additional information by appending the following values via the ``embed``
+query string parameter.
+
+* ``payments`` Include all :doc:`payments </reference/v2/payments-api/get-payment>` created for the order.
 
 Response
 --------
@@ -199,35 +206,40 @@ Response
        .. type:: datetime
           :required: false
 
-     - If the order is expired, the time of expiration will be present in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+     - If the order is expired, the time of expiration will be present in
+       `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
    * - ``paidAt``
 
        .. type:: datetime
           :required: false
 
-     - If the order has been paid, the time of payment will be present in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+     - If the order has been paid, the time of payment will be present in
+       `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
    * - ``authorizedAt``
 
        .. type:: datetime
           :required: false
 
-     - If the order has been authorized, the time of authorization will be present in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+     - If the order has been authorized, the time of authorization will be present in
+       `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
    * - ``canceledAt``
 
        .. type:: datetime
           :required: false
 
-     - If the order has been canceled, the time of cancellation will be present in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+     - If the order has been canceled, the time of cancellation will be present in
+       `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
    * - ``completedAt``
 
        .. type:: datetime
           :required: false
 
-     - If the order is completed, the time of completion will be present in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+     - If the order is completed, the time of completion will be present in
+       `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
    * - ``_links``
 
@@ -341,7 +353,7 @@ The order lines contain the actual things the your customer bought.
 
        .. type:: int
 
-     - The number items that are shipped for this order line.
+     - The number of items that are shipped for this order line.
 
    * - ``amountShipped``
 
@@ -353,7 +365,7 @@ The order lines contain the actual things the your customer bought.
 
        .. type:: int
 
-     - The number items that are refunded for this order line.
+     - The number of items that are refunded for this order line.
 
    * - ``amountRefunded``
 
@@ -365,7 +377,7 @@ The order lines contain the actual things the your customer bought.
 
        .. type:: int
 
-     - The number items that are canceled in this order line.
+     - The number of items that are canceled in this order line.
 
    * - ``amountCanceled``
 
@@ -489,7 +501,7 @@ Request (curl)
 .. code-block:: bash
    :linenos:
 
-   curl -X GET https://api.mollie.com/v2/orders/ord_kEn1PlbGa \
+   curl -X GET https://api.mollie.com/v2/orders/ord_kEn1PlbGa?embed=payments \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
 
 .. _get-order-response:
@@ -502,7 +514,7 @@ Request (PHP)
      <?php
      $mollie = new \Mollie\Api\MollieApiClient();
      $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
-     $order = $mollie->orders->get("ord_kEn1PlbGa");
+     $order = $mollie->orders->get("ord_kEn1PlbGa", ["embed" => "payments"]);
 
 Response
 ^^^^^^^^
@@ -568,6 +580,21 @@ Response
                 "status": "created",
                 "isCancelable": true,
                 "quantity": 2,
+                "quantityShipped": 0,
+                "amountShipped": {
+                    "value": "0.00",
+                    "currency": "EUR"
+                },
+                "quantityRefunded": 0,
+                "amountRefunded": {
+                    "value": "0.00",
+                    "currency": "EUR"
+                },
+                "quantityCanceled": 0,
+                "amountCanceled": {
+                    "value": "0.00",
+                    "currency": "EUR"
+                },
                 "unitPrice": {
                     "value": "399.00",
                     "currency": "EUR"
@@ -599,6 +626,21 @@ Response
                 "status": "created",
                 "isCancelable": true,
                 "quantity": 1,
+                "quantityShipped": 0,
+                "amountShipped": {
+                    "value": "0.00",
+                    "currency": "EUR"
+                },
+                "quantityRefunded": 0,
+                "amountRefunded": {
+                    "value": "0.00",
+                    "currency": "EUR"
+                },
+                "quantityCanceled": 0,
+                "amountCanceled": {
+                    "value": "0.00",
+                    "currency": "EUR"
+                },
                 "unitPrice": {
                     "value": "329.99",
                     "currency": "EUR"
@@ -615,6 +657,44 @@ Response
                 "createdAt": "2018-08-02T09:29:56+00:00"
             }
         ],
+        "_embedded": {
+            "payments": [
+                {
+                    "resource": "payment",
+                    "id": "tr_ncaPcAhuUV",
+                    "mode": "live",
+                    "createdAt": "2018-09-07T12:00:05+00:00",
+                    "amount": {
+                        "value": "1027.99",
+                        "currency": "EUR"
+                    },
+                    "description": "Order #1337 (Lego cars)",
+                    "method": null,
+                    "metadata": null,
+                    "status": "open",
+                    "isCancelable": false,
+                    "locale": "nl_NL",
+                    "profileId": "pfl_URR55HPMGx",
+                    "orderId": "ord_kEn1PlbGa",
+                    "sequenceType": "oneoff",
+                    "redirectUrl": "https://example.org/redirect",
+                    "_links": {
+                        "self": {
+                            "href": "https://api.mollie.com/v2/payments/tr_ncaPcAhuUV",
+                            "type": "application/hal+json"
+                        },
+                        "checkout": {
+                            "href": "https://www.mollie.com/payscreen/select-method/ncaPcAhuUV",
+                            "type": "text/html"
+                        },
+                        "order": {
+                            "href": "https://api.mollie.com/v2/orders/ord_kEn1PlbGa",
+                            "type": "application/hal+json"
+                        }
+                    }
+                }
+            ]
+        },
         "_links": {
             "self": {
                 "href": "https://api.mollie.com/v2/orders/ord_pbjz8x",

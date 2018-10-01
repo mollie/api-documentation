@@ -13,8 +13,8 @@ Create customer
 
 Creates a simple minimal representation of a customer in the Mollie API to use for the
 `Mollie Checkout <https://www.mollie.com/en/checkout>`_ and Recurring features. These customers will appear in your
-`Dashboard <https://www.mollie.com/dashboard/>`_ where you can manage their details, and also see their payments and
-subscriptions.
+`Mollie Dashboard <https://www.mollie.com/dashboard/>`_ where you can manage their details, and also see their payments
+and subscriptions.
 
 Parameters
 ----------

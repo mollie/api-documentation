@@ -87,7 +87,7 @@ Parameters
      - Set the webhook URL, where we will send payment status updates to.
 
        .. note:: The ``webhookUrl`` is optional, but without a webhook you will miss out on important
-          :doc:`status changes </payments/webhooks>` to your payment.
+          :doc:`status changes </guides/webhooks>` to your payment.
 
           The ``webhookUrl`` must be reachable from Mollie's point of view, so you cannot use ``localhost``. If
           you want to use webhook during development on ``localhost``, you must use a tool like
@@ -121,6 +121,9 @@ Parameters
        Possible values: ``bancontact`` ``banktransfer`` ``belfius`` ``bitcoin`` ``creditcard`` ``directdebit`` ``eps``
        ``giftcard`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc``  ``paypal`` ``paysafecard`` ``sofort``
 
+       .. note:: If you are looking to create payments with the Klarna Pay later or Klarna Slice it payment methods,
+                 please use the :doc:`Create Order API </reference/v2/orders-api/create-order>` instead.
+
    * - ``metadata``
 
        .. type:: mixed
@@ -136,8 +139,8 @@ Parameters
           :required: false
 
      - Indicate which type of payment this is in a recurring sequence. If set to ``first``, a
-       :ref:`first payment <payments/recurring/first-payment>` is created for the customer, allowing the customer to agree
-       to automatic recurring charges taking place on their account in the future. If set to ``recurring``, the
+       :ref:`first payment <payments/recurring/first-payment>` is created for the customer, allowing the customer to
+       agree to automatic recurring charges taking place on their account in the future. If set to ``recurring``, the
        customer's card is charged automatically.
 
        Defaults to ``oneoff``, which is a regular non-recurring payment (see also:

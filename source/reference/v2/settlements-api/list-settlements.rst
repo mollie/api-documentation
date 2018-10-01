@@ -25,7 +25,8 @@ Parameters
        .. type:: string
           :required: false
 
-     - Offset the result set to the settlement with this ID. The settlement with this ID is included in the result set as well.
+     - Offset the result set to the settlement with this ID. The settlement with this ID is included in the result set
+       as well.
 
    * - ``limit``
 
@@ -135,8 +136,8 @@ Response
                    "resource": "settlement",
                    "id": "stl_jDk30akdN",
                    "reference": "1234567.1804.03",
-                   "createdDatetime": "2018-04-06T06:00:01.0Z",
-                   "settledDatetime": "2018-04-06T09:41:44.0Z",
+                   "createdAt": "2018-04-06T06:00:01.0Z",
+                   "settledAt": "2018-04-06T09:41:44.0Z",
                    "amount": {
                        "currency": "EUR",
                        "value": "39.75"
@@ -164,6 +165,10 @@ Response
                        },
                        "chargebacks": {
                            "href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/chargebacks",
+                           "type": "application/hal+json"
+                       },
+                       "captures": {
+                           "href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/captures",
                            "type": "application/hal+json"
                        },
                        "documentation": {

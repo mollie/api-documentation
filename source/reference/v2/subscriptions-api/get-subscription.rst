@@ -20,8 +20,8 @@ example ``/v2/customers/cst_8wmqcHMN4U/subscriptions/sub_rVKGtNd6s3``.
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter is also
-available.
+If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter is
+also available.
 
 .. list-table::
    :widths: auto
@@ -118,6 +118,14 @@ Response
 
      - The start date of the subscription in ``YYYY-MM-DD`` format.
 
+   * - ``nextPaymentDate``
+
+       .. type:: date
+          :required: false
+
+     - The date of the next scheduled payment in ``YYYY-MM-DD`` format. When there will be no next payment, for example
+       when the subscription has ended, this parameter will not be returned.
+
    * - ``description``
 
        .. type:: string
@@ -147,6 +155,13 @@ Response
        .. type:: string
 
      - The URL Mollie will call as soon a payment status change takes place.
+
+   * - ``metadata``
+
+       .. type:: mixed
+
+     - The optional metadata you provided upon subscription creation. Metadata can for example be used to link a plan
+       to a subscription.
 
    * - ``_links``
 
@@ -219,9 +234,14 @@ Response
        },
        "times": 4,
        "interval": "3 months",
+       "startDate": "2016-06-01",
+       "nextPaymentDate": "2016-09-01",
        "description": "Quarterly payment",
        "method": null,
        "webhookUrl": "https://webshop.example.org/payments/webhook",
+       "metadata": {
+           "plan": "small"
+       },
        "_links": {
            "self": {
                "href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS/subscriptions/sub_rVKGtNd6s3",

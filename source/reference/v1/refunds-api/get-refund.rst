@@ -56,7 +56,8 @@ Response
               .. type:: decimal
 
             - The total amount in EUR that is already refunded. For some payment methods, this amount may be higher than
-              the payment amount, for example to allow reimbursement of the costs for a return shipment to your customer.
+              the payment amount, for example to allow reimbursement of the costs for a return shipment to your
+              customer.
 
           * - ``amountRemaining``
 

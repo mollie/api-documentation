@@ -28,8 +28,8 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, and replace ``i
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter is also
-available.
+If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter is
+also available.
 
 .. list-table::
    :widths: auto
@@ -60,6 +60,12 @@ Response
 
      - The identifier uniquely referring to this mandate. Mollie assigns this identifier at mandate creation time. For
        example ``mdt_pWUnw6pkBN``.
+
+   * - ``mode``
+
+       .. type:: string
+
+     - The mode used to create this mandate.
 
    * - ``status``
 
@@ -191,6 +197,7 @@ Response
    {
        "resource": "mandate",
        "id": "mdt_h3gAaD5zP",
+       "mode": "test",
        "status": "valid",
        "method": "creditcard",
        "customerId": "cst_4qqhO89gsT",

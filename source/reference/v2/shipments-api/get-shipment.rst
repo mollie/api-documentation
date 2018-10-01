@@ -19,13 +19,13 @@ Retrieve a single shipment and the order lines shipped by a shipment's ID.
 
 Parameters
 ----------
-Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN4U`` and replace ``shipmentId`` by the
-shipment's ID, for example ``shp_3wmsgCJN4U``
+Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN4U`` and replace ``shipmentId`` by
+the shipment's ID, for example ``shp_3wmsgCJN4U``
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter is also
-available.
+If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter is
+also available.
 
 .. list-table::
    :widths: auto
@@ -99,7 +99,8 @@ Response
 
        .. type:: array
 
-     - An array of :ref:`order line objects<order-lines-details>` as described in :doc:`Get order </reference/v2/orders-api/get-order>`.
+     - An array of :ref:`order line objects<order-lines-details>` as described in
+       :doc:`Get order </reference/v2/orders-api/get-order>`.
 
        The lines will show the ``quantity``, ``discountAmount``, ``vatAmount`` and ``totalAmount`` shipped in this
        shipment. If the line was partially shipped, these values will be different from the values in response from the
