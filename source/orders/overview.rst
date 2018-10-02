@@ -1,9 +1,5 @@
 Orders API
 ==========
-.. warning::
-   This API is currently in private beta. If you are interested in participating, please contact your account manager at
-   Mollie.
-
 The **Orders API** allows you to use Mollie for your order management. *Pay after delivery* payment methods, such as
 *Klarna Pay later* and *Klarna Slice it* require the Orders API and cannot be used with the
 :doc:`Payments API </payments/overview>`.

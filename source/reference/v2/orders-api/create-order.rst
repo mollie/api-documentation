@@ -3,10 +3,6 @@ Create order
 .. api-name:: Orders API
    :version: 2
 
-.. warning::
-   This API is currently in private beta. If you are interested in participating, please contact your account manager at
-   Mollie.
-
 .. endpoint::
    :method: POST
    :url: https://api.mollie.com/v2/orders
