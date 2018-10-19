@@ -45,6 +45,75 @@ Here's an example of an order line that has a 2-for-1 type promotion:
 
 Note how the VAT is only calculated over the amount actually charged to your customer.
 
+Add a discount to the whole order
+---------------------------------
+
+If you want to give the customer a discount on the whole order instead of a specific order line, you can add an
+additional line of the type ``discount``.
+
+Here's an example of an order line that add a discount to the whole order:
+
+
+.. code-block:: json
+   :linenos:
+
+   [
+       {
+           "name": "LEGO City Monster Truck 60180 Building Kit",
+           "type": "physical",
+           "unitPrice": {
+               "currency": "EUR",
+               "value": "19.99"
+           },
+           "vatRate": "21.00",
+           "quantity": 2,
+           "totalAmount": {
+               "currency": "EUR",
+               "value": "39.98"
+           },
+           "vatAmount": {
+               "currency": "EUR",
+               "value": "6.94"
+           }
+       },
+       {
+           "name": "LEGO Star Wars 75187 – The Last Jedi BB-8",
+           "type": "physical",
+           "unitPrice": {
+               "currency": "EUR",
+               "value": "109.99"
+           },
+           "vatRate": "21.00",
+           "quantity": 1,
+           "totalAmount": {
+               "currency": "EUR",
+               "value": "109.99"
+           },
+           "vatAmount": {
+               "currency": "EUR",
+               "value": "19.09"
+           }
+       },
+       {
+           "name": "LEGO promotion",
+           "type": "discount",
+           "unitPrice": {
+               "currency": "EUR",
+               "value": "-25.00"
+           },
+           "vatRate": "0.00",
+           "quantity": 1,
+           "totalAmount": {
+               "currency": "EUR",
+               "value": "-25.00"
+           },
+           "vatAmount": {
+               "currency": "EUR",
+               "value": "0.00"
+           }
+       }
+   ]
+
 Gift cards
 ----------
 If Mollie does not handle your :doc:`gift cards</guides/gift-cards>` for you, you can add an additional line of the type
