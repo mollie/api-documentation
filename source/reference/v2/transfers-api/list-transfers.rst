@@ -141,6 +141,7 @@ Response
                     "resource": "transfer",
                     "id": "trf_j7hn0d6x",
                     "mode": "live",
+                    "reference": "00000002.1811.01",
                     "createdAt": "2018-06-14T14:32:16+00:00",
                     "status": "open",
                     "amount": {

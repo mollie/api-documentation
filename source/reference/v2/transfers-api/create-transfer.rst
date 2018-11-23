@@ -23,7 +23,7 @@ Parameters
    * - ``amount``
 
        .. type:: amount object
-          :required: false
+          :required: true
 
      - Optionally specify the amount you want to transfer. If no amount is given, the total available amount on the
        balance will be transferred.
@@ -42,7 +42,7 @@ Parameters
           * - ``value``
 
               .. type:: string
-                 :required: true
+                 :required: false
 
             - A string containing the exact EUR amount you want to transfer. Make sure to send the right amount of
               decimals. Non-string values are not accepted.
@@ -119,6 +119,7 @@ Response
        "resource": "transfer",
        "id": "trf_j7hn0d6x",
        "mode": "live",
+       "reference": "00000002.1811.09",
        "createdAt": "2018-06-14T14:32:16+00:00",
        "status": "open",
        "amount": {
