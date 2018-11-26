@@ -42,7 +42,7 @@ Parameters
           * - ``value``
 
               .. type:: string
-                 :required: false
+                 :required: true
 
             - A string containing the exact EUR amount you want to transfer. Make sure to send the right amount of
               decimals. Non-string values are not accepted.
