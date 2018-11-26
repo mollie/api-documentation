@@ -23,7 +23,7 @@ Parameters
    * - ``amount``
 
        .. type:: amount object
-          :required: true
+          :required: false
 
      - Optionally specify the amount you want to transfer. If no amount is given, the total available amount on the
        balance will be transferred.
