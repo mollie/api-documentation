@@ -45,6 +45,7 @@ Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wm
           * - ``id``
 
               .. type:: string
+                 :required: true
 
             - The API resource token of the order line, for example: ``odl_jp31jz``.
 
