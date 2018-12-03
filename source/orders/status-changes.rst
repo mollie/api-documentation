@@ -38,7 +38,6 @@ The following diagram shows how one order status leads to another:
 ^^^^^^^^^^^
     The order has been created, but nothing else has happened yet.
 
-    * This is not a status Mollie will call your webhook for.
     * All order lines will also be in the ``created`` state.
     * Can transition to: ``paid``, ``pending``, ``authorized``, ``expired`` and ``canceled``.
 
