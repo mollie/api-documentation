@@ -110,6 +110,14 @@ Parameters
 
               Currently only IBANs are accepted.
 
+          * - ``beneficiaryName``
+
+              .. type:: string
+                 :required: false
+
+            - Required for transfer method ``bank-account``. The full name of the beneficiary the balance amount is to
+              be transferred to.
+
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
