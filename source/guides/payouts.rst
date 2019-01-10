@@ -68,6 +68,7 @@ beneficiary first:
        "bankAccount": "NL53INGB0654422370"
      },
     "...": {}
+}
 
 The created balance has been configured to do an automatic payout once a week to the given bank account of your
 beneficiary.
