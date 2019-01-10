@@ -8,7 +8,7 @@ List transfers
    :url: https://api.mollie.com/v2/transfers
 
 .. authentication::
-   :api_keys: true
+   :api_keys: false
    :oauth: true
 
 Retrieve all the organization's transfers, ordered from newest to oldest.
@@ -19,6 +19,13 @@ Parameters
 ----------
 .. list-table::
    :widths: auto
+
+   * - ``testmode``
+
+       .. type:: boolean
+          :required: false
+
+     - Set this to true to only retrieve transfers made in test mode. By default, only live transfers are returned.
 
    * - ``from``
 
@@ -34,21 +41,6 @@ Parameters
           :required: false
 
      - The number of transfers to return (with a maximum of 250).
-
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
-
-.. list-table::
-   :widths: auto
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to true to only retrieve transfers made in test mode. By default, only live transfers are returned.
 
 Response
 --------
@@ -123,7 +115,7 @@ Request
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/transfers?limit=5 \
-       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW"
 
 Response
 ^^^^^^^^
@@ -134,58 +126,47 @@ Response
    Content-Type: application/hal+json; charset=utf-8
 
    {
-       "count": 5,
-       "_embedded": {
-           "transfers": [
-               {
-                    "resource": "transfer",
-                    "id": "trf_j7hn0d6x",
-                    "mode": "live",
-                    "reference": "00000002.1811.01",
-                    "createdAt": "2018-06-14T14:32:16+00:00",
-                    "status": "open",
-                    "amount": {
-                        "value": "49.12",
-                        "currency": "EUR"
-                    },
-                    "source": {
-                        "type": "balance",
-                        "balanceId": "bal_8irzh1y2"
-                    },
-                    "destination": {
-                        "type": "bank-account",
-                        "bankAccount": "NL53INGB0654422370"
-                    },
-                    "_links": {
-                        "self": {
-                            "href": "https://api.mollie.com/v2/transfers/trf_j7hn0d6x",
-                            "type": "application/hal+json"
-                        },
-                        "documentation": {
-                            "href": "https://docs.mollie.com/reference/v2/transfers-api/get-transfer",
-                            "type": "text/html"
-                        }
-                    }
-                },
-               { },
-               { },
-               { },
-               { }
-           ]
-       },
-       "_links": {
+     "_embedded": {
+       "transfers": [{
+         "resource": "transfer",
+         "id": "trf_zam45a",
+         "mode": "live",
+         "reference": "00000004.1901.01",
+         "createdAt": "2019-01-10T13:37:50+00:00",
+         "status": "open",
+         "currency": "EUR",
+         "amount": {
+           "value": "30.00",
+           "currency": "EUR"
+         },
+         "source": {
+           "type": "balance",
+           "balanceId": "bal_hinmkh"
+         },
+         "destination": {
+           "type": "bank-account",
+           "beneficiaryName": "Jack Bauer",
+           "bankAccount": "NL53INGB0654422370"
+         },
+         "_links": {
            "self": {
-               "href": "https://api.mollie.com/v2/transfers?limit=5",
-               "type": "application/hal+json"
-           },
-           "previous": null,
-           "next": {
-               "href": "https://api.mollie.com/v2/transfers?from=trf_j6ln0a1d&limit=5",
-               "type": "application/hal+json"
-           },
-           "documentation": {
-               "href": "https://docs.mollie.com/reference/v2/transfers-api/list-transfers",
-               "type": "text/html"
+             "href": "https://api.mollie.com/v2/transfers/trf_zam45a",
+             "type": "application/hal+json"
            }
-       }
+         }
+       }]
+     },
+     "count": 1,
+     "_links": {
+       "documentation": {
+         "href": "https://docs.mollie.com/reference/v2/transfers-api/list-transfers",
+         "type": "text/html"
+       },
+       "self": {
+         "href": "https://api.mollie.com/v2/transfers?limit=50",
+         "type": "application/hal+json"
+       },
+       "previous": null,
+       "next": null
+     }
    }

@@ -22,11 +22,14 @@ beneficiary first:
    :linenos:
 
    curl -X POST https://api.mollie.com/v2/balances \
-       -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
-       -d "description=My beneficiary's balance" \
-       -d "transferFrequency=weekly" \
+       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW" \
+       -d "description=My custom balance" \
        -d "transferDestination[type]=bank-account" \
-       -d "transferDestination[bankAccount]=NL53INGB0654422370"
+       -d "transferDestination[bankAccount]=NL53INGB0654422370" \
+       -d "transferDestination[beneficiaryName]=Jack Bauer" \
+       -d "transferThreshold[currency]=EUR" \
+       -d "transferThreshold[value]=40.00" \
+       -d "transferFrequency=daily"
 
 .. code-block:: http
    :linenos:
@@ -35,29 +38,36 @@ beneficiary first:
    Content-Type: application/hal+json; charset=utf-8
 
    {
-       "resource": "balance",
-       "id": "bal_8irzh1y2",
-       "currency": "EUR",
-       "description": "My beneficiary's balance",
-       "transferFrequency": "weekly",
-       "transferDestination": {
-           "type": "bank-account",
-           "bankAccount": "NL53INGB0654422370"
-       },
-       "availableAmount": {
-           "value": "0.00",
-           "currency": "EUR"
-       },
-       "incomingAmount": {
-           "value": "0.00",
-           "currency": "EUR"
-       },
-       "outgoingAmount": {
-           "value": "0.00",
-           "currency": "EUR"
-       },
-       "...": { }
-   }
+     "resource": "balance",
+     "id": "bal_hinmkh",
+     "mode": "live",
+     "createdAt": "2019-01-10T12:06:28+00:00",
+     "type": "custom",
+     "currency": "EUR",
+     "description": "My custom balance",
+     "availableAmount": {
+       "value": "0.00",
+       "currency": "EUR"
+     },
+     "incomingAmount": {
+       "value": "0.00",
+       "currency": "EUR"
+     },
+     "outgoingAmount": {
+       "value": "0.00",
+       "currency": "EUR"
+     },
+     "transferFrequency": "daily",
+     "transferThreshold": {
+       "value": "40.00",
+       "currency": "EUR"
+     },
+     "transferDestination": {
+       "type": "bank-account",
+       "beneficiaryName": "Jack Bauer",
+       "bankAccount": "NL53INGB0654422370"
+     },
+    "...": {}
 
 The created balance has been configured to do an automatic payout once a week to the given bank account of your
 beneficiary.
@@ -71,14 +81,14 @@ done by specifying the payment routing upon :doc:`payment creation </reference/v
    :linenos:
 
    curl -X POST https://api.mollie.com/v2/payments \
-       -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
+       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW" \
        -d "amount[currency]=EUR" \
        -d "amount[value]=10.00" \
        -d "description=My first routed payment" \
        -d "redirectUrl=https://webshop.example.org/order/12345/" \
        -d "webhookUrl=https://webshop.example.org/payments/webhook/" \
        -d "routing[0][destination][type]=balance" \
-       -d "routing[0][destination][balanceId]=bal_8irzh1y2"
+       -d "routing[0][destination][balanceId]=bal_hinmkh"
 
 .. code-block:: http
    :linenos:
@@ -107,7 +117,7 @@ done by specifying the payment routing upon :doc:`payment creation </reference/v
                },
                "destination": {
                    "type": "balance",
-                   "balanceId": "bal_8irzh1y2"
+                   "balanceId": "bal_hinmkh"
                }
            }
        ]
@@ -122,7 +132,7 @@ has been moved to the custom balance:
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/balances/bal_8irzh1y2 \
-       -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW"
 
 .. code-block:: http
    :linenos:
@@ -171,7 +181,7 @@ to track the payout status.
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/transfers \
-       -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW"
 
 .. code-block:: http
    :linenos:
@@ -216,7 +226,7 @@ below.
    :linenos:
 
    curl -X POST https://api.mollie.com/v2/transfers \
-       -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
+       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW" \
        -d "source[type]=balance" \
        -d "source[balanceId]=bal_8irzh1y2"
 
@@ -261,7 +271,7 @@ payment succeeds, €7.50 will become available on the beneficiary balance, whil
    :linenos:
 
    curl -X POST https://api.mollie.com/v2/payments \
-       -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
+       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW" \
        -d "amount[currency]=EUR" \
        -d "amount[value]=10.00" \
        -d "description=My first split payment" \
@@ -332,7 +342,7 @@ For example, the funds for the following payment will only become available on t
    :linenos:
 
    curl -X POST https://api.mollie.com/v2/payments \
-       -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
+       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW" \
        -d "amount[currency]=EUR" \
        -d "amount[value]=10.00" \
        -d "description=My first delayed payment" \
@@ -384,7 +394,7 @@ route object:
    :linenos:
 
    curl -X POST https://api.mollie.com/v2/payments/tr_2qkhcMzypH/routes/rt_9dk4al1n \
-       -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
+       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW" \
        -d "releaseDate=2019-02-01"
 
 .. code-block:: http

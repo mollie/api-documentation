@@ -8,7 +8,7 @@ Get transfer
    :url: https://api.mollie.com/v2/transfers/*id*
 
 .. authentication::
-   :api_keys: true
+   :api_keys: false
    :oauth: true
 
 Retrieve a transfer by its unique token.
@@ -18,11 +18,6 @@ See the guide on :doc:`Mollie Payouts </guides/payouts>` for more details on man
 Parameters
 ----------
 Replace ``id`` in the endpoint URL by the transfer's ID, for example ``trf_j7hn0d6x``.
-
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
 
 .. list-table::
    :widths: auto
@@ -88,6 +83,12 @@ Response
        * ``pending`` The transfer has been picked up and is being processed.
        * ``completed`` The transfer has been completed.
        * ``failed`` The transfer could not be processed.
+
+   * - ``currency``
+
+       .. type:: string
+
+     - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code of the amount to be transferred.
 
    * - ``amount``
 
@@ -189,8 +190,8 @@ Request
 .. code-block:: bash
    :linenos:
 
-   curl -X GET https://api.mollie.com/v2/transfers/trf_j7hn0d6x \
-       -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+   curl -X GET https://api.mollie.com/v2/transfers/trf_zam45a \
+       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW"
 
 Response
 ^^^^^^^^
@@ -201,32 +202,34 @@ Response
    Content-Type: application/hal+json; charset=utf-8
 
    {
-       "resource": "transfer",
-       "id": "trf_j7hn0d6x",
-       "mode": "live",
-       "reference": "00000002.1811.09",
-       "createdAt": "2018-06-14T14:32:16+00:00",
-       "status": "open",
-       "amount": {
-           "value": "49.12",
-           "currency": "EUR"
+     "resource": "transfer",
+     "id": "trf_zam45a",
+     "mode": "live",
+     "reference": "00000004.1901.01",
+     "createdAt": "2019-01-10T13:37:50+00:00",
+     "status": "open",
+     "currency": "EUR",
+     "amount": {
+       "value": "30.00",
+       "currency": "EUR"
+     },
+     "source": {
+       "type": "balance",
+       "balanceId": "bal_hinmkh"
+     },
+     "destination": {
+       "type": "bank-account",
+       "beneficiaryName": "Jack Bauer",
+       "bankAccount": "NL53INGB0654422370"
+     },
+     "_links": {
+       "self": {
+         "href": "https://api.mollie.com/v2/transfers/trf_zam45a",
+         "type": "application/hal+json"
        },
-       "source": {
-           "type": "balance",
-           "balanceId": "bal_8irzh1y2"
-       },
-       "destination": {
-           "type": "bank-account",
-           "bankAccount": "NL53INGB0654422370"
-       },
-       "_links": {
-           "self": {
-               "href": "https://api.mollie.com/v2/transfers/trf_j7hn0d6x",
-               "type": "application/hal+json"
-           },
-           "documentation": {
-               "href": "https://docs.mollie.com/reference/v2/transfers-api/get-transfer",
-               "type": "text/html"
-           }
+       "documentation": {
+         "href": "https://docs.mollie.com/reference/v2/transfers-api/get-transfer",
+         "type": "text/html"
        }
+     }
    }

@@ -173,6 +173,8 @@ Parameters
        If a routing array is supplied, it must contain one or more
        :doc:`routing objects </reference/v2/payments-api/get-payment-route>` with the following parameters:
 
+       .. note:: You can only use routing trough OAuth Authentication
+
        .. list-table::
           :widths: auto
 

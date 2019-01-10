@@ -8,7 +8,7 @@ Get balance
    :url: https://api.mollie.com/v2/balances/*id*
 
 .. authentication::
-   :api_keys: true
+   :api_keys: false
    :oauth: true
 
 Retrieve a balance by its unique token. See the guide on :doc:`Mollie Payouts </guides/payouts>` for more details on
@@ -17,11 +17,6 @@ balances.
 Parameters
 ----------
 Replace ``id`` in the endpoint URL by the balance's ID, for example ``bal_8irzh1y2``.
-
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
 
 .. list-table::
    :widths: auto
@@ -161,8 +156,15 @@ Response
 
               .. type:: string
 
-            - Required for transfer method ``bank-account``. The configured bank account number of the beneficiary the
+            - The configured bank account number of the beneficiary the
               balance amount is to be transferred to.
+
+          * - ``beneficiaryName``
+
+              .. type:: string
+
+            - The full name of the beneficiary the balance amount is to
+              be transferred to.
 
    * - ``availableAmount``
 
@@ -260,8 +262,9 @@ Request
 .. code-block:: bash
    :linenos:
 
-   curl -X GET https://api.mollie.com/v2/balances/bal_8irzh1y2 \
-       -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+   curl "https://api.mollie.com/v2/balances/bal_hinmkh" \
+        -H 'Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW'
+
 
 Response
 ^^^^^^^^
@@ -272,33 +275,43 @@ Response
    Content-Type: application/hal+json; charset=utf-8
 
    {
-       "resource": "balance",
-       "id": "bal_8irzh1y2",
-       "mode": "live",
-       "createdAt": "2018-06-14T14:32:16+00:00",
-       "type": "custom",
-       "currency": "EUR",
-       "description": "My custom balance",
-       "availableAmount": {
-           "value": "49.12",
-           "currency": "EUR"
+     "resource": "balance",
+     "id": "bal_hinmkh",
+     "mode": "live",
+     "createdAt": "2019-01-10T12:06:28+00:00",
+     "type": "custom",
+     "currency": "EUR",
+     "description": "My custom balance",
+     "availableAmount": {
+       "value": "0.00",
+       "currency": "EUR"
+     },
+     "incomingAmount": {
+       "value": "0.00",
+       "currency": "EUR"
+     },
+     "outgoingAmount": {
+       "value": "0.00",
+       "currency": "EUR"
+     },
+     "transferFrequency": "daily",
+     "transferThreshold": {
+       "value": "40.00",
+       "currency": "EUR"
+     },
+     "transferDestination": {
+       "type": "bank-account",
+       "beneficiaryName": "Jack Bauer",
+       "bankAccount": "NL53INGB0654422370"
+     },
+     "_links": {
+       "self": {
+         "href": "https://api.mollie.com/v2/balances/bal_hinmkh",
+         "type": "application/hal+json"
        },
-       "incomingAmount": {
-           "value": "0.00",
-           "currency": "EUR"
-       },
-       "outgoingAmount": {
-           "value": "0.00",
-           "currency": "EUR"
-       },
-       "_links": {
-           "self": {
-               "href": "https://api.mollie.com/v2/balances/bal_8irzh1y2",
-               "type": "application/hal+json"
-           },
-           "documentation": {
-               "href": "https://docs.mollie.com/reference/v2/balances-api/get-balance",
-               "type": "text/html"
-           }
+       "documentation": {
+         "href": "https://docs.mollie.com/reference/v2/balances-api/get-balance",
+         "type": "text/html"
        }
+     }
    }

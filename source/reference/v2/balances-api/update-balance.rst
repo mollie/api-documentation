@@ -8,7 +8,7 @@ Update balance
    :url: https://api.mollie.com/v2/balances/*id*
 
 .. authentication::
-   :api_keys: true
+   :api_keys: false
    :oauth: true
 
 Update the configuration of a balance.
@@ -19,6 +19,14 @@ Replace ``id`` in the endpoint URL by the balance's ID, for example: ``bal_8irzh
 
 .. list-table::
    :widths: auto
+
+   * - ``testmode``
+
+       .. type:: boolean
+          :required: false
+
+     - Set this to ``true`` to update a balance made in test mode. If you omit this parameter, you can only update live
+       mode balances.
 
    * - ``description``
 
@@ -37,6 +45,7 @@ Replace ``id`` in the endpoint URL by the balance's ID, for example: ``bal_8irzh
 
        Possible values:
 
+       * ``never`` Never.
        * ``daily`` Every business day.
        * ``twice-a-week`` Every Tuesday and Friday.
        * ``every-monday`` Every Monday.
@@ -78,22 +87,6 @@ Replace ``id`` in the endpoint URL by the balance's ID, for example: ``bal_8irzh
             - A string containing the exact EUR threshold. Make sure to send the right amount of decimals. Non-string
               values are not accepted.
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you are creating an app with Mollie Connect (OAuth), the ``testmode`` parameter is available. You must pass this as a
-parameter in the query string if you want to update a balance that was created in test mode.
-
-.. list-table::
-   :widths: auto
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to update a balance made in test mode. If you omit this parameter, you can only update live
-       mode balances.
-
 Response
 --------
 ``200`` ``application/hal+json; charset=utf-8``
@@ -109,7 +102,7 @@ Request
    :linenos:
 
    curl -X PATCH https://api.mollie.com/v2/balances/bal_8irzh1y2 \
-       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW"
        -d "description=My updated balance" \
        -d "transferFrequency=monthly"
 
@@ -121,39 +114,44 @@ Response
    HTTP/1.1 200 OK
    Content-Type: application/hal+json; charset=utf-8
 
-   {
-       "resource": "balance",
-       "id": "bal_8irzh1y2",
-       "mode": "live",
-       "createdAt": "2018-06-14T14:32:16+00:00",
-       "type": "custom",
-       "currency": "EUR",
-       "description": "My updated balance",
-       "availableAmount": {
-           "value": "49.12",
-           "currency": "EUR"
+      {
+     "resource": "balance",
+     "id": "bal_hinmkh",
+     "mode": "live",
+     "createdAt": "2019-01-10T12:06:28+00:00",
+     "type": "custom",
+     "currency": "EUR",
+     "description": "My updated balance",
+     "availableAmount": {
+       "value": "0.00",
+       "currency": "EUR"
+     },
+     "incomingAmount": {
+       "value": "0.00",
+       "currency": "EUR"
+     },
+     "outgoingAmount": {
+       "value": "0.00",
+       "currency": "EUR"
+     },
+     "transferFrequency": "monthly",
+     "transferThreshold": {
+       "value": "40.00",
+       "currency": "EUR"
+     },
+     "transferDestination": {
+       "type": "bank-account",
+       "beneficiaryName": "Jack Bauer",
+       "bankAccount": "NL53INGB0654422370"
+     },
+     "_links": {
+       "self": {
+         "href": "https://api.mollie.com/v2/balances/bal_hinmkh",
+         "type": "application/hal+json"
        },
-       "incomingAmount": {
-           "value": "0.00",
-           "currency": "EUR"
-       },
-       "outgoingAmount": {
-           "value": "0.00",
-           "currency": "EUR"
-       },
-       "transferFrequency": "monthly",
-       "transferDestination": {
-           "type": "bank-account",
-           "bankAccount": "NL53INGB0654422370"
-       },
-       "_links": {
-           "self": {
-               "href": "https://api.mollie.com/v2/balances/bal_8irzh1y2",
-               "type": "application/hal+json"
-           },
-           "documentation": {
-               "href": "https://docs.mollie.com/reference/v2/balances-api/update-balance",
-               "type": "text/html"
-           }
+       "documentation": {
+         "href": "https://docs.mollie.com/reference/v2/balances-api/get-balance",
+         "type": "text/html"
        }
+     }
    }
