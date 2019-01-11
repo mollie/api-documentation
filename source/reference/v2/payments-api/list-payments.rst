@@ -189,6 +189,19 @@ Example
 
       payments = Mollie::Payment.all
 
+      # get the next page
+      next_payments = payments.next
+
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const payments = await mollieClient.payments.list();
+      })();
+
 Response
 ^^^^^^^^
 .. code-block:: http

@@ -128,6 +128,19 @@ Request
    curl -X GET https://api.mollie.com/v2/customers/cst_8wmqcHMN4U/subscriptions/sub_8JfGzs6v3K \
        -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
 
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const payments = await mollieClient.customers_subscriptions_payments.all({
+          customerId: 'cst_8wmqcHMN4U',
+          subscriptionId: 'sub_8JfGzs6v3K',
+        });
+      })();
+
 Response
 ^^^^^^^^
 .. code-block:: json

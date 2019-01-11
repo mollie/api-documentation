@@ -70,6 +70,19 @@ Example
 
       Mollie::Customer::Mandate.delete('mdt_pWUnw6pkBN', customer_id: 'cst_stTC2WHAuS')
 
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const status = await mollieClient.customers_mandates.delete(
+          'mdt_pWUnw6pkBN',
+          { customerId: 'cst_stTC2WHAuS' }
+        );
+      })();
+
 Response
 ^^^^^^^^
 .. code-block:: http

@@ -173,6 +173,18 @@ Example
         order_id: 'ord_kEn1PlbGa'
       )
 
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const shipment = await mollieClient.orders_shipments.get('shp_3wmsgCJN4U', {
+          orderId: 'ord_kEn1PlbGa',
+        });
+      })();
+
 Response
 ^^^^^^^^
 .. code-block:: http

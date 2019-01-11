@@ -116,6 +116,20 @@ Example
         email: 'updated-customer@example.org'
       )
 
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const updatedCustomer = await mollie.customers.update({
+          customerId: 'cst_8wmqcHMN4U',
+          name: 'Updated Customer A',
+          email: 'updated-customer@example.org',
+        });
+      })();
+
 Response
 ^^^^^^^^
 .. code-block:: http

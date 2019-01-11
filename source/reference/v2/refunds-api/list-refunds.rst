@@ -184,6 +184,16 @@ Example
 
       refunds = Mollie::Payment.get('tr_7UhSN1zuXS').refunds
 
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const refunds = await mollieClient.payments_refunds.page({ paymentId: 'tr_WDqYK6vllg' });
+      })();
+
 Response
 ^^^^^^^^
 .. code-block:: http

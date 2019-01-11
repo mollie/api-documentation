@@ -257,6 +257,46 @@ Example
         }
       )
 
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        let shipment = await mollieClient.orders_shipments.create({
+          orderId: 'ord_kEn1PlbGa',
+          lines: [
+            {
+              id: 'odl_dgtxyl',
+              quantity: 1,  // you can set the quantity if not all is shipped at once
+            },
+            {
+              id: 'odl_jp31jz',  // all is shipped if no quantity is set
+            },
+          ],
+          tracking: {
+            carrier: 'PostNL',
+            code: '3SKABA000000000',
+            url: 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C',
+          },
+        });
+
+        // If all lines are shipped, there is no need to specify them:
+        shipment = await mollieClient.orders_shipments.create({
+          orderId: 'ord_kEn1PlbGa',
+          lines: [],
+          tracking: {
+            carrier: 'PostNL',
+            code: '3SKABA000000000',
+            url: 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C',
+          },
+        });
+      })();
+
+      // Or when no tracking is specified:
+      shipment = await mollieClient.orders_shipments.create({ orderId: 'ord_kEn1PlbGa', lines: [] });
+
 Response
 ^^^^^^^^
 .. code-block:: http

@@ -150,6 +150,20 @@ Example
 
       customers = Mollie::Customer.all
 
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        // First page
+        const customers = await mollie.customers.page();
+
+        // Next page
+        const nextPage = await customers.nextPage();
+      })();
+
 Response
 ^^^^^^^^
 .. code-block:: http

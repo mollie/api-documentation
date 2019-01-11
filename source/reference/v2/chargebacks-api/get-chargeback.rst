@@ -197,6 +197,19 @@ Example
         payment_id: 'tr_WDqYK6vllg'
       )
 
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async ()  => {
+        const chargeback = await mollieClient.payments_chargebacks.get(
+          'chb_n9z0tp',
+          { paymentId: 'tr_WDqYK6vllg' }
+        );
+      })();
+
 Response
 ^^^^^^^^
 .. code-block:: http

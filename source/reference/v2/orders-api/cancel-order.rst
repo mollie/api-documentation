@@ -89,6 +89,16 @@ Example
 
       Mollie::Order.cancel('ord_8wmqcHMN4U')
 
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const canceledOrder = await mollieClient.orders.cancel('ord_8wmqcHMN4U');
+      })();
+
 Response
 ^^^^^^^^
 .. code-block:: http

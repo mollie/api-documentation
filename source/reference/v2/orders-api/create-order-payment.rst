@@ -137,6 +137,24 @@ Example
           // ... redirect the customer to the checkout url
       }
 
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const payment = await mollieClient.orders_payments.create({
+            orderId: 'ord_stTC2WHAuS',
+            method: 'banktransfer',
+            dueDate: '2018-12-21',
+        });
+
+        if (payment.checkoutUrl) {
+          // ... redirect the customer to the checkout url
+        }
+      })();
+
 Response
 ^^^^^^^^
 .. code-block:: http

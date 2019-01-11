@@ -156,6 +156,21 @@ Example
       # (For all chargebacks on the organizations, use an OAuth or Organization access token.)
       chargebacks = Mollie::Chargeback.all
 
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        // List chargebacks for a single payment
+        const paymentChargebacks = await mollieClient.payments_chargebacks.list({ paymentId: 'tr_WDqYK6vllg' });
+
+        // List chargebacks across all payments on the payment profile
+        // (For all chargebacks on the organizations, use an OAuth or Organization access token.)
+        const chargebacks = await mollieClient.chargebacks.list();
+      })();
+
 Response
 ^^^^^^^^
 .. code-block:: http

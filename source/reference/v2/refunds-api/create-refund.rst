@@ -164,6 +164,22 @@ Example
         description: 'Example refund description'
       )
 
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const refund = await mollieClient.payments_refunds.create({
+          paymentId: 'tr_WDqYK6vllg',
+          amount: {
+            value: '5.95',
+            currency: 'EUR',
+          },
+        });
+      })();
+
 Response
 ^^^^^^^^
 .. code-block:: http

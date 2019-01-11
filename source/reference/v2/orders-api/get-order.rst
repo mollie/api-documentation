@@ -591,6 +591,16 @@ Example
 
       order = Mollie::Order.get('ord_stTC2WHAuS')
 
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const order = await mollieClient.orders.get('ord_stTC2WHAuS');
+      })();
+
 Response
 ^^^^^^^^
 .. code-block:: http

@@ -81,6 +81,16 @@ Example
 
       canceled_payment = Mollie::Payment.cancel('tr_WDqYK6vllg')
 
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const canceledPayment = await mollieClient.payments.delete('tr_Eq8xzWUPA4');
+      })();
+
 Response
 ^^^^^^^^
 .. code-block:: http

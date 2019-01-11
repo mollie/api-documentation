@@ -111,6 +111,26 @@ Example
         webhook_url:   'https://webshop.example.org/payments/webhook/'
       )
 
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const payment = await mollieClient.customers_payments.create({
+          customerId: 'cst_8wmqcHMN4U',
+          amount: {
+            currency: 'EUR',
+            value: '10.00', // We enforce the correct number of decimals through strings
+          },
+          description: 'Order #12345',
+          sequenceType: 'first',
+          redirectUrl: 'https://webshop.example.org/order/12345/',
+          webhookUrl: 'https://webshop.example.org/payments/webhook/',
+        });
+      })();
+
 Response
 ^^^^^^^^
 .. code-block:: http

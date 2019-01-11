@@ -125,6 +125,16 @@ Example
 
       shipments = Mollie::Order::Shipment.all(order_id: 'ord_kEn1PlbGa')
 
+   .. code-block:: javascript
+      :linenos:
+
+      const mollie = require('@mollie/api-client');
+      const mollieClient = mollie({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const shipments = await mollieClient.orders_shipments.all({ orderId: 'ord_kEn1PlbGa' });
+      })();
+
 Response
 ^^^^^^^^
 .. code-block:: http
