@@ -70,6 +70,33 @@ Response
 
      - The transfer's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
+   * - ``sentAt``
+
+       .. type:: datetime
+
+     - The date and time the transfer was sent to the bank, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+
+   * - ``completedAt``
+
+       .. type:: datetime
+
+     - The date and time the transfer was completed by the bank, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+
+   * - ``failedAt``
+
+       .. type:: datetime
+
+     - The date and time the transfer failed, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+       This is usually due to an insuficient balance.
+
+   * - ``returnedAt``
+
+       .. type:: datetime
+
+     - The date and time the transferred amount was bounced back by the bank, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+       This is usually due to an invalid or closed bank account.
+
+
    * - ``status``
 
        .. type:: string
@@ -78,11 +105,12 @@ Response
 
        Possible values:
 
-       * ``open`` In case of a transfer to an external bank account, this status indicates the transfer will be picked
-         up for processing with the next daily payout round.
-       * ``pending`` The transfer has been picked up and is being processed.
+       * ``open`` In case of a transfer to an external bank account, this status indicates the transfer will be picked up for processing with the next daily payout round.
+       * ``pending`` The transfer has been picked up and the balance's funds have been reserved.
+       * ``sent`` The transfer has been picked sent to the bank.
        * ``completed`` The transfer has been completed.
        * ``failed`` The transfer could not be processed.
+       * ``returned`` The transfer was bounced back by the bank.
 
    * - ``currency``
 
