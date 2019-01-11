@@ -127,34 +127,40 @@ Response
 
    {
      "_embedded": {
-       "transfers": [{
-         "resource": "transfer",
-         "id": "trf_zam45a",
-         "mode": "live",
-         "reference": "00000004.1901.01",
-         "createdAt": "2019-01-10T13:37:50+00:00",
-         "status": "open",
-         "currency": "EUR",
-         "amount": {
-           "value": "30.00",
-           "currency": "EUR"
-         },
-         "source": {
-           "type": "balance",
-           "balanceId": "bal_hinmkh"
-         },
-         "destination": {
-           "type": "bank-account",
-           "beneficiaryName": "Jack Bauer",
-           "bankAccount": "NL53INGB0654422370"
-         },
-         "_links": {
-           "self": {
-             "href": "https://api.mollie.com/v2/transfers/trf_zam45a",
-             "type": "application/hal+json"
+       "transfers": [
+         {
+           "resource": "transfer",
+           "id": "trf_zam45a",
+           "mode": "live",
+           "reference": "00000004.1901.01",
+           "createdAt": "2019-01-10T13:37:50+00:00",
+           "status": "open",
+           "currency": "EUR",
+           "amount": {
+             "value": "30.00",
+             "currency": "EUR"
+           },
+           "source": {
+             "type": "balance",
+             "balanceId": "bal_hinmkh"
+           },
+           "destination": {
+             "type": "bank-account",
+             "beneficiaryName": "Jack Bauer",
+             "bankAccount": "NL53INGB0654422370"
+           },
+           "_links": {
+             "self": {
+               "href": "https://api.mollie.com/v2/transfers/trf_zam45a",
+               "type": "application/hal+json"
+             }
            }
-         }
-       }]
+         },
+         { ... },
+         { ... },
+         { ... },
+         { ... }
+       ]
      },
      "count": 1,
      "_links": {
@@ -167,6 +173,9 @@ Response
          "type": "application/hal+json"
        },
        "previous": null,
-       "next": null
+       "next": {  
+          "href": "https://api.mollie.com/v2/transfers?from=trf_j6ln0a1d&limit=5", 
+          "type": "application/hal+json" 
+       }
      }
    }

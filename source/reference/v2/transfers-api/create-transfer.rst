@@ -33,6 +33,7 @@ Parameters
           :required: false
 
      - An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code. Currently only ``EUR`` is supported.
+       Only needs to be provided when no amount object is specified
 
    * - ``amount``
 

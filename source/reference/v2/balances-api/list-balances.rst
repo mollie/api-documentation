@@ -125,6 +125,7 @@ Response
    Content-Type: application/hal+json; charset=utf-8
 
    {
+     "count": 2,
      "_embedded": {
        "balances": [
           {
@@ -203,7 +204,6 @@ Response
           }
        ]
      },
-     "count": 2,
      "_links": {
        "documentation": {
          "href": "https://docs.mollie.com/reference/v2/balances-api/list-balances",
