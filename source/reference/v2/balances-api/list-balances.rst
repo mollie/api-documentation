@@ -201,7 +201,10 @@ Response
                 "type": "application/hal+json"
               }
             }
-          }
+          },
+          { },
+          { },
+          { }
        ]
      },
      "_links": {

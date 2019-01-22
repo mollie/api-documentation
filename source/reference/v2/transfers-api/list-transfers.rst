@@ -169,7 +169,7 @@ Response
          "type": "text/html"
        },
        "self": {
-         "href": "https://api.mollie.com/v2/transfers?limit=50",
+         "href": "https://api.mollie.com/v2/transfers?limit=5",
          "type": "application/hal+json"
        },
        "previous": null,
