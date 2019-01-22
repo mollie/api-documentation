@@ -87,7 +87,7 @@ Response
        .. type:: datetime
 
      - The date and time the transfer failed, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
-       This is usually due to an insuficient balance.
+       This is usually due to an insufficient balance.
 
    * - ``returnedAt``
 
@@ -107,7 +107,7 @@ Response
 
        * ``open`` In case of a transfer to an external bank account, this status indicates the transfer will be picked up for processing with the next daily payout round.
        * ``pending`` The transfer has been picked up and the balance's funds have been reserved.
-       * ``sent`` The transfer has been picked sent to the bank.
+       * ``sent`` The transfer has been picked up and sent to the bank..
        * ``completed`` The transfer has been completed.
        * ``failed`` The transfer could not be processed.
        * ``returned`` The transfer was bounced back by the bank.

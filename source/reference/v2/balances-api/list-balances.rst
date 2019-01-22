@@ -210,10 +210,13 @@ Response
          "type": "text/html"
        },
        "self": {
-         "href": "https://api.mollie.com/v2/balances?limit=50",
+         "href": "https://api.mollie.com/v2/balances?limit=5",
          "type": "application/hal+json"
        },
        "previous": null,
-       "next": null
+       "next": {
+         "href": "https://api.mollie.com/v2/balances?from=bal_i6ow3k81&limit=5",
+         "type": "application/hal+json"
+       }
      }
    }
