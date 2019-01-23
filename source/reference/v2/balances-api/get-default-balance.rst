@@ -8,15 +8,10 @@ Get default balance
    :url: https://api.mollie.com/v2/balances/default
 
 .. authentication::
-   :api_keys: true
+   :api_keys: false
    :oauth: true
 
 Retrieve the default balance, where all payments and payouts are made from by default.
-
-Mollie Connect/OAuth parameters
--------------------------------
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
 
 .. list-table::
    :widths: auto
@@ -47,7 +42,7 @@ Request
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/balances/default \
-       -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+       -H 'Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW'
 
 Response
 ^^^^^^^^
@@ -58,32 +53,43 @@ Response
    Content-Type: application/hal+json; charset=utf-8
 
    {
-       "resource": "balance",
-       "id": "bal_i6ow3k81",
-       "mode": "live",
-       "createdAt": "2018-05-21T10:26:49+00:00",
-       "type": "default",
-       "currency": "EUR",
-       "availableAmount": {
-           "value": "215.03",
-           "currency": "EUR"
+     "resource": "balance",
+     "id": "bal_3t2a2h",
+     "mode": "live",
+     "createdAt": "2019-01-10T10:23:41+00:00",
+     "type": "default",
+     "currency": "EUR",
+     "description": "",
+     "availableAmount": {
+       "value": "0.00",
+       "currency": "EUR"
+     },
+     "incomingAmount": {
+       "value": "0.00",
+       "currency": "EUR"
+     },
+     "outgoingAmount": {
+       "value": "0.00",
+       "currency": "EUR"
+     },
+     "transferFrequency": "twice-a-month",
+     "transferThreshold": {
+       "value": "5.00",
+       "currency": "EUR"
+     },
+     "transferDestination": {
+       "type": "bank-account",
+       "beneficiaryName": "JABBA REN",
+       "bankAccount": "NL97MOLL6351480700"
+     },
+     "_links": {
+       "self": {
+         "href": "https://api.mollie.com/v2/balances/bal_3t2a2h",
+         "type": "application/hal+json"
        },
-       "incomingAmount": {
-           "value": "0.00",
-           "currency": "EUR"
-       },
-       "outgoingAmount": {
-           "value": "0.00",
-           "currency": "EUR"
-       },
-       "_links": {
-           "self": {
-               "href": "https://api.mollie.com/v2/balances/bal_i6ow3k81",
-               "type": "application/hal+json"
-           },
-           "documentation": {
-               "href": "https://docs.mollie.com/reference/v2/balances-api/get-balance",
-               "type": "text/html"
-           }
+       "documentation": {
+         "href": "https://docs.mollie.com/reference/v2/balances-api/get-default-balance",
+         "type": "text/html"
        }
+     }
    }

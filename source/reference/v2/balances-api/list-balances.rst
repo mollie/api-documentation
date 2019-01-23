@@ -8,7 +8,7 @@ List balances
    :url: https://api.mollie.com/v2/balances
 
 .. authentication::
-   :api_keys: true
+   :api_keys: false
    :oauth: true
 
 Retrieve all the organization's balances, including the default balance, ordered from newest to oldest.
@@ -19,6 +19,13 @@ Parameters
 ----------
 .. list-table::
    :widths: auto
+
+   * - ``testmode``
+
+       .. type:: boolean
+          :required: false
+
+     - Set this to true to only retrieve balances made in test mode. By default, only live balances are returned.
 
    * - ``from``
 
@@ -34,21 +41,6 @@ Parameters
           :required: false
 
      - The number of balances to return (with a maximum of 250).
-
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
-
-.. list-table::
-   :widths: auto
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to true to only retrieve balances made in test mode. By default, only live balances are returned.
 
 Response
 --------
@@ -122,7 +114,7 @@ Request
    :linenos:
 
    curl -X GET https://api.mollie.com/v2/balances?limit=5 \
-       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW"
 
 Response
 ^^^^^^^^
@@ -133,59 +125,101 @@ Response
    Content-Type: application/hal+json; charset=utf-8
 
    {
-       "count": 5,
-       "_embedded": {
-           "balances": [
-               {
-                   "resource": "balance",
-                   "id": "bal_8irzh1y2",
-                   "mode": "live",
-                   "createdAt": "2018-06-14T14:32:16+00:00",
-                   "type": "custom",
-                   "currency": "EUR",
-                   "description": "My custom balance",
-                   "availableAmount": {
-                       "value": "49.12",
-                       "currency": "EUR"
-                   },
-                   "incomingAmount": {
-                       "value": "0.00",
-                       "currency": "EUR"
-                   },
-                   "outgoingAmount": {
-                       "value": "0.00",
-                       "currency": "EUR"
-                   },
-                   "_links": {
-                       "self": {
-                           "href": "https://api.mollie.com/v2/balances/bal_8irzh1y2",
-                           "type": "application/hal+json"
-                       },
-                       "documentation": {
-                           "href": "https://docs.mollie.com/reference/v2/balances-api/get-balance",
-                           "type": "text/html"
-                       }
-                   }
-               },
-               { },
-               { },
-               { },
-               { }
-           ]
+     "count": 5,
+     "_embedded": {
+       "balances": [
+          {
+            "resource": "balance",
+            "id": "bal_hinmkh",
+            "mode": "live",
+            "createdAt": "2019-01-10T12:06:28+00:00",
+            "type": "custom",
+            "currency": "EUR",
+            "description": "My custom balance",
+            "availableAmount": {
+              "value": "0.00",
+              "currency": "EUR"
+            },
+            "incomingAmount": {
+              "value": "0.00",
+              "currency": "EUR"
+            },
+            "outgoingAmount": {
+              "value": "0.00",
+              "currency": "EUR"
+            },
+            "transferFrequency": "daily",
+            "transferThreshold": {
+              "value": "40.00",
+              "currency": "EUR"
+            },
+            "transferDestination": {
+              "type": "bank-account",
+              "beneficiaryName": "Jack Bauer",
+              "bankAccount": "NL53INGB0654422370"
+            },
+            "_links": {
+              "self": {
+                "href": "https://api.mollie.com/v2/balances/bal_hinmkh",
+                "type": "application/hal+json"
+              }
+            }
+          }, 
+          {
+            "resource": "balance",
+            "id": "bal_3t2a2h",
+            "mode": "live",
+            "createdAt": "2019-01-10T10:23:41+00:00",
+            "type": "default",
+            "currency": "EUR",
+            "description": "",
+            "availableAmount": {
+              "value": "0.00",
+              "currency": "EUR"
+            },
+            "incomingAmount": {
+              "value": "0.00",
+              "currency": "EUR"
+            },
+            "outgoingAmount": {
+              "value": "0.00",
+              "currency": "EUR"
+            },
+            "transferFrequency": "twice-a-month",
+            "transferThreshold": {
+              "value": "5.00",
+              "currency": "EUR"
+            },
+            "transferDestination": {
+              "type": "bank-account",
+              "beneficiaryName": "JABBA REN",
+              "bankAccount": "NL97MOLL6351480700"
+            },
+            "_links": {
+              "self": {
+                "href": "https://api.mollie.com/v2/balances/bal_3t2a2h",
+                "type": "application/hal+json"
+              }
+            }
+          },
+          { },
+          { },
+          { }
+       ]
+     },
+     "_links": {
+       "documentation": {
+         "href": "https://docs.mollie.com/reference/v2/balances-api/list-balances",
+         "type": "text/html"
        },
-       "_links": {
-           "self": {
-               "href": "https://api.mollie.com/v2/balances?limit=5",
-               "type": "application/hal+json"
-           },
-           "previous": null,
-           "next": {
-               "href": "https://api.mollie.com/v2/balances?from=bal_i6ow3k81&limit=5",
-               "type": "application/hal+json"
-           },
-           "documentation": {
-               "href": "https://docs.mollie.com/reference/v2/balances-api/list-balances",
-               "type": "text/html"
-           }
+       "self": {
+         "href": "https://api.mollie.com/v2/balances?limit=5",
+         "type": "application/hal+json"
+       },
+       "previous": null,
+       "next": {
+         "href": "https://api.mollie.com/v2/balances?from=bal_i6ow3k81&limit=5",
+         "type": "application/hal+json"
        }
+     }
    }

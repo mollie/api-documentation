@@ -8,7 +8,7 @@ Create balance
    :url: https://api.mollie.com/v2/balances
 
 .. authentication::
-   :api_keys: true
+   :api_keys: false
    :oauth: true
 
 Create a custom balance. You can transfer payments to this balance, split payments across multiple balances, and
@@ -19,6 +19,13 @@ Parameters
 ----------
 .. list-table::
    :widths: auto
+
+   * - ``testmode``
+
+       .. type:: boolean
+          :required: false
+
+     - Set this to ``true`` to create a test mode balance.
 
    * - ``description``
 
@@ -37,6 +44,7 @@ Parameters
 
        Possible values:
 
+       * ``never`` Never.
        * ``daily`` Every business day.
        * ``twice-a-week`` Every Tuesday and Friday.
        * ``every-monday`` Every Monday.
@@ -103,7 +111,7 @@ Parameters
           * - ``bankAccount``
 
               .. type:: string
-                 :required: false
+                 :required: true
 
             - Required for transfer method ``bank-account``. The bank account number of the beneficiary the balance
               amount is to be transferred to.
@@ -113,25 +121,10 @@ Parameters
           * - ``beneficiaryName``
 
               .. type:: string
-                 :required: false
+                 :required: true
 
             - Required for transfer method ``bank-account``. The full name of the beneficiary the balance amount is to
               be transferred to.
-
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
-
-.. list-table::
-   :widths: auto
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to create a test mode balance.
 
 Response
 --------
@@ -148,10 +141,14 @@ Request
    :linenos:
 
    curl -X POST https://api.mollie.com/v2/balances \
-       -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
+       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW" \
        -d "description=My custom balance" \
        -d "transferDestination[type]=bank-account" \
-       -d "transferDestination[bankAccount]=NL53INGB0654422370"
+       -d "transferDestination[bankAccount]=NL53INGB0654422370" \
+       -d "transferDestination[beneficiaryName]=Jack Bauer" \
+       -d "transferThreshold[currency]=EUR" \
+       -d "transferThreshold[value]=40.00" \
+       -d "transferFrequency=daily"
 
 Response
 ^^^^^^^^
@@ -162,38 +159,43 @@ Response
    Content-Type: application/hal+json; charset=utf-8
 
    {
-       "resource": "balance",
-       "id": "bal_8irzh1y2",
-       "mode": "live",
-       "createdAt": "2018-06-14T14:32:16+00:00",
-       "type": "custom",
-       "currency": "EUR",
-       "description": "My custom balance",
-       "transferFrequency": "twice-a-week",
-       "transferDestination": {
-           "type": "bank-account",
-           "bankAccount": "NL53INGB0654422370"
+     "resource": "balance",
+     "id": "bal_hinmkh",
+     "mode": "live",
+     "createdAt": "2019-01-10T12:06:28+00:00",
+     "type": "custom",
+     "currency": "EUR",
+     "description": "My custom balance",
+     "availableAmount": {
+       "value": "0.00",
+       "currency": "EUR"
+     },
+     "incomingAmount": {
+       "value": "0.00",
+       "currency": "EUR"
+     },
+     "outgoingAmount": {
+       "value": "0.00",
+       "currency": "EUR"
+     },
+     "transferFrequency": "daily",
+     "transferThreshold": {
+       "value": "40.00",
+       "currency": "EUR"
+     },
+     "transferDestination": {
+       "type": "bank-account",
+       "beneficiaryName": "Jack Bauer",
+       "bankAccount": "NL53INGB0654422370"
+     },
+     "_links": {
+       "self": {
+         "href": "https://api.mollie.com/v2/balances/bal_hinmkh",
+         "type": "application/hal+json"
        },
-       "availableAmount": {
-           "value": "0.00",
-           "currency": "EUR"
-       },
-       "incomingAmount": {
-           "value": "0.00",
-           "currency": "EUR"
-       },
-       "outgoingAmount": {
-           "value": "0.00",
-           "currency": "EUR"
-       },
-       "_links": {
-           "self": {
-               "href": "https://api.mollie.com/v2/balances/bal_8irzh1y2",
-               "type": "application/hal+json"
-           },
-           "documentation": {
-               "href": "https://docs.mollie.com/reference/v2/balances-api/create-balance",
-               "type": "text/html"
-           }
+       "documentation": {
+         "href": "https://docs.mollie.com/reference/v2/balances-api/create-balance",
+         "type": "text/html"
        }
+     }
    }
