@@ -126,6 +126,7 @@ Response
    Content-Type: application/hal+json; charset=utf-8
 
    {
+     "count": 5,
      "_embedded": {
        "transfers": [
          {
@@ -156,13 +157,12 @@ Response
              }
            }
          },
-         { "..." },
-         { "..." },
-         { "..." },
-         { "..." }
+         { },
+         { },
+         { },
+         { }
        ]
      },
-     "count": 1,
      "_links": {
        "documentation": {
          "href": "https://docs.mollie.com/reference/v2/transfers-api/list-transfers",

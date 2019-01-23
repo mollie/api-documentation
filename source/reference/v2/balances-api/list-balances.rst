@@ -125,7 +125,7 @@ Response
    Content-Type: application/hal+json; charset=utf-8
 
    {
-     "count": 2,
+     "count": 5,
      "_embedded": {
        "balances": [
           {
