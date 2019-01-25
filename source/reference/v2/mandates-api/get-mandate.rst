@@ -149,7 +149,7 @@ Response
 
        .. type:: string
 
-     - The mandate's custom reference, if this was provided when creating the mandate.
+     - The mandate's custom reference.
 
    * - ``signatureDate``
 
@@ -240,7 +240,7 @@ Response
            "consumerAccount": "NL55INGB0000000000",
            "consumerBic": "INGBNL2A"
        },
-       "mandateReference": "YOUR-COMPANY-MD1380",
+       "mandateReference": null,
        "signatureDate": "2018-05-07",
        "createdAt": "2018-05-07T10:49:08+00:00",
        "_links": {

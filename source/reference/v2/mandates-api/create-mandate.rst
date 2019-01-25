@@ -62,13 +62,6 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``/
 
      - The date when the mandate was signed in ``YYYY-MM-DD`` format.
 
-   * - ``mandateReference``
-
-       .. type:: string
-          :required: false
-
-     - A custom mandate reference.
-
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
@@ -103,8 +96,7 @@ Example
          -d "consumerName=John Doe" \
          -d "consumerAccount=NL55INGB0000000000" \
          -d "consumerBic=INGBNL2A" \
-         -d "signatureDate=2018-05-07" \
-         -d "mandateReference=YOUR-COMPANY-MD13804"
+         -d "signatureDate=2018-05-07"
 
    .. code-block:: php
       :linenos:
@@ -118,7 +110,6 @@ Example
          "consumerAccount" => "NL55INGB0000000000",
          "consumerBic" => "INGBNL2A",
          "signatureDate" => "2018-05-07",
-         "mandateReference" => "YOUR-COMPANY-MD13804",
       ]);
 
    .. code-block:: ruby
@@ -136,8 +127,7 @@ Example
         consumer_name:     'John Doe',
         consumer_account:  'NL55INGB0000000000',
         consumer_bic:      'INGBNL2A',
-        signature_date:    '2018-05-07',
-        mandate_reference: 'YOUR-COMPANY-MD13804'
+        signature_date:    '2018-05-07'
       )
 
 Response
@@ -159,7 +149,7 @@ Response
            "consumerAccount": "NL55INGB0000000000",
            "consumerBic": "INGBNL2A"
        },
-       "mandateReference": "YOUR-COMPANY-MD13804",
+       "mandateReference": null,
        "signatureDate": "2018-05-07",
        "createdAt": "2018-05-07T10:49:08+00:00",
        "_links": {

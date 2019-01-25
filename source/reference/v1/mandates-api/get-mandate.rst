@@ -162,7 +162,7 @@ Response
 
        .. type:: string
 
-     - The mandate's custom reference, if this was provided when creating the mandate.
+     - The mandate's custom reference. This parameter is omitted if the mandate does not have a custom reference.
 
    * - ``signatureDate``
 

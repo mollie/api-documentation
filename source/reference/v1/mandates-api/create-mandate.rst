@@ -69,13 +69,6 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``/
 
      - The date when the mandate was signed in ``YYYY-MM-DD`` format.
 
-   * - ``mandateReference``
-
-       .. type:: date
-          :required: false
-
-     - A custom mandate reference.
-
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
@@ -111,8 +104,7 @@ Request
        -d "consumerName=Customer A" \
        -d "consumerAccount=NL53INGB0000000000" \
        -d "consumerBic=INGBNL2A" \
-       -d "signatureDate=2016-05-01" \
-       -d "mandateReference=YOUR-COMPANY-MD13804"
+       -d "signatureDate=2016-05-01"
 
 Response
 ^^^^^^^^
@@ -134,6 +126,6 @@ Response
            "consumerAccount": "NL53INGB0000000000",
            "consumerBic": "INGBNL2A"
        },
-       "mandateReference": "YOUR-COMPANY-MD13804",
+       "mandateReference": null,
        "createdDatetime": "2016-04-30T22:00:00.0Z"
    }
