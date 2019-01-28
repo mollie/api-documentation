@@ -162,7 +162,7 @@ Response
 
        .. type:: string
 
-     - The mandate's custom reference. This parameter is omitted if the mandate does not have a custom reference.
+     - The mandate's custom reference.
 
    * - ``signatureDate``
 
@@ -202,6 +202,7 @@ Response
        "status": "valid",
        "method": "creditcard",
        "customerId": "cst_4qqhO89gsT",
+       "mandateReference": null,
        "details": {
            "cardHolder": "John Doe",
            "cardNumber": "1234",

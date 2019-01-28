@@ -166,6 +166,7 @@ Response
                "status": "valid",
                "method": "creditcard",
                "customerId": "cst_8wmqcHMN4U",
+               "mandateReference": null,
                "details": {
                    "cardHolder": "John Doe",
                    "cardNumber": "1234",
