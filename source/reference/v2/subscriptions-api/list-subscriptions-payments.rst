@@ -122,11 +122,13 @@ Example
 
 Request
 ^^^^^^^
-.. code-block:: bash
-   :linenos:
 
-   curl -X GET https://api.mollie.com/v2/customers/cst_8wmqcHMN4U/subscriptions/sub_8JfGzs6v3K \
-       -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
+
+      curl -X GET https://api.mollie.com/v2/customers/cst_8wmqcHMN4U/subscriptions/sub_8JfGzs6v3K \
+         -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
 
    .. code-block:: javascript
       :linenos:
