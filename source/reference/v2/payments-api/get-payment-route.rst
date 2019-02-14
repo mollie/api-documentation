@@ -115,7 +115,7 @@ Response
               .. type:: string
 
             - Only available for destination type ``balance``. The ID of the balance the funds will be routed to, for
-              example ``bal_8irzh1y2`` or ``default``.
+              example ``bal_8irzh1y2``.
 
    * - ``releaseDate``
 
