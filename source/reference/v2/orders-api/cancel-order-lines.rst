@@ -66,6 +66,8 @@ Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wm
               and the order line will be completed.
 
               Must be less than the number of items already shipped or canceled for this order line.
+              
+              The quantity can't be set if the order line contains a non-zero ``discountAmount``.
 
           * - ``amount``
 
