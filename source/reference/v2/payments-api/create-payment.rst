@@ -231,9 +231,10 @@ Parameters
 
                    - Required for destination type ``balance``. The ID of the balance the funds should be routed to, for
                      example ``bal_8irzh1y2``.
-                     
-                     **Please note:** ``default`` is not accepted as a ``balanceId``. After all portions of the total payment
-                     amount have been routed, the amount left will be routed to the default balance.
+
+                     **Please note:** ``default`` or the ID of the default balance are not accepted as a ``balanceId``.
+                     After all portions of the total payment amount have been routed, the amount left will be routed
+                     to the default balance automatically.
 
           * - ``releaseDate``
 
