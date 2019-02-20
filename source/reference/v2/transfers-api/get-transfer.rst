@@ -176,9 +176,15 @@ Response
 
               .. type:: string
 
-            - The type of transfer destination. Can currently only be ``bank-account``.
+            - The type of transfer destination.
 
-              Possible values: ``bank-account``
+              Possible values: ``bank-account`` ``balance``
+
+          * - ``beneficiaryName``
+
+              .. type:: string
+
+            - In case of a transfer to a bank account, this field will hold the beneficiary name.      
 
           * - ``bankAccount``
 
@@ -186,7 +192,12 @@ Response
 
             - In case of a transfer to a bank account, this field will hold the bank account number.
 
-              Currently only IBAN bank account destinations are supported.
+          * - ``balanceId``
+
+              .. type:: string
+
+            - In case of a transfer to a balance, this field will hold the balance ID.
+
 
    * - ``_links``
 

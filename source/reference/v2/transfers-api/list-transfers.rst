@@ -157,7 +157,33 @@ Response
              }
            }
          },
-         { },
+         {
+           "resource": "transfer",
+           "id": "trf_1xba2c",
+           "mode": "live",
+           "reference": "00000004.1901.02",
+           "createdAt": "2019-01-10T13:47:50+00:00",
+           "status": "open",
+           "currency": "EUR",
+           "amount": {
+             "value": "10.00",
+             "currency": "EUR"
+           },
+           "source": {
+             "type": "balance",
+             "balanceId": "bal_hinmkh"
+           },
+           "destination": {
+             "type": "balance",
+             "balanceId": "bal_a4hje5"
+           },
+           "_links": {
+             "self": {
+               "href": "https://api.mollie.com/v2/transfers/trf_1xba2c",
+               "type": "application/hal+json"
+             }
+           }
+         },
          { },
          { },
          { }
@@ -173,10 +199,9 @@ Response
          "type": "application/hal+json"
        },
        "previous": null,
-       "next": {  
-          "href": "https://api.mollie.com/v2/transfers?from=trf_j6ln0a1d&limit=5", 
-          "type": "application/hal+json" 
+       "next": {
+          "href": "https://api.mollie.com/v2/transfers?from=trf_j6ln0a1d&limit=5",
+          "type": "application/hal+json"
        }
      }
    }
-

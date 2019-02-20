@@ -88,6 +88,31 @@ Parameters
 
             - In case of a transfer from a balance, specify the ID of the source balance. For example: ``bal_8irzh1y2``.
 
+   * - ``destination``
+
+       .. type:: object
+          :required: false
+
+     - The destination the amount is to be transferred to.
+
+       .. list-table::
+          :widths: auto
+
+          * - ``type``
+
+              .. type:: string
+                 :required: true
+
+            - The type of transfer destination.
+
+              Possible values: ``balance``
+
+          * - ``balanceId``
+
+              .. type:: string
+                 :required: true
+
+            - The ID of the destination balance, for example: ``bal_a4hje5``.
 
 Response
 --------
