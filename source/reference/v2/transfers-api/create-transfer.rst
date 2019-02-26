@@ -93,7 +93,8 @@ Parameters
        .. type:: object
           :required: false
 
-     - The destination the amount is to be transferred to.
+     - The destination the amount is to be transferred to. If no destination is specified, the amount will be
+       transferred to the bank account set as transfer destination on the source balance.
 
        .. list-table::
           :widths: auto
