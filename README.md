@@ -29,7 +29,7 @@ some syntax highlighting.
 Download a copy of this repository:
 
 ```
-git clone git@github.com:mollie/api-documentation-private.git
+git clone git@github.com:mollie/api-documentation.git
 ```
 
 Then visit the downloaded repository and install dependencies:
