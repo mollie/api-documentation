@@ -73,18 +73,22 @@ Response
    * - ``sentAt``
 
        .. type:: datetime
+          :required: false
 
      - The date and time the transfer was sent to the bank, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
    * - ``completedAt``
 
        .. type:: datetime
+          :required: false
 
      - The date and time the transfer was completed by the bank, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+       A transfer could exceptionally be returned after being completed.
 
    * - ``failedAt``
 
        .. type:: datetime
+          :required: false
 
      - The date and time the transfer failed, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
        This is usually due to an insufficient balance.
@@ -92,6 +96,7 @@ Response
    * - ``returnedAt``
 
        .. type:: datetime
+          :required: false
 
      - The date and time the transferred amount was bounced back by the bank, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
        This is usually due to an invalid or closed bank account.
