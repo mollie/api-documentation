@@ -77,13 +77,20 @@ Response
 
      - The date and time the transfer was sent to the bank, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
+   * - ``deductedAt``
+
+       .. type:: datetime
+          :required: false
+
+     - The date and time the transfer was processed by the bank, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+       This state could be consider as completed for bank transfers but a transfer could still be returned after being processed.
+
    * - ``completedAt``
 
        .. type:: datetime
           :required: false
 
-     - The date and time the transfer was completed by the bank, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
-       A transfer could still be returned after being completed.
+     - The date and time the internal transfer was completed, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
    * - ``failedAt``
 
