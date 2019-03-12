@@ -82,15 +82,17 @@ Response
        .. type:: datetime
           :required: false
 
-     - The date and time the transfer was processed by the bank, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
-       This state could be consider as completed for bank transfers but a transfer could still be returned after being processed.
+     - The date and time the transfer was processed by the sending bank, in
+       `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format. Transfers to external bank accounts may still be
+       returned after being deducted.
 
    * - ``completedAt``
 
        .. type:: datetime
           :required: false
 
-     - The date and time the internal transfer was completed, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+     - The date and time the transfer was completed, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+       Currently only balance-to-balance transfers can be marked 'completed'.
 
    * - ``failedAt``
 
@@ -117,9 +119,11 @@ Response
 
        Possible values:
 
-       * ``open`` In case of a transfer to an external bank account, this status indicates the transfer will be picked up for processing with the next daily payout round.
+       * ``open`` In case of a transfer to an external bank account, this status indicates the transfer will be picked
+         up for processing with the next daily payout round.
        * ``pending`` The transfer has been picked up and the balance's funds have been reserved.
        * ``sent`` The transfer has been picked up and sent to the bank.
+       * ``deducted`` The transfer has been accepted by the sending bank.
        * ``completed`` The transfer has been completed.
        * ``failed`` The transfer could not be processed.
        * ``returned`` The transfer was bounced back by the bank.
