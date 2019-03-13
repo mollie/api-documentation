@@ -76,7 +76,7 @@ Response
           :required: false
 
      - The date and time the reservation of funds from the balance failed, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
-       This is usually due to an insufficient balance.
+       This is usually due to insufficient balance.
 
    * - ``reservedAt``
 
@@ -122,7 +122,6 @@ Response
          up for processing with the next daily payout round.
        * ``reserved`` The transfer funds have been reserved from the balance.
        * ``sent-to-bank`` The transfer has been sent to the bank.
-       * ``deducted`` The transfer has been accepted by the sending bank.
        * ``completed`` The transfer has been completed.
        * ``reservation-failed`` The transfer funds could not be reserved.
        * ``returned`` The transfer was bounced back by the bank.
