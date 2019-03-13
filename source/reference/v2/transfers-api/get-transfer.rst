@@ -70,28 +70,41 @@ Response
 
      - The transfer's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-   * - ``sentAt``
+   * - ``reservationFailedAt``
 
        .. type:: datetime
+          :required: false
+
+     - The date and time the reservation of funds from the balance failed, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+       This is usually due to insufficient balance.
+
+   * - ``reservedAt``
+
+       .. type:: datetime
+          :required: false
+
+     - The date and time the reservation of funds succeeded, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+
+   * - ``sentToBankAt``
+
+       .. type:: datetime
+          :required: false
 
      - The date and time the transfer was sent to the bank, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+       Transfers to external bank accounts may still be returned after being deducted.
 
    * - ``completedAt``
 
        .. type:: datetime
+          :required: false
 
-     - The date and time the transfer was completed by the bank, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
-
-   * - ``failedAt``
-
-       .. type:: datetime
-
-     - The date and time the transfer failed, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
-       This is usually due to an insufficient balance.
+     - The date and time the transfer was completed, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+       Currently only balance-to-balance transfers can be marked 'completed'.
 
    * - ``returnedAt``
 
        .. type:: datetime
+          :required: false
 
      - The date and time the transferred amount was bounced back by the bank, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
        This is usually due to an invalid or closed bank account.
@@ -105,11 +118,12 @@ Response
 
        Possible values:
 
-       * ``open`` In case of a transfer to an external bank account, this status indicates the transfer will be picked up for processing with the next daily payout round.
-       * ``pending`` The transfer has been picked up and the balance's funds have been reserved.
-       * ``sent`` The transfer has been picked up and sent to the bank.
+       * ``open`` In case of a transfer to an external bank account, this status indicates the transfer will be picked
+         up for processing with the next daily payout round.
+       * ``reserved`` The transfer funds have been reserved from the balance.
+       * ``sent-to-bank`` The transfer has been sent to the bank.
        * ``completed`` The transfer has been completed.
-       * ``failed`` The transfer could not be processed.
+       * ``reservation-failed`` The transfer funds could not be reserved.
        * ``returned`` The transfer was bounced back by the bank.
 
    * - ``currency``
