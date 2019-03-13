@@ -85,6 +85,13 @@ Response
 
      - The date and time the reservation of funds succeeded, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
+   * - ``rejectedAt``
+
+       .. type:: datetime
+          :required: false
+
+     - The date and time the the transfer was rejected, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+
    * - ``sentToBankAt``
 
        .. type:: datetime
@@ -121,6 +128,7 @@ Response
        * ``open`` In case of a transfer to an external bank account, this status indicates the transfer will be picked
          up for processing with the next daily payout round.
        * ``reserved`` The transfer funds have been reserved from the balance.
+       * ``rejected`` The transfer has been rejected.
        * ``sent-to-bank`` The transfer has been sent to the bank.
        * ``completed`` The transfer has been completed.
        * ``reservation-failed`` The transfer funds could not be reserved.
