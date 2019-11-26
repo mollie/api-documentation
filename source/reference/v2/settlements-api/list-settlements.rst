@@ -64,7 +64,7 @@ Response
               .. type:: array
 
             - An array of settlement objects as described in
-              :doc:`Get settlement </reference/v2/settlements-api/get-settlement>`.
+              :doc:`Get settlement <get-settlement>`.
 
    * - ``_links``
 
@@ -155,10 +155,11 @@ Response
                     "periods": {
                         "2019": {
                             "11": {
-                                "revenue": [...],
-                                "costs": [...]
+                                "revenue": [],
+                                "costs": []
                             }
-                    }
+                        }
+                    },
                     "_links": {
                         "self": {
                             "href": "https://api.mollie.com/v2/settlements/stl_77zGEcWNhg",
@@ -177,8 +178,8 @@ Response
                             "type": "application/hal+json"
                         },
                         "captures": {
-                            "href": "https://api.mollie.com/v2/settlements/stl_77zGEcWNhg/captures",
-                            "type": "application/hal+json"
+                          "href": "https://api.mollie.com/v2/settlements/stl_77zGEcWNhg/captures",
+                          "type": "application/hal+json"
                         }
                     }
                 },

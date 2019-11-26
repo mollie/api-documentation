@@ -97,13 +97,14 @@ Response
                    "settlementId": "stl_jDk30akdN",
                    "redirectUrl": "https://webshop.example.org/order/12345/",
                    "_links": {
-                    "self": {
-                        "href": "https://api.mollie.com/v2/payments/tr_7UhSN1zuXS",
-                        "type": "application/hal+json"
-                    },
-                    "settlement": {
-                        "href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN",
-                        "type": "application/hal+json"
+                        "self": {
+                            "href": "https://api.mollie.com/v2/payments/tr_7UhSN1zuXS",
+                            "type": "application/hal+json"
+                        },
+                        "settlement": {
+                            "href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN",
+                            "type": "application/hal+json"
+                        }
                     }
                 },
                { },

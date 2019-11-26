@@ -11,6 +11,7 @@ class AuthenticationDirective(Directive):
     optional_arguments = 0
     option_spec = {
         "api_keys": utilities.validate_bool,
+        "organization_access_tokens": utilities.validate_bool,
         "oauth": utilities.validate_bool
     }
 
