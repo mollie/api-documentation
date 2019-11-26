@@ -9,9 +9,14 @@ List settlement payments
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: true
    :oauth: true
 
 Retrieve all payments included in a settlement.
+
+Note that payments for *pay after delivery* methods (such as Klarna Pay Later) are not listed in here. These payment
+methods are settled using captures. To retrieve the captures, use the :doc:`List settlement captures
+<list-settlement-captures>` endpoint.
 
 Parameters
 ----------
@@ -22,7 +27,7 @@ parameters for that endpoint can be used here as well.
 
 Response
 --------
-``200`` ``application/hal+json; charset=utf-8``
+``200`` ``application/hal+json``
 
 This endpoint is an alias of the :doc:`List payments </reference/v2/payments-api/list-payments>` endpoint. The response
 is therefore the exact same.
@@ -32,11 +37,33 @@ Example
 
 Request
 ^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-   curl -X GET https://api.mollie.com/v2/settlements/stl_jDk30akdN/payments?limit=5 \
-       -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+      curl -X GET https://api.mollie.com/v2/settlements/stl_jDk30akdN/payments?limit=5 \
+          -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+
+   .. code-block:: php
+      :linenos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+
+      $settlement = $mollie->settlements->get("stl_jDk30akdN");
+      $payments = $settlement->payments();
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ'
+      end
+
+      payments = Mollie::Settlement::Payment.all(settlement_id: 'stl_jDk30akdN')
 
 Response
 ^^^^^^^^
@@ -44,7 +71,7 @@ Response
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
        "count": 5,
@@ -70,16 +97,15 @@ Response
                    "settlementId": "stl_jDk30akdN",
                    "redirectUrl": "https://webshop.example.org/order/12345/",
                    "_links": {
-                       "checkout": {
-                           "href": "https://www.mollie.com/paymentscreen/issuer/select/ideal/7UhSN1zuXS",
-                           "type": "text/html"
-                       },
-                       "self": {
-                           "href": "https://api.mollie.com/v2/payments/tr_7UhSN1zuXS",
-                           "type": "application/hal+json"
-                       }
-                   }
-               },
+                    "self": {
+                        "href": "https://api.mollie.com/v2/payments/tr_7UhSN1zuXS",
+                        "type": "application/hal+json"
+                    },
+                    "settlement": {
+                        "href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN",
+                        "type": "application/hal+json"
+                    }
+                },
                { },
                { },
                { },
@@ -97,7 +123,7 @@ Response
                "type": "application/hal+json"
            },
            "documentation": {
-               "href": "https://docs.mollie.com/reference/v2/payments-api/list-payments",
+               "href": "https://docs.mollie.com/reference/v2/settlements-api/list-settlement-payments",
                "type": "text/html"
            }
        }

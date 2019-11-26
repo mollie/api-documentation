@@ -16,6 +16,7 @@ List settlements
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: false
    :oauth: true
 
 Retrieve all settlements, ordered from new to old.
@@ -51,7 +52,7 @@ Parameters
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 .. list-table::
    :widths: auto
@@ -132,7 +133,7 @@ Response
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "totalCount": 9,
@@ -143,7 +144,9 @@ Response
                "resource": "settlement",
                "id": "stl_jDk30akdN",
                "reference": "123456.1501.02",
+               "createdDatetime": "2015-01-09T07:00:00.0Z",
                "settledDatetime": "2015-01-09T07:00:00.0Z",
+               "status": "paidout",
                "amount": "994.55",
                "periods": {
                    "2015": {
@@ -175,6 +178,11 @@ Response
                        }
                    }
                },
+               "links": {
+                   "chargebacks": "https://api.mollie.com/v1/settlements/stl_jDk30akdN/chargebacks",
+                   "payments": "https://api.mollie.com/v1/settlements/stl_jDk30akdN/payments",
+                   "refunds": "https://api.mollie.com/v1/settlements/stl_jDk30akdN/refunds"
+               },
                "paymentIds": [
                    "tr_RpAwK4A7dg",
                    "tr_V22Ek4ttj5",
@@ -186,6 +194,7 @@ Response
                "id": "stl_pAd3Vq83",
                "reference": "123456.1501.01",
                "settledDatetime": "2015-01-02T07:00:00.0Z",
+               "status": "paidout",
                "amount": "993.58",
                "periods": {
                    "2015": {
@@ -234,6 +243,11 @@ Response
                            ]
                        }
                    }
+               },
+               "links": {
+                   "chargebacks": "https://api.mollie.com/v1/settlements/stl_pAd3Vq83/chargebacks",
+                   "payments": "https://api.mollie.com/v1/settlements/stl_pAd3Vq83/payments",
+                   "refunds": "https://api.mollie.com/v1/settlements/stl_pAd3Vq83/refunds"
                },
                "paymentIds": [
                    "tr_s3cMndA7dg",

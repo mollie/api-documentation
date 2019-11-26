@@ -9,6 +9,7 @@ Get open settlement
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: true
    :oauth: true
 
 Retrieve the details of the open balance of the organization. This will return a settlement object representing your
@@ -16,7 +17,7 @@ organization's balance.
 
 Response
 --------
-``200`` ``application/hal+json; charset=utf-8``
+``200`` ``application/hal+json``
 
 The open balance settlement is returned in the same fashion as the
 :doc:`Get settlement </reference/v2/settlements-api/get-settlement>` endpoint.
@@ -24,23 +25,31 @@ The open balance settlement is returned in the same fashion as the
 Example
 -------
 
-Request (curl)
-^^^^^^^^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-   curl -X GET https://api.mollie.com/v2/settlements/open \
-       -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+      curl -X GET https://api.mollie.com/v2/settlements/open \
+         -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
 
-Request (PHP)
-^^^^^^^^^^^^^
-.. code-block:: php
-   :linenos:
+   .. code-block:: php
+      :linenos:
 
-    <?php
-    $mollie = new \Mollie\Api\MollieApiClient();
-    $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
-    $openSettlement = $mollie->settlements->open();
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+      $openSettlement = $mollie->settlements->open();
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ'
+      end
+
+      settlement = Mollie::Settlement.open
 
 Response
 ^^^^^^^^
@@ -48,34 +57,32 @@ Response
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
        "resource": "settlement",
        "id": "open",
-       "reference": null,
-       "createdAt": "2018-04-06T06:00:01.0Z",
-       "settledAt": null,
+       "status": "open",
        "amount": {
            "currency": "EUR",
            "value": "39.75"
        },
        "periods": {
            "2018": {
-               "4": {
+               "04": {
                    "revenue": [
                        {
                            "description": "iDEAL",
                            "method": "ideal",
                            "count": 6,
                            "amountNet": {
-                               "currency": "EUR",
-                               "value": "86.1000"
+                               "value": "86.1000",
+                               "currency": "EUR"
                            },
                            "amountVat": null,
                            "amountGross": {
-                               "currency": "EUR",
-                               "value": "86.1000"
+                               "value": "86.1000",
+                               "currency": "EUR"
                            }
                        },
                        {
@@ -83,13 +90,13 @@ Response
                            "method": "refund",
                            "count": 2,
                            "amountNet": {
-                               "currency": "EUR",
-                               "value": "-43.2000"
+                               "value": "-43.2000",
+                               "currency": "EUR"
                            },
                            "amountVat": null,
                            "amountGross": {
-                               "currency": "EUR",
-                               "value": "43.2000"
+                               "value": "43.2000",
+                               "currency": "EUR"
                            }
                        }
                    ],
@@ -100,22 +107,22 @@ Response
                            "count": 6,
                            "rate": {
                                "fixed": {
-                                   "currency": "EUR",
-                                   "value": "0.3500"
+                                   "value": "0.3500",
+                                   "currency": "EUR"
                                },
                                "percentage": null
                            },
                            "amountNet": {
-                               "currency": "EUR",
-                               "value": "2.1000"
+                               "value": "2.1000",
+                               "currency": "EUR"
                            },
                            "amountVat": {
-                               "currency": "EUR",
-                               "value": "0.4410"
+                               "value": "0.4410",
+                               "currency": "EUR"
                            },
                            "amountGross": {
-                               "currency": "EUR",
-                               "value": "2.5410"
+                               "value": "2.5410",
+                               "currency": "EUR"
                            }
                        },
                        {
@@ -124,22 +131,22 @@ Response
                            "count": 2,
                            "rate": {
                                "fixed": {
-                                   "currency": "EUR",
-                                   "value": "0.2500"
+                                   "value": "0.2500",
+                                   "currency": "EUR"
                                },
                                "percentage": null
                            },
                            "amountNet": {
-                               "currency": "EUR",
-                               "value": "0.5000"
+                               "value": "0.5000",
+                               "currency": "EUR"
                            },
                            "amountVat": {
-                               "currency": "EUR",
-                               "value": "0.1050"
+                               "value": "0.1050",
+                               "currency": "EUR"
                            },
                            "amountGross": {
-                               "currency": "EUR",
-                               "value": "0.6050"
+                               "value": "0.6050",
+                               "currency": "EUR"
                            }
                        }
                    ]
@@ -148,7 +155,7 @@ Response
        },
        "_links": {
            "self": {
-               "href": "https://api.mollie.com/v2/settlements/next",
+               "href": "https://api.mollie.com/v2/settlements/open",
                "type": "application/hal+json"
            },
            "documentation": {

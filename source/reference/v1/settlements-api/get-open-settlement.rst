@@ -51,7 +51,7 @@ Response
        "resource": "settlement",
        "id": "open",
        "reference": null,
-       "createdDatetime": "2015-11-06T06:00:01.0Z",
+       "createdDatetime": "null",
        "settledDatetime": null,
        "amount": "39.75",
        "periods": {

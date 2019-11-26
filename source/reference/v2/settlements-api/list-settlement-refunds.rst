@@ -9,6 +9,7 @@ List settlement refunds
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: true
    :oauth: true
 
 Retrieve all refunds included in a settlement.
@@ -20,9 +21,16 @@ Replace ``settlementId`` in the endpoint URL by the settlement's ID, for example
 This endpoint is an alias of the :doc:`List refunds </reference/v2/refunds-api/list-refunds>` endpoint. All parameters
 for that endpoint can be used here as well.
 
+Embedding of related resources
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This endpoint allows for embedding additional information by appending the following values via the ``embed``
+query string parameter.
+
+* ``payment`` Include the :doc:`payments </reference/v2/payments-api/get-payment>` the refunds were created for.
+
 Response
 --------
-``200`` ``application/hal+json; charset=utf-8``
+``200`` ``application/hal+json``
 
 This endpoint is an alias of the :doc:`List refunds </reference/v2/refunds-api/list-refunds>` endpoint. The response is
 therefore the exact same.
@@ -32,11 +40,33 @@ Example
 
 Request
 ^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-   curl -X GET https://api.mollie.com/v2/settlements/stl_jDk30akdN/refunds \
-       -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+      curl -X GET https://api.mollie.com/v2/settlements/stl_jDk30akdN/refunds \
+          -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+
+   .. code-block:: php
+      :linenos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+
+      $settlement = $mollie->settlements->get("stl_jDk30akdN");
+      $refunds = $settlement->refunds();
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ'
+      end
+
+      refunds = Mollie::Settlement::Refund.all(settlement_id: 'stl_jDk30akdN')
 
 Response
 ^^^^^^^^
@@ -44,50 +74,55 @@ Response
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
-       "totalCount": 28,
-       "offset": 0,
-       "count": 10,
-       "data": [
-           {
-               "id": "re_CkS3qkJ8Ny",
-               "payment": {
-                   "resource": "payment",
-                   "id": "tr_2qkhcMzypH",
-                   "mode": "live",
-                   "createdDatetime": "2017-01-11T15:38:55.0Z",
-                   "status": "refunded",
-                   "paidDatetime": "2017-01-11T15:40:59.0Z",
-                   "amount": "25.00",
-                   "amountRefunded": "5.00",
-                   "amountRemaining": "45.00",
-                   "description": "Test payment 25 EU",
-                   "method": "ideal",
-                   "metadata": null,
-                   "profileId": "pfl_D96wnsu869",
-                   "links": {
-                       "refunds": "http://api.mollie.com/v2/payments/tr_2qkhcMzypH/refunds",
-                       "settlement": "http://api.mollie.com/v2/settlements/stl_QM8w7JDEhU"
+       "_embedded": {
+           "refunds": [
+               {
+                   "resource": "refund",
+                   "id": "re_3aKhkUNigy",
+                   "amount": {
+                       "value": "10.00",
+                       "currency": "EUR"
                    },
-                   "settlementId": "stl_QM8w7JDEhU"
+                   "status": "refunded",
+                   "createdAt": "2018-08-30T07:59:02+00:00",
+                   "description": "Order #33",
+                   "paymentId": "tr_maJaG2j8OM",
+                   "settlementAmount": {
+                       "value": "-10.00",
+                       "currency": "EUR"
+                   },
+                   "_links": {
+                       "self": {
+                           "href": "https://api.mollie.com/v2/payments/tr_maJaG2j8OM/refunds/re_3aKhkUNigy",
+                           "type": "application/hal+json"
+                       },
+                       "payment": {
+                           "href": "https://api.mollie.com/v2/payments/tr_maJaG2j8OM",
+                           "type": "application/hal+json"
+                       },
+                       "settlement": {
+                           "href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN",
+                           "type": "application/hal+json"
+                       }
+                   }
                },
-               "amount": "5.00",
-               "status": "processing",
-               "refundedDatetime": "2017-01-11T15:39:53.0Z",
-               "description": "Test refund 5 EU",
-               "links": {
-                   "self": "http://api.mollie.com/v2/payments/tr_2qkhcMzypH/refunds/re_CkS3qkJ8Ny"
-               }
+               { }
+           ]
+       },
+       "count": 1,
+       "_links": {
+           "documentation": {
+               "href": "https://docs.mollie.com/reference/v2/settlements-api/list-settlement-refunds",
+               "type": "text/html"
            },
-           { },
-           { }
-       ],
-       "links": {
-           "first": "https://api.mollie.com/v2/settlements/stl_QM8w7JDEhU/refunds?count=10&offset=0",
+           "self": {
+               "href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/refunds?limit=50",
+               "type": "application/hal+json"
+           },
            "previous": null,
-           "next": "https://api.mollie.com/v2/settlements/stl_QM8w7JDEhU/refunds?count=10&offset=10",
-           "last": "https://api.mollie.com/v2/settlements/stl_QM8w7JDEhU/refunds?count=10&offset=20"
+           "next": null
        }
    }

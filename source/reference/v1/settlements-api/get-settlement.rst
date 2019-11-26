@@ -16,6 +16,7 @@ Get settlement
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: false
    :oauth: true
 
 Successful payments are collected into *settlements*, which are then paid out according to your account's payout
@@ -32,7 +33,7 @@ Replace ``id`` in the endpoint URL by the settlement's ID, for example ``stl_jDk
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 .. list-table::
    :widths: auto
@@ -61,7 +62,7 @@ Response
 
      - The date on which the settlement was created, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-   * - ``settlementDatetime``
+   * - ``settledDatetime``
 
        .. type:: string
 
@@ -116,12 +117,11 @@ Response
 
                    - A description of the revenue subtotal.
 
-                 * - ``amount``
+                 * - ``method``
 
-                     .. type:: object
+                     .. type:: string
 
-                   - The received subtotal for this payment method, further divided in ``net`` (excludes VAT), ``vat``,
-                     and ``gross`` (includes VAT).
+                   - The payment method ID, if applicable.
 
                  * - ``count``
 
@@ -129,11 +129,12 @@ Response
 
                    - The number of payments received for this payment method.
 
-                 * - ``method``
+                 * - ``amount``
 
-                     .. type:: string
+                     .. type:: object
 
-                   - The payment method ID, if applicable.
+                   - The received subtotal for this payment method, further divided in ``net`` (excludes VAT), ``vat``,
+                     and ``gross`` (includes VAT).
 
           * - ``costs``
 
@@ -150,13 +151,11 @@ Response
                      .. type:: string
 
                    - A description of the subtotal.
+                 * - ``method``
 
-                 * - ``amount``
+                     .. type:: string
 
-                     .. type:: object
-
-                   - The paid costs for this payment method, further divided in ``net`` (excludes VAT), ``vat``, and
-                     ``gross`` (includes VAT).
+                   - The payment method ID, if applicable.
 
                  * - ``count``
 
@@ -170,11 +169,12 @@ Response
 
                    - The service rates, further divided into ``fixed`` and ``variable`` costs.
 
-                 * - ``method``
+                 * - ``amount``
 
-                     .. type:: string
+                     .. type:: object
 
-                   - The payment method ID, if applicable.
+                   - The paid costs for this payment method, further divided in ``net`` (excludes VAT), ``vat``, and
+                     ``gross`` (includes VAT).
 
    * - ``paymentIds``
 
@@ -241,7 +241,7 @@ Response
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "resource": "settlement",
@@ -249,6 +249,7 @@ Response
        "reference": "1234567.1511.03",
        "createdDatetime": "2015-11-06T06:00:01.0Z",
        "settledDatetime": "2015-11-06T09:41:44.0Z",
+       "status": "paidout",
        "amount": "39.75",
        "periods": {
            "2015": {
@@ -308,6 +309,11 @@ Response
                }
            }
        },
+       "links": {
+           "payments": "https://api.mollie.com/v1/settlements/stl_jDk30akdN/payments",
+           "refunds": "https://api.mollie.com/v1/settlements/stl_jDk30akdN/refunds",
+           "chargebacks": "https://api.mollie.com/v1/settlements/stl_jDk30akdN/chargebacks"
+       },
        "paymentIds": [
            "tr_PBHPvA2ViG",
            "tr_GAHivPBVP2",
@@ -319,10 +325,5 @@ Response
        "refundIds": [
            "re_PvGHiV2BPA",
            "re_APBiGPH2vV"
-       ],
-       "links": {
-           "payments": "https://api.mollie.com/v1/settlements/stl_jDk30akdN/payments",
-           "refunds": "https://api.mollie.com/v1/settlements/stl_jDk30akdN/refunds",
-           "chargebacks": "https://api.mollie.com/v1/settlements/stl_jDk30akdN/chargebacks"
-       }
+       ]
    }

@@ -9,23 +9,25 @@ Get settlement
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: true
    :oauth: true
 
-Successful payments are collected into *settlements*, which are then paid out according to your account's payout
-schedule. By retrieving a single settlement, you can check which payments were paid out with it, when the settlement
-took place, and what invoice reference was used for it.
+Successful payments, together with refunds, captures and chargebacks are collected into *settlements*, which are then
+paid out according to your organization's payout schedule. By retrieving a single settlement, you can check which
+payments were paid out with it, when the settlement took place, and what invoice reference was used for it.
 
-Settlements will be transferred to your bank account with a ``reference``, for example ``1182161.1506.02``. You can use
+Settlements will be transferred to your bank account with a ``reference``, for example ``1234567.1804.03``. You can use
 the :doc:`List settlements </reference/v2/settlements-api/get-settlement>` endpoint to look up a settlement by
 reference.
 
 Parameters
 ----------
-Replace ``id`` in the endpoint URL by the settlement's ID, for example ``stl_jDk30akdN``.
+Replace ``id`` in the endpoint URL by the settlement's ID, for example ``stl_jDk30akdN`` or by the settlement's bank
+reference, for example ``1234567.1804.03``.
 
 Response
 --------
-``200`` ``application/hal+json; charset=utf-8``
+``200`` ``application/hal+json``
 
 .. list-table::
    :widths: auto
@@ -124,6 +126,18 @@ Response
 
                    - A description of the revenue subtotal.
 
+                 * - ``method``
+
+                     .. type:: string
+
+                   - The payment method ID, if applicable.
+
+                 * - ``count``
+
+                     .. type:: integer
+
+                   - The number of payments received for this payment method.
+
                  * - ``amountNet``
 
                      .. type:: amount object
@@ -142,18 +156,6 @@ Response
 
                    - The gross total of received funds for this payment method (includes VAT).
 
-                 * - ``count``
-
-                     .. type:: integer
-
-                   - The number of payments received for this payment method.
-
-                 * - ``method``
-
-                     .. type:: string
-
-                   - The payment method ID, if applicable.
-
           * - ``costs``
 
               .. type:: array
@@ -170,23 +172,11 @@ Response
 
                    - A description of the subtotal.
 
-                 * - ``amountNet``
+                 * - ``method``
 
-                     .. type:: amount object
+                     .. type:: string
 
-                   - The net total costs for this payment method (excludes VAT).
-
-                 * - ``amountVat``
-
-                     .. type:: amount object
-
-                   - The VAT amount applicable to the costs.
-
-                 * - ``amountGross``
-
-                     .. type:: amount object
-
-                   - The gross total costs for this payment method (includes VAT).
+                   - The payment method ID, if applicable.
 
                  * - ``count``
 
@@ -215,11 +205,23 @@ Response
 
                           - A string describing the variable costs as a percentage.
 
-                 * - ``method``
+                 * - ``amountNet``
 
-                     .. type:: string
+                     .. type:: amount object
 
-                   - The payment method ID, if applicable.
+                   - The net total costs for this payment method (excludes VAT).
+
+                 * - ``amountVat``
+
+                     .. type:: amount object
+
+                   - The VAT amount applicable to the costs.
+
+                 * - ``amountGross``
+
+                     .. type:: amount object
+
+                   - The gross total costs for this payment method (includes VAT).
 
    * - ``invoiceId``
 
@@ -262,6 +264,12 @@ Response
 
             - The API resource URL of the chargebacks that are included in this settlement.
 
+          * - ``captures``
+
+              .. type:: URL object
+
+            - The API resource URL of the captures that are included in this settlement.
+
           * - ``invoice``
 
               .. type:: URL object
@@ -277,23 +285,44 @@ Response
 Example
 -------
 
-Request (curl)
-^^^^^^^^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-   curl -X GET https://api.mollie.com/v2/settlements/stl_jDk30akdN \
-       -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+      curl -X GET https://api.mollie.com/v2/settlements/stl_jDk30akdN \
+         -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
 
-Request (PHP)
-^^^^^^^^^^^^^
-.. code-block:: php
-   :linenos:
+      # or, by bank reference
 
-    <?php
-    $mollie = new \Mollie\Api\MollieApiClient();
-    $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
-    $settlement = $mollie->settlements->get("stl_jDk30akdN");
+      curl -X GET https://api.mollie.com/v2/settlements/1234567.1804.03 \
+         -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+
+   .. code-block:: php
+      :linenos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+      $settlement = $mollie->settlements->get("stl_jDk30akdN");
+
+      // or, by bank reference
+
+      $settlement = $mollie->settlements->get("1234567.1804.03");
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ'
+      end
+
+      settlement = Mollie::Settlement.get('stl_jDk30akdN')
+
+      # or, by bank reference
+
+      settlement = Mollie::Settlement.get('1234567.1804.03')
 
 Response
 ^^^^^^^^
@@ -301,34 +330,35 @@ Response
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
        "resource": "settlement",
        "id": "stl_jDk30akdN",
        "reference": "1234567.1804.03",
-       "createdDatetime": "2018-04-06T06:00:01.0Z",
-       "settledDatetime": "2018-04-06T09:41:44.0Z",
+       "createdAt": "2018-04-06T06:00:01.0Z",
+       "settledAt": "2018-04-06T09:41:44.0Z",
+       "status": "paidout",
        "amount": {
-           "currency": "EUR",
-           "value": "39.75"
+           "value": "39.75",
+           "currency": "EUR"
        },
        "periods": {
            "2018": {
-               "4": {
+               "04": {
                    "revenue": [
                        {
                            "description": "iDEAL",
                            "method": "ideal",
                            "count": 6,
                            "amountNet": {
-                               "currency": "EUR",
-                               "value": "86.1000"
+                               "value": "86.1000",
+                               "currency": "EUR"
                            },
                            "amountVat": null,
                            "amountGross": {
-                               "currency": "EUR",
-                               "value": "86.1000"
+                               "value": "86.1000",
+                               "currency": "EUR"
                            }
                        },
                        {
@@ -336,13 +366,13 @@ Response
                            "method": "refund",
                            "count": 2,
                            "amountNet": {
-                               "currency": "EUR",
-                               "value": "-43.2000"
+                               "value": "-43.2000",
+                               "currency": "EUR"
                            },
                            "amountVat": null,
                            "amountGross": {
-                               "currency": "EUR",
-                               "value": "43.2000"
+                               "value": "43.2000",
+                               "currency": "EUR"
                            }
                        }
                    ],
@@ -353,22 +383,22 @@ Response
                            "count": 6,
                            "rate": {
                                "fixed": {
-                                   "currency": "EUR",
-                                   "value": "0.3500"
+                                   "value": "0.3500",
+                                   "currency": "EUR"
                                },
                                "percentage": null
                            },
                            "amountNet": {
-                               "currency": "EUR",
-                               "value": "2.1000"
+                               "value": "2.1000",
+                               "currency": "EUR"
                            },
                            "amountVat": {
-                               "currency": "EUR",
-                               "value": "0.4410"
+                               "value": "0.4410",
+                               "currency": "EUR"
                            },
                            "amountGross": {
-                               "currency": "EUR",
-                               "value": "2.5410"
+                               "value": "2.5410",
+                               "currency": "EUR"
                            }
                        },
                        {
@@ -377,22 +407,22 @@ Response
                            "count": 2,
                            "rate": {
                                "fixed": {
-                                   "currency": "EUR",
-                                   "value": "0.2500"
+                                   "value": "0.2500",
+                                   "currency": "EUR"
                                },
                                "percentage": null
                            },
                            "amountNet": {
-                               "currency": "EUR",
-                               "value": "0.5000"
+                               "value": "0.5000",
+                               "currency": "EUR"
                            },
                            "amountVat": {
-                               "currency": "EUR",
-                               "value": "0.1050"
+                               "value": "0.1050",
+                               "currency": "EUR"
                            },
                            "amountGross": {
-                               "currency": "EUR",
-                               "value": "0.6050"
+                               "value": "0.6050",
+                               "currency": "EUR"
                            }
                        }
                    ]
@@ -402,8 +432,12 @@ Response
        "invoiceId": "inv_FrvewDA3Pr",
        "_links": {
            "self": {
-               "href": "https://api.mollie.com/v2/settlements/next",
+               "href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN",
                "type": "application/hal+json"
+           },
+           "invoice": {
+                "href": "https://api.mollie.com/v2/invoices/inv_FrvewDA3Pr",
+                "type": "application/hal+json"
            },
            "payments": {
                "href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/payments",
@@ -417,9 +451,9 @@ Response
                "href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/chargebacks",
                "type": "application/hal+json"
            },
-           "invoice": {
-                "href": "https://api.mollie.com/v2/invoices/inv_FrvewDA3Pr",
-                "type": "application/hal+json"
+           "captures": {
+               "href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/captures",
+               "type": "application/hal+json"
            },
            "documentation": {
                "href": "https://docs.mollie.com/reference/v2/settlements-api/get-settlement",
