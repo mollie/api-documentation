@@ -1,22 +1,22 @@
 @font-face {
   font-family: "Calibre";
   font-weight: 200;
-  src: url("https://cdn.mollie.com/assets/CalibreWeb-Light.woff2") format("woff2"),
-    url("https://cdn.mollie.com/assets/CalibreWeb-Light.woff") format("woff");
+  src: url("./fonts/CalibreWeb-Light.woff2") format("woff2"),
+    url("./fonts/CalibreWeb-Light.woff") format("woff");
 }
 
 @font-face {
   font-family: "Calibre";
   font-weight: 400;
-  src: url("https://cdn.mollie.com/assets/CalibreWeb-Regular.woff2") format("woff2"),
-    url("https://cdn.mollie.com/assets/CalibreWeb-Regular.woff") format("woff");
+  src: url("./fonts/CalibreWeb-Regular.woff2") format("woff2"),
+    url("./fonts/CalibreWeb-Regular.woff") format("woff");
 }
 
 @font-face {
   font-family: "Calibre";
   font-weight: 700;
-  src: url("https://cdn.mollie.com/assets/CalibreWeb-Medium.woff2") format("woff2"),
-    url("https://cdn.mollie.com/assets/CalibreWeb-Medium.woff") format("woff");
+  src: url("./fonts/CalibreWeb-Medium.woff2") format("woff2"),
+    url("./fonts/CalibreWeb-Medium.woff") format("woff");
 }
 
 * {
