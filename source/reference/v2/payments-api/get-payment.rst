@@ -809,7 +809,7 @@ Credit card
 
             - Only available for failed payments. Contains a failure reason code.
 
-              Possible values: ``authentication_failed``  ``card_expired`` ``inactive_card`` ``insufficient_funds``
+              Possible values: ``authentication_abandoned`` ``authentication_failed``  ``card_expired`` ``inactive_card`` ``insufficient_funds``
               ``invalid_card_holder_name`` ``invalid_card_number`` ``invalid_card_type`` ``invalid_cvv``
               ``possible_fraud`` ``refused_by_issuer`` ``unknown_reason``
 

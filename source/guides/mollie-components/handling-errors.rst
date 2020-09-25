@@ -52,7 +52,7 @@ contain the ``extra`` property with two additional keys:
 
             - Only available for failed payments. Contains a failure reason code.
 
-              Possible values: ``authentication_failed`` ``invalid_card_number`` ``invalid_cvv``
+              Possible values: ``authentication_abandoned`` ``authentication_failed`` ``invalid_card_number`` ``invalid_cvv``
               ``invalid_card_holder_name`` ``card_expired`` ``invalid_card_type`` ``refused_by_issuer``
               ``insufficient_funds`` ``inactive_card`` ``unknown_reason`` ``possible_fraud``
 
@@ -122,7 +122,7 @@ The reason of the error will be available via the ``details`` object:
 
             - Only available for failed payments. Contains a failure reason code.
 
-              Possible values: ``authentication_failed`` ``invalid_card_number`` ``invalid_cvv``
+              Possible values: ``authentication_abandoned`` ``authentication_failed`` ``invalid_card_number`` ``invalid_cvv``
               ``invalid_card_holder_name`` ``card_expired`` ``invalid_card_type`` ``refused_by_issuer``
               ``insufficient_funds`` ``inactive_card`` ``unknown_reason`` ``possible_fraud``
 

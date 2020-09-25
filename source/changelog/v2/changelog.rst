@@ -6,6 +6,12 @@ changes are documented here.
 September 2020
 ==============
 
+Friday, 25th
+------------
+
+- Added ``authentication_abandoned`` as possible ``failureReason`` in the
+  :doc:`Payments API</reference/v2/payments-api/get-payment>` for Credit Card payments.
+
 Monday, 14th
 ------------
 

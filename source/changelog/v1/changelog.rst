@@ -8,6 +8,15 @@ changes are documented here.
 
              For more information on the v2 API, refer to our :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
+September 2020
+==============
+
+Friday, 25th
+------------
+
+- Added ``authentication_abandoned`` as possible ``failureReason`` in the
+  :doc:`Payments API</reference/v1/payments-api/get-payment>` for Credit Card payments.
+
 August 2020
 ===========
 
