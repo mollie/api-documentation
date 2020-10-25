@@ -73,7 +73,7 @@ Parameters
    * - ``redirectUrl``
 
        .. type:: string
-          :required: false
+          :required: true
 
      - The URL your customer will be redirected to after the payment process.
 
