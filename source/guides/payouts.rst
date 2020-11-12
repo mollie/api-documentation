@@ -70,7 +70,7 @@ beneficiary first:
      "...": {}
     }
 
-The created balance has been configured to do an automatic payout once a week to the given bank account of your
+The created balance has been configured to do an automatic payout on a daily basis to the given bank account of your
 beneficiary.
 
 Transferring a payment to the balance
