@@ -1,9 +1,9 @@
-Marketplaces & platforms
+Marketplaces & Platforms
 ========================
-With Mollie Marketplaces & platforms, you can send payments to the bank accounts of your beneficiaries directly and split payments
-between multiple parties. Additionally, with Mollie Marketplaces & platforms you can control the delay on a payout
+With Mollie Marketplaces & Platforms, you can send payments to the bank accounts of your beneficiaries directly and split payments
+between multiple parties. Additionally, with Mollie Marketplaces & Platforms you can control the delay on a payout
 
-Mollie Marketplaces & platforms allows you to process third party funds for your platform in a PSD2-compliant manner.
+Mollie Marketplaces & Platforms allows you to process third party funds for your platform in a PSD2-compliant manner.
 
 This guide will explain step-by-step how to:
 
@@ -15,7 +15,7 @@ This guide will explain step-by-step how to:
 
 Getting started: creating a balance
 -----------------------------------
-To get started with Mollie Marketplaces & platforms, :doc:`create a custom balance </reference/v2/balances-api/create-balance>` for your
+To get started with Mollie Marketplaces & Platforms, :doc:`create a custom balance </reference/v2/balances-api/create-balance>` for your
 beneficiary first:
 
 .. code-block:: bash

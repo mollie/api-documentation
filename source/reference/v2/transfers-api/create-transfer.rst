@@ -13,7 +13,7 @@ Create transfers
 
 Transfer funds away from a balance by creating a transfer.
 
-See the guide on :doc:`Mollie Marketplaces & platforms </guides/payouts>` for more details on managing transfers for custom balances.
+See the guide on :doc:`Mollie Marketplaces & Platforms </guides/payouts>` for more details on managing transfers for custom balances.
 
 Parameters
 ----------
