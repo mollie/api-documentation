@@ -38,12 +38,12 @@ Wednesday, 11th
 
 Wednesday, 4th
 --------------
-- Created a guide for :doc:`Mollie Payouts </guides/payouts>`.
-- Introduced the :doc:`Balances API </reference/v2/balances-api/create-balance>` for Mollie Payouts.
-- Introduced the :doc:`Transfers API </reference/v2/transfers-api/create-transfer>` for Mollie Payouts.
+- Created a guide for :doc:`Mollie Marketplaces & platforms </guides/payouts>`.
+- Introduced the :doc:`Balances API </reference/v2/balances-api/create-balance>` for Mollie Marketplaces & platforms.
+- Introduced the :doc:`Transfers API </reference/v2/transfers-api/create-transfer>` for Mollie Marketplaces & platforms.
 - Added support for payment routing using the new ``routing`` parameter on the 
-  :doc:`Payments API </reference/v2/payments-api/create-payment>` for Mollie Payouts.
-- Introduced the :doc:`payment route subresource </reference/v2/payments-api/get-payment-route>` for Mollie Payouts.
+  :doc:`Payments API </reference/v2/payments-api/create-payment>` for Mollie Marketplaces & platforms.
+- Introduced the :doc:`payment route subresource </reference/v2/payments-api/get-payment-route>` for Mollie Marketplaces & platforms.
 
 June 2018
 =========

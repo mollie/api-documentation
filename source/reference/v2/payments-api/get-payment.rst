@@ -350,7 +350,7 @@ Response
 
      - The routing configuration as specified during payment creation.
 
-       See the :doc:`Mollie Payouts </guides/payouts>` guide for more information on payment routing.
+       See the :doc:`Mollie Marketplaces & platforms </guides/payouts>` guide for more information on payment routing.
 
        If specified, the routing array contains one or more routing objects with the following parameters:
 

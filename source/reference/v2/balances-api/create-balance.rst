@@ -12,7 +12,7 @@ Create balance
    :oauth: true
 
 Create a custom balance. You can transfer payments to this balance, split payments across multiple balances, and
-schedule payouts of those balances to external bank accounts. See :doc:`Mollie Payouts </guides/payouts>` for more
+schedule payouts of those balances to external bank accounts. See :doc:`Mollie Marketplaces & platforms </guides/payouts>` for more
 details.
 
 Parameters
@@ -123,7 +123,7 @@ Parameters
               .. type:: string
                  :required: true
 
-            - A string containing the exact EUR threshold. The string represents an amount between 5,00 and 1.000,00 EUR and must have at least two decimals. Non-string
+            - A string containing the exact EUR threshold. The string represents an amount between 5,00 and 1.000,00 EUR and must have exactly two decimals. Non-string
               values are not accepted.
 
 Response
