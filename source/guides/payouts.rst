@@ -1,5 +1,5 @@
 Marketplaces & platforms
-=======
+========================
 With Mollie Marketplaces & platforms, you can send payments to the bank accounts of your beneficiaries directly and split payments
 between multiple parties. Additionally, with Mollie Marketplaces & platforms you can control the delay on a payout
 
