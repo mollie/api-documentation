@@ -168,7 +168,7 @@ Parameters
        :doc:`balance </reference/v2/balances-api/create-balance>` and split the payment between multiple balances.
        Additionally, you can schedule (parts of) the payment to become available on the balance on a future date.
 
-       See the :doc:`Mollie Payouts </guides/payouts>` guide for more information on payment routing.
+       See the :doc:`Mollie Marketplaces & Platforms </guides/payouts>` guide for more information on payment routing.
 
        If a routing array is supplied, it must contain one or more
        :doc:`routing objects </reference/v2/payments-api/get-payment-route>` with the following parameters:

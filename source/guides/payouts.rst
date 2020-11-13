@@ -1,9 +1,9 @@
-Payouts
-=======
-With Mollie Payouts, you can send payments to the bank accounts of your beneficiaries directly and split payments
-between multiple parties. Additionally, with Mollie Payouts you can control the delay on a payout
+Marketplaces & Platforms
+========================
+With Mollie Marketplaces & Platforms, you can send payments to the bank accounts of your beneficiaries directly and split payments
+between multiple parties. Additionally, with Mollie Marketplaces & Platforms you can control the delay on a payout
 
-Mollie Payouts allows you to process third party funds for your platform in a PSD2-compliant manner.
+Mollie Marketplaces & Platforms allows you to process third party funds for your platform in a PSD2-compliant manner.
 
 This guide will explain step-by-step how to:
 
@@ -15,7 +15,7 @@ This guide will explain step-by-step how to:
 
 Getting started: creating a balance
 -----------------------------------
-To get started with Mollie Payouts, :doc:`create a custom balance </reference/v2/balances-api/create-balance>` for your
+To get started with Mollie Marketplaces & Platforms, :doc:`create a custom balance </reference/v2/balances-api/create-balance>` for your
 beneficiary first:
 
 .. code-block:: bash
@@ -70,7 +70,7 @@ beneficiary first:
      "...": {}
     }
 
-The created balance has been configured to do an automatic payout once a week to the given bank account of your
+The created balance has been configured to do an automatic payout on a daily basis to the given bank account of your
 beneficiary.
 
 Transferring a payment to the balance
@@ -125,14 +125,14 @@ done by specifying the payment routing upon :doc:`payment creation </reference/v
        "...": { }
    }
 
-As soon as the payment is completed, the €10.00 will become available on the balance ``bal_8irzh1y2``. Performing a
+As soon as the payment is completed, the €10.00 will become available on the balance ``bal_hinmkh``. Performing a
 :doc:`Get balance </reference/v2/balances-api/get-balance>` request when the payment has succeeded will show the €10.00
 has been moved to the custom balance:
 
 .. code-block:: bash
    :linenos:
 
-   curl -X GET https://api.mollie.com/v2/balances/bal_8irzh1y2 \
+   curl -X GET https://api.mollie.com/v2/balances/bal_hinmkh \
        -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW"
 
 .. code-block:: http
@@ -143,8 +143,8 @@ has been moved to the custom balance:
 
    {
        "resource": "balance",
-       "id": "bal_8irzh1y2",
-       "transferFrequency": "weekly",
+       "id": "bal_hinmkh",
+       "transferFrequency": "daily",
        "transferDestination": {
            "type": "bank-account",
            "bankAccount": "NL53INGB0654422370"
@@ -171,10 +171,10 @@ Tracking balance payouts
 Once a custom balance holds funds, the funds will automatically be paid out according to its payout schedule configured
 earlier.
 
-In the example above, the balance ``bal_8irzh1y2`` holds €10.00 and has been configured to get paid out once a week to
+In the example above, the balance ``bal_hinmkh`` holds €10.00 and has been configured to get paid out on a daily basis to
 bank account ``NL53INGB0654422370``.
 
-Hence, within a week after the €10.00 has become available on the balance it will get paid out automatically. A
+Hence, within a day after the €10.00 has become available on the balance it will get paid out automatically. A
 :doc:`Transfer object </reference/v2/transfers-api/get-transfer>` will be created for this event, that can be retrieved
 to track the payout status.
 
@@ -204,7 +204,7 @@ to track the payout status.
                    },
                    "source": {
                        "type": "balance",
-                       "balanceId": "bal_8irzh1y2"
+                       "balanceId": "bal_hinmkh"
                    },
                    "destination": {
                        "type": "bank-account",
@@ -229,7 +229,7 @@ below.
    curl -X POST https://api.mollie.com/v2/transfers \
        -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW" \
        -d "source[type]=balance" \
-       -d "source[balanceId]=bal_8irzh1y2"
+       -d "source[balanceId]=bal_hinmkh"
 
 .. code-block:: http
    :linenos:
@@ -247,7 +247,7 @@ below.
        },
        "source": {
            "type": "balance",
-           "balanceId": "bal_8irzh1y2"
+           "balanceId": "bal_hinmkh"
        },
        "destination": {
            "type": "bank-account",

@@ -11,7 +11,7 @@ Get balance
    :api_keys: false
    :oauth: true
 
-Retrieve a balance by its unique token. See the guide on :doc:`Mollie Payouts </guides/payouts>` for more details on
+Retrieve a balance by its unique token. See the guide on :doc:`Mollie Marketplaces & Platforms </guides/payouts>` for more details on
 balances.
 
 Parameters
@@ -136,8 +136,8 @@ Response
 
        .. type:: object
 
-     - The destination where the available amount will be automatically transfered to if a ``transferFrequency`` is
-       configured.
+     - The destination where the available amount will be automatically transfered to according to the
+       configured ``transferFrequency``.
 
        .. list-table::
           :widths: auto

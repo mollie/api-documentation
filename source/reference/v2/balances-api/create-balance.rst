@@ -12,7 +12,7 @@ Create balance
    :oauth: true
 
 Create a custom balance. You can transfer payments to this balance, split payments across multiple balances, and
-schedule payouts of those balances to external bank accounts. See :doc:`Mollie Payouts </guides/payouts>` for more
+schedule payouts of those balances to external bank accounts. See :doc:`Mollie Marketplaces & Platforms </guides/payouts>` for more
 details.
 
 Parameters
@@ -20,19 +20,59 @@ Parameters
 .. list-table::
    :widths: auto
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to create a test mode balance.
-
    * - ``description``
 
        .. type:: string
           :required: true
 
      - The balance's unique description.
+
+   * - ``transferDestination``
+
+       .. type:: object
+          :required: true
+
+     - The destination where the available amount will be automatically transfered to if a ``transferFrequency`` is
+       configured.
+
+       .. list-table::
+          :widths: auto
+
+          * - ``type``
+
+              .. type:: string
+                 :required: true
+
+            - The default destination of automatic scheduled transfers. Currently only ``bank-account`` is supported.
+
+              Possible values:
+
+              * ``bank-account`` Transfer the balance amount to an external bank account.
+
+          * - ``bankAccount``
+
+              .. type:: string
+                 :required: true
+
+            - Required for transfer method ``bank-account``. The bank account number of the beneficiary the balance
+              amount is to be transferred to.
+
+              Currently only IBANs are accepted.
+
+          * - ``beneficiaryName``
+
+              .. type:: string
+                 :required: true
+
+            - Required for transfer method ``bank-account``. The full name of the beneficiary the balance amount is to
+              be transferred to.
+   
+   * - ``testmode``
+
+       .. type:: boolean
+          :required: false
+
+     - Set this to ``true`` to create a test mode balance. Defatuls to ``false``.
 
    * - ``transferFrequency``
 
@@ -83,48 +123,8 @@ Parameters
               .. type:: string
                  :required: true
 
-            - A string containing the exact EUR threshold. Make sure to send the right amount of decimals. Non-string
+            - A string containing the exact EUR threshold. The string represents an amount between 5,00 and 1.000,00 EUR and must have exactly two decimals. Non-string
               values are not accepted.
-
-   * - ``transferDestination``
-
-       .. type:: object
-          :required: true
-
-     - The destination where the available amount will be automatically transfered to if a ``transferFrequency`` is
-       configured.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``type``
-
-              .. type:: string
-                 :required: true
-
-            - The default destination of automatic scheduled transfers. Currently only ``bank-account`` is supported.
-
-              Possible values:
-
-              * ``bank-account`` Transfer the balance amount to an external bank account.
-
-          * - ``bankAccount``
-
-              .. type:: string
-                 :required: true
-
-            - Required for transfer method ``bank-account``. The bank account number of the beneficiary the balance
-              amount is to be transferred to.
-
-              Currently only IBANs are accepted.
-
-          * - ``beneficiaryName``
-
-              .. type:: string
-                 :required: true
-
-            - Required for transfer method ``bank-account``. The full name of the beneficiary the balance amount is to
-              be transferred to.
 
 Response
 --------

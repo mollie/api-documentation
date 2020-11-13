@@ -13,12 +13,38 @@ Create transfers
 
 Transfer funds away from a balance by creating a transfer.
 
-See the guide on :doc:`Mollie Payouts </guides/payouts>` for more details on managing transfers for custom balances.
+See the guide on :doc:`Mollie Marketplaces & Platforms </guides/payouts>` for more details on managing transfers for custom balances.
 
 Parameters
 ----------
 .. list-table::
    :widths: auto
+
+   * - ``source``
+
+       .. type:: object
+          :required: true
+
+     - The source the amount is to be transferred from.
+
+       .. list-table::
+          :widths: auto
+
+          * - ``type``
+
+              .. type:: string
+                 :required: true
+
+            - The type of transfer source. Can currently only be ``balance``.
+
+              Possible values: ``balance``
+
+          * - ``balanceId``
+
+              .. type:: string
+                 :required: true
+
+            - In case of a transfer from a balance, specify the ID of the source balance. For example: ``bal_8irzh1y2``.
 
    * - ``testmode``
 
@@ -61,32 +87,6 @@ Parameters
 
             - A string containing the exact EUR amount you want to transfer. Make sure to send the right amount of
               decimals. Non-string values are not accepted.
-
-   * - ``source``
-
-       .. type:: object
-          :required: true
-
-     - The source the amount is to be transferred from.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``type``
-
-              .. type:: string
-                 :required: true
-
-            - The type of transfer source. Can currently only be ``balance``.
-
-              Possible values: ``balance``
-
-          * - ``balanceId``
-
-              .. type:: string
-                 :required: true
-
-            - In case of a transfer from a balance, specify the ID of the source balance. For example: ``bal_8irzh1y2``.
 
    * - ``destination``
 
