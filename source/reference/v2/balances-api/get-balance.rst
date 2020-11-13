@@ -136,8 +136,8 @@ Response
 
        .. type:: object
 
-     - The destination where the available amount will be automatically transfered to if a ``transferFrequency`` is
-       configured.
+     - The destination where the available amount will be automatically transfered to according to the
+       configured ``transferFrequency``.
 
        .. list-table::
           :widths: auto
