@@ -45,6 +45,7 @@ beneficiary first:
      "type": "custom",
      "currency": "EUR",
      "description": "My custom balance",
+     "status": "accepted",
      "availableAmount": {
        "value": "0.00",
        "currency": "EUR"

@@ -136,6 +136,7 @@ Response
             "type": "custom",
             "currency": "EUR",
             "description": "My custom balance",
+            "status": "accepted",
             "availableAmount": {
               "value": "0.00",
               "currency": "EUR"
@@ -171,6 +172,7 @@ Response
             "mode": "live",
             "createdAt": "2019-01-10T10:23:41+00:00",
             "type": "default",
+            "status": "accepted",
             "currency": "EUR",
             "description": "",
             "availableAmount": {

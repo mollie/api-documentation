@@ -84,6 +84,17 @@ Response
 
      - The description specified during balance creation.
 
+   * - ``status``
+
+       .. type:: string
+
+     - The status of the balance.
+       
+       Possible values:
+       * ``accepted`` The balance is operational and ready to be used.
+       * ``pending`` In case the account is not active yet, or the balance information requires further verification.
+       * ``blocked`` The balance has been blocked. Please `contact <https://www.mollie.com/en/contact/>`_ our support department for more information.
+
    * - ``transferFrequency``
 
        .. type:: string
@@ -282,6 +293,7 @@ Response
      "type": "custom",
      "currency": "EUR",
      "description": "My custom balance",
+     "status": "accepted",
      "availableAmount": {
        "value": "0.00",
        "currency": "EUR"

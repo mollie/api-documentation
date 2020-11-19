@@ -122,6 +122,7 @@ Response
      "type": "custom",
      "currency": "EUR",
      "description": "My updated balance",
+     "status": "accepted",
      "availableAmount": {
        "value": "0.00",
        "currency": "EUR"

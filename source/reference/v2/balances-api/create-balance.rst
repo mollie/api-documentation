@@ -66,6 +66,10 @@ Parameters
 
             - Required for transfer method ``bank-account``. The full name of the beneficiary the balance amount is to
               be transferred to.
+       
+       .. note:: We use this information to create a submerchant in our system and run a process of verification of the details provided. 
+                If the information requires further clarification, the balance will show a ``pending`` status. 
+                `Read more about balance status /reference/v2/balances-api/get-balance#response`.
    
    * - ``testmode``
 
@@ -166,6 +170,7 @@ Response
      "type": "custom",
      "currency": "EUR",
      "description": "My custom balance",
+     "status": "accepted",
      "availableAmount": {
        "value": "0.00",
        "currency": "EUR"
