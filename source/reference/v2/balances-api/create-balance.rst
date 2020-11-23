@@ -67,8 +67,8 @@ Parameters
             - Required for transfer method ``bank-account``. The full name of the beneficiary the balance amount is to
               be transferred to.
        
-       .. note:: We use this information to create a submerchant in our system and run a process of verification of the details provided. 
-                If the information requires further clarification, the balance will show a ``pending`` status. 
+       .. note:: Please be aware that upon balance creation we are creating a Submerchant entity with the provided information here. 
+                The balance will show a ``pending`` status in case the information needs further validation from our team. 
                 `Read more about balance status /reference/v2/balances-api/get-balance#response`.
    
    * - ``testmode``
