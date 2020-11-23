@@ -60,6 +60,7 @@ Response
      "type": "default",
      "currency": "EUR",
      "description": "",
+     "status": "accepted",
      "availableAmount": {
        "value": "0.00",
        "currency": "EUR"
