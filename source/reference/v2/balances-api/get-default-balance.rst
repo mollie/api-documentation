@@ -11,7 +11,7 @@ Get default balance
    :api_keys: false
    :oauth: true
 
-Retrieve the default balance, where all payments and payouts are made from by default.
+Retrieve the default balance (where all payments and payouts are made from).
 
 .. list-table::
    :widths: auto

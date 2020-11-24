@@ -26,7 +26,7 @@ class AuthenticationDirective(Directive):
         if self.options["api_keys"]:
             api_ref = self.create_reference("/guides/authentication", "API keys")
             inline += api_ref
-        if self.options["organization_access_tokens"]:
+        if "organization_access_tokens" in self.options and self.options["organization_access_tokens"]:
             pat_ref = self.create_reference("/guides/authentication", "Organization access tokens")
             inline += pat_ref
         if self.options["oauth"]:
