@@ -25,6 +25,7 @@ script:
   - make write-gtm
 before_deploy:
   - pip install awscli
+warnings_are_errors: false
 deploy:
   on:
     branch: master
