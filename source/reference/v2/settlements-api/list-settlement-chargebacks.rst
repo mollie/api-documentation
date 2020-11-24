@@ -53,7 +53,7 @@ Request
       <?php
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
-
+      
       $settlement = $mollie->settlements->get("stl_jDk30akdN");
       $chargebacks = $settlement->chargebacks();
 
@@ -70,7 +70,7 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK

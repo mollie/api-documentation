@@ -3,12 +3,20 @@ Get invoice
 .. api-name:: Invoices API
    :version: 1
 
+.. warning:: The v1 API has been deprecated. The v1 API will be supported for the foreseeable future, at least until
+             July 2023. However, new features will only be added to the v2 API.
+
+             The documentation for retrieving invoices in the new v2 API can be found
+             :doc:`here </reference/v2/invoices-api/get-invoice>`. For more information on the v2 API, refer to our
+             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
+
 .. endpoint::
    :method: GET
    :url: https://api.mollie.com/v1/invoices/*id*
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: false
    :oauth: true
 
 Retrieve details of an invoice, using the invoice's identifier.
@@ -30,7 +38,7 @@ querystring parameter.
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 .. list-table::
    :widths: auto
@@ -193,11 +201,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "resource":"invoice",

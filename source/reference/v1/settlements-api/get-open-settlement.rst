@@ -16,6 +16,7 @@ Get open settlement
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: false
    :oauth: true
 
 Retrieve the details of the open balance of the organization. This will return a settlement object representing your
@@ -23,7 +24,7 @@ organization's balance.
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 The open balance settlement is returned in the same fashion as the
 :doc:`Get settlement </reference/v1/settlements-api/get-settlement>` endpoint.
@@ -41,11 +42,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "resource": "settlement",
@@ -53,6 +54,7 @@ Response
        "reference": null,
        "createdDatetime": "null",
        "settledDatetime": null,
+       "status": "open",
        "amount": "39.75",
        "periods": {
            "2015": {

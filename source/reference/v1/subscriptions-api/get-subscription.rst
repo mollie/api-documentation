@@ -16,6 +16,7 @@ Get subscription
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: false
    :oauth: true
 
 Retrieve a subscription by its ID and its customer's ID.
@@ -25,10 +26,10 @@ Parameters
 Replace ``customerId`` in the endpoint URL by the customer's ID, and replace ``id`` by the subscription's ID. For
 example ``/v1/customers/cst_8wmqcHMN4U/subscriptions/sub_rVKGtNd6s3``.
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is also available.
 
 .. list-table::
    :widths: auto
@@ -42,7 +43,7 @@ available.
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 .. list-table::
    :widths: auto
@@ -119,8 +120,7 @@ Response
 
        .. type:: string
 
-     - The description specified during subscription creation. This will be included in the payment description along
-       with the charge date in ``YYYY-MM-DD`` format.
+     - The description specified during subscription creation. This will be included in the payment description.
 
    * - ``method``
 
@@ -129,7 +129,7 @@ Response
      - The payment method used for this subscription, either forced on creation or ``null`` if any of the
        customer's valid mandates may be used.
 
-       Possible values: ``creditcard`` ``directdebit`` ``null``
+       Possible values: ``creditcard`` ``directdebit`` ``paypal`` ``null``
 
    * - ``cancelledDatetime``
 
@@ -165,11 +165,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "resource": "subscription",

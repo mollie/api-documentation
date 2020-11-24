@@ -16,6 +16,7 @@ List settlement payments
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: false
    :oauth: true
 
 Retrieve all payments included in a settlement.
@@ -33,7 +34,7 @@ parameters for that endpoint can be used here as well.
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 This endpoint is an alias of the :doc:`List payments </reference/v1/payments-api/list-payments>` endpoint. The response
 is therefore the exact same.
@@ -51,11 +52,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "totalCount": 280,
@@ -70,7 +71,7 @@ Response
                "createdDatetime": "2018-03-17T01:47:50.0Z"
                "status": "paid",
                "amount": "10.00",
-               "description": "My first payment",
+               "description": "Order #12345",
                "metadata": null,
                "profileId": "pfl_QkEhN94Ba",
                "customerId": "cst_4qqhO89gsT",

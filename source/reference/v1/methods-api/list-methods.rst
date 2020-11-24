@@ -16,6 +16,7 @@ List payment methods
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: false
    :oauth: true
 
 Retrieve all payment methods activated on the payment profile.
@@ -32,7 +33,7 @@ Parameters
        .. type:: string
           :required: true
 
-     - Include additional data. Must be a comma separated list of one or more includes. See
+     - Include additional data. Must be a comma-separated list of one or more includes. See
        :doc:`Get method </reference/v1/methods-api/get-method>` for available includes.
 
    * - ``recurringType``
@@ -70,12 +71,12 @@ Parameters
 
      - The number of payment methods to return (with a maximum of 250).
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the only mandatory extra parameter is the
-``profileId`` parameter. With it, you can specify which profile you want to list the methods of. Organizations can have
-multiple profiles for each of their websites. See :doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more
-information.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the only mandatory extra query string parameter is the ``profileId`` parameter. With it,
+you can specify which profile you want to list the methods of. Organizations can have multiple profiles for each of
+their websites. See :doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more information.
 
 .. list-table::
    :widths: auto
@@ -85,7 +86,7 @@ information.
        .. type:: string
           :required: true
 
-     - The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``. This field is mandatory.
+     - The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
 
    * - ``testmode``
 
@@ -104,7 +105,7 @@ querystring parameter.
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 .. list-table::
    :widths: auto
@@ -181,11 +182,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "totalCount": 2,

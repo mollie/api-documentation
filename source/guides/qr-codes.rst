@@ -5,9 +5,9 @@ flow from their desktop or laptop computer to their mobile device. This is the s
 
 QR codes also allow your customers to pay without requiring manual input leading to lower error rates.
 
-In most cases, this works by scanning a QR code during the payment using a dedicated app on a phone. For example,
-Bitcoin payments support a QR code that can be scanned using a wallet app. The customer then completes the transaction
-from his or her mobile device.
+In most cases, this works by scanning a QR code during the payment process using a dedicated app on a phone. For example,
+iDEAL payments support a QR code that can be scanned using the iDEAL app or directly from within the banking app.
+The customer then completes the transaction from his or her mobile device.
 
 How do QR codes work?
 ---------------------
@@ -15,22 +15,22 @@ How do QR codes work?
 #. You show the QR code to the customer during the checkout.
 #. The customer opens the app on a mobile device and scans the QR code.
 #. The customer finishes the payment in the app on the mobile device.
-#. Mollie informs you of the payment status change using the :doc:`webhook </payments/webhooks>`.
+#. Mollie informs you of the payment status change using the :doc:`webhook </guides/webhooks>`.
 #. The customer is redirected back to the webshop on their computer.
+
+.. note:: Only iDeal QR works in testmode. 
 
 Supported payment methods
 -------------------------
 +-------------+--------------------------------------------------------------------------------------------------------+
-|iDEAL        |iDEAL QR codes can be scanned using the dedicated iDEAL app. The customer can select the issuer in the  |
-|             |app and the payment flow is then transferred to the mobile banking app installed on the phone.          |
+|iDEAL        |iDEAL QR codes can be scanned using the app of you bank, the dedicated iDEAL app, or the iPhone         |
+|             |camera app directly. After scanning the code, the customer can easily pay via their banking app.        |
 +-------------+--------------------------------------------------------------------------------------------------------+
-|Bancontact   |Bancontact QR codes can be scanned using the Bancontact app, Belgian mobile banking apps or the iPhone  |
+|Bancontact   |Bancontact QR codes can be scanned using the Bancontact app, Belgian mobile banking apps, or the iPhone |
 |             |camera app directly. The QR code is only available for payments under €500.00.                          |
 +-------------+--------------------------------------------------------------------------------------------------------+
 |Bank transfer|Many mobile banking apps support scanning EPC QR codes for SEPA credit transfers. Note that there is no |
 |             |real-time feedback for this payment method.                                                             |
-+-------------+--------------------------------------------------------------------------------------------------------+
-|Bitcoin      |Most Bitcoin wallet apps support sending Bitcoins by scanning a QR code.                                |
 +-------------+--------------------------------------------------------------------------------------------------------+
 
 Implementation options

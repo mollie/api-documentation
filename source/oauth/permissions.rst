@@ -69,6 +69,22 @@ Permissions can be requested by redirecting the resource owner to the
        | Settlements API
      - View the merchant's settlements.
 
+   * - | ``orders.read``
+       | Orders API
+     - View the merchant's orders.
+
+   * - | ``orders.write``
+       | Orders API
+     - Manage the merchant's orders.
+
+   * - | ``shipments.read``
+       | Shipments API
+     - View the merchant's order shipments.
+
+   * - | ``shipments.write``
+       | Shipments API
+     - Manage the merchant's order shipments.
+
    * - | ``organizations.read``
        | Organizations API
      - View the merchant's organizational details.
@@ -76,3 +92,11 @@ Permissions can be requested by redirecting the resource owner to the
    * - | ``organizations.write``
        | Organizations API
      - Change the merchant's organizational details.
+
+   * - | ``onboarding.read``
+       | Onboarding API
+     - View the merchant's onboarding status.
+
+   * - | ``onboarding.write``
+       | Onboarding API
+     - Submit onboarding data for the merchant.

@@ -16,6 +16,7 @@ Create payment
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: false
    :oauth: true
 
 Payment creation is elemental to the Mollie API: this is where most payment implementations start off. Note optional
@@ -36,6 +37,13 @@ Parameters
 
      - The amount in EUR that you want to charge, e.g. 100.00 if you would want to charge €100.00.
 
+       You can find the `minimum and maximum amounts <https://help.mollie.com/hc/en-us/articles/115000667365-What-are-the-minimum-and-maximum-amounts-per-payment-method->`_
+       per payment method in our help center. Additionally, they can be retrieved using the :doc:`/reference/v1/methods-api/get-method`.
+
+       .. note:: If you want to charge other currencies, upgrade to the
+                 :doc:`Create Payments v2 API</reference/v2/payments-api/create-payment>`. The v2 API fully supports
+                 :doc:`multicurrency </payments/multicurrency>`.
+
    * - ``description``
 
        .. type:: string
@@ -52,9 +60,12 @@ Parameters
        .. type:: string
           :required: true
 
-     - `The URL the customer will be redirected to after the payment process. It could make sense for the
-       ``redirectUrl`` to contain a unique identifier – like your order ID – so you can show the right page referencing
-       the order when your customer returns.
+     - The URL your customer will be redirected to after the payment process.
+
+       It could make sense for the ``redirectUrl`` to contain a unique identifier – like your order ID – so you can show
+       the right page referencing the order when your customer returns.
+
+       .. note:: Only for payments with the ``sequenceType`` parameter set to ``recurring``, you can omit this parameter.
 
    * - ``webhookUrl``
 
@@ -92,8 +103,11 @@ Parameters
        enables you to fully integrate the payment method selection into your website, however note Mollie's country
        based conversion optimization is lost.
 
-       Possible values: ``banktransfer`` ``belfius`` ``bitcoin`` ``creditcard`` ``directdebit`` ``eps`` ``giftcard``
-       ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``mistercash`` ``paypal`` ``paysafecard`` ``sofort``
+       Possible values: ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps`` ``giftcard``
+       ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``mistercash`` ``mybank`` ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort``
+
+       .. note:: If you are looking to create payments with the Klarna Pay later, Klarna Slice it or Voucher
+                 payment methods, please use the :doc:`/reference/v2/orders-api/create-order` instead.
 
    * - ``metadata``
 
@@ -113,6 +127,12 @@ Parameters
        ``recurring``, the customer's card is charged automatically.
 
        Possible values: ``first`` ``recurring``
+
+       .. warning:: Using recurring payments with PayPal is only possible if PayPal has activated Reference
+                    Transactions on your merchant account. Check if you account is eligible via our
+                    :doc:`Methods API </reference/v1/methods-api/list-methods>`. Make sure to set the
+                    ``recurringType`` parameter to ``first``. Your account is eligible if you get PayPal as
+                    method returned.
 
    * - ``customerId``
 
@@ -165,25 +185,12 @@ Bank transfer
           :required: false
 
      - The locale will determine the target bank account the customer has to transfer the money to. We have
-       dedicated bank accounts for Belgium, France, Germany and The Netherlands. Having the customer use a local bank
+       dedicated bank accounts for Belgium, Germany and The Netherlands. Having the customer use a local bank
        account greatly increases the conversion and speed of payment.
 
        Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
        ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
        ``lt_LT``
-
-Bitcoin
-"""""""
-.. list-table::
-   :widths: auto
-
-   * - ``billingEmail``
-
-       .. type:: string
-          :required: false
-
-     - The email address of the customer. This is used when handling invalid transactions (wrong amount
-       transferred, transfer of expired or canceled payments, et cetera).
 
 Credit card
 """""""""""
@@ -279,8 +286,10 @@ Gift cards
        the list, contact our support department. If only one issuer is activated on your account, you can omit this
        parameter.
 
-       Possible values: ``nationalebioscoopbon`` ``nationaleentertainmentcard`` ``kunstencultuurcadeaukaart``
-       ``podiumcadeaukaart`` ``vvvgiftcard`` ``webshopgiftcard`` ``yourgift``
+       Possible values: ``decadeaukaart`` ``dinercadeau`` ``fashioncheque`` ``festivalcadeau`` ``good4fun``
+       ``kunstencultuurcadeaukaart`` ``nationalebioscoopbon`` ``nationaleentertainmentcard`` ``nationalegolfbon``
+       ``ohmygood`` ``podiumcadeaukaart`` ``reiscadeau`` ``restaurantcadeau`` ``sportenfitcadeau`` ``sustainablefashion``
+       ``travelcheq`` ``vvvgiftcard`` ``vvvdinercheque`` ``vvvlekkerweg`` ``webshopgiftcard`` ``yourgift``
 
    * - ``voucherNumber``
 
@@ -386,7 +395,33 @@ paysafecard
        .. type:: string
           :required: false
 
-     - Used for consumer identification. For example, you could use the consumer's IP address.
+     - Used for consumer identification. Use the following guidelines to create your ``customerReference``:
+          * Has to be unique per shopper
+          * Has to remain the same for one shopper
+          * Should be as disconnected from personal data as possible
+          * Must not contain customer sensitive data
+          * Must not contain the timestamp
+          * Must not contain the IP address
+
+        Due to data privacy regulations, make sure not to use any personal identifiable information in this parameter.
+
+        If not provided, Mollie will send a hashed version of the shopper IP address.
+
+Przelewy24
+""""""""""
+
+.. note:: Using the v1 API, only payments denominated in Euro can be created. Migrate to the v2 API to create payments
+          in Polish złoty.
+
+.. list-table::
+   :widths: auto
+
+   * - ``billingEmail``
+
+       .. type:: string
+          :required: false
+
+     - Consumer's email address.
 
 SEPA Direct Debit
 """""""""""""""""
@@ -416,12 +451,12 @@ SEPA Direct Debit
      - IBAN of the account holder. Only available if one-off payments are enabled on your account. Will
        pre-fill the IBAN in the checkout screen if present.
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the only mandatory extra parameter is the
-``profileId`` parameter. With it, you can specify which profile the payment belongs to. Organizations can have multiple
-profiles for each of their websites. See :doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more
-information.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the only mandatory extra parameter is the ``profileId`` parameter. With it, you can
+specify which profile the payment belongs to. Organizations can have multiple profiles for each of their websites. See
+:doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more information.
 
 .. list-table::
    :widths: auto
@@ -431,7 +466,7 @@ information.
        .. type:: string
           :required: true
 
-     - The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``. This field is mandatory.
+     - The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
 
    * - ``testmode``
 
@@ -445,8 +480,8 @@ information.
        .. type:: object
           :required: false
 
-     - Adding an Application Fee allows you to charge the merchant a small sum for the payment and transfer
-       this to your own account. Set the ``applicationFee`` parameter as a small object with it’s own amount and
+     - Adding an Application Fee allows you to charge the merchant for the payment and transfer
+       this to your own account. Set the ``applicationFee`` parameter as a small object with its own amount and
        description. The application fee amount must be at least about €1.00 less than the payment's ``amount``
        parameter.
 
@@ -471,6 +506,8 @@ information.
 
             - The description of the application fee. This will appear on settlement reports to the merchant and to you.
 
+              The maximum length is 255 characters.
+
 QR codes
 ^^^^^^^^
 To create a payment with a QR code embedded in the API response, call the API endpoint with an
@@ -478,16 +515,16 @@ include request for ``details.qrCode`` in the query string:
 
 ``POST https://api.mollie.com/v1/payments?include=details.qrCode``
 
-QR codes can be generated for iDEAL, Bitcoin, Bancontact and bank transfer payments.
+QR codes can be generated for iDEAL, Bancontact and bank transfer payments.
 
 Refer to the :doc:`Get payment </reference/v1/payments-api/get-payment>` reference to see what the API response looks
 like when the QR code is included.
 
 Response
 --------
-``201`` ``application/json; charset=utf-8``
+``201`` ``application/json``
 
-A payment object is returned, as described in :doc:`Get payment </reference/v1/payments-api/get-payment>`.
+A payment object is returned, as described in :doc:`/reference/v1/payments-api/get-payment`.
 
 Example
 -------
@@ -500,18 +537,18 @@ Request
    curl -X POST https://api.mollie.com/v1/payments \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
        -d "amount=10.00" \
-       -d "description=My first payment" \
+       -d "description=Order #12345" \
        -d "redirectUrl=https://webshop.example.org/order/12345/" \
        -d "webhookUrl=https://webshop.example.org/payments/webhook/" \
        -d "metadata[order_id]=12345"
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 201 Created
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "resource": "payment",
@@ -521,11 +558,11 @@ Response
        "status": "open",
        "expiryPeriod": "PT15M",
        "amount": "10.00",
-       "description": "My first payment",
+       "description": "Order #12345",
        "metadata": {
            "order_id": "12345"
        },
-       "locale": "nl_NL",
+       "locale": "nl",
        "profileId": "pfl_QkEhN94Ba",
        "links": {
            "paymentUrl": "https://www.mollie.com/payscreen/select-method/7UhSN1zuXS",

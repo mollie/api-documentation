@@ -1,5 +1,5 @@
-Get payment
-===========
+Get Payment API
+===============
 .. api-name:: Payments API
    :version: 2
 
@@ -9,6 +9,7 @@ Get payment
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: true
    :oauth: true
 
 Retrieve a single payment object by its payment token.
@@ -20,10 +21,11 @@ Parameters
 ----------
 Replace ``id`` in the endpoint URL by the payment's ID, for example ``tr_7UhSN1zuXS``.
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you are creating an app with Mollie Connect (OAuth), the ``testmode`` parameter is available. You must pass this as a
-parameter in the query string if you want to retrieve a payment that was created in test mode.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is available. You must pass this as a parameter
+in the query string if you want to retrieve a payment that was created in test mode.
 
 .. list-table::
    :widths: auto
@@ -41,20 +43,22 @@ Includes
 This endpoint allows you to include additional information by appending the following values via the ``include``
 querystring parameter.
 
-* ``details.qrCode`` Include a :doc:`QR code </guides/qr-codes>` object. Only available for iDEAL, Bitcoin, Bancontact
+* ``details.qrCode`` Include a :doc:`QR code </guides/qr-codes>` object. Only available for iDEAL, Bancontact
   and bank transfer payments.
+* ``details.remainderDetails`` Include `Payment method specific details`_ of the remainder payment if the payment is stacked.
+  Only available for gift card and voucher payments.
 
 Embedding of related resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This endpoint also allows for embedding additional information by appending the following values via the ``embed``
 query string parameter.
 
-* ``refunds`` Include any :doc:`refunds </reference/v2/refunds-api/get-refund>` created for the payment.
-* ``chargebacks`` Include any :doc:`chargebacks </reference/v2/chargebacks-api/get-chargeback>` issued for the payment.
+* ``refunds`` Include all :doc:`refunds </reference/v2/refunds-api/get-refund>` created for the payment.
+* ``chargebacks`` Include all :doc:`chargebacks </reference/v2/chargebacks-api/get-chargeback>` issued for the payment.
 
 Response
 --------
-``200`` ``application/hal+json; charset=utf-8``
+``200`` ``application/hal+json``
 
 .. list-table::
    :widths: auto
@@ -97,12 +101,22 @@ Response
    * - ``isCancelable``
 
        .. type:: boolean
+          :required: false
 
-     - Whether or not the payment can be canceled.
+     - Whether or not the payment can be canceled. This parameter is omitted if the payment reaches a final state.
+
+   * - ``authorizedAt``
+
+       .. type:: datetime
+          :required: false
+
+     - The date and time the payment became authorized, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_
+       format. This parameter is omitted if the payment is not authorized (yet).
 
    * - ``paidAt``
 
        .. type:: datetime
+          :required: false
 
      - The date and time the payment became paid, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_
        format. This parameter is omitted if the payment is not completed (yet).
@@ -110,6 +124,7 @@ Response
    * - ``canceledAt``
 
        .. type:: datetime
+          :required: false
 
      - The date and time the payment was canceled, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_
        format. This parameter is omitted if the payment is not canceled (yet).
@@ -117,12 +132,15 @@ Response
    * - ``expiresAt``
 
        .. type:: datetime
+          :required: false
 
      - The date and time the payment will expire, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+       This parameter is omitted if the payment can no longer expire.
 
    * - ``expiredAt``
 
        .. type:: datetime
+          :required: false
 
      - The date and time the payment was expired, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_
        format. This parameter is omitted if the payment did not expire (yet).
@@ -130,6 +148,7 @@ Response
    * - ``failedAt``
 
        .. type:: datetime
+          :required: false
 
      - The date and time the payment failed, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
        This parameter is omitted if the payment did not fail (yet).
@@ -158,6 +177,7 @@ Response
    * - ``amountRefunded``
 
        .. type:: amount object
+          :required: false
 
      - The total amount that is already refunded. Only available when refunds are available for this payment.
        For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement
@@ -181,6 +201,7 @@ Response
    * - ``amountRemaining``
 
        .. type:: amount object
+          :required: false
 
      - The remaining amount that can be refunded. Only available when refunds are available for this payment.
 
@@ -199,6 +220,52 @@ Response
 
             - A string containing the exact refundable amount of the payment in the given currency.
 
+   * - ``amountCaptured``
+
+       .. type:: amount object
+          :required: false
+
+     - The total amount that is already captured for this payment. Only available when this payment supports captures.
+
+       .. list-table::
+          :widths: auto
+
+          * - ``currency``
+
+              .. type:: string
+
+            - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+
+          * - ``value``
+
+              .. type:: string
+
+            - A string containing the exact captured amount of the payment in the given currency.
+
+   * - ``amountChargedBack``
+
+       .. type:: amount object
+          :required: false
+
+     - The total amount that was charged back for this payment. Only available when the total charged back amount is not zero.
+       This value is expected to be negative.
+
+       .. list-table::
+          :widths: auto
+
+          * - ``currency``
+
+              .. type:: string
+
+            - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+
+          * - ``value``
+
+              .. type:: string
+
+            - A string containing the exact charged back amount of the payment in the given currency.
+
+
    * - ``description``
 
        .. type:: string
@@ -208,15 +275,16 @@ Response
 
    * - ``redirectUrl``
 
-       .. type:: string
+       .. type:: string|null
 
-     - The URL the customer will be redirected to after completing or cancelling the payment process.
+     - The URL your customer will be redirected to after completing or canceling the payment process.
 
-       Note the URL will not be present for recurring payments.
+       .. note:: The URL will be ``null`` for recurring payments.
 
    * - ``webhookUrl``
 
        .. type:: string
+          :required: false
 
      - The URL Mollie will call as soon an important status change takes place.
 
@@ -229,8 +297,9 @@ Response
 
        If the payment is only partially paid with a gift card, the method remains ``giftcard``.
 
-       Possible values: ``bancontact`` ``banktransfer`` ``belfius`` ``bitcoin`` ``creditcard`` ``directdebit`` ``eps``
-       ``giftcard`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``paypal`` ``paysafecard`` ``sofort``
+       Possible values: ``null`` ``bancontact`` ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``
+       ``giftcard`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``klarnapaylater`` ``klarnasliceit`` ``mybank`` ``paypal``
+       ``paysafecard`` ``przelewy24`` ``sofort``
 
    * - ``metadata``
 
@@ -246,12 +315,23 @@ Response
      - The customer's locale, either forced on creation by specifying the ``locale`` parameter, or detected
        by us during checkout. Will be a full locale, for example ``nl_NL``.
 
+   * - ``restrictPaymentMethodsToCountry``
+
+       .. type:: string
+          :required: false
+
+     - |
+       | The country code you provided upon payment creation, to restrict the payment methods available to
+         your customer to methods from a single country only.
+
    * - ``countryCode``
 
        .. type:: string
+          :required: false
 
-     - The customer's `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ country code,
-       detected by us during checkout. For example: ``BE``.
+     - This optional field contains your customer's
+       `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ country code, detected by us during
+       checkout. For example: ``BE``. This field is omitted if the country code was not detected.
 
    * - ``profileId``
 
@@ -261,22 +341,26 @@ Response
 
    * - ``settlementAmount``
 
-       .. type:: amount object|null
+       .. type:: amount object
+          :required: false
 
      -   This optional field will contain the amount that will be settled to your account, converted to the currency
          your account is settled in. It follows the same syntax as the ``amount`` property.
 
-         Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards.
+         Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no
+         amount is settled by Mollie the ``settlementAmount`` is omitted from the response.
 
    * - ``settlementId``
 
        .. type:: string
+          :required: false
 
      - The identifier referring to the settlement this payment was settled with. For example, ``stl_BkEjN2eBb``.
 
    * - ``customerId``
 
        .. type:: string
+          :required: false
 
      - If a customer was specified upon payment creation, the customer's token will be available here as well. For
        example, ``cst_XPn78q9CfT``.
@@ -297,20 +381,29 @@ Response
    * - ``mandateId``
 
        .. type:: string
+          :required: false
 
-     - If the payment is a recurring payment, this field will hold the ID of the mandate used to authorize
-       the recurring payment.
+     - If the payment is a first or recurring payment, this field will hold the ID of the mandate.
 
    * - ``subscriptionId``
 
        .. type:: string
+          :required: false
 
      - When implementing the Subscriptions API, any recurring charges resulting from the subscription will
        hold the ID of the subscription that triggered the payment.
 
+   * - ``orderId``
+
+       .. type:: string
+          :required: false
+
+     - If the payment was created for an order, the ID of that order will be part of the response.
+
    * - ``applicationFee``
 
        .. type:: object
+          :required: false
 
      - The :doc:`application fee </oauth/application-fees>`, if the payment was created with one.
 
@@ -344,70 +437,6 @@ Response
 
             - The description of the application fee as specified during payment creation.
 
-   * - ``routing``
-
-       .. type:: array
-
-     - The routing configuration as specified during payment creation.
-
-       See the :doc:`Mollie Marketplaces & Platforms </guides/payouts>` guide for more information on payment routing.
-
-       If specified, the routing array contains one or more routing objects with the following parameters:
-
-       .. list-table::
-          :widths: auto
-
-          * - ``amount``
-
-              .. type:: amount object
-
-            - If more than one routing object is given, the routing objects must indicate what portion of the total
-              payment amount is being routed.
-
-              .. list-table::
-                 :widths: auto
-
-                 * - ``currency``
-
-                     .. type:: string
-
-                   - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
-
-                 * - ``value``
-
-                     .. type:: string
-
-                   - A string containing the exact amount of this portion of the payment in the given currency.
-
-          * - ``destination``
-
-              .. type:: object
-
-            - The destination of this portion of the payment.
-
-              .. list-table::
-                 :widths: auto
-
-                 * - ``type``
-
-                     .. type:: string
-
-                   - The type of destination.
-
-                     Possible values: ``balance``
-
-                 * - ``balanceId``
-
-                     .. type:: string
-
-                   - In case of destination type ``balance``, the ID of the balance the funds are routed to.
-
-          * - ``releaseDate``
-
-              .. type:: date
-
-            - The optional release date specified during payment creation. The funds will be released on this date.
-
    * - ``_links``
 
        .. type:: object
@@ -427,31 +456,71 @@ Response
           * - ``checkout``
 
               .. type:: URL object
+                 :required: false
 
             - The URL your customer should visit to make the payment. This is where you should redirect the
               consumer to.
 
-              .. note :: You should use HTTP ``GET`` for the redirect to the checkout URL. Using HTTP ``POST`` for
-                         redirection will cause issues with some payment methods or iDEAL issuers. Use HTTP status code
-                         ``303 See Other`` to force an HTTP ``GET`` redirect.
+              .. note:: You should use HTTP ``GET`` for the redirect to the checkout URL. Using HTTP ``POST`` for
+                        redirection will cause issues with some payment methods or iDEAL issuers. Use HTTP status code
+                        ``303 See Other`` to force an HTTP ``GET`` redirect.
 
               Recurring payments don't have a checkout URL.
+
+          * - ``mobileAppCheckout``
+
+              .. type:: URL object
+                 :required: false
+
+            - The deeplink URL to the app of the payment method. Currently only available for ``bancontact``.
+
+              .. warning:: You should check if your customer has the required app on their mobile
+                           device before redirecting to this URL. Mobile operating systems will ignore
+                           the redirect to this URL if the correct app is not installed.
+
+          * - ``dashboard``
+
+              .. type:: URL object
+
+            - Direct link to the payment in the Mollie Dashboard.
+
+          * - ``changePaymentState``
+
+              .. type:: URL object
+                 :required: false
+
+            - Recurring payments do not have a checkout URL, because these payments are executed without
+              any user interaction. This link is included for test mode recurring payments, and allows
+              you to set the final payment state for such payments.
+
+              This link is also included for paid test mode payments. This allows you to create a refund or chargeback
+              for the payment. This works for all payment types that can be charged back and/or refunded.
 
           * - ``refunds``
 
               .. type:: URL object
+                 :required: false
 
             - The API resource URL of the refunds that belong to this payment.
 
           * - ``chargebacks``
 
               .. type:: URL object
+                 :required: false
 
             - The API resource URL of the chargebacks that belong to this payment.
+
+          * - ``captures``
+
+              .. type:: URL object
+                 :required: false
+
+            - The API resource URL of the captures that belong to this payment.
 
           * - ``settlement``
 
               .. type:: URL object
+                 :required: false
 
             - The API resource URL of the settlement this payment has been settled with. Not present if not yet settled.
 
@@ -464,12 +533,14 @@ Response
           * - ``mandate``
 
               .. type:: URL object
+                 :required: false
 
             - The API resource URL of the mandate linked to this payment. Not present if a one-off payment.
 
           * - ``subscription``
 
               .. type:: URL object
+                 :required: false
 
             - The API resource URL of the subscription this payment is part of. Not present if not a subscription
               payment.
@@ -477,8 +548,16 @@ Response
           * - ``customer``
 
               .. type:: URL object
+                 :required: false
 
             - The API resource URL of the customer this payment belongs to. Not present if not linked to a customer.
+
+          * - ``order``
+
+              .. type:: URL object
+                 :required: false
+
+            - The API resource URL of the order this payment was created for. Not present if not created for an order.
 
 Payment method specific details
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -513,12 +592,41 @@ Bancontact
             - Only available if the payment is completed - Unique alphanumeric representation of card, usable for
               identifying returning customers.
 
+              .. warning:: This field is **deprecated** as of November 28th, 2019. The fingerprint is now unique per
+                           transaction what makes it not usefull anymore for identifying returning customers. Use
+                           the ``consumerAccount`` field instead.
+
           * - ``qrCode``
 
               .. type:: QR code object
 
             - Only available if requested during payment creation - The QR code that can be scanned by the mobile
               Bancontact application. This enables the desktop to mobile feature.
+
+          * - ``consumerName``
+
+              .. type:: string
+
+            - Only available if the payment is completed – The consumer's name.
+
+          * - ``consumerAccount``
+
+              .. type:: string
+
+            - Only available if the payment is completed – The consumer's bank account. This may be an IBAN, or it
+              may be a domestic account number.
+
+          * - ``consumerBic``
+
+              .. type:: string
+
+            - Only available if the payment is completed – The consumer's bank's BIC / SWIFT code.
+
+          * - ``failureReason``
+
+              .. type:: string
+
+            - The reason why the payment did not succeed. Only available when there's a reason known.
 
 Bank transfer
 """""""""""""
@@ -640,46 +748,7 @@ Belfius Pay Button
 
             - Only available one banking day after the payment has been completed – ``GKCCBEBB``.
 
-Bitcoin
-"""""""
-.. list-table::
-   :widths: auto
-
-   * - ``details``
-
-       .. type:: object
-
-     - An object with payment details.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``bitcoinAddress``
-
-              .. type:: string
-
-            - Only available if the payment has been completed – The bitcoin address the bitcoins were transferred to.
-
-          * - ``bitcoinAmount``
-
-              .. type:: amount object
-
-            - The amount transferred in XBT.
-
-          * - ``bitcoinUri``
-
-              .. type:: string
-
-            - An URI that is understood by Bitcoin wallet clients and will cause such clients to prepare the
-              transaction. Follows the
-              `BIP 21 URI scheme <https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki>`_.
-
-          * - ``qrCode``
-
-              .. type:: QR code object
-
-            - Only available if requested during payment creation - The QR code that can be scanned by Bitcoin wallet
-              clients and will cause such clients to prepare the transaction.
+.. _Credit card v2:
 
 Credit card
 """""""""""
@@ -753,10 +822,10 @@ Credit card
 
               .. type:: string
 
-            - Only available if the payment has been completed – The fee region for the payment: ``intra-eu`` for
-              consumer cards from the EU, and ``other`` for all other cards.
+            - Only available if the payment has been completed – The fee region for the payment.
+              The ``intra-eu`` value is for consumer cards from the EEA.
 
-              Possible values: ``intra-eu`` ``other``
+              Possible values: ``american-express`` ``amex-intra-eea`` ``carte-bancaire`` ``intra-eu`` ``intra-eu-corporate`` ``domestic`` ``maestro`` ``other``
 
           * - ``failureReason``
 
@@ -764,8 +833,26 @@ Credit card
 
             - Only available for failed payments. Contains a failure reason code.
 
-              Possible values: ``invalid_card_number`` ``invalid_cvv`` ``invalid_card_holder_name`` ``card_expired``
-              ``invalid_card_type`` ``refused_by_issuer`` ``insufficient_funds`` ``inactive_card``
+              Possible values: ``authentication_failed``  ``card_expired`` ``inactive_card`` ``insufficient_funds``
+              ``invalid_card_holder_name`` ``invalid_card_number`` ``invalid_card_type`` ``invalid_cvv``
+              ``possible_fraud`` ``refused_by_issuer`` ``unknown_reason``
+
+          * - ``failureMessage``
+
+              .. type:: string
+
+            - A localized message that can be shown to your customer, depending on the ``failureReason``.
+
+              Example value: ``Der Kontostand Ihrer Kreditkarte ist unzureichend. Bitte verwenden Sie eine andere Karte.``.
+
+          * - ``wallet``
+
+              .. type:: string
+                 :required: false
+
+            - The wallet used when creating the payment.
+
+              Possible values: ``applepay``
 
 Gift cards
 """"""""""
@@ -988,6 +1075,94 @@ PayPal
 
             - PayPal's reference for the transaction, for instance ``9AL35361CF606152E``.
 
+          * - ``paypalPayerId``
+
+              .. type:: string
+
+            - ID for the consumer's PayPal account, for instance ``WDJJHEBZ4X2LY``.
+
+          * - ``sellerProtection``
+
+              .. type:: string
+                 :required: false
+
+            - Indicates if the payment is eligible for PayPal's Seller Protection.
+
+              Possible values: ``Eligible`` ``Ineligible`` ``Partially Eligible - INR Only``
+              ``Partially Eligible - Unauth Only`` ``PartiallyEligible`` ``None``
+              ``Active Fraud Control - Unauth Premium Eligible``
+
+              This parameter is omitted if we did not received the information from PayPal.
+
+          * - ``shippingAddress``
+
+              .. type:: address object
+                 :required: false
+
+            - The shipping address details.
+
+              .. list-table::
+                 :widths: auto
+
+                 * - ``streetAndNumber``
+
+                     .. type:: string
+                        :required: false
+
+                   - The street and street number of the shipping address.
+
+                 * - ``postalCode``
+
+                     .. type:: string
+                        :required: false
+
+                   - The postal code of the shipping address.
+
+                 * - ``city``
+
+                     .. type:: string
+                        :required: false
+
+                   - The city of the shipping address.
+
+                 * - ``region``
+
+                     .. type:: string
+                        :required: false
+
+                   - The region of the shipping address.
+
+                 * - ``country``
+
+                     .. type:: string
+                        :required: false
+
+                   - The country of the shipping address in
+                     `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+
+          * - ``paypalFee``
+
+              .. type:: amount object
+                 :required: false
+
+            - The amount of fee PayPal will charge for this transaction. This field is omitted if
+              PayPal will not charge a fee for this transaction.
+
+                     .. list-table::
+                        :widths: auto
+
+                        * - ``currency``
+
+                            .. type:: string
+
+                          - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+
+                        * - ``value``
+
+                            .. type:: string
+
+                          - A string containing the exact amount of the fee in the given currency.
+
 paysafecard
 """""""""""
 .. list-table::
@@ -1077,7 +1252,7 @@ SEPA Direct Debit
 
               .. type:: string
 
-            - Only available if the payment has failed – A textual desciption of the failure reason.
+            - Only available if the payment has failed – A textual description of the failure reason.
 
           * - ``endToEndIdentifier``
 
@@ -1137,6 +1312,93 @@ SOFORT Banking
 
             - Only available if the payment has been completed – The consumer's bank's BIC.
 
+Vouchers
+""""""""
+.. list-table::
+   :widths: auto
+
+   * - ``details``
+
+       .. type:: object
+
+     - An object with payment details.
+
+       .. list-table::
+          :widths: auto
+
+          * - ``issuer``
+
+              .. type:: string
+
+            - The ID of the voucher brand that was used during the payment. When multiple vouchers
+              are used, this is the issuer of the first voucher.
+
+          * - ``vouchers``
+
+              .. type:: array
+
+            - A list of details of all vouchers that are used for this payment. Each object will
+              contain the following properties.
+
+              .. list-table::
+                 :widths: auto
+
+                 * - ``issuer``
+
+                     .. type:: string
+
+                   - The ID of the voucher brand that was used during the payment.
+
+                 * - ``amount``
+
+                     .. type:: amount object
+
+                   - The amount that was paid with this voucher.
+
+                     .. list-table::
+                        :widths: auto
+
+                        * - ``currency``
+
+                            .. type:: string
+
+                          - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+
+                        * - ``value``
+
+                            .. type:: string
+
+                          - A string containing the exact amount of the voucher payment in the given currency.
+
+          * - ``remainderAmount``
+
+              .. type:: amount object
+
+            - Only available if another payment method was used to pay the remainder amount – The
+              amount that was paid with another payment method for the remainder amount.
+
+              .. list-table::
+                 :widths: auto
+
+                 * - ``currency``
+
+                     .. type:: string
+
+                   - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+
+                 * - ``value``
+
+                     .. type:: string
+
+                   - A string containing the remaining payment amount.
+
+          * - ``remainderMethod``
+
+              .. type:: string
+
+            - Only available if another payment method was used to pay the remainder amount – The
+              payment method that was used to pay the remainder amount.
+
 QR codes (optional)
 ^^^^^^^^^^^^^^^^^^^
 A QR code object with payment method specific values is available for certain payment methods if you pass the include
@@ -1171,31 +1433,58 @@ For an implemention guide, see our :doc:`QR codes guide </guides/qr-codes>`.
 Example
 -------
 
-Request (curl)
-^^^^^^^^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-   curl -X GET https://api.mollie.com/v2/payments/tr_WDqYK6vllg \
-       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+      curl -X GET https://api.mollie.com/v2/payments/tr_WDqYK6vllg \
+         -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
 
-Request (PHP)
-^^^^^^^^^^^^^
-.. code-block:: php
-   :linenos:
+   .. code-block:: php
+      :linenos:
 
-    <?php
-    $mollie = new \Mollie\Api\MollieApiClient();
-    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
-    $payment = $mollie->payments->get("tr_WDqYK6vllg");
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+      $payment = $mollie->payments->get("tr_WDqYK6vllg");
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      payment = mollie_client.payments.get('tr_WDqYK6vllg')
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM'
+      end
+
+      payment = Mollie::Payment.get('tr_WDqYK6vllg')
+
+   .. code-block:: javascript
+      :linenos:
+
+      const { createMollieClient } = require('@mollie/api-client');
+      const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const payment = await mollieClient.payments.get('tr_Eq8xzWUPA4');
+      })();
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
        "resource": "payment",
@@ -1213,6 +1502,8 @@ Response
        },
        "status": "open",
        "isCancelable": false,
+       "locale": "nl_NL",
+       "restrictPaymentMethodsToCountry": "NL",
        "expiresAt": "2018-03-20T13:28:37+00:00",
        "details": null,
        "profileId": "pfl_QkEhN94Ba",
@@ -1227,6 +1518,10 @@ Response
            "checkout": {
                "href": "https://www.mollie.com/payscreen/select-method/WDqYK6vllg",
                "type": "text/html"
+           },
+           "dashboard": {
+               "href": "https://www.mollie.com/dashboard/org_12345678/payments/tr_WDqYK6vllg",
+               "type": "application/json"
            },
            "documentation": {
                "href": "https://docs.mollie.com/reference/v2/payments-api/get-payment",

@@ -3,12 +3,19 @@ Get API key
 .. api-name:: Profiles API
    :version: 1
 
+.. warning:: The v1 API has been deprecated. The v1 API will be supported for the foreseeable future, at least until
+             July 2023. However, new features will only be added to the v2 API.
+
+             For more information on the v2 API, refer to our
+             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
+
 .. endpoint::
    :method: GET
    :url: https://api.mollie.com/v1/profiles/*profileId*/apikeys/*mode*
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: false
    :oauth: true
 
 Get the API key for the given payment profile and profile mode.
@@ -26,7 +33,7 @@ example: ``/v1/profiles/pfl_v9hTwCvYqw/apikeys/live``.
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 .. list-table::
    :widths: auto
@@ -71,11 +78,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "resource": "profile_api_key",

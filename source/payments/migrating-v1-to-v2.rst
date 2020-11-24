@@ -3,14 +3,18 @@ Migrating from v1 to v2
 
 Why upgrade to v2?
 ------------------
-The Mollie API ``v2`` offers some compelling new features compared to the older ``v1`` API:
+The **Mollie API v2** offers some compelling new features compared to the older ``v1`` API:
 
 * Fully supports :doc:`multicurrency </payments/multicurrency>`. You can create payments, subscriptions, and refunds in
   non-``EUR`` currencies. Your account will still be settled in ``EUR``, so new fields have been added in the API to
   reflect the settlement amount for various resources.
+* Possible to update details of payments via the new :doc:`/reference/v2/payments-api/update-payment`.
 * Improved support for accessing large sets of objects, now uses :doc:`cursor-based pagination </guides/pagination>`
   instead of pagination based on counts and offsets.
 * Settlement details are now available for refunds and chargebacks as well.
+* New features such as :doc:`Mollie Components </guides/mollie-components/overview>`, using
+  :doc:`/orders/overview` for Pay later and Slice it, and wallets such as :doc:`/wallets/applepay` are
+  only available in the Mollie API v2.
 * Improved error messages. Error message will contain more details to help you quickly resolve any implementation
   problems.
 
@@ -26,7 +30,7 @@ API.
 
 Some resources support embedding of related sub-resources. For instance, when retrieving a payment any refunds can be
 embedded by using the ``embed=refunds`` query string parameter. See the
-:doc:`Get payment documentation </reference/v2/payments-api/get-payment>` for more information.
+:doc:`Get Payment API</reference/v2/payments-api/get-payment>` for more information.
 
 Amount changes
 ^^^^^^^^^^^^^^
@@ -83,7 +87,7 @@ have been replaced by address objects. Instead of passing ``billingAddress``, ``
 
    {
        "amount": {"currency": "USD", "value": "100.00"},
-       "description": "My first payment",
+       "description": "Order #12345",
        "billingAddress": {
            "streetAndNumber": "Dorpstraat 1",
            "postalCode": "1122 AA",
@@ -106,20 +110,21 @@ The following fields have been changed, renamed or moved:
 * ``paidDatetime`` has been renamed to ``paidAt``.
 * ``canBeCancelled`` has been renamed to ``isCancelable``.
 * ``recurringType`` has been renamed to ``sequenceType``. This field is now always present. A one-off payment (not the
-  start of a recurring sequence and not a :doc:`recurring payment </payments/recurring>`) will have the value ``oneoff``.
+  start of a recurring sequence and not a :doc:`recurring payment </payments/recurring>`) will have the value
+  ``oneoff``.
 * ``redirectUrl`` and ``webhookUrl`` are now part of the top-level object for Payments.
 * ``links.paymentUrl`` has been renamed to ``_links.checkout`` as per HAL specifications.
 * ``failureReason`` has been moved from the Payment resource to the credit card detail object, and no longer available
   for Bancontact payments.
-* ``details.bitcoinAmount`` is now an amount object in the ``XBT`` currency.
 
 The following fields have been removed:
 
 * ``expiryPeriod`` has been removed from the Payment resource. You can use ``expiresAt`` which contains the same
   information.
 * ``issuer`` has been removed from the Payment resource. You can however, still pass it to the
-  :doc:`Create payment API </reference/v2/payments-api/create-payment>`.
+  :doc:`Create Payment API </reference/v2/payments-api/create-payment>`.
 * ``details.bitcoinRate`` has been removed from the Bitcoin detail object.
+* ``details.bitcoinAmount`` has been removed from the Bitcoin detail object.
 * ``details.cardCountry`` has been removed from the credit card detail object.
 * The option to include the settlement using the ``include`` query string parameter has been removed.
 
@@ -170,8 +175,6 @@ The following fields have been changed, renamed or moved:
   reversed.
 * ``payment``, which contained the payment ID related to the chargeback, has been renamed to ``paymentId``. The payment
   resource can easily be accessed using the ``payment`` key in the ``_links`` property.
-* Pagination has been removed, so all fields related to pagination are not available anymore. The list method will now
-  return all chargebacks.
 * The resource will contain a link to the settlement if it is settled (via the ``settlement`` key in the ``_links``
   property.
 
@@ -183,7 +186,8 @@ Changes in the Methods API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 The following fields have been changed, renamed or moved:
 
-* ``amount`` including ``minimum`` and ``maximum`` have been removed.
+* ``amount`` including ``minimum`` and ``maximum`` have been renamed to ``minimumAmount`` and ``maximumAmount``. This
+  should be an object containing ``value`` and ``currency``.
 * The ``image`` fields ``normal`` and ``bigger`` have been renamed to ``size1x`` and ``size2x``.
 * Pagination has been removed, so all fields related to pagination are not available anymore. The list method will now
   return all payment methods.
@@ -206,7 +210,7 @@ Changes in the Customers API
 The following fields have been changed, renamed or moved:
 
 * ``createdDatetime`` has been renamed to ``createdAt``.
-* ``recentlyUsedMethods`` has been removed. 
+* ``recentlyUsedMethods`` has been removed.
 
 Changes in the Subscriptions API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -231,6 +235,8 @@ The following fields have been changed, renamed or removed:
 * ``phone`` is now formatted in `E.164 <https://en.wikipedia.org/wiki/E.164>`_ formatting.
 * The API keys subresource has been removed.
 
+New APIs have been added, such as het :doc:`/reference/v2/profiles-api/get-profile-me`.
+
 Changes in the Settlements API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The following fields have been changed, renamed or moved:
@@ -243,6 +249,8 @@ The following fields have been changed, renamed or moved:
 * ``amount.net``, ``amount.vat`` and ``amount.gross`` have been moved one level up as ``amountNet``, ``amountVat`` and
   ``amountGross``.
 * If the settlement has been invoiced, it will contain the ``invoice`` key in the ``_links`` property.
+* The ``reference`` parameter in the :doc:`List Settlements API </reference/v2/settlements-api/list-settlements>` has
+  been removed.
 
 Changes in the Mandates API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

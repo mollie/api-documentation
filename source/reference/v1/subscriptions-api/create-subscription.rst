@@ -16,12 +16,13 @@ Create subscription
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: false
    :oauth: true
 
 With subscriptions, you can schedule recurring payments to take place at regular intervals.
 
 For example, by simply specifying an ``amount`` and an ``interval``, you can create an endless subscription to charge a
-monthly fee, until the consumer cancels their subscription.
+monthly fee, until you cancel the subscription.
 
 Or, you could use the ``times`` parameter to only charge a limited number of times, for example to split a big
 transaction in multiple parts.
@@ -56,6 +57,9 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example
 
      - Total number of charges for the subscription to complete. Leave empty for an ongoing subscription.
 
+       .. note::
+          Subscriptions in test mode will be canceled automatically after 10 charges.
+
    * - ``interval``
 
        .. type:: string
@@ -78,8 +82,7 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example
        .. type:: string
           :required: true
 
-     - A description unique per subscription . This will be included in the payment description along with the charge
-       date.
+     - A description unique per subscription. This will be included in the payment description.
 
    * - ``method``
 
@@ -89,7 +92,10 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example
      - The payment method used for this subscription, either forced on creation or ``null`` if any of the
        customer's valid mandates may be used.
 
-       Possible values: ``creditcard`` ``directdebit`` ``null``
+       Possible values: ``creditcard`` ``directdebit`` ``paypal`` ``null``
+
+       .. warning:: Using PayPal Reference Transactions is only possible if PayPal has activated this feature on your
+                    merchant-account.
 
    * - ``webhookUrl``
 
@@ -98,12 +104,21 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example
 
      - Use this parameter to set a webhook URL for all subscription payments.
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the only mandatory extra parameter is the
-``profileId`` parameter. With it, you can specify to which profile the subscription belongs. Organizations can have
-multiple profiles for each of their websites. See :doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more
-information.
+
+       .. note:: The ``webhookUrl`` must be reachable from Mollie's point of view, so you cannot use ``localhost``. If
+          you want to use webhook during development on ``localhost``, you must use a tool like
+          `ngrok <https://lornajane.net/posts/2015/test-incoming-webhooks-locally-with-ngrok>`_ to have the webhooks
+          delivered to your local machine.
+
+       .. warning:: The ``webhookUrl`` is optional, but without a webhook you will not be informed when new payments
+          are created on your subscription.
+
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the only mandatory extra parameter is the ``profileId`` parameter. With it, you can
+specify to which profile the subscription belongs. Organizations can have multiple profiles for each of their websites.
+See :doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more information.
 
 .. list-table::
    :widths: auto
@@ -113,7 +128,7 @@ information.
        .. type:: string
           :required: true
 
-     - The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``. This field is mandatory.
+     - The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
 
    * - ``testmode``
 
@@ -124,7 +139,7 @@ information.
 
 Response
 --------
-``201`` ``application/json; charset=utf-8``
+``201`` ``application/json``
 
 A subscription object is returned, as described in
 :doc:`Get subscription </reference/v1/subscriptions-api/get-subscription>`.
@@ -147,11 +162,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 201 Created
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "resource": "subscription",

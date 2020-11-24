@@ -1,31 +1,23 @@
-// Light - Calibre Light
+// Normal - Circular Book
 @font-face {
-  font-family: "Calibre";
-  font-weight: 300;
-  src: url("https://cdn.mollie.com/assets/CalibreWeb-Light.woff2") format("woff2"),
-    url("https://cdn.mollie.com/assets/CalibreWeb-Light.woff") format("woff");
-}
-
-// Normal - Calibre Regular
-@font-face {
-  font-family: "Calibre";
+  font-family: "Circular";
   font-weight: normal;
-  src: url("https://cdn.mollie.com/assets/CalibreWeb-Regular.woff2") format("woff2"),
-    url("https://cdn.mollie.com/assets/CalibreWeb-Regular.woff") format("woff");
+  src: url("https://cdn.mollie.com/assets/circular-pro-book.woff2") format("woff2"),
+    url("https://cdn.mollie.com/assets/circular-pro-book.woff") format("woff");
 }
 
-// Semibold - Calibre Semibold
+// Medium - Circular Medium
 @font-face {
-  font-family: "Calibre";
-  font-weight: 800;
-  src: url("https://cdn.mollie.com/assets/CalibreWeb-Semibold.woff2") format("woff2"),
-    url("https://cdn.mollie.com/assets/CalibreWeb-Semibold.woff") format("woff");
+  font-family: "Circular";
+  font-weight: 600;
+  src: url("https://cdn.mollie.com/assets/circular-pro-medium.woff2") format("woff2"),
+    url("https://cdn.mollie.com/assets/circular-pro-medium.woff") format("woff");
 }
 
-// Bold - Calibre Medium
+// Bold - Circular Bold
 @font-face {
-  font-family: "Calibre";
+  font-family: "Circular";
   font-weight: bold;
-  src: url("https://cdn.mollie.com/assets/CalibreWeb-Medium.woff2") format("woff2"),
-    url("https://cdn.mollie.com/assets/CalibreWeb-Medium.woff") format("woff");
+  src: url("https://cdn.mollie.com/assets/circular-pro-bold.woff2") format("woff2"),
+    url("https://cdn.mollie.com/assets/circular-pro-bold.woff") format("woff");
 }

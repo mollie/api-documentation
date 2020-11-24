@@ -1,5 +1,5 @@
-Tokens
-======
+Generate tokens
+===============
 .. api-name:: Connect API
 
 .. endpoint::
@@ -45,10 +45,14 @@ Parameters
    * - ``redirect_uri``
 
        .. type:: string
-          :required: true
+          :required: false
 
      - The URL the merchant is sent back to once the request has been authorized. It must match the URL you set when
        :doc:`registering your app </oauth/getting-started>`.
+
+       .. note::
+          When refreshing a token, this parameter **is** required if the initial ``authorization_code`` grant request
+          contained a ``redirect_uri``.
 
 Response
 --------
@@ -100,12 +104,12 @@ Initial request
 .. code-block:: bash
    :linenos:
 
-   curl -u client_id:client_secret https://api.mollie.com/oauth2/tokens \
-       -d "grant_type=authorization_code&code=abc123"
+   curl -u app_j9Pakf56Ajta6Y65AkdTtAv:S5lTvMDTjl95HGnwYmsszDtbMp8QBE2lLcRJbD7I https://api.mollie.com/oauth2/tokens \
+       -d "grant_type=authorization_code&code=auth_IbyEKUrXmGW1J8hPg6Ciyo4aaU6OAu"
 
 Initial response
 ^^^^^^^^^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
@@ -126,12 +130,12 @@ Refresh request
 .. code-block:: bash
    :linenos:
 
-   curl -u client_id:client_secret https://api.mollie.com/oauth2/tokens \
+   curl -u app_j9Pakf56Ajta6Y65AkdTtAv:S5lTvMDTjl95HGnwYmsszDtbMp8QBE2lLcRJbD7I https://api.mollie.com/oauth2/tokens \
        -d "grant_type=refresh_token&refresh_token=refresh_FS4xc3Mgci2xQ5s5DzaLXh3HhaTZOP"
 
 Refresh response
 ^^^^^^^^^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK

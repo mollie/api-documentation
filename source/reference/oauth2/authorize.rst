@@ -6,12 +6,13 @@ Authorize
    :method: GET
    :url: https://www.mollie.com/oauth2/authorize
 
+.. note:: You should construct the Authorize URL from the endpoint above with the parameters below. Then, you should
+          redirect the resource owner to the Authorize endpoint.
+
+
 The Authorize endpoint is the endpoint on Mollie web site where the merchant logs in, and grants authorization to your
 client application. E.g. when the merchant clicks on the :doc:`Connect with Mollie button </oauth/overview>`, you should
 redirect the merchant to the Authorize endpoint.
-
-You should construct the Authorize URL from the endpoint and the parameters below. Then, you should redirect the
-resource owner to the Authorize endpoint.
 
 The resource owner can then grant the authorization to your client application for the scopes you have requested.
 
@@ -69,9 +70,23 @@ Parameters
           :required: true
 
      - This parameter can be set to ``force`` to force showing the :doc:`consent screen </oauth/getting-started>` to the
-       merchant, even when it is not necessary.
+       merchant, even when it is not necessary. Note that already active authorizations will be revoked
+       when the user creates the new authorization.
 
        Possible values: ``auto`` ``force``
+
+   * - ``locale``
+
+       .. type:: string
+          :required: false
+
+     - Allows you to preset the language to be used in the login / sign up / authorize flow if the
+       merchant is not known by Mollie. When this parameter is omitted, the browser language will be
+       used instead. You can provide any ISO 15897 locale, but the authorize flow currently only
+       supports the following languages:
+
+       Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``es_ES``
+       ``it_IT``
 
 Response
 --------

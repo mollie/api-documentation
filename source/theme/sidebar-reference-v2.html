@@ -4,7 +4,7 @@
 {% include 'api-version-switcher.html' %}
 
 <div class="sidebar__group {{ sidebar_collapse_group('reference/v2/payments-api/') }}">
-	<p><a href="javascript:void(0)">Payments API <span class="sidebar__tag">updated</span></a></p>
+	<p><a href="javascript:void(0)">Payments API</a></p>
 
 	<ul>
 		{{ sidebar_item(
@@ -18,6 +18,11 @@
 			'GET /v2/payments/*'
 		) }}
 		{{ sidebar_item(
+			'reference/v2/payments-api/update-payment',
+			'Update payment',
+			'PATCH /v2/payments/*'
+		) }}
+		{{ sidebar_item(
 			'reference/v2/payments-api/cancel-payment',
 			'Cancel payment',
 			'DELETE /v2/payments/*'
@@ -26,26 +31,6 @@
 			'reference/v2/payments-api/list-payments',
 			'List payments',
 			'GET /v2/payments'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/payments-api/get-payment-route',
-			'Get payment route',
-			'GET /v2/payments/*/routes/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/payments-api/update-payment-route',
-			'Update payment route',
-			'PATCH /v2/payments/*/routes/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/payments-api/list-payment-routes',
-			'List payment routes',
-			'GET /v2/payments/*/routes'
-		) }}
-		{{ sidebar_item(
-		'reference/v2/settlements-api/list-settlement-captures',
-		'List settlement captures',
-		'GET /v2/settlements/*/captures'
 		) }}
 	</ul>
 </div>
@@ -56,12 +41,17 @@
 	<ul>
 		{{ sidebar_item(
 			'reference/v2/methods-api/list-methods',
-			'List methods',
+			'List payment methods',
 			'GET /v2/methods'
 		) }}
 		{{ sidebar_item(
+			'reference/v2/methods-api/list-all-methods',
+			'List all payment methods',
+			'GET /v2/methods/all'
+		) }}
+		{{ sidebar_item(
 			'reference/v2/methods-api/get-method',
-			'Get method',
+			'Get payment method',
 			'GET /v2/methods/*'
 		) }}
 	</ul>
@@ -73,17 +63,17 @@
 	<ul>
 		{{ sidebar_item(
 			'reference/v2/refunds-api/create-refund',
-			'Create refund',
+			'Create payment refund',
 			'POST /v2/payments/*/refunds'
 		) }}
 		{{ sidebar_item(
 			'reference/v2/refunds-api/get-refund',
-			'Get refund',
+			'Get payment refund',
 			'GET /v2/payments/*/refunds/*'
 		) }}
 		{{ sidebar_item(
 			'reference/v2/refunds-api/cancel-refund',
-			'Cancel refund',
+			'Cancel payment refund',
 			'DELETE /v2/payments/*/refunds/*'
 		) }}
 		{{ sidebar_item(
@@ -111,6 +101,23 @@
 	</ul>
 </div>
 
+<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/captures-api/') }}">
+	<p><a href="javascript:void(0)">Captures API</a></p>
+
+	<ul>
+		{{ sidebar_item(
+			'reference/v2/captures-api/get-capture',
+			'Get capture',
+			'GET /v2/payments/*/captures/*'
+		) }}
+		{{ sidebar_item(
+			'reference/v2/captures-api/list-captures',
+			'List captures',
+			'GET /v2/payments/*/captures'
+		) }}
+	</ul>
+</div>
+
 <div class="sidebar__spacing"></div>
 
 <div class="sidebar__group {{ sidebar_collapse_group('reference/v2/orders-api/') }}">
@@ -128,9 +135,71 @@
 			'GET /v2/orders/*'
 		) }}
 		{{ sidebar_item(
+			'reference/v2/orders-api/update-order',
+			'Update order',
+			'PATCH /v2/orders/*'
+		) }}
+		{{ sidebar_item(
+			'reference/v2/orders-api/update-orderline',
+			'Update order line',
+			'PATCH /v2/orders/*/lines/*'
+		) }}
+		{{ sidebar_item(
+		'reference/v2/orders-api/cancel-order',
+			'Cancel order',
+			'DELETE /v2/orders/*'
+		) }}
+		{{ sidebar_item(
 			'reference/v2/orders-api/list-orders',
-			'LIST orders',
+			'List orders',
 			'GET /v2/orders'
+		) }}
+		{{ sidebar_item(
+			'reference/v2/orders-api/cancel-order-lines',
+			'Cancel order lines',
+			'DELETE /v2/orders/*/lines'
+		) }}
+		{{ sidebar_item(
+			'reference/v2/orders-api/create-order-payment',
+			'Create order payment',
+			'POST /v2/orders/*/payments'
+		) }}
+		{{ sidebar_item(
+			'reference/v2/orders-api/create-order-refund',
+			'Create order refund',
+			'POST /v2/orders/*/refunds'
+		) }}
+		{{ sidebar_item(
+			'reference/v2/orders-api/list-order-refunds',
+			'List order refunds',
+			'GET /v2/orders/*/refunds'
+		) }}
+	</ul>
+</div>
+
+<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/shipments-api/') }}">
+	<p><a href="javascript:void(0)">Shipments API</a></p>
+
+	<ul>
+		{{ sidebar_item(
+			'reference/v2/shipments-api/create-shipment',
+			'Create shipment',
+			'POST /v2/orders/*/shipments'
+		) }}
+		{{ sidebar_item(
+			'reference/v2/shipments-api/get-shipment',
+			'Get shipment',
+			'GET /v2/orders/*/shipments/*'
+		) }}
+		{{ sidebar_item(
+			'reference/v2/shipments-api/list-shipments',
+			'List shipments',
+			'GET /v2/orders/*/shipments'
+		) }}
+		{{ sidebar_item(
+			'reference/v2/shipments-api/update-shipment',
+			'Update shipment',
+			'PATCH /v2/orders/*/shipments/*'
 		) }}
 	</ul>
 </div>
@@ -154,7 +223,7 @@
 		{{ sidebar_item(
 			'reference/v2/customers-api/update-customer',
 			'Update customer',
-			'POST /v2/customers/*'
+			'PATCH /v2/customers/*'
 		) }}
 		{{ sidebar_item(
 			'reference/v2/customers-api/delete-customer',
@@ -230,6 +299,16 @@
 			'List subscriptions',
 			'GET /v2/customers/*/subscriptions'
 		) }}
+    {{ sidebar_item(
+      'reference/v2/subscriptions-api/list-all-subscriptions',
+      'List all subscriptions',
+      'GET /v2/subscriptions'
+    ) }}
+		{{ sidebar_item(
+			'reference/v2/subscriptions-api/list-subscriptions-payments',
+			'List subscription payments',
+			'GET /v2/customers/*/subscriptions/*/payments'
+		) }}
 		{{ sidebar_item(
 			'reference/v2/subscriptions-api/update-subscription',
 			'Update subscription',
@@ -247,12 +326,17 @@
 		{{ sidebar_item(
 			'reference/oauth2/authorize',
 			'Authorize',
-			'GET www.mollie.com/oauth2/authorize'
+			'GET /oauth2/authorize'
 		) }}
 		{{ sidebar_item(
 			'reference/oauth2/tokens',
-			'Tokens',
+			'Generate tokens',
 			'POST /oauth2/tokens'
+		) }}
+		{{ sidebar_item(
+			'reference/oauth2/revoke-token',
+			'Revoke token',
+			'DELETE /oauth2/tokens'
 		) }}
 	</ul>
 </div>
@@ -306,9 +390,14 @@
 			'GET /v2/profiles/*'
 		) }}
 		{{ sidebar_item(
+			'reference/v2/profiles-api/get-profile-me',
+			'Get current profile',
+			'GET /v2/profiles/me'
+		) }}
+		{{ sidebar_item(
 			'reference/v2/profiles-api/update-profile',
 			'Update profile',
-			'POST /v2/profiles/*'
+			'PATCH /v2/profiles/*'
 		) }}
 		{{ sidebar_item(
 			'reference/v2/profiles-api/delete-profile',
@@ -316,9 +405,56 @@
 			'DELETE /v2/profiles/*'
 		) }}
 		{{ sidebar_item(
+			'reference/v2/profiles-api/enable-method',
+			'Enable payment method',
+			'POST /v2/profiles/*/methods/*'
+		) }}
+		{{ sidebar_item(
+			'reference/v2/profiles-api/disable-method',
+			'Disable payment method',
+			'DELETE /v2/profiles/*/methods/*'
+		) }}
+    {{ sidebar_item(
+    'reference/v2/profiles-api/enable-gift-card-issuer',
+    'Enable gift card issuer',
+    'POST /v2/profiles/*/methods/giftcard/issuers/*'
+    ) }}
+    {{ sidebar_item(
+    'reference/v2/profiles-api/disable-gift-card-issuer',
+    'Disable gift card issuer',
+    'POST /v2/profiles/*/methods/giftcard/issuers/*'
+    ) }}
+    {{ sidebar_item(
+    'reference/v2/profiles-api/enable-voucher-issuer',
+    'Enable voucher issuer',
+    'POST /v2/profiles/*/methods/voucher/issuers/*'
+    ) }}
+    {{ sidebar_item(
+    'reference/v2/profiles-api/disable-voucher-issuer',
+    'Disable voucher issuer',
+    'POST /v2/profiles/*/methods/voucher/issuers/*'
+    ) }}
+		{{ sidebar_item(
 			'reference/v2/profiles-api/list-profiles',
 			'List profiles',
 			'GET /v2/profiles'
+		) }}
+	</ul>
+</div>
+
+<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/onboarding-api/') }}">
+	<p><a href="javascript:void(0)">Onboarding API</a></p>
+
+	<ul>
+		{{ sidebar_item(
+		'reference/v2/onboarding-api/get-onboarding-status',
+		'Get onboarding status',
+		'GET /v2/onboarding/me'
+		) }}
+		{{ sidebar_item(
+		'reference/v2/onboarding-api/submit-onboarding-data',
+		'Submit onboarding data',
+		'POST /v2/onboarding/me'
 		) }}
 	</ul>
 </div>
@@ -362,6 +498,11 @@
 			'List settlement chargebacks',
 			'GET /v2/settlements/*/chargebacks'
 		) }}
+		{{ sidebar_item(
+			'reference/v2/settlements-api/list-settlement-captures',
+			'List settlement captures',
+			'GET /v2/settlements/*/captures'
+		) }}
 	</ul>
 </div>
 
@@ -382,58 +523,14 @@
 	</ul>
 </div>
 
-<div class="sidebar__spacing"></div>
-
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/balances-api/') }}">
-	<p><a href="javascript:void(0)">Balances API <span class="sidebar__tag">new</span></a></p>
+<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/methods-api/') }}">
+	<p><a href="javascript:void(0)">Miscellaneous</a></p>
 
 	<ul>
 		{{ sidebar_item(
-		'reference/v2/balances-api/create-balance',
-		'Create balance',
-		'POST /v2/balances'
-		) }}
-		{{ sidebar_item(
-		'reference/v2/balances-api/get-balance',
-		'Get balance',
-		'GET /v2/balances/*'
-		) }}
-		{{ sidebar_item(
-		'reference/v2/balances-api/get-default-balance',
-		'Get default balance',
-		'GET /v2/balances/default'
-		) }}
-		{{ sidebar_item(
-		'reference/v2/balances-api/update-balance',
-		'Update balance',
-		'PATCH /v2/balances/*'
-		) }}
-		{{ sidebar_item(
-		'reference/v2/balances-api/list-balances',
-		'List balances',
-		'GET /v2/balances'
-		) }}
-	</ul>
-</div>
-
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/balances-api/') }}">
-	<p><a href="javascript:void(0)">Transfers API <span class="sidebar__tag">new</span></a></p>
-
-	<ul>
-		{{ sidebar_item(
-		'reference/v2/transfers-api/create-transfer',
-		'Create transfer',
-		'POST /v2/transfers'
-		) }}
-		{{ sidebar_item(
-		'reference/v2/transfers-api/get-transfer',
-		'Get transfer',
-		'GET /v2/transfers/*'
-		) }}
-		{{ sidebar_item(
-		'reference/v2/transfers-api/list-transfers',
-		'List transfers',
-		'GET /v2/transfers'
+			'reference/v2/wallets-api/request-apple-pay-payment-session',
+			'Request Apple Pay Payment Session',
+			'POST /v2/wallets/request-apple-pay-payment-session'
 		) }}
 	</ul>
 </div>

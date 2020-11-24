@@ -20,8 +20,8 @@ Get settlement
    :oauth: true
 
 Successful payments are collected into *settlements*, which are then paid out according to your account's payout
-schedule. By retrieving a single settlement, you can check which payments were paid out with it, when the settlement
-took place, and what invoice reference was used for it.
+schedule. By retrieving a single settlement, you can check which payments were paid out with it and when the settlement
+took place.
 
 Settlements will be transferred to your bank account with a ``reference``, for example ``1182161.1506.02``. You can use
 the :doc:`List settlements </reference/v1/settlements-api/list-settlements>` endpoint to look up a settlement by
@@ -54,7 +54,7 @@ Response
 
        .. type:: string
 
-     - The settlement's bank reference, as found on your invoice and in your Mollie account.
+     - The settlement's bank reference, as found in your Mollie account and on your bank statement.
 
    * - ``createdDatetime``
 
@@ -237,7 +237,7 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK

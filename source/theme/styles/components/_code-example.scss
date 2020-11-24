@@ -1,0 +1,145 @@
+.rst-content #example {
+  max-width: 700px;
+  @media (min-width: breakpoint('extra-large')) {
+    max-width: 846px;
+  }
+}
+
+.rst-content {
+  .examples-switcher {
+    .example-switch {
+      font-weight: 300;
+      font-size: 14px;
+      font-family: $font-family-monospace;
+      margin-right: 15px;
+      color: $brand-primary;
+      padding-bottom: 2px;
+      border-bottom: 1px solid $brand-primary;
+      text-decoration: none;
+      transform: translateY(-3px);
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        color: $brand-primary-hover;
+      }
+
+      &.is-selected {
+        font-weight: 600;
+        border-bottom: none;
+      }
+    }
+  }
+  .code-blocks > div {
+    &:not(.is-hidden) {
+      -webkit-transition: opacity 600ms, visibility 600ms;
+      transition: opacity 600ms, visibility 600ms;
+    }
+
+    &.is-hidden {
+      opacity: 0;
+      position: absolute;
+      width: 0;
+    }
+  }
+}
+
+.rst-content .highlighttable {
+  border: 1px solid $grey-medium;
+  border-radius: 4px;
+  margin-bottom: 40px;
+  display: block;
+  padding-right: 30px;
+  overflow: scroll;
+  width: 100%;
+}
+
+.rst-content .section .highlighttable tbody > tr > td {
+  padding-bottom: 0;
+  color: $grey-dusty;
+}
+
+.rst-content .section .highlighttable tr td.linenos {
+  padding-right: 0;
+  background-color: #fcfcfc;
+  border-right: 1px solid $grey-medium;
+}
+
+.rst-content .section .highlighttable tr td.code {
+  vertical-align: top;
+}
+
+.rst-content .highlight {
+  background: #fff;
+}
+
+.rst-content .highlighttable pre {
+  min-height: 0;
+}
+
+.rst-content .highlight pre {
+  font-family: $font-family-monospace;
+  color: $grey-dark;
+}
+
+.rst-content .highlight .kc,
+.rst-content .highlight .p,
+.rst-content .highlight .l,
+.rst-content .highlight .mf,
+.rst-content .highlight .s2 {
+  color: $grey-dark;
+}
+
+.rst-content .highlight .nt,
+.rst-content .highlight .kr,
+.rst-content .highlight .na,
+.rst-content .highlight .m,
+.rst-content .highlight .o,
+.rst-content .highlight .ne {
+  color: $orange-anzac;
+}
+
+.rst-content .highlight .nt,
+.rst-content .highlight .ne,
+.rst-content .highlight .m {
+  font-weight: bold;
+}
+
+.rst-content .highlight .kc,
+.rst-content .highlight .p,
+.rst-content .highlight .s2,
+.rst-content .highlight .se,
+.rst-content .highlight .nt {
+  font-weight: 300;
+}
+
+.rst-content .highlight .err {
+  border: none;
+  color: $grey-dark;
+}
+
+.rst-content .highlight .mi {
+  color: $orange-anzac;
+}
+
+.rst-content .highlight-bash .highlight .s2,
+.rst-content .highlight-bash .highlight .se,
+.rst-content .highlight-php .highlight .cp,
+.rst-content .highlight-php .highlight .nv,
+.rst-content .highlight-php .highlight .k,
+.rst-content .highlight-php .highlight .nx,
+.rst-content .highlight-php .highlight .c1,
+.rst-content .highlight-php .highlight .o,
+.rst-content .highlight-php .highlight .na {
+  color: #005a9a;
+}
+
+.rst-content .highlight-php .highlight .mi {
+  color: $grey-dark;
+}
+
+td.linenos pre {
+  color: #999 !important;
+  background: none !important;
+  padding: 0 20px !important;
+}

@@ -48,7 +48,7 @@ const scrollToSection = event => {
 };
 
 const toggleSidebarGroup = event => {
-  event.target.closest('.sidebar__group').classList.toggle('sidebar__group--collapse');
+  event.target.parentNode.parentNode.classList.toggle('sidebar__group--collapse');
 };
 
 export default enhance('sidebar', () => {

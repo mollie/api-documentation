@@ -1,5 +1,5 @@
-Get organization
-================
+Get Organization API
+====================
 .. api-name:: Organizations API
    :version: 1
 
@@ -16,6 +16,7 @@ Get organization
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: false
    :oauth: true
 
 Organizations reflect the legal entities associated with the Mollie account. Payments, Refunds, Profiles, Settlements,
@@ -32,7 +33,7 @@ If you're an official Mollie Reseller, you can retrieve the organizations that y
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 .. list-table::
    :widths: auto
@@ -113,8 +114,14 @@ Response
 
        .. type:: string
 
-     - The organization's VAT number. You can use this for invoicing
-       :doc:`application fees </oauth/application-fees>`, for example.
+     - The VAT number of the organization, if based in the European Union. The VAT number has been checked with the
+       `VIES <http://ec.europa.eu/taxation_customs/vies/>`_ service by Mollie.
+
+   * - ``vatRegulation``
+
+       .. type:: string
+
+     - The organization's VAT regulation, if based in the European Union. Either ``shifted`` (VAT is shifted) or ``dutch`` (Dutch VAT rate).
 
    * - ``verifiedDatetime``
 
@@ -135,11 +142,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "resource": "organization",

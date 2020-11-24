@@ -7,11 +7,15 @@ website to process. The maximum number of objects returned is 250.
 For this reason the Mollie API only returns a subset of the requested set of objects. In other words, the Mollie API
 chops the result of a certain API method call into pages you're able to programmatically scroll through.
 
+.. _pagination-in-v2:
+
 Pagination in v2 API endpoints
 ------------------------------
 The ``v2`` API endpoints use the so-called cursor pagination method. In short, this ensures the objects in a page do not
 get shifted when a new object is created with the same account in the meantime, by paginating by object ID rather than
 by page number.
+
+You can get the next page of objects by following the ``next`` link. 
 
 Response object
 ^^^^^^^^^^^^^^^
@@ -70,19 +74,41 @@ Example of v2 pagination
 
 Request
 """""""
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-   curl -X GET https://api.mollie.com/v2/payments \
-       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+      curl -X GET https://api.mollie.com/v2/payments \
+          -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+   .. code-block:: php
+      :linenos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+
+      // get the first page
+      $payments = $mollie->payments->page();
+
+      // get the next page
+      if($payments->hasNext()) {
+          $next_payments = $payments->next();
+      }
+
+      // get the previous page
+      if($payments->hasPrevious()) {
+          $previous_payments = $payments->previous();
+      }
+
 
 Response
 """"""""
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
        "count": 10,
@@ -145,7 +171,8 @@ Response
 Pagination in v1 API endpoints
 ------------------------------
 .. warning:: This is the documentation of the v1 API. The documentation for pagination in the new v2 API can be found
-             above. For more information on the v2 API, refer to our :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
+             above. For more information on the v2 API, refer to our
+             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 Using the ``count`` parameter you can set the page size up to a maximum of 250 objects. The result will be paginated
 accordingly, presuming your request would otherwise have resulted in more than ``count`` objects. The ``offset``
@@ -230,11 +257,11 @@ Request
 
 Response
 """"""""
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "totalCount": 280,
@@ -249,7 +276,7 @@ Response
                "status": "open",
                "expiryPeriod": "PT15M",
                "amount": "10.00",
-               "description": "My first payment",
+               "description": "Order #12345",
                "metadata": {
                    "order_id": "12345"
                },

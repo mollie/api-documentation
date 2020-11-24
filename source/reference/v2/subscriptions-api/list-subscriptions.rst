@@ -9,6 +9,7 @@ List subscriptions
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: true
    :oauth: true
 
 Retrieve all subscriptions of a customer.
@@ -25,7 +26,7 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``c
        .. type:: string
           :required: false
 
-     - Offset the result set to the subscription with this ID. The subscription with this ID is included
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the subscription with this ID. The subscription with this ID is included
        in the result set as well.
 
    * - ``limit``
@@ -35,12 +36,12 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``c
 
      - The number of subscriptions to return (with a maximum of 250).
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the only mandatory extra parameter is the
-``profileId`` parameter. With it, you can specify for which profile you want to retrieve subscriptions. Organizations
-can have multiple profiles for each of their websites. See :doc:`Profiles API </reference/v2/profiles-api/get-profile>`
-for more information.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the only mandatory extra query string parameter is the ``profileId`` parameter. With it,
+you can specify for which profile you want to retrieve subscriptions. Organizations can have multiple profiles for each
+of their websites. See :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
 
 .. list-table::
    :widths: auto
@@ -50,7 +51,7 @@ for more information.
        .. type:: string
           :required: true
 
-     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``. This field is mandatory.
+     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
 
    * - ``testmode``
 
@@ -61,7 +62,7 @@ for more information.
 
 Response
 --------
-``200`` ``application/hal+json; charset=utf-8``
+``200`` ``application/hal+json``
 
 .. list-table::
    :widths: auto
@@ -126,25 +127,44 @@ Response
 Example
 -------
 
-Request (curl)
-^^^^^^^^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-   curl -X GET https://api.mollie.com/v2/customers/cst_8wmqcHMN4U/subscriptions \
-       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+      curl -X GET https://api.mollie.com/v2/customers/cst_8wmqcHMN4U/subscriptions \
+         -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
 
-Request (PHP)
-^^^^^^^^^^^^^
-.. code-block:: php
-   :linenos:
+   .. code-block:: php
+      :linenos:
 
-    <?php
-    $mollie = new \Mollie\Api\MollieApiClient();
-    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-    $customer = $mollie->customers->get("cst_8wmqcHMN4U");
-    $subscriptions = $customer->subscriptions();
+      $customer = $mollie->customers->get("cst_8wmqcHMN4U");
+      $subscriptions = $customer->subscriptions();
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM'
+      end
+
+      customer = Mollie::Customer.get('cst_8wmqcHMN4U')
+      subscriptions = customer.subscriptions
+
+   .. code-block:: javascript
+      :linenos:
+
+      const { createMollieClient } = require('@mollie/api-client');
+      const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const subscriptions = await mollieClient.customers_subscriptions.all({ customerId: 'cst_8wmqcHMN4U' });
+      })();
 
 Response
 ^^^^^^^^
@@ -169,13 +189,20 @@ Response
                        "currency": "EUR"
                    },
                    "times": 4,
+                   "timesRemaining": 3,
                    "interval": "3 months",
+                   "startDate": "2016-06-01",
+                   "nextPaymentDate": "2016-09-01",
                    "description": "Quarterly payment",
                    "method": null,
                    "webhookUrl": "https://webshop.example.org/subscriptions/webhook",
                    "_links": {
                        "self": {
                            "href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS/subscriptions/sub_rVKGtNd6s3",
+                           "type": "application/hal+json"
+                       },
+                       "profile": {
+                           "href": "https://api.mollie.com/v2/profiles/pfl_URR55HPMGx",
                            "type": "application/hal+json"
                        },
                        "customer": {

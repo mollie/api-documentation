@@ -54,10 +54,10 @@
 }
 
 .sidebar__group > p {
-  font-size: 20px;
-  font-weight: $font-weight-medium;
+  font-size: 17px;
   line-height: 22px;
   margin-bottom: 10px;
+  font-weight: 800;
 }
 
 .sidebar__group > p > a {
@@ -83,7 +83,7 @@
 
 .sidebar__group ul li a {
   color: #666666;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 16px;
 
   @media (max-width: breakpoint("<medium")) {
@@ -100,7 +100,7 @@
   color: $grey-darkest;
 }
 
-.sidebar__group ul li a > .sidebar__subtitle {
+.sidebar__group ul li a > code {
   color: $grey-medium-light;
   display: block;
   font-size: 12px;
@@ -150,20 +150,6 @@
 
 .sidebar__group--collapse > ul {
   display: none;
-}
-
-.sidebar__tag {
-  background: #f1fafd;
-  border-radius: 3px;
-  color: #00508a;
-  display: inline-block;
-  font-family: $font-family-monospace;
-  font-size: 11px;
-  height: 20px;
-  line-height: 20px;
-  margin-left: 5px;
-  padding: 0 6px;
-  vertical-align: middle;
 }
 
 .sidebar__spacing {

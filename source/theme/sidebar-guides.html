@@ -7,9 +7,11 @@
 		{{ sidebar_item('index', 'Overview') }}
 		{{ sidebar_item('guides/security', 'Security') }}
 		{{ sidebar_item('guides/authentication', 'Authentication') }}
+    	{{ sidebar_item('guides/testing', 'Testing') }}
 		{{ sidebar_item('guides/checkout', 'Mollie Checkout') }}
 		{{ sidebar_item('guides/common-data-types', 'Common data types') }}
 		{{ sidebar_item('guides/handling-errors', 'Handling errors') }}
+		{{ sidebar_item('guides/webhooks', 'Webhooks') }}
 		{{ sidebar_item('guides/pagination', 'Pagination') }}
 	</ul>
 </div>
@@ -19,14 +21,47 @@
 
 	<ul>
 		{{ sidebar_item('payments/overview', 'Overview') }}
-		{{ sidebar_item('payments/webhooks', 'Webhooks') }}
 		{{ sidebar_item('payments/status-changes', 'Status changes') }}
+		{{ sidebar_item('payments/refunds', 'Refunds') }}
 		{{ sidebar_item('payments/recurring', 'Recurring payments') }}
 		{{ sidebar_item('payments/multicurrency', 'Multicurrency') }}
 		{{ sidebar_item('guides/qr-codes', 'QR codes') }}
 		{{ sidebar_item('guides/gift-cards', 'Integrating gift cards') }}
-		{{ sidebar_item('guides/payouts', 'Marketplaces & Platforms', None, 'new') }}
 		{{ sidebar_item('payments/migrating-v1-to-v2', 'Migrating from v1 to v2') }}
+	</ul>
+</div>
+
+<div class="sidebar__group">
+	<p>Orders</p>
+
+	<ul>
+		{{ sidebar_item('orders/overview', 'Overview') }}
+		{{ sidebar_item('orders/why-use-orders', 'Why use orders?') }}
+		{{ sidebar_item('orders/migrate-to-orders', 'Migrating to the Orders API') }}
+		{{ sidebar_item('orders/handling-discounts', 'Handling discounts') }}
+		{{ sidebar_item('orders/status-changes', 'Status changes') }}
+		{{ sidebar_item('orders/integrating-vouchers', 'Integrating vouchers') }}
+	</ul>
+</div>
+
+<div class="sidebar__group">
+	<p>Wallets</p>
+
+	<ul>
+		{{ sidebar_item('wallets/applepay', 'Apple Pay overview') }}
+		{{ sidebar_item('guides/applepay-direct-integration', 'Direct integration of Apple Pay') }}
+	</ul>
+</div>
+
+<div class="sidebar__group">
+	<p>Mollie Components</p>
+
+	<ul>
+		{{ sidebar_item('guides/mollie-components/overview', 'Overview') }}
+		{{ sidebar_item('guides/mollie-components/testing', 'Testing') }}
+		{{ sidebar_item('guides/mollie-components/reference', 'API reference') }}
+		{{ sidebar_item('guides/mollie-components/handling-errors', 'Handling errors') }}
+		{{ sidebar_item('guides/mollie-components/styling', 'Styling') }}
 	</ul>
 </div>
 
@@ -38,5 +73,34 @@
 		{{ sidebar_item('oauth/getting-started', 'Getting started') }}
 		{{ sidebar_item('oauth/permissions', 'Permissions') }}
 		{{ sidebar_item('oauth/application-fees', 'Application fees') }}
+		{{ sidebar_item('oauth/onboarding', 'Onboard your customers') }}
 	</ul>
 </div>
+
+<div class="sidebar__group">
+	<p>Mollie Onboarding</p>
+
+	<ul>
+		{{ sidebar_item('onboarding/getting-started', 'Getting started') }}
+	</ul>
+</div>
+
+<div class="sidebar__group">
+	<p>Mobile Apps</p>
+
+	<ul>
+		{{ sidebar_item('mobile-apps/overview', 'Overview') }}
+		{{ sidebar_item('mobile-apps/getting-started-payments', 'Getting Started with Payments') }}
+		{{ sidebar_item('mobile-apps/getting-started-connect', 'Getting Started with Mollie Connect') }}
+	</ul>
+</div>
+
+<div class="sidebar__group">
+	<p>Integration partners</p>
+
+	<ul>
+    {{ sidebar_item('integration-partners/getting-started', 'Getting started') }}
+    {{ sidebar_item('integration-partners/version-strings', 'Version strings') }}
+	</ul>
+</div>
+

@@ -26,7 +26,7 @@ Parameters
        .. type:: string
           :required: false
 
-     - Offset the result set to the settlement with this ID. The settlement with this ID is included in the result set
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the settlement with this ID. The settlement with this ID is included in the result set
        as well.
 
    * - ``limit``
@@ -132,7 +132,7 @@ Example
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
@@ -252,7 +252,8 @@ Response
                                             "currency": "EUR"
                                         }
                                     }
-                                ]
+                                ],
+                                "invoiceId": "inv_M8Sa6n5mf3"
                             }
                         }
                     },

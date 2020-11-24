@@ -1,16 +1,16 @@
 import { handle } from './utils';
 
-const mobileNav = document.querySelector('.js-mobile-navigation');
-
-const NOSCROLL_CLASS = 'u-no-scroll';
-const HIDDEN_CLASS = 'is-hidden';
+// Define properties
+const nav = document.querySelector('.js-main-navigation');
+const NOSCROLL_CLASS = 'no-scroll';
+const OPEN_CLASS = 'is-open';
 let scrollPosition = 0;
+let isOpen = false;
 
-const hideMobileNav = () => {
+// Create function
+const close = () => {
   document.body.classList.remove(NOSCROLL_CLASS);
-  mobileNav.classList.add(HIDDEN_CLASS);
-  mobileNav.setAttribute('aria-hidden', 'true');
-
+  nav.classList.remove(OPEN_CLASS);
   document.body.scrollTop = scrollPosition;
   // This line is needed for IE11
   document.body.parentNode.scrollTop = scrollPosition;
@@ -18,17 +18,26 @@ const hideMobileNav = () => {
   // And we can't remove the line above because although Safari and Chrome recognize
   // the document.documentElement they are unable to scroll it.
   document.documentElement.scrollTop = scrollPosition;
+  isOpen = false;
 };
 
-export const show = handle('show-mobile-nav', (element, event) => {
+const open = () => {
   scrollPosition = window.pageYOffset;
   document.body.classList.add(NOSCROLL_CLASS);
-  mobileNav.classList.remove(HIDDEN_CLASS);
-  mobileNav.setAttribute('aria-hidden', 'false');
-  event.preventDefault();
+  nav.classList.add(OPEN_CLASS);
+  isOpen = true;
+};
+
+// Trigger
+const toggle = handle('toggle-nav', (element, event) => {
+  if (isOpen) {
+    close();
+  } else {
+    open();
+  }
+  if (event) {
+    event.preventDefault();
+  }
 });
 
-export const hide = handle('hide-mobile-nav', (element, event) => {
-  hideMobileNav();
-  event.preventDefault();
-});
+export default toggle;

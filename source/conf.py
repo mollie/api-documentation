@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.abspath("extensions"))
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["mollie.setup"]
+extensions = ["mollie.setup", "cloud_sptheme.ext.table_styling"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = []
@@ -30,7 +30,7 @@ master_doc = 'contents'
 
 # General information about the project.
 project = 'Mollie API'
-copyright = '2018, Mollie B.V. <info@mollie.com>'
+copyright = '2019, Mollie B.V. <info@mollie.com>'
 author = 'Mollie B.V. <info@mollie.com>'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -65,6 +65,9 @@ todo_include_todos = False
 
 # -- Options for HTML output ----------------------------------------------
 
+# Add the pathname of pages you want to prevent from being indexed by search engines here.
+do_not_index = ['reference/reseller-api/endpoints/set-fees']
+
 # The theme to use for HTML and HTML Help pages. See the documentation for
 # a list of builtin themes.
 #
@@ -76,6 +79,7 @@ html_context = {
     'github_user': 'mollie',
     'github_repo': 'api-documentation',
     'github_version': 'master/source/',
+    'do_not_index': do_not_index,
 }
 
 html_logo = '_static/img/mollie-logo.png'

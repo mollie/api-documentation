@@ -1,5 +1,5 @@
-List settlement payments
-========================
+List Settlement Payments API
+============================
 .. api-name:: Settlements API
    :version: 2
 
@@ -12,24 +12,23 @@ List settlement payments
    :organization_access_tokens: true
    :oauth: true
 
-Retrieve all payments included in a settlement.
+Retrieve all Payments included in a Settlement.
 
 Note that payments for *pay after delivery* methods (such as Klarna Pay Later) are not listed in here. These payment
-methods are settled using captures. To retrieve the captures, use the :doc:`List settlement captures
-<list-settlement-captures>` endpoint.
+methods are settled using captures. To retrieve the captures, use the :doc:`list-settlement-captures`.
 
 Parameters
 ----------
 Replace ``settlementId`` in the endpoint URL by the settlement's ID, for example ``stl_jDk30akdN``.
 
-This endpoint is an alias of the :doc:`List payments </reference/v2/payments-api/list-payments>` endpoint. All
-parameters for that endpoint can be used here as well.
+This API is an alias of the :doc:`/reference/v2/payments-api/list-payments`. All
+parameters for that API can be used here as well.
 
 Response
 --------
 ``200`` ``application/hal+json``
 
-This endpoint is an alias of the :doc:`List payments </reference/v2/payments-api/list-payments>` endpoint. The response
+This API is an alias of the :doc:`/reference/v2/payments-api/list-payments`. The response
 is therefore the exact same.
 
 Example
@@ -67,7 +66,7 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK

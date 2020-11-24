@@ -1,5 +1,5 @@
-List settlement captures
-========================
+List Settlement Captures API
+============================
 
 .. api-name:: Settlements API
    :version: 2
@@ -110,13 +110,13 @@ Example
       <?php
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
-      
+
       $settlement = $mollie->settlements->get("stl_jDk30akdN");
       $captures = $settlement->captures();
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK

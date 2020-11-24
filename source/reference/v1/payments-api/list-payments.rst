@@ -16,6 +16,7 @@ List payments
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: false
    :oauth: true
 
 Retrieve all payments created with the current payment profile, ordered from newest to oldest.
@@ -41,13 +42,13 @@ Parameters
 
      - The number of payments to return (with a maximum of 250).
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the following parameters are also
-available. With the ``profileId`` parameter, you can specify which profile you want to look at when listing payments. If
-you omit the ``profileId`` parameter, you will get all payments on the organization. Organizations can have multiple
-profiles for each of their websites. See :doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more
-information.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the following query string parameters are also available. With the ``profileId``
+parameter, you can specify which profile you want to look at when listing payments. If you omit the ``profileId``
+parameter, you will get all payments on the organization. Organizations can have multiple profiles for each of their
+websites. See :doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more information.
 
 .. list-table::
    :widths: auto
@@ -74,11 +75,11 @@ querystring parameter.
 
 * ``settlement`` Include the settlement a payment belongs to, when available.
 * ``details.qrCode`` Include a :doc:`QR code </guides/qr-codes>` object for each payment that supports it. Only
-  available for iDEAL, Bitcoin, Bancontact and bank transfer payments.
+  available for iDEAL, Bancontact and bank transfer payments.
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 .. list-table::
    :widths: auto
@@ -154,11 +155,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "totalCount": 280,
@@ -177,7 +178,7 @@ Response
                "metadata": {
                    "order_id": "12345"
                },
-               "locale": "nl_NL",
+               "locale": "nl",
                "profileId": "pfl_QkEhN94Ba",
                "links": {
                    "redirectUrl": "https://webshop.example.org/order/12345/"

@@ -9,9 +9,10 @@ List permissions
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: true
    :oauth: true
 
-List all permissions available with the current OAuth access token. The list is not paginated.
+List all permissions available with the current app access token. The list is not paginated.
 
 Parameters
 ----------
@@ -19,7 +20,7 @@ None.
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 .. list-table::
    :widths: auto
@@ -70,33 +71,51 @@ Response
 Example
 -------
 
-Request
-^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-   curl -X GET https://api.mollie.com/v2/permissions \
-       -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+      curl -X GET https://api.mollie.com/v2/permissions \
+         -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+
+   .. code-block:: php
+      :linenos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+      $permissions = $mollie->permissions->all();
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ'
+      end
+
+      permissions = Mollie::Permission.all
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
        "_embedded": {
            "permissions": [
                {
                    "resource": "permission",
-                   "id": "apikeys.read",
-                   "description": "View your API keys",
+                   "id": "payments.write",
+                   "description": "Create new payments",
                    "granted": false,
                    "_links": {
                        "self": {
-                           "href": "https://api.mollie.com/v2/permissions/apikeys.read",
+                           "href": "https://api.mollie.com/v2/permissions/payments.write",
                            "type": "application/hal+json"
                        }
                    }
