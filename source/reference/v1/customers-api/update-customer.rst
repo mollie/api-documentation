@@ -16,6 +16,7 @@ Update customer
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: false
    :oauth: true
 
 Update an existing customer.
@@ -62,10 +63,10 @@ Replace ``id`` in the endpoint URL by the customer's ID, for example ``cst_8wmqc
      - Provide any data you like, and we will save the data alongside the customer. Whenever
        you fetch the customer with our API, we'll also include the metadata. You can use up to 1kB of JSON.
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the ``testmode`` parameter is also available.
 
 .. list-table::
    :widths: auto
@@ -79,7 +80,7 @@ available.
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 A customer object is returned, as described in :doc:`Get customer </reference/v1/customers-api/get-customer>`.
 
@@ -98,11 +99,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "resource": "customer",

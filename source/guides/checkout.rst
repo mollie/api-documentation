@@ -18,6 +18,8 @@ Benefits of payments via the Mollie Checkout
 
 * Full support for :doc:`QR codes </guides/qr-codes>`.
 
+* Full support for wallets such as  :doc:`Apple Pay </wallets/applepay>`.
+
 * Mollie optimizes the order of payment methods. For Dutch customers we know to list iDEAL at the top while for Belgians
   we start off with the payment method Bancontact. A lot of effort goes into this and we optimize this using
   A/B-testing. This way we improve your conversion without your effort.
@@ -37,9 +39,10 @@ example below shows a fully branded checkout page.
 
 Single Click payments for returning customers
 ---------------------------------------------
-Single Click payments increase conversion. This feature allows your customers who have paid with
+This feature allows your customers who have paid with
 `credit card <https://www.mollie.com/en/payments/credit-card>`_ to complete their next payments with just one click. A
-recognizable credit card with information gathered from the customers' previous payment is presented and allows the customer to reuse this card.
+recognizable credit card with information gathered from the customers' previous payment is presented and allows the
+customer to reuse this card. Single Click payments increase conversion.
 
 #. Create a unique customer using the :doc:`Customers API </reference/v2/customers-api/create-customer>`.
 #. Store the customer's ``id`` safely in your database. It's needed for performing Payments API calls for the customer.

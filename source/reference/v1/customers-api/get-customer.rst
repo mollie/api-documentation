@@ -16,6 +16,7 @@ Get customer
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: false
    :oauth: true
 
 Retrieve a single customer by its ID.
@@ -24,10 +25,10 @@ Parameters
 ----------
 Replace ``id`` in the endpoint URL by the customer's ID, for example ``cst_8wmqcHMN4U``.
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is also available.
 
 .. list-table::
    :widths: auto
@@ -41,7 +42,7 @@ available.
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 .. list-table::
    :widths: auto
@@ -82,9 +83,9 @@ Response
 
        .. type:: string
 
-     - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. If this parameter was
-       not provided when the customer was created, the browser language will be used instead in the payment flow (which
-       is usually more accurate).
+     - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. If this parameter
+       was not provided when the customer was created, the browser language will be used instead in the payment flow
+       (which is usually more accurate).
 
        Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
        ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
@@ -102,8 +103,9 @@ Response
 
      - Payment methods that the customer recently used for payments.
 
-       Possible array values: ``banktransfer`` ``belfius`` ``bitcoin`` ``creditcard`` ``directdebit`` ``eps``
-       ``giftcard`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``mistercash`` ``paypal`` ``paysafecard`` ``sofort``
+       Possible array values: ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``
+       ``giftcard`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``mistercash`` ``paypal`` ``paysafecard``
+       ``przelewy24`` ``sofort``
 
    * - ``createdDatetime``
 
@@ -124,11 +126,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "resource": "customer",

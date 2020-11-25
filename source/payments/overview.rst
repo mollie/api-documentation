@@ -1,8 +1,11 @@
-Mollie Payments API
-===================
+Payments API
+============
 
-How does the Mollie Payments API work?
---------------------------------------
+The **Payments API** allows you to create payments for your web shop, e-invoicing platform or other application that you
+need payments for.
+
+How does the Payments API work?
+-------------------------------
 .. image:: images/api-overview-flow@2x.png
 
 #. A customer on your website decides to checkout.
@@ -22,7 +25,7 @@ How does the Mollie Payments API work?
 #. The customer reaches the :doc:`checkout </guides/checkout>`, chooses a payment method and makes the payment. This
    process is entirely taken care of by Mollie. You don't need to do anything here.
 
-#. When the payment is made Mollie will call your :doc:`webhook </payments/webhooks>` informing your website about the
+#. When the payment is made Mollie will call your :doc:`webhook </guides/webhooks>` informing your website about the
    :doc:`payment's status change </payments/status-changes>`. You should define a webhook when creating the
    payment.
 

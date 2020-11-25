@@ -6,15 +6,30 @@ Supported brands
 Mollie supports processing gift cards handled by the Dutch giftcard broker Intersolve. At the moment, the following
 brands are supported:
 
+* DE Cadeaukaart
+* `Diner Cadeau <https://www.horecasamensterk.nl/>`_
+* `fashioncheque <https://www.fashioncheque.com/>`_
+* `FestivalCadeau Giftcard <https://www.festivalcadeau.com/>`_
+* `Good4fun <https://www.good4fun.nl/>`_
 * `Nationale Bioscoopbon <https://www.bioscoopbon.nl/>`_
 * `Nationale EntertainmentCard <https://www.nationale-entertainmentcard.nl/>`_
+* `Nationale Golfbon <https://www.golfbon.nl/>`_
 * `Nationale Kunst & Cultuur Cadeaukaart <https://www.kunstcultuurcadeaukaart.nl/>`_
+* `OhMyGood <https://www.ohmygood.nl/>`_
 * `Podium Cadeaukaart <https://www.podiumcadeaukaart.nl/>`_
+* Reiscadeau
+* `RestaurantCadeau <https://www.horecasamensterk.nl/>`_
+* `Sport & Fit Cadeau <https://www.sportenfitcadeau.nl/>`_
+* `Sustainable Fashion Gift Card <https://sustainablefashiongiftcard.nl/>`_
+* `Travelcheq <https://www.travelcheq.com/>`_
 * `VVV Cadeaukaart <https://www.vvvcadeaubonnen.nl/>`_
+* `VVV Dinercheque <https://www.vvvcadeaukaarten.nl/vvv-dinercheque>`_
+* `VVV Lekkerweg <https://www.vvvcadeaukaarten.nl/vvv-lekkerweg>`_
 * `Webshop Giftcard <https://www.webshopgiftcard.nl/>`_
 * `YourGift <https://www.yourgift.nl/>`_
 
-If you need a different brand, please reach out to your account manager or our support department.
+If you need a different brand, please reach out to your account manager or our support department. We can also support
+closed-loop gift cards.
 
 Using the :doc:`checkout </guides/checkout>`, your customer can pay part of the payment using gift cards and pay any
 remaining amount due using the other payment methods enabled on your website profile.
@@ -31,8 +46,8 @@ PSPID.
 If you already have a PSPID that you would like to reuse, contact your account manager at Mollie.
 
 Once your account has been set up with the brand owner and you have enabled the gift card brand in the
-`Dashboard <https://www.mollie.com/dashboard>`_, Mollie will automatically verify the set up with Intersolve and enable
-the brand on your selected web site profiles once everything has been set up by the various parties involved.
+`Mollie Dashboard <https://www.mollie.com/dashboard>`_, Mollie will automatically verify the set up with Intersolve and
+enable the brand on your selected web site profiles once everything has been set up by the various parties involved.
 
 Settlement is handled by the brand owner and not by Mollie.
 
@@ -65,8 +80,8 @@ your account. Use the include ``issuers`` to include the gift card brands availa
 
 If only a single brand is available, the issuer is optional and we will use the available issuer.
 
-.. note:: Each method has a minimum and a maximum amount that can be processed. For gift cards, you should ignore the
-          maximum amount. The maximum amount visible for gift cards is per gift card transaction.
+.. note:: Each method has a minimum and a maximum amount that can be processed. For gift cards, this
+          is 50 euros per payment spread over multiple cards.
 
 The ID for the gift cards method is ``giftcard``.
 
@@ -88,12 +103,27 @@ Canceled and abandoned payments
 -------------------------------
 If the customer cancels or abandons the payment after partially paying with one or more gift cards, the amount paid with
 the gift card will be returned to the gift card. This will show up as a refund in your
-`Dashboard <https://www.mollie.com/dashboard>`_.
+`Mollie Dashboard <https://www.mollie.com/dashboard>`_.
 
 Refunds
 -------
 You cannot perform any gift card refunds. However, if another payment method was used during the checkout, you can
-refund the payment paid with the other payment method (and optionally an additional part).
+refund the part paid with the other payment method (and optionally an additional part).
+
+Getting the details of the remainder payment
+--------------------------------------------
+In some cases it is desirable to receive the details of a payment. This is mostly the case from the
+remainder payment when the consumer partially paid with a gift card. Receiving these details is possible
+in both the :doc:`Payments API </reference/v2/payments-api/get-payment>` and
+:doc:`Orders API </reference/v2/orders-api/get-order>`.
+
+To receive the remainder details in the Payments API, use the ``details.remainderDetails`` include.
+For example: ``GET https://api.mollie.com/v2/payments/tr_xxx?include=details.remainderDetails``. For
+the Orders API you should the ``payments.details.remainderDetails`` embed;
+``GET https://api.mollie.com/v2/orders/ord_xxx?embed=payments.details.remainderDetails``.
+
+Be aware that the ``remainderDetails`` is only available when the payment was partially paid with
+a gift card and then the remainder was paid with a different payment method.
 
 Tips
 ----

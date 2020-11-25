@@ -9,6 +9,7 @@ Get chargeback
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: true
    :oauth: true
 
 Retrieve a single chargeback by its ID. Note the original payment's ID is needed as well.
@@ -21,6 +22,23 @@ Parameters
 Replace ``paymentId`` in the endpoint URL by the payment's ID, and replace ``id`` by the chargeback's ID. For example:
 ``/v2/payments/tr_7UhSN1zuXS/chargebacks/chb_n9z0tp``.
 
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the only mandatory extra parameter is the ``profileId`` parameter. With it, you can
+specify which profile the payment belongs to. Organizations can have multiple profiles for each of their websites. See
+:doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+
+.. list-table::
+   :widths: auto
+
+   * - ``profileId``
+
+       .. type:: string
+          :required: true
+
+     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
+
 Embedding of related resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This endpoint allows for embedding additional information by appending the following values via the ``embed``
@@ -30,10 +48,16 @@ query string parameter.
 
 Response
 --------
-``200`` ``application/hal+json; charset=utf-8``
+``200`` ``application/hal+json``
 
 .. list-table::
    :widths: auto
+
+   * - ``resource``
+
+       .. type:: string
+
+     - Indicates the response contains a chargeback object. Will always contain ``chargeback`` for this endpoint.
 
    * - ``id``
 
@@ -134,6 +158,7 @@ Response
           * - ``settlement``
 
               .. type:: URL object
+                 :required: false
 
             - The API resource URL of the settlement this payment has been settled with. Not present if not yet settled.
 
@@ -146,21 +171,69 @@ Response
 Example
 -------
 
-Request
-^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
 
-   curl -X GET https://api.mollie.com/v2/payments/tr_WDqYK6vllg/chargebacks/chb_n9z0tp \
-       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+   .. code-block:: bash
+      :linenos:
+
+      curl -X GET https://api.mollie.com/v2/payments/tr_WDqYK6vllg/chargebacks/chb_n9z0tp \
+         -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+   .. code-block:: php
+      :linenos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+
+      $payment = $mollie->payments->get("tr_WDqYK6vllg");
+      $chargeback = $payment->getChargeback("chb_n9z0tp");
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      payment = mollie_client.payments.get('tr_WDqYK6vllg')
+      chargeback = mollie_client.payment_chargebacks.on(payment).get('chb_n9z0tp')
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM'
+      end
+
+      chargeback = Mollie::Payment::Chargeback.get(
+        'chb_n9z0tp',
+        payment_id: 'tr_WDqYK6vllg'
+      )
+
+   .. code-block:: javascript
+      :linenos:
+
+      const { createMollieClient } = require('@mollie/api-client');
+      const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async ()  => {
+        const chargeback = await mollieClient.payments_chargebacks.get(
+          'chb_n9z0tp',
+          { paymentId: 'tr_WDqYK6vllg' }
+        );
+      })();
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
        "resource": "chargeback",

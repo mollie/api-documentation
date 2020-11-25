@@ -30,7 +30,7 @@ master_doc = 'contents'
 
 # General information about the project.
 project = 'Mollie API'
-copyright = '2018, Mollie B.V. <info@mollie.com>'
+copyright = '2020, Mollie B.V. <info@mollie.com>'
 author = 'Mollie B.V. <info@mollie.com>'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -75,7 +75,7 @@ html_context = {
     'display_github': True,
     'github_user': 'mollie',
     'github_repo': 'api-documentation',
-    'github_version': 'master/source/',
+    'github_version': 'master/source/'
 }
 
 html_logo = '_static/img/mollie-logo.png'

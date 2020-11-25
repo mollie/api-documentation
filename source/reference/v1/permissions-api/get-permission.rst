@@ -9,6 +9,7 @@ Get permission
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: false
    :oauth: true
 
 All API actions through OAuth are by default protected for privacy and/or money related reasons and therefore require
@@ -22,7 +23,7 @@ Replace ``id`` in the endpoint URL by the permission's ID, for example ``payment
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 .. list-table::
    :widths: auto
@@ -75,11 +76,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "resource": "permission",

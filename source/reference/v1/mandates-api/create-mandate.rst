@@ -16,6 +16,7 @@ Create mandate
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: false
    :oauth: true
 
 Create a mandate for a specific customer. Mandates allow you to charge a customer's credit card or bank account
@@ -23,6 +24,8 @@ recurrently.
 
 It is only possible to create mandates for IBANs with this endpoint. To create mandates for credit cards, have your
 customers perform a :ref:`'first payment' <payments/recurring/first-payment>` with their credit card.
+
+.. note:: Created mandates are unique to your account and can not be transferred to other accounts.
 
 Parameters
 ----------
@@ -73,12 +76,14 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``/
        .. type:: date
           :required: false
 
-     - A custom mandate reference.
+     - A custom mandate reference. Use an unique ``mandateReference`` as some banks decline a Direct Debit payment if
+       the ``mandateReference`` is not unique.
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
+
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the ``testmode`` parameter is also available.
 
 .. list-table::
    :widths: auto
@@ -92,7 +97,7 @@ available.
 
 Response
 --------
-``201`` ``application/json; charset=utf-8``
+``201`` ``application/json``
 
 A mandate object is returned, as described in :doc:`Get mandate </reference/v1/mandates-api/get-mandate>`.
 
@@ -115,15 +120,16 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 201 Created
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "resource": "mandate",
        "id": "mdt_pWUnw6pkBN",
+       "mode": "test",
        "status": "valid",
        "method": "directdebit",
        "customerId": "cst_stTC2WHAuS",

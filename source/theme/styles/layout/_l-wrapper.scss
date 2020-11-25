@@ -16,13 +16,6 @@
   }
 }
 
-@media (max-width: breakpoint("<medium")) {
-  .l-wrapper--fluid {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
 .l-wrapper--content {
   max-width: $content-width;
 }

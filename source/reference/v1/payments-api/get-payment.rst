@@ -1,5 +1,5 @@
-Get payment
-===========
+Get Payment API
+===============
 .. api-name:: Payments API
    :version: 1
 
@@ -16,6 +16,7 @@ Get payment
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: false
    :oauth: true
 
 Retrieve a single payment object by its payment token.
@@ -27,10 +28,11 @@ Parameters
 ----------
 Replace ``id`` in the endpoint URL by the payment's ID, for example ``tr_7UhSN1zuXS``.
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you are creating an app with Mollie Connect (OAuth), the ``testmode`` parameter is available. You must pass this as a
-parameter in the query string if you want to retrieve a payment that was created in test mode.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is available. You must pass this as a parameter
+in the query string if you want to retrieve a payment that was created in test mode.
 
 .. list-table::
    :widths: auto
@@ -49,12 +51,12 @@ This endpoint allows you to include additional information by appending the foll
 querystring parameter.
 
 * ``settlement`` Include the settlement this payment belongs to, when available.
-* ``details.qrCode`` Include a :doc:`QR code </guides/qr-codes>` object. Only available for iDEAL, Bitcoin, Bancontact
+* ``details.qrCode`` Include a :doc:`QR code </guides/qr-codes>` object. Only available for iDEAL, Bancontact
   and bank transfer payments.
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 .. list-table::
    :widths: auto
@@ -171,8 +173,9 @@ Response
 
        If the payment is only partially paid with a gift card, the method remains ``giftcard``.
 
-       Possible values: ``banktransfer`` ``belfius`` ``bitcoin`` ``creditcard`` ``directdebit`` ``eps``, ``giftcard``
-       ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``mistercash`` ``paypal`` ``paysafecard`` ``sofort``
+       Possible values: ``null`` ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``, ``giftcard``
+       ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``klarnapaylater`` ``klarnasliceit`` ``mistercash`` ``mybank`` ``paypal``
+       ``paysafecard`` ``przelewy24`` ``sofort``
 
    * - ``metadata``
 
@@ -213,7 +216,7 @@ Response
        .. type:: string
 
      - If a customer was specified upon payment creation, the customer's token will be available here as
-       well. For example, ``cst_XPn78q9CfT``.
+       well. For example, ``cst_XPn78q9CfT``. When the customer has been deleted this property will still be set.
 
    * - ``recurringType``
 
@@ -228,8 +231,7 @@ Response
 
        .. type:: string
 
-     - If the payment is a recurring payment, this field will hold the ID of the mandate used to authorize
-       the recurring payment.
+     - If the payment is a first or recurring payment, this field will hold the ID of the mandate.
 
    * - ``subscriptionId``
 
@@ -251,8 +253,9 @@ Response
 
      - Only available for failed Bancontact and credit card payments. Contains a failure reason code.
 
-       Possible values: ``invalid_card_number`` ``invalid_cvv`` ``invalid_card_holder_name`` ``card_expired``
-       ``invalid_card_type`` ``refused_by_issuer`` ``insufficient_funds`` ``inactive_card``
+       Possible values: ``authentication_failed``  ``card_expired`` ``inactive_card`` ``insufficient_funds``
+       ``invalid_card_holder_name`` ``invalid_card_number`` ``invalid_card_type`` ``invalid_cvv``
+       ``possible_fraud`` ``refused_by_issuer`` ``unknown_reason``
 
    * - ``applicationFee``
 
@@ -287,6 +290,7 @@ Response
           * - ``paymentUrl``
 
               .. type:: string
+                 :required: false
 
             - The URL your customer should visit to make the payment. This is where you should redirect the
               consumer to.
@@ -300,32 +304,36 @@ Response
           * - ``webhookUrl``
 
               .. type:: string
+                 :required: false
 
             - The URL Mollie will call as soon an important status change takes place.
 
           * - ``redirectUrl``
 
-              .. type:: string
+              .. type:: string|null
 
-            - The URL the customer will be redirected to after completing or cancelling the payment process.
+            - The URL your customer will be redirected to after completing or canceling the payment process.
 
-              Note the URL will not be present for recurring payments.
+              .. note:: The URL will be ``null`` for recurring payments.
 
           * - ``settlement``
 
               .. type:: string
+                 :required: false
 
             - The API resource URL of the settlement this payment belongs to.
 
           * - ``refunds``
 
               .. type:: string
+                 :required: false
 
             - The API resource URL of the refunds that belong to this payment.
 
           * - ``chargebacks``
 
               .. type:: string
+                 :required: false
 
             - The API resource URL of the chargebacks that belong to this payment.
 
@@ -362,12 +370,34 @@ Bancontact
             - Only available if the payment is completed - Unique alphanumeric representation of card, usable for
               identifying returning customers.
 
+              .. warning:: The fingerprint is now (as of November 28th, 2019) unique per transaction what makes it
+                           not usefull anymore for identifying returning customers. Use the ``consumerAccount`` field instead.
+
           * - ``qrCode``
 
               .. type:: object
 
             - Only available if requested during payment creation - The QR code that can be scanned by the mobile
               Bancontact application. This enables the desktop to mobile feature.
+
+          * - ``consumerName``
+
+              .. type:: string
+
+            - Only available if the payment is completed – The consumer's name.
+
+          * - ``consumerAccount``
+
+              .. type:: string
+
+            - Only available if the payment is completed – The consumer's bank account. This may be an IBAN, or it
+              may be a domestic account number.
+
+          * - ``consumerBic``
+
+              .. type:: string
+
+            - Only available if the payment is completed – The consumer's bank's BIC / SWIFT code.
 
 Bank transfer
 """""""""""""
@@ -466,46 +496,7 @@ Belfius Pay Button
 
             - Only available one banking day after the payment has been completed – ``GKCCBEBB``.
 
-Bitcoin
-"""""""
-.. list-table::
-   :widths: auto
-
-   * - ``details``
-
-       .. type:: object
-
-     - An object with payment details.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``bitcoinAddress``
-
-              .. type:: string
-
-            - Only available if the payment has been completed – The bitcoin address the bitcoins were transferred to.
-
-          * - ``bitcoinAmount``
-
-              .. type:: object
-
-            - The amount transferred in BTC.
-
-          * - ``bitcoinUri``
-
-              .. type:: string
-
-            - An URI that is understood by Bitcoin wallet clients and will cause such clients to prepare the
-              transaction. Follows the
-              `BIP 21 URI scheme <https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki>`_.
-
-          * - ``qrCode``
-
-              .. type:: object
-
-            - Only available if requested during payment creation - The QR code that can be scanned by Bitcoin wallet
-              clients and will cause such clients to prepare the transaction.
+.. _Credit card v1:
 
 Credit card
 """""""""""
@@ -579,10 +570,10 @@ Credit card
 
               .. type:: string
 
-            - Only available if the payment has been completed – The fee region for the payment: ``intra-eu`` for
-              consumer cards from the EU, and ``other`` for all other cards.
+            - Only available if the payment has been completed – The fee region for the payment.
+              The ``intra-eu`` value is for consumer cards from the EEA.
 
-              Possible values: ``intra-eu`` ``other``
+              Possible values: ``american-express`` ``amex-intra-eea`` ``carte-bancaire`` ``intra-eu`` ``intra-eu-corporate`` ``domestic`` ``maestro`` ``other``
 
 EPS
 """
@@ -841,6 +832,19 @@ PayPal
 
             - PayPal's reference for the transaction, for instance ``9AL35361CF606152E``.
 
+          * - ``paypalPayerId``
+
+              .. type:: string
+
+            - ID for the consumer's PayPal account, for instance ``WDJJHEBZ4X2LY``.
+
+          * - ``paypalFee``
+
+              .. type:: decimal
+
+            - The amount of fee PayPal will charge for this transaction. This field is omitted
+              if PayPal will not charge a fee for this transaction.
+
 paysafecard
 """""""""""
 .. list-table::
@@ -990,6 +994,63 @@ SOFORT Banking
 
             - Only available if the payment has been completed – The consumer's bank's BIC.
 
+Vouchers
+""""""""
+.. list-table::
+   :widths: auto
+
+   * - ``details``
+
+       .. type:: object
+
+     - An object with payment details.
+
+       .. list-table::
+          :widths: auto
+
+          * - ``issuer``
+
+              .. type:: string
+
+            - The ID of the voucher brand that was used during the payment. When multiple vouchers
+              are used, this is the issuer of the first voucher.
+
+          * - ``vouchers``
+
+              .. type:: array
+
+            - A list of details of all vouchers that are used for this payment. Each object will
+              contain the following properties.
+
+              .. list-table::
+                 :widths: auto
+
+                 * - ``issuer``
+
+                     .. type:: string
+
+                   - The ID of the voucher brand that was used during the payment.
+
+                 * - ``amount``
+
+                     .. type:: decimal
+
+                   - The amount in EUR that was paid with this voucher.
+
+          * - ``remainderAmount``
+
+              .. type:: decimal
+
+            - Only available if another payment method was used to pay the remainder amount – The
+              amount in EUR that was paid with another payment method for the remainder amount.
+
+          * - ``remainderMethod``
+
+              .. type:: string
+
+            - Only available if another payment method was used to pay the remainder amount – The
+              payment method that was used to pay the remainder amount.
+
 QR codes (optional)
 ^^^^^^^^^^^^^^^^^^^
 A QR code object with payment method specific values is available for certain payment methods if you pass the include
@@ -1034,11 +1095,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "resource": "payment",
@@ -1058,7 +1119,7 @@ Response
            "consumerAccount": "NL53INGB0618365937",
            "consumerBic": "INGBNL2A"
        },
-       "locale": "nl_NL",
+       "locale": "nl",
        "profileId": "pfl_QkEhN94Ba",
        "links": {
            "webhookUrl": "https://webshop.example.org/payments/webhook",

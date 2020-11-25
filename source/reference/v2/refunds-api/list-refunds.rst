@@ -1,5 +1,6 @@
-List refunds
-============
+List Payment Refunds API
+========================
+
 .. api-name:: Refunds API
    :version: 2
 
@@ -13,9 +14,16 @@ List refunds
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: true
    :oauth: true
 
-Retrieve all refunds. If the payment-specific endpoint is used, only refunds for that specific payment are returned.
+Retrieve Refunds.
+
+* If the payment-specific endpoint is used, only Refunds for that specific Payment are returned.
+* When using the top level endpoint ``v2/refunds`` with an API key, only refunds for the corresponding website profile
+  and mode are returned.
+* When using the top level endpoint with OAuth, you can specify the profile and mode with the ``profileId`` and
+  ``testmode`` parameters respectively. If you omit ``profileId``, you will get all Refunds for the Organization.
 
 The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
 
@@ -32,7 +40,7 @@ When using the payment-specific endpoint, replace ``paymentId`` in the endpoint 
        .. type:: string
           :required: false
 
-     - Offset the result set to the refund with this ID. The refund with this ID is included in the result
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the refund with this ID. The refund with this ID is included in the result
        set as well.
 
    * - ``limit``
@@ -42,16 +50,41 @@ When using the payment-specific endpoint, replace ``paymentId`` in the endpoint 
 
      - The number of refunds to return (with a maximum of 250).
 
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the following query string parameters are also available. With the ``profileId``
+parameter, you can specify which profile you want to look at when listing refunds. If you omit the ``profileId``
+parameter, you will get all refunds on the organization.
+
+.. list-table::
+   :widths: auto
+
+   * - ``profileId``
+
+       .. type:: string
+          :required: false
+
+     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
+
+   * - ``testmode``
+
+       .. type:: boolean
+          :required: false
+
+     - Set this to true to only retrieve Refunds made in test mode. By default, only Refunds on live mode Payments are
+       returned.
+
 Embedding of related resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This endpoint allows for embedding additional information by appending the following values via the ``embed``
 query string parameter.
 
-* ``payment`` Include the :doc:`payments </reference/v2/payments-api/get-payment>` the refunds were created for.
+* ``payment`` Include the :doc:`Payments </reference/v2/payments-api/get-payment>` the Refunds were created for.
 
 Response
 --------
-``200`` ``application/hal+json; charset=utf-8``
+``200`` ``application/hal+json``
 
 .. list-table::
    :widths: auto
@@ -76,7 +109,8 @@ Response
 
               .. type:: array
 
-            - An array of refund objects as described in :doc:`Get refund </reference/v2/refunds-api/get-refund>`.
+            - An array of refund objects as described in
+              :doc:`Get payment refund </reference/v2/refunds-api/get-refund>`.
 
    * - ``_links``
 
@@ -110,36 +144,63 @@ Response
 
               .. type:: object
 
-            - The URL to the refunds list endpoint documentation.
+            - The URL to the List payment refunds endpoint documentation.
 
 Example
 -------
 
-Request (curl)
-^^^^^^^^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-   curl -X GET https://api.mollie.com/v2/payments/tr_7UhSN1zuXS/refunds \
-       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+      curl -X GET https://api.mollie.com/v2/payments/tr_7UhSN1zuXS/refunds \
+         -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
 
-Request (PHP)
-^^^^^^^^^^^^^
-.. code-block:: php
-   :linenos:
+   .. code-block:: php
+      :linenos:
 
-    <?php
-    $mollie = new \Mollie\Api\MollieApiClient();
-    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
-    $refunds = $mollie->payments->get("tr_WDqYK6vllg")->refunds();
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+      $refunds = $mollie->payments->get("tr_WDqYK6vllg")->refunds();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      refunds = mollie_client.payments.get('tr_WDqYK6vllg').refunds
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM'
+      end
+
+      refunds = Mollie::Payment.get('tr_7UhSN1zuXS').refunds
+
+   .. code-block:: javascript
+      :linenos:
+
+      const { createMollieClient } = require('@mollie/api-client');
+      const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const refunds = await mollieClient.payments_refunds.page({ paymentId: 'tr_WDqYK6vllg' });
+      })();
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
        "count": 5,
@@ -155,6 +216,9 @@ Response
                    "status": "pending",
                    "createdAt": "2018-03-14T17:09:02.0Z",
                    "description": "Order",
+                   "metadata": {
+                        "bookkeeping_id": 12345
+                   },
                    "paymentId": "tr_WDqYK6vllg",
                    "_links": {
                        "self": {

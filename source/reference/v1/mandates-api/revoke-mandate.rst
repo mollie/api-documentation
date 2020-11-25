@@ -16,6 +16,7 @@ Revoke mandate
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: false
    :oauth: true
 
 Revoke a customer's mandate. You will no longer be able to charge the consumer's bank account or credit card with this
@@ -25,6 +26,21 @@ Parameters
 ----------
 Replace ``customerId`` in the endpoint URL by the customer's ID, and replace ``id`` by the mandate's ID. For example:
 ``/v1/customers/cst_stTC2WHAuS/mandates/mdt_pWUnw6pkBN``.
+
+Mollie Connect/OAuth parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
+available.
+
+.. list-table::
+   :widths: auto
+
+   * - ``testmode``
+
+       .. type:: boolean
+          :required: false
+
+     - Set this to ``true`` to revoke a test mode mandate.
 
 Response
 --------
@@ -43,7 +59,7 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 204 No Content

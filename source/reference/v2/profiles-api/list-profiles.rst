@@ -9,6 +9,7 @@ List profiles
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: true
    :oauth: true
 
 Retrieve all profiles available on the account.
@@ -25,7 +26,7 @@ Parameters
        .. type:: string
           :required: false
 
-     - Offset the result set to the profile with this ID. The profile with this ID is included in the result
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the profile with this ID. The profile with this ID is included in the result
        set as well.
 
    * - ``limit``
@@ -37,7 +38,7 @@ Parameters
 
 Response
 --------
-``200`` ``application/hal+json; charset=utf-8``
+``200`` ``application/hal+json``
 
 .. list-table::
    :widths: auto
@@ -101,31 +102,40 @@ Response
 Example
 -------
 
-Request (curl)
-^^^^^^^^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
 
-   curl -X GET https://api.mollie.com/v2/profiles?limit=5 \
-       -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+   .. code-block:: bash
+      :linenos:
 
-Request (PHP)
-^^^^^^^^^^^^^
-.. code-block:: php
-   :linenos:
+      curl -X GET https://api.mollie.com/v2/profiles?limit=5 \
+         -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
 
-    <?php
-    $mollie = new \Mollie\Api\MollieApiClient();
-    $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
-    $profiles = $mollie->profiles->page();
+   .. code-block:: php
+      :linenos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+      $profiles = $mollie->profiles->page();
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ'
+      end
+
+      profiles = Mollie::Profile.all
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
        "_embedded": {
@@ -148,6 +158,10 @@ Response
                        "self": {
                            "href": "https://api.mollie.com/v2/profiles/pfl_v9hTwCvYqw",
                            "type": "application/hal+json"
+                       },
+                       "dashboard": {
+                           "href": "https://www.mollie.com/dashboard/org_123456789/settings/profiles/pfl_v9hTwCvYqw",
+                           "type": "text/html"
                        },
                        "chargebacks": {
                            "href": "https://api.mollie.com/v2/chargebacks?profileId=pfl_v9hTwCvYqw",

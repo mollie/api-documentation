@@ -9,6 +9,7 @@ Get permission
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: true
    :oauth: true
 
 All API actions through OAuth are by default protected for privacy and/or money related reasons and therefore require
@@ -22,7 +23,7 @@ Replace ``id`` in the endpoint URL by the permission's ID, for example ``payment
 
 Response
 --------
-``200`` ``application/hal+json; charset=utf-8``
+``200`` ``application/hal+json``
 
 .. list-table::
    :widths: auto
@@ -37,12 +38,7 @@ Response
 
        .. type:: string
 
-     - The permission's unique identifier, for example ``payments.read``. See
-       :doc:`Permissions </oauth/permissions>` for details about the available permissions.
-
-       Possible values: ``customers.read`` ``customers.write`` ``invoices.read`` ``mandates.read``
-       ``mandates.write`` ``organizations.read`` ``organizations.write`` ``payments.read`` ``payments.write``
-       ``profiles.read`` ``profiles.write`` ``refunds.read`` ``refunds.write`` ``settlements.read``
+     - The permission's unique identifier, for example ``payments.read``
 
    * - ``description``
 
@@ -81,21 +77,39 @@ Response
 Example
 -------
 
-Request
-^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-   curl -X GET https://api.mollie.com/v2/permissions/payments.read \
-       -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+      curl -X GET https://api.mollie.com/v2/permissions/payments.read \
+         -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+
+   .. code-block:: php
+      :linenos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+      $permission = $mollie->permissions->get("payments.read");
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ'
+      end
+
+      permission = Mollie::Permission.get('payments.read')
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
        "resource": "permission",

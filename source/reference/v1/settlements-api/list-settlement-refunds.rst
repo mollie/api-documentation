@@ -16,6 +16,7 @@ List settlement refunds
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: false
    :oauth: true
 
 Retrieve all refunds included in a settlement.
@@ -29,7 +30,7 @@ for that endpoint can be used here as well.
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 This endpoint is an alias of the :doc:`List refunds </reference/v1/refunds-api/list-refunds>` endpoint. The response is
 therefore the exact same.
@@ -47,11 +48,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "totalCount": 28,
@@ -75,8 +76,8 @@ Response
                    "metadata": null,
                    "profileId": "pfl_D96wnsu869",
                    "links": {
-                       "refunds": "http://api.mollie.com/v1/payments/tr_2qkhcMzypH/refunds",
-                       "settlement": "http://api.mollie.com/v1/settlements/stl_QM8w7JDEhU"
+                       "refunds": "https://api.mollie.com/v1/payments/tr_2qkhcMzypH/refunds",
+                       "settlement": "https://api.mollie.com/v1/settlements/stl_QM8w7JDEhU"
                    },
                    "settlementId": "stl_QM8w7JDEhU"
                },
@@ -85,7 +86,7 @@ Response
                "refundedDatetime": "2017-01-11T15:39:53.0Z",
                "description": "Test refund 5 EU",
                "links": {
-                   "self": "http://api.mollie.com/v1/payments/tr_2qkhcMzypH/refunds/re_CkS3qkJ8Ny"
+                   "self": "https://api.mollie.com/v1/payments/tr_2qkhcMzypH/refunds/re_CkS3qkJ8Ny"
                }
            },
            { },

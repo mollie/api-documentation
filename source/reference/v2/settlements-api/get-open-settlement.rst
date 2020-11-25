@@ -19,8 +19,7 @@ Response
 --------
 ``200`` ``application/hal+json``
 
-The open balance settlement is returned in the same fashion as the
-:doc:`Get settlement </reference/v2/settlements-api/get-settlement>` endpoint.
+The open balance settlement is returned in the same fashion as the :doc:`Get settlement <get-settlement>` endpoint.
 
 Example
 -------
@@ -53,7 +52,7 @@ Example
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK

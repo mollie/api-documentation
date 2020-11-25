@@ -1,5 +1,5 @@
-List invoices
-=============
+List invoices API
+=================
 .. api-name:: Invoices API
    :version: 2
 
@@ -9,6 +9,7 @@ List invoices
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: true
    :oauth: true
 
 Retrieve all invoices on the account. Optionally filter on year or invoice number.
@@ -40,7 +41,7 @@ Parameters
        .. type:: integer
           :required: false
 
-     - Offset the result set to the invoice with this ID. The invoice with this ID is included in the result
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the invoice with this ID. The invoice with this ID is included in the result
        set as well.
 
    * - ``limit``
@@ -52,7 +53,7 @@ Parameters
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 .. list-table::
    :widths: auto
@@ -116,31 +117,39 @@ Response
 Example
 -------
 
-Request (curl)
-^^^^^^^^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-   curl -X GET "https://api.mollie.com/v2/invoices" \
-       -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+      curl -X GET "https://api.mollie.com/v2/invoices" \
+         -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
 
-Request (PHP)
-^^^^^^^^^^^^^
-.. code-block:: php
-   :linenos:
+   .. code-block:: php
+      :linenos:
 
-    <?php
-    $mollie = new \Mollie\Api\MollieApiClient();
-    $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
-    $invoices = $mollie->invoices->page();
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+      $invoices = $mollie->invoices->page();
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ'
+      end
+
+      invoices = Mollie::Invoice.all
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
        "count": 5,
@@ -180,12 +189,13 @@ Response
                    ],
                    "_links": {
                        "self": {
-                            "href": "https://api.mollie.com/v2/invoice/inv_xBEbP9rvAq",
+                            "href": "https://api.mollie.com/v2/invoices/inv_xBEbP9rvAq",
                             "type": "application/hal+json"
                        },
                        "pdf": {
                             "href": "https://www.mollie.com/merchant/download/invoice/xBEbP9rvAq/2ab44d60b35955fa2c602",
-                            "type": "application/pdf"
+                            "type": "application/pdf",
+                            "expiresAt": "2018-11-09T14:10:36+00:00"
                        }
                    }
                },

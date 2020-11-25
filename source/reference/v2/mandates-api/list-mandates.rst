@@ -9,6 +9,7 @@ List mandates
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: true
    :oauth: true
 
 Retrieve all mandates for the given ``customerId``, ordered from newest to oldest.
@@ -27,7 +28,7 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``c
        .. type:: string
           :required: false
 
-     - Offset the result set to the mandate with this ID. The mandate with this ID is included in the result
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the mandate with this ID. The mandate with this ID is included in the result
        set as well.
 
    * - ``limit``
@@ -37,10 +38,10 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``c
 
      - The number of mandates to return (with a maximum of 250).
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is also available.
 
 .. list-table::
    :widths: auto
@@ -55,7 +56,7 @@ available.
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 .. list-table::
    :widths: auto
@@ -119,32 +120,51 @@ Response
 Example
 -------
 
-Request (curl)
-^^^^^^^^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-   curl -X GET https://api.mollie.com/v2/customers/cst_8wmqcHMN4U/mandates \
-       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+      curl -X GET https://api.mollie.com/v2/customers/cst_8wmqcHMN4U/mandates \
+         -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
 
-Request (PHP)
-^^^^^^^^^^^^^
-.. code-block:: php
-   :linenos:
+   .. code-block:: php
+      :linenos:
 
-    <?php
-    $mollie = new \Mollie\Api\MollieApiClient();
-    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
-    $customer = $mollie->customers->get("cst_stTC2WHAuS");
-    $mandates = $customer->mandates();
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+      $customer = $mollie->customers->get("cst_stTC2WHAuS");
+      $mandates = $customer->mandates();
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM'
+      end
+
+      customer = Mollie::Customer.get('cst_stTC2WHAuS')
+      mandates = customer.mandates
+
+   .. code-block:: javascript
+      :linenos:
+
+      const { createMollieClient } = require('@mollie/api-client');
+      const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const mandates = await mollieClient.customers_mandates.page({ customerId: 'cst_stTC2WHAuS' });
+      })();
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
        "count": 5,
@@ -153,6 +173,7 @@ Response
                {
                    "resource": "mandate",
                    "id": "mdt_AcQl5fdL4h",
+                   "mode": "test",
                    "status": "valid",
                    "method": "directdebit",
                    "details": {

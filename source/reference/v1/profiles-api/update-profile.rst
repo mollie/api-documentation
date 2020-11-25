@@ -3,12 +3,20 @@ Update profile
 .. api-name:: Profiles API
    :version: 1
 
+.. warning:: The v1 API has been deprecated. The v1 API will be supported for the foreseeable future, at least until
+             July 2023. However, new features will only be added to the v2 API.
+
+             The documentation for updating profiles in the new v2 API can be found
+             :doc:`here </reference/v2/profiles-api/update-profile>`. For more information on the v2 API, refer to our
+             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
+
 .. endpoint::
    :method: POST
    :url: https://api.mollie.com/v1/profiles/*id*
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: false
    :oauth: true
 
 In order to process payments, you need to create a website profile. A website profile can easily be created via the
@@ -60,15 +68,33 @@ Replace ``id`` in the endpoint URL by the payment profile's ID, for example ``pf
 
        Possible values:
 
+       * ``5192`` Books, magazines and newspapers
+       * ``5262`` Marketplaces, crowdfunding, donation platforms
        * ``5399`` General merchandise
-       * ``5732`` Electronics, computers, and software
-       * ``4121`` Travel, rental, and transportation
-       * ``6012`` Financial services
        * ``5499`` Food and drinks
-       * ``7999`` Events, festivals, and recreation
-       * ``5192`` Books, magazines, and newspapers
-       * ``7299`` Personal services
+       * ``5533`` Automotive Products
+       * ``5641`` Children Products
+       * ``5651`` Clothing & Shoes
+       * ``5712`` Home furnishing
+       * ``5732`` Electronics, computers and software
+       * ``5734`` Hosting/VPN services
+       * ``5735`` Entertainment
+       * ``5815`` Credits/vouchers/giftcards
+       * ``5921`` Alcohol
+       * ``5944`` Jewelry & Accessories
+       * ``5945`` Hobby, Toy, and Game Shops
+       * ``5977`` Health & Beauty products
+       * ``6012`` Financial services
+       * ``6051`` Crypto currency
+       * ``7299`` Consultancy
+       * ``7922`` Events, conferences, concerts, tickets
+       * ``7997`` Gyms, membership fee based sports
+       * ``7999`` Travel, rental and transportation
+       * ``8111`` Lawyers and legal advice
+       * ``8299`` Advising/coaching/training
        * ``8398`` Charity and donations
+       * ``8699`` Political parties
+       * ``9399`` Government services
        * ``0`` Other
 
    * - ``mode``
@@ -83,7 +109,7 @@ Replace ``id`` in the endpoint URL by the payment profile's ID, for example ``pf
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 The updated profile object is returned, as described in :doc:`Get profile </reference/v1/profiles-api/get-profile>`.
 
@@ -105,11 +131,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "resource": "profile",

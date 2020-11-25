@@ -16,6 +16,7 @@ List mandates
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: false
    :oauth: true
 
 Retrieve all mandates of a customer.
@@ -41,10 +42,10 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``c
 
      - The number of mandates to return (with a maximum of 250).
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is also available.
 
 .. list-table::
    :widths: auto
@@ -58,7 +59,7 @@ available.
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 .. list-table::
    :widths: auto
@@ -134,11 +135,12 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "totalCount": 2,
@@ -148,6 +150,7 @@ Response
            {
                "resource": "mandate",
                "id": "mdt_pO2m5jVgMa",
+               "mode": "test",
                "status": "valid",
                "method": "directdebit",
                "customerId": "cst_8wmqcHMN4U",

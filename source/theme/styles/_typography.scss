@@ -4,7 +4,7 @@
 body {
   font-family: $font-family-default;
   font-weight: 400;
-  font-size: 19px;
+  font-size: 17px;
   line-height: $line-height-default + em;
   color: #333333;
 }
@@ -22,24 +22,34 @@ h6 {
 
 h1,
 .h1 {
-  font-size: 32px;
+  font-size: 30px;
   line-height: 1;
   margin-bottom: 20px;
   font-weight: $font-weight-extra-bold;
 }
 
 h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
+  font-weight: 800;
+}
+
+h2,
 .h2 {
-  font-size: 26px;
+  font-size: 24px;
   line-height: 1;
-  margin-bottom: 0.25em;
+  margin-top: 2.5em;
+  margin-bottom: 0.75em;
 }
 
 h3,
 .h3 {
   font-size: 22px;
   line-height: 1;
-  margin-bottom: 0.25em;
+  margin-bottom: 0.5em;
 }
 
 h4,
@@ -52,7 +62,7 @@ h4,
 
 p {
   margin-top: 0;
-  margin-bottom: 35px;
+  margin-bottom: 1.5em;
 }
 
 code {

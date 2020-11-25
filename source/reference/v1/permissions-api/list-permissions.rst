@@ -9,9 +9,10 @@ List permissions
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: false
    :oauth: true
 
-List all permissions available with the current OAuth access token.
+List all permissions available with the current app access token.
 
 Parameters
 ----------
@@ -34,7 +35,7 @@ Parameters
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 .. list-table::
    :widths: auto
@@ -111,11 +112,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "totalCount": 9,

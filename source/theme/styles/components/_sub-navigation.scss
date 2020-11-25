@@ -6,7 +6,7 @@ $menu-breakpoint: 715px;
   background: #fafafa;
   box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease-out;
-  height: 150px;
+  height: 100px;
   position: sticky;
   position: -webkit-sticky;
   position: -moz-sticky;
@@ -16,35 +16,20 @@ $menu-breakpoint: 715px;
   z-index: 2;
   max-width: 100vw;
   overflow-x: auto;
-
+  overflow-y: hidden;
   @media (min-width: $menu-breakpoint) {
     overflow: hidden;
   }
 }
 
-.sub-navigation--small {
-  transform: translateY(-100px);
+.sub-navigation--small, .sub-navigation--small .sub-navigation__items {
+  @media (min-width: $menu-breakpoint) {
+    transform: translateY(5px);
+  }
 }
 
-.sub-navigation--small .sub-navigation__items {
-  transform: translateY(5px);
-}
-
-.sub-navigation:hover {
-  transform: translateY(0);
-}
-
-.sub-navigation__warning {
-  background: #911305;
-  color: #fff;
-  height: 50px;
-  line-height: 30px;
-  overflow: hidden;
-  padding: 10px 0;
-  text-align: center;
-  text-overflow: ellipsis;
-  text-shadow: 0 0 5px rgba(0, 0, 0, .2);
-  white-space: nowrap;
+.sub-navigation--small:hover {
+  transform: translateY(50px);
 }
 
 .sub-navigation__items {

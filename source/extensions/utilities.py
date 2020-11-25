@@ -2,7 +2,7 @@ def exists_in_list(value, valid_values):
     """
     :type value: string
     :type valid_values: list
-    :type: string
+    :rtype: string
     """
     if not value:
         error = "must supply a value; choose from {}"

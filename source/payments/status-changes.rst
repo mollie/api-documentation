@@ -8,7 +8,7 @@ them. Then we will show you how the statuses are connected.
 
 ``open``
     The payment has been created, but nothing else has happened yet. This is not a status Mollie will call your
-    :doc:`webhook </payments/webhooks>` for.
+    :doc:`webhook </guides/webhooks>` for.
 
 ``canceled``
     Your customer has canceled the payment. This is a definitive status. Mollie will call your webhook when this status
@@ -21,6 +21,14 @@ them. Then we will show you how the statuses are connected.
     yet. Nothing really needs to happen on your end when this status occurs. Mollie will not call your webhook when this
     status occurs.
 
+``authorized``
+    If the payment method supports captures, the payment method will have this status for as long as new captures can be
+    created.
+
+    Currently this status is only possible for the payment methods
+    `Klarna Pay later <https://www.mollie.com/payments/klarna-pay-later>`_ and
+    `Klarna Slice it <https://www.mollie.com/payments/klarna-slice-it>`_.
+
 ``expired``
     The payment has expired, e.g. your customer has abandoned the payment.
 
@@ -31,6 +39,10 @@ them. Then we will show you how the statuses are connected.
 ``failed``
     The payment has failed and cannot be completed with a different payment method. We will call your webhook when a
     payment transitions to the ``failed`` status.
+
+    Please note that when you use :doc:`/guides/checkout` and you offer multiple payment methods you will be
+    redirected to the method selection screen after a payment failure. So, the consumer can choose
+    another method to finish the payment.
 
 ``paid``
     This status occurs whenever a payment is successfully paid. When this status occurs we will call your webhook.
@@ -43,7 +55,9 @@ How does one status lead to another?
 ------------------------------------
 Please look at the below diagram. It tells you exactly when to expect what status:
 
-.. image:: images/api-status-list-v2@2x.png
+.. image:: images/payment-status-flow@2x.png
+
+.. note:: The payment status for SEPA Direct Debit payments could also change from ``pending`` to ``failed``.
 
 When does a payment expire?
 ---------------------------
@@ -54,28 +68,33 @@ abandons it. The expiry time is different for each payment method:
 Expiry times per payment method
 -------------------------------
 
-+---------------------------+-----------------------------------+
-| Payment methods           | Expiry time                       |
-+===========================+===================================+
-| - iDEAL                   | 15 minutes                        |
-| - paysafecard             |                                   |
-+---------------------------+-----------------------------------+
-| - Credit card             | 30 minutes                        |
-+---------------------------+-----------------------------------+
-| - Bancontact              | 1 hour                            |
-| - Bitcoin                 |                                   |
-| - EPS                     |                                   |
-| - Giropay                 |                                   |
-| - KBC                     |                                   |
-| - SOFORT Banking          |                                   |
-+---------------------------+-----------------------------------+
-| - PayPal                  | 3 hours                           |
-+---------------------------+-----------------------------------+
-| - Belfius Pay Button      | Next business day at 09:00 AM     |
-| - ING Home'Pay            |                                   |
-+---------------------------+-----------------------------------+
-| - Bank transfer [#f1]_    | 12(+2) days                       |
-+---------------------------+-----------------------------------+
++---------------------------------+-----------------------------------+
+| Payment methods                 | Expiry time                       |
++=================================+===================================+
+| - iDEAL                         | 15 minutes                        |
+| - paysafecard                   |                                   |
++---------------------------------+-----------------------------------+
+| - Credit card                   | 30 minutes                        |
++---------------------------------+-----------------------------------+
+| - Bancontact                    | 1 hour                            |
+| - Belfius Pay Button            |                                   |
+| - EPS                           |                                   |
+| - Giropay                       |                                   |
+| - KBC                           |                                   |
+| - MyBank                        |                                   |
+| - Przelewy24                    |                                   |
++---------------------------------+-----------------------------------+
+| - SOFORT Banking                | 2 hours                           |
++---------------------------------+-----------------------------------+
+| - PayPal                        | 3 hours                           |
+| - Vouchers                      |                                   |
++---------------------------------+-----------------------------------+
+| - Klarna Pay Later. / Slice It. | 48 hours                          |
++---------------------------------+-----------------------------------+
+| - ING Home'Pay                  | Next business day at 09:00 AM     |
++---------------------------------+-----------------------------------+
+| - Bank transfer [#f1]_          | 12(+2) days                       |
++---------------------------------+-----------------------------------+
 
 .. note:: It is not a good idea to predict payment expiry. Best wait until your webhook is called and fetch the status
           as usual. This is the most reliable way to keep your system in sync with Mollie, also in the case of expiring
@@ -85,4 +104,4 @@ Expiry times per payment method
 
 .. [#f1] Payments made by bank transfer are done manually by your customer. Some days can pass before it becomes clear
          the payment has been paid. That's why the payment method ``banktransfer`` will by default not expire until 12
-         days have passed. One or two days can be added when the 12th day is a Saturday or Sunday.
+         days have passed. One or two days can be added when the 12\ :sup:`th` day is a Saturday or Sunday.

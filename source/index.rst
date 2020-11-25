@@ -2,7 +2,7 @@ Mollie API: simple & powerful
 =============================
 
 Use the Mollie API to integrate online payments by Mollie directly into your website or app. Mollie and your website
-will communicate by sending HTTP requests back and forth.
+or app back-end will communicate by sending HTTP requests back and forth.
 
 This page provides an overview of the Mollie API. The topics in the chapter deal with a number of specific aspects of
 the API. We recommend to read these topics entirely.
@@ -30,18 +30,16 @@ Well begun is half done. Save time and build on solid foundations. Mollie API cl
 `PHP <https://github.com/mollie/mollie-api-php>`_, `Ruby <https://github.com/mollie/mollie-api-ruby>`_,
 `Node.js <https://github.com/mollie/mollie-api-node>`_ and `Python <https://github.com/mollie/mollie-api-python>`_.
 
-Of course we also provide modules and plugins for about every webshop software out there.
+Of course we also provide `modules and plugins <https://www.mollie.com/integrations>`_ for just about every webshop software out there.
 
 Payment methods
 ---------------
-Mollie is always adding new payment methods. The Mollie API currently supports these payments methods:
+Mollie is always adding new payment methods. The Mollie API currently supports the following payments methods:
 
 * `Bancontact <https://www.mollie.com/en/payments/bancontact>`_
 * `Bank transfer <https://www.mollie.com/en/payments/bank-transfer>`_
 * `Belfius Pay Button <https://www.mollie.com/en/payments/belfius>`_
-* `Bitcoin <https://www.mollie.com/en/payments/bitcoin>`_
 * `Credit card <https://www.mollie.com/en/payments/credit-card>`_ (VISA, MasterCard, Maestro and American Express)
-* `SEPA Direct Debit <https://www.mollie.com/en/payments/direct-debit>`_
 * `EPS <https://www.mollie.com/en/payments/eps>`_
 * `Gift cards <https://www.mollie.com/en/payments/gift-cards>`_ (Webshop Giftcard, Podium Cadeaukaart, VVV Cadeaukaart,
   YourGift etc.)
@@ -49,9 +47,19 @@ Mollie is always adding new payment methods. The Mollie API currently supports t
 * `iDEAL <https://www.mollie.com/en/payments/ideal>`_
 * `ING Home'Pay <https://www.mollie.com/en/payments/ing-homepay>`_
 * `KBC/CBC Payment Button <https://www.mollie.com/en/payments/kbc-cbc>`_
+* `Klarna Pay later  <https://www.mollie.com/en/payments/klarna-pay-later>`_
+* `Klarna Slice it <https://www.mollie.com/en/payments/klarna-slice-it>`_
+* `Meal and Eco-vouchers <https://www.mollie.com/en/payments/meal-and-eco-vouchers>`_ (Appetiz, Cadeau Pass, Chèque Déjeuner, Eco Pass, Lunch Pass, Monizze, PassRestaurant, Swile)
+* MyBank
 * `PayPal <https://www.mollie.com/en/payments/paypal>`_
 * `paysafecard <https://www.mollie.com/en/payments/paysafecard>`_
+* `Przelewy24 <https://www.mollie.com/en/payments/przelewy24>`_
+* `SEPA Direct Debit <https://www.mollie.com/en/payments/direct-debit>`_
 * `SOFORT Banking <https://www.mollie.com/en/payments/sofort>`_
 
+Additionally, the following wallets are supported:
+
+* `Apple Pay <https://www.mollie.com/payments/apple-pay>`_
+
 All of the payment methods you have enabled are – where relevant – shown to the consumer. You can enable payment methods
-using the `Dashboard <https://www.mollie.com/dashboard/settings/profiles>`_.
+using the `Mollie Dashboard <https://www.mollie.com/dashboard/settings/profiles>`_.

@@ -1,15 +1,16 @@
-Get organization
-================
+Get Organization API
+====================
 .. api-name:: Organizations API
-    :version: 2
+   :version: 2
 
 .. endpoint::
-    :method: GET
-    :url: https://api.mollie.com/v2/organizations/*id*
+   :method: GET
+   :url: https://api.mollie.com/v2/organizations/*id*
 
 .. authentication::
-    :api_keys: false
-    :oauth: true
+   :api_keys: false
+   :organization_access_tokens: true
+   :oauth: true
 
 Retrieve an organization by its ID.
 
@@ -26,7 +27,7 @@ No parameters applicable for this endpoint.
 
 Response
 --------
-``200`` ``application/hal+json; charset=utf-8``
+``200`` ``application/hal+json``
 
 .. list-table::
    :widths: auto
@@ -49,6 +50,12 @@ Response
 
      - The name of the organization.
 
+   * - ``locale``
+
+       .. type:: string
+
+     - The preferred locale of the merchant which has been set in Mollie Dashboard.
+
    * - ``address``
 
        .. type:: address object
@@ -66,7 +73,13 @@ Response
        .. type:: string
 
      - The VAT number of the organization, if based in the European Union. The VAT number has been checked with the
-       `VIES <http://ec.europa.eu/taxation_customs/vies/>`_ by Mollie.
+       `VIES <http://ec.europa.eu/taxation_customs/vies/>`_ service by Mollie.
+
+   * - ``vatRegulation``
+
+       .. type:: string
+
+     - The organization's VAT regulation, if based in the European Union. Either ``shifted`` (VAT is shifted) or ``dutch`` (Dutch VAT rate).
 
    * - ``_links``
 
@@ -84,6 +97,12 @@ Response
 
             - The API resource URL of the organization itself.
 
+          * - ``dashboard``
+
+              .. type:: URL object
+
+            - Direct link to the organization's Mollie Dashboard.
+
           * - ``documentation``
 
               .. type:: URL object
@@ -93,21 +112,39 @@ Response
 Example
 -------
 
-Request
-^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-       curl -X GET https://api.mollie.com/v2/organizations/org_12345678 \
-       -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+      curl -X GET https://api.mollie.com/v2/organizations/org_12345678 \
+      -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
+
+   .. code-block:: php
+      :linenos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+      $organization = $mollie->organizations->get("org_12345678");
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ'
+      end
+
+      organization = Mollie::Organization.get('org_12345678')
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
        "resource": "organization",
@@ -126,6 +163,10 @@ Response
            "self": {
                "href": "https://api.mollie.com/v2/organizations/org_12345678",
                "type": "application/hal+json"
+           },
+           "dashboard": {
+               "href": "https://mollie.com/dashboard/org_12345678",
+               "type": "text/html"
            },
            "documentation": {
                "href": "https://docs.mollie.com/reference/v2/organizations-api/get-organization",

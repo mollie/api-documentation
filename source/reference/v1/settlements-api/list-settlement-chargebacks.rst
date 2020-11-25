@@ -16,6 +16,7 @@ List settlement chargebacks
 
 .. authentication::
    :api_keys: false
+   :organization_access_tokens: false
    :oauth: true
 
 Retrieve all chargebacks included in a settlement.
@@ -29,7 +30,7 @@ parameters for that endpoint can be used here as well.
 
 Response
 --------
-``200`` ``application/json; charset=utf-8``
+``200`` ``application/json``
 
 This endpoint is an alias of the :doc:`List chargebacks </reference/v1/chargebacks-api/list-chargebacks>` endpoint. The
 response is therefore the exact same.
@@ -47,11 +48,11 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
 
    {
        "totalCount": 28,

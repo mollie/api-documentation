@@ -16,6 +16,7 @@ Cancel subscription
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: false
    :oauth: true
 
 A subscription can be canceled any time by calling ``DELETE`` on the resource endpoint.
@@ -24,6 +25,21 @@ Parameters
 ----------
 Replace ``customerId`` in the endpoint URL by the customer's ID, and replace ``id`` by the subscription's ID. For
 example: ``/v1/customers/cst_stTC2WHAuS/subscriptions/sub_rVKGtNd6s3``.
+
+Mollie Connect/OAuth parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
+available.
+
+.. list-table::
+   :widths: auto
+
+   * - ``testmode``
+
+       .. type:: boolean
+          :required: false
+
+     - Set this to ``true`` to cancel a test mode subscription.
 
 Response
 --------
@@ -42,7 +58,7 @@ Request
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 204 No Content

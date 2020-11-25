@@ -9,6 +9,7 @@ Get customer
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: true
    :oauth: true
 
 Retrieve a single customer by its ID.
@@ -17,10 +18,10 @@ Parameters
 ----------
 Replace ``id`` in the endpoint URL by the customer's ID, for example ``cst_8wmqcHMN4U``.
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is also available.
 
 .. list-table::
    :widths: auto
@@ -34,7 +35,7 @@ available.
 
 Response
 --------
-``200`` ``application/hal+json; charset=utf-8``
+``200`` ``application/hal+json``
 
 .. list-table::
    :widths: auto
@@ -75,9 +76,9 @@ Response
 
        .. type:: string
 
-     - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. If this parameter was
-       not provided when the customer was created, the browser language will be used instead in the payment flow (which
-       is usually more accurate).
+     - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. If this parameter
+       was not provided when the customer was created, the browser language will be used instead in the payment flow
+       (which is usually more accurate).
 
        Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
        ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
@@ -111,6 +112,12 @@ Response
 
             - The API resource URL of the customer itself.
 
+          * - ``dashboard``
+
+              .. type:: URL object
+
+            - Direct link to the Customer in the Mollie Dashboard.
+
           * - ``mandates``
 
               .. type:: URL object
@@ -141,31 +148,59 @@ Response
 Example
 -------
 
-Request (curl)
-^^^^^^^^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-   curl -X GET https://api.mollie.com/v2/customers/cst_kEn1PlbGa \
-       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+      curl -X GET https://api.mollie.com/v2/customers/cst_kEn1PlbGa \
+         -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
 
-Request (PHP)
-^^^^^^^^^^^^^
-.. code-block:: php
-   :linenos:
+   .. code-block:: php
+      :linenos:
 
-    <?php
-    $mollie = new \Mollie\Api\MollieApiClient();
-    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
-    $customer = $mollie->customers->get("cst_kEn1PlbGa");
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+      $customer = $mollie->customers->get("cst_kEn1PlbGa");
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      customer = mollie_client.customers.get(customer_id='cst_8wmqcHMN4U')
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM'
+      end
+
+      customer = Mollie::Customer.get('cst_8wmqcHMN4U')
+
+   .. code-block:: javascript
+      :linenos:
+
+      const { createMollieClient } = require('@mollie/api-client');
+      const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const customer = await mollieClient.customers.get('cst_kEn1PlbGa');
+      })();
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
        "resource": "customer",
@@ -181,16 +216,20 @@ Response
                "href": "https://api.mollie.com/v2/customers/cst_kEn1PlbGa",
                "type": "application/hal+json"
            },
+           "dashboard": {
+               "href": "https://www.mollie.com/dashboard/org_123456789/customers/cst_kEn1PlbGa",
+               "type": "text/html"
+           },
            "mandates": {
-               "href": "https://api.mollie.dev/v2/customers/cst_kEn1PlbGa/mandates",
+               "href": "https://api.mollie.com/v2/customers/cst_kEn1PlbGa/mandates",
                "type": "application/hal+json"
            },
            "subscriptions": {
-               "href": "https://api.mollie.dev/v2/customers/cst_kEn1PlbGa/subscriptions",
+               "href": "https://api.mollie.com/v2/customers/cst_kEn1PlbGa/subscriptions",
                "type": "application/hal+json"
            },
            "payments": {
-               "href": "https://api.mollie.dev/v2/customers/cst_kEn1PlbGa/payments",
+               "href": "https://api.mollie.com/v2/customers/cst_kEn1PlbGa/payments",
                "type": "application/hal+json"
            },
            "documentation": {

@@ -9,6 +9,7 @@ Create customer payment
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: true
    :oauth: true
 
 Creates a payment for the customer.
@@ -51,56 +52,116 @@ endpoint. For recurring payments, the following parameters have notable differen
      - If the ``recurringType`` parameter is set to ``recurring``, this parameter can be omitted. Since the payment will
        take place without customer interaction, a redirect is not needed.
 
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the only mandatory extra parameter is the ``profileId`` parameter. With it, you can
+specify which profile the payment belongs to. Organizations can have multiple profiles for each of their websites. See
+:doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+
+.. list-table::
+   :widths: auto
+
+   * - ``profileId``
+
+       .. type:: string
+          :required: true
+
+     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
+
+   * - ``testmode``
+
+       .. type:: boolean
+          :required: false
+
+     - Set this to ``true`` to create a payment made in test mode.
+
 Response
 --------
-``201`` ``application/hal+json; charset=utf-8``
+``201`` ``application/hal+json``
 
-A payment object is returned, as described in :doc:`Get payment </reference/v2/payments-api/get-payment>`.
+A payment object is returned, as described in :doc:`/reference/v2/payments-api/get-payment`.
 
 Example
 -------
 
-Request (curl)
-^^^^^^^^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
 
-   curl -X POST https://api.mollie.com/v2/customers/cst_8wmqcHMN4U/payments \
-       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
-       -d "amount[currency]=EUR" \
-       -d "amount[value]=10.00" \
-       -d "description=Order #12345" \
-       -d "sequenceType=first" \
-       -d "redirectUrl=https://webshop.example.org/order/12345/" \
-       -d "webhookUrl=https://webshop.example.org/payments/webhook/"
+   .. code-block:: bash
+      :linenos:
 
-Request (PHP)
-^^^^^^^^^^^^^
-.. code-block:: php
-   :linenos:
+      curl -X POST https://api.mollie.com/v2/customers/cst_8wmqcHMN4U/payments \
+         -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
+         -d "amount[currency]=EUR" \
+         -d "amount[value]=10.00" \
+         -d "description=Order #12345" \
+         -d "sequenceType=first" \
+         -d "redirectUrl=https://webshop.example.org/order/12345/" \
+         -d "webhookUrl=https://webshop.example.org/payments/webhook/"
 
-    <?php
-    $mollie = new \Mollie\Api\MollieApiClient();
-    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+   .. code-block:: php
+      :linenos:
 
-    $payment = $mollie->customers->get("cst_8wmqcHMN4U")->createPayment([
-      "amount" => [
-        "currency" => "EUR",
-        "value" => "10.00",
-      ],
-      "description" => "Order #12345",
-      "sequenceType" => "first",
-      "redirectUrl" => "https://webshop.example.org/order/12345/",
-      "webhookUrl => "https://webshop.example.org/payments/webhook/",
-    ]);
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+
+      $payment = $mollie->customers->get("cst_8wmqcHMN4U")->createPayment([
+          "amount" => [
+             "currency" => "EUR",
+             "value" => "10.00",
+          ],
+          "description" => "Order #12345",
+          "sequenceType" => "first",
+          "redirectUrl" => "https://webshop.example.org/order/12345/",
+          "webhookUrl" => "https://webshop.example.org/payments/webhook/",
+      ]);
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM'
+      end
+
+      payment = Mollie::Customer::Payment.create(
+        customer_id:   'cst_8wmqcHMN4U',
+        amount:        { value: '10.00', currency: 'EUR' },
+        description:   'Order #12345',
+        sequence_type: 'first',
+        redirect_url:  'https://webshop.example.org/order/12345/',
+        webhook_url:   'https://webshop.example.org/payments/webhook/'
+      )
+
+   .. code-block:: javascript
+      :linenos:
+
+      const { createMollieClient } = require('@mollie/api-client');
+      const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        const payment = await mollieClient.customers_payments.create({
+          customerId: 'cst_8wmqcHMN4U',
+          amount: {
+            currency: 'EUR',
+            value: '10.00', // We enforce the correct number of decimals through strings
+          },
+          description: 'Order #12345',
+          sequenceType: 'first',
+          redirectUrl: 'https://webshop.example.org/order/12345/',
+          webhookUrl: 'https://webshop.example.org/payments/webhook/',
+        });
+      })();
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 201 Created
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
        "resource": "payment",
@@ -133,6 +194,10 @@ Response
            "checkout": {
                "href": "https://www.mollie.com/payscreen/select-method/7UhSN1zuXS",
                "type": "text/html"
+           },
+           "dashboard": {
+               "href": "https://www.mollie.com/dashboard/org_12345678/payments/tr_7UhSN1zuXS",
+               "type": "application/json"
            },
            "documentation": {
                "href": "https://docs.mollie.com/reference/v2/payments-api/create-payment",

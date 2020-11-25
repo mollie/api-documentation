@@ -9,6 +9,7 @@ List customers
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: true
    :oauth: true
 
 Retrieve all customers created.
@@ -25,7 +26,7 @@ Parameters
        .. type:: string
           :required: false
 
-     - Offset the result set to the customer with this ID. The customer with this ID is included in the
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the customer with this ID. The customer with this ID is included in the
        result set as well.
 
    * - ``limit``
@@ -35,10 +36,10 @@ Parameters
 
      - The number of customers to return (with a maximum of 250).
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is also available.
 
 .. list-table::
    :widths: auto
@@ -52,7 +53,7 @@ available.
 
 Response
 --------
-``200`` ``application/hal+json; charset=utf-8``
+``200`` ``application/hal+json``
 
 .. list-table::
    :widths: auto
@@ -117,37 +118,59 @@ Response
 Example
 -------
 
-Request (curl)
-^^^^^^^^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
 
-   curl -X GET https://api.mollie.com/v2/customers \
-       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+   .. code-block:: bash
+      :linenos:
 
-Request (PHP)
-^^^^^^^^^^^^^
-.. code-block:: php
-   :linenos:
+      curl -X GET https://api.mollie.com/v2/customers \
+         -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
 
-    <?php
-    $mollie = new \Mollie\Api\MollieApiClient();
-    $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+   .. code-block:: php
+      :linenos:
 
-    // First page
-    $customers = $mollie->customers->page();
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-    // Next page
-    $customers->next();
+      // First page
+      $customers = $mollie->customers->page();
 
+      // Next page
+      $customers->next();
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+        config.api_key = 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM'
+      end
+
+      customers = Mollie::Customer.all
+
+   .. code-block:: javascript
+      :linenos:
+
+      const { createMollieClient } = require('@mollie/api-client');
+      const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+      (async () => {
+        // First page
+        let customers = await mollieClient.customers.page();
+
+        // Next page
+        customers = await customers.nextPage();
+      })();
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
        "count": 3,
@@ -166,6 +189,10 @@ Response
                        "self": {
                            "href": "https://api.mollie.com/v2/customers/cst_kEn1PlbGa",
                            "type": "application/hal+json"
+                       },
+                       "dashboard": {
+                           "href": "https://www.mollie.com/dashboard/org_123456789/customers/cst_kEn1PlbGa",
+                           "type": "text/html"
                        },
                        "documentation": {
                            "href": "https://docs.mollie.com/reference/v2/customers-api/get-customer",

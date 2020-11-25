@@ -39,7 +39,7 @@ html {
 }
 
 body {
-  padding-top: 45px;
+  padding-top: 54px;
 }
 
 ul,
@@ -135,7 +135,7 @@ a.headerlink::before {
 :target::before {
   content: '';
   display: block;
-  height: 130px;
+  height: 150px;
   margin: -130px 0 0;
 }
 
@@ -145,6 +145,62 @@ a.headerlink::before {
 #supported-currencies table tr th,
 #supported-currencies table tr td {
   text-align: left;
+}
+
+#supported-currencies tbody td:only-child {
+  padding-right: 0;
+}
+
+#supported-currencies .note {
+  margin-top: -20px;
+  margin-bottom: 15px;
+
+  @media (min-width: breakpoint('medium')) {
+    margin-top: -50px;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: breakpoint('<medium')) {
+  #supported-currencies table {
+    display: block;
+  }
+
+  #supported-currencies thead {
+    position: absolute;
+    left: -999em;
+  }
+
+  #supported-currencies tr {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
+  #supported-currencies td:nth-child(1) {
+    padding-top: 15px;
+    padding-bottom: 0;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  #supported-currencies td:nth-child(2) {
+    padding-top: 15px;
+    text-align: right;
+  }
+
+  #supported-currencies td:nth-child(3) {
+    order: 2;
+  }
+
+  #supported-currencies td:nth-child(3)::before {
+    content: 'Decimals: ';
+  }
+
+  #supported-currencies td:nth-child(3),
+  #supported-currencies td:nth-child(4) {
+    padding-bottom: 15px;
+    border-top: 0;
+  }
 }
 
 /**
@@ -188,14 +244,13 @@ a.headerlink::before {
 @import 'components/code';
 @import 'components/content';
 @import 'components/endpoint';
+@import 'components/code-example';
 @import 'components/figure';
 @import 'components/footer';
 @import 'components/github-link';
-@import 'components/highlight';
 @import 'components/link-dropdown';
 @import 'components/main';
 @import 'components/main-navigation';
-@import 'components/mobile-navigation';
 @import 'components/mobile-navigation-button';
 @import 'components/note';
 @import 'components/parameters';
@@ -205,6 +260,7 @@ a.headerlink::before {
 @import 'components/sub-navigation';
 @import 'components/sub-navigation-item';
 @import 'components/type';
+@import 'components/payment-method-switcher';
 
 /**
  * Utilities

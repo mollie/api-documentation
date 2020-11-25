@@ -91,6 +91,7 @@ Response
      - The status of the balance.
        
        Possible values:
+       
        * ``accepted`` The balance is operational and ready to be used.
        * ``pending`` In case the account is still being validated by our team.
        * ``blocked`` The balance has been blocked. Please `contact <https://www.mollie.com/en/contact/>`_ our support department for more information.

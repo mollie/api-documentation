@@ -14,11 +14,11 @@ Get settlement
 
 Successful payments, together with refunds, captures and chargebacks are collected into *settlements*, which are then
 paid out according to your organization's payout schedule. By retrieving a single settlement, you can check which
-payments were paid out with it, when the settlement took place, and what invoice reference was used for it.
+payments were paid out with it, when the settlement took place, and what invoices were created to
+invoice the costs in the settlement.
 
-Settlements will be transferred to your bank account with a ``reference``, for example ``1234567.1804.03``. You can use
-the :doc:`List settlements </reference/v2/settlements-api/get-settlement>` endpoint to look up a settlement by
-reference.
+Beside payments, settlements can be composed of other entities such as :doc:`refunds <list-settlement-refunds>`,
+:doc:`chargebacks <list-settlement-chargebacks>` or :doc:`captures <list-settlement-captures>`.
 
 Parameters
 ----------
@@ -48,7 +48,7 @@ Response
 
        .. type:: string
 
-     - The settlement's bank reference, as found on your invoice and in your Mollie account.
+     - The settlement's bank reference, as found in your Mollie account and on your bank statement.
 
    * - ``createdAt``
 
@@ -61,8 +61,8 @@ Response
        .. type:: string
 
      - The date on which the settlement was settled, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
-       When requesting the :doc:`open settlement </reference/v2/settlements-api/get-open-settlement>` or
-       :doc:`next settlement </reference/v2/settlements-api/get-next-settlement>` the return value is ``null``.
+       When requesting the :doc:`open settlement <get-open-settlement>` or  :doc:`next settlement <get-next-settlement>`
+       the return value is ``null``.
 
    * - ``status``
 
@@ -223,12 +223,31 @@ Response
 
                    - The gross total costs for this payment method (includes VAT).
 
+          * - ``invoiceId``
+
+              .. type:: string
+
+            - The ID of the invoice that was created to invoice specifically the costs in this
+              month/period.
+
+              If an individual month/period has not been invoiced yet, then this field will not
+              be present until that invoice is created.
+
    * - ``invoiceId``
 
        .. type:: string
 
      - The ID of the invoice on which this settlement is invoiced, if it has been invoiced.
 
+       .. warning:: This field has been deprecated in favor of the ``invoiceId`` field inside each
+                    monthly period in the ``periods`` object.
+
+                    This was done because some newer settlements have each monthly period invoiced
+                    separately, in which case this ID will reference only the oldest invoice. This
+                    can result in incorrect bookkeeping.
+
+                    For this reason the field should no longer be used. Use the aforementioned
+                    ``invoiceId`` field of the individual monthly period objects instead.
 
    * - ``_links``
 
@@ -326,7 +345,7 @@ Example
 
 Response
 ^^^^^^^^
-.. code-block:: http
+.. code-block:: none
    :linenos:
 
    HTTP/1.1 200 OK
@@ -425,7 +444,8 @@ Response
                                "currency": "EUR"
                            }
                        }
-                   ]
+                   ],
+                   "invoiceId": "inv_FrvewDA3Pr"
                }
            }
        },
