@@ -30,7 +30,7 @@ master_doc = 'contents'
 
 # General information about the project.
 project = 'Mollie API'
-copyright = '2019, Mollie B.V. <info@mollie.com>'
+copyright = '2020, Mollie B.V. <info@mollie.com>'
 author = 'Mollie B.V. <info@mollie.com>'
 
 # The version info for the project you're documenting, acts as replacement for
