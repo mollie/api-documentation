@@ -19,8 +19,6 @@ Card numbers for testing
 You can use these cards for testing, with any CVV and expiry date.
 
 .. table::
-   :header-alignment: left right right
-   :column-alignment: left right right
 
    +------------------+------------------------------------+--------------------------------------------+
    | Brand            | Triggers 3-D Secure authentication | Does not trigger 3-D Secure authentication |
@@ -45,8 +43,6 @@ This can be done by passing `magic amounts` when creating the payment. Depending
 Pass one of the following amounts to trigger a failure condition in test mode:
 
 .. table::
-   :header-alignment: left right
-   :column-alignment: left right
 
    +------------------------------+--------------+
    | Failure reason to trigger    | Magic amount |
