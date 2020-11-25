@@ -11,7 +11,7 @@ Get balance
    :api_keys: false
    :oauth: true
 
-Retrieve a balance by its unique token. See the guide on :doc:`Mollie Marketplaces & Platforms </guides/payouts>` for more details on
+Retrieve a balance by its unique token. See the guide on :doc:`Mollie Marketplaces & Platforms </guides/marketplaces-platforms>` for more details on
 balances.
 
 Parameters

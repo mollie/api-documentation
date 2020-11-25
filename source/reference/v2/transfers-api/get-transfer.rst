@@ -13,7 +13,7 @@ Get transfer
 
 Retrieve a transfer by its unique token.
 
-See the guide on :doc:`Mollie Marketplaces & Platforms </guides/payouts>` for more details on managing transfers for custom balances.
+See the guide on :doc:`Mollie Marketplaces & Platforms </guides/marketplaces-platforms>` for more details on managing transfers for custom balances.
 
 Parameters
 ----------
