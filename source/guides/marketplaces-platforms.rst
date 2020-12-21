@@ -7,75 +7,13 @@ Mollie Marketplaces & Platforms allows you to process third party funds for your
 
 This guide will explain step-by-step how to:
 
-* Configure a custom balance for your beneficiary.
 * Send payments to the beneficiary's balance.
 * Track automatic balance payouts, and trigger manual payouts.
 * Split payments across multiple beneficiary balances.
 * Purposely delay payments to be paid out at a later point.
 
-Getting started: creating a balance
------------------------------------
-To get started with Mollie Marketplaces & Platforms, :doc:`create a custom balance </reference/v2/balances-api/create-balance>` for your
-beneficiary first:
-
-.. code-block:: bash
-   :linenos:
-
-   curl -X POST https://api.mollie.com/v2/balances \
-       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW" \
-       -d "description=My custom balance" \
-       -d "transferDestination[type]=bank-account" \
-       -d "transferDestination[bankAccount]=NL53INGB0654422370" \
-       -d "transferDestination[beneficiaryName]=Jack Bauer" \
-       -d "transferThreshold[currency]=EUR" \
-       -d "transferThreshold[value]=40.00" \
-       -d "transferFrequency=daily"
-
-.. code-block:: http
-   :linenos:
-
-   HTTP/1.1 201 Created
-   Content-Type: application/hal+json; charset=utf-8
-
-   {
-     "resource": "balance",
-     "id": "bal_hinmkh",
-     "mode": "live",
-     "createdAt": "2019-01-10T12:06:28+00:00",
-     "type": "custom",
-     "currency": "EUR",
-     "description": "My custom balance",
-     "status": "accepted",
-     "availableAmount": {
-       "value": "0.00",
-       "currency": "EUR"
-     },
-     "incomingAmount": {
-       "value": "0.00",
-       "currency": "EUR"
-     },
-     "outgoingAmount": {
-       "value": "0.00",
-       "currency": "EUR"
-     },
-     "transferFrequency": "daily",
-     "transferThreshold": {
-       "value": "40.00",
-       "currency": "EUR"
-     },
-     "transferDestination": {
-       "type": "bank-account",
-       "beneficiaryName": "Jack Bauer",
-       "bankAccount": "NL53INGB0654422370"
-     },
-     "...": {}
-    }
-
-The created balance has been configured to do an automatic payout on a daily basis to the given bank account of your
-beneficiary.
-
-Transferring a payment to the balance
--------------------------------------
+Getting started: Transferring a payment to the balance
+------------------------------------------------------
 Now that we have configured a balance for the beneficiary, we can start routing payments to the balance. This can be
 done by specifying the payment routing upon :doc:`payment creation </reference/v2/payments-api/create-payment>`.
 
