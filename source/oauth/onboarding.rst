@@ -1,5 +1,5 @@
-Onboard your customers at Mollie
-================================
+Mollie Connect: Onboard your customers at Mollie
+================================================
 This guide will help you with the process of getting your customers onboard at Mollie. From the first OAuth permission
 to sending data about your customer, all steps will be covered.
 

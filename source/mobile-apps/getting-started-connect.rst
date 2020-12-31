@@ -6,7 +6,7 @@ in mind while integrating Mollie Connect. For iOS example we only show Swift sni
 Java and Kotlin snippets.
 
 .. note:: The code examples provided here are for illustrative purposes only and Mollie does not yet offer support on
-them.
+          them.
 
 Step 1: Create an OAuth App
 ---------------------------

@@ -9,6 +9,7 @@ Get payment route
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: true
    :oauth: true
 
 Retrieve a single payment route object by its route token.
@@ -75,8 +76,8 @@ Response
 
        .. type:: amount object
 
-     - The portion of the total payment amount that is being routed. If the payment is routed to one balance and the
-       parameter is ommitted, the amount will be equal to the payment amount.
+     - The portion of the total payment amount that is being routed. If the payment is routed to one connected account
+       and the parameter is omitted, the amount will be equal to the payment amount.
 
        .. list-table::
           :widths: auto
@@ -106,16 +107,16 @@ Response
 
               .. type:: string
 
-            - The type of destination. Currently only the destination type ``balance`` is supported.
+            - The type of destination. Currently only the destination type ``organization`` is supported.
 
-              Possible values: ``balance``
+              Possible values: ``organization``
 
-          * - ``balanceId``
+          * - ``organizationId``
 
               .. type:: string
 
-            - Only available for destination type ``balance``. The ID of the balance the funds will be routed to, for
-              example ``bal_8irzh1y2``.
+            - Only available for destination type ``organization``. The ID of the connected organization the funds will
+              be routed to, for example ``org_12345``.
 
    * - ``releaseDate``
 
@@ -124,7 +125,7 @@ Response
      - Upon payment creation, an optional future release date may have been given to delay routing of this part of the
        payment to a later date. The date must be given in ``YYYY-MM-DD`` format.
 
-       If no date is given, the funds become available to the balance as soon as the payment succeeds.
+       If no date is given, the funds become available to the connected account as soon as the payment succeeds.
 
    * - ``paymentId``
 
@@ -190,8 +191,8 @@ Response
            "currency": "EUR"
        },
        "destination": {
-           "type": "balance",
-           "balanceId": "bal_8irzh1y2"
+           "type": "organization",
+           "organizationId": "org_12345"
        },
        "releaseDate": "2018-03-22",
        "paymentId": "tr_7UhSN1zuXS",

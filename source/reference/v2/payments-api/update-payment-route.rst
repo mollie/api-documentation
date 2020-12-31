@@ -9,6 +9,7 @@ Update payment route
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: true
    :oauth: true
 
 Update a payment route object that was created using the ``routing`` field during
@@ -66,7 +67,7 @@ Request
 
    curl -X PATCH https://api.mollie.com/v2/payments/tr_7UhSN1zuXS/routes/rt_9dk4al1n \
        -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
-       -d "releaseDate=2018-08-01"
+       -d "releaseDate=2021-05-01"
 
 Response
 ^^^^^^^^
@@ -86,10 +87,10 @@ Response
            "currency": "EUR"
        },
        "destination": {
-           "type": "balance",
-           "balanceId": "bal_8irzh1y2"
+           "type": "organization",
+           "organizationId": "org_12345"
        },
-       "releaseDate": "2018-08-01",
+       "releaseDate": "2021-05-01",
        "paymentId": "tr_7UhSN1zuXS",
        "_links": {
            "self": {

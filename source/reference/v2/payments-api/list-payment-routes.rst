@@ -9,6 +9,7 @@ List payment routes
 
 .. authentication::
    :api_keys: true
+   :organization_access_tokens: true
    :oauth: true
 
 Retrieve all payment routes created for a specific payment.
@@ -148,8 +149,8 @@ Response
                        "currency": "EUR"
                    },
                    "destination": {
-                       "type": "balance",
-                       "balanceId": "bal_8irzh1y2"
+                       "type": "organization",
+                       "organizationId": "org_12345"
                    },
                    "releaseDate": "2018-03-22",
                    "paymentId": "tr_7UhSN1zuXS",

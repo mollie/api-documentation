@@ -1,72 +1,63 @@
 Mollie Connect: Overview
 ========================
-**Mollie Connect** allows you to create apps for Mollie merchants using `OAuth <https://en.wikipedia.org/wiki/OAuth>`_.
-OAuth allows you to access merchants' organizations with their consent, without having to manually exchange API keys.
-Whether you are just looking to improve your customers' experiences, to automate essential business processes, or to
-whitelabel our platform completely, it is all possible with OAuth.
+**Mollie Connect** is a set of APIs and tools that allows you to connect multiple Mollie accounts together. This toolkit
+can be used for varying purposes, including:
 
-Our OAuth platform allows you to:
+* Automating or white-labeling the Mollie onboarding for your customers
+* Allowing your app to view your customer's Mollie data
+* Enabling your app to manage your customer's Mollie account
+* Charging fees on payments processed through your app
+* Routing and splitting payments between connected accounts
+* Receiving referral commissions for your customers' payment volumes
 
-* Create Payments, Orders and Refunds on behalf of merchants;
-* Manage merchants' website profiles and enable payment methods;
-* Access a merchants' transaction and settlement data, for example for reconciliation or bookkeeping purposes;
-* Show the next settlement and balance at Mollie in your app;
-* Integrate merchants' invoices from Mollie in your app;
-* Charge merchants for Payments, Orders and Subscriptions initiated through your app
-  (:doc:`application fees </oauth/application-fees>`)
+Depending on the use case, accounts will be connected either through `OAuth <https://en.wikipedia.org/wiki/OAuth>`_ or
+through the Organization Links API.
 
-What does the Mollie OAuth flow look like?
-------------------------------------------
-After you've :doc:`registered your OAuth app with Mollie </oauth/getting-started>`, Mollie merchants will be able to
-install your app on their Mollie organization using the *Connect with Mollie* button.
+If you are not familiar with OAuth: it is an open standard that our API supports, which allows your app to access data
+from a connected account with their consent. This prevents having to manually exchange API keys. For example, with your
+user's consent, using OAuth you can call the Invoices API on behalf of your user to retrieve **their** Mollie invoice.
 
-When the button is clicked, you have to follow the well known OAuth *authorization flow* as visualized below:
+Getting started
+---------------
+In virtually all use cases you should start by learning a bit about how OAuth works at Mollie, and then registering an
+OAuth app. The following guide offers detailed instructions.
 
-.. image:: images/oauth-overview-flow@2x.png
+:doc:`/oauth/getting-started`
 
-The authorization flow is explained in further detail in :doc:`OAuth: Getting started </oauth/getting-started>`.
+Onboarding your customers
+-------------------------
+If your users do not yet have a Mollie account, you can either:
 
-What merchant data can I access?
---------------------------------
-As with all OAuth platforms, you tell Mollie what data you need when requesting an authorization by listing the
-permissions your app requires. The merchant will explicitly have to agree with any permissions you request, so be sure
-to only request necessary permissions.
+* Have them sign up by themselves, and have them install your app at a later point
+* Sign them up yourself and have them complete the onboarding in the Mollie Dashboard
+* Offer a complete white-label onboarding experience in your app
 
-Please refer to :doc:`OAuth: Permissions </oauth/permissions>` for a full list of available permissions.
+The following guide will dive into these last two use cases.
 
-How do merchants install my app?
---------------------------------
-By implementing the authorization flow, Mollie merchants are able to install your app on their Mollie organization.
-:doc:`OAuth: Getting started </oauth/getting-started>` discusses authorizations in further detail.
+:doc:`/oauth/onboarding`
 
-Can I get referral commission via OAuth as a partner of Mollie?
----------------------------------------------------------------
-Yes, you can! When you are a Mollie Partner, all merchants that will create an organization in the OAuth-flow of your
-app will be linked to your partner-account what makes it possible to receive referral commission. You do not have to do
-anything else than just integrate OAuth. For more information about the Mollie Partnership or to enable commission,
-please see our `Partner page <https://www.mollie.com/en/partners/>`_.
+Accessing your customer's Mollie account
+----------------------------------------
+To access or manage the account of your customer, you need an OAuth app. Please follow the
+:doc:`Getting started guide </oauth/getting-started>` for instructions.
 
-.. _connect-button:
+Once you have set up the app, you can access virtually any Mollie API endpoint with the OAuth access token. Please refer
+to :doc:`/oauth/permissions` for a full list of available permissions.
 
-The Connect with Mollie button
-------------------------------
-To keep the user experience consistent, we recommend using one of the buttons below in your authorization flow.
+Charging fees on payments processed through your app
+----------------------------------------------------
+Mollie Connect enables you to route and split payments between two or more connected accounts.
 
-.. image:: images/button-small@2x.png
+The simplest use case is when your app processes payments for other Mollie accounts, and you want to deduct a fee that
+gets sent to your own balance. The user in this case will still have their own dashboard and receive a Mollie invoice.
+For this case we offer :doc:`Application fees </oauth/application-fees>`.
 
-`Download files <https://www.mollie.com/assets/images/branding/connect-button/connect-with-mollie.zip>`_
+For more advanced use cases, for example when you want to cover the Mollie payment fees yourself, or for example if you
+want to split a payment between more than two parties, we offer :doc:`Split payments </oauth/splitting-payments>`.
 
-The download includes a Sketch file and retina PNGs.
-
-What are the lifetimes of the OAuth tokens?
--------------------------------------------
-Some tokens will expire after a certain time. You should ask for a new
-:doc:`authorization </reference/oauth2/authorize>` or :doc:`access token </reference/oauth2/tokens>` if needed.
-
-+-------------------------------+-----------------------------------+
-| **Auth code**                 | 30 seconds                        |
-+-------------------------------+-----------------------------------+
-| **Access token**              | 1 hour                            |
-+-------------------------------+-----------------------------------+
-| **Refresh token**             | Does not expire automatically     |
-+-------------------------------+-----------------------------------+
+Referral commissions
+--------------------
+You can sign up for our referral program to receive commissions for merchants that you are onboarding to Mollie. Once
+your account is configured as a partner account, any merchant you sign up through the OAuth onboarding flow will
+automatically be linked to your account. For more information about partnering with Mollie, please see our
+`Partner page <https://www.mollie.com/en/partners/>`_ or reach out to your account manager.
