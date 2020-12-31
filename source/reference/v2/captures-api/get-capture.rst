@@ -1,6 +1,5 @@
 Get capture
 ===========
-
 .. api-name:: Captures API
    :version: 2
 

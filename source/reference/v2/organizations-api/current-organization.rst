@@ -1,5 +1,5 @@
-Get Current Organization API
-============================
+Get current organization
+========================
 .. api-name:: Organizations API
    :version: 2
 
@@ -14,12 +14,9 @@ Get Current Organization API
 
 Retrieve the currently authenticated organization.
 
-
 Parameters
 ----------
-
 No parameters applicable for this endpoint.
-
 
 Response
 --------

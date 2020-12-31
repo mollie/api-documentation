@@ -27,8 +27,8 @@ and by the subscription's ID, for example ``sub_8JfGzs6v3K``.
        .. type:: string
           :required: false
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the payment with this ID. The payment with this ID is included
-       in the result set as well.
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the payment with this ID. The payment
+       with this ID is included in the result set as well.
 
    * - ``limit``
 
@@ -40,8 +40,8 @@ and by the subscription's ID, for example ``sub_8JfGzs6v3K``.
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, it is possible to get test payments by setting the ``testmode`` query string parameter
-to ``true``.
+:doc:`OAuth app </oauth/overview>`, it is possible to get test payments by setting the ``testmode`` query string
+parameter to ``true``.
 
 .. list-table::
    :widths: auto

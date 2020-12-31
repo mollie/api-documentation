@@ -97,7 +97,7 @@ If there is any amount due remaining, the payment will be created in the open st
 to the Mollie Checkout, where the customer can pick the next payment method (or another gift card) they would like to
 use to finish the payment.
 
-.. note:: Some cards don’t have a PIN printed on them. If the card does have a PIN, the PIN is always required.
+.. note:: Some cards do not have a PIN printed on them. If the card does have a PIN, the PIN is always required.
 
 Canceled and abandoned payments
 -------------------------------

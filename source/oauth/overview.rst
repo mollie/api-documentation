@@ -41,8 +41,8 @@ By implementing the authorization flow, Mollie merchants are able to install you
 
 Can I get referral commission via OAuth as a partner of Mollie?
 ---------------------------------------------------------------
-Yes, you can! When you're a Mollie Partner, all merchants that will create an organization in the OAuth-flow of your app
-will be linked to your partner-account what makes it possible to receive referral commission. You don't have to do
+Yes, you can! When you are a Mollie Partner, all merchants that will create an organization in the OAuth-flow of your
+app will be linked to your partner-account what makes it possible to receive referral commission. You do not have to do
 anything else than just integrate OAuth. For more information about the Mollie Partnership or to enable commission,
 please see our `Partner page <https://www.mollie.com/en/partners/>`_.
 
@@ -60,8 +60,8 @@ The download includes a Sketch file and retina PNGs.
 
 What are the lifetimes of the OAuth tokens?
 -------------------------------------------
-Some tokens will expire after a certain time. You should ask for a new :doc:`authorization </reference/oauth2/authorize>`
-or :doc:`access token </reference/oauth2/tokens>` if needed.
+Some tokens will expire after a certain time. You should ask for a new
+:doc:`authorization </reference/oauth2/authorize>` or :doc:`access token </reference/oauth2/tokens>` if needed.
 
 +-------------------------------+-----------------------------------+
 | **Auth code**                 | 30 seconds                        |

@@ -17,11 +17,11 @@ The first thing you need is a `website profile <https://www.mollie.com/dashboard
 profile has a *Live API key* and a *Test API key*.
 
 While building and testing your integration, you should use the *Test API key*. Read more about the
-test mode in our :doc:`guide </guides/testing>` about testing the Mollie API. Once you're ready to
+test mode in our :doc:`guide </guides/testing>` about testing the Mollie API. Once you are ready to
 start processing real payments, switch out your test key for the *Live API key*.
 
 Of course it's very important to keep any API keys :doc:`secure </guides/security>`. Do not ever share them. However, if
-a key leaks you can always `regenerate <https://www.mollie.com/dashboard/developers/api-keys>`_ it. Don't forget to
+a key leaks you can always `regenerate <https://www.mollie.com/dashboard/developers/api-keys>`_ it. Do not forget to
 apply new keys to your code. Until you do your integration will not work.
 
 Authenticating an API call

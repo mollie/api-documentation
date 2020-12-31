@@ -1,5 +1,5 @@
-Create Subscription API
-=======================
+Create subscription
+===================
 .. api-name:: Subscriptions API
    :version: 2
 
@@ -134,7 +134,7 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example
           :required: false
 
      - Provide any data you like, and we will save the data alongside the subscription. Whenever you fetch the
-       subscription with our API, we'll also include the metadata. You can use up to 1kB of JSON.
+       subscription with our API, we will also include the metadata. You can use up to 1kB of JSON.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^

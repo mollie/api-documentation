@@ -18,8 +18,8 @@ Retrieve all enabled payment methods. The results are not paginated.
 * For live mode, payment methods are returned that have been activated on your account and have been enabled in the
   Dashboard.
 
-New payment methods can be activated via the :doc:`Enable payment method endpoint </reference/v2/profiles-api/enable-method>`
-in the Profiles API.
+New payment methods can be activated via the
+:doc:`Enable payment method endpoint </reference/v2/profiles-api/enable-method>` in the Profiles API.
 
 When using the ``first`` sequence type, methods will be returned if they can be used as a first payment in a recurring
 sequence and if they are enabled in the Dashboard.

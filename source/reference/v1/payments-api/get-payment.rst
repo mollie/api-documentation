@@ -1,5 +1,5 @@
-Get Payment API
-===============
+Get payment
+===========
 .. api-name:: Payments API
    :version: 1
 
@@ -31,8 +31,8 @@ Replace ``id`` in the endpoint URL by the payment's ID, for example ``tr_7UhSN1z
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is available. You must pass this as a parameter
-in the query string if you want to retrieve a payment that was created in test mode.
+:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is available. You must pass this as a
+parameter in the query string if you want to retrieve a payment that was created in test mode.
 
 .. list-table::
    :widths: auto
@@ -174,8 +174,8 @@ Response
        If the payment is only partially paid with a gift card, the method remains ``giftcard``.
 
        Possible values: ``null`` ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``, ``giftcard``
-       ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``klarnapaylater`` ``klarnasliceit`` ``mistercash`` ``mybank`` ``paypal``
-       ``paysafecard`` ``przelewy24`` ``sofort``
+       ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``klarnapaylater`` ``klarnasliceit`` ``mistercash`` ``mybank``
+       ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort``
 
    * - ``metadata``
 
@@ -299,7 +299,7 @@ Response
                          redirection will cause issues with some payment methods or iDEAL issuers. Use HTTP status code
                          ``303 See Other`` to force an HTTP ``GET`` redirect.
 
-              Recurring payments don't have a ``paymentUrl``.
+              Recurring payments do not have a ``paymentUrl``.
 
           * - ``webhookUrl``
 
@@ -371,7 +371,8 @@ Bancontact
               identifying returning customers.
 
               .. warning:: The fingerprint is now (as of November 28th, 2019) unique per transaction what makes it
-                           not usefull anymore for identifying returning customers. Use the ``consumerAccount`` field instead.
+                           not useful anymore for identifying returning customers. Use the ``consumerAccount`` field
+                           instead.
 
           * - ``qrCode``
 
@@ -570,10 +571,11 @@ Credit card
 
               .. type:: string
 
-            - Only available if the payment has been completed – The fee region for the payment.
-              The ``intra-eu`` value is for consumer cards from the EEA.
+            - Only available if the payment has been completed: the fee region for the payment. The ``intra-eu`` value
+              is for consumer cards from the EEA.
 
-              Possible values: ``american-express`` ``amex-intra-eea`` ``carte-bancaire`` ``intra-eu`` ``intra-eu-corporate`` ``domestic`` ``maestro`` ``other``
+              Possible values: ``american-express`` ``amex-intra-eea`` ``carte-bancaire`` ``intra-eu``
+              ``intra-eu-corporate`` ``domestic`` ``maestro`` ``other``
 
 EPS
 """

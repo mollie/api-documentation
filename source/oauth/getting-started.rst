@@ -23,7 +23,7 @@ Use the details below to configure your app to work with our platform.
 * **Resource owner URL**: ``https://api.mollie.com/v2/organizations/me``, see
   :doc:`Get organization </reference/v2/organizations-api/get-organization>`
 
-Getting a merchant’s consent
+Getting a merchant's consent
 ----------------------------
 After having registered and configured your app, you can send the merchant to Mollie through the default authorization
 URL as configured in your OAuth app. Good practice is to show a *Connect with Mollie* button which redirects the
@@ -44,7 +44,8 @@ periodically using the *refresh token*. An access token expires after 1 hour. A 
 
 Once you have the access token, use the :doc:`/reference/v2/organizations-api/current-organization` to
 see which organization authenticated to your app. This endpoint also allows you to retrieve the
-merchant's preferred locale. It is recommended to switch your app's locale to the merchant's locale after the OAuth flow.
+merchant's preferred locale. It is recommended to switch your app's locale to the merchant's locale after the OAuth
+flow.
 
 Using the access token on the Mollie API, your app may now access the merchant's account data, allowing the merchant to
 start using your app.

@@ -1,5 +1,5 @@
-Create Order Payment API
-========================
+Create order payment
+====================
 .. api-name:: Orders API
    :version: 2
 
@@ -22,7 +22,6 @@ Note that order details (for example ``amount`` or ``webhookUrl``) can not be ch
 
 Parameters
 ----------
-
 Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN4U``.
 
 .. list-table::

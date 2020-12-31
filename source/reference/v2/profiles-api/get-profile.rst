@@ -52,7 +52,7 @@ Response
 
        .. type:: string
 
-     - The profile's name, this will usually reflect the tradename or brand name of the profile's website or
+     - The profile's name, this will usually reflect the trade name or brand name of the profile's website or
        application.
 
    * - ``website``
@@ -142,7 +142,7 @@ Response
               Possible values:
 
               * ``pending`` The changes are pending review. We will review your changes soon.
-              * ``rejected`` We've reviewed and rejected your changes.
+              * ``rejected`` We have reviewed and rejected your changes.
 
    * - ``createdAt``
 

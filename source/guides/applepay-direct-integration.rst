@@ -1,6 +1,5 @@
 Direct integration of Apple Pay
 ===============================
-
 Integrating `Apple Pay <https://developer.apple.com/apple-pay/>`_ in your own checkout allows you to add the "Checkout
 with Pay" button as you deem fit. Apple provides `guidelines
 <https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/introduction/>`_ on how and where
@@ -23,7 +22,6 @@ Follow these steps to offer Apple Pay in your own checkout:
 
 Prepare your server
 -------------------
-
 Your checkout *must* be served over HTTPS. Up to date TLS ciphers are required. For more information, see Apple's
 documentation on `setting up your server
 <https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server>`_.
@@ -36,7 +34,6 @@ and place it on your server at ``https://[domain]/.well-known/apple-developer-me
 
 Check if Apple Pay is available on the device
 ---------------------------------------------
-
 Check if Apple Pay is `available on the device
 <https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability>`_
 using the `canMakePayments
@@ -47,8 +44,7 @@ If Apple Pay is available on the device, you should `display the Apple Pay Butto
 
 Create an Apple Pay Session
 ---------------------------
-
-When the shopper taps or clicks the Apple Pay Button, you should create an `Apple Pay Session
+When the shopper taps or clicks the Apple Pay button, you should create an `Apple Pay Session
 <https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session>`_. This
 specifies all the information you want to display to the shopper and details on the payment.
 
@@ -60,7 +56,6 @@ When constructing the `ApplePayPaymentRequest
 
 Providing merchant validation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 The merchant validation proves (to Apple) that a validated merchant is calling the Apple Pay Javascript APIs. To perform
 the validation, your server should make an API call to Mollie and pass the response to the Apple Pay Session object.
 
@@ -73,7 +68,6 @@ Instead of using Apple's API, you must use a :doc:`dedicated endpoint in the  Mo
 
 Send the Apple Pay Payment Token to Mollie
 ------------------------------------------
-
 Once the shopper has authorized the payment, you will receive the `Apple Pay Payment object
 <https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypayment>`_. You must then encode the object's
 ``token`` property to JSON and add the JSON as the ``applePayPaymentToken`` parameter when invoking the
@@ -82,7 +76,6 @@ Once the shopper has authorized the payment, you will receive the `Apple Pay Pay
 
 Example request
 ^^^^^^^^^^^^^^^
-
 .. code-block:: none
     :caption: Create Payment API
     :linenos:
@@ -100,8 +93,6 @@ Example request
         "applePayPaymentToken": "{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3Bbr...lg==\"}}",
         "webhookUrl": "https://example.org/webhook"
     }
-
-
 
 .. code-block:: none
     :caption: Create Order API
@@ -169,6 +160,3 @@ receive an error when creating the payment:
             }
         }
     }
-
-
-

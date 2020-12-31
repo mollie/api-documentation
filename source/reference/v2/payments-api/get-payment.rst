@@ -1,5 +1,5 @@
-Get Payment API
-===============
+Get payment
+===========
 .. api-name:: Payments API
    :version: 2
 
@@ -24,8 +24,8 @@ Replace ``id`` in the endpoint URL by the payment's ID, for example ``tr_7UhSN1z
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is available. You must pass this as a parameter
-in the query string if you want to retrieve a payment that was created in test mode.
+:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is available. You must pass this as a
+parameter in the query string if you want to retrieve a payment that was created in test mode.
 
 .. list-table::
    :widths: auto
@@ -45,8 +45,8 @@ querystring parameter.
 
 * ``details.qrCode`` Include a :doc:`QR code </guides/qr-codes>` object. Only available for iDEAL, Bancontact
   and bank transfer payments.
-* ``details.remainderDetails`` Include `Payment method specific details`_ of the remainder payment if the payment is stacked.
-  Only available for gift card and voucher payments.
+* ``details.remainderDetails`` Include `Payment method specific details`_ of the remainder payment if the payment is
+  stacked. Only available for gift card and voucher payments.
 
 Embedding of related resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -247,8 +247,8 @@ Response
        .. type:: amount object
           :required: false
 
-     - The total amount that was charged back for this payment. Only available when the total charged back amount is not zero.
-       This value is expected to be negative.
+     - The total amount that was charged back for this payment. Only available when the total charged back amount is not
+       zero.
 
        .. list-table::
           :widths: auto
@@ -264,7 +264,6 @@ Response
               .. type:: string
 
             - A string containing the exact charged back amount of the payment in the given currency.
-
 
    * - ``description``
 
@@ -298,8 +297,8 @@ Response
        If the payment is only partially paid with a gift card, the method remains ``giftcard``.
 
        Possible values: ``null`` ``bancontact`` ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``
-       ``giftcard`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``klarnapaylater`` ``klarnasliceit`` ``mybank`` ``paypal``
-       ``paysafecard`` ``przelewy24`` ``sofort``
+       ``giftcard`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``klarnapaylater`` ``klarnasliceit`` ``mybank``
+       ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort``
 
    * - ``metadata``
 
@@ -465,7 +464,7 @@ Response
                         redirection will cause issues with some payment methods or iDEAL issuers. Use HTTP status code
                         ``303 See Other`` to force an HTTP ``GET`` redirect.
 
-              Recurring payments don't have a checkout URL.
+              Recurring payments do not have a checkout URL.
 
           * - ``mobileAppCheckout``
 
@@ -825,7 +824,8 @@ Credit card
             - Only available if the payment has been completed – The fee region for the payment.
               The ``intra-eu`` value is for consumer cards from the EEA.
 
-              Possible values: ``american-express`` ``amex-intra-eea`` ``carte-bancaire`` ``intra-eu`` ``intra-eu-corporate`` ``domestic`` ``maestro`` ``other``
+              Possible values: ``american-express`` ``amex-intra-eea`` ``carte-bancaire`` ``intra-eu``
+              ``intra-eu-corporate`` ``domestic`` ``maestro`` ``other``
 
           * - ``failureReason``
 
@@ -833,9 +833,9 @@ Credit card
 
             - Only available for failed payments. Contains a failure reason code.
 
-              Possible values: ``authentication_failed``  ``card_expired`` ``inactive_card`` ``insufficient_funds``
-              ``invalid_card_holder_name`` ``invalid_card_number`` ``invalid_card_type`` ``invalid_cvv``
-              ``possible_fraud`` ``refused_by_issuer`` ``unknown_reason``
+              Possible values: ``authentication_failed`` ``card_declined`` ``card_expired`` ``inactive_card``
+              ``insufficient_funds`` ``invalid_card_holder_name`` ``invalid_card_number`` ``invalid_card_type``
+              ``invalid_cvv`` ``possible_fraud`` ``refused_by_issuer`` ``unknown_reason``
 
           * - ``failureMessage``
 
@@ -843,7 +843,8 @@ Credit card
 
             - A localized message that can be shown to your customer, depending on the ``failureReason``.
 
-              Example value: ``Der Kontostand Ihrer Kreditkarte ist unzureichend. Bitte verwenden Sie eine andere Karte.``.
+              Example value:
+              ``Der Kontostand Ihrer Kreditkarte ist unzureichend. Bitte verwenden Sie eine andere Karte.``.
 
           * - ``wallet``
 

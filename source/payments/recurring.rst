@@ -23,7 +23,8 @@ In the following sections we explain the following topics.
 * :ref:`Charging periodically with subscriptions <payments/recurring/charging-periodically>`
 * :ref:`How do webhooks for subscriptions work? <payments/recurring/subscription-webhooks>`
 
-For more information on how to test recurring payments, please refer to our :doc:`guide </guides/testing>` for testing the Mollie API.
+For more information on how to test recurring payments, please refer to our :doc:`guide </guides/testing>` for testing
+the Mollie API.
 
 .. _payments/recurring/first-payment:
 
@@ -35,7 +36,8 @@ complete the payment with the account or card that will be used for recurring ch
 payment is completed successfully, the customer's account or card will immediately be chargeable *on-demand*, or
 periodically through *subscriptions*.
 
-#. Create a unique customer using the :doc:`Customers API </reference/v2/customers-api/create-customer>`. If you are using Mollie Connect make sure you have the permission "customers.write" in order to create a customer.
+#. Create a unique customer using the :doc:`Customers API </reference/v2/customers-api/create-customer>`. If you are
+using Mollie Connect, make sure you have the permission `customers.write` in order to create a customer.
 
    .. code-block:: bash
       :linenos:
@@ -50,8 +52,12 @@ periodically through *subscriptions*.
 #. Create a payment (or order) for the customer by specifying the ``customerId`` and setting the ``sequenceType``
    parameter to ``first``.
 
-   .. note:: For credit card and PayPal payments, you can create a payment with a zero amount which
-             means, no money will be debited from the card or account when doing the first payment.
+   .. note:: For credit card and PayPal payments, you can create a payment with a zero amount. No money will then be
+             debited from the card or account when doing the first payment.
+             If you intend to start a subscription, you can use this payment as the first instalment, e.g. by charging
+             the amount you will periodically charge. Next, you can set up a subscription which starts after the first
+             period. See also the `startDate` field in the
+             :doc:`Subscriptions API </reference/v2/subscriptions-api/create-subscription>`.
 
    .. code-block:: bash
       :linenos:
@@ -80,7 +86,8 @@ periodically through *subscriptions*.
 .. note:: Not all payment methods support a first payment. When the ``method`` parameter is not provided in the API, we
           take care of this automatically in our :doc:`Checkout </guides/checkout>`. The following payment methods
           support a first payment and are thus allowed as a value for the ``method`` parameter of a first payment:
-          ``bancontact`` ``belfius`` ``creditcard`` ``eps`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``mybank`` ``paypal`` ``sofort``
+          ``bancontact`` ``belfius`` ``creditcard`` ``eps`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``mybank``
+          ``paypal`` ``sofort``
 
 .. note:: Created mandates are unique to your account and can not be transferred to other accounts.
 
@@ -171,7 +178,6 @@ automatically at the specified frequency, and will show up in your Dashboard.
               \"webhookUrl\": \"https://webshop.example.org/subscriptions/webhook/\"
           }"
 
-
 #. In the above example the customer is charged €25.00 for 4 times every 3 months, starting today.
 
 #. The webhook URL will be triggered for every payment to communicate any status updates.
@@ -187,8 +193,8 @@ customer is charged. We will call your webhook as usual for these payments. The 
 not be known by your system yet when we call the webhook to report the payment's status.
 
 With normal payments you know the payment ID, because you've received this when creating the payment. With
-subscriptions you don't know the payment ID in advance. So you'll receive a webhook call with a payment ID that you've
-never seen before.
+subscriptions you do not know the payment ID in advance.  You will receive a webhook call with a payment ID that you
+have likely never seen before.
 
 The payment object will, however, contain a ``subscriptionId`` field that contains the subscription ID you received when
 the subscription was created. This allows you to recognize where the payment belongs to.
@@ -197,7 +203,7 @@ We do not provide webhooks specifically for status changes of a Subscription its
 
 How to implement the PayPal fraud library?
 ------------------------------------------
-.. note:: You don't have to implement the library for recurring payments.
+.. note:: You do not have to implement the library for recurring payments.
 
 Using PayPal for on-demand payments requires an extra set of tools. You should integrate the fraud
 library of PayPal by adding the Javascript library to your checkout page with the necessary configuration
@@ -231,7 +237,6 @@ The configuration should contain JSON with the following attributes:
      - A unique session ID for the current payment. It should be different on every page load and can be
        32 characters long. This ID should be posted to us when you create the actual payment via the
        ``sessionId`` parameter.
-
 
 .. warning:: Make sure that your configuration block is above the library ``<script>``-tag. Otherwise
              it will not work.

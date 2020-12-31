@@ -84,7 +84,7 @@ example: ``/v2/customers/cst_5a2pPrwaWy/subscriptions/sub_8EjeBVgtEn``.
           :required: false
 
      - Provide any data you like, and we will save the data alongside the subscription. Whenever you fetch the
-       subscription with our API, we'll also include the metadata. You can use up to 1kB of JSON.
+       subscription with our API, we will also include the metadata. You can use up to 1kB of JSON.
 
    * - ``startDate``
 

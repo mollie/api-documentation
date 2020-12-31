@@ -1,6 +1,5 @@
 Mollie Components
 =================
-
 *Mollie Components* is a set of Javascript APIs that allow you to add the fields needed for credit card holder data to
 your own checkout, in a way that is fully :abbr:`PCI-DSS SAQ-A (Payment Card Industry Data Security Standard
 Self-Assessment Questionnaire A)` compliant.
@@ -21,7 +20,6 @@ payment is completed.
 
 Implementation steps
 --------------------
-
 Follow these steps to implement Mollie Components in your checkout:
 
 .. figure:: ../images/mollie-components-flow@2x.png
@@ -38,11 +36,11 @@ Follow these steps to implement Mollie Components in your checkout:
    :doc:`/reference/v2/orders-api/create-order` respectively.
 #. If required, redirect the shopper to the URL returned by our API for 3-D Secure authentication.
 
-Mollie has created `example implementations <https://github.com/mollie/components-examples>`_ you can use to get started.
+Mollie has created `example implementations <https://github.com/mollie/components-examples>`_ you can use to get
+started.
 
 Add the Mollie Components Javascript library to your checkout
 -------------------------------------------------------------
-
 Start by including ``mollie.js`` in to your project. It should be added just before the ``</body>`` tag.
 
 The Javascript file is located at ``https://js.mollie.com/v1/mollie.js``.
@@ -64,7 +62,6 @@ The Javascript file is located at ``https://js.mollie.com/v1/mollie.js``.
 
 Initialize the Mollie object
 ----------------------------
-
 First, you need the Profile Id of the profile that you want to use. This can be found on the
 `Developers - API-keys <https://www.mollie.com/dashboard/developers/api-keys>`_ page in the Dashboard or retrieved
 programmatically using the :doc:`Get Current Profile API </reference/v2/profiles-api/get-profile-me>`.
@@ -82,7 +79,6 @@ an object that you can use for creating the four Components your customer will u
 
 Create and mount the card holder data Components
 ------------------------------------------------
-
 After initializing the Mollie object, you should create the four card holder data Components using the
 :ref:`components-mollie-create-component` function and mount them in your checkout using the
 :ref:`components-mollie-component-mount` function:
@@ -94,7 +90,8 @@ After initializing the Mollie object, you should create the four card holder dat
      <div id="card-number"></div>
      <div id="card-number-error"></div>
 
-
+     <div id="card-holder"></div>
+     <div id="card-holder-error"></div>
 
      <div id="expiry-date"></div>
      <div id="expiry-date-error"></div>
@@ -120,12 +117,11 @@ After initializing the Mollie object, you should create the four card holder dat
    var verificationCode = mollie.createComponent('verificationCode');
    verificationCode.mount('#verification-code');
 
-This will add the input fields to your checkout and make them visible for your customer. To add styling to the Components,
-see :doc:`styling`.
+This will add the input fields to your checkout and make them visible for your customer. To add styling to the
+Components, see :doc:`styling`.
 
 Handling errors
 ---------------
-
 Add a change event listener to each component to listen for errors. Displaying the error is up to you. The example below
 assumes an empty element in which the error can be rendered.
 
@@ -146,7 +142,6 @@ Errors will be localized according to the locale defined when initializing Molli
 
 Add a submit event listener to your form
 ----------------------------------------
-
 Add a submit event listener to your form and use the :ref:`components-mollie-create-token` function to get the token.
 You can then place the ``cardToken`` in a hidden input to submit it to your back end, for example:
 
@@ -177,7 +172,6 @@ You can then place the ``cardToken`` in a hidden input to submit it to your back
 
 Create a Payment or Order with the card token
 ---------------------------------------------
-
 On your back end, you will receive the ``cardToken``. You need to pass this when
 :doc:`creating a Payment </reference/v2/payments-api/create-payment>`. Additionally, you should set the ``method`` to
 ``creditcard``.
@@ -335,7 +329,6 @@ It is possible an error occurs when creating the payment. See :doc:`handling-err
 
 Redirect the shopper to the 3-D Secure authentication page
 ----------------------------------------------------------
-
 In most cases, your payment will not be completed immediately but will first require a 3-D Secure authentication by your
 customer. You should redirect your customer to the ``_links.checkout`` URL returned by the
 :doc:`/reference/v2/payments-api/create-payment` or :doc:`/reference/v2/orders-api/create-order`.
@@ -354,7 +347,6 @@ these cases.
 
 Browser support
 ---------------
-
 Mollie Components supports the current and previous major release of the following browsers:
 
 - Chrome

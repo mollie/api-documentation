@@ -31,9 +31,9 @@ Parameters
        .. type:: array
           :required: false
 
-     - An array of objects containing the order line details you want to create a shipment for.  If you leave out
-       this parameter, the entire order will be shipped. If the order is already partially shipped, any remaining
-       lines will be shipped.
+     - An array of objects containing the order line details you want to create a shipment for.  If you leave out this
+       parameter, the entire order will be shipped. If the order is already partially shipped, any remaining lines will
+       be shipped.
 
        .. list-table::
           :widths: auto
@@ -107,11 +107,11 @@ Parameters
             - The URL where your customer can track the shipment, for example:
               ``http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C``.
 
-
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you should use the ``testmode`` parameter if you want to create a shipment in test mode.
+:doc:`OAuth app </oauth/overview>`, you should use the ``testmode`` parameter if you want to create a shipment in test
+mode.
 
 .. list-table::
    :widths: auto

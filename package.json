@@ -4,8 +4,12 @@
   "description": "API Documentation for all of Mollie's public APIs.",
   "main": "index.js",
   "scripts": {
-    "lint:js": "eslint \"./source/theme/**/*.js\"",
-    "precommit": "lint-staged"
+    "lint:js": "eslint \"./source/theme/**/*.js\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "repository": {
     "type": "git",
@@ -23,7 +27,7 @@
   },
   "homepage": "https://www.mollie.com",
   "devDependencies": {
-    "@mollie/eslint-config-node": "0.0.1-alpha.3",
+    "@mollie/eslint-config-node": "1.1.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
     "babel-plugin-module-resolver": "^4.0.0",
@@ -33,11 +37,12 @@
     "lint-staged": "^10.0.3",
     "node-sass": "^4.14.1",
     "parcel-bundler": "^1.12.3",
-    "replace-in-file": "^3.4.0"
+    "prettier": "^2.0.0",
+    "sass": "^1.26.10"
   },
   "dependencies": {
     "dropkickjs": "^2.2.4",
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.19"
   },
   "private": true,
   "lint-staged": {

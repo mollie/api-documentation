@@ -62,7 +62,7 @@ Parameters
           :required: false
 
      - Provide any data you like, and we will save the data alongside the customer. Whenever
-       you fetch the customer with our API, we'll also include the metadata. You can use up to 1kB of JSON.
+       you fetch the customer with our API, we will also include the metadata. You can use up to 1kB of JSON.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^

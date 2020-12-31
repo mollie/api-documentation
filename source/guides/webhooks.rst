@@ -10,8 +10,9 @@ Example
 -------
 The most important example of a webhook is when a payment is paid. If you created the payment with a webhook URL, we
 will call that webhook URL with a single POST-parameter called ``id`` and a value of for example ``tr_d0b0E3EA3v``. The
-script behind your webhook URL should use that ID to :doc:`fetch the payment status </reference/v2/payments-api/get-payment>`
-and act accordingly. If the new payment status is ``paid`` you can start shipping the order.
+script behind your webhook URL should use that ID to
+:doc:`fetch the payment status </reference/v2/payments-api/get-payment>` and act accordingly. If the new payment status
+is ``paid`` you can start shipping the order.
 
 .. code-block:: bash
       :linenos:
@@ -26,9 +27,9 @@ and act accordingly. If the new payment status is ``paid`` you can start shippin
 
       id=tr_d0b0E3EA3v
 
-It might seem a little cumbersome that we don't post the new status immediately, but :doc:`proper security </guides/security>`
-dictates this flow. Since the status is not transmitted in the webhook, fake calls to your webhook will never result in
-orders being processed without being actually paid.
+It might seem a little cumbersome that we do not post the new status immediately, but
+:doc:`proper security </guides/security>` dictates this flow. Since the status is not transmitted in the webhook, fake
+calls to your webhook will never result in orders being processed without being actually paid.
 
 More examples are available in the documentation of the `Mollie API client <https://www.mollie.com/en/modules>`_ you are
 using.
@@ -82,7 +83,7 @@ Retry schema
 ------------
 In response to Mollie calling your webhook, you only have to return the HTTP status ``200 OK``. Mollie then knows your
 system correctly processed the request. In case you return a different status – let's say because there's a temporary
-problem with your hosting service – we'll keep trying for a few hours, allowing you to process the request later on
+problem with your hosting service – we will keep trying for a few hours, allowing you to process the request later on
 after your hosting service has been restored.
 
 Our webhook calls time out after 15 seconds. Even if you return a ``200 OK`` HTTP status after 16 seconds, we will mark
@@ -93,33 +94,34 @@ get a ``200 OK`` response (which is after 26 hours), we will stop trying.
 
 We use the following intervals between attempts while trying to call your webhook:
 
-+--------------+-----------------------------------+---------------------------------------------------------------------------+
-|**Attempt**   |**Interval**                       |**Time after status change (HH:mm)**                                       |
-+--------------+-----------------------------------+---------------------------------------------------------------------------+
-|1\ :sup:`st`  |Immediately after status change    |00:00                                                                      |
-+--------------+-----------------------------------+---------------------------------------------------------------------------+
-|2\ :sup:`nd`  |1 minute                           |00:01                                                                      |
-+--------------+-----------------------------------+---------------------------------------------------------------------------+
-|3\ :sup:`rd`  |2 minutes                          |00:03                                                                      |
-+--------------+-----------------------------------+---------------------------------------------------------------------------+
-|4\ :sup:`th`  |4 minutes                          |00:07                                                                      |
-+--------------+-----------------------------------+---------------------------------------------------------------------------+
-|5\ :sup:`th`  |8 minutes                          |00:15                                                                      |
-+--------------+-----------------------------------+---------------------------------------------------------------------------+
-|6\ :sup:`th`  |16 minutes                         |00:31                                                                      |
-+--------------+-----------------------------------+---------------------------------------------------------------------------+
-|7\ :sup:`th`  |29 minutes                         |01:00                                                                      |
-+--------------+-----------------------------------+---------------------------------------------------------------------------+
-|8\ :sup:`th`  |1 hour                             |02:00                                                                      |
-+--------------+-----------------------------------+---------------------------------------------------------------------------+
-|9\ :sup:`th`  |2 hours                            |04:00                                                                      |
-+--------------+-----------------------------------+---------------------------------------------------------------------------+
-|10\ :sup:`th` |22 hours                           |26:00                                                                      |
-+--------------+-----------------------------------+---------------------------------------------------------------------------+
++--------------+-----------------------------------+-------------------------------------------------------------------+
+|**Attempt**   |**Interval**                       |**Time after status change (HH:mm)**                               |
++--------------+-----------------------------------+-------------------------------------------------------------------+
+|1\ :sup:`st`  |Immediately after status change    |00:00                                                              |
++--------------+-----------------------------------+-------------------------------------------------------------------+
+|2\ :sup:`nd`  |1 minute                           |00:01                                                              |
++--------------+-----------------------------------+-------------------------------------------------------------------+
+|3\ :sup:`rd`  |2 minutes                          |00:03                                                              |
++--------------+-----------------------------------+-------------------------------------------------------------------+
+|4\ :sup:`th`  |4 minutes                          |00:07                                                              |
++--------------+-----------------------------------+-------------------------------------------------------------------+
+|5\ :sup:`th`  |8 minutes                          |00:15                                                              |
++--------------+-----------------------------------+-------------------------------------------------------------------+
+|6\ :sup:`th`  |16 minutes                         |00:31                                                              |
++--------------+-----------------------------------+-------------------------------------------------------------------+
+|7\ :sup:`th`  |29 minutes                         |01:00                                                              |
++--------------+-----------------------------------+-------------------------------------------------------------------+
+|8\ :sup:`th`  |1 hour                             |02:00                                                              |
++--------------+-----------------------------------+-------------------------------------------------------------------+
+|9\ :sup:`th`  |2 hours                            |04:00                                                              |
++--------------+-----------------------------------+-------------------------------------------------------------------+
+|10\ :sup:`th` |22 hours                           |26:00                                                              |
++--------------+-----------------------------------+-------------------------------------------------------------------+
 
 How to handle unknown IDs?
 --------------------------
-To not leak any information to malicious third parties, it is recommended to return a ``200 OK`` response even if the ID is not known to your system.
+To not leak any information to malicious third parties, it is recommended to return a ``200 OK`` response even if the ID
+is not known to your system.
 
 What IPs will the webhook requests be originating from?
 -------------------------------------------------------
@@ -133,5 +135,6 @@ The webhook location is invalid
 
 Redirecting webhook calls
 -------------------------
-When our call to the webhook URL gets redirected with a ``301 Moved Permanently`` or ``302 Found`` response the request changes from POST to get. This causes the POST payload to drop of the webhook call.
-The solution is to redirect using a ``307 Temporary Redirect`` or ``308 Permanent Redirect`` response.
+When our call to the webhook URL gets redirected with a ``301 Moved Permanently`` or ``302 Found`` response the request
+changes from POST to get. This causes the POST payload to drop of the webhook call. The solution is to redirect using a
+``307 Temporary Redirect`` or ``308 Permanent Redirect`` response.

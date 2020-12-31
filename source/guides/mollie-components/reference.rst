@@ -1,13 +1,11 @@
 Mollie Components reference
 ===========================
-
 The ``Mollie`` object is used to initialize :doc:`Mollie Components <overview>`.
 
 .. _components-mollie-constructor:
 
 Mollie(profileId[, options])
 ----------------------------
-
 .. list-table::
    :widths: auto
 
@@ -33,21 +31,21 @@ Mollie(profileId[, options])
               .. type:: string
                  :required: false
 
-            - Allows you to preset the language to be used. When this
-              parameter is not provided, the browser language will be used instead. If we also not support the browser language then it will be shown in English. We recommend you
-              provide the language tag because this is usually more accurate.
+            - Allows you to preset the language to be used. When this parameter is not provided, the browser language
+              will be used instead. If we also not support the browser language then it will be shown in English. We
+              recommend you provide the language tag, since this is usually more accurate.
 
               Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
-              ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
-              ``lt_LT``
+              ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL``
+              ``lv_LV`` ``lt_LT``
 
           * - ``testmode``
 
               .. type:: boolean
                  :required: false
 
-            - Set to ``true`` to enable test mode. Test tokens will be recognizable by the ``test`` suffix e.g. `tkn_123abctest`.
-
+            - Set to ``true`` to enable test mode. Test tokens will be recognizable by the ``test`` suffix, e.g.
+              `tkn_123abctest`.
 
 .. _components-mollie-create-token:
 
@@ -83,14 +81,12 @@ ES6
      const { token, error } = await mollie.createToken();
    });
 
-
 .. _components-mollie-create-component:
 
 mollie.createComponent(type[, options])
 ---------------------------------------
-
-This will create the Components which the shopper uses to enter the card holder data. After creating, the components should
-be mounted in your checkout.
+This will create the Components which the shopper uses to enter the card holder data. After creating, the components
+should be mounted in your checkout.
 
 You need to create four components, one for each card holder data field.
 
@@ -163,12 +159,10 @@ ES6
 
 Component methods
 =================
-
 .. _components-mollie-component-mount:
 
 component.mount(targetElement)
 ------------------------------
-
 Adds the component to the DOM, meaning it will become visible for the user from this point onwards.
 
 .. code-block:: HTML
@@ -185,7 +179,8 @@ Adds the component to the DOM, meaning it will become visible for the user from 
        .. type:: HTMLelement|string
           :required: true
 
-     - An `HTMLElement <https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement>`_ or a valid CSS Selector such as ``#id`` and ``.class``.
+     - An `HTMLElement <https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement>`_ or a valid CSS Selector such as
+       ``#id`` and ``.class``.
 
 Javascript
 ^^^^^^^^^^
@@ -203,7 +198,6 @@ ES6
 
 component.addEventListener(event, callback)
 -------------------------------------------
-
 Components can listen to several ``events``. The callback receives an object with all the related information.
 
 .. list-table::
@@ -224,7 +218,6 @@ Components can listen to several ``events``. The callback receives an object wit
           :required: true
 
      - A function that will be called whenever the event is been emitted.
-
 
 Javascript
 ^^^^^^^^^^

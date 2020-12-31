@@ -95,7 +95,6 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``/
 
        .. note:: Required for ``paypal`` mandates
 
-
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an

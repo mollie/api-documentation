@@ -1,5 +1,5 @@
-Get Payment Method API
-======================
+Get payment method
+==================
 .. api-name:: Methods API
    :version: 2
 
@@ -47,8 +47,8 @@ Replace ``id`` in the endpoint URL by the methods's ID. For example: ``https://a
        .. type:: string
           :required: false
 
-     - The currency to receiving the ``minimumAmount`` and ``maximumAmount`` in. We will return an error when the currency
-       is not supported by the payment method.
+     - The currency to receiving the ``minimumAmount`` and ``maximumAmount`` in. We will return an error when the
+       currency is not supported by the payment method.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -82,7 +82,8 @@ Includes
 This endpoint allows you to include additional information by appending the following values via the ``include``
 querystring parameter.
 
-* ``issuers`` Include issuers available for the payment method (for iDEAL, KBC/CBC payment button, gift cards, or meal vouchers).
+* ``issuers`` Include issuers available for the payment method (for iDEAL, KBC/CBC payment button, gift cards, or meal
+  vouchers).
 * ``pricing`` Include pricing for each payment method.
 
 Response
@@ -160,7 +161,8 @@ Response
 
        .. type:: string
 
-     - The status that the method is in. Possible values: ``activated`` ``pending-boarding`` ``pending-review`` ``pending-external`` ``rejected`` or ``null``
+     - The status that the method is in. Possible values: ``activated`` ``pending-boarding`` ``pending-review``
+       ``pending-external`` ``rejected`` or ``null``
 
        .. list-table::
           :widths: auto
@@ -175,7 +177,8 @@ Response
 
               .. type:: string
 
-            - Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment method can be activated.
+            - Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment method can be
+              activated.
 
           * - ``pending-review``
 
@@ -187,13 +190,15 @@ Response
 
               .. type:: string
 
-            - Activation of this payment method relies on you taking action with an external party, for example signing up with PayPal or a giftcard issuer.
+            - Activation of this payment method relies on you taking action with an external party, for example signing
+              up with PayPal or a giftcard issuer.
 
           * - ``rejected``
 
               .. type:: string
 
-            - Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will always be informed via email.
+            - Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will always
+              be informed via email.
 
           * - ``null``
 

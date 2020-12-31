@@ -28,8 +28,8 @@ How does the Orders API work?
 
 #. For every order in your webshop, you create an order using the :doc:`/reference/v2/orders-api/create-order`.
 
-#. The :ref:`Create Order API response <create-order-response>` contains the ``_links.checkout`` property. This is a link
-   where you should redirect your customer to for checking out.
+#. The :ref:`Create Order API response <create-order-response>` contains the ``_links.checkout`` property. This is a
+   link where you should redirect your customer to for checking out.
 
 #. If the checkout is successful, the order will change it's state to ``authorized`` or ``paid``, depending on the
    payment method used by your customer.

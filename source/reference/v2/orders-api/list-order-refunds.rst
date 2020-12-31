@@ -1,6 +1,5 @@
 List order refunds
-====================
-
+==================
 .. api-name:: Orders API
    :version: 2
 
@@ -29,8 +28,8 @@ Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_pbj
        .. type:: string
           :required: false
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the refund with this ID. The refund with this ID is included in the result
-       set as well.
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the refund with this ID. The refund with
+       this ID is included in the result set as well.
 
    * - ``limit``
 
@@ -41,8 +40,8 @@ Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_pbj
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter is also
-available.
+If you are creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter
+is also available.
 
 .. list-table::
    :widths: auto

@@ -1,6 +1,5 @@
-List Payment Refunds API
-========================
-
+List refunds
+====================
 .. api-name:: Refunds API
    :version: 2
 
@@ -40,8 +39,8 @@ When using the payment-specific endpoint, replace ``paymentId`` in the endpoint 
        .. type:: string
           :required: false
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the refund with this ID. The refund with this ID is included in the result
-       set as well.
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the refund with this ID. The refund with
+       this ID is included in the result set as well.
 
    * - ``limit``
 

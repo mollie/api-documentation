@@ -1,8 +1,7 @@
 Order status changes
 ====================
-Orders and order lines can go through a number of different statuses. First we will discuss the difference between
-two possible flows for orders. After that we will list all the possible statuses for both **orders** and
-**order lines**.
+Orders and order lines can go through a number of different statuses. First we will discuss the difference between two
+possible flows for orders. After that we will list all the possible statuses for both **orders** and **order lines**.
 
 Two flows: authorized and paid
 ------------------------------
@@ -24,7 +23,8 @@ will be captured.
 Paid
 ^^^^
 If a payment method does not support authorizations, the payment will be paid immediately when the order is created. You
-can create shipments for these orders just like in the *authorized* flow, but it won't have any effect on the payment.
+can create shipments for these orders just like in the *authorized* flow, but it will not have any effect on the
+payment.
 
 Possible statuses for orders
 ----------------------------
@@ -63,7 +63,7 @@ The following diagram shows how one order status leads to another:
 
     * This is not a status Mollie will call your webhook for.
     * All order lines will be ``created``.
-    * Can transition to: ``authorized`` and ``created``. 
+    * Can transition to: ``authorized`` and ``created``.
 
 .. _order-status-authorized:
 
@@ -99,7 +99,7 @@ The following diagram shows how one order status leads to another:
 
     * Mollie will call your webhook when the order reaches this state.
     * Order lines can be in the state ``completed`` or ``canceled``. At least one line should be ``completed``.
-    * This is a final state, the order can't transition to another state.
+    * This is a final state, the order cannot transition to another state.
 
 .. _order-status-canceled:
 
@@ -109,10 +109,10 @@ The following diagram shows how one order status leads to another:
 
     * Mollie will call your webhook when the order reaches this state.
     * All order lines will also be in the ``canceled`` state.
-    * This is a final state, the order can't transition to another state.
+    * This is a final state, the order cannot transition to another state.
 
     .. note:: Orders can only be canceled by the merchant, not by the shopper. Use the :doc:`Cancel Order API
-              </reference/v2/orders-api/cancel-order>` or cancel the order from the the Mollie Dashboard. 
+              </reference/v2/orders-api/cancel-order>` or cancel the order from the the Mollie Dashboard.
 
 .. _order-status-expired:
 
@@ -126,7 +126,7 @@ The following diagram shows how one order status leads to another:
 
     * Mollie will call your webhook when the order reaches this state.
     * All order lines will be ``canceled``.
-    * This is a final state, the order can't transition to another state.
+    * This is a final state, the order cannot transition to another state.
 
 Possible statuses for order lines
 ---------------------------------
@@ -183,15 +183,15 @@ The following diagram shows how one order line status leads to another:
     is partially shipped and the rest of the line is ``canceled``.
 
     * The order has status ``shipping`` or ``completed``.
-    * This is a final state, the order line can't transition to another state.
+    * This is a final state, the order line cannot transition to another state.
 
 .. _orderline-status-canceled:
 
 ``canceled``
 ^^^^^^^^^^^^
     When the complete order line is canceled, the line gets this status. If only part of the order line is canceled, the
-    status will stay at its previous status. Only merchants can cancel orders and order lines, the consumer can't do
+    status will stay at its previous status. Only merchants can cancel orders and order lines, the consumer cannot do
     this.
 
     * The order has status ``authorized``, ``shipping``, ``completed``, ``expired`` or ``canceled``.
-    * This is a final state, the order line can't transition to another state.
+    * This is a final state, the order line cannot transition to another state.

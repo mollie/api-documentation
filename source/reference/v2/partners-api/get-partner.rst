@@ -1,5 +1,5 @@
-Get Partner API
-===============
+Get partner
+===========
 .. api-name::Partners API
    :version: 2
 
@@ -78,28 +78,24 @@ Response
 
               .. type:: date
 
-            - | The date and time after which the token is no longer active, in
-                `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format. Will be ``null`` if no
-                end date has been set.
+            - The date and time after which the token is no longer active, in
+              `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format. Will be ``null`` if no end date has been set.
 
    * - ``partnerContractSignedAt``
 
        .. type:: date
           :required: false
 
-     - |
-       | The date and time the contract was signed, in
-         `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format. Will be omitted if the
-         contract has not yet been signed, or if ``partnerType`` is ``null``.
+     - The date and time the contract was signed, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format. Will
+       be omitted if the contract has not yet been signed, or if ``partnerType`` is ``null``.
 
    * - ``partnerContractUpdateAvailable``
 
        .. type:: boolean
           :required: false
 
-     - |
-       | Will be ``true`` if an updated contract is available, requiring the partner’s agreement. 
-         Will be omitted otherwise.
+     - Will be ``true`` if an updated contract is available, requiring the partner's agreement. Will be omitted
+       otherwise.
 
    * - ``_links``
 

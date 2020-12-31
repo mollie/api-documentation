@@ -1,6 +1,5 @@
-Get Payment Refund API
-======================
-
+Get payment refund
+==================
 .. api-name:: Refunds API
    :version: 2
 
@@ -21,7 +20,6 @@ If you do not know the original payment's ID, you can use the
 .. note::
     Trying to retrieve a canceled refund will result in a 404 exception.
 
-
 Parameters
 ----------
 Replace ``paymentId`` in the endpoint URL by the payment's ID, and replace ``id`` by the refund's ID. For example:
@@ -29,8 +27,8 @@ Replace ``paymentId`` in the endpoint URL by the payment's ID, and replace ``id`
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter is also
-available.
+If you are creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter
+is also available.
 
 .. list-table::
    :widths: auto
@@ -183,7 +181,6 @@ Response
        the refund was not created for an order.
 
        The full order object can be retrieved via the ``order`` URL in the ``_links`` object.
-
 
    * - ``createdAt``
 

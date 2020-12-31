@@ -1,6 +1,5 @@
-List Settlement Captures API
-============================
-
+List settlement captures
+========================
 .. api-name:: Settlements API
    :version: 2
 

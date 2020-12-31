@@ -26,8 +26,8 @@ Parameters
        .. type:: string
           :required: false
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the organization with this ID. The organization with this ID is included in the result
-       set as well.
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the organization with this ID. The
+       organization with this ID is included in the result set as well.
 
    * - ``limit``
 
@@ -102,7 +102,6 @@ Response
 
 Example
 -------
-
 .. code-block:: bash
   :linenos:
 

@@ -1,5 +1,5 @@
 Update shipment
-===================
+===============
 .. api-name:: Shipments API
    :version: 2
 

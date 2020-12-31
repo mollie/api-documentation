@@ -199,7 +199,6 @@ Response
 
             - The description of the application fee as specified during subscription creation.
 
-
    * - ``_links``
 
        .. type:: object
@@ -234,7 +233,8 @@ Response
               .. type:: URL object
                  :required: false
 
-            - The API resource URL of the payments that are created by this subscription. Not present if no payments yet created.
+            - The API resource URL of the payments that are created by this subscription. Not present if no payments yet
+              created.
 
           * - ``documentation``
 

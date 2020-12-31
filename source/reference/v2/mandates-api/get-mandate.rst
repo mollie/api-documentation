@@ -215,7 +215,6 @@ PayPal
 
      - The consumer's email address.
 
-
 Example
 -------
 
@@ -237,7 +236,7 @@ Example
 
    .. code-block:: python
       :linenos:
-      
+
       from mollie.api.client import Client
 
       mollie_client = Client()

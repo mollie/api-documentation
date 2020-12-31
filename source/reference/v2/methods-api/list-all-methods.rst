@@ -13,8 +13,8 @@ List all payment methods
    :oauth: true
 
 Retrieve all payment methods that Mollie offers and can be activated by the Organization. The results are not paginated.
-New payment methods can be activated via the :doc:`Enable payment method endpoint </reference/v2/profiles-api/enable-method>`
-in the Profiles API.
+New payment methods can be activated via the
+:doc:`Enable payment method endpoint </reference/v2/profiles-api/enable-method>` in the Profiles API.
 
 Parameters
 ----------

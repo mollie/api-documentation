@@ -50,21 +50,21 @@ Replace ``id`` in the endpoint URL by the payment profile's ID, for example ``pf
        .. type:: string
           :required: true
 
-     - The new email address associated with the profile's tradename or brand.
+     - The new email address associated with the profile's trade name or brand.
 
    * - ``phone``
 
        .. type:: string
           :required: true
 
-     - The new phone number associated with the profile's tradename or brand.
+     - The new phone number associated with the profile's trade name or brand.
 
    * - ``categoryCode``
 
        .. type:: integer
           :required: false
 
-     - The new industry identifier associated with the profile's tradename or brand.
+     - The new industry identifier associated with the profile's trade name or brand.
 
        Possible values:
 

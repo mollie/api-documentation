@@ -27,8 +27,8 @@ Parameters
        .. type:: string
           :required: false
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the subscription with this ID. The subscription with this ID is included
-       in the result set as well.
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the subscription with this ID. The
+       subscription with this ID is included in the result set as well.
 
    * - ``limit``
 
@@ -40,9 +40,9 @@ Parameters
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the only mandatory extra query string parameter is the ``profileId`` parameter. With it,
-you can specify for which profile you want to retrieve subscriptions. Organizations can have multiple profiles for each
-of their websites. See :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+:doc:`OAuth app </oauth/overview>`, the only mandatory extra query string parameter is the ``profileId`` parameter. With
+it, you can specify for which profile you want to retrieve subscriptions. Organizations can have multiple profiles for
+each of their websites. See :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
 
 .. list-table::
    :widths: auto

@@ -1,5 +1,5 @@
-List Clients API
-================
+List clients
+============
 .. api-name::Partners API
    :version: 2
 

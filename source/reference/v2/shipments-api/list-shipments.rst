@@ -18,7 +18,6 @@ Parameters
 ----------
 Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN4U``.
 
-
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
@@ -33,7 +32,6 @@ If you are using :doc:`organization access tokens </guides/authentication>` or a
           :required: false
 
      - Set this to ``true`` to list all shipments available in test mode.
-
 
 Response
 --------

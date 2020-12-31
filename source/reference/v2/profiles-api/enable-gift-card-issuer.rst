@@ -26,8 +26,8 @@ Enable a gift card issuer on a specific or authenticated profile to use it with 
 Parameters
 ----------
 Replace ``id`` in the endpoint URL by the profile's ID, for example ``pfl_v9hTwCvYqw`` and ``issuer`` with the name of
-the issuer's ID you want to activate, for example ``festivalcadeau``. There is no need to set body parameters in this ``POST``
-request.
+the issuer's ID you want to activate, for example ``festivalcadeau``. There is no need to set body parameters in this
+``POST`` request.
 
 Response
 --------
@@ -79,8 +79,8 @@ Response
 
         .. type:: object
 
-      - An object with several URL objects relevant to the gift card issuer. Every URL object will contain an ``href`` and
-        a ``type`` field.
+      - An object with several URL objects relevant to the gift card issuer. Every URL object will contain an ``href``
+        and a ``type`` field.
 
         .. list-table::
            :widths: auto

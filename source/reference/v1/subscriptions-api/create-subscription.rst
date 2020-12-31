@@ -104,7 +104,6 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example
 
      - Use this parameter to set a webhook URL for all subscription payments.
 
-
        .. note:: The ``webhookUrl`` must be reachable from Mollie's point of view, so you cannot use ``localhost``. If
           you want to use webhook during development on ``localhost``, you must use a tool like
           `ngrok <https://lornajane.net/posts/2015/test-incoming-webhooks-locally-with-ngrok>`_ to have the webhooks

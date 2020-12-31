@@ -1,8 +1,8 @@
 Why use Orders?
 ===============
-The :doc:`Orders API <overview>` allows you to create “orders”. An order contains the personal information of a
-customer (e.g. address) and products that the customer ordered. When an order is made, a corresponding payment
-will be created automatically.
+The :doc:`Orders API <overview>` allows you to create “orders”. An order contains the personal information of a customer
+(e.g. address) and products that the customer ordered. When an order is made, a corresponding payment will be created
+automatically.
 
 Using the Orders API is the preferred approach when integrating the Mollie API into e-commerce applications such as
 webshops. Below you will find an overview which functionalities the Orders API offers as opposed to the Payments API.
@@ -21,9 +21,9 @@ Which extra features can I use with the Orders API?
 
 When is it better to use the Payments API?
 ------------------------------------------
-* When you don’t collect customer details like the address, it is not possible to use the Orders API.
+* When you do not collect customer details like the address, it is not possible to use the Orders API.
   Then you can choose for the Payments API to create a simple payment instead.
 
-* When you only want to receive donations and you don’t sell any digital or physical products.
+* When you only want to receive donations and you do not sell any digital or physical products.
 
-* You’re already using the Payments API and don’t want to use all the nice extra features of the Orders API.
+* You are already using the Payments API and do not want to use all the nice extra features of the Orders API.

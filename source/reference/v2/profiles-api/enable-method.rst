@@ -23,8 +23,9 @@ Enable payment method
 
 Enable a payment method on a specific or authenticated profile to use it with payments.
 
-.. note:: Some payment methods might need extra steps to be activated, for example an OAuth connection with the supplier.
-          In those cases, the status will be set to ``pending-external`` and the response will contain a link to continue the activation.
+.. note:: Some payment methods might need extra steps to be activated, for example an OAuth connection with the
+          supplier. In those cases, the status will be set to ``pending-external`` and the response will contain a link
+          to continue the activation.
 
 Parameters
 ----------

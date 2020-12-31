@@ -1,6 +1,5 @@
-Cancel Payment Refund API
-=========================
-
+Cancel payment refund
+=====================
 .. api-name:: Refunds API
    :version: 2
 
@@ -27,7 +26,7 @@ Replace ``paymentId`` in the endpoint URL by the payment's ID, and replace ``id`
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
+If you are creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
 available.
 
 .. list-table::

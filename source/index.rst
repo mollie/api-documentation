@@ -10,7 +10,7 @@ the API. We recommend to read these topics entirely.
 If possible it would be wise to leave communication at this level to our ready-made :ref:`Clients <clients>`. This
 allows you to still be in control without reinventing the wheel.
 
-If you have any questions about integrating our API, please `contact us <https://www.mollie.com/en/contact/>`_. We're
+If you have any questions about integrating our API, please `contact us <https://www.mollie.com/en/contact/>`_. We are
 happy to help!
 
 The Mollie REST API
@@ -30,7 +30,8 @@ Well begun is half done. Save time and build on solid foundations. Mollie API cl
 `PHP <https://github.com/mollie/mollie-api-php>`_, `Ruby <https://github.com/mollie/mollie-api-ruby>`_,
 `Node.js <https://github.com/mollie/mollie-api-node>`_ and `Python <https://github.com/mollie/mollie-api-python>`_.
 
-Of course we also provide `modules and plugins <https://www.mollie.com/integrations>`_ for just about every webshop software out there.
+Of course we also provide `modules and plugins <https://www.mollie.com/integrations>`_ for just about every webshop
+software out there.
 
 Payment methods
 ---------------
@@ -49,7 +50,8 @@ Mollie is always adding new payment methods. The Mollie API currently supports t
 * `KBC/CBC Payment Button <https://www.mollie.com/en/payments/kbc-cbc>`_
 * `Klarna Pay later  <https://www.mollie.com/en/payments/klarna-pay-later>`_
 * `Klarna Slice it <https://www.mollie.com/en/payments/klarna-slice-it>`_
-* `Meal and Eco-vouchers <https://www.mollie.com/en/payments/meal-and-eco-vouchers>`_ (Appetiz, Cadeau Pass, Chèque Déjeuner, Eco Pass, Lunch Pass, Monizze, PassRestaurant, Swile)
+* `Meal and Eco-vouchers <https://www.mollie.com/en/payments/meal-and-eco-vouchers>`_ (Appetiz, Cadeau Pass, Chèque
+  Déjeuner, Eco Pass, Lunch Pass, Monizze, PassRestaurant, Swile)
 * MyBank
 * `PayPal <https://www.mollie.com/en/payments/paypal>`_
 * `paysafecard <https://www.mollie.com/en/payments/paysafecard>`_

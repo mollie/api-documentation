@@ -66,9 +66,9 @@ in the request.
        .. type:: mixed
           :required: false
 
-     - Provide any data you like, for example a string or a JSON object. We will save the data
-       alongside the order line. Whenever you fetch the order with our API, we’ll also include
-       the metadata. You can use up to approximately 1kB.
+     - Provide any data you like, for example a string or a JSON object. We will save the data alongside the order line.
+       Whenever you fetch the order with our API, we will also include the metadata. You can use up to approximately
+       1kB.
 
    * - ``quantity``
 

@@ -1,5 +1,5 @@
-Get Organization API
-====================
+Get organization
+================
 .. api-name:: Organizations API
    :version: 2
 
@@ -21,9 +21,7 @@ are accessible.
 
 Parameters
 ----------
-
 No parameters applicable for this endpoint.
-
 
 Response
 --------
@@ -79,7 +77,8 @@ Response
 
        .. type:: string
 
-     - The organization's VAT regulation, if based in the European Union. Either ``shifted`` (VAT is shifted) or ``dutch`` (Dutch VAT rate).
+     - The organization's VAT regulation, if based in the European Union. Either ``shifted`` (VAT is shifted) or
+       ``dutch`` (Dutch VAT rate).
 
    * - ``_links``
 

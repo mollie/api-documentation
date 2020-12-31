@@ -79,7 +79,6 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``/
      - A custom mandate reference. Use an unique ``mandateReference`` as some banks decline a Direct Debit payment if
        the ``mandateReference`` is not unique.
 
-
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an

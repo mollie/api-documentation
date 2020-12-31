@@ -1,6 +1,6 @@
-List Payments API
-=================
-.. api-name:: Payments API
+List payments
+=============
+.. api-name:: Payents API
    :version: 2
 
 .. endpoint::
@@ -26,8 +26,8 @@ Parameters
        .. type:: string
           :required: false
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the payment with this ID. The payment with this ID is included in the result
-       set as well.
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the payment with this ID. The payment
+       with this ID is included in the result set as well.
 
    * - ``limit``
 

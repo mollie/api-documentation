@@ -54,13 +54,12 @@ in the request.
      - The new phone number associated with the profile's trade name or brand. Must be in the
        `E.164 <https://en.wikipedia.org/wiki/E.164>`_ format. For example ``+31208202070``.
 
-
    * - ``categoryCode``
 
        .. type:: integer
           :required: false
 
-     - The new industry identifier associated with the profile's tradename or brand.
+     - The new industry identifier associated with the profile's trade name or brand.
 
        Possible values:
 

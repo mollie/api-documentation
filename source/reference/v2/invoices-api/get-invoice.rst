@@ -21,7 +21,6 @@ Parameters
 ----------
 Replace ``id`` in the endpoint URL by the invoice ID, for example ``inv_FrvewDA3Pr``.
 
-
 Response
 --------
 ``200`` ``application/json``

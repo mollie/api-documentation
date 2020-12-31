@@ -1,12 +1,11 @@
 Update account
 ==============
-
 .. api-name:: Reseller API
    :version: 1
 
-.. warning:: The Reseller API has been deprecated. Only selected partners still have access to this legacy functionality.
-             As an alternative, we recommend using :doc:`Mollie Connect </oauth/overview>` and the :doc:`Mollie v2 API
-             </reference/v2/payments-api/create-payment>`.
+.. warning:: The Reseller API has been deprecated. Only selected partners still have access to this legacy
+             functionality. As an alternative, we recommend using :doc:`Mollie Connect </oauth/overview>` and the
+             :doc:`Mollie v2 API </reference/v2/payments-api/create-payment>`.
 
 .. endpoint::
    :method: POST
@@ -18,8 +17,8 @@ changes may result in the merchant no longer receiving any payouts.
 Parameters
 ----------
 Make sure to add the :ref:`obligatory parameters <secret-keys>` always. Besides that, you can add parameters
-as described in :doc:`Create account </reference/reseller-api/endpoints/account-create>`. Please note that you'll need to add one
-additional required parameter just for this endpoint:
+as described in :doc:`Create account </reference/reseller-api/endpoints/account-create>`. Please note that you will need
+to add one additional required parameter just for this endpoint:
 
 .. list-table::
    :widths: auto
@@ -30,7 +29,6 @@ additional required parameter just for this endpoint:
           :required: true
 
      - The username of the account you would like to change.
-
 
 Response
 --------
@@ -64,7 +62,8 @@ Possible response codes
 
    * - ``34``
 
-     - The account cannot be created because one or more fields were rejected. A more extensive description has been included in the reply.
+     - The account cannot be created because one or more fields were rejected. A more extensive description has been
+       included in the reply.
 
    * - ``35``
 

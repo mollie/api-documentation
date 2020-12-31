@@ -69,8 +69,8 @@ Response
 
        .. type:: object
 
-     - An object with several URL objects relevant to the onboarding status. Every URL object will contain an ``href`` and a
-       ``type`` field.
+     - An object with several URL objects relevant to the onboarding status. Every URL object will contain an ``href``
+       and a ``type`` field.
 
        .. list-table::
           :widths: auto
@@ -85,8 +85,8 @@ Response
 
               .. type:: URL object
 
-            - The URL of the onboarding process in Mollie Dashboard. You can redirect your customer to here for e.g. completing
-              the onboarding process.
+            - The URL of the onboarding process in Mollie Dashboard. You can redirect your customer to here for e.g.
+              completing the onboarding process.
 
           * - ``organization``
 

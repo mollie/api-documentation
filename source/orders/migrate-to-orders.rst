@@ -19,7 +19,7 @@ The `Create payment` and `Create order` APIs are very similar. Both support the 
 parameter.
 
 For orders, there is no ``description`` field. The Payment description will be automatically created by Mollie and will
-contain the order number, your profile’s name and your profile’s website.
+contain the order number, your profile's name and your profile's website.
 
 If you specify a payment method using the ``method`` API parameter the ``payment`` parameter can be used to supply
 additional :ref:`payment parameters <payment-parameters>`. For example the iDEAL issuer can be specified using the
@@ -102,9 +102,9 @@ when the status of an order has changed. You can then use the Mollie API to
 Note that orders cannot be canceled by shoppers. The order will remain ``created`` so that you can add
 further payments to the order to give your customer a second chance to pay for the order.
 
-If you want to know if your customer canceled the first payment, you will need to retrieve the payment together with
-the order instead of just the order by adding ``?embed=payments`` to the Get Order API request. You can then find the
-status of the first payment under ``_embedded.payments.0.status``.
+If you want to know if your customer canceled the first payment, you will need to retrieve the payment together with the
+order instead of just the order by adding ``?embed=payments`` to the Get Order API request. You can then find the status
+of the first payment under ``_embedded.payments.0.status``.
 
 Canceling an order should be done from your backend. You can use the :doc:`Cancel Order API
 </reference/v2/orders-api/cancel-order>`.

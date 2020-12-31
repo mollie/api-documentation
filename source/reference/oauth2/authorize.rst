@@ -9,7 +9,6 @@ Authorize
 .. note:: You should construct the Authorize URL from the endpoint above with the parameters below. Then, you should
           redirect the resource owner to the Authorize endpoint.
 
-
 The Authorize endpoint is the endpoint on Mollie web site where the merchant logs in, and grants authorization to your
 client application. E.g. when the merchant clicks on the :doc:`Connect with Mollie button </oauth/overview>`, you should
 redirect the merchant to the Authorize endpoint.

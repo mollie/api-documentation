@@ -7,6 +7,7 @@ source/_static/
 !source/_static/img/*
 !source/_static/fonts/*
 !source/_static/404.css
+.DS_Store
 
 # JavaScript
 /node_modules

@@ -23,7 +23,7 @@ How does the Payments API work?
       Other`` to force an HTTP ``GET`` redirect.
 
 #. The customer reaches the :doc:`checkout </guides/checkout>`, chooses a payment method and makes the payment. This
-   process is entirely taken care of by Mollie. You don't need to do anything here.
+   process is entirely taken care of by Mollie. You do not have to do anything here.
 
 #. When the payment is made Mollie will call your :doc:`webhook </guides/webhooks>` informing your website about the
    :doc:`payment's status change </payments/status-changes>`. You should define a webhook when creating the

@@ -1,8 +1,8 @@
 Apple Pay
 =========
 
-**Apple Pay** is a digital wallet service by Apple Inc. that allows shoppers to make purchases with credit or debit cards
-stored on their Apple devices.
+**Apple Pay** is a digital wallet service by Apple Inc. that allows shoppers to make purchases with credit or debit
+cards stored on their Apple devices.
 
 .. note:: Apple Pay is only available in a `limited number of countries
           <https://www.apple.com/ios/feature-availability/#apple-pay>`_. This limitation applies to the shopper's
@@ -10,7 +10,6 @@ stored on their Apple devices.
 
 Accepting Apple Pay via Mollie
 ------------------------------
-
 In order to accept Apple Pay via Mollie, you need:
 
 #. The payment method `credit card <https://www.mollie.com/creditcard>`_ must be enabled on your website profile;
@@ -21,7 +20,6 @@ Checkout </guides/checkout>`. Additionally, limited support for integrating Appl
 
 Using the Mollie Checkout
 -------------------------
-
 If you are using the Mollie Checkout and the :doc:`Create Payment API </reference/v2/payments-api/create-payment>`
 without the ``method`` parameter, the Apple Pay button will be shown in the checkout during method selection:
 
@@ -29,7 +27,6 @@ without the ``method`` parameter, the Apple Pay button will be shown in the chec
 
 Adding Apple Pay to the method selection
 ----------------------------------------
-
 An easy way to integrate Apple Pay is by adding Apple Pay to the payment method selection. The "Checkout
 with Pay" button will then be shown in the Mollie Checkout.
 
@@ -66,12 +63,10 @@ your :doc:`webhook </guides/webhooks>` and redirect the shopper back to your web
 
 Examples
 ^^^^^^^^
-
 .. _adding-apple-pay-client-side:
 
 Option 1. Adding Apple Pay client-side with JavaScript
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-
 When using a ``<select>`` dropdown or equivalent, we recommend handling adding Apple Pay to your checkout entirely with
 JavaScript. This prevents you from having to edit your HTML or CSS.
 
@@ -118,15 +113,13 @@ If you need a more control or have complex HTML, see :ref:`Adding Apple Pay serv
    <?php endif; ?>
    -->
 
-For more details on detecting the support of Apple Pay on a device, see `Apple’s documentation
+For more details on detecting the support of Apple Pay on a device, see `Apple's documentation
 <https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability>`_.
-
 
 .. _adding-apple-pay-server-side:
 
 Option 2. Adding Apple Pay server-side
 """"""""""""""""""""""""""""""""""""""
-
 If you use a more complex HTML structure, or you need data which is only available server-side, your
 best option is to add Apple Pay to the DOM and hide it both visually as well as from screen-readers.
 
@@ -196,11 +189,10 @@ best option is to add Apple Pay to the DOM and hide it both visually as well as 
      </body>
    </html>
 
-
-For more details on detecting the support of Apple Pay on a device, see `Apple’s documentation
+For more details on detecting the support of Apple Pay on a device, see `Apple's documentation
 <https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability>`_.
 
 Direct integration of Apple Pay
 -------------------------------
-
-Integrating Apple Pay in your own checkout is available. See our :doc:`full guide </guides/applepay-direct-integration>`.
+Integrating Apple Pay in your own checkout is available. See our
+:doc:`full guide </guides/applepay-direct-integration>`.

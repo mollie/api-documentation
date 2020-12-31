@@ -5,9 +5,9 @@ flow from their desktop or laptop computer to their mobile device. This is the s
 
 QR codes also allow your customers to pay without requiring manual input leading to lower error rates.
 
-In most cases, this works by scanning a QR code during the payment process using a dedicated app on a phone. For example,
-iDEAL payments support a QR code that can be scanned using the iDEAL app or directly from within the banking app.
-The customer then completes the transaction from his or her mobile device.
+In most cases, this works by scanning a QR code during the payment process using a dedicated app on a phone. For
+example, iDEAL payments support a QR code that can be scanned using the iDEAL app or directly from within the banking
+app. The customer then completes the transaction from his or her mobile device.
 
 How do QR codes work?
 ---------------------
@@ -18,7 +18,7 @@ How do QR codes work?
 #. Mollie informs you of the payment status change using the :doc:`webhook </guides/webhooks>`.
 #. The customer is redirected back to the webshop on their computer.
 
-.. note:: Only iDeal QR works in testmode. 
+.. note:: Only iDeal QR works in testmode.
 
 Supported payment methods
 -------------------------

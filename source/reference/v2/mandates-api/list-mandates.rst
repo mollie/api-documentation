@@ -28,8 +28,8 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``c
        .. type:: string
           :required: false
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the mandate with this ID. The mandate with this ID is included in the result
-       set as well.
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the mandate with this ID. The mandate
+       with this ID is included in the result set as well.
 
    * - ``limit``
 

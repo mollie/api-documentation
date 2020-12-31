@@ -25,8 +25,8 @@ Enable a voucher issuer on a specific or authenticated profile to use it with pa
 
 Parameters
 ----------
-Replace ``id`` in the endpoint URL by the profile's ID, for example ``pfl_v9hTwCvYqw`` and ``issuer`` with the identifier of
-the issuer you want to activate, for example ``appetiz``.
+Replace ``id`` in the endpoint URL by the profile's ID, for example ``pfl_v9hTwCvYqw`` and ``issuer`` with the
+identifier of the issuer you want to activate, for example ``appetiz``.
 
 .. list-table::
    :widths: auto
@@ -37,8 +37,9 @@ the issuer you want to activate, for example ``appetiz``.
           :required: false
 
      - The contract id of the related contractor. Please note, for the first call that will be made to an issuer of the
-       contractor, this field is required. You don't have to provide the same contract id for other issuers of the same contractor.
-       Update of the contract id will be possible through making the same call again with different contract id value until the contract id is approved by the contractor.
+       contractor, this field is required. You do not have to provide the same contract id for other issuers of the same
+       contractor. Update of the contract id will be possible through making the same call again with different contract
+       ID value until the contract id is approved by the contractor.
 
 Response
 --------

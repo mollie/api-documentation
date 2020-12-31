@@ -26,8 +26,8 @@ Parameters
        .. type:: string
           :required: false
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the settlement with this ID. The settlement with this ID is included in the result set
-       as well.
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the settlement with this ID. The
+       settlement with this ID is included in the result set as well.
 
    * - ``limit``
 
@@ -109,7 +109,6 @@ Example
 
       curl -X GET https://api.mollie.com/v2/settlements?limit=5 \
          -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
-
 
    .. code-block:: php
       :linenos:

@@ -1,5 +1,5 @@
-Get Organization API
-====================
+Get organization
+================
 .. api-name:: Organizations API
    :version: 1
 
@@ -29,7 +29,7 @@ Parameters
 ----------
 Replace ``id`` in the endpoint URL by a full organization ID like ``org_1234567`` or use the ``me`` alias.
 
-If you're an official Mollie Reseller, you can retrieve the organizations that you have signed up.
+If you are an official Mollie Reseller, you can retrieve the organizations that you have signed up.
 
 Response
 --------
@@ -121,7 +121,8 @@ Response
 
        .. type:: string
 
-     - The organization's VAT regulation, if based in the European Union. Either ``shifted`` (VAT is shifted) or ``dutch`` (Dutch VAT rate).
+     - The organization's VAT regulation, if based in the European Union. Either ``shifted`` (VAT is shifted) or
+       ``dutch`` (Dutch VAT rate).
 
    * - ``verifiedDatetime``
 

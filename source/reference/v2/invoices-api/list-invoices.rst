@@ -1,5 +1,5 @@
-List invoices API
-=================
+List invoices
+=============
 .. api-name:: Invoices API
    :version: 2
 
@@ -26,8 +26,8 @@ Parameters
        .. type:: string
           :required: false
 
-     - Use this parameter to filter for an invoice with a specific invoice number / reference. An example
-       reference would be ``2018.10000``.
+     - Use this parameter to filter for an invoice with a specific invoice number / reference. An example reference
+       would be ``2018.10000``.
 
    * - ``year``
 
@@ -41,8 +41,8 @@ Parameters
        .. type:: integer
           :required: false
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the invoice with this ID. The invoice with this ID is included in the result
-       set as well.
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the invoice with this ID. The invoice
+       with this ID is included in the result set as well.
 
    * - ``limit``
 

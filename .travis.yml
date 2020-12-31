@@ -6,6 +6,7 @@ cache:
   - npm
   - directories:
     - .cache
+    - /home/travis/.nvm
 env:
   global:
     # Upload credentials
@@ -18,11 +19,10 @@ env:
     - AWS_REGION="eu-central-1"
 install:
   - nvm install $(cat .nvmrc)
-  - travis_retry npm install --no-optional
+  - travis_retry npm install --no-optional --no-audit
   - pip install -r requirements.txt
 script:
   - make html-production
-  - make write-gtm
 before_deploy:
   - pip install awscli
 deploy:
@@ -34,3 +34,4 @@ deploy:
 after_deploy:
   # Bust the CloudFront edge cache, invalidate every object in the distribution
   - aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} --paths "/*"
+  - aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION_CDN_ID} --paths "/*"

@@ -1,11 +1,10 @@
 Disconnect account
 ==================
-
 .. api-name:: Reseller API
    :version: 1
 
-.. warning:: The Reseller API has been deprecated. Only selected partners still have access to this legacy functionality.
-             This functionality is no longer available.
+.. warning:: The Reseller API has been deprecated. Only selected partners still have access to this legacy
+             functionality. This functionality is no longer available.
 
 .. endpoint::
    :method: POST
@@ -42,8 +41,8 @@ parameters:
 
        .. type:: string
 
-     - 	The partner ID of the account you would like to disconnect. It can be used instead of the parameters ``username``
-        and ``password``.
+     - 	The partner ID of the account you would like to disconnect. It can be used instead of the parameters
+        ``username`` and ``password``.
 
 Response
 --------

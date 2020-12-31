@@ -1,5 +1,5 @@
-Requesting Apple Pay Payment Session
-====================================
+Request Apple Pay Payment Session
+=================================
 .. api-name:: Miscellaneous
    :version: 2
 
@@ -65,11 +65,13 @@ Parameters
        .. type:: string
           :required: true
 
-     - The ``validationUrl`` you got from the `ApplePayValidateMerchant event <https://developer.apple.com/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent>`_.
+     - The ``validationUrl`` you got from the `ApplePayValidateMerchant event
+       <https://developer.apple.com/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent>`_.
 
-       A `list of all valid host names <https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server#3172427>`_
-       for merchant validation is available. You should white list these in your application and reject any
-       ``validationUrl`` that have a host name not in the list.
+       A `list of all valid host names
+       <https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server#3172427>`_ for merchant
+       validation is available. You should white list these in your application and reject any ``validationUrl`` that
+       have a host name not in the list.
 
    * - ``domain``
 

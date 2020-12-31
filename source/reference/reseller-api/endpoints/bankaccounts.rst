@@ -1,12 +1,11 @@
-Get bankaccount
-===============
-
+Get bank account
+================
 .. api-name:: Reseller API
    :version: 1
 
-.. warning:: The Reseller API has been deprecated. Only selected partners still have access to this legacy functionality.
-             At this moment, it's no longer possible to retrieve bank accounts through the API. This information can still
-             be viewed in our Dashboard.
+.. warning:: The Reseller API has been deprecated. Only selected partners still have access to this legacy
+             functionality. At this moment, it's no longer possible to retrieve bank accounts through the API. This
+             information can still be viewed in our Dashboard.
 
 .. endpoint::
    :method: POST

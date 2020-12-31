@@ -1,11 +1,10 @@
 Get login link
 ==============
-
 .. api-name:: Reseller API
    :version: 1
 
-.. warning:: The Reseller API has been deprecated. Only selected partners still have access to this legacy functionality.
-             This functionality is no longer available.
+.. warning:: The Reseller API has been deprecated. Only selected partners still have access to this legacy
+             functionality. This functionality is no longer available.
 
 .. endpoint::
    :method: POST
@@ -13,8 +12,8 @@ Get login link
 
 This method allows you to obtain a special link, with which a merchant can be directly logged in.
 
-You are to redirect the merchant to the log-in link. It will log the merchant in, if he wasn't already. In all other
-cases, the merchant who was already logged in will remain logged in.
+You are to redirect the merchant to the log-in link. It will log the merchant in, if he was not already logged in. In
+all other cases, the merchant who was already logged in will remain logged in.
 
 When the customer has not yet accepted Mollie's conditions they must first do so before being redirected.
 
@@ -48,8 +47,8 @@ parameters:
 
        .. type:: string
 
-     - 	The partner ID of the account you would like to generate a login link for. It can be used instead of the parameters ``username``
-        and ``password``.
+     - 	The partner ID of the account you would like to generate a login link for. It can be used instead of the
+        parameters ``username`` and ``password``.
 
    * - ``redirect_url``
 

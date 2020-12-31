@@ -23,7 +23,6 @@ enabled.
 
 How to create an application fee
 --------------------------------
-
 One-off application fees can be created on Payments or Orders. Application fees can also be set on Subscriptions, in
 which case the application fee will be added to *each Payment* created for the Subscription.
 
@@ -51,8 +50,8 @@ They are created by passing additional parameters to the
               .. type:: amount object
                  :required: true
 
-            - The amount the app wants to charge, e.g. ``{"currency":"EUR", "value":"10.00"}`` if the app would want to charge €10.00. Read more about :ref:`maximum application fees <max-application-fees>`.
-
+            - The amount the app wants to charge, e.g. ``{"currency":"EUR", "value":"10.00"}`` if the app would want to
+              charge €10.00. Read more about :ref:`maximum application fees <max-application-fees>`.
 
               .. list-table::
                  :widths: auto
@@ -96,11 +95,14 @@ Maximum application fees
 |
 | *Payments API*
 |
-| The maximum application fee per payment is the amount of the payment - (1.21 × (0.29 + (0.05 × the amount of the payment))). The minimum is €0.01.
+| The maximum application fee per payment is the amount of the payment - (1.21 × (0.29 + (0.05 × the amount of the
+| payment))). The minimum is €0.01.
 |
 | *Orders API*
 |
-| The maximum application fee per payment is 10% of the total amount, up to a maximum of €2.00. If a higher maximum is required for your business, you can request this via Mollie’s `customer service <https://www.mollie.com/contact/>`_ or your account manager at Mollie.
+| The maximum application fee per payment is 10% of the total amount, up to a maximum of €2.00. If a higher maximum is
+| required for your business, you can request this via Mollie's `customer service <https://www.mollie.com/contact/>`_ or
+| your account manager at Mollie.
 
 Recurring
 -------------
@@ -108,4 +110,6 @@ Application fees are both supported on recurring payment and on subscriptions.
 
 Multicurrency
 -------------
-Application fees are supported on all payments regardless of :doc:`currency </payments/multicurrency>`. However, the application fee itself must always be created in ``EUR``. For example, you can charge a €1.00 application fee on a US$10.00 payment.
+Application fees are supported on all payments regardless of :doc:`currency </payments/multicurrency>`. However, the
+application fee itself must always be created in ``EUR``. For example, you can charge a €1.00 application fee on a
+US$10.00 payment.

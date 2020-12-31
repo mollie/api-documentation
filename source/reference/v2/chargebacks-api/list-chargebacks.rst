@@ -34,8 +34,8 @@ When using the payment-specific endpoint, replace ``paymentId`` in the endpoint 
        .. type:: string
           :required: false
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the chargeback with this ID. The chargeback with this ID is
-       included in the result set as well.
+     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the chargeback with this ID. The
+       chargeback with this ID is included in the result set as well.
 
    * - ``limit``
 
@@ -209,7 +209,7 @@ Response
                    },
                    "settlementAmount": {
                        "currency": "EUR",
-                       "value": "35.07"
+                       "value": "-35.07"
                    },
                    "createdAt": "2018-03-14T17:00:52.0Z",
                    "reversedAt": null,

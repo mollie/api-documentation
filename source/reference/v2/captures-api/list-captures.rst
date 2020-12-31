@@ -1,6 +1,5 @@
 List captures
 =============
-
 .. api-name:: Captures API
    :version: 2
 

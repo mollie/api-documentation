@@ -1,5 +1,5 @@
-Cancel Payment API
-==================
+Cancel payment
+==============
 .. api-name:: Payments API
    :version: 2
 
@@ -25,7 +25,7 @@ Replace ``id`` in the endpoint URL by the payment's ID, for example ``tr_7UhSN1z
 
 Mollie Connect/OAuth parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
+If you are creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
 available.
 
 .. list-table::

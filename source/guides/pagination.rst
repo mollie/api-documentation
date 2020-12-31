@@ -5,7 +5,7 @@ unpractical from a performance perspective. Doing so might be too much work for 
 website to process. The maximum number of objects returned is 250.
 
 For this reason the Mollie API only returns a subset of the requested set of objects. In other words, the Mollie API
-chops the result of a certain API method call into pages you're able to programmatically scroll through.
+chops the result of a certain API method call into pages you are able to programmatically scroll through.
 
 .. _pagination-in-v2:
 
@@ -15,7 +15,7 @@ The ``v2`` API endpoints use the so-called cursor pagination method. In short, t
 get shifted when a new object is created with the same account in the meantime, by paginating by object ID rather than
 by page number.
 
-You can get the next page of objects by following the ``next`` link. 
+You can get the next page of objects by following the ``next`` link.
 
 Response object
 ^^^^^^^^^^^^^^^
@@ -33,7 +33,7 @@ Response object
 
        .. type:: object
 
-     - The actual data you're looking for.
+     - The actual data you are looking for.
 
    * - ``_links``
 
@@ -100,7 +100,6 @@ Request
       if($payments->hasPrevious()) {
           $previous_payments = $payments->previous();
       }
-
 
 Response
 """"""""
@@ -209,7 +208,7 @@ Response object
 
        .. type:: array
 
-     - The actual data you're looking for.
+     - The actual data you are looking for.
 
    * - ``links``
 

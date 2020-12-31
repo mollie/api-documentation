@@ -1,5 +1,5 @@
-Create Payment API
-==================
+Create payment
+==============
 .. api-name:: Payments API
    :version: 2
 
@@ -36,8 +36,9 @@ Parameters
      - The amount that you want to charge, e.g. ``{"currency":"EUR", "value":"1000.00"}`` if you would want to charge
        €1000.00.
 
-       You can find the `minimum and maximum amounts <https://help.mollie.com/hc/en-us/articles/115000667365-What-are-the-minimum-and-maximum-amounts-per-payment-method->`_
-       per payment method in our help center. Additionally, they can be retrieved using the :doc:`/reference/v2/methods-api/get-method`.
+       You can find the `minimum and maximum amounts <https://help.mollie.com/hc/en-us/articles/115000667365>`_
+       per payment method in our help center. Additionally, they can be retrieved using the
+       :doc:`/reference/v2/methods-api/get-method`.
 
        .. list-table::
           :widths: auto
@@ -63,7 +64,7 @@ Parameters
        .. type:: string
           :required: true
 
-     - The description of the payment you're creating. This will be shown to your customer on their card or bank
+     - The description of the payment you are creating. This will be shown to your customer on their card or bank
        statement when possible. We truncate the description automatically according to the limits of the used payment
        method. The description is also visible in any exports you generate.
 
@@ -80,9 +81,9 @@ Parameters
        It could make sense for the ``redirectUrl`` to contain a unique identifier – like your order ID – so you can show
        the right page referencing the order when your customer returns.
 
-       .. note:: Only for payments with the ``sequenceType`` parameter set to ``recurring``, you can omit this parameter.
-          Additionally, for payments that are created with the ``applePayPaymentToken`` parameter, the redirect URL can
-          also be omitted.
+       .. note:: Only for payments with the ``sequenceType`` parameter set to ``recurring``, you can omit this
+          parameter. Additionally, for payments that are created with the ``applePayPaymentToken`` parameter, the
+          redirect URL can also be omitted.
 
    * - ``webhookUrl``
 
@@ -98,7 +99,6 @@ Parameters
           you want to use webhook during development on ``localhost``, you must use a tool like
           `ngrok <https://lornajane.net/posts/2015/test-incoming-webhooks-locally-with-ngrok>`_ to have the webhooks
           delivered to your local machine.
-
 
    * - .. param-name:: locale
 
@@ -130,10 +130,11 @@ Parameters
        show payment methods from a specific country to your customer ``['bancontact', 'belfius', 'inghomepay']``.
 
        Possible values: ``applepay`` ``bancontact`` ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``
-       ``giftcard`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``mybank``  ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort``
+       ``giftcard`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``mybank``  ``paypal`` ``paysafecard`` ``przelewy24``
+       ``sofort``
 
-       .. note:: If you are looking to create payments with the Klarna Pay later, Klarna Slice it, or Voucher payment methods,
-                 please use the :doc:`/reference/v2/orders-api/create-order` instead.
+       .. note:: If you are looking to create payments with the Klarna Pay later, Klarna Slice it, or voucher payment
+                 methods, please use the :doc:`/reference/v2/orders-api/create-order` instead.
 
    * - ``metadata``
 
@@ -141,7 +142,7 @@ Parameters
           :required: false
 
      - Provide any data you like, for example a string or a JSON object. We will save the data alongside the
-       payment. Whenever you fetch the payment with our API, we'll also include the metadata. You can use up to
+       payment. Whenever you fetch the payment with our API, we will also include the metadata. You can use up to
        approximately 1kB.
 
    * - ``sequenceType``
@@ -187,12 +188,12 @@ Parameters
        .. type:: string
           :required: false
 
-     - |
-       | For digital goods in most jurisdictions, you must apply the VAT rate from your customer’s country.
-         Choose the VAT rates you have used for the order to ensure your customer’s country matches the VAT country.
-         Use this parameter to restrict the payment methods available to your customer to those from a single country.
-       |
-       | If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+     - For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+       rates you have used for the order to ensure your customer's country matches the VAT country.
+
+       Use this parameter to restrict the payment methods available to your customer to those from a single country.
+
+       If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
 
 .. _payment-method-specific-parameters:
 
@@ -235,7 +236,7 @@ Bank transfer
           :required: false
 
      - Consumer's email address, to automatically send the bank transfer details to. **Please note:** the
-       payment instructions will be sent immediately when creating the payment. If you don't specify the ``locale``
+       payment instructions will be sent immediately when creating the payment. If you do not specify the ``locale``
        parameter, the email will be sent in English, as we haven't yet been able to detect the consumer's browser
        language.
 
@@ -398,8 +399,9 @@ Gift cards
 
        Possible values: ``decadeaukaart`` ``dinercadeau`` ``fashioncheque`` ``festivalcadeau`` ``good4fun``
        ``kunstencultuurcadeaukaart`` ``nationalebioscoopbon`` ``nationaleentertainmentcard`` ``nationalegolfbon``
-       ``ohmygood`` ``podiumcadeaukaart`` ``reiscadeau`` ``restaurantcadeau`` ``sportenfitcadeau`` ``sustainablefashion``
-       ``travelcheq`` ``vvvgiftcard`` ``vvvdinercheque`` ``vvvlekkerweg`` ``webshopgiftcard`` ``yourgift``
+       ``ohmygood`` ``podiumcadeaukaart`` ``reiscadeau`` ``restaurantcadeau`` ``sportenfitcadeau``
+       ``sustainablefashion`` ``travelcheq`` ``vvvgiftcard`` ``vvvdinercheque`` ``vvvlekkerweg`` ``webshopgiftcard``
+       ``yourgift``
 
    * - ``voucherNumber``
 
@@ -466,9 +468,9 @@ Klarna Pay later. / Slice it.
 
      - For some industries, additional purchase information can be sent to Klarna to increase the authorization rate.
        You can submit your extra data in this field if you have agreed upon this with Klarna. This field should be an
-       object containing any of the allowed keys and sub objects described at the
-       `Klarna Developer Documentation <https://developers.klarna.com/api/#payments-api__create-a-new-credit-sessionattachment__body>`_
-       under ``attachment.body``.
+       object containing any of the allowed keys and sub objects described at the `Klarna Developer Documentation
+       <https://developers.klarna.com/api/#payments-api__create-a-new-credit-sessionattachment__body>`_ under
+       ``attachment.body``.
 
        Note that Klarna needs to do some work to make sure this information is incorporated in their risk decisions, so
        there is no point in sending it without making agreements with Klarna first.
@@ -514,14 +516,16 @@ PayPal
               .. type:: string
                  :required: false
 
-            - The given name (first name) of the person. The maximum character length of ``givenName`` and ``familyName`` combined is 128.
+            - The given name (first name) of the person. The maximum character length of ``givenName`` and
+              ``familyName`` combined is 128.
 
           * - ``familyName``
 
               .. type:: string
                  :required: false
 
-            - The family name (surname) of the person. The maximum character length of ``givenName`` and ``familyName`` combined is 128.
+            - The family name (surname) of the person. The maximum character length of ``givenName`` and ``familyName``
+              combined is 128.
 
           * - ``streetAndNumber``
 
@@ -580,7 +584,7 @@ PayPal
        .. type:: boolean
           :required: false
 
-     - Indicate if you're about to deliver digital goods, like for example a license. Setting this
+     - Indicate if you are about to deliver digital goods, like for example a license. Setting this
        parameter can have consequences for your Seller Protection by PayPal. Please see
        `PayPal's help article <https://www.paypal.com/us/brc/article/seller-protection>`_ about
        Seller Protection for more information.
@@ -739,8 +743,8 @@ specify which profile the payment belongs to. Organizations can have multiple pr
 
 QR codes
 ^^^^^^^^
-To create a payment with a QR code embedded in the API response, explicitly set the payment method and call the API endpoint with an
-include request for ``details.qrCode`` in the query string:
+To create a payment with a QR code embedded in the API response, explicitly set the payment method and call the API
+endpoint with an include request for ``details.qrCode`` in the query string:
 
 .. endpoint::
    :method: POST

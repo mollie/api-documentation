@@ -37,7 +37,7 @@ HTTPS. This is because the webhook requests – which Mollie sends out to commun
 :doc:`status changes </payments/status-changes>` – simply do not contain sensitive information. Your webhook
 script will always have to :doc:`fetch the object </reference/v2/payments-api/get-payment>` in order to know its status,
 and this can only be done using an HTTPS-secured connection. Here too, the fact ``https://api.mollie.com/`` can only be
-reached using HTTPS forces merchant-sites that don't use HTTPS into security.
+reached using HTTPS forces merchant-sites that do not use HTTPS into security.
 
 What's left?
 ------------

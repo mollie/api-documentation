@@ -1,5 +1,5 @@
-Get Payment Method API
-======================
+Get payment method
+==================
 .. api-name:: Methods API
    :version: 1
 
@@ -49,9 +49,9 @@ Replace ``id`` in the endpoint URL by the payment method's ID, for example ``cre
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the only mandatory extra query string parameter is the ``profileId`` parameter. With it,
-you can specify which profile you want to retrieve a method for. Organizations can have multiple profiles for each of
-their websites. See :doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more information.
+:doc:`OAuth app </oauth/overview>`, the only mandatory extra query string parameter is the ``profileId`` parameter. With
+it, you can specify which profile you want to retrieve a method for. Organizations can have multiple profiles for each
+of their websites. See :doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more information.
 
 .. list-table::
    :widths: auto
