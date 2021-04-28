@@ -37,13 +37,18 @@ example below shows a fully branded checkout page.
 
    ETQ's Checkout with their logo (up top) and wallpaper (background).
 
-Single Click payments for returning customers
+Single-Click payments for returning customers
 ---------------------------------------------
 This feature allows your customers who have paid with
 `credit card <https://www.mollie.com/en/payments/credit-card>`_ to complete their next payments with just one click. A
 recognizable credit card with information gathered from the customers' previous payment is presented and allows the
-customer to reuse this card. Single Click payments increase conversion.
+customer to reuse this card. Single-Click payments increase conversion.
 
+Be aware that you must obtain the cardholder's express, informed consent before a Single-Click payment can be processed. 
+Mollie will assume you have asked your customer for consent *before* you create a Single-Click payment. Usually, a simple 
+checkbox is sufficient to obtain your customers' consent to store credentials.
+
+#. Obtain cardholders' consent to store their credentials for later use.
 #. Create a unique customer using the :doc:`Customers API </reference/v2/customers-api/create-customer>`.
 #. Store the customer's ``id`` safely in your database. It's needed for performing Payments API calls for the customer.
 #. Specify the ``customerId`` parameter each time you create a payment for this customer.
