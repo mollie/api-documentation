@@ -175,6 +175,16 @@ Example
       $payment = $mollie->payments->get("tr_WDqYK6vllg");
       $capture = $payment->getCapture("cpt_4qqhO89gsT");
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      capture = mollie_client.captures.with_parent_id('tr_WDqYK6vllg').get('cpt_4qqhO89gsT')
+
    .. code-block:: ruby
       :linenos:
 
