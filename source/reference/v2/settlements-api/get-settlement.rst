@@ -327,6 +327,20 @@ Example
 
       $settlement = $mollie->settlements->get("1234567.1804.03");
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+
+      settlement = mollie_client.settlements.get('stl_jDk30akdN')
+
+      # or, by bank reference
+
+      settlement = mollie_client.settlements.get('1234567.1804.03')
+
    .. code-block:: ruby
       :linenos:
 
