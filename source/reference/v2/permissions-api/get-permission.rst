@@ -91,6 +91,16 @@ Example
       $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
       $permission = $mollie->permissions->get("payments.read");
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+
+      permissions = mollie_client.permissions.get('payments.read')
+
    .. code-block:: ruby
       :linenos:
 
