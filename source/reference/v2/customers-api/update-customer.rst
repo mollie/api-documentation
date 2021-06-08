@@ -101,6 +101,20 @@ Example
       $customer->email = "updated-customer@example.org";
       $customer->update();
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      customer = mollie_client.customers.update(
+          "cst_8wmqcHMN4U",
+          data={"name": "Updated Customer A", "email": "updated-customer@example.org"},
+      )
+
+
    .. code-block:: ruby
       :linenos:
 

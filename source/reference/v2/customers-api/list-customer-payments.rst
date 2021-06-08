@@ -72,6 +72,16 @@ Example
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
       $payments = $mollie->customers->get("cst_8wmqcHMN4U")->payments();
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      payments = mollie_client.customer_payments.with_parent_id('cst_8wmqcHMN4U').list()
+
    .. code-block:: ruby
       :linenos:
 
