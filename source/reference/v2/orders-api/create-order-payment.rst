@@ -138,6 +138,17 @@ Example
           // ... redirect the customer to the checkout url
       }
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      order = mollie_client.orders.get('ord_stTC2WHAuS')
+      order = order.create_payment(data={'method': 'banktransfer'})
+
 Response
 ^^^^^^^^
 .. code-block:: none
