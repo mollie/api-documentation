@@ -137,6 +137,25 @@ Example
       $profile->categoryCode = "5399";
       $updatedProfile = $profile->update();
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+
+      profile = mollie_client.profiles.update(
+          'pfl_v9hTwCvYqw',
+          data={
+              'name': 'My website name - Update 1',
+              'website': 'https://www.mywebsite2.com',
+              'email': 'info@mywebsite2.com',
+              'phone': '+31208202070',
+              'categoryCode': '5399',
+          },
+      )
+
    .. code-block:: ruby
       :linenos:
 

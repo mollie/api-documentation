@@ -39,6 +39,16 @@ Example
       $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
       $mollie->profiles->delete("pfl_v9hTwCvYqw");
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+
+      mollie_client.profiles.delete('pfl_v9hTwCvYqw')
+
    .. code-block:: ruby
       :linenos:
 
