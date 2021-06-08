@@ -127,7 +127,18 @@ Request
       :linenos:
 
       curl -X GET https://api.mollie.com/v2/customers/cst_8wmqcHMN4U/subscriptions/sub_8JfGzs6v3K/payments \
-         -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+         -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      subscription = mollie_client.customer_subscriptions.with_parent_id('cst_8wmqcHMN4U').get('sub_8JfGzs6v3K')
+      payments = subscription.payments
 
 Response
 ^^^^^^^^

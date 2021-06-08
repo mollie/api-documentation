@@ -250,6 +250,24 @@ Example
          "webhookUrl" => "https://webshop.example.org/subscriptions/webhook/",
       ]);
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      subscription = mollie_client.customer_subscriptions.with_parent_id('cst_stTC2WHAuS').create(
+          data={
+              'amount': {'currency': 'EUR', 'value': '25.00'},
+              'times': 4,
+              'interval': '3 months',
+              'description': 'Quarterly payment',
+              'webhookUrl': 'https://webshop.example.org/subscriptions/webhook/',
+          }
+      )
+
    .. code-block:: ruby
       :linenos:
 

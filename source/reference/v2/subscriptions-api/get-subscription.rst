@@ -262,6 +262,16 @@ Example
       $customer = $mollie->customers->get("cst_stTC2WHAuS");
       $subscription = $customer->getSubscription("sub_rVKGtNd6s3");
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      subscription = mollie_client.customer_subscriptions.with_parent_id('cst_stTC2WHAuS').get('sub_rVKGtNd6s3')
+
    .. code-block:: ruby
       :linenos:
 
