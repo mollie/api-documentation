@@ -151,6 +151,24 @@ Example
       ]);
       $paymentLink->getCheckoutUrl();
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+      payment_link = mollie_client.payment_links.create({
+         "amount": {
+               "currency": "EUR",
+               "value": "24.95"
+         },
+         "description": "Bicycle tires",
+         "expiresAt": "2021-06-06T11:00:00+00:00",
+         "webhookUrl": "https://webshop.example.org/payment-links/webhook/",
+         "redirectUrl": "https://webshop.example.org/thanks",
+      })
+
 Response
 ^^^^^^^^
 .. code-block:: none

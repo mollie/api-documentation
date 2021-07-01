@@ -144,6 +144,15 @@ Example
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
       $paymentLinks = $mollie->paymentLinks->page(null, 5);
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+      payment_links = mollie_client.payment_links.list()
+
 Response
 ^^^^^^^^
 .. code-block:: none
