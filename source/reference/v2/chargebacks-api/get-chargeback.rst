@@ -145,6 +145,7 @@ Response
    * - ``reversedAt``
 
        .. type:: datetime
+          :required: false
 
      - The date and time the chargeback was reversed if applicable, in
        `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
