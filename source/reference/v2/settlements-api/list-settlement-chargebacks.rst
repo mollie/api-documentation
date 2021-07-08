@@ -53,9 +53,19 @@ Request
       <?php
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
-      
+
       $settlement = $mollie->settlements->get("stl_jDk30akdN");
       $chargebacks = $settlement->chargebacks();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+
+      chargebacks = mollie_client.settlement_chargebacks.with_parent_id('stl_jDk30akdN').list()
 
    .. code-block:: ruby
       :linenos:

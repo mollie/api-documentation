@@ -60,7 +60,6 @@ parameters:
         * ``giftcard``
         * ``giropay``
         * ``ideal``
-        * ``inghomepay``
         * ``kbc``
         * ``klarnapaylater``
         * ``klarnasliceit``

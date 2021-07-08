@@ -1,6 +1,6 @@
 Request Apple Pay Payment Session
 =================================
-.. api-name:: Miscellaneous
+.. api-name:: Wallets API
    :version: 2
 
 .. endpoint::
@@ -41,9 +41,9 @@ For the full documentation, see the official `Apple Pay JS API
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the only mandatory extra parameter is the ``profileId`` parameter. Data from the
-profile will be used for Apple Pay, for example the name of the profile will be displayed on the touch bar, if the
-payment is used on a MacBook with touch bar.
+:doc:`OAuth app </connect/overview>`, you have to specify which profile you are creating the payment session for using
+the ``profileId`` parameter. Data from the profile will be used for Apple Pay. For example, the name of the profile will
+be displayed on the touch bar, if the payment is used on a MacBook with touch bar.
 
 .. list-table::
    :widths: auto

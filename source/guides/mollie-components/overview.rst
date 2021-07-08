@@ -14,8 +14,8 @@ Mollie Components to exchange the card holder data for a ``cardToken`` which you
 :doc:`Create Payment API </reference/v2/payments-api/create-payment>` or
 :doc:`/reference/v2/orders-api/create-order`.
 
-Depending on various factors, the payment will either be completed immediately or you will get a ``_links.checkout``
-URL where your customer can perform the 3-D Secure authentication. If the customer authenticates successfully, the
+Once you have created a payment or order, you should redirect your customer to the URL in the ``_links.checkout`` property from
+the response. This link is where your customer can perform the 3-D Secure authentication. If the customer authenticates successfully, the
 payment is completed.
 
 Implementation steps

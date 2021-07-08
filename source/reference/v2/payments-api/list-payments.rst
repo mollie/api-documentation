@@ -1,6 +1,6 @@
 List payments
 =============
-.. api-name:: Payents API
+.. api-name:: Payments API
    :version: 2
 
 .. endpoint::
@@ -39,10 +39,12 @@ Parameters
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the following query string parameters are also available. With the ``profileId``
-parameter, you can specify which profile you want to look at when listing payments. If you omit the ``profileId``
-parameter, you will get all payments on the organization. Organizations can have multiple profiles for each of their
-websites. See :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+:doc:`OAuth app </connect/overview>`, you can specify which profile you are retrieving payments for using the
+``profileId`` parameter. Organizations can have multiple profiles for each of their websites. If you omit the
+``profileId`` parameter, the API will return all payments across all profiles. See
+:doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+
+For these authentication methods the optional ``testmode`` parameter is available as well to enable test mode.
 
 .. list-table::
    :widths: auto
@@ -52,7 +54,8 @@ websites. See :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for m
        .. type:: string
           :required: false
 
-     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
+     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``. Omit this parameter to retrieve all
+       payments across all profiles.
 
    * - ``testmode``
 
@@ -143,7 +146,6 @@ Response
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:

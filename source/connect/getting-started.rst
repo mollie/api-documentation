@@ -1,6 +1,6 @@
-Mollie Connect: Getting started
-===============================
-With Mollie Connect you can connect multiple Mollie accounts together. See the :doc:`overview </oauth/overview>` for
+Getting started with Mollie Connect
+===================================
+With Mollie Connect you can connect multiple Mollie accounts together. See the :doc:`overview </connect/overview>` for
 more information.
 
 Most of the functionality of Mollie Connect leverages the open standard `OAuth <https://en.wikipedia.org/wiki/OAuth>`_.
@@ -65,8 +65,8 @@ access to, and request the merchant to confirm the authorization. An example aut
 
 .. image:: images/oauth-consent-screen@2x.png
 
-Please refer to :doc:`OAuth: Permissions </oauth/permissions>` for a full list of available permissions you can request
-from your user.
+Please refer to :doc:`OAuth: Permissions </connect/permissions>` for a full list of available permissions you can
+request from your user.
 
 Working with access tokens
 --------------------------

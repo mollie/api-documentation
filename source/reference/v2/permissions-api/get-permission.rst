@@ -19,7 +19,7 @@ resource allows the app to check whether an API action is (still) allowed by the
 Parameters
 ----------
 Replace ``id`` in the endpoint URL by the permission's ID, for example ``payments.read``. See
-:doc:`Permissions </oauth/permissions>` for details about the available permissions.
+:doc:`Permissions </connect/permissions>` for details about the available permissions.
 
 Response
 --------
@@ -76,7 +76,6 @@ Response
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -91,6 +90,16 @@ Example
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
       $permission = $mollie->permissions->get("payments.read");
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+
+      permissions = mollie_client.permissions.get('payments.read')
 
    .. code-block:: ruby
       :linenos:

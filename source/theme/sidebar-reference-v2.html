@@ -3,554 +3,548 @@
 
 {% include 'api-version-switcher.html' %}
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/payments-api/') }}">
-	<p><a href="javascript:void(0)">Payments API</a></p>
+<p class="sidebar__topic-header">Accepting payments</p>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/v2/payments-api/create-payment',
-			'Create payment',
-			'POST /v2/payments'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/payments-api/get-payment',
-			'Get payment',
-			'GET /v2/payments/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/payments-api/update-payment',
-			'Update payment',
-			'PATCH /v2/payments/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/payments-api/cancel-payment',
-			'Cancel payment',
-			'DELETE /v2/payments/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/payments-api/list-payments',
-			'List payments',
-			'GET /v2/payments'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/payments-api/get-payment-route',
-			'Get payment route',
-			'GET /v2/payments/*/routes/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/payments-api/update-payment-route',
-			'Update payment route',
-			'PATCH /v2/payments/*/routes/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/payments-api/list-payment-routes',
-			'List payment routes',
-			'GET /v2/payments/*/routes'
-		) }}
-	</ul>
-</div>
+<ul>
+  {%- set current = pagename.startswith('reference/v2/payments-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/payments-api/create-payment') }}">Payments API</a>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/methods-api/') }}">
-	<p><a href="javascript:void(0)">Methods API</a></p>
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/v2/payments-api/create-payment',
+          'Create payment'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/payments-api/get-payment',
+          'Get payment'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/payments-api/update-payment',
+          'Update payment'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/payments-api/cancel-payment',
+          'Cancel payment'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/payments-api/list-payments',
+          'List payments'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/v2/methods-api/list-methods',
-			'List payment methods',
-			'GET /v2/methods'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/methods-api/list-all-methods',
-			'List all payment methods',
-			'GET /v2/methods/all'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/methods-api/get-method',
-			'Get payment method',
-			'GET /v2/methods/*'
-		) }}
-	</ul>
-</div>
+  {%- set current = pagename.startswith('reference/v2/methods-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/methods-api/list-methods') }}">Methods API</a>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/refunds-api/') }}">
-	<p><a href="javascript:void(0)">Refunds API</a></p>
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/v2/methods-api/list-methods',
+          'List payment methods'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/methods-api/list-all-methods',
+          'List all payment methods'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/methods-api/get-method',
+          'Get payment method'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/v2/refunds-api/create-refund',
-			'Create payment refund',
-			'POST /v2/payments/*/refunds'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/refunds-api/get-refund',
-			'Get payment refund',
-			'GET /v2/payments/*/refunds/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/refunds-api/cancel-refund',
-			'Cancel payment refund',
-			'DELETE /v2/payments/*/refunds/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/refunds-api/list-refunds',
-			'List refunds',
-			'GET /v2/refunds'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/refunds-api/list-refunds',
-			'List payment refunds',
-			'GET /v2/payments/*paymentId*/refunds'
-		) }}
-	</ul>
-</div>
+  {%- set current = pagename.startswith('reference/v2/refunds-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/refunds-api/create-refund') }}">Refunds API</a>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/chargebacks-api/') }}">
-	<p><a href="javascript:void(0)">Chargebacks API</a></p>
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/v2/refunds-api/create-refund',
+          'Create payment refund'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/refunds-api/get-refund',
+          'Get payment refund'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/refunds-api/cancel-refund',
+          'Cancel payment refund'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/refunds-api/list-refunds',
+          'List refunds'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/refunds-api/list-refunds',
+          'List payment refunds'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/v2/chargebacks-api/get-chargeback',
-			'Get chargeback',
-			'GET /v2/payments/*/chargebacks/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/chargebacks-api/list-chargebacks',
-			'List chargebacks',
-			'GET /v2/chargebacks'
-		) }}
-	</ul>
-</div>
+  {%- set current = pagename.startswith('reference/v2/chargebacks-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/chargebacks-api/get-chargeback') }}">Chargebacks API</a>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/captures-api/') }}">
-	<p><a href="javascript:void(0)">Captures API</a></p>
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/v2/chargebacks-api/get-chargeback',
+          'Get chargeback'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/chargebacks-api/list-chargebacks',
+          'List chargebacks'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/v2/captures-api/get-capture',
-			'Get capture',
-			'GET /v2/payments/*/captures/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/captures-api/list-captures',
-			'List captures',
-			'GET /v2/payments/*/captures'
-		) }}
-	</ul>
-</div>
+  {%- set current = pagename.startswith('reference/v2/captures-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/captures-api/get-capture') }}">Captures API</a>
 
-<div class="sidebar__spacing"></div>
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+        'reference/v2/captures-api/get-capture',
+        'Get capture'
+        ) }}
+        {{ sidebar_item(
+        'reference/v2/captures-api/list-captures',
+        'List captures'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/orders-api/') }}">
-	<p><a href="javascript:void(0)">Orders API</a></p>
+  {%- set current = pagename.startswith('reference/v2/wallets-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/wallets-api/request-apple-pay-payment-session') }}">Wallets API</a>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/v2/orders-api/create-order',
-			'Create order',
-			'POST /v2/orders'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/orders-api/get-order',
-			'Get order',
-			'GET /v2/orders/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/orders-api/update-order',
-			'Update order',
-			'PATCH /v2/orders/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/orders-api/update-orderline',
-			'Update order line',
-			'PATCH /v2/orders/*/lines/*'
-		) }}
-		{{ sidebar_item(
-		'reference/v2/orders-api/cancel-order',
-			'Cancel order',
-			'DELETE /v2/orders/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/orders-api/list-orders',
-			'List orders',
-			'GET /v2/orders'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/orders-api/cancel-order-lines',
-			'Cancel order lines',
-			'DELETE /v2/orders/*/lines'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/orders-api/create-order-payment',
-			'Create order payment',
-			'POST /v2/orders/*/payments'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/orders-api/create-order-refund',
-			'Create order refund',
-			'POST /v2/orders/*/refunds'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/orders-api/list-order-refunds',
-			'List order refunds',
-			'GET /v2/orders/*/refunds'
-		) }}
-	</ul>
-</div>
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/v2/wallets-api/request-apple-pay-payment-session',
+          'Request Apple Pay Payment Session'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/shipments-api/') }}">
-	<p><a href="javascript:void(0)">Shipments API</a></p>
+  {%- set current = pagename.startswith('reference/v2/payment-links-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if pagename.startswith('reference/v2/payment-links-api/') %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/payment-links-api/create-payment-link') }}">Payment Links API</a>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/v2/shipments-api/create-shipment',
-			'Create shipment',
-			'POST /v2/orders/*/shipments'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/shipments-api/get-shipment',
-			'Get shipment',
-			'GET /v2/orders/*/shipments/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/shipments-api/list-shipments',
-			'List shipments',
-			'GET /v2/orders/*/shipments'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/shipments-api/update-shipment',
-			'Update shipment',
-			'PATCH /v2/orders/*/shipments/*'
-		) }}
-	</ul>
-</div>
+    {%- if pagename.startswith('reference/v2/payment-links-api/') %}
+      <ul>
+        {{ sidebar_item(
+        'reference/v2/payment-links-api/create-payment-link',
+        'Create payment link'
+        ) }}
+        {{ sidebar_item(
+        'reference/v2/payment-links-api/get-payment-link',
+        'Get payment link'
+        ) }}
+        {{ sidebar_item(
+        'reference/v2/payment-links-api/list-payment-links',
+        'List payment links'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
+</ul>
 
-<div class="sidebar__spacing"></div>
+<p class="sidebar__topic-header">Buy now, pay later</p>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/customers-api/') }}">
-	<p><a href="javascript:void(0)">Customers API</a></p>
+<ul>
+  {%- set current = pagename.startswith('reference/v2/orders-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/orders-api/create-order') }}">Orders API</a>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/v2/customers-api/create-customer',
-			'Create customer',
-			'POST /v2/customers'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/customers-api/get-customer',
-			'Get customer',
-			'GET /v2/customers/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/customers-api/update-customer',
-			'Update customer',
-			'PATCH /v2/customers/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/customers-api/delete-customer',
-			'Delete customer',
-			'DELETE /v2/customers/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/customers-api/list-customers',
-			'List customers',
-			'GET /v2/customers'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/customers-api/create-customer-payment',
-			'Create customer payment',
-			'POST /v2/customers/*/payments'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/customers-api/list-customer-payments',
-			'List customer payments',
-			'GET /v2/customers/*/payments'
-		) }}
-	</ul>
-</div>
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/v2/orders-api/create-order',
+          'Create order'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/orders-api/get-order',
+          'Get order'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/orders-api/update-order',
+          'Update order'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/orders-api/update-orderline',
+          'Update order line'
+        ) }}
+        {{ sidebar_item(
+        'reference/v2/orders-api/cancel-order',
+          'Cancel order'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/orders-api/list-orders',
+          'List orders'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/orders-api/cancel-order-lines',
+          'Cancel order lines'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/orders-api/create-order-payment',
+          'Create order payment'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/orders-api/create-order-refund',
+          'Create order refund'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/orders-api/list-order-refunds',
+          'List order refunds'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/mandates-api/') }}">
-	<p><a href="javascript:void(0)">Mandates API</a></p>
+  {%- set current = pagename.startswith('reference/v2/shipments-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/shipments-api/create-shipment') }}">Shipments API</a>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/v2/mandates-api/create-mandate',
-			'Create mandate',
-			'POST /v2/customers/*/mandates'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/mandates-api/get-mandate',
-			'Get mandate',
-			'GET /v2/customers/*/mandates/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/mandates-api/revoke-mandate',
-			'Revoke mandate',
-			'DELETE /v2/customers/*/mandates/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/mandates-api/list-mandates',
-			'List mandates',
-			'GET /v2/customers/*/mandates'
-		) }}
-	</ul>
-</div>
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/v2/shipments-api/create-shipment',
+          'Create shipment'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/shipments-api/get-shipment',
+          'Get shipment'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/shipments-api/list-shipments',
+          'List shipments'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/shipments-api/update-shipment',
+          'Update shipment'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
+</ul>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/subscriptions-api/') }}">
-	<p><a href="javascript:void(0)">Subscriptions API</a></p>
+<p class="sidebar__topic-header">Recurring</p>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/v2/subscriptions-api/create-subscription',
-			'Create subscription',
-			'POST /v2/customers/*/subscriptions'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/subscriptions-api/get-subscription',
-			'Get subscription',
-			'GET /v2/customers/*/subscriptions/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/subscriptions-api/cancel-subscription',
-			'Cancel subscription',
-			'DELETE /v2/customers/*/subscriptions/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/subscriptions-api/list-subscriptions',
-			'List subscriptions',
-			'GET /v2/customers/*/subscriptions'
-		) }}
-    {{ sidebar_item(
-      'reference/v2/subscriptions-api/list-all-subscriptions',
-      'List all subscriptions',
-      'GET /v2/subscriptions'
-    ) }}
-		{{ sidebar_item(
-			'reference/v2/subscriptions-api/list-subscriptions-payments',
-			'List subscription payments',
-			'GET /v2/customers/*/subscriptions/*/payments'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/subscriptions-api/update-subscription',
-			'Update subscription',
-			'PATCH /v2/customers/*/subscriptions/*'
-		) }}
-	</ul>
-</div>
+<ul>
+  {%- set current = pagename.startswith('reference/v2/customers-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/customers-api/create-customer') }}">Customers API</a>
 
-<div class="sidebar__spacing"></div>
+    {%- if current %}
+    <ul>
+      {{ sidebar_item(
+        'reference/v2/customers-api/create-customer',
+        'Create customer'
+      ) }}
+      {{ sidebar_item(
+        'reference/v2/customers-api/get-customer',
+        'Get customer'
+      ) }}
+      {{ sidebar_item(
+        'reference/v2/customers-api/update-customer',
+        'Update customer'
+      ) }}
+      {{ sidebar_item(
+        'reference/v2/customers-api/delete-customer',
+        'Delete customer'
+      ) }}
+      {{ sidebar_item(
+        'reference/v2/customers-api/list-customers',
+        'List customers'
+      ) }}
+      {{ sidebar_item(
+        'reference/v2/customers-api/create-customer-payment',
+        'Create customer payment'
+      ) }}
+      {{ sidebar_item(
+        'reference/v2/customers-api/list-customer-payments',
+        'List customer payments'
+      ) }}
+    </ul>
+    {%- endif %}
+  </li>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/oauth2/') }}">
-	<p><a href="javascript:void(0)">Connect API</a></p>
+  {%- set current = pagename.startswith('reference/v2/mandates-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/mandates-api/create-mandate') }}">Mandates API</a>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/oauth2/authorize',
-			'Authorize',
-			'GET /oauth2/authorize'
-		) }}
-		{{ sidebar_item(
-			'reference/oauth2/tokens',
-			'Generate tokens',
-			'POST /oauth2/tokens'
-		) }}
-		{{ sidebar_item(
-			'reference/oauth2/revoke-token',
-			'Revoke token',
-			'DELETE /oauth2/tokens'
-		) }}
-	</ul>
-</div>
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/v2/mandates-api/create-mandate',
+          'Create mandate'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/mandates-api/get-mandate',
+          'Get mandate'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/mandates-api/revoke-mandate',
+          'Revoke mandate'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/mandates-api/list-mandates',
+          'List mandates'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/permissions-api/') }}">
-	<p><a href="javascript:void(0)">Permissions API</a></p>
+  {%- set current = pagename.startswith('reference/v2/subscriptions-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/subscriptions-api/create-subscription') }}">Subscriptions API</a>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/v2/permissions-api/get-permission',
-			'Get permission',
-			'GET /v2/permissions/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/permissions-api/list-permissions',
-			'List permissions',
-			'GET /v2/permissions'
-		) }}
-	</ul>
-</div>
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/v2/subscriptions-api/create-subscription',
+          'Create subscription'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/subscriptions-api/get-subscription',
+          'Get subscription'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/subscriptions-api/cancel-subscription',
+          'Cancel subscription'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/subscriptions-api/list-subscriptions',
+          'List subscriptions'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/subscriptions-api/list-all-subscriptions',
+          'List all subscriptions'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/subscriptions-api/list-subscriptions-payments',
+          'List subscription payments'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/subscriptions-api/update-subscription',
+          'Update subscription'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
+</ul>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/organizations-api/') }}">
-	<p><a href="javascript:void(0)">Organizations API</a></p>
+<p class="sidebar__topic-header">Connect</p>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/v2/organizations-api/current-organization',
-			'Get current organization',
-			'GET /v2/organizations/me'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/organizations-api/get-organization',
-			'Get organization',
-			'GET /v2/organizations/*'
-		) }}
-	</ul>
-</div>
+<ul>
+  {%- set current = pagename.startswith('reference/oauth2/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/oauth2/authorize') }}">OAuth API</a>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/profiles-api/') }}">
-	<p><a href="javascript:void(0)">Profiles API</a></p>
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/oauth2/authorize',
+          'Authorize'
+        ) }}
+        {{ sidebar_item(
+          'reference/oauth2/tokens',
+          'Generate tokens'
+        ) }}
+        {{ sidebar_item(
+          'reference/oauth2/revoke-token',
+          'Revoke token'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/v2/profiles-api/create-profile',
-			'Create profile',
-			'POST /v2/profiles'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/profiles-api/get-profile',
-			'Get profile',
-			'GET /v2/profiles/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/profiles-api/get-profile-me',
-			'Get current profile',
-			'GET /v2/profiles/me'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/profiles-api/update-profile',
-			'Update profile',
-			'PATCH /v2/profiles/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/profiles-api/delete-profile',
-			'Delete profile',
-			'DELETE /v2/profiles/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/profiles-api/enable-method',
-			'Enable payment method',
-			'POST /v2/profiles/*/methods/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/profiles-api/disable-method',
-			'Disable payment method',
-			'DELETE /v2/profiles/*/methods/*'
-		) }}
-    {{ sidebar_item(
-    'reference/v2/profiles-api/enable-gift-card-issuer',
-    'Enable gift card issuer',
-    'POST /v2/profiles/*/methods/giftcard/issuers/*'
-    ) }}
-    {{ sidebar_item(
-    'reference/v2/profiles-api/disable-gift-card-issuer',
-    'Disable gift card issuer',
-    'POST /v2/profiles/*/methods/giftcard/issuers/*'
-    ) }}
-    {{ sidebar_item(
-    'reference/v2/profiles-api/enable-voucher-issuer',
-    'Enable voucher issuer',
-    'POST /v2/profiles/*/methods/voucher/issuers/*'
-    ) }}
-    {{ sidebar_item(
-    'reference/v2/profiles-api/disable-voucher-issuer',
-    'Disable voucher issuer',
-    'POST /v2/profiles/*/methods/voucher/issuers/*'
-    ) }}
-		{{ sidebar_item(
-			'reference/v2/profiles-api/list-profiles',
-			'List profiles',
-			'GET /v2/profiles'
-		) }}
-	</ul>
-</div>
+  {%- set current = pagename.startswith('reference/v2/permissions-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/permissions-api/get-permission') }}">Permissions API</a>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/onboarding-api/') }}">
-	<p><a href="javascript:void(0)">Onboarding API</a></p>
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/v2/permissions-api/get-permission',
+          'Get permission'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/permissions-api/list-permissions',
+          'List permissions'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
 
-	<ul>
-		{{ sidebar_item(
-		'reference/v2/onboarding-api/get-onboarding-status',
-		'Get onboarding status',
-		'GET /v2/onboarding/me'
-		) }}
-		{{ sidebar_item(
-		'reference/v2/onboarding-api/submit-onboarding-data',
-		'Submit onboarding data',
-		'POST /v2/onboarding/me'
-		) }}
-	</ul>
-</div>
+  {%- set current = pagename.startswith('reference/v2/organizations-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/organizations-api/current-organization') }}">Organizations API</a>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/settlements-api/') }}">
-	<p><a href="javascript:void(0)">Settlements API</a></p>
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/v2/organizations-api/current-organization',
+          'Get current organization'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/organizations-api/get-organization',
+          'Get organization'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/v2/settlements-api/get-settlement',
-			'Get settlement',
-			'GET /v2/settlements/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/settlements-api/get-next-settlement',
-			'Get next settlement',
-			'GET /v2/settlements/next'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/settlements-api/get-open-settlement',
-			'Get open settlement',
-			'GET /v2/settlements/open'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/settlements-api/list-settlements',
-			'List settlements',
-			'GET /v2/settlements'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/settlements-api/list-settlement-payments',
-			'List settlement payments',
-			'GET /v2/settlements/*/payments'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/settlements-api/list-settlement-refunds',
-			'List settlement refunds',
-			'GET /v2/settlements/*/refunds'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/settlements-api/list-settlement-chargebacks',
-			'List settlement chargebacks',
-			'GET /v2/settlements/*/chargebacks'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/settlements-api/list-settlement-captures',
-			'List settlement captures',
-			'GET /v2/settlements/*/captures'
-		) }}
-	</ul>
-</div>
+  {%- set current = pagename.startswith('reference/v2/profiles-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/profiles-api/create-profile') }}">Profiles API</a>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/invoices-api/') }}">
-	<p><a href="javascript:void(0)">Invoices API</a></p>
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/v2/profiles-api/create-profile',
+          'Create profile'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/profiles-api/get-profile',
+          'Get profile'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/profiles-api/get-profile-me',
+          'Get current profile'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/profiles-api/update-profile',
+          'Update profile'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/profiles-api/delete-profile',
+          'Delete profile'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/profiles-api/enable-method',
+          'Enable payment method'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/profiles-api/disable-method',
+          'Disable payment method'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/profiles-api/enable-gift-card-issuer',
+          'Enable gift card issuer'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/profiles-api/disable-gift-card-issuer',
+          'Disable gift card issuer'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/profiles-api/enable-voucher-issuer',
+          'Enable voucher issuer'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/profiles-api/disable-voucher-issuer',
+          'Disable voucher issuer'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/profiles-api/list-profiles',
+          'List profiles'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/v2/invoices-api/get-invoice',
-			'Get invoice',
-			'GET /v2/invoices/*'
-		) }}
-		{{ sidebar_item(
-			'reference/v2/invoices-api/list-invoices',
-			'List invoices',
-			'GET /v2/invoices'
-		) }}
-	</ul>
-</div>
+  {%- set current = pagename.startswith('reference/v2/onboarding-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/onboarding-api/get-onboarding-status') }}">Onboarding API</a>
 
-<div class="sidebar__group {{ sidebar_collapse_group('reference/v2/methods-api/') }}">
-	<p><a href="javascript:void(0)">Miscellaneous</a></p>
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/v2/onboarding-api/get-onboarding-status',
+          'Get onboarding status'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/onboarding-api/submit-onboarding-data',
+          'Submit onboarding data'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
+</ul>
 
-	<ul>
-		{{ sidebar_item(
-			'reference/v2/wallets-api/request-apple-pay-payment-session',
-			'Request Apple Pay Payment Session',
-			'POST /v2/wallets/request-apple-pay-payment-session'
-		) }}
-	</ul>
-</div>
+<p class="sidebar__topic-header">Business operations</p>
+
+<ul>
+  {%- set current = pagename.startswith('reference/v2/settlements-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/settlements-api/get-settlement') }}">Settlements API</a>
+
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/v2/settlements-api/get-settlement',
+          'Get settlement'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/settlements-api/get-next-settlement',
+          'Get next settlement'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/settlements-api/get-open-settlement',
+          'Get open settlement'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/settlements-api/list-settlements',
+          'List settlements'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/settlements-api/list-settlement-payments',
+          'List settlement payments'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/settlements-api/list-settlement-refunds',
+          'List settlement refunds'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/settlements-api/list-settlement-chargebacks',
+          'List settlement chargebacks'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/settlements-api/list-settlement-captures',
+          'List settlement captures'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
+
+  {%- set current = pagename.startswith('reference/v2/invoices-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/invoices-api/get-invoice') }}">Invoices API</a>
+
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/v2/invoices-api/get-invoice',
+          'Get invoice'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/invoices-api/list-invoices',
+          'List invoices'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
+</ul>

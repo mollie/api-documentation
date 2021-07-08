@@ -61,6 +61,13 @@ in the request.
 
      - A link pointing to the product page in your web shop of the product sold.
 
+   * - ``sku``
+
+       .. type:: string
+          :required: false
+
+     - The SKU, EAN, ISBN or UPC of the product sold. The maximum character length is 64.
+
    * - ``metadata``
 
        .. type:: mixed
@@ -155,7 +162,7 @@ in the request.
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` parameter is also available.
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
 .. list-table::
    :widths: auto
@@ -208,6 +215,30 @@ Example
                }
          }'
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      order = mollie_client.orders.get('ord_pbjz8x')
+      order = order.update_line(
+          'odl_dgtxyl',
+          data={
+              'name': 'LEGO 71043 Hogwarts™ Castle',
+              'productUrl': 'https://shop.lego.com/en-GB/product/Hogwarts-Castle-71043',
+              'imageUrl': 'https://sh-s7-live-s.legocdn.com/is/image//LEGO/71043_alt1?$main$',
+              'quantity': 2,
+              'vatRate': '21.00',
+              'unitPrice': {'currency': 'EUR', 'value': '349.00'},
+              'totalAmount': {'currency': 'EUR', 'value': '598.00'},
+              'discountAmount': {'currency': 'EUR', 'value': '100.00'},
+              'vatAmount': {'currency': 'EUR', 'value': '103.79'},
+          },
+      )
+
    .. code-block:: javascript
       :linenos:
 
@@ -249,7 +280,7 @@ Response
       "locale":"nl_NL",
       "billingAddress":{
          "organizationName":"Mollie B.V.",
-         "streetAndNumber":"Keizersgracht 313",
+         "streetAndNumber":"Keizersgracht 126",
          "city":"Amsterdam",
          "region":"Noord-Holland",
          "postalCode":"1234AB",
@@ -263,8 +294,8 @@ Response
       "orderNumber":"18475",
       "shippingAddress":{
          "organizationName":"Mollie B.V.",
-         "streetAndNumber":"Keizersgracht 313",
-         "postalCode":"1016 EE",
+         "streetAndNumber":"Keizersgracht 126",
+         "postalCode":"1015 CW",
          "city":"Amsterdam",
          "country":"nl",
          "givenName":"Luke",

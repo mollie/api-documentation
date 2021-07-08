@@ -1,7 +1,18 @@
 .api-name {
-  margin: -.67em 0 35px;
+  margin: -34px 0 34px;
 }
 
 .api-name__version {
   color: $grey-light;
+}
+
+.api-name__beta {
+  color: $brand-warning;
+  padding: 5px;
+  margin-left: 8px;
+  border: 1px solid $grey-medium;
+  border-radius: 4px;
+  background: #fcfcfc;
+  font-size: 12px;
+  font-weight: 700;
 }

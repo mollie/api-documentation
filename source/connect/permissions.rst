@@ -1,5 +1,5 @@
-Mollie Connect: Permissions
-===========================
+Permissions
+===========
 
 Accessing merchant data
 -----------------------

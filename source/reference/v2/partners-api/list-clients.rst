@@ -36,6 +36,20 @@ Parameters
 
      - The number of clients to return (with a maximum of 250).
 
+   * - ``year``
+
+       .. type:: integer
+          :required: false
+
+     - Show the statistics for the given year.
+
+   * - ``month``
+
+       .. type:: integer
+          :required: false
+
+     - Show the statistics for the given month.
+
 Embedding of related resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This endpoint also allows for embedding additional information by appending the following values via
@@ -114,7 +128,6 @@ Response
 
 Example
 -------
-
 .. code-block:: bash
   :linenos:
 

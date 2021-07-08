@@ -132,6 +132,16 @@ Example
       $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
       $invoices = $mollie->invoices->page();
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+
+      invoices = mollie_client.invoices.list()
+
    .. code-block:: ruby
       :linenos:
 

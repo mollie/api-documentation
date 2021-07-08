@@ -105,13 +105,12 @@ Parameters
                  :required: false
 
             - The URL where your customer can track the shipment, for example:
-              ``http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C``.
+              ``http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C``.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you should use the ``testmode`` parameter if you want to create a shipment in test
-mode.
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
 .. list-table::
    :widths: auto
@@ -152,7 +151,7 @@ Example
                  "tracking": {
                      "carrier": "PostNL",
                      "code": "3SKABA000000000",
-                     "url": "http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C"
+                     "url": "http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C"
                  }
              }'
 
@@ -180,7 +179,7 @@ Example
                'tracking' => [
                'carrier' => 'PostNL',
                'code' => '3SKABA000000000',
-               'url' => 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C'
+               'url' => 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C'
                ],
          ],
          ]
@@ -191,7 +190,7 @@ Example
             'tracking' => [
                   'carrier' => 'PostNL',
                   'code' => '3SKABA000000000',
-                  'url' => 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C'
+                  'url' => 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C'
             ],
       ]);
 
@@ -214,7 +213,7 @@ Example
          'tracking': {
             'carrier': 'PostNL',
             'code': '3SKABA000000000',
-            'url': 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C',
+            'url': 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C',
          }
       })
 
@@ -223,7 +222,7 @@ Example
          'tracking': {
             'carrier': 'PostNL',
             'code': '3SKABA000000000',
-            'url': 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C',
+            'url': 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C',
          }
       })
 
@@ -253,7 +252,7 @@ Example
         tracking: {
           carrier: 'PostNL',
           code: '3SKABA000000000',
-          url: 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C'
+          url: 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C'
         }
       )
 
@@ -278,7 +277,7 @@ Example
           tracking: {
             carrier: 'PostNL',
             code: '3SKABA000000000',
-            url: 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C',
+            url: 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C',
           },
         });
 
@@ -289,7 +288,7 @@ Example
           tracking: {
             carrier: 'PostNL',
             code: '3SKABA000000000',
-            url: 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C',
+            url: 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C',
           },
         });
 
@@ -313,7 +312,7 @@ Response
         "tracking": {
             "carrier": "PostNL",
             "code": "3SKABA000000000",
-            "url": "http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C"
+            "url": "http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C"
         },
         "lines": [
             {

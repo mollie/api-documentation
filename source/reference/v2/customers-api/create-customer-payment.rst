@@ -55,9 +55,11 @@ endpoint. For recurring payments, the following parameters have notable differen
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the only mandatory extra parameter is the ``profileId`` parameter. With it, you can
-specify which profile the payment belongs to. Organizations can have multiple profiles for each of their websites. See
+:doc:`OAuth app </connect/overview>`, you have to specify which profile you are creating payments for using the
+``profileId`` parameter. Organizations can have multiple profiles for each of their websites. See
 :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+
+For these authentication methods the optional ``testmode`` parameter is available as well to enable test mode.
 
 .. list-table::
    :widths: auto
@@ -116,6 +118,24 @@ Example
           "redirectUrl" => "https://webshop.example.org/order/12345/",
           "webhookUrl" => "https://webshop.example.org/payments/webhook/",
       ]);
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      payment = mollie_client.customer_payments.with_parent_id('cst_8wmqcHMN4U').create(
+          data={
+              'amount': {'value': '10.00', 'currency': 'EUR'},
+              'description': 'Order #12345',
+              'sequenceType': 'first',
+              'redirectUrl': 'https://webshop.example.org/order/12345/',
+              'webhookUrl': 'https://webshop.example.org/payments/webhook/',
+          }
+      )
 
    .. code-block:: ruby
       :linenos:

@@ -45,10 +45,9 @@ Parameters
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the following query string parameters are also available. With the ``profileId``
-parameter, you must specify which profile you want to look at when listing methods. Organizations can have multiple
-profiles for each of their websites. See :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more
-information.
+:doc:`OAuth app </connect/overview>`, you have to specify which profile you are retrieving payment method details for
+using the ``profileId`` parameter. Organizations can have multiple profiles for each of their websites. See
+:doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
 
 .. list-table::
    :widths: auto
@@ -85,6 +84,16 @@ Example
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
       $methods = $mollie->methods->allAvailable();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      methods = mollie_client.methods.all()
 
 Response
 --------

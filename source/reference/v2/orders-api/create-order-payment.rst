@@ -14,6 +14,7 @@ Create order payment
 
 An order has an automatically created payment that your customer can use to pay for the order.
 When the payment expires you can create a new payment for the order using this endpoint.
+A maximum of 25 payments can be created for an order.
 
 A new payment can only be created while the status of the order is ``created``, and when the status
 of the existing payment is either ``expired``, ``canceled`` or ``failed``.
@@ -38,10 +39,10 @@ Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wm
 
        You can also specify the methods in an array. By doing so we will still show the payment method selection
        screen but will only show the methods specified in the array. For example, you can use this functionality to only
-       show payment methods from a specific country to your customer ``["bancontact", "belfius", "inghomepay"]``.
+       show payment methods from a specific country to your customer ``["bancontact", "belfius"]``.
 
        Possible values: ``applepay`` ``bancontact`` ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``
-       ``giftcard`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc``  ``klarnapaylater`` ``klarnasliceit`` ``paypal``
+       ``giftcard`` ``giropay`` ``ideal`` ``kbc``  ``klarnapaylater`` ``klarnasliceit`` ``paypal``
        ``paysafecard`` ``przelewy24`` ``sofort``
 
    * - ``customerId``
@@ -51,7 +52,7 @@ Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wm
 
      - The ID of the :doc:`Customer </reference/v2/customers-api/get-customer>` for whom the payment is being created.
        This is used for :doc:`recurring payments </payments/recurring>` and
-       :doc:`single click payments </guides/checkout>`.
+       :doc:`single-click payments </payments/hosted-checkout>`.
 
    * - ``mandateId``
 
@@ -80,8 +81,7 @@ For example:
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the only mandatory extra parameter is the ``testmode`` parameter.
-This is only the case for test orders. For live orders the ``testmode`` parameter can be omitted.
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
 .. list-table::
    :widths: auto
@@ -98,7 +98,7 @@ This is only the case for test orders. For live orders the ``testmode`` paramete
        .. type:: object
           :required: false
 
-     - Adding an :doc:`application fee </oauth/application-fees>` allows you to charge the merchant for the
+     - Adding an :doc:`application fee </connect/application-fees>` allows you to charge the merchant for the
        payment and transfer this to your own account.
 
 Response
@@ -137,6 +137,17 @@ Example
       if(! is_null($checkoutUrl)) {
           // ... redirect the customer to the checkout url
       }
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      order = mollie_client.orders.get('ord_stTC2WHAuS')
+      order = order.create_payment(data={'method': 'banktransfer'})
 
 Response
 ^^^^^^^^

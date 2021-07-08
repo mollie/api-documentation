@@ -2,5 +2,7 @@
 	sidebar__group--collapsible
 	{%- if not pagename.startswith(group_path) %}
 		sidebar__group--collapse
+  {%- else %}
+    current
 	{%- endif -%}
 {%- endmacro -%}

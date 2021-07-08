@@ -18,7 +18,7 @@ Once you have created a payment, you should redirect your customer to the URL in
 the response.
 
 To wrap your head around the payment process, an explanation and flow charts can be found in the
-:doc:`Payments API Overview </payments/overview>`.
+:doc:`Accepting payments guide </payments/accepting-payments>`.
 
 .. note::
    :ref:`Optional parameters<payment-method-specific-parameters>` are accepted for certain payment methods.
@@ -109,8 +109,8 @@ Parameters
 
      - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. Setting a
        locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted, the
-       browser language will be used instead if supported by the payment method. You can provide any ISO 15897 locale,
-       but our hosted payment pages currently only support the following languages:
+       browser language will be used instead if supported by the payment method. You can provide any ``xx_XX`` format
+       ISO 15897 locale, but our hosted payment pages currently only support the following languages:
 
        Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
        ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
@@ -127,11 +127,10 @@ Parameters
 
        You can also specify the methods in an array. By doing so we will still show the payment method selection
        screen but will only show the methods specified in the array. For example, you can use this functionality to only
-       show payment methods from a specific country to your customer ``['bancontact', 'belfius', 'inghomepay']``.
+       show payment methods from a specific country to your customer ``['bancontact', 'belfius']``.
 
        Possible values: ``applepay`` ``bancontact`` ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``
-       ``giftcard`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``mybank``  ``paypal`` ``paysafecard`` ``przelewy24``
-       ``sofort``
+       ``giftcard`` ``giropay`` ``ideal`` ``kbc`` ``mybank``  ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort``
 
        .. note:: If you are looking to create payments with the Klarna Pay later, Klarna Slice it, or voucher payment
                  methods, please use the :doc:`/reference/v2/orders-api/create-order` instead.
@@ -173,7 +172,7 @@ Parameters
 
      - The ID of the :doc:`Customer </reference/v2/customers-api/get-customer>` for whom the payment is being created.
        This is used for :doc:`recurring payments </payments/recurring>` and
-       :doc:`single click payments </guides/checkout>`.
+       :doc:`single-click payments </payments/hosted-checkout>`.
 
    * - ``mandateId``
 
@@ -286,7 +285,7 @@ Parameters
 
 .. _payment-method-specific-parameters:
 
-Payment method specific parameters
+Payment method-specific parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you specify the ``method`` parameter, optional parameters may be available for the payment method. If no method is
 specified, you can still send the optional parameters and we will apply them when the consumer selects the relevant
@@ -486,11 +485,11 @@ Gift cards
 
        If only one issuer is activated on your account, you can omit this parameter.
 
-       Possible values: ``decadeaukaart`` ``dinercadeau`` ``fashioncheque`` ``festivalcadeau`` ``good4fun``
-       ``kunstencultuurcadeaukaart`` ``nationalebioscoopbon`` ``nationaleentertainmentcard`` ``nationalegolfbon``
-       ``ohmygood`` ``podiumcadeaukaart`` ``reiscadeau`` ``restaurantcadeau`` ``sportenfitcadeau``
-       ``sustainablefashion`` ``travelcheq`` ``vvvgiftcard`` ``vvvdinercheque`` ``vvvlekkerweg`` ``webshopgiftcard``
-       ``yourgift``
+       Possible values: ``bloemencadeaukaart`` ``boekenbon`` ``decadeaukaart`` ``delokalecadeaukaart`` ``dinercadeau`` ``fashioncheque``
+       ``festivalcadeau`` ``good4fun`` ``kluscadeau`` ``kunstencultuurcadeaukaart`` ``nationalebioscoopbon``
+       ``nationaleentertainmentcard`` ``nationalegolfbon`` ``ohmygood`` ``podiumcadeaukaart`` ``reiscadeau``
+       ``restaurantcadeau`` ``sportenfitcadeau`` ``sustainablefashion`` ``travelcheq`` ``vvvgiftcard`` ``vvvdinercheque``
+       ``vvvlekkerweg`` ``webshopgiftcard`` ``yourgift``
 
    * - ``voucherNumber``
 
@@ -579,8 +578,8 @@ PayPal
           :required: true
 
      - If a description in the form ``Order <order number>`` is used, the order number is passed to PayPal as the
-       *invoice reference*. This field is searchable in the PayPal merchant dashboard. Alternatively, we will recognize
-       the following keywords:
+       *invoice reference*. This field is searchable in the PayPal merchant dashboard. This field must be unique and
+       should not contain symbols. Alternatively, we will recognize the following keywords:
 
        - Cart
        - Order
@@ -763,9 +762,11 @@ Vouchers
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the only mandatory extra parameter is the ``profileId`` parameter. With it, you can
-specify which profile the payment belongs to. Organizations can have multiple profiles for each of their websites. See
+:doc:`OAuth app </connect/overview>`, you have to specify which profile you are creating the payment for using the
+``profileId`` parameter. Organizations can have multiple profiles for each of their websites. See
 :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+
+For these authentication methods the optional ``testmode`` parameter is available as well to enable test mode.
 
 .. list-table::
    :widths: auto
@@ -784,13 +785,22 @@ specify which profile the payment belongs to. Organizations can have multiple pr
 
      - Set this to ``true`` to make this payment a test payment.
 
+Mollie Connect parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^
+With Mollie Connect you can charge fees on payments that are processed through your app, either by defining an
+*application fee* or by *splitting the payment*. To learn more about the difference, please refer to the
+:doc:`Mollie Connect overview </connect/overview>`.
+
+.. list-table::
+   :widths: auto
+
    * - ``applicationFee``
 
        .. type:: object
           :required: false
 
-     - Adding an :doc:`application fee </oauth/application-fees>` allows you to charge the merchant a small sum for the
-       payment and transfer this to your own account.
+     - Adding an :doc:`application fee </connect/application-fees>` allows you to charge the merchant a small sum for
+       the payment and transfer this to your own account.
 
        .. list-table::
           :widths: auto
@@ -829,6 +839,93 @@ specify which profile the payment belongs to. Organizations can have multiple pr
             - The description of the application fee. This will appear on settlement reports to the merchant and to you.
 
               The maximum length is 255 characters.
+
+   * - ``routing``
+
+       .. type:: array
+          :required: false
+
+     - .. note:: This functionality is currently in closed beta. Please contact our partner management team if you are
+                 interested in testing this functionality with us.
+
+       An optional routing configuration which enables you to route a successful payment, or part of the payment, to one
+       or more connected accounts. Additionally, you can schedule (parts of) the payment to become available on the
+       connected account on a future date.
+
+       See the :doc:`Split payments </connect/splitting-payments>` guide for more information on payment routing.
+
+       If a routing array is supplied, it must contain one or more routing objects with the following parameters:
+
+       .. list-table::
+          :widths: auto
+
+          * - ``amount``
+
+              .. type:: amount object
+                 :required: false
+
+            - If more than one routing object is given, the routing objects must indicate what portion of the total
+              payment amount is being routed.
+
+              .. list-table::
+                 :widths: auto
+
+                 * - ``currency``
+
+                     .. type:: string
+                        :required: true
+
+                   - An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code. Currently only ``EUR``
+                     payments can be routed.
+
+                 * - ``value``
+
+                     .. type:: string
+                        :required: true
+
+                   - A string containing the exact amount of this portion of the payment in the given currency. Make
+                     sure to send the right amount of decimals. Non-string values are not accepted.
+
+          * - ``destination``
+
+              .. type:: object
+                 :required: true
+
+            - The destination of this portion of the payment.
+
+              .. list-table::
+                 :widths: auto
+
+                 * - ``type``
+
+                     .. type:: string
+                        :required: true
+
+                   - The type of destination. Currently only the destination type ``organization`` is supported.
+
+                     Possible values: ``organization``
+
+                 * - ``organizationId``
+
+                     .. type:: string
+                        :required: false
+
+                   - Required for destination type ``organization``. The ID of the connected organization the funds
+                     should be routed to, for example ``org_12345``.
+
+                     **Please note:** ``me`` or the ID of the current organization are not accepted as an
+                     ``organizationId``. After all portions of the total payment amount have been routed, the amount
+                     left will be routed to the current organization automatically.
+
+          * - ``releaseDate``
+
+              .. type:: date
+                 :required: false
+
+            - Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+              date must be given in ``YYYY-MM-DD`` format.
+
+              If no date is given, the funds become available to the balance as soon as the payment succeeds.
 
 QR codes
 ^^^^^^^^

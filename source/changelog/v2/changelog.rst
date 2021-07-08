@@ -3,6 +3,64 @@ Changelog
 Occasionally, we will add new resources, new fields, or new possible values to existing fields to the v2 Mollie API. All
 changes are documented here.
 
+June 2021
+=========
+Friday, 2nd
+-----------
+- We released the new :doc:`Payment Links API </reference/v2/payment-links-api/create-payment-link>`. This API makes it
+  possible to generate payment links which can be used for, for example, invoices.
+
+May 2021
+========
+Tuesday, 18th
+-------------
+- The :doc:`Create order payment endpoint </reference/v2/orders-api/create-order-payment>` on the Orders API now has a
+  limit on how many payments can be created for an order. After reaching the limit of 25 payments a call to this endpoint
+  will result in an error.
+
+April 2021
+==========
+Friday, 16th
+--------------
+- Added ``sku`` optional parameter to :doc:`Orders API</reference/v2/orders-api/update-orderline>`.
+
+March 2021
+==========
+Tuesday, 30th
+--------------
+- Added ``delokalecadeaukaart`` as gift card issuer.
+
+Wednesday, 24th
+---------------
+- Added ``boekenbon`` as gift card issuer.
+
+Tuesday, 23rd
+-------------
+- Added ``authentication_abandoned`` and ``authentication_unavailable_acs`` as possible ``failureReason`` in the
+  :doc:`Payments API</reference/v2/payments-api/get-payment>` for credit card payments.
+
+Tuesday, 16th
+-------------
+- Added ``bloemencadeaukaart`` and ``kluscadeau`` as gift card issuers.
+
+
+February 2021
+=============
+
+Monday, 1st
+-----------
+- We discontinued the support for ING Home'Pay as a payment method. This means that the API now rejects all
+  :doc:`Create Payment API</reference/v2/payments-api/create-payment>`-calls with the method ``inghomepay``. Make sure
+  to remove this payment method from your checkout if needed. Please `contact us <https://www.mollie.com/contact>`_ for
+  more info.
+
+January 2021
+=============
+
+Wednesday, 13th
+---------------
+- ``amountChargedBack.value`` in the :doc:`Payments API</reference/v2/payments-api/get-payment>` has been changed from a negative to a positive value to make it consistent with the other equivalent fields in the API.
+
 December 2020
 =============
 
@@ -228,7 +286,7 @@ Tuesday, 3rd
   :doc:`Orders API </reference/v2/orders-api/create-order>` for merchants who have agreed this with Klarna.
 - Added ``restrictPaymentMethodsToCountry`` in the :doc:`Payments API </reference/v2/payments-api/create-payment>`.
 - Added ``shopperCountryMustMatchBillingCountry`` in the :doc:`Orders API </reference/v2/orders-api/create-order>`.
-- Enabled :doc:`Application fees </oauth/application-fees>` for the
+- Enabled :doc:`Application fees </connect/application-fees>` for the
   :doc:`Orders API </reference/v2/orders-api/create-order>`.
 
 Monday, 2nd
@@ -375,7 +433,7 @@ Tuesday, 21st
 -------------
 - Added ``american-express``, ``carte-bancaire`` and ``maestro`` as possible values for the
   ``feeRegion`` in the credit card payment details. See the
-  :ref:`Get Payment endpoint <Credit card v2>` for details.
+  :doc:`Get payment endpoint </reference/v2/payments-api/get-payment>` for details.
 
 Monday, 20th
 ------------
@@ -411,8 +469,8 @@ Wednesday, 27th
 ---------------
 - Added the ``profile`` key to the ``_links`` object in the
   :doc:`Subscription </reference/v2/subscriptions-api/get-subscription>` object.
-- Subscriptions can now be created with :doc:`application fees </oauth/application-fees>`. The application fees will be
-  applied on each created Payment for the Subscription.
+- Subscriptions can now be created with :doc:`application fees </connect/application-fees>`. The application fees will
+  be applied on each created Payment for the Subscription.
 - Added the ``minimumAmount`` and ``maximumAmount`` properties to the
   :doc:`Methods API </reference/v2/methods-api/list-methods>` endpoints. It represents the minimum and maximum amount
   allowed for creating a payment with the specific methods.
@@ -549,7 +607,7 @@ Wednesday, 7th
 
 Monday, 5th
 -----------
-- Added referral-functionality for Mollie Partners to the Connect API. See the :doc:`documentation </oauth/overview>`
+- Added referral-functionality for Mollie Partners to the Connect API. See the :doc:`documentation </connect/overview>`
   for more info.
 
 Thursday, 1st

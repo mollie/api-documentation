@@ -6,11 +6,15 @@ Supported brands
 Mollie supports processing gift cards handled by the Dutch giftcard broker Intersolve. At the moment, the following
 brands are supported:
 
+* `Bloemen Cadeaukaart <https://www.bloemen-cadeaukaart.nl/>`_
+* `Boekenbon <https://boekenbon.nl/>`_
 * DE Cadeaukaart
+* De LOKALE Cadeaukaart
 * `Diner Cadeau <https://www.horecasamensterk.nl/>`_
 * `fashioncheque <https://www.fashioncheque.com/>`_
 * `FestivalCadeau Giftcard <https://www.festivalcadeau.com/>`_
 * `Good4fun <https://www.good4fun.nl/>`_
+* `Klus Cadeau <https://www.kluscadeau.nl/>`_
 * `Nationale Bioscoopbon <https://www.bioscoopbon.nl/>`_
 * `Nationale EntertainmentCard <https://www.nationale-entertainmentcard.nl/>`_
 * `Nationale Golfbon <https://www.golfbon.nl/>`_
@@ -31,8 +35,8 @@ brands are supported:
 If you need a different brand, please reach out to your account manager or our support department. We can also support
 closed-loop gift cards.
 
-Using the :doc:`checkout </guides/checkout>`, your customer can pay part of the payment using gift cards and pay any
-remaining amount due using the other payment methods enabled on your website profile.
+When using the :doc:`hosted checkout </payments/hosted-checkout>`, your customer can pay part of the payment using gift
+cards and pay any remaining amount due using the other payment methods enabled on your website profile.
 
 Contracting and settlement
 --------------------------
@@ -61,9 +65,9 @@ using more gift cards or one of the other payment methods.
 
 Integrate using Mollie Checkout
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The easiest way to integrate gift cards is to use the :doc:`Mollie Checkout </guides/checkout>`. This is arranged by
-creating the payment via our API without passing the ``method`` parameter. Mollie will then display a list of payment
-methods available for the payment and offer the gift card options enabled on your account.
+The easiest way to integrate gift cards is to use the :doc:`Mollie Checkout </payments/hosted-checkout>`. This is
+arranged by creating the payment via our API without passing the ``method`` parameter. Mollie will then display a list
+of payment methods available for the payment and offer the gift card options enabled on your account.
 
 Your customer can start the payment by redeeming their gift card. If the gift card only partially covers the amount due,
 more gift cards can be entered in the checkout or a different payment method can be used to pay for the remaining

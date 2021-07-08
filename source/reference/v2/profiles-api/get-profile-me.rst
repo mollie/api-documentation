@@ -31,7 +31,6 @@ Example
 
 Request
 ^^^^^^^
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -46,6 +45,16 @@ Request
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
       $profile = $mollie->profiles->getCurrent();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      profile = mollie_client.profiles.get('me')
 
 Response
 ^^^^^^^^

@@ -1,24 +1,24 @@
-Version strings
-===============
+User agent strings
+==================
 When Mollie merchants contact our support department, knowing which integration the merchant uses is incredibly helpful
-in offering them the fastest and best possible support.  Having this information helps us understand which features are
-supported by your integration and pinpoint any issues.
+in offering them the fastest and best possible support. Having this information helps us understand which features are
+supported by your integration, and pinpoint any issues.
 
 The Mollie API gathers information about your plugin or platform with every API call. You can pass this information to
-the Mollie by amending the user agent with what we call *"version strings"*.
+Mollie by amending the ``User-Agent`` header with what we call *"version strings"*.
 
-All our API clients expose convenient methods to supply version strings.
+All our API clients expose convenient methods to supply user agent strings.
 
 Syntax
 ------
-The basic syntax for version strings is ``Name/x.x.x``.
+The basic syntax for a user agent string is ``Name/x.x.x``.
 
 This syntax follows common user agent components you may be familiar with such as ``Mozilla/5.0`` or ``Googlebot/2.1``.
 
-Depending on your integration, you may want to supply two or more version strings, e.g. one for your plugin and one for
-the platform it runs on.
+Depending on your integration, you may want to supply two or more user agent strings, e.g. one for your plugin and one
+for the platform it runs on.
 
-Make sure that the name you choose clearly describes your integration and that you do not change the name over time.
+Make sure that the name you choose clearly describes your integration, and that you do not change the name over time.
 
 *Examples:*
 
@@ -29,9 +29,9 @@ Make sure that the name you choose clearly describes your integration and that y
 Option A: Using an API client
 -----------------------------
 Our `API clients <https://docs.mollie.com/#clients-modules-and-plugins>`_ expose convenient methods for supplying
-version strings.
+user agent strings.
 
-The code examples below illustrate how the Mollie plugin (v0.9.9) for Magento 2 (v2.1.5) would pass version strings.
+The code examples below illustrate how the Mollie plugin (v0.9.9) for Magento 2 (v2.1.5) would pass user agent strings.
 
 .. code-block-selector::
    .. code-block:: bash
@@ -92,5 +92,5 @@ We always recommend using one of our `API clients <https://docs.mollie.com/#clie
 foundation and faster development.
 
 If, however, you are integrating our native REST API, use your HTTP client of choice to append integration data to the
-user-agent header. Refer to the syntax and cURL example above and be sure to separate multiple version strings with
-spaces.
+``User-Agent`` header. Refer to the syntax and cURL examples above and be sure to separate multiple user agent strings
+with spaces.

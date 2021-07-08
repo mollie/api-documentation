@@ -23,10 +23,10 @@ Parameters
 ----------
 Replace ``id`` in the endpoint URL by the payment's ID, for example ``tr_7UhSN1zuXS``.
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you are creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
 .. list-table::
    :widths: auto

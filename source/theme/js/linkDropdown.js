@@ -1,12 +1,14 @@
 import { enhance } from './utils';
 import Dropkick from 'dropkickjs';
 
-export default enhance('link-dropdown', element => {
+export default enhance('link-dropdown', (element) => {
   element.addEventListener('change', () => {
     window.location = element.value;
   });
 
-  new Dropkick(element, {
-    mobile: false,
-  });
+  if (element.classList.contains('js-link-dropdown-dropkick')) {
+    new Dropkick(element, {
+      mobile: false,
+    });
+  }
 });

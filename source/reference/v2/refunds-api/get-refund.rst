@@ -25,10 +25,10 @@ Parameters
 Replace ``paymentId`` in the endpoint URL by the payment's ID, and replace ``id`` by the refund's ID. For example:
 ``/v2/payments/tr_7UhSN1zuXS/refunds/re_4qqhO89gsT``.
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you are creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` query string parameter
-is also available.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` query string parameter.
 
 .. list-table::
    :widths: auto
@@ -187,6 +187,29 @@ Response
        .. type:: datetime
 
      - The date and time the refund was issued, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+
+   * - ``routingReversal``
+
+       .. type:: object
+          :required: false
+
+     - An object containing information relevant to a refund issued for a *split payment*. To learn more about split
+       payments, please refer to the :doc:`Mollie Connect overview </connect/overview>`.
+
+       .. list-table::
+          :widths: auto
+
+          * - ``amount``
+
+              .. type:: amount object
+
+            - The amount to be refunded from the split payment.
+
+          * - ``source``
+
+              .. type:: object
+
+            - And object indicating the source of the refund. A field ``organizationId`` will indicate from which organization the amount was refunded.
 
    * - ``_links``
 

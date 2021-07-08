@@ -25,7 +25,7 @@ Replace ``paymentId`` in the endpoint URL by the payment's ID, and replace ``id`
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is also available.
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` query string parameter.
 
 .. list-table::
    :widths: auto
@@ -174,6 +174,16 @@ Example
 
       $payment = $mollie->payments->get("tr_WDqYK6vllg");
       $capture = $payment->getCapture("cpt_4qqhO89gsT");
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      capture = mollie_client.captures.with_parent_id('tr_WDqYK6vllg').get('cpt_4qqhO89gsT')
 
    .. code-block:: ruby
       :linenos:

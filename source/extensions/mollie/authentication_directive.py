@@ -30,7 +30,7 @@ class AuthenticationDirective(Directive):
             pat_ref = self.create_reference("/guides/authentication", "Organization access tokens")
             inline += pat_ref
         if self.options["oauth"]:
-            oauth_ref = self.create_reference("/oauth/overview", "App access tokens")
+            oauth_ref = self.create_reference("/connect/overview", "App access tokens")
             inline += oauth_ref
 
         container += inline

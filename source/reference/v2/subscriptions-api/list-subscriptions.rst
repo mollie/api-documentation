@@ -39,9 +39,11 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``c
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the only mandatory extra query string parameter is the ``profileId`` parameter. With
-it, you can specify for which profile you want to retrieve subscriptions. Organizations can have multiple profiles for
-each of their websites. See :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+:doc:`OAuth app </connect/overview>`, you have to specify which profile you are retrieving subscriptions for using the
+``profileId`` parameter. Organizations can have multiple profiles for each of their websites. See
+:doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+
+For these authentication methods the optional ``testmode`` parameter is available as well to enable test mode.
 
 .. list-table::
    :widths: auto
@@ -143,6 +145,16 @@ Example
 
       $customer = $mollie->customers->get("cst_8wmqcHMN4U");
       $subscriptions = $customer->subscriptions();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      subscriptions = mollie_client.customer_subscriptions.with_parent_id('cst_8wmqcHMN4U').list()
 
    .. code-block:: ruby
       :linenos:

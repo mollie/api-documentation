@@ -21,7 +21,7 @@ Replace ``id`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is also available.
+:doc:`OAuth app </connect/overview>`, the ``testmode`` query string parameter is also available.
 
 .. list-table::
    :widths: auto
@@ -168,9 +168,9 @@ Response
 
      - The locale used during checkout. Note that the locale may have been changed by your customer during checkout.
 
-       Can be any ISO 15897 locale. Example values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE``
-       ``de_AT`` ``de_CH`` ``es_ES`` ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS``
-       ``hu_HU`` ``pl_PL`` ``lv_LV`` ``lt_LT``.
+       Can be any ``xx_XX`` format ISO 15897 locale. Example values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE``
+       ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES`` ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK``
+       ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV`` ``lt_LT``.
 
    * - ``metadata``
 
@@ -325,7 +325,6 @@ Response
 
 Order line details
 ^^^^^^^^^^^^^^^^^^
-
 The order lines contain the actual things the your customer bought.
 
 .. list-table::
@@ -519,7 +518,6 @@ The order lines contain the actual things the your customer bought.
 
 Addresses
 ^^^^^^^^^
-
 In the Orders API, the address objects identify both the address and the person the order is billed or shipped to.
 
 These properties can be found in the ``billingAddress`` and ``shippingAddress`` address objects.
@@ -645,8 +643,8 @@ Response
         "locale": "nl_NL",
         "billingAddress": {
             "organizationName": "Mollie B.V.",
-            "streetAndNumber": "Keizersgracht 313",
-            "postalCode": "1016 EE",
+            "streetAndNumber": "Keizersgracht 126",
+            "postalCode": "1015 CW",
             "city": "Amsterdam",
             "country": "nl",
             "givenName": "Luke",
@@ -658,8 +656,8 @@ Response
         "orderNumber": "18475",
         "shippingAddress": {
             "organizationName": "Mollie B.V.",
-            "streetAndNumber": "Keizersgracht 313",
-            "postalCode": "1016 EE",
+            "streetAndNumber": "Keizersgracht 126",
+            "postalCode": "1015 CW",
             "city": "Amsterdam",
             "country": "nl",
             "givenName": "Luke",

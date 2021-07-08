@@ -28,7 +28,7 @@ Replace ``id`` in the endpoint URL by the customer's ID, for example ``cst_8wmqc
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is also available.
+:doc:`OAuth app </connect/overview>`, the ``testmode`` query string parameter is also available.
 
 .. list-table::
    :widths: auto
@@ -104,7 +104,7 @@ Response
      - Payment methods that the customer recently used for payments.
 
        Possible array values: ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``
-       ``giftcard`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``mistercash`` ``paypal`` ``paysafecard``
+       ``giftcard`` ``giropay`` ``ideal`` ``kbc`` ``mistercash`` ``paypal`` ``paysafecard``
        ``przelewy24`` ``sofort``
 
    * - ``createdDatetime``

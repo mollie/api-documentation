@@ -38,9 +38,9 @@ Implementation options
 Two options for implementation are available:
 
 +---------------------+------------------------------------------------------------------------------------------------+
-|Mollie Checkout      |:doc:`Mollie Checkout </guides/checkout>` contains QR codes at all the right places and handles |
-|                     |the QR code logic for your application. It supports real-time feedback to the customer after he |
-|                     |/ she finishes the payment.                                                                     |
+|Mollie Checkout      |:doc:`Mollie Checkout </payments/hosted-checkout>` contains QR codes at all the right places    |
+|                     |and handles the QR code logic for your application. It supports real-time feedback to the       |
+|                     |customer after they finish the payment.                                                         |
 +---------------------+------------------------------------------------------------------------------------------------+
 |Custom implementation|Should you want to, you can implement QR codes in your own application using the Mollie API.    |
 |                     |Some special considerations need to be taken into account, they are listed below.               |
@@ -54,8 +54,9 @@ The QR code flow is largely similar to normal payment flow.
 
 Retrieving QR codes
 -------------------
-The QR code can be retrieved by adding the ``details.qrCode`` include to the payment creation API call, as detailed in
-the :doc:`Create payment </reference/v2/payments-api/create-payment>` reference.
+The QR code can be retrieved by adding the ``details.qrCode`` include to the payment creation API call, and a
+``method`` parameter to the body of your request as detailed in the
+:doc:`Create payment </reference/v2/payments-api/create-payment>` reference.
 
 ``POST https://api.mollie.com/v2/payments?include=details.qrCode``
 

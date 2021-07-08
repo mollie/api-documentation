@@ -16,7 +16,6 @@ This endpoint can be used to update some details of a created payment.
 
 Parameters
 ----------
-
 For a more in-depth explanation of each parameter, see the :doc:`create-payment`. There are also
 payment method specific parameters available, see :ref:`below <payment-method-specific-parameters-update>`.
 
@@ -72,7 +71,8 @@ payment method specific parameters available, see :ref:`below <payment-method-sp
        .. type:: string
           :required: false
 
-     - Allows you to update the language to be used in the hosted payment pages shown to the consumer.
+     - Allows you to update the language to be used in the hosted payment pages shown to the consumer. Can be any
+       ``xx_XX`` format ISO 15897 locale.
 
    * - ``restrictPaymentMethodsToCountry``
 
@@ -88,7 +88,7 @@ payment method specific parameters available, see :ref:`below <payment-method-sp
 
 .. _payment-method-specific-parameters-update:
 
-Payment method specific parameters
+Payment method-specific parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you specify the ``method`` parameter, optional parameters may be available for the payment method. If no method is
 specified, you can still send the optional parameters and we will apply them when the consumer selects the relevant

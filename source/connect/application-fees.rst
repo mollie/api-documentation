@@ -1,5 +1,5 @@
-Application fees
-================
+Receiving application fees
+==========================
 With **Application fees**, you can split a payment between a platform and connected merchant accounts.
 
 An example use case is a ticketing platform that charges a fee per successful payment to each connected theatre. In this

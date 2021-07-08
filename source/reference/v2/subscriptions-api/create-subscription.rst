@@ -139,9 +139,11 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the only mandatory extra parameter is the ``profileId`` parameter. With it, you can
-specify on which profile the payments for the subscription should be created. Organizations can have multiple profiles
-for each of their websites. See :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+:doc:`OAuth app </connect/overview>`, you have to specify which profile you are creating a subscription for using the
+``profileId`` parameter. Organizations can have multiple profiles for each of their websites. See
+:doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+
+For these authentication methods the optional ``testmode`` parameter is available as well to enable test mode.
 
 .. list-table::
    :widths: auto
@@ -165,7 +167,7 @@ for each of their websites. See :doc:`Profiles API </reference/v2/profiles-api/g
        .. type:: object
           :required: false
 
-     - Adding an :doc:`application fee </oauth/application-fees>` allows you to charge the merchant for each payment
+     - Adding an :doc:`application fee </connect/application-fees>` allows you to charge the merchant for each payment
        in the subscription and transfer these amounts to your own account.
 
        .. list-table::
@@ -247,6 +249,24 @@ Example
          "description" => "Quarterly payment",
          "webhookUrl" => "https://webshop.example.org/subscriptions/webhook/",
       ]);
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      subscription = mollie_client.customer_subscriptions.with_parent_id('cst_stTC2WHAuS').create(
+          data={
+              'amount': {'currency': 'EUR', 'value': '25.00'},
+              'times': 4,
+              'interval': '3 months',
+              'description': 'Quarterly payment',
+              'webhookUrl': 'https://webshop.example.org/subscriptions/webhook/',
+          }
+      )
 
    .. code-block:: ruby
       :linenos:

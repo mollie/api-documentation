@@ -21,7 +21,7 @@ Replace ``id`` in the endpoint URL by the customer's ID, for example ``cst_8wmqc
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` parameter is also available.
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
 .. list-table::
    :widths: auto
@@ -41,6 +41,7 @@ Example
 -------
 
 .. code-block-selector::
+
    .. code-block:: bash
       :linenos:
 
@@ -54,6 +55,16 @@ Example
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
       $mollie->customers->delete("cst_8wmqcHMN4U");
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      mollie_client.customers.delete('cst_8wmqcHMN4U')
 
    .. code-block:: ruby
       :linenos:

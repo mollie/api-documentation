@@ -38,135 +38,69 @@
 .sidebar__inner {
   padding-top: 80px;
   padding-bottom: 80px;
+  font-size: 15px;
 }
 
-.sidebar__group {
-  margin-bottom: 20px;
+.sidebar.is-visible .sidebar__inner {
+  padding-top: 100px;
 }
 
-.sidebar__group:last-child {
-  margin-bottom: 80px;
+.sidebar__inner ul {
+  @include bare-list;
 }
 
-.sidebar__group a:hover,
-.sidebar__group a:focus {
+.sidebar__inner a:focus {
   text-decoration: none;
 }
 
-.sidebar__group > p {
-  font-size: 17px;
-  line-height: 22px;
-  margin-bottom: 10px;
-  font-weight: 800;
-}
-
-.sidebar__group > p > a {
-  color: #333333;
-}
-
-.sidebar__group > p > a:hover {
-  color: $brand-primary;
-}
-
-.sidebar__group ul {
-  @include bare-list;
-  margin: 0;
-}
-
-.sidebar__group > ul {
-  margin-bottom: 40px;
-}
-
-.sidebar__group ul li {
-  margin-bottom: 10px;
-}
-
-.sidebar__group ul li a {
-  color: #666666;
+.sidebar__topic-header {
   font-size: 14px;
-  line-height: 16px;
-
-  @media (max-width: breakpoint("<medium")) {
-    max-width: 80%;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: block;
-  }
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 30px 0 10px;
 }
 
-.sidebar__group ul li a:hover,
-.sidebar__group ul li a:focus {
-  color: $grey-darkest;
+.sidebar__topic-header:first-child {
+  margin-top: 0;
 }
 
-.sidebar__group ul li a > code {
-  color: $grey-medium-light;
-  display: block;
-  font-size: 12px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+.sidebar__item a {
+  color: #666;
 }
 
-.sidebar__group > ul > li.current > a {
-  color: $brand-primary;
+.sidebar__item a:hover {
+  color: #000;
+  text-decoration: none;
 }
 
-.sidebar__group > ul > li.current > ul > li > a {
+.sidebar__item.current > a {
+  font-weight: 600;
+  color: #0040ff;
+}
+
+.sidebar__item.current > a:hover {
+  color: #0000ee;
+}
+
+.sidebar__group.current > ul {
+  margin: 5px 0;
+  padding-left: 20px;
+}
+
+.sidebar__group.current > a {
+  color: #000;
+}
+
+.sidebar__changelog > ul > li > a,
+.sidebar__changelog > ul > li > ul > li > ul {
   display: none;
 }
 
-.sidebar__group > ul > li.current > ul ul {
-  margin-top: 5px;
-  margin-bottom: 15px;
+.sidebar__changelog > ul > li > ul > li > a {
+  color: #666;
 }
 
-.sidebar__group > ul > li.current > ul ul ul {
-  display: none;
-}
-
-.sidebar__group > ul > li.current > ul li {
-  margin: 0;
-}
-
-.sidebar__group > ul > li.current > ul a {
-  position: relative;
-  font-size: 14px;
-  padding-left: 15px;
-  display: inline;
-  line-height: 12px;
-}
-
-.sidebar__group > ul > li.current > ul a:before {
-  content: "";
-  height: 1px;
-  width: 8px;
-  background: #666;
-  position: absolute;
-  left: 0;
-  top: 8px;
-}
-
-.sidebar__group--collapse > ul {
-  display: none;
-}
-
-.sidebar__tag {
-  background: #f1fafd;
-  border-radius: 3px;
-  color: #00508a;
-  display: inline-block;
-  font-family: $font-family-monospace;
-  font-size: 11px;
-  height: 20px;
-  line-height: 20px;
-  margin-left: 5px;
-  padding: 0 6px;
-  vertical-align: middle;
-}
-
-
-.sidebar__spacing {
-  padding-bottom: 20px;
+.sidebar__changelog > ul > li > ul > li > a:hover {
+  color: #000;
+  text-decoration: none;
 }

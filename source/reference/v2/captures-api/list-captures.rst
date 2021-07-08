@@ -31,7 +31,7 @@ query string parameter.
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is also available.
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` query string parameter.
 
 .. list-table::
    :widths: auto
@@ -126,6 +126,16 @@ Example
 
       $payment = $mollie->payments->get("tr_WDqYK6vllg");
       $captures = $payment->captures();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      captures = mollie_client.captures.with_parent_id('tr_WDqYK6vllg').list()
 
    .. code-block:: ruby
       :linenos:

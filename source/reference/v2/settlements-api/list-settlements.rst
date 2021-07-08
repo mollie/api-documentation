@@ -102,7 +102,6 @@ Response
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -117,6 +116,16 @@ Example
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
       $settlements = $mollie->settlements->page();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+
+      settlements = mollie_client.settlements.list()
 
    .. code-block:: ruby
       :linenos:

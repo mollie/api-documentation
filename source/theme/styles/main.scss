@@ -1,7 +1,6 @@
 /**
  * Global
  */
-@import 'fonts';
 @import 'normalize';
 @import 'variables';
 
@@ -39,14 +38,7 @@ html {
 }
 
 body {
-  padding-top: 54px;
-}
-
-ul,
-ol,
-dl {
-  margin-top: 0;
-  margin-bottom: 35px;
+  padding-top: 104px;
 }
 
 button,
@@ -60,7 +52,7 @@ select,
 textarea {
   color: #111;
   font-family: $font-family-default;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 21px;
 }
 
@@ -77,11 +69,6 @@ hr {
   border: 0;
   border-top: 1px solid $grey-light;
   margin: 30px 0;
-}
-
-em {
-  font-style: normal;
-  font-weight: bold;
 }
 
 a {
@@ -254,8 +241,6 @@ a.headerlink::before {
 @import 'components/mobile-navigation-button';
 @import 'components/note';
 @import 'components/parameters';
-@import 'components/products-navigation';
-@import 'components/products-navigation-items';
 @import 'components/sidebar';
 @import 'components/sub-navigation';
 @import 'components/sub-navigation-item';

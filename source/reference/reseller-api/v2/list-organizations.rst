@@ -125,8 +125,8 @@ Response
                    "name": "Mollie B.V.",
                    "email": "info@mollie.com",
                    "address": {
-                       "streetAndNumber": "Keizersgracht 313",
-                       "postalCode": "1016 EE",
+                       "streetAndNumber": "Keizersgracht 126",
+                       "postalCode": "1015 CW",
                        "city": "Amsterdam",
                        "country": "NL"
                    },

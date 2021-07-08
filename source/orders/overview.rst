@@ -14,8 +14,8 @@ Should the initial Payment fail, the Order remains in the ``created`` state so t
 This can be done using a dedicated link available through the Dashboard which you can share with your customer, or you
 can create an additional :doc:`Payment on the Order via the API </reference/v2/orders-api/create-order-payment>`.
 
-*Pay after delivery* payment methods, such as *Klarna Pay later* and *Klarna Slice it*, as well as
-meal vouchers, require the Orders API and cannot be used with the :doc:`Payments API </payments/overview>`.
+*Pay after delivery* payment methods, such as *Klarna Pay later*, *Klarna Slice it*, and *Vouchers* require the Orders
+API and cannot be used with the :doc:`Payments API </payments/accepting-payments>`.
 
 Once you ship the goods to your customer, you should inform Mollie of the shipments via the API or via the Dashboard.
 This is mandatory for pay after delivery methods. Only shipped amounts will be settled to your account.

@@ -23,7 +23,7 @@ Payment creation is elemental to the Mollie API: this is where most payment impl
 parameters are accepted for certain payment methods.
 
 To wrap your head around the payment process, an explanation and flow charts can be found in the
-:doc:`Overview </payments/overview>`.
+:doc:`Accepting payments guide </payments/accepting-payments>`.
 
 Parameters
 ----------
@@ -88,8 +88,8 @@ Parameters
 
      - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. Setting a
        locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted, the
-       browser language will be used instead if supported by the payment method. You can provide any ISO 15897 locale,
-       but our hosted payment pages currently only support the following languages:
+       browser language will be used instead if supported by the payment method. You can provide any ``xx_XX`` format
+       ISO 15897 locale, but our hosted payment pages currently only support the following languages:
 
        Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
        ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
@@ -106,7 +106,7 @@ Parameters
        based conversion optimization is lost.
 
        Possible values: ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps`` ``giftcard`` ``giropay``
-       ``ideal`` ``inghomepay`` ``kbc`` ``mistercash`` ``mybank`` ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort``
+       ``ideal`` ``kbc`` ``mistercash`` ``mybank`` ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort``
 
        .. note:: If you are looking to create payments with the Klarna Pay later, Klarna Slice it or Voucher
                  payment methods, please use the :doc:`/reference/v2/orders-api/create-order` instead.
@@ -142,7 +142,7 @@ Parameters
           :required: false
 
      - The ID of the :doc:`Customer </reference/v1/customers-api/get-customer>` for whom the payment is being
-       created. This is used for recurring payments and :doc:`single click payments </guides/checkout>`.
+       created. This is used for recurring payments and :doc:`single-click payments </payments/hosted-checkout>`.
 
    * - ``mandateId``
 
@@ -288,11 +288,11 @@ Gift cards
        the list, contact our support department. If only one issuer is activated on your account, you can omit this
        parameter.
 
-       Possible values: ``decadeaukaart`` ``dinercadeau`` ``fashioncheque`` ``festivalcadeau`` ``good4fun``
-       ``kunstencultuurcadeaukaart`` ``nationalebioscoopbon`` ``nationaleentertainmentcard`` ``nationalegolfbon``
-       ``ohmygood`` ``podiumcadeaukaart`` ``reiscadeau`` ``restaurantcadeau`` ``sportenfitcadeau``
-       ``sustainablefashion`` ``travelcheq`` ``vvvgiftcard`` ``vvvdinercheque`` ``vvvlekkerweg`` ``webshopgiftcard``
-       ``yourgift``
+       Possible values: ``bloemencadeaukaart`` ``boekenbon`` ``decadeaukaart`` ``delokalecadeaukaart`` ``dinercadeau`` ``fashioncheque``
+       ``festivalcadeau`` ``good4fun`` ``kluscadeau`` ``kunstencultuurcadeaukaart`` ``nationalebioscoopbon``
+       ``nationaleentertainmentcard`` ``nationalegolfbon`` ``ohmygood`` ``podiumcadeaukaart`` ``reiscadeau``
+       ``restaurantcadeau`` ``sportenfitcadeau`` ``sustainablefashion`` ``travelcheq`` ``vvvgiftcard`` ``vvvdinercheque``
+       ``vvvlekkerweg`` ``webshopgiftcard`` ``yourgift``
 
    * - ``voucherNumber``
 
@@ -457,9 +457,9 @@ SEPA Direct Debit
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the only mandatory extra parameter is the ``profileId`` parameter. With it, you can
-specify which profile the payment belongs to. Organizations can have multiple profiles for each of their websites. See
-:doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more information.
+:doc:`OAuth app </connect/overview>`, the only mandatory extra parameter is the ``profileId`` parameter. With it, you
+can specify which profile the payment belongs to. Organizations can have multiple profiles for each of their websites.
+See :doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more information.
 
 .. list-table::
    :widths: auto
@@ -565,7 +565,7 @@ Response
        "metadata": {
            "order_id": "12345"
        },
-       "locale": "nl",
+       "locale": "nl_NL",
        "profileId": "pfl_QkEhN94Ba",
        "links": {
            "paymentUrl": "https://www.mollie.com/payscreen/select-method/7UhSN1zuXS",

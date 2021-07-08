@@ -102,7 +102,7 @@ For completeness' sake, the following table compares the available authenticatio
        :doc:`Profiles API </reference/v2/profiles-api/get-profile>`.
      - None.
      - Create an application, then have a user authorize your app to access their account data. See
-       :doc:`Mollie Connect </oauth/overview>` for more information.
+       :doc:`Mollie Connect </connect/overview>` for more information.
 
    * - **Test mode**
      - API keys come in pairs. Use the Test API key for test mode.
@@ -112,5 +112,4 @@ For completeness' sake, the following table compares the available authenticatio
    * - **Create via**
      - `Dashboard: API keys <https://www.mollie.com/dashboard/developers/api-keys>`_
      - `Dashboard: Organization access tokens <https://www.mollie.com/dashboard/developers/organization-access-tokens>`_
-     - :doc:`OAuth authorization flow </oauth/overview>`
-
+     - :doc:`OAuth authorization flow </connect/overview>`

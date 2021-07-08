@@ -1,12 +1,12 @@
 Generate tokens
 ===============
-.. api-name:: Connect API
+.. api-name:: OAuth API
 
 .. endpoint::
    :method: POST
    :url: https://api.mollie.com/oauth2/tokens
 
-Authentication: :doc:`OAuth client credentials </oauth/overview>`
+Authentication: :doc:`OAuth client credentials </connect/overview>`
 
 Exchange the auth code received at the :doc:`Authorize endpoint </reference/oauth2/authorize>` for an actual access
 token, with which you can communicate with the Mollie API.
@@ -48,7 +48,7 @@ Parameters
           :required: false
 
      - The URL the merchant is sent back to once the request has been authorized. It must match the URL you set when
-       :doc:`registering your app </oauth/getting-started>`.
+       :doc:`registering your app </connect/getting-started>`.
 
        .. note::
           When refreshing a token, this parameter **is** required if the initial ``authorization_code`` grant request
@@ -93,7 +93,7 @@ Response
 
        .. type:: string
 
-     - A space separated list of permissions. Please refer to :doc:`Permissions </oauth/permissions>` for the full
+     - A space separated list of permissions. Please refer to :doc:`Permissions </connect/permissions>` for the full
        permission list.
 
 Example

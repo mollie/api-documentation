@@ -24,8 +24,7 @@ Replace ``id`` in the endpoint URL by the payment's ID, for example ``tr_7UhSN1z
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is available. You must pass this as a
-parameter in the query string if you want to retrieve a payment that was created in test mode.
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` query string parameter.
 
 .. list-table::
    :widths: auto
@@ -297,8 +296,8 @@ Response
        If the payment is only partially paid with a gift card, the method remains ``giftcard``.
 
        Possible values: ``null`` ``bancontact`` ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``
-       ``giftcard`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``klarnapaylater`` ``klarnasliceit`` ``mybank``
-       ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort``
+       ``giftcard`` ``giropay`` ``ideal`` ``kbc`` ``klarnapaylater`` ``klarnasliceit`` ``mybank`` ``paypal``
+       ``paysafecard`` ``przelewy24`` ``sofort``
 
    * - ``metadata``
 
@@ -310,6 +309,7 @@ Response
    * - ``locale``
 
        .. type:: string
+          :required: false
 
      - The customer's locale, either forced on creation by specifying the ``locale`` parameter, or detected
        by us during checkout. Will be a full locale, for example ``nl_NL``.
@@ -404,7 +404,7 @@ Response
        .. type:: object
           :required: false
 
-     - The :doc:`application fee </oauth/application-fees>`, if the payment was created with one.
+     - The :doc:`application fee </connect/application-fees>`, if the payment was created with one.
 
        .. list-table::
           :widths: auto
@@ -833,9 +833,10 @@ Credit card
 
             - Only available for failed payments. Contains a failure reason code.
 
-              Possible values: ``authentication_failed`` ``card_declined`` ``card_expired`` ``inactive_card``
-              ``insufficient_funds`` ``invalid_card_holder_name`` ``invalid_card_number`` ``invalid_card_type``
-              ``invalid_cvv`` ``possible_fraud`` ``refused_by_issuer`` ``unknown_reason``
+              Possible values: ``authentication_abandoned`` ``authentication_failed`` ``authentication_unavailable_acs``
+              ``card_declined`` ``card_expired`` ``inactive_card`` ``insufficient_funds`` ``invalid_cvv``
+              ``invalid_card_holder_name`` ``invalid_card_number`` ``invalid_card_type`` ``possible_fraud``
+              ``refused_by_issuer`` ``unknown_reason``
 
           * - ``failureMessage``
 
@@ -979,38 +980,6 @@ iDEAL
               .. type:: string
 
             - Only available if the payment has been completed – The consumer's bank's BIC.
-
-ING Home'Pay
-""""""""""""
-.. list-table::
-   :widths: auto
-
-   * - ``details``
-
-       .. type:: object
-
-     - An object with payment details.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``consumerName``
-
-              .. type:: string
-
-            - Only available one banking day after the payment has been completed – The consumer's name.
-
-          * - ``consumerAccount``
-
-              .. type:: string
-
-            - Only available one banking day after the payment has been completed – The consumer's IBAN.
-
-          * - ``consumerBic``
-
-              .. type:: string
-
-            - Only available one banking day after the payment has been completed – ``BBRUBEBB``.
 
 KBC/CBC Payment Button
 """"""""""""""""""""""

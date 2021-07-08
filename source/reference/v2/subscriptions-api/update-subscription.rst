@@ -118,7 +118,7 @@ example: ``/v2/customers/cst_5a2pPrwaWy/subscriptions/sub_8EjeBVgtEn``.
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` parameter is also available.
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
 .. list-table::
    :widths: auto
@@ -171,6 +171,30 @@ Example
       $subscription->description = "Mollie recurring subscription";
       $subscription->webhookUrl = "https://example.org/webhook";
       $updatedSubscription = $subscription->update();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      subscription = mollie_client.customer_subscriptions.with_parent_id(
+          "cst_8wmqcHMN4U"
+      ).update(
+          "sub_8EjeBVgtEn",
+          data={
+              "amount": {
+                  "currency": "EUR",
+                  "value": "10.00",
+              },
+              "times": 42,
+              "startDate": "2018-12-12",
+              "description": "Mollie recurring subscription",
+              "webhookUrl": "https://example.org/webhook",
+          },
+      )
 
    .. code-block:: ruby
       :linenos:

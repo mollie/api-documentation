@@ -97,10 +97,10 @@ Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wm
        refund. Whenever you fetch the refund with our API, we will also include the metadata. You can use up to
        approximately 1kB.
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you are creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
 .. list-table::
    :widths: auto

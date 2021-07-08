@@ -87,6 +87,8 @@ make start
 Visit `http://localhost:8000` to preview your changes. CSS & JS changes will appear without the need to refresh your
 browser.
 
+Most of the graphics used throughout the docs can be found in our (employees only) [Figma account](https://www.figma.com/).
+
 ### Releasing new versions of the documentation
 
 Deployment is handled using continuous deployment via [Travis CI](https://docs.travis-ci.com/user/deployment/).

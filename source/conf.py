@@ -17,7 +17,11 @@ sys.path.insert(0, os.path.abspath("extensions"))
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["mollie.setup", "cloud_sptheme.ext.table_styling"]
+extensions = [
+    'mollie.setup',
+    'cloud_sptheme.ext.table_styling',
+    'sphinx_reredirects_fork'
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = []
@@ -30,7 +34,7 @@ master_doc = 'contents'
 
 # General information about the project.
 project = 'Mollie API'
-copyright = '2019, Mollie B.V. <info@mollie.com>'
+copyright = '2021, Mollie B.V. <info@mollie.com>'
 author = 'Mollie B.V. <info@mollie.com>'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -63,10 +67,26 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
+# -- SEO stuff ------------------------------------------------------------
+redirects = {
+    'guides/checkout': 'https://docs.mollie.com/payments/hosted-checkout',
+    'oauth/application-fees': 'https://docs.mollie.com/connect/application-fees',
+    'oauth/getting-started': 'https://docs.mollie.com/connect/getting-started',
+    'oauth/onboarding': 'https://docs.mollie.com/connect/onboarding',
+    'oauth/overview': 'https://docs.mollie.com/connect/overview',
+    'oauth/permissions': 'https://docs.mollie.com/connect/permissions',
+    'oauth/splitting-payments': 'https://docs.mollie.com/connect/splitting-payments',
+    'payments/overview': 'https://docs.mollie.com/payments/accepting-payments',
+    'reference/v2/organizations-api/list-organizations': 'https://docs.mollie.com/reference/reseller-api/v2/list-organizations'
+}
+
+do_not_index = [
+    'reference/reseller-api/endpoints/set-fees'
+]
+
 # -- Options for HTML output ----------------------------------------------
 
 # Add the pathname of pages you want to prevent from being indexed by search engines here.
-do_not_index = ['reference/reseller-api/endpoints/set-fees']
 
 # The theme to use for HTML and HTML Help pages. See the documentation for
 # a list of builtin themes.

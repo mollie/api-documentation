@@ -21,7 +21,7 @@ Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wm
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is also available.
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` query string parameter.
 
 .. list-table::
    :widths: auto
@@ -153,7 +153,7 @@ Response
                    "tracking": {
                        "carrier": "PostNL",
                        "code": "3SKABA000000000",
-                       "url": "http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1016EE&D=NL&T=C"
+                       "url": "http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C"
                    },
                    "lines": [
                        {

@@ -72,6 +72,9 @@ Parameters
      - The billing person and address for the order. See :ref:`order-address-details` for the exact
        fields needed.
 
+       .. note:: This field is not required if you make use of the
+                 :doc:`PayPal Express Checkout button </orders/paypal-express-checkout-button>`
+
    * - ``shippingAddress``
 
        .. type:: address object
@@ -120,7 +123,8 @@ Parameters
           :required: true
 
      - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. You can provide
-       any ISO 15897 locale, but our hosted payment pages currently only support the following languages:
+       any ``xx_XX`` format ISO 15897 locale, but our hosted payment pages currently only support the following
+       languages:
 
        Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
        ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
@@ -140,10 +144,10 @@ Parameters
 
        You can also specify the methods in an array. By doing so we will still show the payment method selection
        screen but will only show the methods specified in the array. For example, you can use this functionality to only
-       show payment methods from a specific country to your customer ``['bancontact', 'belfius', 'inghomepay']``.
+       show payment methods from a specific country to your customer ``['bancontact', 'belfius']``.
 
        Possible values: ``applepay`` ``bancontact`` ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``
-       ``giftcard`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc``  ``klarnapaylater`` ``klarnasliceit`` ``mybank``
+       ``giftcard`` ``giropay`` ``ideal`` ``kbc``  ``klarnapaylater`` ``klarnasliceit`` ``mybank``
        ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort`` ``voucher``
 
    * - ``payment``
@@ -194,7 +198,6 @@ Parameters
 
 Order line details
 ^^^^^^^^^^^^^^^^^^
-
 The order lines contain the actual things that your customer bought.
 
 .. list-table::
@@ -342,7 +345,6 @@ The order lines contain the actual things that your customer bought.
 
 Order address details
 ^^^^^^^^^^^^^^^^^^^^^
-
 In the Orders API, the address objects identify both the address and the person the order is billed or shipped to. At
 least a valid address must be passed as well as fields identifying the person.
 
@@ -400,7 +402,7 @@ least a valid address must be passed as well as fields identifying the person.
 
 .. _payment-parameters:
 
-Payment specific parameters
+Payment-specific parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Creating an Order will automatically create a Payment that your customer can use to pay for the Order. Creation of the
 Payment can be controlled using the ``method`` and ``payment`` parameters.
@@ -461,9 +463,11 @@ Example of specifying some payment parameters:
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the only mandatory extra parameter is the ``profileId`` parameter. With it, you can
-specify which profile the payment belongs to. Organizations can have multiple profiles for each of their websites. See
+:doc:`OAuth app </connect/overview>`, you have to specify which profile you are creating an order for using the
+``profileId`` parameter. Organizations can have multiple profiles for each of their websites. See
 :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+
+For these authentication methods the optional ``testmode`` parameter is available as well to enable test mode.
 
 .. list-table::
    :widths: auto
@@ -487,7 +491,7 @@ specify which profile the payment belongs to. Organizations can have multiple pr
        .. type:: object
           :required: false
 
-     - Adding an :doc:`application fee </oauth/application-fees>` allows you to charge the merchant for the
+     - Adding an :doc:`application fee </connect/application-fees>` allows you to charge the merchant for the
        payment and transfer this to your own account.
 
 Embedding of related resources
@@ -520,7 +524,7 @@ Example
                   },
                   "billingAddress": {
                      "organizationName": "Mollie B.V.",
-                     "streetAndNumber": "Keizersgracht 313",
+                     "streetAndNumber": "Keizersgracht 126",
                      "city": "Amsterdam",
                      "region": "Noord-Holland",
                      "postalCode": "1234AB",
@@ -533,7 +537,7 @@ Example
                   },
                   "shippingAddress": {
                      "organizationName": "Mollie B.V.",
-                     "streetAndNumber": "Prinsengracht 313",
+                     "streetAndNumber": "Prinsengracht 126",
                      "streetAdditional": "4th floor",
                      "city": "Haarlem",
                      "region": "Noord-Holland",
@@ -624,7 +628,7 @@ Example
             ],
             "billingAddress" => [
                   "organizationName" => "Mollie B.V.",
-                  "streetAndNumber" => "Keizersgracht 313",
+                  "streetAndNumber" => "Keizersgracht 126",
                   "city" => "Amsterdam",
                   "region" => "Noord-Holland",
                   "postalCode" => "1234AB",
@@ -637,7 +641,7 @@ Example
             ],
             "shippingAddress" => [
                   "organizationName" => "Mollie B.V.",
-                  "streetAndNumber" => "Keizersgracht 313",
+                  "streetAndNumber" => "Keizersgracht 126",
                   "streetAdditional" => "4th floor",
                   "city" => "Haarlem",
                   "region" => "Noord-Holland",
@@ -717,99 +721,74 @@ Example
 
       mollie_client = Client()
       mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      order = mollie_client.orders.create({
-          'amount': {
-              'value': '1027.99',
-              'currency': 'EUR'
-          },
-          'billingAddress': {
-              'organizationName': 'Mollie B.V.',
-              'streetAndNumber': 'Keizersgracht 313',
-              'city': 'Amsterdam',
-              'region': 'Noord-Holland',
-              'postalCode': '1234AB',
-              'country': 'NL',
-              'title': 'Dhr.',
-              'givenName': 'Piet',
-              'familyName': 'Mondriaan',
-              'email': 'piet@mondriaan.com',
-              'phone': '+31309202070',
-          },
-          'shippingAddress': {
-              'organizationName': 'Mollie B.V.',
-              'streetAndNumber': 'Prinsengracht 313',
-              'streetAdditional': '4th floor',
-              'city': 'Haarlem',
-              'region': 'Noord-Holland',
-              'postalCode': '5678AB',
-              'country': 'NL',
-              'title': 'Mr.',
-              'givenName': 'Chuck',
-              'familyName': 'Norris',
-              'email': 'norris@chucknorrisfacts.net'
-          },
-          'metadata': {
-              'order_id': '1337',
-              'description': 'Lego cars'
-          },
-          'consumerDateOfBirth': '1958-01-31',
-          'locale': 'nl_NL',
-          'orderNumber': '1337',
-          'redirectUrl': 'https://example.org/redirect',
-          'webhookUrl': 'https://example.org/webhook',
-          'method': 'klarnapaylater',
-          'lines': [
-            {
-              'type': 'physical',
-              'sku': '5702016116977',
-              'name': 'LEGO 42083 Bugatti Chiron',
-              'productUrl': 'https://shop.lego.com/nl-NL/Bugatti-Chiron-42083',
-              'imageUrl': 'https://sh-s7-live-s.legocdn.com/is/image//LEGO/42083_alt1?$main$',
-              'metadata': {
-                'order_id': '1337',
-                'description': 'Bugatti Chiron'
+
+      order = mollie_client.orders.create(
+          {
+              'amount': {'value': '1027.99', 'currency': 'EUR'},
+              'billingAddress': {
+                  'organizationName': 'Mollie B.V.',
+                  'streetAndNumber': 'Keizersgracht 126',
+                  'city': 'Amsterdam',
+                  'region': 'Noord-Holland',
+                  'postalCode': '1234AB',
+                  'country': 'NL',
+                  'title': 'Dhr.',
+                  'givenName': 'Piet',
+                  'familyName': 'Mondriaan',
+                  'email': 'piet@mondriaan.com',
+                  'phone': '+31309202070',
               },
-              'quantity': 2,
-              'vatRate': '21.00',
-              'unitPrice': {
-                'currency': 'EUR',
-                'value': '399.00'
+              'shippingAddress': {
+                  'organizationName': 'Mollie B.V.',
+                  'streetAndNumber': 'Prinsengracht 126',
+                  'streetAdditional': '4th floor',
+                  'city': 'Haarlem',
+                  'region': 'Noord-Holland',
+                  'postalCode': '5678AB',
+                  'country': 'NL',
+                  'title': 'Mr.',
+                  'givenName': 'Chuck',
+                  'familyName': 'Norris',
+                  'email': 'norris@chucknorrisfacts.net',
               },
-              'totalAmount': {
-                'currency': 'EUR',
-                'value': '698.00'
-              },
-              'discountAmount': {
-                'currency': 'EUR',
-                'value': '100.00'
-              },
-              'vatAmount': {
-                'currency': 'EUR',
-                'value': '121.14'
-              }
-            },
-            {
-              'type' = > 'physical',
-              'sku' = > '5702015594028',
-              'name': 'LEGO 42056 Porsche 911 GT3 RS',
-              'productUrl': 'https://shop.lego.com/nl-NL/Porsche-911-GT3-RS-42056',
-              'imageUrl': 'https://sh-s7-live-s.legocdn.com/is/image/LEGO/42056?$PDPDefault$',
-              'quantity': 1,
-              'vatRate': '21.00',
-              'unitPrice': {
-                'currency': 'EUR',
-                'value': '329.99'
-              },
-              'totalAmount': {
-                'currency': 'EUR',
-                'value': '329.99'
-              },
-              'vatAmount': {
-                'currency': 'EUR',
-                'value': '57.27'
-            }
-          ]
-      })
+              'metadata': {'order_id': '1337', 'description': 'Lego cars'},
+              'consumerDateOfBirth': '1958-01-31',
+              'locale': 'nl_NL',
+              'orderNumber': '1337',
+              'redirectUrl': 'https://example.org/redirect',
+              'webhookUrl': 'https://example.org/webhook',
+              'method': 'klarnapaylater',
+              'lines': [
+                  {
+                      'type': 'physical',
+                      'sku': '5702016116977',
+                      'name': 'LEGO 42083 Bugatti Chiron',
+                      'productUrl': 'https://shop.lego.com/nl-NL/Bugatti-Chiron-42083',
+                      'imageUrl': 'https://sh-s7-live-s.legocdn.com/is/image//LEGO/42083_alt1?$main$',
+                      'metadata': {'order_id': '1337', 'description': 'Bugatti Chiron'},
+                      'quantity': 2,
+                      'vatRate': '21.00',
+                      'unitPrice': {'currency': 'EUR', 'value': '399.00'},
+                      'totalAmount': {'currency': 'EUR', 'value': '698.00'},
+                      'discountAmount': {'currency': 'EUR', 'value': '100.00'},
+                      'vatAmount': {'currency': 'EUR', 'value': '121.14'},
+                  },
+                  {
+                      'type': 'physical',
+                      'sku': '5702015594028',
+                      'name': 'LEGO 42056 Porsche 911 GT3 RS',
+                      'productUrl': 'https://shop.lego.com/nl-NL/Porsche-911-GT3-RS-42056',
+                      'imageUrl': 'https://sh-s7-live-s.legocdn.com/is/image/LEGO/42056?$PDPDefault$',
+                      'quantity': 1,
+                      'vatRate': '21.00',
+                      'unitPrice': {'currency': 'EUR', 'value': '329.99'},
+                      'totalAmount': {'currency': 'EUR', 'value': '329.99'},
+                      'vatAmount': {'currency': 'EUR', 'value': '57.27'},
+                  },
+              ],
+          }
+      )
+
 
    .. code-block:: ruby
       :linenos:
@@ -826,7 +805,7 @@ Example
           currency: 'EUR'
         },
         billingAddress: {
-          streetAndNumber: 'Keizersgracht 313',
+          streetAndNumber: 'Keizersgracht 126',
           city: 'Amsterdam',
           region: 'Noord-Holland',
           postalCode: '1234AB',
@@ -838,7 +817,7 @@ Example
           phone: '+31208202070'
         },
         shippingAddress: {
-          streetAndNumber: 'Prinsengracht 313',
+          streetAndNumber: 'Prinsengracht 126',
           streetAdditional: '4th floor',
           city: 'Haarlem',
           region: 'Noord-Holland',
@@ -923,7 +902,7 @@ Example
           },
           billingAddress: {
             organizationName: 'Mollie B.V.',
-            streetAndNumber: 'Keizersgracht 313',
+            streetAndNumber: 'Keizersgracht 126',
             city: 'Amsterdam',
             region: 'Noord-Holland',
             postalCode: '1234AB',
@@ -936,7 +915,7 @@ Example
           },
           shippingAddress: {
             organizationName: 'Mollie B.V.',
-            streetAndNumber: 'Prinsengracht 313',
+            streetAndNumber: 'Prinsengracht 126',
             streetAdditional: '4th floor',
             city: 'Haarlem',
             region: 'Noord-Holland',
@@ -1039,7 +1018,7 @@ Response
        "locale": "nl_NL",
        "billingAddress": {
            "organizationName": "Mollie B.V.",
-           "streetAndNumber": "Keizersgracht 313",
+           "streetAndNumber": "Keizersgracht 126",
            "city": "Amsterdam",
            "region": "Noord-Holland",
            "postalCode": "1234AB",
@@ -1054,7 +1033,7 @@ Response
        "orderNumber": "1337",
        "shippingAddress": {
            "organizationName": "Mollie B.V.",
-           "streetAndNumber": "Keizersgracht 313",
+           "streetAndNumber": "Keizersgracht 126",
            "streetAdditional": "4th floor",
            "city": "Haarlem",
            "region": "Noord-Holland",

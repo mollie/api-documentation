@@ -8,6 +8,10 @@
 	{%- include "sidebar-changelog-v2.html" -%}
 {%- elif pagename.startswith("reference/reseller-api/") -%}
 	{%- include "sidebar-reseller-api.html" -%}
+{%- elif pagename.startswith("payments/") or pagename.startswith("orders/") or pagename.startswith("guides/mollie-components/") or pagename.startswith("wallets/") -%}
+	{%- include "sidebar-payments.html" -%}
+{%- elif pagename.startswith("connect/") -%}
+	{%- include "sidebar-connect.html" -%}
 {%- else -%}
-	{%- include "sidebar-guides.html" -%}
+	{%- include "sidebar-overview.html" -%}
 {%- endif -%}

@@ -31,7 +31,7 @@ Replace ``id`` in the endpoint URL by the payment's ID, for example ``tr_7UhSN1z
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is available. You must pass this as a
+:doc:`OAuth app </connect/overview>`, the ``testmode`` query string parameter is available. You must pass this as a
 parameter in the query string if you want to retrieve a payment that was created in test mode.
 
 .. list-table::
@@ -174,8 +174,8 @@ Response
        If the payment is only partially paid with a gift card, the method remains ``giftcard``.
 
        Possible values: ``null`` ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``, ``giftcard``
-       ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``klarnapaylater`` ``klarnasliceit`` ``mistercash`` ``mybank``
-       ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort``
+       ``giropay`` ``ideal`` ``kbc`` ``klarnapaylater`` ``klarnasliceit`` ``mistercash`` ``mybank`` ``paypal``
+       ``paysafecard`` ``przelewy24`` ``sofort``
 
    * - ``metadata``
 
@@ -253,9 +253,10 @@ Response
 
      - Only available for failed Bancontact and credit card payments. Contains a failure reason code.
 
-       Possible values: ``authentication_failed``  ``card_expired`` ``inactive_card`` ``insufficient_funds``
-       ``invalid_card_holder_name`` ``invalid_card_number`` ``invalid_card_type`` ``invalid_cvv``
-       ``possible_fraud`` ``refused_by_issuer`` ``unknown_reason``
+       Possible values: ``authentication_abandoned`` ``authentication_failed`` ``authentication_unavailable_acs``
+       ``card_declined`` ``card_expired`` ``inactive_card`` ``insufficient_funds`` ``invalid_cvv``
+       ``invalid_card_holder_name`` ``invalid_card_number`` ``invalid_card_type`` ``possible_fraud``
+       ``refused_by_issuer`` ``unknown_reason``
 
    * - ``applicationFee``
 
@@ -738,38 +739,6 @@ iDEAL
 
             - Only available if the payment has been completed – The consumer's bank's BIC.
 
-ING Home'Pay
-""""""""""""
-.. list-table::
-   :widths: auto
-
-   * - ``details``
-
-       .. type:: object
-
-     - An object with payment details.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``consumerName``
-
-              .. type:: string
-
-            - Only available one banking day after the payment has been completed – The consumer's name.
-
-          * - ``consumerAccount``
-
-              .. type:: string
-
-            - Only available one banking day after the payment has been completed – The consumer's bank account's IBAN.
-
-          * - ``consumerBic``
-
-              .. type:: string
-
-            - Only available one banking day after the payment has been completed – ``BBRUBEBB``.
-
 KBC/CBC Payment Button
 """"""""""""""""""""""
 .. list-table::
@@ -1033,6 +1002,12 @@ Vouchers
 
                    - The ID of the voucher brand that was used during the payment.
 
+                 * - ``issuerName``
+
+                     .. type:: string
+
+                   - The name of the voucher brand that was used during the payment.
+
                  * - ``amount``
 
                      .. type:: decimal
@@ -1121,7 +1096,7 @@ Response
            "consumerAccount": "NL53INGB0618365937",
            "consumerBic": "INGBNL2A"
        },
-       "locale": "nl",
+       "locale": "nl_NL",
        "profileId": "pfl_QkEhN94Ba",
        "links": {
            "webhookUrl": "https://webshop.example.org/payments/webhook",

@@ -22,7 +22,6 @@ The next settlement is returned in the same fashion as the :doc:`Get settlement 
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -37,6 +36,16 @@ Example
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
       $nextSettlement = $mollie->settlements->next();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+
+      settlement = mollie_client.settlements.get('next')
 
    .. code-block:: ruby
       :linenos:

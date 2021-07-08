@@ -1,16 +1,7 @@
-{% macro sidebar_item(item_pagename, item_title, item_subtitle=None, tag=None) -%}
-	<li class="{%- if pagename == item_pagename -%}current{%- endif -%}">
-		<a href="{{ pathto(item_pagename) }}">
-			{{ item_title }}
-			{% if tag is not none -%}
-				<span class="sidebar__tag">{{ tag }}</span>
-			{%- endif %}
-			{% if item_subtitle is not none -%}
-				<code class="sidebar__subtitle">{{ item_subtitle }}</code>
-			{%- endif %}
-		</a>
-		{%- if pagename == item_pagename -%}
-			{{ toc }}
-		{%- endif -%}
-	</li>
+{% macro sidebar_item(item_pagename, item_title) -%}
+  <li class="sidebar__item {%- if pagename == item_pagename %} current{% endif %}">
+    <a href="{{ pathto(item_pagename) }}">
+      {{ item_title }}
+    </a>
+  </li>
 {%- endmacro -%}

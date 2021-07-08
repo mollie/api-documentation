@@ -2,9 +2,6 @@
 
 {% include 'api-version-switcher.html' %}
 
-<div class="sidebar__group">
-    <p>Timeline</p>
-    <ul>
-        {{ sidebar_item('changelog/v1/changelog', '') }}
-    </ul>
-</div>
+<p class="sidebar__topic-header">Timeline</p>
+
+<div class="sidebar__changelog">{{ toc }}</div>

@@ -20,10 +20,10 @@ Parameters
 Replace ``customerId`` in the endpoint URL by the customer's ID, and replace ``id`` by the mandate's ID. For example:
 ``/v2/customers/cst_stTC2WHAuS/mandates/mdt_pWUnw6pkBN``.
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you are creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
-available.
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
 .. list-table::
    :widths: auto
@@ -82,6 +82,16 @@ Example
           { customerId: 'cst_stTC2WHAuS' }
         );
       })();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+
+      mandate = mollie_client.customer_mandates.with_parent_id('cst_4qqhO89gsT').delete('mdt_h3gAaD5zP')
 
 Response
 ^^^^^^^^

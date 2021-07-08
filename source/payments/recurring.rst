@@ -37,7 +37,7 @@ payment is completed successfully, the customer's account or card will immediate
 periodically through *subscriptions*.
 
 #. Create a unique customer using the :doc:`Customers API </reference/v2/customers-api/create-customer>`. If you are
-using Mollie Connect, make sure you have the permission `customers.write` in order to create a customer.
+   using Mollie Connect, make sure you have the permission `customers.write` in order to create a customer.
 
    .. code-block:: bash
       :linenos:
@@ -84,9 +84,10 @@ using Mollie Connect, make sure you have the permission `customers.write` in ord
    ``paypal`` mandate. All other first payment methods will be a ``directdebit`` mandate.
 
 .. note:: Not all payment methods support a first payment. When the ``method`` parameter is not provided in the API, we
-          take care of this automatically in our :doc:`Checkout </guides/checkout>`. The following payment methods
-          support a first payment and are thus allowed as a value for the ``method`` parameter of a first payment:
-          ``bancontact`` ``belfius`` ``creditcard`` ``eps`` ``giropay`` ``ideal`` ``inghomepay`` ``kbc`` ``mybank``
+          take care of this automatically in our :doc:`Checkout </payments/hosted-checkout>`. The following payment
+          methods support a first payment and are thus allowed as a value for the ``method`` parameter of a first
+          payment:
+          ``bancontact`` ``belfius`` ``creditcard`` ``eps`` ``giropay`` ``ideal`` ``kbc`` ``mybank``
           ``paypal`` ``sofort``
 
 .. note:: Created mandates are unique to your account and can not be transferred to other accounts.

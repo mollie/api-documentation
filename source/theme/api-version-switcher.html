@@ -13,7 +13,7 @@
 {%- endif -%}
 
 <div class="api-version-switcher">
-	<select class="link-dropdown" data-enhancer="link-dropdown">
+	<select class="link-dropdown js-link-dropdown-dropkick" data-enhancer="link-dropdown">
 		<option value="{{ pathto(pagename_v2) }}"{% if is_v2 %} selected{% endif %}>API version 2 (latest)</option>
 		<option value="{{ pathto(pagename_v1) }}"{% if is_v1 %} selected{% endif %}>API version 1</option>
 	</select>

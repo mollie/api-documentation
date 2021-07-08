@@ -25,8 +25,8 @@ Replace ``paymentId`` in the endpoint URL by the payment's ID, and replace ``id`
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the only mandatory extra parameter is the ``profileId`` parameter. With it, you can
-specify which profile the payment belongs to. Organizations can have multiple profiles for each of their websites. See
+:doc:`OAuth app </connect/overview>`, you have to specify which profile you are retrieving a chargeback for using the
+``profileId`` parameter. Organizations can have multiple profiles for each of their websites. See
 :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
 
 .. list-table::
@@ -118,6 +118,29 @@ Response
        .. type:: datetime
 
      - The date and time the chargeback was issued, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+
+   * - ``reason``
+
+       .. type:: object|null
+
+     - Reason for the chargeback as given by the bank.
+
+       .. note:: This field will only be returned for chargebacks where *direct debit* was used as the original payment method.
+
+       .. list-table::
+          :widths: auto
+
+          * - ``code``
+
+              .. type:: string
+
+            - Bank code of the chargeback reason.
+
+          * - ``description``
+
+              .. type:: string
+
+            - Detailed description of the reason.
 
    * - ``reversedAt``
 
@@ -247,6 +270,10 @@ Response
            "value": "-35.07"
        },
        "createdAt": "2018-03-14T17:00:52.0Z",
+        "reason": {
+          "code": "AC01",
+          "description": "Account identifier incorrect (i.e. invalid IBAN)"
+        },
        "reversedAt": null,
        "paymentId": "tr_WDqYK6vllg",
        "_links": {

@@ -8,6 +8,35 @@ changes are documented here.
 
              For more information on the v2 API, refer to our :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
+March 2021
+==========
+Tuesday, 30th
+--------------
+- Added ``delokalecadeaukaart`` as gift card issuer.
+
+Wednesday, 24th
+---------------
+- Added ``boekenbon`` as gift card issuer.
+
+Tuesday, 23rd
+-------------
+- Added ``authentication_abandoned``, ``authentication_unavailable_acs`` and ``card_declined`` as possible ``failureReason`` in the
+  :doc:`Payments API</reference/v1/payments-api/get-payment>` for credit card payments.
+
+Tuesday, 16th
+-------------
+- Added ``bloemencadeaukaart`` and ``kluscadeau`` as gift card issuers.
+
+February 2021
+=============
+
+Monday, 1st
+-----------
+- We discontinued the support for ING Home'Pay as a payment method. This means that the API now rejects all
+  :doc:`Create Payment API</reference/v2/payments-api/create-payment>`-calls with the method ``inghomepay``. Make sure
+  to remove this payment method from your checkout if needed. Please `contact us <https://www.mollie.com/contact>`_ for
+  more info.
+
 December 2020
 =============
 
@@ -243,7 +272,7 @@ Thursday, 8th
 
 Monday, 5th
 -----------
-- Added referral-functionality for Mollie Partners to the Connect API. See the :doc:`documentation </oauth/overview>`
+- Added referral-functionality for Mollie Partners to the Connect API. See the :doc:`documentation </connect/overview>`
   for more info.
 
 Thursday, 1st
