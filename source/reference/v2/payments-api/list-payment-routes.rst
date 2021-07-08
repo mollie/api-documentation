@@ -36,9 +36,9 @@ Parameters
 
      - The number of payment routes to return (with a maximum of 250).
 
-Mollie Connect/OAuth parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you're creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the following parameters are also
+Access token parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+If you are creating an app with :doc:`Mollie Connect </connect/overview>`, the ``testmode`` parameter is also
 available.
 
 .. list-table::
