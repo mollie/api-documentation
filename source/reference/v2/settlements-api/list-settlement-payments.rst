@@ -1,5 +1,5 @@
-List Settlement Payments API
-============================
+List settlement payments
+========================
 .. api-name:: Settlements API
    :version: 2
 
