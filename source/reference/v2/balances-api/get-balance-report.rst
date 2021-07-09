@@ -306,11 +306,12 @@ Response
                    },
                    "subtotals": [
                        {
+                           "transactionType": "payment",
+                           "count": 1,
                            "amount": {
-                           "currency": "EUR",
+                               "currency": "EUR",
                                "value": "4.98"
                            },
-                           "count": 1,
                            "subtotals": [
                                {
                                    "amount": {
@@ -320,8 +321,7 @@ Response
                                    "count": 1,
                                    "method": "ideal"
                                }
-                           ],
-                           "transactionType": "payment"
+                           ]
                        }
                    ]
                },
@@ -350,59 +350,59 @@ Response
                    "subtotals": [
                        {
                            "amount": {
-                           "currency": "EUR",
+                               "currency": "EUR",
                                "value": "-0.66"
                            },
                            "subtotals": [
                                {
+                                   "prepaymentPartType": "fee",
+                                   "count": 2,
                                    "amount": {
-                                   "currency": "EUR",
+                                       "currency": "EUR",
                                        "value": "-0.54"
                                    },
-                                   "count": 2,
-                                   "prepaymentPartType": "fee",
                                    "subtotals": [
                                        {
+                                           "feeType": "payment-fee",
+                                           "count": 2,
                                            "amount": {
-                                           "currency": "EUR",
+                                               "currency": "EUR",
                                                "value": "-0.54"
                                            },
-                                           "count": 2,
-                                           "feeType": "payment-fee",
                                            "subtotals": [
                                                {
-                                                   "amount": {
-                                                   "currency": "EUR",
-                                                       "value": "-0.25"
-                                                   },
+                                                   "method": "giftcard",
                                                    "count": 1,
-                                                   "method": "giftcard"
+                                                   "amount": {
+                                                       "currency": "EUR",
+                                                       "value": "-0.25"
+                                                   }
                                                },
                                                {
-                                                   "amount": {
-                                                   "currency": "EUR",
-                                                       "value": "-0.29"
-                                                   },
+                                                   "method": "ideal",
                                                    "count": 1,
-                                                   "method": "ideal"
+                                                   "amount": {
+                                                       "currency": "EUR",
+                                                       "value": "-0.29"
+                                                   }
                                                }
                                            ]
                                        }
                                    ]
                                },
                                {
+                                   "prepaymentPartType": "fee-vat",
                                    "amount": {
-                                   "currency": "EUR",
+                                       "currency": "EUR",
                                        "value": "-0.1134"
-                                   },
-                                   "prepaymentPartType": "fee-vat"
+                                   }
                                },
                                {
+                                   "prepaymentPartType": "fee-rounding-compensation",
                                    "amount": {
-                                   "currency": "EUR",
+                                       "currency": "EUR",
                                        "value": "-0.0066"
-                                   },
-                                   "prepaymentPartType": "fee-rounding-compensation"
+                                   }
                                }
                            ],
                            "transactionType": "fee-prepayment"
