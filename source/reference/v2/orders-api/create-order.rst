@@ -146,7 +146,7 @@ Parameters
        screen but will only show the methods specified in the array. For example, you can use this functionality to only
        show payment methods from a specific country to your customer ``['bancontact', 'belfius']``.
 
-       Possible values: ``applepay`` ``bancontact`` ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``
+       Possible values: ``applepay`` ``bancontact`` ``banktransfer`` ``belfius`` ``creditcard`` ``eps``
        ``giftcard`` ``giropay`` ``ideal`` ``kbc``  ``klarnapaylater`` ``klarnasliceit`` ``mybank``
        ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort`` ``voucher``
 
