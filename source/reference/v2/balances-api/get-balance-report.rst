@@ -75,7 +75,7 @@ Response
 
        .. type:: string
 
-     - The ID of the :doc:`Balance </reference/v2/balances-api/get-default-balance>` this report is generated for.
+     - The ID of the :doc:`Balance </reference/v2/balances-api/get-balance>` this report is generated for.
 
    * - ``timeZone``
 
@@ -263,7 +263,7 @@ Request
 .. code-block:: bash
    :linenos:
 
-   curl -X GET https://api.mollie.com/v2/balances/default/reporting?from=2021-01-01&until=2021-02-01&grouping=transaction-categories \
+   curl -X GET https://api.mollie.com/v2/balances/{api_balance_token}/reporting?from=2021-01-01&until=2021-02-01&grouping=transaction-categories \
        -H 'Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW'
 
 Response
@@ -441,7 +441,7 @@ Response
                "type": "text/html"
            },
            "self": {
-               "href": "https://api.mollie.com/v2/balances/default/reporting?from=2021-01-01&until=2021-02-01&grouping=transaction-categories",
+               "href": "https://api.mollie.com/v2/balances/{api_balance_token}/reporting?from=2021-01-01&until=2021-02-01&grouping=transaction-categories",
                "type": "application/hal+json"
            }
        }

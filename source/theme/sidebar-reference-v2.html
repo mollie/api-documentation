@@ -490,21 +490,21 @@
 <ul>
   {%- set current = pagename.startswith('reference/v2/balances-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/balances-api/get-default-balance') }}">Balances API</a>
+    <a href="{{ pathto('reference/v2/balances-api/get-balance') }}">Balances API</a>
 
     {%- if current %}
       <ul>
         {{ sidebar_item(
-          'reference/v2/balances-api/get-default-balance',
-          'Get default balance'
+          'reference/v2/balances-api/get-balance',
+          'Get balance'
         ) }}
         {{ sidebar_item(
           'reference/v2/balances-api/list-balances',
           'List balances'
         ) }}
         {{ sidebar_item(
-          'reference/v2/balances-api/update-default-balance',
-          'Update default balance'
+          'reference/v2/balances-api/update-balance',
+          'Update balance'
         ) }}
         {{ sidebar_item(
           'reference/v2/balances-api/get-balance-report',

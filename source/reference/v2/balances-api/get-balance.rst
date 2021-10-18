@@ -1,4 +1,4 @@
-Get default balance
+Get balance
 ===================
 .. api-name:: Balances API
    :version: 2
@@ -25,30 +25,6 @@ With the Balances API you can retrieve your current balance. The response includ
 With instant payment methods like iDEAL, payments are moved to the available balance instantly. With slower payment
 methods, like credit card for example, it can take a few days before the funds are available on your balance. These
 funds will be shown under the 'incoming amount' in the meanwhile.
-
-If you process funds in multiple currencies, we will create one balance for each currency. The ``default`` endpoint will
-return the balance of your primary currency, but with the ``currency`` parameter you can retrieve your other balances as
-well.
-
-.. list-table::
-   :widths: auto
-
-   * - ``currency``
-
-       .. type:: string
-          :required: false
-
-     - By default, the endpoint returns the balance of your primary currency. You can provide this parameter with a
-       `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code to retrieve one of your foreign currency
-       balances.
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to get the default test mode balance. If you omit this parameter, the default live mode
-       balance will be returned.
 
 Parameters
 ----------
@@ -284,7 +260,7 @@ Request
 .. code-block:: bash
    :linenos:
 
-   curl -X GET https://api.mollie.com/v2/balances/default \
+   curl -X GET https://api.mollie.com/v2/balances/{api_balance_token} \
        -H 'Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW'
 
 Response
@@ -330,7 +306,7 @@ Response
          "type": "application/hal+json"
        },
        "documentation": {
-         "href": "https://docs.mollie.com/reference/v2/balances-api/get-default-balance",
+         "href": "https://docs.mollie.com/reference/v2/balances-api/get-balance",
          "type": "text/html"
        }
      }
