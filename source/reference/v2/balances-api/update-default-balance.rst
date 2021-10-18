@@ -7,6 +7,10 @@ Update default balance
    :method: PATCH
    :url: https://api.mollie.com/v2/balances/*apiBalanceToken*
 
+.. endpoint::
+   :method: POST
+   :url: https://api.mollie.com/v2/balances/*apiBalanceToken*
+
 .. authentication::
    :api_keys: false
    :organization_access_tokens: true
