@@ -12,7 +12,7 @@ List balances
    :organization_access_tokens: true
    :oauth: true
 
-Retrieve all the organization's balances, including the default balance, ordered from newest to oldest.
+Retrieve all the organization's balances ordered from newest to oldest.
 
 The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
 
@@ -20,13 +20,6 @@ Parameters
 ----------
 .. list-table::
    :widths: auto
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to true to only retrieve balances made in test mode. By default, only live balances are returned.
 
    * - ``from``
 
@@ -71,7 +64,7 @@ Response
               .. type:: array
 
             - An array of balance objects as described in
-              :doc:`Get default balance </reference/v2/balances-api/get-default-balance>`.
+              :doc:`Get balance </reference/v2/balances-api/get-balance>`.
 
    * - ``_links``
 

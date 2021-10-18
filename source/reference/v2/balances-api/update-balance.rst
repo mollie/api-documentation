@@ -1,33 +1,30 @@
-Update default balance
+Update balance
 ======================
 .. api-name:: Balances API
    :version: 2
 
 .. endpoint::
    :method: PATCH
-   :url: https://api.mollie.com/v2/balances/default
+   :url: https://api.mollie.com/v2/balances/*apiBalanceToken*
+
+.. endpoint::
+   :method: POST
+   :url: https://api.mollie.com/v2/balances/*apiBalanceToken*
 
 .. authentication::
    :api_keys: false
    :organization_access_tokens: true
    :oauth: true
 
-With this endpoint you can change the settlement frequency and threshold of your default balance.
+With this endpoint you can change the settlement frequency and threshold of your balance.
 
 Parameters
 ----------
-Replace ``id`` in the endpoint URL by the balance's ID, for example: ``bal_8irzh1y2``.
+Replace ``apiBalanceToken`` in the endpoint URL by the balance token, which can be retrieved by the
+:doc:`List balances </reference/v2/balances-api/list-balances>` endpoint.
 
 .. list-table::
    :widths: auto
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to update a balance made in test mode. If you omit this parameter, you can only update live
-       mode balances.
 
    * - ``transferFrequency``
 
@@ -86,7 +83,7 @@ Response
 ``200`` ``application/hal+json; charset=utf-8``
 
 The updated balance object is returned, as described in
-:doc:`Get default balance </reference/v2/balances-api/get-default-balance>`.
+:doc:`Get balance </reference/v2/balances-api/get-balance>`.
 
 Example
 -------
@@ -96,7 +93,7 @@ Request
 .. code-block:: bash
    :linenos:
 
-   curl -X PATCH https://api.mollie.com/v2/balances/default \
+   curl -X PATCH https://api.mollie.com/v2/balances/{api_balance_token} \
        -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW"
        -d "transferFrequency=monthly"
 
@@ -143,7 +140,7 @@ Response
          "type": "application/hal+json"
        },
        "documentation": {
-         "href": "https://docs.mollie.com/reference/v2/balances-api/get-default-balance",
+         "href": "https://docs.mollie.com/reference/v2/balances-api/get-balance",
          "type": "text/html"
        }
      }

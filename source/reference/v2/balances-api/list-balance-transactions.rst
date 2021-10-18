@@ -5,7 +5,7 @@ List balance transactions
 
 .. endpoint::
    :method: GET
-   :url: https://api.mollie.com/v2/balances/default/transactions
+   :url: https://api.mollie.com/v2/balances/*apiBalanceToken*/transactions
 
 .. authentication::
    :api_keys: false
@@ -17,25 +17,9 @@ payments, refunds, chargebacks, and settlements.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
 
-   * - ``currency``
-
-       .. type:: string
-          :required: false
-
-     - By default, the endpoint returns the transactions for the balance of your primary currency. You can provide this
-       parameter with a `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code to retrieve the transactions
-       for one of your foreign currency balances.
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to get the default test mode balance. If you omit this parameter, the default live mode
-       balance will be returned.
+Replace ``apiBalanceToken`` in the endpoint URL by the balance token, which can be retrieved by the
+:doc:`List balances </reference/v2/balances-api/list-balances>` endpoint.
 
 Response
 --------
@@ -64,8 +48,7 @@ Response
 
               .. type:: array
 
-            - An array of transaction objects as described in
-              :doc:`Get balance transaction </reference/v2/balances-api/get-balance-transaction>`.
+            - An array of transaction objects.
 
    * - ``_links``
 
