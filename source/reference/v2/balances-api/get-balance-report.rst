@@ -5,7 +5,7 @@ Get balance report
 
 .. endpoint::
    :method: GET
-   :url: https://api.mollie.com/v2/balances/default/reporting
+   :url: https://api.mollie.com/v2/balances/*apiBalanceToken*/reporting
 
 .. authentication::
    :api_keys: false
@@ -20,6 +20,10 @@ reported period ahead of your Mollie invoice.
 
 Parameters
 ----------
+
+Replace ``apiBalanceToken`` in the endpoint URL by the balance token, which can be retrieved by the
+:doc:`List balances </reference/v2/balances-api/list-balances>` endpoint.
+
 .. list-table::
    :widths: auto
 

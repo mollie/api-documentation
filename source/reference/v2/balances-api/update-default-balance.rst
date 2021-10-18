@@ -5,7 +5,7 @@ Update default balance
 
 .. endpoint::
    :method: PATCH
-   :url: https://api.mollie.com/v2/balances/default
+   :url: https://api.mollie.com/v2/balances/*apiBalanceToken*
 
 .. authentication::
    :api_keys: false
@@ -16,7 +16,8 @@ With this endpoint you can change the settlement frequency and threshold of your
 
 Parameters
 ----------
-Replace ``id`` in the endpoint URL by the balance's ID, for example: ``bal_8irzh1y2``.
+Replace ``apiBalanceToken`` in the endpoint URL by the balance token, which can be retrieved by the
+:doc:`List balances </reference/v2/balances-api/list-balances>` endpoint.
 
 .. list-table::
    :widths: auto

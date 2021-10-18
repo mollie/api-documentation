@@ -5,7 +5,7 @@ Get default balance
 
 .. endpoint::
    :method: GET
-   :url: https://api.mollie.com/v2/balances/default
+   :url: https://api.mollie.com/v2/balances/*apiBalanceToken*
 
 .. authentication::
    :api_keys: false
@@ -49,6 +49,11 @@ well.
 
      - Set this to ``true`` to get the default test mode balance. If you omit this parameter, the default live mode
        balance will be returned.
+
+Parameters
+----------
+Replace ``apiBalanceToken`` in the endpoint URL by the balance token, which can be retrieved by the
+:doc:`List balances </reference/v2/balances-api/list-balances>` endpoint.
 
 Response
 --------

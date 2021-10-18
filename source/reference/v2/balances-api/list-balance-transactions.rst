@@ -5,7 +5,7 @@ List balance transactions
 
 .. endpoint::
    :method: GET
-   :url: https://api.mollie.com/v2/balances/default/transactions
+   :url: https://api.mollie.com/v2/balances/*apiBalanceToken*/transactions
 
 .. authentication::
    :api_keys: false
@@ -17,6 +17,10 @@ payments, refunds, chargebacks, and settlements.
 
 Parameters
 ----------
+
+Replace ``apiBalanceToken`` in the endpoint URL by the balance token, which can be retrieved by the
+:doc:`List balances </reference/v2/balances-api/list-balances>` endpoint.
+
 .. list-table::
    :widths: auto
 
@@ -64,8 +68,7 @@ Response
 
               .. type:: array
 
-            - An array of transaction objects as described in
-              :doc:`Get balance transaction </reference/v2/balances-api/get-balance-transaction>`.
+            - An array of transaction objects.
 
    * - ``_links``
 
