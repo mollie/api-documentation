@@ -21,13 +21,6 @@ Parameters
 .. list-table::
    :widths: auto
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to true to only retrieve balances made in test mode. By default, only live balances are returned.
-
    * - ``from``
 
        .. type:: string
