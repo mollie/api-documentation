@@ -31,7 +31,8 @@ Routing part of a payment to a connected account
 Now that you have an account connected to yours, you can start sending parts of each payment to their balance. This can
 be done by specifying the payment routing when :doc:`creating a payment </reference/v2/payments-api/create-payment>`.
 
-In the example below, we will route €7,50 of a €10,00 payment to the connected account ``org_23456``.
+In the example below, we will route €3,50 of a €10,00 payment to the connected account ``org_23456``, and €4,50 to the
+connected account ``org_56789``
 
 On our own account, we will receive the remainder of €2,50 minus any payment fees charged by Mollie.
 
@@ -46,9 +47,13 @@ On our own account, we will receive the remainder of €2,50 minus any payment f
        -d "redirectUrl=https://webshop.example.org/order/12345/" \
        -d "webhookUrl=https://webshop.example.org/payments/webhook/" \
        -d "routing[0][amount][currency]=EUR" \
-       -d "routing[0][amount][value]=7.50" \
+       -d "routing[0][amount][value]=3.50" \
        -d "routing[0][destination][type]=organization" \
-       -d "routing[0][destination][organizationId]=org_23456"
+       -d "routing[0][destination][organizationId]=org_23456" \
+       -d "routing[1][amount][currency]=EUR" \
+       -d "routing[1][amount][value]=4.00" \
+       -d "routing[1][destination][type]=organization" \
+       -d "routing[1][destination][organizationId]=org_56789"
 
 .. code-block:: http
    :linenos:
@@ -84,28 +89,40 @@ On our own account, we will receive the remainder of €2,50 minus any payment f
                "resource": "route",
                "id": "rt_9dk4al1n",
                "amount": {
-                   "value": "7.50",
+                   "value": "3.50",
                    "currency": "EUR"
                },
                "destination": {
                    "type": "organization",
                    "organizationId": "org_23456"
                }
+           },
+           {
+               "resource": "route",
+               "id": "rt_ikw93sr2",
+               "amount": {
+                   "value": "4.00",
+                   "currency": "EUR"
+               },
+               "destination": {
+                   "type": "organization",
+                   "organizationId": "org_56789"
+               }
            }
        ]
        "...": { }
    }
 
-As soon as the payment is completed, the €7,50 will become available on the balance of the connected account, and the
-€2,50 will become available on the balance of your platform account.
+As soon as the payment is completed, the €3,50 and €4,00 will become available on the balance of the connected accounts,
+and the €2,50 will become available on the balance of your platform account.
 
 Delaying settlement of a split payment
 --------------------------------------
 The settlement of a routed payment can be delayed on payment level, by specifying a ``releaseDate`` on a route when
 :doc:`creating a payment </reference/v2/payments-api/create-payment>`.
 
-For example, the funds for the following payment will only become available on the balance of the connected account on 1
-January 2025:
+For example, the funds for the following payment will only become available on the balance of the connected account
+``org_23456`` on 1 January 2025, and on the balance of the connected account ``org_56789`` on 12 January 2025:
 
 .. code-block:: bash
    :linenos:
@@ -118,10 +135,15 @@ January 2025:
        -d "redirectUrl=https://webshop.example.org/order/12345/" \
        -d "webhookUrl=https://webshop.example.org/payments/webhook/" \
        -d "routing[0][amount][currency]=EUR" \
-       -d "routing[0][amount][value]=7.50" \
+       -d "routing[0][amount][value]=3.50" \
        -d "routing[0][destination][type]=organization" \
        -d "routing[0][destination][organizationId]=org_23456" \
-       -d "routing[0][releaseDate]=2025-01-01"
+       -d "routing[0][releaseDate]=2025-01-01" \
+       -d "routing[1][amount][currency]=EUR" \
+       -d "routing[1][amount][value]=4.00" \
+       -d "routing[1][destination][type]=organization" \
+       -d "routing[1][destination][organizationId]=org_56789" \
+       -d "routing[1][releaseDate]=2025-01-12"
 
 .. code-block:: http
    :linenos:
@@ -157,7 +179,7 @@ January 2025:
                "resource": "route",
                "id": "rt_9dk4al1n",
                "amount": {
-                   "value": "7.50",
+                   "value": "3.50",
                    "currency": "EUR"
                },
                "destination": {
@@ -165,6 +187,19 @@ January 2025:
                    "organizationId": "org_23456"
                },
                "releaseDate": "2025-01-01"
+           },
+           {
+               "resource": "route",
+               "id": "rt_ikw93sr2",
+               "amount": {
+                   "value": "4.00",
+                   "currency": "EUR"
+               },
+               "destination": {
+                   "type": "organization",
+                   "organizationId": "org_56789"
+               },
+               "releaseDate": "2025-01-12"
            }
        ]
        "...": { }
