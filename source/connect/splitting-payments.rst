@@ -3,20 +3,20 @@ Splitting payments with Mollie Connect
 .. note:: This feature is currently in closed beta. Please contact our partner management team if you are interested in
           testing this functionality with us.
 
-.. warning:: The split payments feature is not available for third-party payments methods (e.g.: gift cards, Paypal, etc.)
-             or captures (e.g.: Klarna slice it, Klarna pay later, etc.)
+.. warning:: The split payments feature is not available for third-party payments methods (gift cards, Paypal, etc.) or
+             captures (Klarna slice it, Klarna pay later, etc.)
 
-With Mollie you can distribute and split payments between connected accounts using 'payment routing'. This guide will
-explain how it works.
+With **Split payments** you can distribute and split payments between your platform and your connected merchant
+accounts.
 
-Splitting payments can be useful if you want to charge your users a fee for payments processed through your app,
-and cover the Mollie payment fee yourself. This way, the fees you negotiated with Mollie will not be visible to your
-users, since the fees are deducted and invoiced on your platform's Mollie account.
+When using this functionality, your platform will remain the 'owner' of the payment. The Mollie fees you negotiated are
+charged on your account directly, and will not be visible to your connected accounts. The chargeback liability also
+remains on your account.
 
 Splitting payments can also be useful if you want to control the timing and frequency of your users' settlements from
 Mollie.
 
-For simpler use cases, we also offer :doc:`Application fees </connect/application-fees>`.
+For simpler use cases, we offer :doc:`Application fees </connect/application-fees>`.
 
 Getting started: Connecting an account
 --------------------------------------
@@ -205,8 +205,8 @@ For example, the funds for the following payment will only become available on t
        "...": { }
    }
 
-The release date can still be updated while the release date is in the future, by simply updating the payment route
-object:
+It is possible to update the release date of a transaction before it reaches the connected account's available balance, **as long
+as the payment has already been paid by the consumer**, by simply updating the payment route object:
 
 .. code-block:: bash
    :linenos:
@@ -235,56 +235,4 @@ object:
        "releaseDate": "2026-01-01"
    }
 
-Refunding a split payment
--------------------------
-Since your platform is liable for refunds and chargebacks, when issuing a refund for a split payment, by default the
-full refund is deducted from the platform balance. In other words, by default the parts of the payment that were sent to
-connected accounts will remain untouched.
-
-If you wish to pull back the money that was sent to a connected account, you can do so by 'reversing the routes' when
-:doc:`creating a refund </reference/v2/refunds-api/create-refund>`.
-
-For a full reversal of the split that was specified during payment creation, simply set ``reverseRouting=true`` when
-creating the refund.
-
-In the example below we will refund the €10,00 payment from earlier, and pull back the €7,50 that was sent to connected
-account ``org_23456``.
-
-.. code-block:: bash
-   :linenos:
-
-   curl -X POST https://api.mollie.com/v2/payments/tr_7UhSN1zuXS/refunds \
-       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW" \
-       -d "amount[currency]=EUR" \
-       -d "amount[value]=10.00" \
-       -d "reverseRouting=true"
-
-.. code-block:: http
-   :linenos:
-
-   HTTP/1.1 201 Created
-   Content-Type: application/hal+json; charset=utf-8
-
-   {
-       "resource": "refund",
-       "id": "re_gj08ZdgmVx",
-       "amount": {
-           "currency": "EUR",
-           "value": "10.00"
-       },
-       "status": "pending",
-       "paymentId": "tr_7UhSN1zuXS",
-       "routingReversal": [
-           {
-               "amount": {
-                    "value": "7.50",
-                    "currency": "EUR"
-               },
-               "source": {
-                    "organizationId": "org_23456"
-               }
-
-           }
-       ]
-       "...": { }
-   }
+The release date can be up to two years from the day of the payment's creation. For test payments, this limit is 10 days.
