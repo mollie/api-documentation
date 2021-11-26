@@ -31,7 +31,7 @@ Routing part of a payment to a connected account
 Now that you have an account connected to yours, you can start sending parts of each payment to their balance. This can
 be done by specifying the payment routing when :doc:`creating a payment </reference/v2/payments-api/create-payment>`.
 
-In the example below, we will route €3,50 of a €10,00 payment to the connected account ``org_23456``, and €4,50 to the
+In the example below, we will route €3,50 of a €10,00 payment to the connected account ``org_23456``, and €4,00 to the
 connected account ``org_56789``
 
 On our own account, we will receive the remainder of €2,50 minus any payment fees charged by Mollie.
