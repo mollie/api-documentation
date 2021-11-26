@@ -28,8 +28,10 @@ If you wish to pull back the money that was sent to connected accounts, you can 
 issuing the refund request.
 
 For a full reversal of the split that was specified during payment creation, simply set ``reverseRouting=true`` when
-creating the refund. This flag **only works with full refunds**, namely a refund of the same amount (or more) than the
-original payment. For partial refunds see next paragraph.
+creating the refund, so that a full compensation is created for every route of the original payment.
+This flag **only works with full refunds**, namely a refund of the same amount (or more) than the
+original payment. For partial refunds and for more fine grained control on how compensations are created
+see next paragraph.
 
 In the example below we will refund the €10,00 payment from earlier, and pull back the €3,50 and the €4,00 that were
 sent to connected accounts ``org_23456`` and ``org_56789``.
