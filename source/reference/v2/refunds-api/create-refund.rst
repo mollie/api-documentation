@@ -81,10 +81,10 @@ If you are using :doc:`organization access tokens </guides/authentication>` or a
 
 Mollie Connect parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-With Mollie Connect you can split payments that are processed through your app across multiple connected accounts. When
-creating refunds for those split payments, you can use the ``reverseRouting`` parameter to pull the split payment back
-to the platform balance. To learn more about creating refunds for split payments, please refer to the
-:doc:`Splitting payments guide </connect/splitting-payments>`.
+With Mollie Connect you can split payments that are processed through your app across multiple connected accounts.
+
+When creating **full** refunds for those split payments, you can use the ``reverseRouting`` parameter to pull the split
+payment back to the platform balance.
 
 .. list-table::
    :widths: auto
@@ -98,6 +98,69 @@ to the platform balance. To learn more about creating refunds for split payments
        example, if a €10,00 payment got split by sending €2,50 to the platform and €7,50 to the connected account, then
        setting this parameter to ``true`` will pull back the €7,50 from the connected account.
 
+
+When creating **partial** refunds for split payments, you should instead use the ``routingReversals`` array to set the
+amount that you want to pull back from the single routes.
+If a routing reversals array is supplied, it must contain one or more routing objects with the following parameters:
+
+.. list-table::
+     :widths: auto
+
+     * - ``amount``
+
+         .. type:: amount object
+            :required: false
+
+       - The routing reversal object must indicate what portion of the originally routed amount is being reversed.
+
+         .. list-table::
+            :widths: auto
+
+            * - ``currency``
+
+                .. type:: string
+                   :required: true
+
+              - An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code. Currently only ``EUR``
+                payments can be routed.
+
+            * - ``value``
+
+                .. type:: string
+                   :required: true
+
+              - A string containing the exact amount of this portion of the routed amount in the given currency. Make
+                sure to send the right amount of decimals. Non-string values are not accepted.
+
+     * - ``source``
+
+         .. type:: object
+            :required: true
+
+       - The source of this portion of the route.
+
+         .. list-table::
+            :widths: auto
+
+            * - ``type``
+
+                .. type:: string
+                   :required: true
+
+              - The type of source. Currently only the source type ``organization`` is supported.
+
+                Possible values: ``organization``
+
+            * - ``organizationId``
+
+                .. type:: string
+                   :required: false
+
+              - Required for source type ``organization``. The ID of the connected organization the funds
+                should reversed from, for example ``org_12345``.
+
+To learn more about creating refunds for split payments, please refer to the
+:doc:`Refunds and chargebacks for split payments guide </connect/refunds-and-chargebacks>`.
 
 Response
 --------
