@@ -67,8 +67,6 @@ Response
        .. type:: string
 
      - The date on which the settlement was settled, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
-       When requesting the :doc:`open settlement </reference/v1/settlements-api/get-open-settlement>` or
-       :doc:`next settlement </reference/v1/settlements-api/get-next-settlement>` the return value is ``null``.
 
    * - ``status``
 
