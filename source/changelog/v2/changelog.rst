@@ -3,6 +3,13 @@ Changelog
 Occasionally, we will add new resources, new fields, or new possible values to existing fields to the v2 Mollie API. All
 changes are documented here.
 
+March 2022
+=============
+Tuesday, 1st
+-------------
+- Added the ``en_GB`` (British English) locale to localize translations and allow for ordering the payment methods in
+  the preferred order for the country.
+
 February 2022
 =============
 Monday, 21st
