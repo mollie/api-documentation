@@ -246,4 +246,4 @@ all have EUR or GBP settlement currency.
 If a split payment is created in the same currency as your platform settlement currency,
 there is no conversion done (Like for Like) and no conversion markup fee is calculated.
 If a split payment is created in another currency than the settlement currency, it will be converted to that
-settlement currency and a markup fee is calculated.
+settlement currency and a markup fee will be calculated.
