@@ -75,7 +75,7 @@ Response
 .. parameter:: amount
    :type: decimal
 
-   The total amount in EUR paid out with this settlement.
+     - The date on which the settlement was settled, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
 .. parameter:: periods
    :type: object

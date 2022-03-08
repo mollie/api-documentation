@@ -8,43 +8,13 @@ changes are documented here.
 
              For more information on the v2 API, refer to our :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
-February 2022
-=============
-Monday, 21st
--------------
-- Added the ``doenkadotickets`` as gift card issuers.
-
-November 2021
-=============
-Tuesday, 23rd
--------------
+January 2022
+============
+Monday, 3rd
+-----------
 - The `/v1/settlements/next` and `/v1/settlements/open` endpoints are being shut down, since these endpoints were no
   longer being used. The documentation has been removed accordingly. The corresponding v2 endpoints will remain
-  available.
-- Added the ``wijncadeaukaart`` and ``jewelcard`` as gift card issuers.
-
-October 2021
-============
-Friday, 8th
------------
-- Added ``huistuincadeaukaart`` as gift card issuer.
-
-September 2021
-==============
-Thursday, 23rd
---------------
-- Added ``authentication_required`` as possible ``failureReason`` in the
-  :doc:`Payments API</reference/v1/payments-api/get-payment>` for credit card payments.
-
-August 2021
-===========
-Tuesday, 10th
--------------
-- Added ``bloemplantgiftcard`` as gift card issuer.
-
-Wednesday, 4th
---------------
-- Added ``sodexosportculturepass`` as gift card issuer.
+  available
 
 March 2021
 ==========
