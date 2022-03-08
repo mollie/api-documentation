@@ -14,7 +14,7 @@ List balances
 
 Retrieve all the organization's balances ordered from newest to oldest.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------

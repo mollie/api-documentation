@@ -14,7 +14,7 @@ List payment routes
 
 Retrieve all payment routes created for a specific payment.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
