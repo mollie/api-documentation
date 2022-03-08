@@ -236,3 +236,14 @@ as the payment has already been paid by the consumer**, by simply updating the p
    }
 
 The release date can be up to two years from the day of the payment's creation. For test payments, this limit is 10 days.
+
+Split payment and currencies
+--------------------------------------
+
+It's possible to create a split payment in either EUR or GBP, as long as your platform and the connected accounts
+all have EUR or GBP settlement currency.
+
+If a split payment is created in the same currency as your platform settlement currency,
+there is no conversion done (Like for Like) and no conversion markup fee is calculated.
+If a split payment is created in another currency than the settlement currency, it will be converted to that
+settlement currency and a markup fee is calculated.
