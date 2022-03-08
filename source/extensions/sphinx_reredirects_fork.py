@@ -40,7 +40,7 @@ def setup(app: Sphinx):
 def init(app: Sphinx):
     if not app.config[OPTION_REDIRECTS]:
         logger.debug('No redirects configured')
-        return
+        return []
 
     rr = Reredirects(app)
     to_be_redirected = rr.grab_redirects()

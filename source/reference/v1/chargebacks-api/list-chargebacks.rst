@@ -26,29 +26,24 @@ List chargebacks
 Retrieve all received chargebacks. If the payment-specific endpoint is used, only chargebacks for that specific payment
 are returned.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
 When using the payment-specific endpoint, replace ``paymentId`` in the endpoint URL by the payment's ID, for example
 ``tr_7UhSN1zuXS``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: offset
+   :type: integer
+   :condition: optional
 
-   * - ``offset``
+   The number of chargebacks to skip.
 
-       .. type:: integer
-          :required: false
+.. parameter:: count
+   :type: integer
+   :condition: optional
 
-     - The number of chargebacks to skip.
-
-   * - ``count``
-
-       .. type:: integer
-          :required: false
-
-     - The number of chargebacks to return (with a maximum of 250).
+   The number of chargebacks to return (with a maximum of 250).
 
 Includes
 ^^^^^^^^
@@ -61,67 +56,52 @@ Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: totalCount
+   :type: integer
 
-   * - ``totalCount``
+   The total number of chargebacks available.
 
-       .. type:: integer
+.. parameter:: offset
+   :type: integer
 
-     - The total number of chargebacks available.
+   The number of skipped chargebacks as requested.
 
-   * - ``offset``
+.. parameter:: count
+   :type: integer
 
-       .. type:: integer
+   The number of chargebacks found in ``data``, which is either the requested number (with a maximum of 250) or the
+   default number.
 
-     - The number of skipped chargebacks as requested.
+.. parameter:: data
+   :type: array
 
-   * - ``count``
+   An array of chargebacks objects as described in
+   :doc:`Get chargeback </reference/v1/chargebacks-api/get-chargeback>`.
 
-       .. type:: integer
+.. parameter:: links
+   :type: object
 
-     - The number of chargebacks found in ``data``, which is either the requested number (with a maximum of 250) or the
-       default number.
+   Links to help navigate through the lists of chargebacks, based on the given offset.
 
-   * - ``data``
+   .. parameter:: previous
+      :type: string
 
-       .. type:: array
+      The previous set of chargebacks, if available.
 
-     - An array of chargebacks objects as described in
-       :doc:`Get chargeback </reference/v1/chargebacks-api/get-chargeback>`.
+   .. parameter:: next
+      :type: string
 
-   * - ``links``
+      The next set of chargebacks, if available.
 
-       .. type:: object
+   .. parameter:: first
+      :type: string
 
-     - Links to help navigate through the lists of chargebacks, based on the given offset.
+      The first set of chargebacks, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: last
+      :type: string
 
-          * - ``previous``
-
-              .. type:: string
-
-            - The previous set of chargebacks, if available.
-
-          * - ``next``
-
-              .. type:: string
-
-            - The next set of chargebacks, if available.
-
-          * - ``first``
-
-              .. type:: string
-
-            - The first set of chargebacks, if available.
-
-          * - ``last``
-
-              .. type:: string
-
-            - The last set of chargebacks, if available.
+      The last set of chargebacks, if available.
 
 Example
 -------

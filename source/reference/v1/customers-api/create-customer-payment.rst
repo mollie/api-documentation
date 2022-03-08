@@ -39,33 +39,27 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``c
 This endpoint accepts the same parameters as the :doc:`Create payment </reference/v1/payments-api/create-payment>`
 endpoint. For recurring payments, the following parameters have notable differences in comparison to regular payments:
 
-.. list-table::
-   :widths: auto
+.. parameter:: recurringType
+   :type: string
+   :condition: optional
 
-   * - ``recurringType``
+   Enables recurring payments. If set to ``first``, a first payment for the customer is created, allowing
+   the customer to agree to automatic recurring charges taking place on their account in the future. If set to
+   ``recurring``, the customer's card is charged automatically.
 
-       .. type:: string
-          :required: false
+.. parameter:: amount
+   :type: decimal
+   :condition: required
 
-     - Enables recurring payments. If set to ``first``, a first payment for the customer is created, allowing
-       the customer to agree to automatic recurring charges taking place on their account in the future. If set to
-       ``recurring``, the customer's card is charged automatically.
+   If the ``recurringType`` parameter is set to ``first`` then the minimal amount is €0.01 for iDEAL, credit card and
+   Belfius Pay Button, €0.02 for Bancontact, or €0.10 for SOFORT Banking.
 
-   * - ``amount``
+.. parameter:: redirectUrl
+   :type: string
+   :condition: required
 
-       .. type:: decimal
-          :required: true
-
-     - If the ``recurringType`` parameter is set to ``first`` then the minimal amount is €0.01 for iDEAL, credit card
-       and Belfius Pay Button, €0.02 for Bancontact, or €0.10 for SOFORT Banking.
-
-   * - ``redirectUrl``
-
-       .. type:: string
-          :required: true
-
-     - If the ``recurringType`` parameter is set to ``recurring``, this parameter is ignored. Since the payment will
-       take place without customer interaction, a redirect is not needed.
+   If the ``recurringType`` parameter is set to ``recurring``, this parameter is ignored. Since the payment will take
+   place without customer interaction, a redirect is not needed.
 
 Response
 --------

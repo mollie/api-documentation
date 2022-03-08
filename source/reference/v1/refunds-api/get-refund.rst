@@ -7,8 +7,8 @@ Get refund
              July 2023. However, new features will only be added to the v2 API.
 
              The documentation for retrieving refunds in the new v2 API can be found
-             :doc:`here </reference/v2/refunds-api/get-refund>`. For more information on the v2 API, refer to our
-             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
+             :doc:`here </reference/v2/refunds-api/get-payment-refund>`. For more information on the v2 API, refer to
+             our :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: GET
@@ -34,79 +34,61 @@ Access token parameters
 If you are creating an app with :doc:`Mollie Connect </connect/overview>`, the ``testmode`` query string parameter
 is also available.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to get a refund made in test mode. If you omit this parameter, you can only retrieve live
-       mode refunds.
+   Set this to ``true`` to get a refund made in test mode. If you omit this parameter, you can only retrieve live mode
+   refunds.
 
 Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: id
+   :type: string
 
-   * - ``id``
+   The refund's unique identifier, for example ``re_4qqhO89gsT``.
 
-       .. type:: string
+.. parameter:: payment
+   :type: object
 
-     - The refund's unique identifier, for example ``re_4qqhO89gsT``.
+   The original payment, as described in :doc:`Get payment </reference/v1/payments-api/get-payment>`. In the payment
+   object, note the following refund related fields.
 
-   * - ``payment``
+   .. parameter:: amountRefunded
+      :type: decimal
 
-       .. type:: object
+      The total amount in EUR that is already refunded. For some payment methods, this amount may be higher than the
+      payment amount, for example to allow reimbursement of the costs for a return shipment to your customer.
 
-     - The original payment, as described in :doc:`Get payment </reference/v1/payments-api/get-payment>`. In the payment
-       object, note the following refund related fields.
+   .. parameter:: amountRemaining
+      :type: decimal
 
-       .. list-table::
-          :widths: auto
+      The remaining amount in EUR that can be refunded.
 
-          * - ``amountRefunded``
+.. parameter:: amount
+   :type: decimal
 
-              .. type:: decimal
+   The amount refunded to the consumer with this refund.
 
-            - The total amount in EUR that is already refunded. For some payment methods, this amount may be higher than
-              the payment amount, for example to allow reimbursement of the costs for a return shipment to your
-              customer.
+.. parameter:: description
+   :type: string
 
-          * - ``amountRemaining``
+   The description of the refund that may be shown to the consumer, depending on the payment method used.
 
-              .. type:: decimal
+.. parameter:: status
+   :type: string
 
-            - The remaining amount in EUR that can be refunded.
+   Since refunds may not be instant for certain payment methods, the refund carries a status field.
 
-   * - ``amount``
+   For a full overview, see :ref:`refund-statuses`.
 
-       .. type:: decimal
+.. parameter:: refundedDatetime
+   :type: datetime
 
-     - The amount refunded to the consumer with this refund.
-
-   * - ``description``
-
-       .. type:: string
-
-     - The description of the refund that may be shown to the consumer, depending on the payment method used.
-
-   * - ``status``
-
-       .. type:: string
-
-     - Since refunds may not be instant for certain payment methods, the refund carries a status field.
-
-       For a full overview, see :ref:`refund-statuses`.
-
-   * - ``refundedDatetime``
-
-       .. type:: datetime
-
-     - The date and time the refund was issued, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+   The date and time the refund was issued, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
 Example
 -------

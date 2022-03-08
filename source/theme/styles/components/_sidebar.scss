@@ -1,10 +1,11 @@
+@import 'variables';
+
 .sidebar {
   color: #000;
-  height: 100%;
-  top: 0px;
-  left: 0px;
-  bottom: 0px;
-  right: 0px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   position: fixed;
   background-color: #fff;
   z-index: 2;
@@ -49,10 +50,6 @@
   @include bare-list;
 }
 
-.sidebar__inner a:focus {
-  text-decoration: none;
-}
-
 .sidebar__topic-header {
   font-size: 14px;
   font-weight: 600;
@@ -75,11 +72,11 @@
 
 .sidebar__item.current > a {
   font-weight: 600;
-  color: #0040ff;
+  color: $brand-primary;
 }
 
 .sidebar__item.current > a:hover {
-  color: #0000ee;
+  color: $brand-primary-hover;
 }
 
 .sidebar__group.current > ul {
@@ -89,6 +86,14 @@
 
 .sidebar__group.current > a {
   color: #000;
+}
+
+.sidebar__group.current > a.current {
+  color: $brand-primary;
+}
+
+.sidebar__group.current > a.current:hover {
+  color: $brand-primary-hover;
 }
 
 .sidebar__changelog > ul > li > a,
@@ -103,4 +108,50 @@
 .sidebar__changelog > ul > li > ul > li > a:hover {
   color: #000;
   text-decoration: none;
+}
+
+/*
+ * Dark mode
+ */
+@media (prefers-color-scheme: dark) {
+  .sidebar {
+    background: $dark-mode-background-color;
+    color: $dark-mode-text-color;
+  }
+
+  .sidebar__item a {
+    color: #ccc;
+  }
+
+  .sidebar__item a:hover {
+    color: $dark-mode-text-color;
+  }
+
+  .sidebar__item.current > a {
+    color: $dark-mode-brand-primary;
+  }
+
+  .sidebar__item.current > a:hover {
+    color: $dark-mode-brand-primary-hover;
+  }
+
+  .sidebar__group.current > a {
+    color: $dark-mode-text-color;
+  }
+
+  .sidebar__group.current > a.current {
+    color: $dark-mode-brand-primary;
+  }
+
+  .sidebar__group.current > a.current:hover {
+    color: $dark-mode-brand-primary-hover;
+  }
+
+  .sidebar__changelog > ul > li > ul > li > a {
+    color: #ccc;
+  }
+
+  .sidebar__changelog > ul > li > ul > li > a:hover {
+    color: $dark-mode-text-color;
+  }
 }

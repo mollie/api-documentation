@@ -19,72 +19,62 @@ Parameters
 For a more in-depth explanation of each parameter, see the :doc:`create-payment`. There are also
 payment method specific parameters available, see :ref:`below <payment-method-specific-parameters-update>`.
 
-.. list-table::
-   :widths: auto
+.. parameter:: description
+   :type: string
+   :condition: optional
 
-   * - ``description``
+   The description of the payment. The maximum length of the description field differs per payment method, with the
+   absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will
+   truncate them to fit.
 
-       .. type:: string
-          :required: false
+.. parameter:: redirectUrl
+   :type: string
+   :condition: optional
 
-     - The description of the payment.
+   The URL your customer will be redirected to after the payment process.
 
-   * - ``redirectUrl``
+   Updating this field is only possible when the payment is not yet finalized.
 
-       .. type:: string
-          :required: false
+.. parameter:: webhookUrl
+   :type: string
+   :condition: optional
 
-     - The URL your customer will be redirected to after the payment process.
+   Set the webhook URL, where we will send payment status updates to.
 
-       .. note::
-          Updating this field is only possible when the payment is not yet finalized.
+.. parameter:: metadata
+   :type: mixed
+   :condition: optional
 
-   * - ``webhookUrl``
+   Provide any data you like, for example a string or a JSON object. We will save the data alongside the payment.
+   Whenever you fetch the payment with our API, we will also include the metadata. You can use up to approximately 1kB.
 
-       .. type:: string
-          :required: false
+.. parameter:: method
+   :type: string
+   :condition: optional
 
-     - Set the webhook URL, where we will send payment status updates to.
+   Change the payment to a different payment method.
 
-   * - ``metadata``
+   Updating this field is only possible when the payment was created *without* a payment method and is not yet
+   finalized.
 
-       .. type:: mixed
-          :required: false
+.. parameter:: locale
+   :type: string
+   :condition: optional
 
-     - Provide any data you like, for example a string or a JSON object. We will save the data alongside the
-       payment. Whenever you fetch the payment with our API, we will also include the metadata. You can use up to
-       approximately 1kB.
+   Allows you to update the language to be used in the hosted payment pages shown to the consumer. Can be any ``xx_XX``
+   format ISO 15897 locale.
 
-   * - ``method``
+.. parameter:: restrictPaymentMethodsToCountry
+   :type: string
+   :condition: optional
+   :collapse: true
 
-       .. type:: string
-          :required: false
+   For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+   rates you have used for the order to ensure your customer's country matches the VAT country.
 
-     - Change the payment to a different payment method.
+   Use this parameter to restrict the payment methods available to your customer to those from a single country.
 
-       .. note::
-          Updating this field is only possible when the payment was created *without* a payment
-          method and is not yet finalized.
-
-   * - ``locale``
-
-       .. type:: string
-          :required: false
-
-     - Allows you to update the language to be used in the hosted payment pages shown to the consumer. Can be any
-       ``xx_XX`` format ISO 15897 locale.
-
-   * - ``restrictPaymentMethodsToCountry``
-
-       .. type:: string
-          :required: false
-
-     - For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
-       rates you have used for the order to ensure your customer's country matches the VAT country.
-
-       Use this parameter to restrict the payment methods available to your customer to those from a single country.
-
-       If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+   If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
 
 .. _payment-method-specific-parameters-update:
 
@@ -96,82 +86,57 @@ payment method.
 
 Bank transfer
 """""""""""""
-.. list-table::
-   :widths: auto
+.. parameter:: billingEmail
+   :type: string
+   :condition: optional
 
-   * - ``billingEmail``
+   Consumer's email address.
 
-       .. type:: string
-          :required: false
+.. parameter:: dueDate
+   :type: string
+   :condition: optional
 
-     - Consumer's email address.
+   The date the payment should :doc:`expire </payments/status-changes>`, in ``YYYY-MM-DD`` format.
 
-   * - ``dueDate``
-
-       .. type:: string
-          :required: false
-
-     - The date the payment should :doc:`expire </payments/status-changes>`, in ``YYYY-MM-DD`` format.
-
-       .. note::
-          Updating this field is only possible when the payment is not yet finalized.
+   Updating this field is only possible when the payment is not yet finalized.
 
 Gift cards
 """"""""""
-.. list-table::
-   :widths: auto
+.. parameter:: issuer
+   :type: string
+   :condition: optional
 
-   * - ``issuer``
+   See :ref:`Payments API <payment-method-specific-parameters>`.
 
-       .. type:: string
-          :required: false
-
-     - See :ref:`Payments API <payment-method-specific-parameters>`.
-
-       .. note::
-          Updating this field is only possible when the payment is not yet finalized.
+   Updating this field is only possible when the payment is not yet finalized.
 
 iDEAL
 """""
-.. list-table::
-   :widths: auto
+.. parameter:: issuer
+   :type: string
+   :condition: optional
 
-   * - ``issuer``
+   See :ref:`Payments API <payment-method-specific-parameters>`.
 
-       .. type:: string
-          :required: false
-
-     - See :ref:`Payments API <payment-method-specific-parameters>`.
-
-       .. note::
-          Updating this field is only possible when the payment is not yet finalized.
+   Updating this field is only possible when the payment is not yet finalized.
 
 KBC/CBC Payment Button
 """"""""""""""""""""""
-.. list-table::
-   :widths: auto
+.. parameter:: issuer
+   :type: string
+   :condition: optional
 
-   * - ``issuer``
+   See :ref:`Payments API <payment-method-specific-parameters>`.
 
-       .. type:: string
-          :required: false
-
-     - See :ref:`Payments API <payment-method-specific-parameters>`.
-
-       .. note::
-          Updating this field is only possible when the payment is not yet finalized.
+   Updating this field is only possible when the payment is not yet finalized.
 
 Przelewy24
 """"""""""
-.. list-table::
-   :widths: auto
+.. parameter:: billingEmail
+   :type: string
+   :condition: optional
 
-   * - ``billingEmail``
-
-       .. type:: string
-          :required: false
-
-     - Consumer's email address.
+   Consumer's email address.
 
 Response
 --------

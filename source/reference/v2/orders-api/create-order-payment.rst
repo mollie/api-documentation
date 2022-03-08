@@ -25,46 +25,41 @@ Parameters
 ----------
 Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN4U``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: method
+   :type: string|array
+   :condition: optional
 
-   * - ``method``
+   Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
+   method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+   parameter enables you to fully integrate the payment method selection into your website.
 
-       .. type:: string|array
-          :required: false
+   You can also specify the methods in an array. By doing so we will still show the payment method selection screen but
+   will only show the methods specified in the array. For example, you can use this functionality to only show payment
+   methods from a specific country to your customer ``["bancontact", "belfius"]``.
 
-     - Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-       method and your customer will skip the selection screen and is sent directly to the chosen payment method.
-       The parameter enables you to fully integrate the payment method selection into your website.
+   Possible values: ``applepay`` ``bancontact`` ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``
+   ``giftcard`` ``giropay`` ``ideal`` ``kbc``  ``klarnapaylater`` ``klarnapaynow`` ``klarnasliceit`` ``paypal`` ``paysafecard``
+   ``przelewy24`` ``sofort``
 
-       You can also specify the methods in an array. By doing so we will still show the payment method selection
-       screen but will only show the methods specified in the array. For example, you can use this functionality to only
-       show payment methods from a specific country to your customer ``["bancontact", "belfius"]``.
+.. parameter:: customerId
+   :type: string
+   :condition: optional
 
-       Possible values: ``applepay`` ``bancontact`` ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``
-       ``giftcard`` ``giropay`` ``ideal`` ``kbc``  ``klarnapaylater`` ``klarnasliceit`` ``paypal``
-       ``paysafecard`` ``przelewy24`` ``sofort``
+   The ID of the :doc:`customer </reference/v2/customers-api/get-customer>` for whom the payment is being created.
+   This is used for :doc:`recurring payments </payments/recurring>` and
+   :doc:`single-click payments </payments/hosted-checkout>`.
 
-   * - ``customerId``
+.. parameter:: mandateId
+   :type: string
+   :condition: optional
 
-       .. type:: string
-          :required: false
-
-     - The ID of the :doc:`Customer </reference/v2/customers-api/get-customer>` for whom the payment is being created.
-       This is used for :doc:`recurring payments </payments/recurring>` and
-       :doc:`single-click payments </payments/hosted-checkout>`.
-
-   * - ``mandateId``
-
-       .. type:: string
-          :required: false
-
-     - When creating recurring payments, the ID of a specific :doc:`Mandate </reference/v2/mandates-api/get-mandate>`
-       may be supplied to indicate which of the consumer's accounts should be credited.
+   When creating recurring payments, the ID of a specific :doc:`mandate </reference/v2/mandates-api/get-mandate>` may be
+   supplied to indicate which of the consumer's accounts should be credited.
 
 You can specify the same :ref:`payment parameters <payment-parameters>` as in the
-:doc:`/reference/v2/orders-api/create-order`. Note that the parameters
-should **not** be specified in a ``payment`` object, but at the same level as the ``method`` parameter.
+:doc:`Create order endpoint </reference/v2/orders-api/create-order>`. Note that the parameters should **not** be
+specified in a ``payment`` object, but at the same level as the ``method`` parameter.
+
 For example:
 
 .. code-block:: json
@@ -76,30 +71,27 @@ For example:
    }
 
 .. note:: When the payment ``webhook`` parameter is not specified it is copied from the previous order
-          payment (if it was set).
+   payment (if it was set).
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
+   If the new payment is for a test order this parameter is required and you have to set this to ``true``.
 
-       .. type:: boolean
-          :required: false
+.. parameter:: applicationFee
+   :type: object
+   :condition: optional
+   :collapse: true
 
-     - If the new payment is for a test order this parameter is required and you have to set this to ``true``.
-
-   * - ``applicationFee``
-
-       .. type:: object
-          :required: false
-
-     - Adding an :doc:`application fee </connect/application-fees>` allows you to charge the merchant for the
-       payment and transfer this to your own account.
+   Adding an :doc:`application fee </connect/application-fees>` allows you to charge the merchant for the payment and
+   transfer this to your own account.
 
 Response
 --------
@@ -109,7 +101,6 @@ An payment object is returned, as described in :doc:`Get payment </reference/v2/
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:

@@ -19,71 +19,51 @@ Make sure to add the :ref:`obligatory parameters <secret-keys>` always. Besides 
 parameters:
 
 .. note:: It is not necessary to set ``username`` and ``password`` if you are using ``partner_id_customer``. Otherwise
-          both are required to set.
+   both are required to set.
 
-.. list-table::
-   :widths: auto
+.. parameter:: username
+   :type: string
 
-   * - ``username``
+   The username of the account of which you would like to change the bank account.
 
-       .. type:: string
+.. parameter:: password
+   :type: string
 
-     - The username of the account of which you would like to change the bank account
+   The password of the account of which you would like to change the bank account.
 
-   * - ``password``
+.. parameter:: partner_id_customer
+   :type: string
 
-       .. type:: string
+   The partner ID of the account of which you would like to change the bank account. It can be used instead of the
+   parameters ``username`` and ``password``.
 
-     - The password of the account of which you would like to change the bank account
+.. parameter:: id
+   :type: string
+   :condition: required
 
-   * - ``partner_id_customer``
+   The ID of the bank account you would like to change
 
-       .. type:: string
+.. parameter:: name
+   :type: string
+   :condition: optional
 
-     - The partner ID of the account of which you would like to change the bank account. It can be used instead of the
-       parameters ``username`` and ``password``.
+.. parameter:: iban
+   :type: string
+   :condition: optional
 
-   * - ``id``
+.. parameter:: bic
+   :type: string
+   :condition: optional
 
-       .. type:: string
-          :required: true
+.. parameter:: bankname
+   :type: string
+   :condition: optional
 
-     - The ID of the bank account you would like to change
+.. parameter:: location
+   :type: string
+   :condition: optional
 
-   * - ``name``
-
-       .. type:: string
-          :required: false
-
-     - Account name
-
-   * - ``iban``
-
-       .. type:: string
-          :required: false
-
-     - Payout IBAN
-
-   * - ``bic``
-
-       .. type:: string
-          :required: false
-
-     - 	Bank BIC code
-
-   * - ``bankname``
-
-       .. type:: string
-          :required: false
-
-     - Bank Name
-
-   * - ``location``
-
-       .. type:: string
-          :required: false
-
-     - City where bank is domiciled
+   City where bank is domiciled.
 
 Response
 --------

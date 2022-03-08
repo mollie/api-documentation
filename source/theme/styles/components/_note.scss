@@ -35,3 +35,20 @@
   border-color: #ce5e24;
   color: #b33d00;
 }
+
+/*
+ * Dark mode
+ */
+@media (prefers-color-scheme: dark) {
+  .admonition {
+    background-color: #2a522a;
+    border-color: #2a522a;
+    color: $dark-mode-text-color;
+  }
+
+  .admonition.warning {
+    background-color: #4a2424;
+    border-color: #4a2424;
+    color: $dark-mode-text-color;
+  }
+}

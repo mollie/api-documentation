@@ -35,192 +35,152 @@ Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains a settlement object. Will always contain ``settlement`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains a settlement object. Will always contain ``settlement`` for this endpoint.
+   The settlement's unique identifier, for example ``stl_jDk30akdN``.
 
-   * - ``id``
+.. parameter:: reference
+   :type: string
 
-       .. type:: string
+   The settlement's bank reference, as found in your Mollie account and on your bank statement.
 
-     - The settlement's unique identifier, for example ``stl_jDk30akdN``.
+.. parameter:: createdDatetime
+   :type: string
 
-   * - ``reference``
+   The date on which the settlement was created, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-       .. type:: string
+.. parameter:: settledDatetime
+   :type: string
 
-     - The settlement's bank reference, as found in your Mollie account and on your bank statement.
+   The date on which the settlement was settled, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-   * - ``createdDatetime``
+.. parameter:: status
+   :type: string
 
-       .. type:: string
+   The status of the settlement.
 
-     - The date on which the settlement was created, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+   Possible values:
 
-   * - ``settledDatetime``
+   * ``open`` The settlement has not been closed yet.
+   * ``pending`` The settlement has been closed and is being processed.
+   * ``paidout`` The settlement has been paid out.
+   * ``failed`` The settlement could not be paid out.
 
-       .. type:: string
+.. parameter:: amount
+   :type: decimal
 
      - The date on which the settlement was settled, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-   * - ``status``
+.. parameter:: periods
+   :type: object
 
-       .. type:: string
+   This object is a collection of Period objects, which describe the settlement by month in full detail.
 
-     - The status of the settlement.
+   Please note the periods are sorted by date. For example, the field may contain an object called ``2018``, which
+   contains a Period object called ``03``. The Period object fields are listed below.
 
-       Possible values:
+   .. parameter:: revenue
+      :type: array
 
-       * ``open`` The settlement has not been closed yet.
-       * ``pending`` The settlement has been closed and is being processed.
-       * ``paidout`` The settlement has been paid out.
-       * ``failed`` The settlement could not be paid out.
+      An array of Revenue objects containing the total revenue for each payment method during this period. Each object
+      has the following fields.
 
-   * - ``amount``
+      .. parameter:: description
+         :type: string
 
-       .. type:: decimal
+         A description of the revenue subtotal.
 
-     - The total amount in EUR paid out with this settlement.
+      .. parameter:: method
+         :type: string
 
-   * - ``periods``
+         The payment method ID, if applicable.
 
-       .. type:: object
+      .. parameter:: count
+         :type: integer
 
-     - This object is a collection of Period objects, which describe the settlement by month in full detail.
+         The number of payments received for this payment method.
 
-       Please note the periods are sorted by date. For example, the field may contain an object called ``2018``, which
-       contains a Period object called ``03``. The Period object fields are listed below.
+      .. parameter:: amount
+         :type: object
 
-       .. list-table::
-          :widths: auto
+         The received subtotal for this payment method, further divided in ``net`` (excludes VAT), ``vat``, and
+         ``gross`` (includes VAT).
 
-          * - ``revenue``
+   .. parameter:: costs
+      :type: array
 
-              .. type:: array
+      An array of Cost objects, describing the fees withheld for each payment method during this period. Each object has
+      the following fields.
 
-            - An array of Revenue objects containing the total revenue for each payment method during this period. Each
-              object has the following fields.
+      .. parameter:: description
+         :type: string
 
-              .. list-table::
-                 :widths: auto
+         A description of the subtotal.
 
-                 * - ``description``
+      .. parameter:: method
+         :type: string
 
-                     .. type:: string
+         The payment method ID, if applicable.
 
-                   - A description of the revenue subtotal.
+      .. parameter:: count
+         :type: integer
 
-                 * - ``method``
+         The number of times costs were made for this payment method.
 
-                     .. type:: string
+      .. parameter:: rate
+         :type: object
 
-                   - The payment method ID, if applicable.
+         The service rates, further divided into ``fixed`` and ``variable`` costs.
 
-                 * - ``count``
+      .. parameter:: amount
+         :type: object
 
-                     .. type:: integer
+         The paid costs for this payment method, further divided in ``net`` (excludes VAT), ``vat``, and ``gross``
+         (includes VAT).
 
-                   - The number of payments received for this payment method.
+.. parameter:: paymentIds
+   :type: array
 
-                 * - ``amount``
+   A list of all :doc:`payment IDs </reference/v1/payments-api/get-payment>` that are included in the settlement. You
+   can use this to fully reconcile the settlement with your back office.
 
-                     .. type:: object
+.. parameter:: refundIds
+   :type: array
 
-                   - The received subtotal for this payment method, further divided in ``net`` (excludes VAT), ``vat``,
-                     and ``gross`` (includes VAT).
+   A list of all :doc:`refund IDs </reference/v1/refunds-api/get-refund>` that are included in the settlement. You can
+   use this to fully recocnile the settlement with your back office.
 
-          * - ``costs``
+.. parameter:: chargebackIds
+   :type: array
 
-              .. type:: array
+   A list of all :doc:`chargeback IDs </reference/v1/chargebacks-api/get-chargeback>` that are included in the
+   settlement. You can use this to fully recocnile the settlement with your back office.
 
-            - An array of Cost objects, describing the fees withheld for each payment method during this period. Each
-              object has the following fields.
+.. parameter:: links
+   :type: object
 
-              .. list-table::
-                 :widths: auto
+   An object with URLs to related resources.
 
-                 * - ``description``
+   .. parameter:: payments
+      :type: string
 
-                     .. type:: string
+      URL to retrieve all payments included in the settlement.
 
-                   - A description of the subtotal.
-                 * - ``method``
+   .. parameter:: refunds
+      :type: string
 
-                     .. type:: string
+      URL to retrieve all refunds included in the settlement.
 
-                   - The payment method ID, if applicable.
+   .. parameter:: chargebacks
+      :type: string
 
-                 * - ``count``
-
-                     .. type:: integer
-
-                   - The number of times costs were made for this payment method.
-
-                 * - ``rate``
-
-                     .. type:: object
-
-                   - The service rates, further divided into ``fixed`` and ``variable`` costs.
-
-                 * - ``amount``
-
-                     .. type:: object
-
-                   - The paid costs for this payment method, further divided in ``net`` (excludes VAT), ``vat``, and
-                     ``gross`` (includes VAT).
-
-   * - ``paymentIds``
-
-       .. type:: array
-
-     - A list of all :doc:`payment IDs </reference/v1/payments-api/get-payment>` that are included in the settlement.
-       You can use this to fully reconcile the settlement with your back office.
-
-   * - ``refundIds``
-
-       .. type:: array
-
-     - A list of all :doc:`refund IDs </reference/v1/refunds-api/get-refund>` that are included in the settlement. You
-       can use this to fully recocnile the settlement with your back office.
-
-   * - ``chargebackIds``
-
-       .. type:: array
-
-     - A list of all :doc:`chargeback IDs </reference/v1/chargebacks-api/get-chargeback>` that are included in the
-       settlement. You can use this to fully recocnile the settlement with your back office.
-
-   * - ``links``
-
-       .. type:: object
-
-     - An object with URLs to related resources.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``payments``
-
-              .. type:: string
-
-            - URL to retrieve all payments included in the settlement.
-
-          * - ``refunds``
-
-              .. type:: string
-
-            - URL to retrieve all refunds included in the settlement.
-
-          * - ``chargebacks``
-
-              .. type:: string
-
-            - URL to retrieve all chargebacks included in the settlement.
+      URL to retrieve all chargebacks included in the settlement.
 
 Example
 -------

@@ -25,12 +25,15 @@ class ApiEndpointDirective(Directive):
         container = nodes.container()
         container["classes"].append(self.name)
 
-        method_node = nodes.literal(text=self.options["method"])
-        method_node["classes"].extend([self.name, "method"])
+        if "method" in self.options:
+            method_node = nodes.literal(text=self.options["method"])
+            method_node["classes"].extend([self.name, "method"])
+
+            container += [method_node]
 
         url_node = nodes.literal(text=self.options["url"])
         url_node["classes"].extend([self.name, "url"])
 
-        container += [method_node, url_node]
+        container += [url_node]
 
         return [container]

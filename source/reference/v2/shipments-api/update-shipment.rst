@@ -19,55 +19,43 @@ Parameters
 Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN4U`` and replace ``shipmentId`` by
 the shipment's ID, for example ``shp_3wmsgCJN4U``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: tracking
+   :type: object
+   :condition: required
+   :collapse-children: false
 
-   * - ``tracking``
+   An object containing tracking details for the shipment.
 
-       .. type:: object
-          :required: true
+   .. parameter:: carrier
+      :type: string
+      :condition: required
 
-     - An object containing tracking details for the shipment.
+      Name of the postal carrier (as specific as possible). For example ``PostNL``.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: code
+      :type: string
+      :condition: required
 
-          * - ``carrier``
+      The track and trace code of the shipment. For example ``3SKABA000000000``.
 
-              .. type:: string
-                 :required: true
+   .. parameter:: url
+      :type: string
+      :condition: optional
 
-            - Name of the postal carrier (as specific as possible). For example ``PostNL``.
-
-          * - ``code``
-
-              .. type:: string
-                 :required: true
-
-            - The track and trace code of the shipment. For example ``3SKABA000000000``.
-
-          * - ``url``
-
-              .. type:: string
-                 :required: false
-
-            - The URL where your customer can track the shipment, for example:
-              ``http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C``.
+      The URL where your customer can track the shipment, for example:
+      ``http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C``.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to update a test mode shipment.
+   Set this to ``true`` to update a test mode shipment.
 
 Response
 --------
@@ -78,7 +66,6 @@ A shipment object is returned, as described in
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:

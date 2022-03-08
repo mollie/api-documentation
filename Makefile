@@ -7,13 +7,14 @@
 # You can set these variables from the command line. When editing extensions, it is
 # recommended to use the "-E" flag to force a rebuild every time you run 'Make', as
 # it is not guaranteed it will rebuild when no '.rst' files have changed.
-PYTHON         = python3
-SPHINXOPTS     = -W
-SPHINXPRODOPTS = -n -D html_file_suffix=''
-SPHINXBUILD    = ${PYTHON} -msphinx
-SPHINXPROJ     = api-documentation
-SOURCEDIR      = source
-BUILDDIR       = build
+DEV_PYTHON        = MOLLIE_DOCS_URL='http://127.0.0.1:8000' MOLLIE_FILE_SUFFIX='.html' python3
+PROD_PYTHON       = MOLLIE_DOCS_URL='https://private.docs.molops.io' MOLLIE_FILE_SUFFIX='' python3
+DEV_SPHINX_OPTS   = -W
+PROD_SPHINX_OPTS  = -W -n
+DEV_SPHINX_BUILD  = ${DEV_PYTHON} -msphinx
+PROD_SPHINX_BUILD = ${PROD_PYTHON} -msphinx
+SOURCE_DIR        = source
+BUILD_DIR         = build
 
 clean:
 	rm -rf build/
@@ -37,13 +38,13 @@ js-reload:
 	@./node_modules/.bin/parcel source/theme/js/index.js --out-dir build/_static --out-file index --no-hmr --port 8002
 
 html-reload:
-	${PYTHON} -msphinx_autobuild -b html "${SOURCEDIR}" "${BUILDDIR}" ${SPHINXOPTS} ${O}
+	${DEV_PYTHON} -msphinx_autobuild -b html "${SOURCE_DIR}" "${BUILD_DIR}" ${DEV_SPHINX_OPTS} ${O}
 
 start:
 	make html-reload & make css-reload & make js-reload
 
 install:
-	${PYTHON} -mpip install --user -r requirements.txt --no-warn-script-location
+	${DEV_PYTHON} -mpip install --user -r requirements.txt --no-warn-script-location
 
 lint-js:
 	npm run lint:js
@@ -55,16 +56,16 @@ verify:
 	! egrep -B3 -A3 -n --color 'mollie\.(test|dev)' -r  source ;
 
 # Catch-all target: route all unknown targets to Sphinx using the new
-# "make mode" option. ${O} is meant as a shortcut for ${SPHINXOPTS}.
+# "make mode" option. ${O} is meant as a shortcut for ${DEV_SPHINX_OPTS}.
 html: Makefile source/_static/style.css source/_static/index.js source/_static/gtm.js verify
 	$(MAKE) html-only
 
 .PHONY: html-only
 html-only: verify
-	${SPHINXBUILD} -M html "${SOURCEDIR}" "${BUILDDIR}" ${SPHINXOPTS} ${O}
+	${DEV_SPHINX_BUILD} -M html "${SOURCE_DIR}" "${BUILD_DIR}" ${DEV_SPHINX_OPTS} ${O}
 
 html-production: Makefile source/_static/style.css source/_static/index.js source/_static/gtm.js verify
-	${SPHINXBUILD} -M html "${SOURCEDIR}" "${BUILDDIR}" ${SPHINXOPTS} ${SPHINXPRODOPTS} ${O}
+	${PROD_SPHINX_BUILD} -M html "${SOURCE_DIR}" "${BUILD_DIR}" ${PROD_SPHINX_OPTS} ${O}
 	# Go thru all the files, and replace the snippet with the google tag manager code
 	@LC_CTYPE=C LANG=C find build/ -type f -name '*' -exec sed -i.bak 's/<!-- GOOGLE_TAG_MANAGER -->/<script type=\"text\/javascript\" src=\"\/_static\/gtm.js\" async><\/script>/g' {} \;
 	# Go thru all the files, and replace the paths from relative to an absolute CDN path

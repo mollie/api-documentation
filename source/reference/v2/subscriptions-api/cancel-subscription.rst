@@ -21,18 +21,15 @@ example: ``/v2/customers/cst_stTC2WHAuS/subscriptions/sub_rVKGtNd6s3``.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to cancel a test mode subscription.
+   Set this to ``true`` to cancel a test mode subscription.
 
 Response
 --------
@@ -43,7 +40,6 @@ A subscription object is returned, as described in
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:

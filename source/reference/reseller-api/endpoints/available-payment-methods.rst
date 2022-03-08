@@ -5,7 +5,7 @@ Available payment methods
 
 .. warning:: The Reseller API has been deprecated. Only selected partners still have access to this legacy
              functionality. As an alternative, we recommend using the
-             :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for this action.
+             :doc:`Profiles API </reference/v2/profiles-api/overview>` for this action.
 
 .. endpoint::
    :method: POST
@@ -19,29 +19,23 @@ Make sure to add the :ref:`obligatory parameters <secret-keys>` always. Besides 
 parameters:
 
 .. note:: It is not necessary to set ``username`` and ``password`` if you are using ``partner_id_customer``. Otherwise
-          both are required to set.
+   both are required to set.
 
-.. list-table::
-   :widths: auto
+.. parameter:: username
+   :type: string
 
-   * - ``username``
+   The username of the account of which you would like to check which payment methods have been activated.
 
-       .. type:: string
+.. parameter:: password
+   :type: string
 
-     - The username of the account of which you would like to check which payment methods have been activated.
+   The password of the account of which you would like to check which payment methods have been activated.
 
-   * - ``password``
+.. parameter:: partner_id_customer
+   :type: string
 
-       .. type:: string
-
-     - The password of the account of which you would like to check which payment methods have been activated.
-
-   * - ``partner_id_customer``
-
-       .. type:: string
-
-     - The partner ID of the account of which you would like to check which payment methods have been activated. It can
-       be used instead of the parameters ``username`` and ``password``.
+   The partner ID of the account of which you would like to check which payment methods have been activated. It can be
+   used instead of the parameters ``username`` and ``password``.
 
 Response
 --------

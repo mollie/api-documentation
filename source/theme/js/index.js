@@ -7,9 +7,11 @@ import toggleClass from './toggleClass';
 import exampleSwitcher from './exampleSwitcher';
 import linkDropdown from './linkDropdown';
 import { addPaymentMethodDropdown, linkDropdownPaymentMethods } from './linkDropdownPaymentMethods';
+import { collapsedParameter, childParameters } from './parameters';
 import sidebar from './sidebar';
 
-const handlers = makeHandlers([toggleClass]);
+const handlers = makeHandlers([toggleClass, collapsedParameter, childParameters]);
+
 const enhancers = makeEnhancers([
   navLoggedIn,
   subNavigation,

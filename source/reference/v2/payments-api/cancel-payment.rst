@@ -25,18 +25,15 @@ Replace ``id`` in the endpoint URL by the payment's ID, for example ``tr_7UhSN1z
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to cancel a test mode payment.
+   Set this to ``true`` to cancel a test mode payment.
 
 Response
 --------
@@ -46,7 +43,6 @@ A Payment object is returned, as described in :doc:`/reference/v2/payments-api/g
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:

@@ -1,6 +1,8 @@
+@import 'variables';
+
 .rst-content .endpoint {
   border-radius: 4px;
-  background: #fcfcfc;
+  background: shade($background-color, 2%);
   font-size: 14px;
   display: inline-block;
   margin: 0 0 15px;
@@ -50,5 +52,23 @@
 
   @media (min-width: breakpoint("medium")) {
     max-width: 100%;
+  }
+}
+
+/*
+ * Dark mode
+ */
+@media (prefers-color-scheme: dark) {
+  .rst-content .endpoint {
+    background: tint($dark-mode-background-color, 8%);
+    border-color: $grey-dark;
+  }
+
+  .rst-content .endpoint .method {
+    color: $dark-mode-brand-primary;
+  }
+
+  .rst-content .endpoint .method span {
+    border-right-color: $grey-dark;
   }
 }

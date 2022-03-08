@@ -28,53 +28,44 @@ Parameters
 ----------
 Replace ``id`` in the endpoint URL by the methods's ID. For example: ``https://api.mollie.com/v2/methods/ideal``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: locale
+   :type: string
+   :condition: optional
 
-   * - ``locale``
+   Passing a locale will translate the payment method name in the corresponding language.
 
-       .. type:: string
-          :required: false
+   Possible values: ``en_US`` ``en_GB`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
+   ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV`` ``lt_LT``
 
-     - Passing a locale will translate the payment method name in the corresponding language.
+.. parameter:: currency
+   :type: string
+   :condition: optional
 
-       Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
-       ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
-       ``lt_LT``
-
-   * - ``currency``
-
-       .. type:: string
-          :required: false
-
-     - The currency to receiving the ``minimumAmount`` and ``maximumAmount`` in. We will return an error when the
-       currency is not supported by the payment method.
+   The currency to receiving the ``minimumAmount`` and ``maximumAmount`` in. We will return an error when the currency
+   is not supported by the payment method.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you have to specify which profile you are retrieving the payment method details
 for using the ``profileId`` parameter. Organizations can have multiple profiles for each of their websites. See
-:doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+:doc:`Profiles API </reference/v2/profiles-api/overview>` for more information.
 
 For these authentication methods the optional ``testmode`` parameter is available as well to enable test mode.
 
-.. list-table::
-   :widths: auto
+.. parameter:: profileId
+   :type: string
+   :condition: required for access tokens
+   :collapse: true
 
-   * - ``profileId``
+   The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
 
-       .. type:: string
-          :required: true
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to list all methods available in testmode.
+   Set this to ``true`` to list all methods available in testmode.
 
 .. _method-includes:
 
@@ -91,195 +82,148 @@ Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains a method object. Will always contain ``method`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains a method object. Will always contain ``method`` for this endpoint.
+   The unique identifier of the payment method. When used during
+   :doc:`payment creation </reference/v2/payments-api/create-payment>`, the payment method selection screen will be
+   skipped.
 
-   * - ``id``
+.. parameter:: description
+   :type: string
 
-       .. type:: string
+   The full name of the payment method, translated in the optional locale passed.
 
-     - The unique identifier of the payment method. When used during
-       :doc:`payment creation </reference/v2/payments-api/create-payment>`, the payment method selection screen will be
-       skipped.
+.. parameter:: minimumAmount
+   :type: amount object
 
-   * - ``description``
+   The minimum payment amount required to use this payment method.
 
-       .. type:: string
+   .. parameter:: currency
+      :type: string
 
-     - The full name of the payment method, translated in the optional locale passed.
+      An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-   * - ``minimumAmount``
+   .. parameter:: value
+      :type: string
 
-       .. type:: amount object
+      A string containing the exact amount in the given currency.
 
-     - An object containing ``value`` and ``currency``. It represents the minimum payment amount required to use this
-       payment method.
+.. parameter:: maximumAmount
+   :type: amount object
 
-   * - ``maximumAmount``
+   The maximum payment amount allowed when using this payment method.
 
-       .. type:: amount object
+   .. note:: When there is no maximum amount for the payment method, this parameter will return ``null``.
 
-     - An object containing ``value`` and ``currency``. It represents the maximum payment amount allowed when using this
-       payment method.
+   .. parameter:: currency
+      :type: string
 
-       .. note:: When there is no maximum amount for the payment method, this parameter will return ``null``.
+      An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-   * - ``image``
+   .. parameter:: value
+      :type: string
 
-       .. type:: image object
+      A string containing the exact amount in the given currency.
 
-     - The URLs of images representing the payment method.
+.. parameter:: image
+   :type: image object
 
-       .. list-table::
-          :widths: auto
+   The URLs of images representing the payment method.
 
-          * - ``size1x``
+   .. parameter:: size1x
+      :type: string
 
-              .. type:: string
+      The URL for a payment method icon of 32x24 pixels.
 
-            - The URL for a payment method icon of 32x24 pixels.
+   .. parameter:: size2x
+      :type: string
 
-          * - ``size2x``
+      The URL for a payment method icon of 64x48 pixels.
 
-              .. type:: string
+   .. parameter:: svg
+      :type: string
 
-            - The URL for a payment method icon of 64x48 pixels.
+      The URL for a payment method icon in vector format. Usage of this format is preferred since it can scale to any
+      desired size.
 
-          * - ``svg``
+.. parameter:: status
+   :type: string
 
-              .. type:: string
+   The status that the method is in.
 
-            - The URL for a payment method icon in vector format. Usage of this format is preferred since it can scale
-              to any desired size.
+   Possible values:
 
-   * - ``status``
+   * ``activated``: The payment method is activated and ready for use.
+   * ``pending-boarding``: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment
+     method can be activated.
+   * ``pending-review``: Mollie needs to review your request for this payment method before it can be activated.
+   * ``pending-external``: Activation of this payment method relies on you taking action with an external party, for
+     example signing up with PayPal or a giftcard issuer.
+   * ``rejected``: Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will
+     always be informed via email.
+   * ``null``: This payment method was not requested.
 
-       .. type:: string
+.. parameter:: pricing
+   :type: array
 
-     - The status that the method is in. Possible values: ``activated`` ``pending-boarding`` ``pending-review``
-       ``pending-external`` ``rejected`` or ``null``
+   Pricing set of the payment method what will be include if you add the :ref:`parameter <method-includes>`.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: description
+      :type: string
 
-          * - ``activated``
+      The area or product-type where the pricing is applied for, translated in the optional locale passed.
 
-              .. type:: string
+   .. parameter:: fixed
+      :type: amount object
 
-            - The payment method is activated and ready for use.
+      The fixed price per transaction.
 
-          * - ``pending-boarding``
+      .. parameter:: currency
+         :type: string
 
-              .. type:: string
+         The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-            - Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment method can be
-              activated.
+      .. parameter:: value
+         :type: string
 
-          * - ``pending-review``
+         A string containing the exact amount in the given currency.
 
-              .. type:: string
+   .. parameter:: variable
+      :type: string
 
-            - Mollie needs to review your request for this payment method before it can be activated.
+      A string containing the percentage what will be charged over the payment amount besides the fixed price.
 
-          * - ``pending-external``
+   .. parameter:: feeRegion
+      :type: string
+      :condition: optional
 
-              .. type:: string
+      This value is only available for credit card rates. It will correspond with the regions as documented in the
+      :doc:`Payments API </reference/v2/payments-api/get-payment>`.
 
-            - Activation of this payment method relies on you taking action with an external party, for example signing
-              up with PayPal or a giftcard issuer.
+.. parameter:: _links
+   :type: object
 
-          * - ``rejected``
+   An object with several URL objects relevant to the payment method. Every URL object will contain an ``href`` and a
+   ``type`` field.
 
-              .. type:: string
+   .. parameter:: self
+      :type: URL object
 
-            - Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will always
-              be informed via email.
+      The API resource URL of the payment method itself.
 
-          * - ``null``
+   .. parameter:: documentation
+      :type: URL object
 
-            - This payment method was not requested.
-
-   * - ``pricing``
-
-       .. type:: array
-
-     - Pricing set of the payment method what will be include if you add the :ref:`parameter <method-includes>`.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``description``
-
-              .. type:: string
-
-            - The area or product-type where the pricing is applied for, translated in the optional locale passed.
-
-          * - ``fixed``
-
-              .. type:: amount object
-
-            - The fixed price per transaction
-
-               .. list-table::
-                  :widths: auto
-
-                  * - ``currency``
-
-                      .. type:: string
-
-                    - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
-
-                  * - ``value``
-
-                      .. type:: string
-
-                    - A string containing the exact amount in the given currency.
-
-          * - ``variable``
-
-              .. type:: string
-
-            - A string containing the percentage what will be charged over the payment amount besides the fixed price.
-
-          * - ``feeRegion``
-
-              .. type:: string
-                 :required: false
-
-            - This value is only available for credit card rates. It will correspond with the regions as documented in
-              the :doc:`Payments API </reference/v2/payments-api/get-payment>`.
-
-   * - ``_links``
-
-       .. type:: object
-
-     - An object with several URL objects relevant to the payment method. Every URL object will contain an ``href`` and
-       a ``type`` field.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``self``
-
-              .. type:: URL object
-
-            - The API resource URL of the payment method itself.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the payment method retrieval endpoint documentation.
+      The URL to the payment method retrieval endpoint documentation.
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:

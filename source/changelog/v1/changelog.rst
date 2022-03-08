@@ -41,9 +41,9 @@ February 2021
 Monday, 1st
 -----------
 - We discontinued the support for ING Home'Pay as a payment method. This means that the API now rejects all
-  :doc:`Create Payment API</reference/v2/payments-api/create-payment>`-calls with the method ``inghomepay``. Make sure
-  to remove this payment method from your checkout if needed. Please `contact us <https://www.mollie.com/contact>`_ for
-  more info.
+  :doc:`Create payment endpoint</reference/v2/payments-api/create-payment>` calls with the method ``inghomepay``. Be
+  sure to remove this payment method from your checkout if needed. Please `contact us <https://www.mollie.com/contact>`_
+  for more information.
 
 December 2020
 =============
@@ -170,7 +170,7 @@ September 2019
 Friday, 20th
 ------------
 - Changed the retry schedule of our webhook system. We will try to call your webhook for 26 hours in total now. See the
-  :doc:`webhooks guide </guides/webhooks>` for the new schedule.
+  :doc:`webhooks guide </overview/webhooks>` for the new schedule.
 
 Tuesday, 17th
 -------------
@@ -230,7 +230,7 @@ April 2019
 Friday, 19th
 ------------
 - Added a new endpoint for Mollie Connect to revoke access and refresh tokens. See the
-  :doc:`Revoke Token endpoint </reference/oauth2/revoke-token>` for details.
+  :doc:`Revoke token endpoint </reference/oauth2/revoke-token>` for details.
 
 March 2019
 ==========
@@ -261,11 +261,6 @@ Wednesday, 6th
 
 December 2018
 =============
-
-Friday, 7th
------------
-- Refunds for Pay Later and Slice it can now be created via the
-  :doc:`Payments Refunds API </reference/v1/refunds-api/create-refund>`. This allows refunding of arbitrary amounts.
 
 November 2018
 =============
@@ -307,8 +302,8 @@ Monday, 15th
 Friday, 12th
 ------------
 - Added new category codes ``5533`` ``5641`` ``5651`` ``5732`` ``5735`` ``5815`` ``5944`` ``5977`` ``7999``
-  to the :doc:`Create Profile </reference/v1/profiles-api/create-profile>` and
-  :doc:`Update Profile </reference/v1/profiles-api/update-profile>` endpoints.
+  to the :doc:`Create profile </reference/v1/profiles-api/create-profile>` and
+  :doc:`Update profile </reference/v1/profiles-api/update-profile>` endpoints.
 
 Tuesday, 2nd
 ------------
@@ -337,9 +332,9 @@ Friday, 1st
 -----------
 - Added new locales ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES`` ``ca_ES``
   ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV`` and ``lt_LT`` to
-  the :doc:`Create Customer </reference/v1/customers-api/create-customer>`,
-  :doc:`Create Payment </reference/v1/payments-api/create-payment>`, and
-  :doc:`List Methods </reference/v1/methods-api/list-methods>` endpoints to localize translations and allow for ordering
+  the :doc:`Create customer </reference/v1/customers-api/create-customer>`,
+  :doc:`Create payment </reference/v1/payments-api/create-payment>`, and
+  :doc:`List methods </reference/v1/methods-api/list-methods>` endpoints to localize translations and allow for ordering
   the payment methods in the preferred order for the country.
 
 May 2018
@@ -519,9 +514,10 @@ Wednesday, 26th
 
 Thursday, 20th
 --------------
-- The refresh_token that is returned from the /oauth2/tokens endpoint when requesting an access token will not expire
-  anymore. We previously generated a new access_token and refresh_token pair when a new access token was requested. We
-  have changed this to only generate a new access_token - the refresh_token will stay the same indefinitely.
+- The ``refresh_token`` that is returned from the ``/oauth2/tokens`` endpoint when requesting an access token will not
+  expire anymore. We previously generated a new ``access_token`` and ``refresh_token`` pair when a new access token was
+  requested. We have changed this to only generate a new ``access_token`` - the ``refresh_token`` will stay the same
+  indefinitely.
 
 Monday, 17th
 ------------
@@ -539,8 +535,8 @@ May 2017
 
 Wednesday, 3rd
 --------------
-- The Methods API resource can return issuers using ?include=issuers. At the moment this will include issuers for KBC
-  and iDEAL.
+- The Methods API resource can return issuers using ``?include=issuers``. At the moment this will include issuers for
+  KBC and iDEAL.
 
 April 2017
 ==========

@@ -34,9 +34,8 @@ some small tweaks. You can use the following steps as a guideline for the basic 
    .. note:: Once the order is created, the amount can not be changed. When calculating shipping costs and/or taxes, be
              sure to include them when creating the order.
 
-   .. warning:: The ``billingAddress`` stays required for every other method. If you set another
-                method, or no method at all, your request will result in an HTTP status code
-                ``422 Unprocessable Entity``.
+   .. warning:: The ``billingAddress`` stays required for every other method. If you set another method, or no method at
+                all, your request will result in an HTTP status code ``422 Unprocessable Entity``.
 
 #. Redirect your customer to the ``checkout`` URL which you can find in the response of the Create Order
    API. The customer will select the address where the product(s) needs to be send to and completes the
@@ -45,5 +44,5 @@ some small tweaks. You can use the following steps as a guideline for the basic 
 #. Mollie will receive the address from PayPal and adds it to the order. The consumer will be redirected
    back to your website while we call your webhook, if set, to inform you about the latest order state.
 
-#. You can retrieve the shipping address by calling the :doc:`Get order API </reference/v2/orders-api/get-order>`
+#. You can retrieve the shipping address by calling the :doc:`Get order endpoint </reference/v2/orders-api/get-order>`
    and finish your order to ship the product(s).

@@ -22,83 +22,66 @@ Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains an onboarding object. Will always contain ``onboarding`` for this endpoint.
 
-       .. type:: string
+.. parameter:: name
+   :type: string
 
-     - Indicates the response contains an onboarding object. Will always contain ``onboarding`` for this endpoint.
+   The name of the organization.
 
-   * - ``name``
+.. parameter:: signedUpAt
+   :type: datetime
 
-       .. type:: string
+   The sign up date and time of the organization.
 
-     - The name of the organization.
+.. parameter:: status
+   :type: string
 
-   * - ``signedUpAt``
+   The current status of the organization's onboarding process. Possible values:
 
-       .. type:: datetime
+   * ``needs-data`` The onboarding is not completed and the merchant needs to provide (more) information
+   * ``in-review`` The merchant provided all information and Mollie needs to check this
+   * ``completed`` The onboarding is completed
 
-     - The sign up date and time of the organization.
+.. parameter:: canReceivePayments
+   :type: boolean
 
-   * - ``status``
+   Whether or not the organization can receive payments.
 
-       .. type:: string
+.. parameter:: canReceiveSettlements
+   :type: boolean
 
-     - The current status of the organization's onboarding process. Possible values:
+   Whether or not the organization can receive settlements.
 
-       * ``needs-data`` The onboarding is not completed and the merchant needs to provide (more) information
-       * ``in-review`` The merchant provided all information and Mollie needs to check this
-       * ``completed`` The onboarding is completed
+.. parameter:: _links
+   :type: object
 
-   * - ``canReceivePayments``
+   An object with several URL objects relevant to the onboarding status. Every URL object will contain an ``href`` and a
+   ``type`` field.
 
-       .. type:: boolean
+   .. parameter:: self
+      :type: URL object
 
-     - Whether or not the organization can receive payments.
+      The API resource URL of this endpoint itself.
 
-   * - ``canReceiveSettlements``
+   .. parameter:: dashboard
+      :type: URL object
 
-       .. type:: boolean
+      The URL of the onboarding process in Mollie Dashboard. You can redirect your customer to here for e.g. completing
+      the onboarding process.
 
-     - Whether or not the organization can receive settlements.
+   .. parameter:: organization
+      :type: URL object
 
-   * - ``_links``
+      The API resource URL of the organization.
 
-       .. type:: object
+   .. parameter:: documentation
+      :type: URL object
 
-     - An object with several URL objects relevant to the onboarding status. Every URL object will contain an ``href``
-       and a ``type`` field.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``self``
-
-              .. type:: URL object
-
-            - The API resource URL of this endpoint itself.
-
-          * - ``dashboard``
-
-              .. type:: URL object
-
-            - The URL of the onboarding process in Mollie Dashboard. You can redirect your customer to here for e.g.
-              completing the onboarding process.
-
-          * - ``organization``
-
-              .. type:: URL object
-
-            - The API resource URL of the organization.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the onboarding status retrieval endpoint documentation.
+      The URL to the onboarding status retrieval endpoint documentation.
 
 Example
 -------

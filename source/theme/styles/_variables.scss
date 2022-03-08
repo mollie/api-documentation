@@ -10,6 +10,8 @@ $breakpoints: (
   '<medium': 719px,
   'large': 960px,
   '<large': 959px,
+  'medium-large': 1110px,
+  '<medium-large': 1109px,
   'extra-large': 1260px,
   '<extra-large': 1259px,
   'huge': 1440px,
@@ -45,7 +47,8 @@ $orange-pancho: #efcca5;
 $orange-anzac: #e0994c;
 $blue-cornflower: #7373ff;
 
-$text-color: $blackish;
+$background-color: #fff;
+$text-color: #000;
 
 $brand-primary: #0040ff;
 $brand-primary-hover: #0000ee;
@@ -63,6 +66,15 @@ $text-color-payments: #072a4c;
 
 $color-recurring: #ffc64f;
 $text-color-recurring: #733517;
+
+/**
+ * Dark mode
+ */
+$dark-mode-background-color: #181818;
+$dark-mode-text-color: #fff;
+
+$dark-mode-brand-primary: tint($brand-primary, 40%);
+$dark-mode-brand-primary-hover: tint($brand-primary, 50%);
 
 /**
  * Type

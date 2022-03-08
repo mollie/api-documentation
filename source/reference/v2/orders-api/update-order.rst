@@ -25,70 +25,195 @@ Replace ``id`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN
 Please note that even though all parameters are optional, at least one of them needs to be provided
 in the request.
 
-.. list-table::
-   :widths: auto
+.. parameter:: billingAddress
+   :type: address object
+   :condition: optional
 
-   * - ``billingAddress``
+   The billing person and address for the order.
 
-       .. type:: address object
-          :required: false
+   Please refer to the documentation of the :ref:`address object <address-object>` for more information on which formats
+   are accepted.
 
-     - The billing person and address for the order. See :ref:`order-address-details` for the exact
-       fields needed.
+   .. parameter:: organizationName
+      :type: string
+      :condition: optional
 
-   * - ``shippingAddress``
+      The person's organization, if applicable.
 
-       .. type:: address object
-          :required: false
+   .. parameter:: title
+      :type: string
+      :condition: optional
 
-     - The shipping address for the order. See :ref:`order-address-details` for the exact fields
-       needed.
+      The title of the person, for example *Mr.* or *Mrs.*.
 
-   * - ``orderNumber``
+   .. parameter:: givenName
+      :type: string
+      :condition: required
 
-       .. type:: string
-          :required: false
+      The given name (first name) of the person.
 
-     - The order number. For example, ``16738``.
+   .. parameter:: familyName
+      :type: string
+      :condition: required
 
-       We recommend that each order should have a unique order number.
+      The family name (surname) of the person.
 
-   * - ``redirectUrl``
+   .. parameter:: email
+      :type: string
+      :condition: required
 
-       .. type:: string
-          :required: false
+      The email address of the person.
 
-     - The URL your customer will be redirected to after the payment process.
+   .. parameter:: phone
+      :type: phone number
+      :condition: optional
 
-       .. note::
-          Updating this field is only possible when the payment is not yet finalized.
+      The phone number of the person. Some payment methods require this information. If you have it, you should pass it
+      so that your customer does not have to enter it again in the checkout. Must be in the
+      `E.164 <https://en.wikipedia.org/wiki/E.164>`_ format. For example ``+31208202070``.
 
-   * - ``webhookUrl``
+   .. parameter:: streetAndNumber
+      :type: string
+      :condition: required
 
-       .. type:: string
-          :required: false
+   .. parameter:: streetAdditional
+      :type: string
+      :condition: optional
 
-     - Set the webhook URL, where we will send :doc:`order status changes </orders/status-changes>` to.
+   .. parameter:: postalCode
+      :type: string
+      :condition: conditional
 
-       .. note:: The ``webhookUrl`` must be reachable from Mollie's point of view, so you cannot use ``localhost``. If
-          you want to use webhook during development on ``localhost``, you must use a tool like
-          `ngrok <https://lornajane.net/posts/2015/test-incoming-webhooks-locally-with-ngrok>`_ to have the webhooks
-          delivered to your local machine.
+      This field is required if the provided ``country`` has a postal code system.
+
+   .. parameter:: city
+      :type: string
+      :condition: required
+
+   .. parameter:: region
+      :type: string
+      :condition: optional
+
+   .. parameter:: country
+      :type: string
+      :condition: required
+
+      The country of the address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+
+.. parameter:: shippingAddress
+   :type: address object
+   :condition: optional
+
+   The shipping address for the order.
+
+   This field is optional, but if it is provided, then the full name and address have to be in a valid format. Please
+   refer to the documentation of the :ref:`address object <address-object>` for more information on which formats are
+   accepted.
+
+   .. parameter:: organizationName
+      :type: string
+      :condition: optional
+
+      The person's organization, if applicable.
+
+   .. parameter:: title
+      :type: string
+      :condition: optional
+
+      The title of the person, for example *Mr.* or *Mrs.*.
+
+   .. parameter:: givenName
+      :type: string
+      :condition: required
+
+      The given name (first name) of the person.
+
+   .. parameter:: familyName
+      :type: string
+      :condition: required
+
+      The family name (surname) of the person.
+
+   .. parameter:: email
+      :type: string
+      :condition: required
+
+      The email address of the person.
+
+   .. parameter:: phone
+      :type: phone number
+      :condition: optional
+
+      The phone number of the person. Some payment methods require this information. If you have it, you should pass it
+      so that your customer does not have to enter it again in the checkout. Must be in the
+      `E.164 <https://en.wikipedia.org/wiki/E.164>`_ format. For example ``+31208202070``.
+
+   .. parameter:: streetAndNumber
+      :type: string
+      :condition: required
+
+   .. parameter:: streetAdditional
+      :type: string
+      :condition: optional
+
+   .. parameter:: postalCode
+      :type: string
+      :condition: conditional
+
+      This field is required if the provided ``country`` has a postal code system.
+
+   .. parameter:: city
+      :type: string
+      :condition: required
+
+   .. parameter:: region
+      :type: string
+      :condition: optional
+
+   .. parameter:: country
+      :type: string
+      :condition: required
+
+      The country of the address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+
+.. parameter:: orderNumber
+   :type: string
+   :condition: optional
+
+   The order number. For example, ``16738``.
+
+   We recommend that each order should have a unique order number.
+
+.. parameter:: redirectUrl
+   :type: string
+   :condition: optional
+
+   The URL your customer will be redirected to after the payment process.
+
+   Updating this field is only possible when the payment is not yet finalized.
+
+.. parameter:: webhookUrl
+   :type: string
+   :condition: optional
+
+   Set the webhook URL, where we will send :doc:`order status changes </orders/status-changes>` to.
+
+   The ``webhookUrl`` must be reachable from Mollie's point of view, so you cannot use ``localhost``. If you want to use
+   webhook during development on ``localhost``, you should use a tool like
+   `ngrok <https://lornajane.net/posts/2015/test-incoming-webhooks-locally-with-ngrok>`_ to have the webhooks delivered
+   to your local machine.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to update a test mode order.
+   Set this to ``true`` to update a test mode order.
 
 Response
 --------
@@ -99,7 +224,6 @@ An order object is returned, as described in
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:

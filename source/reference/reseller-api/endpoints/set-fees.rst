@@ -12,8 +12,8 @@ Set fees
 
 The method set-fees can be used to change a merchant's rates.
 
-.. note::
-  The use of this API is restricted. Please contact our partner team at partner@mollie.com if you want to use this API.
+.. note:: The use of this API is restricted. Please contact our partner team at partner@mollie.com if you want to use
+   this API.
 
 Parameters
 ----------
@@ -21,102 +21,91 @@ Make sure to add the :ref:`obligatory parameters <secret-keys>` always. Besides 
 parameters:
 
 .. note:: It is not necessary to set ``username`` and ``password`` if you are using ``partner_id_customer``. Otherwise
-          both are required to set.
+   both are required to set.
 
-.. list-table::
-   :widths: auto
+.. parameter:: username
+   :type: string
 
-   * - ``username``
+   The username of the account for which you would like to set the fees.
 
-       .. type:: string
+.. parameter:: password
+   :type: string
 
-     - The username of the account of which you would like to retrieve the bank accounts
+   The password of the account for which you would like to set the fees.
 
-   * - ``password``
+.. parameter:: partner_id_customer
+   :type: string
 
-       .. type:: string
+   The partner ID of the account of which you would like to set the fees. It can be used instead of the parameters
+   ``username`` and ``password``.
 
-     - The password of the account of which you would like to retrieve the bank accounts
+.. parameter:: payment_method
+   :type: string
+   :condition: required
 
-   * - ``partner_id_customer``
+   The payment method of which you would like to adjust the rate. Possible values are:
 
-       .. type:: string
+   * ``banktransfer``
+   * ``belfius``
+   * ``creditcard``
+   * ``directdebit``
+   * ``eps``
+   * ``giftcard``
+   * ``giropay``
+   * ``ideal``
+   * ``kbc``
+   * ``klarnapaylater``
+   * ``klarnasliceit``
+   * ``mistercash``
+   * ``mybank``
+   * ``paypal``
+   * ``paysafecard``
+   * ``przelewy24``
+   * ``refund``
+   * ``sofort``
 
-     - The partner ID of the account of which you would like to retrieve the bank accounts. It can be used instead of
-       the parameters ``username`` and ``password``
+.. parameter:: payment_subtype
+   :type: string
+   :condition: optional
 
-   * - ``payment_method``
+   The payment method subtype of which you would like to adjust the rate. This field is required when you use one of the
+   mentioned payment types.
 
-       .. type:: string
-          :required: true
+   **Only applicable to credit card:**
 
-     - The payment method of which you would like to adjust the rate. Possible values are:
+   * ``amex`` for adjusting rates for American Express cards.
+   * ``eu-cards`` or ``region_1`` for adjusting rates for Mastercard / VISA Intra EEA consumer cards for merchants
+     within the EEA.
+   * ``region_2`` for adjusting rates for other Mastercard / VISA cards. (default value when this parameter is omitted)
 
-        * ``banktransfer``
-        * ``belfius``
-        * ``creditcard``
-        * ``directdebit``
-        * ``eps``
-        * ``giftcard``
-        * ``giropay``
-        * ``ideal``
-        * ``kbc``
-        * ``klarnapaylater``
-        * ``klarnasliceit``
-        * ``mistercash``
-        * ``mybank``
-        * ``paypal``
-        * ``paysafecard``
-        * ``przelewy24``
-        * ``refund``
-        * ``sofort``
+   **Only applicable to SOFORT Banking:**
 
-   * - ``payment_subtype``
+   * ``retail``
+   * ``digital``
+   * ``adult``
 
-       .. type:: string
-          :required: false
+   **Only applicable to Klarna methods:**
 
-     - The payment method subtype of which you would like to adjust the rate. This field is required when you use one of
-       the mentioned payment types.
+   * ``AT``
+   * ``FI``
+   * ``DE``
+   * ``NL``
 
-       **Only applicable to credit card:**
+.. parameter:: fee_type
+   :type: string
+   :condition: required
 
-       * ``amex`` for adjusting rates for American Express cards.
-       * ``eu-cards`` or ``region_1`` for adjusting rates for Mastercard / VISA Intra EEA consumer cards for merchants
-         within the EEA.
-       * ``region_2`` for adjusting rates for other Mastercard / VISA cards. (default value when this parameter is
-         omitted)
+   Possible options are:
 
-       **Only applicable to SOFORT Banking:**
+   * ``fixed`` for the adjustment of fixed costs per transaction
+   * ``percentage`` for the adjustment of variable transaction costs
 
-       * ``retail``
-       * ``digital``
-       * ``adult``
+.. parameter:: fee
+   :type: double
+   :condition: required
 
-       **Only applicable to Klarna methods:**
-
-       * ``AT``
-       * ``FI``
-       * ``DE``
-       * ``NL``
-
-   * - ``fee_type``
-
-       .. type:: string
-          :required: true
-
-     - Possible options are:
-
-       * ``fixed`` for the adjustment of fixed costs per transaction
-       * ``percentage`` for the adjustment of variable transaction costs
-
-   * - ``fee``
-
-       .. type:: double
-          :required: true
-
-     - The new rate of fee. Send amounts (of the fixed type with two decimals (for instance ``0.43``), and variable
-       transaction costs as a fraction (for instance ``0.025`` for 2.50%).
+   The new rate of fee. Send amounts (of the fixed type with two decimals (for instance ``0.43``), and variable
+   transaction costs as a fraction (for instance ``0.025`` for 2.50%).
 
 Response
 --------
@@ -135,26 +124,9 @@ Response
 
 Possible response codes
 ^^^^^^^^^^^^^^^^^^^^^^^
-.. list-table::
-   :widths: auto
-
-   * - ``10``
-
-     - The rate has been adjusted.
-
-   * - ``20``
-
-     - The username field is missing.
-
-   * - ``21``
-
-     - The password field is missing.
-
-   * - ``30``
-
-     - The combination of username and password is incorrect.
-
-   * - ``37``
-
-     - The combination payment_method and fee_type is invalid; the set percentage or fee is too high or too low, or the
-       payment method cannot be set via the API. See the accompanying error message for the exact error.
+* ``10`` The rate has been adjusted.
+* ``20`` The username field is missing.
+* ``21`` The password field is missing.
+* ``30`` The combination of username and password is incorrect.
+* ``37`` The combination payment_method and fee_type is invalid; the set percentage or fee is too high or too low, or
+  the payment method cannot be set via the API. See the accompanying error message for the exact error.

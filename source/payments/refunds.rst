@@ -1,18 +1,22 @@
 Refunds
 =======
+A *refund* allows an amount to be returned to your customer. The refunded amount will be deducted from your Mollie
+account balance.
 
-A *refund* allows an amount to be returned to your customer. The refunded amount will be withheld from your next
-settlement.
+Refunds for regular payment integrations are created using the :doc:`Refunds API </reference/v2/refunds-api/overview>`.
 
-Refunds are created using the :doc:`/reference/v2/refunds-api/create-refund`. When using Orders, we recommend using the
-:doc:`/reference/v2/orders-api/create-order-refund` instead. Additionally, you can `create refunds manually
+To create refunds for order-based integrations, please refer to the
+:doc:`Create order refund endpoint </reference/v2/refunds-api/create-order-refund>` instead.
+
+Next to the API endpoint, you can also `create refunds manually
 <https://help.mollie.com/hc/en-us/articles/115000014489-How-do-I-refund-a-payment-to-one-of-my-consumers->`_ via the
 Mollie Dashboard.
 
-Most payment methods support refunds. Refunds are not available for paysafecard and gift cards.
+Most payment methods support refunds. Refunds are not available for some payment methods, however, such as paysafecard
+and gift cards.
 
-Refunds support descriptions, which we will show in the Mollie Dashboard, your exports and pass to your customer if
-possible.
+Refunds support descriptions. We will show the given description in your Mollie Dashboard and in your exports, and we
+will pass it along to your customer's bank or card issuer if possible.
 
 .. _refund-statuses:
 
@@ -45,7 +49,7 @@ is available again. We will automatically process the refund once your balance i
 Additionally, you can also manually top up your balance via the `Administration page
 <https://www.mollie.com/dashboard/administration>`_ in the Mollie Dashboard.
 
-Partial refunds and over refunding
+Partial refunds and over-refunding
 ----------------------------------
 Partial refunds are fully supported. You can create multiple partial refunds if needed. Note that we will prevent
 duplicate refunds in a short time frame.

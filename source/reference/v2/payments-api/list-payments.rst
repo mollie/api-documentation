@@ -14,63 +14,54 @@ List payments
 
 Retrieve all payments created with the current website profile, ordered from newest to oldest.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: from
+   :type: string
+   :condition: optional
 
-   * - ``from``
+   Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the payment with this ID. The payment with
+   this ID is included in the result set as well.
 
-       .. type:: string
-          :required: false
+.. parameter:: limit
+   :type: integer
+   :condition: optional
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the payment with this ID. The payment
-       with this ID is included in the result set as well.
-
-   * - ``limit``
-
-       .. type:: integer
-          :required: false
-
-     - The number of payments to return (with a maximum of 250).
+   The number of payments to return (with a maximum of 250).
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you can specify which profile you are retrieving payments for using the
 ``profileId`` parameter. Organizations can have multiple profiles for each of their websites. If you omit the
 ``profileId`` parameter, the API will return all payments across all profiles. See
-:doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+:doc:`Profiles API </reference/v2/profiles-api/overview>` for more information.
 
 For these authentication methods the optional ``testmode`` parameter is available as well to enable test mode.
 
-.. list-table::
-   :widths: auto
+.. parameter:: profileId
+   :type: string
+   :condition: optional
+   :collapse: true
 
-   * - ``profileId``
+   The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``. Omit this parameter to retrieve all payments
+   across all profiles.
 
-       .. type:: string
-          :required: false
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``. Omit this parameter to retrieve all
-       payments across all profiles.
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to true to only retrieve payments made in test mode. By default, only live payments are
-       returned.
+   Set this to true to only retrieve payments made in test mode. By default, only live payments are returned.
 
 Includes
 ^^^^^^^^
 This endpoint allows you to include additional information by appending the following values via the ``include``
 querystring parameter.
 
-* ``details.qrCode`` Include a :doc:`QR code </guides/qr-codes>` object for each payment that supports it. Only
+* ``details.qrCode`` Include a :doc:`QR code </payments/qr-codes>` object for each payment that supports it. Only
   available for iDEAL, Bancontact and bank transfer payments.
 
 Embedding of related resources
@@ -78,71 +69,56 @@ Embedding of related resources
 This endpoint also allows for embedding additional information by appending the following values via the ``embed``
 query string parameter.
 
-* ``refunds`` Include any :doc:`refunds </reference/v2/refunds-api/get-refund>` created for the payments.
-* ``chargebacks`` Include any :doc:`chargebacks </reference/v2/chargebacks-api/get-chargeback>` issued for the payments.
+* ``refunds`` Include any :doc:`refunds </reference/v2/refunds-api/get-payment-refund>` created for the payments.
+* ``chargebacks`` Include any :doc:`chargebacks </reference/v2/chargebacks-api/get-payment-chargeback>` issued for the
+  payments.
 
 Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: count
+   :type: integer
 
-   * - ``count``
+   The number of payments found in ``_embedded``, which is either the requested number (with a maximum of 250) or the
+   default number.
 
-       .. type:: integer
+.. parameter:: _embedded
+   :type: object
+   :collapse-children: false
 
-     - The number of payments found in ``_embedded``, which is either the requested number (with a maximum of 250) or
-       the default number.
+   The object containing the queried data.
 
-   * - ``_embedded``
+   .. parameter:: payments
+      :type: array
 
-       .. type:: object
+      An array of payment objects as described in :doc:`Get payment </reference/v2/payments-api/get-payment>`.
 
-     - The object containing the queried data.
+.. parameter:: _links
+   :type: object
 
-       .. list-table::
-          :widths: auto
+   Links to help navigate through the lists of payments. Every URL object will contain an ``href`` and a ``type``
+   field.
 
-          * - ``payments``
+   .. parameter:: self
+      :type: URL object
 
-              .. type:: array
+      The URL to the current set of payments.
 
-            - An array of payment objects as described in :doc:`Get payment </reference/v2/payments-api/get-payment>`.
+   .. parameter:: previous
+      :type: URL object
 
-   * - ``_links``
+      The previous set of payments, if available.
 
-       .. type:: object
+   .. parameter:: next
+      :type: URL object
 
-     - Links to help navigate through the lists of payments. Every URL object will contain an ``href`` and a ``type``
-       field.
+      The next set of payments, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: documentation
+      :type: URL object
 
-          * - ``self``
-
-              .. type:: URL object
-
-            - The URL to the current set of payments.
-
-          * - ``previous``
-
-              .. type:: URL object
-
-            - The previous set of payments, if available.
-
-          * - ``next``
-
-              .. type:: URL object
-
-            - The next set of payments, if available.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the payments list endpoint documentation.
+      The URL to the payments list endpoint documentation.
 
 Example
 -------

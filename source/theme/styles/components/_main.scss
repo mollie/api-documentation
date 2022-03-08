@@ -8,21 +8,15 @@
 }
 
 .main__sidebar {
-  min-width: 200px;
+  min-width: 260px;
   position: fixed;
   z-index: 3;
   transition: 300ms transform ease-in-out;
 
   @media (min-width: $mobile-navigation-breakpoint) {
-    width: 200px;
     z-index: auto;
     position: relative;
     display: block;
-  }
-
-  @media (min-width: breakpoint('extra-large')) {
-    min-width: 260px;
-    width: 260px;
   }
 }
 
@@ -53,8 +47,4 @@
 .main__content-inner {
   width: 100%;
   margin: 0 auto;
-
-  @media (min-width: $mobile-navigation-breakpoint) {
-    width: 90%;
-  }
 }

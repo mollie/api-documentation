@@ -34,20 +34,15 @@ Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: count
+   :type: integer
 
-   * - ``count``
+   The number of API keys found in ``data``.
 
-       .. type:: integer
+.. parameter:: data
+   :type: array
 
-     - The number of API keys found in ``data``.
-
-   * - ``data``
-
-       .. type:: array
-
-     - An array of API key objects as described in :doc:`Get API key </reference/v1/profiles-api/get-key>`.
+   An array of API key objects as described in :doc:`Get API key </reference/v1/profiles-api/get-key>`.
 
 Example
 -------

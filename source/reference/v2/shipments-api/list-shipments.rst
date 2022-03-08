@@ -20,73 +20,53 @@ Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wm
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` query string parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to list all shipments available in test mode.
+   Set this to ``true`` to list all shipments available in test mode.
 
 Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: count
+   :type: integer
 
-   * - ``count``
+   The number of shipments found in ``_embedded``.
 
-       .. type:: integer
+.. parameter:: _embedded
+   :type: object
+   :collapse-children: false
 
-     - The number of shipments found in ``_embedded``.
+   The object containing the queried data.
 
-   * - ``_embedded``
+   .. parameter:: shipments
+      :type: array
 
-       .. type:: object
+      An array of shipment objects as described in :doc:`Get shipment </reference/v2/shipments-api/get-shipment>`.
 
-     - The object containing the queried data.
+.. parameter:: _links
+   :type: object
 
-       .. list-table::
-          :widths: auto
+   Links related to the lists of shipments. Every URL object will contain an ``href`` and a ``type`` field.
 
-          * - ``shipments``
+   .. parameter:: self
+      :type: object
 
-              .. type:: array
+      The URL to the current set of shipments.
 
-            - An array of shipment objects as described in
-              :doc:`Get shipment </reference/v2/shipments-api/get-shipment>`.
+   .. parameter:: documentation
+      :type: object
 
-   * - ``_links``
-
-       .. type:: object
-
-     - Links related to the lists of shipments. Every URL object will contain an ``href`` and a ``type``
-       field.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``self``
-
-              .. type:: object
-
-            - The URL to the current set of shipments.
-
-          * - ``documentation``
-
-              .. type:: object
-
-            - The URL to the shipment list endpoint documentation.
+      The URL to the shipment list endpoint documentation.
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:

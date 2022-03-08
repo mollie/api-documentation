@@ -21,91 +21,71 @@ List profiles
 
 Retrieve all payment profiles available on the account.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: offset
+   :type: integer
+   :condition: optional
 
-   * - ``offset``
+   The number of payment profiles to skip.
 
-       .. type:: integer
-          :required: false
+.. parameter:: count
+   :type: integer
+   :condition: optional
 
-     - The number of payment profiles to skip.
-
-   * - ``count``
-
-       .. type:: integer
-          :required: false
-
-     - The number of payment profiles to return (with a maximum of 250).
+   The number of payment profiles to return (with a maximum of 250).
 
 Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: totalCount
+   :type: integer
 
-   * - ``totalCount``
+   The total number of payment profiles available.
 
-       .. type:: integer
+.. parameter:: offset
+   :type: integer
 
-     - The total number of payment profiles available.
+   The number of skipped payment profiles as requested.
 
-   * - ``offset``
+.. parameter:: count
+   :type: integer
 
-       .. type:: integer
+   The number of payment profiles found in ``data``, which is either the requested number (with a maximum of 250) or the
+   default number.
 
-     - The number of skipped payment profiles as requested.
+.. parameter:: data
+   :type: array
 
-   * - ``count``
+   An array of payment profile objects as described in :doc:`Get profile </reference/v1/profiles-api/get-profile>`.
 
-       .. type:: integer
+.. parameter:: links
+   :type: object
 
-     - The number of payment profiles found in ``data``, which is either the requested number (with a maximum of 250) or
-       the default number.
+   Links to help navigate through the lists of payment profiles, based on the given offset.
 
-   * - ``data``
+   .. parameter:: previous
+      :type: string
 
-       .. type:: array
+      The previous set of payment profiles, if available.
 
-     - An array of payment profile objects as described in :doc:`Get profile </reference/v1/profiles-api/get-profile>`.
+   .. parameter:: next
+      :type: string
 
-   * - ``links``
+      The next set of payment profiles, if available.
 
-       .. type:: object
+   .. parameter:: first
+      :type: string
 
-     - Links to help navigate through the lists of payment profiles, based on the given offset.
+      The first set of payment profiles, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: last
+      :type: string
 
-          * - ``previous``
-
-              .. type:: string
-
-            - The previous set of payment profiles, if available.
-
-          * - ``next``
-
-              .. type:: string
-
-            - The next set of payment profiles, if available.
-
-          * - ``first``
-
-              .. type:: string
-
-            - The first set of payment profiles, if available.
-
-          * - ``last``
-
-              .. type:: string
-
-            - The last set of payment profiles, if available.
+      The last set of payment profiles, if available.
 
 Example
 -------
@@ -120,6 +100,7 @@ Request
 
 Response
 ^^^^^^^^
+
 .. code-block:: none
    :linenos:
 
@@ -139,6 +120,7 @@ Response
                "website": "https://www.mywebsite.com",
                "email": "info@mywebsite.com",
                "phone": "31123456789",
+               "businessCategory": "OTHER_MERCHANDISE",
                "categoryCode": 5399,
                "status": "unverified",
                "review": {
@@ -158,6 +140,7 @@ Response
                "website": "https://www.mywebsite.com",
                "email": "info@mywebsite.com",
                "phone": "31123456789",
+               "businessCategory": "OTHER_MERCHANDISE",
                "categoryCode": 5399,
                "status": "unverified",
                "createdDatetime": "2018-03-17T01:47:45.0Z",

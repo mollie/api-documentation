@@ -21,80 +21,69 @@ List payment methods
 
 Retrieve all payment methods activated on the payment profile.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: include
+   :type: string
+   :condition: required
 
-   * - ``include``
+   Include additional data. Must be a comma-separated list of one or more includes. See
+   :doc:`Get method </reference/v1/methods-api/get-method>` for available includes.
 
-       .. type:: string
-          :required: true
+.. parameter:: recurringType
+   :type: string
+   :condition: optional
 
-     - Include additional data. Must be a comma-separated list of one or more includes. See
-       :doc:`Get method </reference/v1/methods-api/get-method>` for available includes.
+   Passing ``first`` will only show payment methods eligible for making a
+   :ref:`first payment <payments/recurring/first-payment>`. Passing ``recurring`` shows payment methods which can be
+   used to automatically charge your customer's account when authorization has been given.
 
-   * - ``recurringType``
+   Possible values: ``first`` ``recurring``
 
-       .. type:: string
-          :required: false
+.. parameter:: locale
+   :type: string
+   :condition: optional
 
-     - Passing ``first`` will only show payment methods eligible for making a
-       :ref:`first payment <payments/recurring/first-payment>`. Passing ``recurring`` shows payment methods which can be
-       used to automatically charge your customer's account when authorization has been given.
+   Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment
+   method names to the corresponding language.
 
-       Possible values: ``first`` ``recurring``
+   Possible values: ``en_US`` ``de_AT`` ``de_CH`` ``de_DE`` ``es_ES`` ``fr_BE`` ``fr_FR`` ``nl_BE`` ``nl_NL``
 
-   * - ``locale``
+.. parameter:: offset
+   :type: integer
+   :condition: optional
 
-       .. type:: string
-          :required: false
+   The number of payment methods to skip.
 
-     - Passing a locale will sort the payment methods in the preferred order for the country, and translate
-       the payment method names to the corresponding language.
+.. parameter:: count
+   :type: integer
+   :condition: optional
 
-       Possible values: ``en_US`` ``de_AT`` ``de_CH`` ``de_DE`` ``es_ES`` ``fr_BE`` ``fr_FR`` ``nl_BE`` ``nl_NL``
-
-   * - ``offset``
-
-       .. type:: integer
-          :required: false
-
-     - The number of payment methods to skip.
-
-   * - ``count``
-
-       .. type:: integer
-          :required: false
-
-     - The number of payment methods to return (with a maximum of 250).
+   The number of payment methods to return (with a maximum of 250).
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, the only mandatory extra query string parameter is the ``profileId`` parameter.
 With it, you can specify which profile you want to list the methods of. Organizations can have multiple profiles for
-each of their websites. See :doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more information.
+each of their websites. See :doc:`Profiles API </reference/v1/profiles-api/create-profile>` for more information.
 
-.. list-table::
-   :widths: auto
+.. parameter:: profileId
+   :type: string
+   :condition: required
+   :collapse: true
 
-   * - ``profileId``
+   The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
 
-       .. type:: string
-          :required: true
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-     - The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to true to only retrieve payment methods available in test mode. By default, only live
-       payment methods are returned.
+   Set this to true to only retrieve payment methods available in test mode. By default, only live payment methods are
+   returned.
 
 Includes
 ^^^^^^^^
@@ -107,67 +96,52 @@ Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: totalCount
+   :type: integer
 
-   * - ``totalCount``
+   The total number of payment methods available.
 
-       .. type:: integer
+.. parameter:: offset
+   :type: integer
 
-     - The total number of payment methods available.
+   The number of skipped payment methods as requested.
 
-   * - ``offset``
+.. parameter:: count
+   :type: integer
 
-       .. type:: integer
+   The number of payment methods found in ``data``, which is either the requested number (with a maximum of 250) or
+   the default number.
 
-     - The number of skipped payment methods as requested.
+.. parameter:: data
+   :type: array
 
-   * - ``count``
+   An array of payment method objects as described in
+   :doc:`Get payment method </reference/v1/methods-api/get-method>`.
 
-       .. type:: integer
+.. parameter:: links
+   :type: object
 
-     - The number of payment methods found in ``data``, which is either the requested number (with a maximum of 250) or
-       the default number.
+   Links to help navigate through the lists of payment methods, based on the given offset.
 
-   * - ``data``
+   .. parameter:: previous
+      :type: string
 
-       .. type:: array
+      The previous set of payment methods, if available.
 
-     - An array of payment method objects as described in
-       :doc:`Get payment method </reference/v1/methods-api/get-method>`.
+   .. parameter:: next
+      :type: string
 
-   * - ``links``
+      The next set of payment methods, if available.
 
-       .. type:: object
+   .. parameter:: first
+      :type: string
 
-     - Links to help navigate through the lists of payment methods, based on the given offset.
+      The first set of payment methods, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: last
+      :type: string
 
-          * - ``previous``
-
-              .. type:: string
-
-            - The previous set of payment methods, if available.
-
-          * - ``next``
-
-              .. type:: string
-
-            - The next set of payment methods, if available.
-
-          * - ``first``
-
-              .. type:: string
-
-            - The first set of payment methods, if available.
-
-          * - ``last``
-
-              .. type:: string
-
-            - The last set of payment methods, if available.
+      The last set of payment methods, if available.
 
 Example
 -------

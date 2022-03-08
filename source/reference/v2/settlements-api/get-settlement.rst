@@ -29,277 +29,287 @@ Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains a settlement object. Will always contain ``settlement`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains a settlement object. Will always contain ``settlement`` for this endpoint.
+   The settlement's unique identifier, for example ``stl_jDk30akdN``.
 
-   * - ``id``
+.. parameter:: reference
+   :type: string
 
-       .. type:: string
+   The settlement's bank reference, as found in your Mollie account and on your bank statement.
 
-     - The settlement's unique identifier, for example ``stl_jDk30akdN``.
+.. parameter:: createdAt
+   :type: string
 
-   * - ``reference``
+   The date on which the settlement was created, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-       .. type:: string
+.. parameter:: settledAt
+   :type: string
 
-     - The settlement's bank reference, as found in your Mollie account and on your bank statement.
+   The date on which the settlement was settled, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format. When
+   requesting the :doc:`open settlement <get-open-settlement>` or  :doc:`next settlement <get-next-settlement>` the
+   return value is ``null``.
 
-   * - ``createdAt``
+.. parameter:: status
+   :type: string
 
-       .. type:: string
+   The status of the settlement.
 
-     - The date on which the settlement was created, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+   Possible values:
 
-   * - ``settledAt``
+   * ``open`` The settlement has not been closed yet.
+   * ``pending`` The settlement has been closed and is being processed.
+   * ``paidout`` The settlement has been paid out.
+   * ``failed`` The settlement could not be paid out.
 
-       .. type:: string
+.. parameter:: amount
+   :type: amount object
 
-     - The date on which the settlement was settled, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
-       When requesting the :doc:`open settlement <get-open-settlement>` or  :doc:`next settlement <get-next-settlement>`
-       the return value is ``null``.
+   The total amount paid out with this settlement.
 
-   * - ``status``
+   .. parameter:: currency
+      :type: string
 
-       .. type:: string
+      The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-     - The status of the settlement.
+   .. parameter:: value
+      :type: string
 
-       Possible values:
+      A string containing the exact amount of the settlement in the given currency.
 
-       * ``open`` The settlement has not been closed yet.
-       * ``pending`` The settlement has been closed and is being processed.
-       * ``paidout`` The settlement has been paid out.
-       * ``failed`` The settlement could not be paid out.
+.. parameter:: periods
+   :type: object
 
-   * - ``amount``
+   This object is a collection of Period objects, which describe the settlement by month in full detail.
 
-       .. type:: amount object
+   Please note the periods are sorted by date. For example, the field may contain an object called ``2018``, which
+   contains a Period object called ``03``. The Period object fields are listed below.
 
-     - The total amount paid out with this settlement.
+   .. parameter:: revenue
+      :type: array
 
-       .. list-table::
-          :widths: auto
+      An array of revenue objects containing the total revenue for each payment method during this period. Each object
+      has the following fields.
 
-          * - ``currency``
+      .. parameter:: description
+         :type: string
 
-              .. type:: string
+         A description of the revenue subtotal.
 
-            - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+      .. parameter:: method
+         :type: string
 
-          * - ``value``
+         The payment method ID, if applicable.
 
-              .. type:: string
+      .. parameter:: count
+         :type: integer
 
-            - A string containing the exact amount of the settlement in the given currency.
+         The number of payments received for this payment method.
 
-   * - ``periods``
+      .. parameter:: amountNet
+         :type: amount object
 
-       .. type:: object
+         The net total of received funds for this payment method (excludes VAT).
 
-     - This object is a collection of Period objects, which describe the settlement by month in full detail.
+         .. parameter:: currency
+            :type: string
 
-       Please note the periods are sorted by date. For example, the field may contain an object called ``2018``, which
-       contains a Period object called ``03``. The Period object fields are listed below.
+            The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-       .. list-table::
-          :widths: auto
+         .. parameter:: value
+            :type: string
 
-          * - ``revenue``
+            A string containing the net amount in the given currency.
 
-              .. type:: array
+      .. parameter:: amountVat
+         :type: amount object
 
-            - An array of revenue objects containing the total revenue for each payment method during this period. Each
-              object has the following fields.
+         The VAT amount applicable to the revenue.
 
-              .. list-table::
-                 :widths: auto
+         .. parameter:: currency
+            :type: string
 
-                 * - ``description``
+            The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-                     .. type:: string
+         .. parameter:: value
+            :type: string
 
-                   - A description of the revenue subtotal.
+            A string containing the VAT amount in the given currency.
 
-                 * - ``method``
+      .. parameter:: amountGross
+         :type: amount object
 
-                     .. type:: string
+         The gross total of received funds for this payment method (includes VAT).
 
-                   - The payment method ID, if applicable.
+         .. parameter:: currency
+            :type: string
 
-                 * - ``count``
+            The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-                     .. type:: integer
+         .. parameter:: value
+            :type: string
 
-                   - The number of payments received for this payment method.
+            A string containing the gross amount in the given currency.
 
-                 * - ``amountNet``
+   .. parameter:: costs
+      :type: array
 
-                     .. type:: amount object
+      An array of Cost objects, describing the fees withheld for each payment method during this period. Each object has
+      the following fields.
 
-                   - The net total of received funds for this payment method (excludes VAT).
+      .. parameter:: description
+         :type: string
 
-                 * - ``amountVat``
+         A description of the subtotal.
 
-                     .. type:: amount object
+      .. parameter:: method
+         :type: string
 
-                   - The VAT amount applicable to the revenue.
+         The payment method ID, if applicable.
 
-                 * - ``amountGross``
+      .. parameter:: count
+         :type: integer
 
-                     .. type:: amount object
+         The number of times costs were made for this payment method.
 
-                   - The gross total of received funds for this payment method (includes VAT).
+      .. parameter:: rate
+         :type: object
 
-          * - ``costs``
+         The service rates, further divided into ``fixed`` and ``percentage`` costs.
 
-              .. type:: array
+         .. parameter:: fixed
+            :type: amount object
 
-            - An array of Cost objects, describing the fees withheld for each payment method during this period. Each
-              object has the following fields.
+            An amount object describing the fixed costs.
 
-              .. list-table::
-                 :widths: auto
+            .. parameter:: currency
+               :type: string
 
-                 * - ``description``
+               The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-                     .. type:: string
+            .. parameter:: value
+               :type: string
 
-                   - A description of the subtotal.
+               A string containing the fixed amount in the given currency.
 
-                 * - ``method``
+         .. parameter:: variable
+            :type: string
 
-                     .. type:: string
+            A string describing the variable costs as a percentage.
 
-                   - The payment method ID, if applicable.
+      .. parameter:: amountNet
+         :type: amount object
 
-                 * - ``count``
+         The net total costs for this payment method (excludes VAT).
 
-                     .. type:: integer
+         .. parameter:: currency
+            :type: string
 
-                   - The number of times costs were made for this payment method.
+            The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-                 * - ``rate``
+         .. parameter:: value
+            :type: string
 
-                     .. type:: object
+            A string containing the net amount in the given currency.
 
-                   - The service rates, further divided into ``fixed`` and ``percentage`` costs.
+      .. parameter:: amountVat
+         :type: amount object
 
-                     .. list-table::
-                        :widths: auto
+         The VAT amount applicable to the costs.
 
-                        * - ``fixed``
+         .. parameter:: currency
+            :type: string
 
-                            .. type:: amount object
+            The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-                          - An amount object describing the fixed costs.
+         .. parameter:: value
+            :type: string
 
-                        * - ``variable``
+            A string containing the VAT amount in the given currency.
 
-                            .. type:: string
+      .. parameter:: amountGross
+         :type: amount object
 
-                          - A string describing the variable costs as a percentage.
+         The gross total costs for this payment method (includes VAT).
 
-                 * - ``amountNet``
+         .. parameter:: currency
+            :type: string
 
-                     .. type:: amount object
+            The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-                   - The net total costs for this payment method (excludes VAT).
+         .. parameter:: value
+            :type: string
 
-                 * - ``amountVat``
+            A string containing the gross amount in the given currency.
 
-                     .. type:: amount object
+   .. parameter:: invoiceId
+      :type: string
 
-                   - The VAT amount applicable to the costs.
+      The ID of the invoice that was created to invoice specifically the costs in this month/period.
 
-                 * - ``amountGross``
+      If an individual month/period has not been invoiced yet, then this field will not be present until that invoice is
+      created.
 
-                     .. type:: amount object
+.. parameter:: invoiceId
+   :type: string
 
-                   - The gross total costs for this payment method (includes VAT).
+   The ID of the invoice on which this settlement is invoiced, if it has been invoiced.
 
-          * - ``invoiceId``
+   .. warning:: This field has been deprecated in favor of the ``invoiceId`` field inside each monthly period in the
+      ``periods`` object.
 
-              .. type:: string
+   This was done because settlements nowadays have each monthly period invoiced separately, in which case this ID will
+   reference only the oldest invoice. This can result in incorrect bookkeeping.
 
-            - The ID of the invoice that was created to invoice specifically the costs in this
-              month/period.
+   For this reason the field should no longer be used. Use the aforementioned ``invoiceId`` field of the individual
+   monthly period objects instead.
 
-              If an individual month/period has not been invoiced yet, then this field will not
-              be present until that invoice is created.
+.. parameter:: _links
+   :type: object
 
-   * - ``invoiceId``
+   An object with several URL objects relevant to the settlement. Every URL object will contain an ``href`` and a
+   ``type`` field.
 
-       .. type:: string
+   .. parameter:: self
+      :type: URL object
 
-     - The ID of the invoice on which this settlement is invoiced, if it has been invoiced.
+      The API resource URL of the settlement itself.
 
-       .. warning:: This field has been deprecated in favor of the ``invoiceId`` field inside each
-                    monthly period in the ``periods`` object.
+   .. parameter:: payments
+      :type: URL object
 
-                    This was done because some newer settlements have each monthly period invoiced
-                    separately, in which case this ID will reference only the oldest invoice. This
-                    can result in incorrect bookkeeping.
+      The API resource URL of the payments that are included in this settlement.
 
-                    For this reason the field should no longer be used. Use the aforementioned
-                    ``invoiceId`` field of the individual monthly period objects instead.
+   .. parameter:: refunds
+      :type: URL object
 
-   * - ``_links``
+      The API resource URL of the refunds that are included in this settlement.
 
-       .. type:: object
+   .. parameter:: chargebacks
+      :type: URL object
 
-     - An object with several URL objects relevant to the settlement. Every URL object will contain an ``href`` and a
-       ``type`` field.
+      The API resource URL of the chargebacks that are included in this settlement.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: captures
+      :type: URL object
 
-          * - ``self``
+      The API resource URL of the captures that are included in this settlement.
 
-              .. type:: URL object
+   .. parameter:: invoice
+      :type: URL object
 
-            - The API resource URL of the settlement itself.
+      The API resource URL of the invoice that contains this settlement.
 
-          * - ``payments``
+   .. parameter:: documentation
+      :type: URL object
 
-              .. type:: URL object
-
-            - The API resource URL of the payments that are included in this settlement.
-
-          * - ``refunds``
-
-              .. type:: URL object
-
-            - The API resource URL of the refunds that are included in this settlement.
-
-          * - ``chargebacks``
-
-              .. type:: URL object
-
-            - The API resource URL of the chargebacks that are included in this settlement.
-
-          * - ``captures``
-
-              .. type:: URL object
-
-            - The API resource URL of the captures that are included in this settlement.
-
-          * - ``invoice``
-
-              .. type:: URL object
-
-            - The API resource URL of the invoice that contains this settlement.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the settlement retrieval endpoint documentation.
+      The URL to the settlement retrieval endpoint documentation.
 
 Example
 -------

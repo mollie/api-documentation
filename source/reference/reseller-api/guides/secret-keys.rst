@@ -24,36 +24,29 @@ You need to send these obligatory parameters along either via ``POST`` or in the
 parameters are used to authenticate the API request. Please take note that you must URL-encode the values for the
 parameters: ``my value`` becomes ``my%20value``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: partner_id
+   :type: string
+   :condition: required
 
-   * - ``partner_id``
+   Your Partner ID.
 
-       .. type:: string
-          :required: true
+.. parameter:: profile_key
+   :type: string
+   :condition: required
 
-     - Your Partner ID.
+   Your profile key, you can retrieve it via the Reseller portal in the Mollie Dashboard.
 
-   * - ``profile_key``
+.. parameter:: timestamp
+   :type: timestamp
+   :condition: required
 
-       .. type:: string
-          :required: true
+   The current time in `Unix time <https://en.wikipedia.org/wiki/Unix_time>`_.
 
-     - Your profile key, you can retrieve it via the Reseller portal in the Mollie Dashboard.
+.. parameter:: signature
+   :type: string
+   :condition: required
 
-   * - ``timestamp``
-
-       .. type:: timestamp
-          :required: true
-
-     - The current time in `Unix time <https://en.wikipedia.org/wiki/Unix_time>`_.
-
-   * - ``signature``
-
-       .. type:: string
-          :required: true
-
-     - The signature of the request, see **Creating the Signature** below.
+   The signature of the request, see **Creating the Signature** below.
 
 Creating the signature
 ----------------------

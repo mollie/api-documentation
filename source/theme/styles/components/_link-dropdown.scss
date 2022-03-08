@@ -1,3 +1,5 @@
+@import 'variables';
+
 .link-dropdown {
   display: inline-block;
   font-size: 15px;
@@ -7,9 +9,10 @@
 }
 
 .link-dropdown .dk-selected {
-  background: #fff;
+  background: $background-color;
   border: 1px solid #ddd;
   border-radius: 4px;
+  color: $text-color;
   cursor: pointer;
   height: 32px;
   line-height: 20px;
@@ -28,11 +31,13 @@
   border-radius: 4px 4px 0 0;
 }
 
+.link-dropdown .dk-selected:before,
 .link-dropdown .dk-selected:hover:before,
 .link-dropdown .dk-selected:focus:before {
   border-top-color: #000;
 }
 
+.link-dropdown.dk-select-open-down .dk-selected:before,
 .link-dropdown.dk-select-open-down .dk-selected:hover:before,
 .link-dropdown.dk-select-open-down .dk-selected:focus:before {
   border-bottom-color: #000;
@@ -43,7 +48,7 @@
 }
 
 .link-dropdown.dk-select-open-down .dk-select-options {
-  background: #fff;
+  background: $background-color;
   border: 1px solid #bbb;
   border-radius: 0 0 4px 4px;
   border-top-color: #eee;
@@ -57,8 +62,8 @@
 }
 
 .link-dropdown .dk-select-options .dk-option {
-  background: #fff;
-  color: #000;
+  background: transparent;
+  color: $text-color;
   cursor: pointer;
   height: 44px;
   line-height: 20px;
@@ -67,12 +72,42 @@
 }
 
 .link-dropdown .dk-select-options .dk-option.dk-option-selected {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .link-dropdown .dk-select-options .dk-option-highlight,
 .link-dropdown .dk-select-options .dk-option:hover {
-  background: #fafafa;
-  color: #000;
+  background: shade($background-color, 2%);
+  color: $text-color;
   text-decoration: none;
+}
+
+/*
+ * Dark mode
+ */
+@media (prefers-color-scheme: dark) {
+  .link-dropdown .dk-selected {
+    background: shade($background-color, 10%);
+    border-color: shade($background-color, 10%);
+  }
+
+  .link-dropdown .dk-selected:hover,
+  .link-dropdown.dk-select-open-down .dk-selected,
+  .link-dropdown.dk-select-open-down .dk-selected:hover {
+    border-color: shade($background-color, 10%);
+  }
+
+  .link-dropdown .dk-selected:before {
+    border-top-color: $text-color;
+  }
+
+  .link-dropdown.dk-select-open-down .dk-select-options {
+    background: shade($background-color, 10%);
+    border-color: shade($background-color, 10%);
+  }
+
+  .link-dropdown .dk-select-options .dk-option-highlight,
+  .link-dropdown .dk-select-options .dk-option:hover {
+    background: shade($background-color, 15%);
+  }
 }

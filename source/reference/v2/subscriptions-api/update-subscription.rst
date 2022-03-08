@@ -21,114 +21,92 @@ Parameters
 Replace ``customerId`` in the endpoint URL by the customer's ID, and replace ``id`` by the subscription's ID. For
 example: ``/v2/customers/cst_5a2pPrwaWy/subscriptions/sub_8EjeBVgtEn``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: amount
+   :type: amount object
+   :condition: optional
 
-   * - ``amount``
+   The amount that you want to charge, e.g. ``{"currency":"EUR", "value":"100.00"}`` if you would want to change the
+   charge to €100.00.
 
-       .. type:: amount object
-          :required: false
+   .. parameter:: currency
+      :type: string
+      :condition: required
 
-     - The amount that you want to charge, e.g. ``{"currency":"EUR", "value":"100.00"}`` if you would want to change the
-       charge to €100.00.
+      An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code. The currencies supported depend on the
+      payment methods that are enabled on your account.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: value
+      :type: string
+      :condition: required
 
-          * - ``currency``
+      A string containing the exact amount you want to charge in the given currency. Make sure to send the right amount
+      of decimals. Non-string values are not accepted.
 
-              .. type:: string
-                 :required: true
+.. parameter:: description
+   :type: string
+   :condition: optional
 
-            - An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code. The currencies supported depend on
-              the payment methods that are enabled on your account.
+   A description unique per subscription. This will be included in the payment description.
 
-          * - ``value``
+.. parameter:: interval
+   :type: string
+   :condition: optional
 
-              .. type:: string
-                 :required: true
+   Interval to wait between charges, for example ``1 month`` or ``14 days``.
 
-            - A string containing the exact amount you want to charge in the given currency. Make sure to send the right
-              amount of decimals. Non-string values are not accepted.
+   Possible values: ``... months`` ``... weeks`` ``... days``
 
-   * - ``description``
+   .. note:: The new interval will be calculated from the last charge date.
 
-       .. type:: string
-          :required: false
+.. parameter:: mandateId
+   :type: string
+   :condition: optional
 
-     - A description unique per subscription. This will be included in the payment description.
+   Use this parameter to set a specific mandate for all subscription payments. If you set a ``method`` before, it will
+   be changed to ``null`` when setting this parameter.
 
-   * - ``interval``
+.. parameter:: metadata
+   :type: mixed
+   :condition: optional
 
-       .. type:: string
-          :required: false
+   Provide any data you like, and we will save the data alongside the subscription. Whenever you fetch the subscription
+   with our API, we will also include the metadata. You can use up to 1kB of JSON.
 
-     - Interval to wait between charges, for example ``1 month`` or ``14 days``.
+.. parameter:: startDate
+   :type: date
+   :condition: optional
 
-       Possible values: ``... months`` ``... weeks`` ``... days``
+   The start date of the subscription in ``YYYY-MM-DD`` format. This is the first day on which your customer will be
+   charged. Should always be in the future.
 
-       .. note::
-          The new interval will be calculated from the last charge date.
+   .. note:: A subscription's start date cannot be changed if it has already been charged.
 
-   * - ``mandateId``
+.. parameter:: times
+   :type: integer
+   :condition: optional
 
-       .. type:: string
-          :required: false
+   Total number of charges for the subscription to complete. Can not be less than number of times that subscription has
+   been charged.
 
-     - Use this parameter to set a specific mandate for all subscription payments. If you set a ``method`` before, it
-       will be changed to ``null`` when setting this parameter.
+   .. note:: Subscriptions in test mode will be canceled automatically after 10 charges.
 
-   * - ``metadata``
+.. parameter:: webhookUrl
+   :type: string
+   :condition: optional
 
-       .. type:: mixed
-          :required: false
-
-     - Provide any data you like, and we will save the data alongside the subscription. Whenever you fetch the
-       subscription with our API, we will also include the metadata. You can use up to 1kB of JSON.
-
-   * - ``startDate``
-
-       .. type:: date
-          :required: false
-
-     - The start date of the subscription in ``YYYY-MM-DD`` format. This is the first day on which your customer will be
-       charged. Should always be in the future.
-
-       .. note::
-          A subscription's start date cannot be changed if it has already been charged.
-
-   * - ``times``
-
-       .. type:: integer
-          :required: false
-
-     - Total number of charges for the subscription to complete. Can not be less than number of times that subscription
-       has been charged.
-
-       .. note::
-          Subscriptions in test mode will be canceled automatically after 10 charges.
-
-   * - ``webhookUrl``
-
-       .. type:: string
-          :required: false
-
-     - Use this parameter to set a webhook URL for all subscription payments.
+   Use this parameter to set a webhook URL for all subscription payments.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to update a test mode subscription.
+   Set this to ``true`` to update a test mode subscription.
 
 Response
 --------
@@ -139,7 +117,6 @@ A subscription object is returned, as described in
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -185,7 +162,7 @@ Example
       ).update(
           "sub_8EjeBVgtEn",
           data={
-              "amount": {
+      "amount": {
                   "currency": "EUR",
                   "value": "10.00",
               },

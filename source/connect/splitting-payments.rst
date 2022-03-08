@@ -40,7 +40,7 @@ On our own account, we will receive the remainder of €2,50 minus any payment f
    :linenos:
 
    curl -X POST https://api.mollie.com/v2/payments \
-       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW" \
+       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
        -d "amount[currency]=EUR" \
        -d "amount[value]=10.00" \
        -d "description=My first routed payment" \
@@ -128,7 +128,7 @@ For example, the funds for the following payment will only become available on t
    :linenos:
 
    curl -X POST https://api.mollie.com/v2/payments \
-       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW" \
+       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
        -d "amount[currency]=EUR" \
        -d "amount[value]=10.00" \
        -d "description=My first delayed payment" \
@@ -212,7 +212,7 @@ as the payment has already been paid by the consumer**, by simply updating the p
    :linenos:
 
    curl -X POST https://api.mollie.com/v2/payments/tr_2qkhcMzypH/routes/rt_9dk4al1n \
-       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW" \
+       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
        -d "releaseDate=2026-01-01"
 
 .. code-block:: http

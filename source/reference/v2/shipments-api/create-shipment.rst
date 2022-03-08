@@ -12,115 +12,93 @@ Create shipment
    :organization_access_tokens: true
    :oauth: true
 
-The **Create Shipment API** is used to ship order lines created by the
-:doc:`/reference/v2/orders-api/create-order`.
+Create a shipment for specific order lines of an :doc:`order </reference/v2/orders-api/overview>`.
 
-When using *Klarna Pay later* and *Klarna Slice it* this is mandatory for the order amount to be captured. A capture
-will automatically be created for the shipment.
+When using *Klarna Pay now*, *Klarna Pay later* and *Klarna Slice it*, using this endpoint is mandatory for the order
+amount to be captured. A capture will automatically be created for the shipment.
 
 The word "shipping" is used in the figurative sense here. It can also mean that a service was provided or digital
 content was delivered.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: lines
+   :type: array
+   :condition: optional
 
-   * - ``lines``
+   An array of objects containing the order line details you want to create a shipment for.  If you leave out this
+   parameter, the entire order will be shipped. If the order is already partially shipped, any remaining lines will be
+   shipped.
 
-       .. type:: array
-          :required: false
+   .. parameter:: id
+      :type: string
 
-     - An array of objects containing the order line details you want to create a shipment for.  If you leave out this
-       parameter, the entire order will be shipped. If the order is already partially shipped, any remaining lines will
-       be shipped.
+      The API resource token of the order line, for example: ``odl_jp31jz``.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: quantity
+      :type: int
+      :condition: optional
 
-          * - ``id``
+      The number of items that should be shipped for this order line. When this parameter is omitted, the whole order
+      line will be shipped.
 
-              .. type:: string
+      Must be less than the number of items already shipped for this order line.
 
-            - The API resource token of the order line, for example: ``odl_jp31jz``.
+   .. parameter:: amount
+      :type: amount object
+      :condition: optional
 
-          * - ``quantity``
+      The amount that you want to ship. In almost all cases, Mollie can determine the amount automatically.
 
-              .. type:: int
-                 :required: false
+      The amount is required only if you are *partially* shipping an order line which has a non-zero ``discountAmount``.
 
-            - The number of items that should be shipped for this order line. When this parameter is omitted, the
-              whole order line will be shipped.
+      The amount you can ship depends on various properties of the order line and the create shipment request. The
+      maximum that can be shipped is ``unit price x quantity to ship``.
 
-              Must be less than the number of items already shipped for this order line.
+      The minimum amount depends on the discount applied to the line, the quantity already shipped or canceled, the
+      amounts already shipped or canceled and the quantity you want to ship.
 
-          * - ``amount``
+      If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the
+      amount cannot be determined automatically. The error will contain the ``extra.minimumAmount`` and
+      ``extra.maximumAmount`` properties that allow you pick the right amount.
 
-              .. type:: amount object
-                 :required: false
+.. parameter:: tracking
+   :type: object
+   :condition: optional
 
-            - The amount that you want to ship. In almost all cases, Mollie can determine the amount automatically.
+   An object containing tracking details for the shipment. When sent, the ``carrier`` and ``code`` parameters become
+   required for this endpoint.
 
-              The amount is required only if you are *partially* shipping an order line which has a non-zero
-              ``discountAmount``.
+   .. parameter:: carrier
+      :type: string
+      :condition: required
 
-              The amount you can ship depends on various properties of the order line and the create shipment request.
-              The maximum that can be shipped is ``unit price x quantity to ship``.
+      Name of the postal carrier (as specific as possible). For example ``PostNL``.
 
-              The minimum amount depends on the discount applied to the line, the quantity already shipped or canceled,
-              the amounts already shipped or canceled and the quantity you want to ship.
+   .. parameter:: code
+      :type: string
+      :condition: required
 
-              If you do not send an amount, Mollie will determine the amount automatically or respond with an error
-              if the amount cannot be determined automatically. The error will contain the ``extra.minimumAmount`` and
-              ``extra.maximumAmount`` properties that allow you pick the right amount.
+      The track and trace code of the shipment. For example ``3SKABA000000000``.
 
-   * - ``tracking``
+   .. parameter:: url
+      :type: string
+      :condition: optional
 
-       .. type:: object
-          :required: false
-
-     - An object containing tracking details for the shipment. When sent, the ``carrier`` and ``code`` parameters become
-       required for this endpoint.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``carrier``
-
-              .. type:: string
-                 :required: true
-
-            - Name of the postal carrier (as specific as possible). For example ``PostNL``.
-
-          * - ``code``
-
-              .. type:: string
-                 :required: true
-
-            - The track and trace code of the shipment. For example ``3SKABA000000000``.
-
-          * - ``url``
-
-              .. type:: string
-                 :required: false
-
-            - The URL where your customer can track the shipment, for example:
-              ``http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C``.
+      The URL where your customer can track the shipment, for example:
+      ``http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C``.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to make this order a test shipment.
+   Set this to ``true`` to make this order a test shipment.
 
 Response
 --------
@@ -130,7 +108,6 @@ A shipment object is returned, as described in :doc:`Get shipment </reference/v2
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:

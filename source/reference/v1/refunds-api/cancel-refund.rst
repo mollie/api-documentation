@@ -7,8 +7,8 @@ Cancel refund
              July 2023. However, new features will only be added to the v2 API.
 
              The documentation for canceling refunds in the new v2 API can be found
-             :doc:`here </reference/v2/refunds-api/cancel-refund>`. For more information on the v2 API, refer to our
-             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
+             :doc:`here </reference/v2/refunds-api/cancel-payment-refund>`. For more information on the v2 API, refer to
+             our :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: DELETE
@@ -36,15 +36,12 @@ Access token parameters
 If you are creating an app with :doc:`Mollie Connect </connect/overview>`, the ``testmode`` parameter is also
 available.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to cancel a test mode refund.
+   Set this to ``true`` to cancel a test mode refund.
 
 Response
 --------

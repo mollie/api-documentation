@@ -25,102 +25,79 @@ Parameters
 ----------
 Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``cst_8wmqcHMN4U``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: offset
+   :type: integer
+   :condition: optional
 
-   * - ``offset``
+   The number of mandates to skip.
 
-       .. type:: integer
-          :required: false
+.. parameter:: count
+   :type: integer
+   :condition: optional
 
-     - The number of mandates to skip.
-
-   * - ``count``
-
-       .. type:: integer
-          :required: false
-
-     - The number of mandates to return (with a maximum of 250).
+   The number of mandates to return (with a maximum of 250).
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, the ``testmode`` query string parameter is also available.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to true to only retrieve test mode mandates.
+   Set this to true to only retrieve test mode mandates.
 
 Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: totalCount
+   :type: integer
 
-   * - ``totalCount``
+   The total number of mandates available.
 
-       .. type:: integer
+.. parameter:: offset
+   :type: integer
 
-     - The total number of mandates available.
+   The number of skipped mandates as requested.
 
-   * - ``offset``
+.. parameter:: count
+   :type: integer
 
-       .. type:: integer
+   The number of mandates found in ``data``, which is either the requested number (with a maximum of 250) or the default
+   number.
 
-     - The number of skipped mandates as requested.
+.. parameter:: data
+   :type: array
 
-   * - ``count``
+   An array of mandate objects as described in :doc:`Get mandate </reference/v1/mandates-api/get-mandate>`.
 
-       .. type:: integer
+.. parameter:: links
+   :type: object
 
-     - The number of mandates found in ``data``, which is either the requested number (with a maximum of 250) or the
-       default number.
+   Links to help navigate through the lists of mandates, based on the given offset.
 
-   * - ``data``
+   .. parameter:: previous
+      :type: string
 
-       .. type:: array
+      The previous set of mandates, if available.
 
-     - An array of mandate objects as described in :doc:`Get mandate </reference/v1/mandates-api/get-mandate>`.
+   .. parameter:: next
+      :type: string
 
-   * - ``links``
+      The next set of mandates, if available.
 
-       .. type:: object
+   .. parameter:: first
+      :type: string
 
-     - Links to help navigate through the lists of mandates, based on the given offset.
+      The first set of mandates, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: last
+      :type: string
 
-          * - ``previous``
-
-              .. type:: string
-
-            - The previous set of mandates, if available.
-
-          * - ``next``
-
-              .. type:: string
-
-            - The next set of mandates, if available.
-
-          * - ``first``
-
-              .. type:: string
-
-            - The first set of mandates, if available.
-
-          * - ``last``
-
-              .. type:: string
-
-            - The last set of mandates, if available.
+      The last set of mandates, if available.
 
 Example
 -------

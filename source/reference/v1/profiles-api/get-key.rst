@@ -35,35 +35,28 @@ Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains an API key object. Will always contain ``profile_api_key`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains an API key object. Will always contain ``profile_api_key`` for this endpoint.
+   The API key's identifier.
 
-   * - ``id``
+   Possible values: ``live`` ``test``
 
-       .. type:: string
+.. parameter:: key
+   :type: string
 
-     - The API key's identifier.
+   The actual API key, which you'll use when creating payments or when otherwise communicating with the API. Never share
+   the API key with anyone.
 
-       Possible values: ``live`` ``test``
+.. parameter:: createdDatetime
+   :type: datetime
 
-   * - ``key``
-
-       .. type:: string
-
-     - The actual API key, which you'll use when creating payments or when otherwise communicating with the API. Never
-       share the API key with anyone.
-
-   * - ``createdDatetime``
-
-       .. type:: datetime
-
-     - The API key's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+   The API key's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
 Example
 -------

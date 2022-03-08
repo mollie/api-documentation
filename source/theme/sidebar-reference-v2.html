@@ -8,7 +8,8 @@
 <ul>
   {%- set current = pagename.startswith('reference/v2/payments-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/payments-api/create-payment') }}">Payments API</a>
+    <a href="{{ pathto('reference/v2/payments-api/overview') }}"
+       class="{% if pagename == 'reference/v2/payments-api/overview' %}current{% endif %}">Payments API</a>
 
     {%- if current %}
       <ul>
@@ -38,7 +39,8 @@
 
   {%- set current = pagename.startswith('reference/v2/methods-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/methods-api/list-methods') }}">Methods API</a>
+    <a href="{{ pathto('reference/v2/methods-api/overview') }}"
+       class="{% if pagename == 'reference/v2/methods-api/overview' %}current{% endif %}">Methods API</a>
 
     {%- if current %}
       <ul>
@@ -60,29 +62,38 @@
 
   {%- set current = pagename.startswith('reference/v2/refunds-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/refunds-api/create-refund') }}">Refunds API</a>
+    <a href="{{ pathto('reference/v2/refunds-api/overview') }}"
+       class="{% if pagename == 'reference/v2/refunds-api/overview' %}current{% endif %}">Refunds API</a>
 
     {%- if current %}
       <ul>
         {{ sidebar_item(
-          'reference/v2/refunds-api/create-refund',
+          'reference/v2/refunds-api/create-payment-refund',
           'Create payment refund'
         ) }}
         {{ sidebar_item(
-          'reference/v2/refunds-api/get-refund',
+          'reference/v2/refunds-api/get-payment-refund',
           'Get payment refund'
         ) }}
         {{ sidebar_item(
-          'reference/v2/refunds-api/cancel-refund',
+          'reference/v2/refunds-api/cancel-payment-refund',
           'Cancel payment refund'
+        ) }}
+        {{ sidebar_item(
+        'reference/v2/refunds-api/list-payment-refunds',
+        'List payment refunds'
+        ) }}
+        {{ sidebar_item(
+        'reference/v2/refunds-api/create-order-refund',
+        'Create order refund'
+        ) }}
+        {{ sidebar_item(
+        'reference/v2/refunds-api/list-order-refunds',
+        'List order refunds'
         ) }}
         {{ sidebar_item(
           'reference/v2/refunds-api/list-refunds',
           'List refunds'
-        ) }}
-        {{ sidebar_item(
-          'reference/v2/refunds-api/list-refunds',
-          'List payment refunds'
         ) }}
       </ul>
     {%- endif %}
@@ -90,13 +101,18 @@
 
   {%- set current = pagename.startswith('reference/v2/chargebacks-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/chargebacks-api/get-chargeback') }}">Chargebacks API</a>
+    <a href="{{ pathto('reference/v2/chargebacks-api/overview') }}"
+       class="{% if pagename == 'reference/v2/chargebacks-api/overview' %}current{% endif %}">Chargebacks API</a>
 
     {%- if current %}
       <ul>
         {{ sidebar_item(
-          'reference/v2/chargebacks-api/get-chargeback',
-          'Get chargeback'
+          'reference/v2/chargebacks-api/get-payment-chargeback',
+          'Get payment chargeback'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/chargebacks-api/list-payment-chargebacks',
+          'List payment chargebacks'
         ) }}
         {{ sidebar_item(
           'reference/v2/chargebacks-api/list-chargebacks',
@@ -108,7 +124,8 @@
 
   {%- set current = pagename.startswith('reference/v2/captures-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/captures-api/get-capture') }}">Captures API</a>
+    <a href="{{ pathto('reference/v2/captures-api/overview') }}"
+       class="{% if pagename == 'reference/v2/captures-api/overview' %}current{% endif %}">Captures API</a>
 
     {%- if current %}
       <ul>
@@ -126,7 +143,8 @@
 
   {%- set current = pagename.startswith('reference/v2/wallets-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/wallets-api/request-apple-pay-payment-session') }}">Wallets API</a>
+    <a href="{{ pathto('reference/v2/wallets-api/overview') }}"
+       class="{% if pagename == 'reference/v2/wallets-api/overview' %}current{% endif %}">Wallets API</a>
 
     {%- if current %}
       <ul>
@@ -140,7 +158,8 @@
 
   {%- set current = pagename.startswith('reference/v2/payment-links-api/') -%}
   <li class="sidebar__item sidebar__group {%- if pagename.startswith('reference/v2/payment-links-api/') %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/payment-links-api/create-payment-link') }}">Payment Links API</a>
+    <a href="{{ pathto('reference/v2/payment-links-api/overview') }}"
+       class="{% if pagename == 'reference/v2/payment-links-api/overview' %}current{% endif %}">Payment links API</a>
 
     {%- if pagename.startswith('reference/v2/payment-links-api/') %}
       <ul>
@@ -161,12 +180,36 @@
   </li>
 </ul>
 
-<p class="sidebar__topic-header">Buy now, pay later</p>
+<p class="sidebar__topic-header">Components</p>
+
+<ul>
+  {%- set current = pagename.startswith('reference/mollie-js') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/mollie-js/overview') }}"
+       class="{% if pagename == 'reference/mollie-js/overview' %}current{% endif %}">Mollie.js</a>
+
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/mollie-js/mollie-object',
+          'Mollie object'
+        ) }}
+        {{ sidebar_item(
+          'reference/mollie-js/component-object',
+          'Component object'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
+</ul>
+
+<p class="sidebar__topic-header">Receiving orders</p>
 
 <ul>
   {%- set current = pagename.startswith('reference/v2/orders-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/orders-api/create-order') }}">Orders API</a>
+    <a href="{{ pathto('reference/v2/orders-api/overview') }}"
+       class="{% if pagename == 'reference/v2/orders-api/overview' %}current{% endif %}">Orders API</a>
 
     {%- if current %}
       <ul>
@@ -183,16 +226,16 @@
           'Update order'
         ) }}
         {{ sidebar_item(
-          'reference/v2/orders-api/update-orderline',
-          'Update order line'
-        ) }}
-        {{ sidebar_item(
         'reference/v2/orders-api/cancel-order',
           'Cancel order'
         ) }}
         {{ sidebar_item(
           'reference/v2/orders-api/list-orders',
           'List orders'
+        ) }}
+        {{ sidebar_item(
+        'reference/v2/orders-api/update-order-line',
+        'Update order line'
         ) }}
         {{ sidebar_item(
           'reference/v2/orders-api/cancel-order-lines',
@@ -202,21 +245,14 @@
           'reference/v2/orders-api/create-order-payment',
           'Create order payment'
         ) }}
-        {{ sidebar_item(
-          'reference/v2/orders-api/create-order-refund',
-          'Create order refund'
-        ) }}
-        {{ sidebar_item(
-          'reference/v2/orders-api/list-order-refunds',
-          'List order refunds'
-        ) }}
       </ul>
     {%- endif %}
   </li>
 
   {%- set current = pagename.startswith('reference/v2/shipments-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/shipments-api/create-shipment') }}">Shipments API</a>
+    <a href="{{ pathto('reference/v2/shipments-api/overview') }}"
+       class="{% if pagename == 'reference/v2/shipments-api/overview' %}current{% endif %}">Shipments API</a>
 
     {%- if current %}
       <ul>
@@ -229,12 +265,12 @@
           'Get shipment'
         ) }}
         {{ sidebar_item(
-          'reference/v2/shipments-api/list-shipments',
-          'List shipments'
+        'reference/v2/shipments-api/update-shipment',
+        'Update shipment'
         ) }}
         {{ sidebar_item(
-          'reference/v2/shipments-api/update-shipment',
-          'Update shipment'
+          'reference/v2/shipments-api/list-shipments',
+          'List shipments'
         ) }}
       </ul>
     {%- endif %}
@@ -246,7 +282,8 @@
 <ul>
   {%- set current = pagename.startswith('reference/v2/customers-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/customers-api/create-customer') }}">Customers API</a>
+    <a href="{{ pathto('reference/v2/customers-api/overview') }}"
+       class="{% if pagename == 'reference/v2/customers-api/overview' %}current{% endif %}">Customers API</a>
 
     {%- if current %}
     <ul>
@@ -284,7 +321,8 @@
 
   {%- set current = pagename.startswith('reference/v2/mandates-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/mandates-api/create-mandate') }}">Mandates API</a>
+    <a href="{{ pathto('reference/v2/mandates-api/overview') }}"
+       class="{% if pagename == 'reference/v2/mandates-api/overview' %}current{% endif %}">Mandates API</a>
 
     {%- if current %}
       <ul>
@@ -310,7 +348,8 @@
 
   {%- set current = pagename.startswith('reference/v2/subscriptions-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/subscriptions-api/create-subscription') }}">Subscriptions API</a>
+    <a href="{{ pathto('reference/v2/subscriptions-api/overview') }}"
+       class="{% if pagename == 'reference/v2/subscriptions-api/overview' %}current{% endif %}">Subscriptions API</a>
 
     {%- if current %}
       <ul>
@@ -321,6 +360,10 @@
         {{ sidebar_item(
           'reference/v2/subscriptions-api/get-subscription',
           'Get subscription'
+        ) }}
+        {{ sidebar_item(
+        'reference/v2/subscriptions-api/update-subscription',
+        'Update subscription'
         ) }}
         {{ sidebar_item(
           'reference/v2/subscriptions-api/cancel-subscription',
@@ -335,12 +378,8 @@
           'List all subscriptions'
         ) }}
         {{ sidebar_item(
-          'reference/v2/subscriptions-api/list-subscriptions-payments',
+          'reference/v2/subscriptions-api/list-subscription-payments',
           'List subscription payments'
-        ) }}
-        {{ sidebar_item(
-          'reference/v2/subscriptions-api/update-subscription',
-          'Update subscription'
         ) }}
       </ul>
     {%- endif %}
@@ -352,7 +391,8 @@
 <ul>
   {%- set current = pagename.startswith('reference/oauth2/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/oauth2/authorize') }}">OAuth API</a>
+    <a href="{{ pathto('reference/oauth2/overview') }}"
+       class="{% if pagename == 'reference/oauth2/overview' %}current{% endif %}">OAuth API</a>
 
     {%- if current %}
       <ul>
@@ -374,7 +414,8 @@
 
   {%- set current = pagename.startswith('reference/v2/permissions-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/permissions-api/get-permission') }}">Permissions API</a>
+    <a href="{{ pathto('reference/v2/permissions-api/overview') }}"
+       class="{% if pagename == 'reference/v2/permissions-api/overview' %}current{% endif %}">Permissions API</a>
 
     {%- if current %}
       <ul>
@@ -392,7 +433,8 @@
 
   {%- set current = pagename.startswith('reference/v2/organizations-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/organizations-api/current-organization') }}">Organizations API</a>
+    <a href="{{ pathto('reference/v2/organizations-api/overview') }}"
+       class="{% if pagename == 'reference/v2/organizations-api/overview' %}current{% endif %}">Organizations API</a>
 
     {%- if current %}
       <ul>
@@ -404,13 +446,18 @@
           'reference/v2/organizations-api/get-organization',
           'Get organization'
         ) }}
+        {{ sidebar_item(
+          'reference/v2/organizations-api/get-partner',
+          'Get partner status'
+        ) }}
       </ul>
     {%- endif %}
   </li>
 
   {%- set current = pagename.startswith('reference/v2/profiles-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/profiles-api/create-profile') }}">Profiles API</a>
+    <a href="{{ pathto('reference/v2/profiles-api/overview') }}"
+       class="{% if pagename == 'reference/v2/profiles-api/overview' %}current{% endif %}">Profiles API</a>
 
     {%- if current %}
       <ul>
@@ -433,6 +480,10 @@
         {{ sidebar_item(
           'reference/v2/profiles-api/delete-profile',
           'Delete profile'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/profiles-api/list-profiles',
+          'List profiles'
         ) }}
         {{ sidebar_item(
           'reference/v2/profiles-api/enable-method',
@@ -458,27 +509,24 @@
           'reference/v2/profiles-api/disable-voucher-issuer',
           'Disable voucher issuer'
         ) }}
-        {{ sidebar_item(
-          'reference/v2/profiles-api/list-profiles',
-          'List profiles'
-        ) }}
       </ul>
     {%- endif %}
   </li>
 
   {%- set current = pagename.startswith('reference/v2/onboarding-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/onboarding-api/get-onboarding-status') }}">Onboarding API</a>
+    <a href="{{ pathto('reference/v2/onboarding-api/overview') }}"
+       class="{% if pagename == 'reference/v2/onboarding-api/overview' %}current{% endif %}">Onboarding API</a>
 
     {%- if current %}
       <ul>
         {{ sidebar_item(
-          'reference/v2/onboarding-api/get-onboarding-status',
-          'Get onboarding status'
-        ) }}
-        {{ sidebar_item(
           'reference/v2/onboarding-api/submit-onboarding-data',
           'Submit onboarding data'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/onboarding-api/get-onboarding-status',
+          'Get onboarding status'
         ) }}
       </ul>
     {%- endif %}
@@ -520,7 +568,8 @@
 
   {%- set current = pagename.startswith('reference/v2/settlements-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/settlements-api/get-settlement') }}">Settlements API</a>
+    <a href="{{ pathto('reference/v2/settlements-api/overview') }}"
+       class="{% if pagename == 'reference/v2/settlements-api/overview' %}current{% endif %}">Settlements API</a>
 
     {%- if current %}
       <ul>
@@ -545,6 +594,10 @@
           'List settlement payments'
         ) }}
         {{ sidebar_item(
+        'reference/v2/settlements-api/list-settlement-captures',
+        'List settlement captures'
+        ) }}
+        {{ sidebar_item(
           'reference/v2/settlements-api/list-settlement-refunds',
           'List settlement refunds'
         ) }}
@@ -552,17 +605,14 @@
           'reference/v2/settlements-api/list-settlement-chargebacks',
           'List settlement chargebacks'
         ) }}
-        {{ sidebar_item(
-          'reference/v2/settlements-api/list-settlement-captures',
-          'List settlement captures'
-        ) }}
       </ul>
     {%- endif %}
   </li>
 
   {%- set current = pagename.startswith('reference/v2/invoices-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/invoices-api/get-invoice') }}">Invoices API</a>
+    <a href="{{ pathto('reference/v2/invoices-api/overview') }}"
+       class="{% if pagename == 'reference/v2/invoices-api/overview' %}current{% endif %}">Invoices API</a>
 
     {%- if current %}
       <ul>
@@ -573,6 +623,28 @@
         {{ sidebar_item(
           'reference/v2/invoices-api/list-invoices',
           'List invoices'
+        ) }}
+      </ul>
+    {%- endif %}
+  </li>
+</ul>
+<p class="sidebar__topic-header">Partners</p>
+
+<ul>
+  {%- set current = pagename.startswith('reference/v2/clients-api/') -%}
+  <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
+    <a href="{{ pathto('reference/v2/clients-api/overview') }}"
+       class="{% if pagename == 'reference/v2/clients-api/overview' %}current{% endif %}">Clients API</a>
+
+    {%- if current %}
+      <ul>
+        {{ sidebar_item(
+          'reference/v2/clients-api/get-client',
+          'Get client'
+        ) }}
+        {{ sidebar_item(
+          'reference/v2/clients-api/list-clients',
+          'List clients'
         ) }}
       </ul>
     {%- endif %}

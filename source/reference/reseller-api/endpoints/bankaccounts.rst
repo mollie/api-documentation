@@ -19,29 +19,23 @@ Make sure to add the :ref:`obligatory parameters <secret-keys>` always. Besides 
 parameters:
 
 .. note:: It is not necessary to set ``username`` and ``password`` if you are using ``partner_id_customer``. Otherwise
-          both are required to set.
+   both are required to set.
 
-.. list-table::
-   :widths: auto
+.. parameter:: username
+   :type: string
 
-   * - ``username``
+   The username of the account of which you would like to retrieve the bank accounts.
 
-       .. type:: string
+.. parameter:: password
+   :type: string
 
-     - The username of the account of which you would like to retrieve the bank accounts
+   The password of the account of which you would like to retrieve the bank accounts.
 
-   * - ``password``
+.. parameter:: partner_id_customer
+   :type: string
 
-       .. type:: string
-
-     - The password of the account of which you would like to retrieve the bank accounts
-
-   * - ``partner_id_customer``
-
-       .. type:: string
-
-     - The partner ID of the account of which you would like to retrieve the bank accounts. It can be used instead of
-       the parameters ``username`` and ``password``
+   The partner ID of the account of which you would like to retrieve the bank accounts. It can be used instead of the
+   parameters ``username`` and ``password``
 
 Response
 --------

@@ -7,59 +7,43 @@ List chargebacks
    :method: GET
    :url: https://api.mollie.com/v2/chargebacks
 
-.. endpoint::
-   :method: GET
-   :url: https://api.mollie.com/v2/payments/*paymentId*/chargebacks
-
 .. authentication::
    :api_keys: true
    :organization_access_tokens: true
    :oauth: true
 
-Retrieve all received chargebacks. If the payment-specific endpoint is used, only chargebacks for that specific payment
-are returned.
+Retrieve all chargebacks filed for your payments.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
-When using the payment-specific endpoint, replace ``paymentId`` in the endpoint URL by the payment's ID, for example
-``tr_7UhSN1zuXS``.
+.. parameter:: from
+   :type: string
+   :condition: optional
 
-.. list-table::
-   :widths: auto
+   Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the chargeback with this ID. The chargeback
+   with this ID is included in the result set as well.
 
-   * - ``from``
+.. parameter:: limit
+   :type: integer
+   :condition: optional
 
-       .. type:: string
-          :required: false
-
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the chargeback with this ID. The
-       chargeback with this ID is included in the result set as well.
-
-   * - ``limit``
-
-       .. type:: integer
-          :required: false
-
-     - The number of chargebacks to return (with a maximum of 250).
+   The number of chargebacks to return (with a maximum of 250).
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you have to specify which profile you are retrieving chargebacks for using the
 ``profileId`` parameter. Organizations can have multiple profiles for each of their websites. See
-:doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+:doc:`Profiles API </reference/v2/profiles-api/overview>` for more information.
 
-.. list-table::
-   :widths: auto
+.. parameter:: profileId
+   :type: string
+   :condition: required for access tokens
+   :collapse: true
 
-   * - ``profileId``
-
-       .. type:: string
-          :required: true
-
-     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
+   The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
 
 Embedding of related resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -72,56 +56,40 @@ Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: count
+   :type: integer
 
-   * - ``count``
+   The number of chargebacks found in ``_embedded``.
 
-       .. type:: integer
+.. parameter:: _embedded
+   :type: object
+   :collapse-children: false
 
-     - The number of chargebacks found in ``_embedded``.
+   The object containing the queried data.
 
-   * - ``_embedded``
+   .. parameter:: chargebacks
+      :type: array
 
-       .. type:: object
+      An array of chargeback objects as described in
+      :doc:`Get chargeback </reference/v2/chargebacks-api/get-payment-chargeback>`.
 
-     - The object containing the queried data.
+.. parameter:: _links
+   :type: object
 
-       .. list-table::
-          :widths: auto
+   Links related to the lists of chargebacks. Every URL object will contain an ``href`` and a ``type`` field.
 
-          * - ``chargebacks``
+   .. parameter:: self
+      :type: object
 
-              .. type:: array
+      The URL to the current set of chargebacks.
 
-            - An array of chargeback objects as described in
-              :doc:`Get chargeback </reference/v2/chargebacks-api/get-chargeback>`.
+   .. parameter:: documentation
+      :type: object
 
-   * - ``_links``
-
-       .. type:: object
-
-     - Links related to the lists of chargebacks. Every URL object will contain an ``href`` and a ``type``
-       field.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``self``
-
-              .. type:: object
-
-            - The URL to the current set of chargebacks.
-
-          * - ``documentation``
-
-              .. type:: object
-
-            - The URL to the chargebacks list endpoint documentation.
+      The URL to the chargebacks list endpoint documentation.
 
 Example
 -------
-
 .. code-block-selector::
 
    .. code-block:: bash
@@ -137,12 +105,6 @@ Example
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-      // List chargebacks for a single payment
-      $payment = $mollie->payments->get("tr_7UhSN1zuXS");
-      $chargebacks = $payment->chargebacks();
-
-      // List chargebacks across all payments on the payment profile
-      // (For all chargebacks on the organizations, use an OAuth or Organization access token.)
       $all_chargebacks = $mollie->chargebacks->page();
 
    .. code-block:: python
@@ -153,8 +115,7 @@ Example
       mollie_client = Client()
       mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
 
-      payment = mollie_client.payments.get('tr_WDqYK6vllg')
-      chargebacks = payment.chargebacks
+      chargebacks = mollie_client.chargebacks.list()
 
    .. code-block:: ruby
       :linenos:
@@ -165,12 +126,6 @@ Example
         config.api_key = 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM'
       end
 
-      # List chargebacks for a single payment
-      payment = Mollie::Payment.get('tr_WDqYK6vllg')
-      chargebacks = payment.chargebacks
-
-      # List chargebacks across all payments on the payment profile
-      # (For all chargebacks on the organizations, use an OAuth or Organization access token.)
       chargebacks = Mollie::Chargeback.all
 
    .. code-block:: javascript
@@ -180,11 +135,6 @@ Example
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
       (async () => {
-        // List chargebacks for a single payment
-        let chargebacks = await mollieClient.payments_chargebacks.list({ paymentId: 'tr_WDqYK6vllg' });
-
-        // List chargebacks across all payments on the payment profile
-        // (For all chargebacks on the organizations, use an OAuth or Organization access token.)
         chargebacks = await mollieClient.chargebacks.list();
       })();
 
@@ -224,7 +174,7 @@ Response
                            "type": "application/hal+json"
                        },
                        "documentation": {
-                           "href": "https://docs.mollie.com/reference/v2/chargebacks-api/get-chargeback",
+                           "href": "https://docs.mollie.com/reference/v2/chargebacks-api/get-payment-chargeback",
                            "type": "text/html"
                        }
                    }

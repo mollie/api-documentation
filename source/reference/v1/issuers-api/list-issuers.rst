@@ -24,106 +24,83 @@ payment flow.
 
 The Issuers API only supports iDEAL.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: offset
+   :type: integer
+   :condition: optional
 
-   * - ``offset``
+   The number of issuers to skip.
 
-       .. type:: integer
-          :required: false
+.. parameter:: count
+   :type: integer
+   :condition: optional
 
-     - The number of issuers to skip.
-
-   * - ``count``
-
-       .. type:: integer
-          :required: false
-
-     - The number of issuers to return (with a maximum of 250).
+   The number of issuers to return (with a maximum of 250).
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, the ``testmode`` query string parameter is also available.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to true to only retrieve the issuers available in test mode.
+   Set this to true to only retrieve the issuers available in test mode.
 
 Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: totalCount
+   :type: integer
 
-   * - ``totalCount``
+   The total number of issuers available.
 
-       .. type:: integer
+.. parameter:: offset
+   :type: integer
 
-     - The total number of issuers available.
+   The number of skipped issuers as requested.
 
-   * - ``offset``
+.. parameter:: count
+   :type: integer
 
-       .. type:: integer
+   The number of issuers found in ``data``, which is either the requested number (with a maximum of 250) or the default
+   number.
 
-     - The number of skipped issuers as requested.
+.. parameter:: data
+   :type: array
 
-   * - ``count``
+   An array of issuer objects as described in :doc:`Get issuer </reference/v1/issuers-api/get-issuer>`.
 
-       .. type:: integer
+.. parameter:: links
+   :type: object
 
-     - The number of issuers found in ``data``, which is either the requested number (with a maximum of 250) or the
-       default number.
+   Links to help navigate through the lists of issuers, based on the given offset.
 
-   * - ``data``
+   .. parameter:: previous
+      :type: string
 
-       .. type:: array
+      The previous set of issuers, if available.
 
-     - An array of issuer objects as described in :doc:`Get issuer </reference/v1/issuers-api/get-issuer>`.
+   .. parameter:: next
+      :type: string
 
-   * - ``links``
+      The next set of issuers, if available.
 
-       .. type:: object
+   .. parameter:: first
+      :type: string
 
-     - Links to help navigate through the lists of issuers, based on the given offset.
+      The first set of issuers, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: last
+      :type: string
 
-          * - ``previous``
-
-              .. type:: string
-
-            - The previous set of issuers, if available.
-
-          * - ``next``
-
-              .. type:: string
-
-            - The next set of issuers, if available.
-
-          * - ``first``
-
-              .. type:: string
-
-            - The first set of issuers, if available.
-
-          * - ``last``
-
-              .. type:: string
-
-            - The last set of issuers, if available.
+      The last set of issuers, if available.
 
 Example
 -------

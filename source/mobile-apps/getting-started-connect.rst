@@ -76,8 +76,8 @@ Android (Kotlin)
 
 Step 5: Handle the redirect
 ---------------------------
-Either when the merchant accepts or denies the authorization, we will return him/her to your app via the Redirect URL.
-You should tell the app what to do with the data in the response.
+Either when the merchant accepts or denies the authorization, we will return them to your app via the Redirect URL. You
+should tell the app what to do with the data in the response.
 
 iOS
 ^^^

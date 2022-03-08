@@ -22,18 +22,15 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, and replace ``i
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to revoke a test mode mandate.
+   Set this to ``true`` to revoke a test mode mandate.
 
 Response
 --------
@@ -41,7 +38,6 @@ Response
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:

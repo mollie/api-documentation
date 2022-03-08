@@ -3,12 +3,90 @@ Changelog
 Occasionally, we will add new resources, new fields, or new possible values to existing fields to the v2 Mollie API. All
 changes are documented here.
 
+March 2022
+=============
+Tuesday, 1st
+-------------
+- Added the ``en_GB`` (British English) locale to localize translations and allow for ordering the payment methods in
+  the preferred order for the country.
+
+February 2022
+=============
+Monday, 21st
+-------------
+- Added the ``doenkadotickets`` as gift card issuers.
+
+January 2022
+=============
+Monday, 17th
+-------------
+- Added the support for more than one route to the :doc:`Create payment </reference/v2/payments-api/create-payment>`
+  endpoint.
+- Added the possibility to :doc:`Refund a split payment </connect/refunds-and-chargebacks>` with the ``routingReversals``
+  optional parameter to the :doc:`Create refund </reference/v2/refunds-api/create-payment-refund>` endpoint.
+
+November 2021
+=============
+Tuesday, 23rd
+-------------
+- Added the ``wijncadeaukaart`` and ``jewelcard`` as gift card issuers.
+
+Friday, 5th
+-----------
+- Added optional ``landing_page`` parameter to the :doc:`Authorize </reference/oauth2/authorize>` endpoint.
+
+October 2021
+============
+Wednesday, 20th
+---------------
+- Added a new Partners section containing the
+  :doc:`Get client </reference/v2/clients-api/get-client>` and the
+  :doc:`List client </reference/v2/clients-api/list-clients>` endpoints.
+- The :doc:`Get partner status endpoint </reference/v2/organizations-api/get-partner>` was added to the Organizations
+  API.
+
+Friday, 8th
+-----------
+- Added ``huistuincadeaukaart`` as gift card issuer.
+
+September 2021
+==============
+Thursday, 23rd
+--------------
+- Added ``authentication_required`` as possible ``failureReason`` in the
+  :doc:`Payments API</reference/v1/payments-api/get-payment>` for credit card payments.
+
+August 2021
+===========
+Tuesday, 10th
+-------------
+- Added ``bloemplantgiftcard`` as gift card issuer.
+
+Wednesday, 4th
+--------------
+- Added ``sodexosportculturepass`` as gift card issuer.
+
+July 2021
+=========
+Tuesday, 20th
+-------------
+- Added the possibility to create :doc:`Split payments </connect/splitting-payments>`, with which you can distribute
+  and split payments between your platform and your connected merchant accounts.
+- Added ``routing`` optional parameter to the
+  :doc:`Create payment endpoint </reference/v2/payments-api/create-payment>`.
+- Added optional ``routing`` response parameter to the :doc:`Create payment </reference/v2/payments-api/create-payment>`
+  and :doc:`Get payment </reference/v2/payments-api/get-payment>` endpoint responses.
+- Added the possibility to :doc:`Refund a split payment </connect/refunds-and-chargebacks>`. Added ``reverseRouting``
+  optional parameter to the :doc:`Create refund endpoint </reference/v2/refunds-api/create-payment-refund>` and
+  ``routingReversals`` optional object to the :doc:`Get refund endpoint </reference/v2/refunds-api/get-payment-refund>`
+  response.
+
 June 2021
 =========
 Friday, 2nd
 -----------
-- We released the new :doc:`Payment Links API </reference/v2/payment-links-api/create-payment-link>`. This API makes it
-  possible to generate payment links which can be used for, for example, invoices.
+- We released the new :doc:`Payment links API </reference/v2/payment-links-api/overview>`. This API makes it possible to
+  generate payment links. These can for example be used to attach to invoices that have yet to be completed.
 
 May 2021
 ========
@@ -22,7 +100,8 @@ April 2021
 ==========
 Friday, 16th
 --------------
-- Added ``sku`` optional parameter to :doc:`Orders API</reference/v2/orders-api/update-orderline>`.
+- Added ``sku`` optional parameter to the :doc:`Update order line endpoint </reference/v2/orders-api/update-order-line>`
+  of the Orders API.
 
 March 2021
 ==========
@@ -50,9 +129,9 @@ February 2021
 Monday, 1st
 -----------
 - We discontinued the support for ING Home'Pay as a payment method. This means that the API now rejects all
-  :doc:`Create Payment API</reference/v2/payments-api/create-payment>`-calls with the method ``inghomepay``. Make sure
-  to remove this payment method from your checkout if needed. Please `contact us <https://www.mollie.com/contact>`_ for
-  more info.
+  :doc:`Create payment endpoint </reference/v2/payments-api/create-payment>` calls with the method ``inghomepay``. Be
+  sure to remove this payment method from your checkout if needed. Please `contact us <https://www.mollie.com/contact>`_
+  for more info.
 
 January 2021
 =============
@@ -130,11 +209,11 @@ August 2020
 
 Friday, 28th
 ------------
-- We have added a ``dashboard`` URL to the :doc:`Payment </reference/v2/payments-api/get-payment>`,
-  :doc:`Order </reference/v2/orders-api/get-order>`, :doc:`Customer </reference/v2/customers-api/get-customer>`,
-  :doc:`Organization </reference/v2/organizations-api/get-organization>`, and
-  :doc:`Profiles </reference/v2/profiles-api/get-profile>` endpoints. This URL points directly to the correct resource
-  in the Mollie Dashboard.
+- We have added a ``dashboard`` URL to the :doc:`Get payment </reference/v2/payments-api/get-payment>`,
+  :doc:`Get order </reference/v2/orders-api/get-order>`, :doc:`Get customer </reference/v2/customers-api/get-customer>`,
+  :doc:`Get organization </reference/v2/organizations-api/get-organization>`, and
+  :doc:`Get profiles </reference/v2/profiles-api/get-profile>` endpoints. This URL points directly to the correct
+  resource in the Mollie Dashboard.
 
 Thursday, 20th
 --------------
@@ -154,7 +233,7 @@ July 2020
 
 Thursday, 9th
 -------------
-- We have added a ``mobileAppCheckout`` URL to the :doc:`Payment API response </reference/v2/payments-api/get-payment>`
+- We have added a ``mobileAppCheckout`` URL to the :doc:`Payments API response </reference/v2/payments-api/get-payment>`
   if the payment method supports payments via a companion (mobile) app. At the moment, this only involves
   ``bancontact``.
 
@@ -164,7 +243,7 @@ June 2020
 Tuesday, 30th
 -------------
 - It is now possible to import your PayPal billing agreements by creating mandates via the
-  :doc:`Create mandates API </reference/v2/mandates-api/create-mandate>`.
+  :doc:`Create mandates endpoint </reference/v2/mandates-api/create-mandate>`.
 
 Friday, 26th
 ------------
@@ -180,7 +259,7 @@ May 2020
 Tuesday, 26th
 -------------
 - It is now possible to update the ``metadata`` of an order line via the
-  :doc:`Update order line endpoint </reference/v2/orders-api/update-orderline>`.
+  :doc:`Update order line endpoint </reference/v2/orders-api/update-order-line>`.
 
 Thursday, 14th
 --------------
@@ -250,7 +329,7 @@ Friday, 7th
 
 Tuesday, 4th
 ------------
-- Added the possibility to embed the :doc:`shipments </reference/v2/shipments-api/get-shipment>`
+- Added the possibility to embed the :doc:`shipments </reference/v2/shipments-api/overview>`
   of an order in the :doc:`Get order endpoint </reference/v2/orders-api/get-order>`.
 
 January 2020
@@ -272,8 +351,8 @@ Thursday, 9th
 -------------
 - The ``self.href``, ``next.href`` and ``previous.href`` links now correctly contain all query parameters used when
   performing the request. For example, the ``year`` query parameter will now be included in the ``next`` and
-  ``previous`` links for the response of the :doc:`/reference/v2/invoices-api/list-invoices` if it was in the initial
-  request.
+  ``previous`` links for the response of the :doc:`List invoices endpoint </reference/v2/invoices-api/list-invoices>` if
+  it was in the initial request.
 - Values for ``_links.nnnn.href`` elements now correctly include the ``?testmode=true`` query parameter if this is
   necessary to be able to follow the link. This affects OAuth and Application Token authenticated requests only.
 
@@ -283,11 +362,11 @@ December 2019
 Tuesday, 3rd
 ------------
 - Added the possibility to submit ``extraMerchantData`` for Klarna in the
-  :doc:`Orders API </reference/v2/orders-api/create-order>` for merchants who have agreed this with Klarna.
+  :doc:`Orders API </reference/v2/orders-api/overview>` for merchants who have agreed this with Klarna.
 - Added ``restrictPaymentMethodsToCountry`` in the :doc:`Payments API </reference/v2/payments-api/create-payment>`.
-- Added ``shopperCountryMustMatchBillingCountry`` in the :doc:`Orders API </reference/v2/orders-api/create-order>`.
+- Added ``shopperCountryMustMatchBillingCountry`` in the :doc:`Orders API </reference/v2/orders-api/overview>`.
 - Enabled :doc:`Application fees </connect/application-fees>` for the
-  :doc:`Orders API </reference/v2/orders-api/create-order>`.
+  :doc:`Orders API </reference/v2/orders-api/overview>`.
 
 Monday, 2nd
 -----------
@@ -311,7 +390,7 @@ Wednesday, 27th
 Tuesday, 19th
 -------------
 - Added the ``sellerProtection`` field to the PayPal payment details.
-- The :doc:`Apple Pay direct integration </guides/applepay-direct-integration>` can now also be used with
+- The :doc:`Apple Pay direct integration </wallets/applepay-direct-integration>` can now also be used with
   :doc:`/reference/v2/orders-api/create-order`.
 
 Friday, 15th
@@ -333,7 +412,7 @@ October 2019
 Tuesday, 29th
 -------------
 - Added the ``feeRegion`` to the pricing object for credit card in the
-  :doc:`Methods API </reference/v2/methods-api/list-methods>`.
+  :doc:`Methods API </reference/v2/methods-api/overview>`.
 
 Monday, 7th
 -----------
@@ -352,7 +431,7 @@ Tuesday, 24th
 Friday, 20th
 ------------
 - Changed the retry schedule of our webhook system. We will try to call your webhook for 26 hours in total now. See the
-  :doc:`webhooks guide </guides/webhooks>` for the new schedule.
+  :doc:`webhooks guide </overview/webhooks>` for the new schedule.
 
 Tuesday, 17th
 -------------
@@ -413,8 +492,8 @@ June 2019
 
 Thursday, 20th
 --------------
-- Added the ``settlementId`` field to the refund response. See :doc:`/reference/v2/refunds-api/get-refund` for more
-  info.
+- Added the ``settlementId`` field to the refund response. See :doc:`/reference/v2/refunds-api/get-payment-refund` for
+  more info.
 
 Thursday, 13th
 ---------------
@@ -424,7 +503,7 @@ Thursday, 13th
 
 Wednesday, 12th
 ---------------
-- :doc:`/guides/applepay-direct-integration` is now available.
+- :doc:`/wallets/applepay-direct-integration` is now available.
 
 May 2019
 ========
@@ -443,8 +522,8 @@ Monday, 20th
 Wednesday, 8th
 --------------
 - Refunds can now contain ``metadata``. We will save the data alongside the refund. Whenever you fetch the refund with
-  our API, we will also include the metadata. See the :doc:`/reference/v2/refunds-api/create-refund` and
-  :doc:`/reference/v2/orders-api/create-order-refund` documentation for more info.
+  our API, we will also include the metadata. See the :doc:`/reference/v2/refunds-api/create-payment-refund` and
+  :doc:`/reference/v2/refunds-api/create-order-refund` documentation for more info.
 
 Thursday, 2nd
 -------------
@@ -472,7 +551,7 @@ Wednesday, 27th
 - Subscriptions can now be created with :doc:`application fees </connect/application-fees>`. The application fees will
   be applied on each created Payment for the Subscription.
 - Added the ``minimumAmount`` and ``maximumAmount`` properties to the
-  :doc:`Methods API </reference/v2/methods-api/list-methods>` endpoints. It represents the minimum and maximum amount
+  :doc:`Methods API </reference/v2/methods-api/overview>` endpoints. It represents the minimum and maximum amount
   allowed for creating a payment with the specific methods.
 - Added the ``amount`` query parameter to the :doc:`/reference/v2/methods-api/list-all-methods` endpoint.
 - Added the ``currency`` query parameter to the :doc:`/reference/v2/methods-api/get-method` endpoint.
@@ -494,7 +573,7 @@ Thursday, 28th
 - Added profile website URL validation to the :doc:`Create profile </reference/v2/profiles-api/create-profile>`
   endpoint.
 - Added profile website URL validation to the
-  :doc:`Submit onboarding data </reference/v2/onboarding-api/submit-onboarding-data>` endpoint.
+  :doc:`Submit onboarding data endpoint </reference/v2/onboarding-api/submit-onboarding-data>`.
 
 Monday, 25th
 ------------
@@ -527,7 +606,7 @@ Tuesday, 22th
 Thursday, 17th
 --------------
 - It is now possible to also update the ``quantity``, ``unitPrice``, ``discountAmount``, ``totalAmount``, ``vatAmount``
-  and ``vatRate`` of the order line, see :doc:`Update order line </reference/v2/orders-api/update-orderline>`.
+  and ``vatRate`` of the order line, see :doc:`Update order line </reference/v2/orders-api/update-order-line>`.
 
 Monday, 14th
 -------------
@@ -535,12 +614,12 @@ Monday, 14th
   order line, see :doc:`Create order </reference/v2/orders-api/create-order>`.
 
 - Added a new endpoint to retrieve all payment methods Mollie is offering to an organization.
-  See :doc:`List all payment methods  </reference/v2/methods-api/list-all-methods>` for details.
+  See :doc:`List all payment methods </reference/v2/methods-api/list-all-methods>` for details.
 
 Thursday, 3th
 -------------
 - Added a new API for getting the onboarding status of a merchant. You will need the new OAuth scope ``onboarding.read``
-  to access the data. For details, see the :doc:`Onboarding API </reference/v2/onboarding-api/get-onboarding-status>`.
+  to access the data. For details, see the :doc:`Onboarding API </reference/v2/onboarding-api/overview>`.
 
 December 2018
 =============
@@ -552,7 +631,7 @@ Thursday, 20th
 
 Tuesday, 18th
 -------------
-- Added a new endpoint to update order lines. For details, see :doc:`/reference/v2/orders-api/update-orderline`.
+- Added a new endpoint to update order lines. For details, see :doc:`/reference/v2/orders-api/update-order-line`.
 
 Friday, 14th
 ------------
@@ -564,24 +643,24 @@ Thursday, 13th
 - It is now possible to create (another) payment for an order via the
   :doc:`Create order payment endpoint </reference/v2/orders-api/create-order-payment>` on the Orders API.
 - We are now offering webhooks for order payments. Please note that when the status of the payment becomes ``paid`` we
-  are calling your order webhook instead. See the :doc:`Orders API </reference/v2/orders-api/create-order>` for more
+  are calling your order webhook instead. See the :doc:`Orders API </reference/v2/orders-api/overview>` for more
   info.
 
 Monday, 10th
 ------------
 - Enabling and disabling payment methods via the API is now possible via the
-  :doc:`Profiles API </reference/v2/profiles-api/enable-method>`.
+  :doc:`Enable payment method endpoint </reference/v2/profiles-api/enable-method>` on the Profiles API.
 
 Friday, 7th
 -----------
-- Refunds for Pay Later and Slice it can now be created via the :doc:`Payments Refunds API
-  </reference/v2/refunds-api/create-refund>`. This allows refunding of arbitrary amounts.
+- Refunds for Pay later and Slice it can now be created via the :doc:`Create payment refund endpoint
+  </reference/v2/refunds-api/create-payment-refund>`. This allows refunding of arbitrary amounts.
 
 Tuesday, 4th
 ------------
 - It is now possible to get the pricing of the payment methods that are active on the payment profile. Add the
-  ``include=pricing`` parameter to the :doc:`Methods API </reference/v2/methods-api/list-methods>` to get the pricing
-  object in your response.
+  ``include=pricing`` parameter to the :doc:`Methods API </reference/v2/methods-api/overview>` to get the pricing object
+  in your response.
 
 November 2018
 =============
@@ -625,16 +704,16 @@ Monday, 29th
 Thursday, 25th
 --------------
 - We now accept the use of an underscore ``_`` in Redirect- and Webhook-URLs.
-- A :doc:`guide </guides/testing>` has been added explaining how to test your integration of the Mollie API.
+- A :doc:`guide </overview/testing>` has been added explaining how to test your integration of the Mollie API.
 - Added the ``changePaymentState`` link to the :doc:`Payments API </reference/v2/payments-api/get-payment>`.
   It allows you to set the final payment state for test mode recurring payments.
 
 Wednesday, 24th
 ---------------
-- Added the ``timesRemaining`` field to the :doc:`Subscriptions API </reference/v2/subscriptions-api/get-subscription>`
-  to see how many charges are left for completing the subscription.
+- Added the ``timesRemaining`` field to the :doc:`Subscriptions API </reference/v2/subscriptions-api/overview>`. The
+  field lists how many charges are left for completing the subscription.
 - Consumer IBANs of Bancontact payments will now always be shared via the API.
-- Added :doc:`Organization access tokens </guides/authentication>` as an authentication method.
+- Added :doc:`Organization access tokens </overview/authentication>` as an authentication method.
 
 Friday, 19th
 --------------
@@ -643,7 +722,7 @@ Friday, 19th
 Wednesday, 17th
 ---------------
 - The ``method`` field on the :doc:`Create Payment </reference/v2/payments-api/create-payment>` and
-  :doc:`Create Order </reference/v2/orders-api/create-order>` now also accepts an array of methods. By doing so you can
+  :doc:`Create order </reference/v2/orders-api/create-order>` now also accepts an array of methods. By doing so you can
   select which methods to show on the payment method selection screen. For example, you can use this functionality to
   only show payment methods from a specific country to your customer.
 
@@ -656,13 +735,13 @@ Monday, 15th
 Friday, 12th
 ------------
 - Added new category codes ``5533`` ``5641`` ``5651`` ``5732`` ``5735`` ``5815`` ``5944`` ``5977`` ``7999``
-  to the :doc:`Create Profile </reference/v2/profiles-api/create-profile>` and
-  :doc:`Update Profile </reference/v2/profiles-api/update-profile>` endpoints.
+  to the :doc:`Create profile </reference/v2/profiles-api/create-profile>` and
+  :doc:`Update profile </reference/v2/profiles-api/update-profile>` endpoints.
 
 Friday, 5th
 ------------
 - We have added the ``mandateId`` field in subscriptions. This makes it possible to sure a specific mandate for a
-  subscription. For details, see the :doc:`Subscriptions API </reference/v2/subscriptions-api/create-subscription>`.
+  subscription. For details, see the :doc:`Subscriptions API </reference/v2/subscriptions-api/overview>`.
 
 Tuesday, 2nd
 ------------
@@ -670,9 +749,10 @@ Tuesday, 2nd
   bank account to finish the payment.
 
 - Added the new payment status ``authorized`` for payments that still require a capture to receive the money. Currently,
-  this status is only used for payment methods `Klarna Pay later <https://www.mollie.com/payments/klarna-pay-later>`_
-  and `Klarna Slice it <https://www.mollie.com/payments/klarna-slice-it>`_. Because payments with these payment methods
-  can only be created with the :doc:`Orders API </reference/v2/orders-api/create-order>`, there is no change required in
+  this status is only used for payment methods `Klarna Pay now <https://www.mollie.com/en/payments/klarna-pay-now>`_,
+  `Klarna Pay later <https://www.mollie.com/payments/klarna-pay-later>`_ and
+  `Klarna Slice it <https://www.mollie.com/payments/klarna-slice-it>`_. Because payments with these payment methods
+  can only be created with the :doc:`Orders API </reference/v2/orders-api/overview>`, there is no change required in
   existing implementations of the Payments API.
 
   The new status is especially useful to give a meaningful representation when listing all payments.
@@ -683,19 +763,19 @@ September 2018
 Tuesday, 25th
 -------------
 - Added the ``nextPaymentDate`` field in subscriptions to see when the next payment should be initiated. For details,
-  see the :doc:`Subscriptions API </reference/v2/subscriptions-api/get-subscription>`.
+  see the :doc:`Subscriptions API </reference/v2/subscriptions-api/overview>`.
 
 Thursday, 20th
 --------------
 - Added a new endpoint get all payments for a specific customer subscription. For details, see:
-  :doc:`List subscription payments </reference/v2/subscriptions-api/list-subscriptions-payments>`
+  :doc:`List subscription payments </reference/v2/subscriptions-api/list-subscription-payments>`
 
 - Added ``amountCaptured`` and ``authorizedAt`` to the payment object.
 
 Tuesday, 18th
 -------------
-- Added the ``metadata`` field to the :doc:`Subscriptions API </reference/v2/subscriptions-api/get-subscription>`. This
-  makes it possible to, for example, link a plan to a subscription.
+- Added the ``metadata`` field to the :doc:`Subscriptions API </reference/v2/subscriptions-api/overview>`. This makes it
+  possible to, for example, link a plan to a subscription.
 
 Monday, 17th
 ------------
@@ -703,18 +783,18 @@ Monday, 17th
 
 Wednesday, 12th
 ---------------
-- Added the :doc:`Orders API </reference/v2/orders-api/create-order>` and the
-  :doc:`Shipments API </reference/v2/shipments-api/create-shipment>`. See the
-  :doc:`Orders API overview </orders/overview>` for more details on how to use these APIs.
+- Added the :doc:`Orders API </reference/v2/orders-api/overview>` and the
+  :doc:`Shipments API </reference/v2/shipments-api/overview>`. See the
+  :doc:`Orders guide </orders/overview>` for more details on how to use these APIs.
 
-- Added the :doc:`Captures API </reference/v2/captures-api/get-capture>`.
+- Added the :doc:`Captures API </reference/v2/captures-api/overview>`.
 
 - The ``amount`` field in chargebacks had the wrong sign, though it was documented correctly. The API has been changed
   to use positive values for the ``amount`` field and negative values for the ``settlementAmount`` field in the
-  :doc:`/reference/v2/chargebacks-api/get-chargeback` API.
+  :doc:`/reference/v2/chargebacks-api/get-payment-chargeback` endpoint.
 
-- You can now use cursors to scroll through all chargebacks of a Payment using the
-  :doc:`/reference/v2/chargebacks-api/list-chargebacks` API.
+- You can now use a cursor to scroll through all chargebacks of a payment using the
+  :doc:`/reference/v2/chargebacks-api/list-payment-chargebacks` endpoint.
 
 Tuesday, 11th
 -------------
@@ -731,7 +811,7 @@ August 2018
 
 Wednesday, 1st
 --------------
-- The icons returned by the :doc:`Methods API </reference/v2/methods-api/list-methods>` have been updated. Note that the
+- The icons returned by the :doc:`Methods API </reference/v2/methods-api/overview>` have been updated. Note that the
   size of the icons has changed from 40x40 to 32x24. All icons are now available in SVG as well, which we advise you to
   use where possible.
 
@@ -744,7 +824,7 @@ Tuesday, 31st
 
 Thursday, 19th
 --------------
-- The :doc:`Get Settlement </reference/v2/settlements-api/get-settlement>` endpoint now returns the ``invoiceId`` if the
+- The :doc:`Get settlement endpoint </reference/v2/settlements-api/get-settlement>` now returns the ``invoiceId`` if the
   settlement has been invoiced. The invoice is also available in the ``_link`` object.
 
 Wednesday, 11th
@@ -752,7 +832,7 @@ Wednesday, 11th
 - Added a new endpoint for updating Subscriptions. Now you can update a subscription when needed --
   for example when your customer switches price plans.
 
-  For details, see: :doc:`Update Subscription </reference/v2/subscriptions-api/update-subscription>`
+  For details, see :doc:`Update subscription </reference/v2/subscriptions-api/update-subscription>`.
 
 June 2018
 =========
@@ -769,9 +849,9 @@ Friday, 1st
 -----------
 - Added new locales ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES`` ``ca_ES``
   ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV`` and ``lt_LT`` to
-  the :doc:`Create Customer </reference/v2/customers-api/create-customer>`,
-  :doc:`Create Payment </reference/v2/payments-api/create-payment>`, and
-  :doc:`List Methods </reference/v2/methods-api/list-methods>` endpoints to localize translations and allow for ordering
+  the :doc:`Create customer </reference/v2/customers-api/create-customer>`,
+  :doc:`Create payment </reference/v2/payments-api/create-payment>`, and
+  :doc:`List methods </reference/v2/methods-api/list-methods>` endpoints to localize translations and allow for ordering
   the payment methods in the preferred order for the country.
 
 May 2018

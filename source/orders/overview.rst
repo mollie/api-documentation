@@ -3,22 +3,26 @@ Orders API
 
 The **Orders API** allows you to use Mollie for your order management.
 
-For each order in your shop, you can create an Order via the Mollie API. The order will remain valid for a certain
+For each order in your shop, you can create an order via the Mollie API. The order will remain valid for a certain
 amount of time (default 28 days).
 
-Just as a Payment, the Order will have a ``_links.checkout`` property where you can redirect your customer to pay for
-the Order. For each attempt to Pay, a Payment is created. If the customer pays for the Order, the Order will transition
-to the ``paid`` state (or ``authorized`` in case of pay after delivery).
+Just as a regular payment, the order will have a ``_links.checkout`` property where you can redirect your customer to
+pay for the order. For each attempt to pay, a payment object is created. If the customer pays for the order, the order
+will transition to the ``paid`` state (or ``authorized`` in case of pay after delivery).
 
-Should the initial Payment fail, the Order remains in the ``created`` state so that your customer can try to pay again.
+Should the initial payment fail, the order remains in the ``created`` state so that your customer can try to pay again.
 This can be done using a dedicated link available through the Dashboard which you can share with your customer, or you
-can create an additional :doc:`Payment on the Order via the API </reference/v2/orders-api/create-order-payment>`.
-
-*Pay after delivery* payment methods, such as *Klarna Pay later*, *Klarna Slice it*, and *Vouchers* require the Orders
-API and cannot be used with the :doc:`Payments API </payments/accepting-payments>`.
+can create an additional :doc:`payment on the order via the API </reference/v2/orders-api/create-order-payment>`.
 
 Once you ship the goods to your customer, you should inform Mollie of the shipments via the API or via the Dashboard.
-This is mandatory for pay after delivery methods. Only shipped amounts will be settled to your account.
+This is mandatory for pay-after-delivery methods. Only shipped amounts will be settled to your account.
+
+The following payment methods require the Orders API and cannot be used with the
+:doc:`Payments API </payments/accepting-payments>`:
+
+* *Pay after delivery* payment methods, such as Klarna Pay later and Klarna Slice it
+* Klarna Pay now
+* Eco vouchers, gift vouchers, and meal vouchers
 
 How does the Orders API work?
 -----------------------------
@@ -26,10 +30,11 @@ How does the Orders API work?
 
 #. A customer on your webshop decides to checkout.
 
-#. For every order in your webshop, you create an order using the :doc:`/reference/v2/orders-api/create-order`.
+#. For every order in your webshop, you create an order using the
+   :doc:`Create order endpoint </reference/v2/orders-api/create-order>`.
 
-#. The :ref:`Create Order API response <create-order-response>` contains the ``_links.checkout`` property. This is a
-   link where you should redirect your customer to for checking out.
+#. The :ref:`Create order endpoint response <create-order-response>` contains the ``_links.checkout`` property. This is
+   a link where you should redirect your customer to for checking out.
 
 #. If the checkout is successful, the order will change it's state to ``authorized`` or ``paid``, depending on the
    payment method used by your customer.
@@ -46,7 +51,7 @@ How does the Orders API work?
 #. When the order is ``paid`` or ``authorized`` you can ship the order to your customer.
 
 #. Once you start shipping the order, you should send the shipment information to Mollie using the
-   :doc:`Create Shipment API </reference/v2/shipments-api/create-shipment>`. Alternatively, you can use the Mollie
+   :doc:`Create shipment endpoint </reference/v2/shipments-api/create-shipment>`. Alternatively, you can use the Mollie
    Dashboard. You should ship the order within 28 days or the order will expire.
 
    For some payment methods, shipping is required to ensure you will be settled for the full order amount.
@@ -59,8 +64,8 @@ How does the Orders API work?
 Cancel order lines
 ------------------
 If there are some lines in the order you will not ship, you can cancel them using the
-:doc:`Cancel order lines API </reference/v2/orders-api/cancel-order-lines>` if they are ``authorized`` or you can
-:doc:`create refunds </reference/v2/orders-api/create-order-refund>` if the lines are already ``paid``.
+:doc:`Cancel order lines endpoint </reference/v2/orders-api/cancel-order-lines>` if they are ``authorized`` or you can
+:doc:`create refunds </reference/v2/refunds-api/create-order-refund>` if the lines are already ``paid``.
 
 Order expiry
 ------------

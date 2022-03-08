@@ -11,8 +11,9 @@ The basic payment flow
 ----------------------
 In its simplest form, setting up a payment requires only three steps: setting up the payment with our
 :doc:`Payments API </reference/v2/payments-api/create-payment>`, sending the customer to our
-:doc:`hosted checkout </payments/hosted-checkout>`, and processing the :doc:`webhook </guides/webhooks>` we send once
-the payment is completed.
+:doc:`hosted checkout </payments/hosted-checkout>`, and processing the :doc:`webhook </overview/webhooks>` we send once
+the payment is completed. You can find an example of the hosted checkout in
+`our demo environment <https://demo.mollie.com>`_.
 
 You can also opt for a deeper integration, from offering your own payment method selection all the way to embedding
 credit card fields in your own checkout experience. Please refer to our guide on
@@ -24,6 +25,7 @@ additional information may have to be filled out by your customer, and they may 
 authenticate the transaction.
 
 .. image:: images/basic-payment-flow@2x.png
+   :class: boxed-in-dark-mode
 
 Working with the Payments API
 -----------------------------
@@ -31,6 +33,7 @@ To make the basic payment flow explained above a bit more concrete, here is the 
 programmer's perspective.
 
 .. image:: images/api-overview-flow@2x.png
+   :class: boxed-in-dark-mode
 
 #. A customer on your website decides to checkout.
 
@@ -49,9 +52,9 @@ programmer's perspective.
 #. The customer reaches the :doc:`checkout </payments/hosted-checkout>`, chooses a payment method and makes the payment.
    This process is entirely taken care of by Mollie. You do not have to do anything here.
 
-#. When the payment is made, Mollie will send you a :doc:`webhook </guides/webhooks>` informing your website about the
-   :doc:`payment's status change </payments/status-changes>`. You can configure the webhook URL per profile in your
-   Mollie account, or per payment in the API request.
+#. When the payment is made, Mollie will send you a :doc:`webhook </overview/webhooks>` informing your website about the
+   :doc:`payment's status change </payments/status-changes>`. You can configure the webhook URL per payment in the API
+   request.
 
    In response to your webhook being called your application just needs to issue a ``200 OK`` status. From that response
    Mollie can tell that your processing of the new status was successful – for any other response we keep trying.

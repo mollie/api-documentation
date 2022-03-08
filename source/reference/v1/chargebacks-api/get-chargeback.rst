@@ -7,8 +7,8 @@ Get chargeback
              July 2023. However, new features will only be added to the v2 API.
 
              The documentation for retrieving chargebacks in the new v2 API can be found
-             :doc:`here </reference/v2/chargebacks-api/get-chargeback>`. For more information on the v2 API, refer to
-             our :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
+             :doc:`here </reference/v2/chargebacks-api/get-payment-chargeback>`. For more information on the v2 API,
+             refer to our :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: GET
@@ -40,40 +40,32 @@ Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: id
+   :type: string
 
-   * - ``id``
+   The chargeback's unique identifier, for example ``chb_n9z0tp``.
 
-       .. type:: string
+.. parameter:: payment
+   :type: string|object
 
-     - The chargeback's unique identifier, for example ``chb_n9z0tp``.
+   The ID of the payment this chargeback belongs to. If the payment include is requested, the ID will be replaced by a
+   payment object as described in :doc:`Get payment </reference/v1/payments-api/get-payment>`.
 
-   * - ``payment``
+.. parameter:: amount
+   :type: decimal
 
-       .. type:: string, object
+   The amount charged back.
 
-     - The ID of the payment this chargeback belongs to. If the payment include is requested, the ID will be replaced by
-       a payment object as described in :doc:`Get payment </reference/v1/payments-api/get-payment>`.
+.. parameter:: chargebackDatetime
+   :type: datetime
 
-   * - ``amount``
+   The date and time the chargeback was issued, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-       .. type:: decimal
+.. parameter:: reversedDatetime
+   :type: datetime
 
-     - The amount charged back.
-
-   * - ``chargebackDatetime``
-
-       .. type:: datetime
-
-     - The date and time the chargeback was issued, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
-
-   * - ``reversedDatetime``
-
-       .. type:: datetime
-
-     - The date and time the chargeback was reversed if applicable, in
-       `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+   The date and time the chargeback was reversed if applicable, in
+   `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
 Example
 -------

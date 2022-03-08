@@ -34,15 +34,12 @@ Access token parameters
 If you are creating an app with :doc:`Mollie Connect </connect/overview>`, the ``testmode`` parameter is also
 available.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to cancel a test mode payment.
+   Set this to ``true`` to cancel a test mode payment.
 
 Response
 --------

@@ -7,8 +7,8 @@ Create refund
              July 2023. However, new features will only be added to the v2 API.
 
              The documentation for creating refunds in the new v2 API can be found
-             :doc:`here </reference/v2/refunds-api/create-refund>`. For more information on the v2 API, refer to our
-             :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
+             :doc:`here </reference/v2/refunds-api/create-payment-refund>`. For more information on the v2 API, refer to
+             our :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
 .. endpoint::
    :method: POST
@@ -32,39 +32,31 @@ Parameters
 ----------
 Replace ``id`` in the endpoint URL by the payment's ID, for example ``tr_7UhSN1zuXS``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: amount
+   :type: decimal
+   :condition: optional
 
-   * - ``amount``
+   The amount to refund. When ommitted, the full amount is refunded. Can be up to €25.00 more than the original
+   transaction amount.
 
-       .. type:: decimal
-          :required: false
+.. parameter:: description
+   :type: string
+   :condition: optional
 
-     - The amount to refund. When ommitted, the full amount is refunded. Can be up to €25.00 more than the
-       original transaction amount.
-
-   * - ``description``
-
-       .. type:: string
-          :required: false
-
-     - The description of the refund you are creating. This will be shown to the consumer on their card or
-       bank statement when possible. Max. 140 characters.
+   The description of the refund you are creating. This will be shown to the consumer on their card or bank statement
+   when possible. Max. 140 characters.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, the ``testmode`` parameter is also available.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to refund a test mode payment.
+   Set this to ``true`` to refund a test mode payment.
 
 Response
 --------

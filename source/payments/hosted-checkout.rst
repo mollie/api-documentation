@@ -7,6 +7,8 @@ Using Mollie Checkout is optional. We do recommend using it, since it is battle-
 conversion. If, however, you would like to provide a custom checkout experience, please refer to our guide on
 :doc:`building your own checkout </payments/build-your-own-checkout>`.
 
+Our full hosted checkout experience can be viewed on `our Hosted Checkout demo <https://demo.mollie.com/>`_.
+
 Please also refer to the `Mollie Checkout product page <https://www.mollie.com/en/checkout>`_ on our website.
 
 .. figure:: images/mollie-checkout-example-a@2x.jpg
@@ -25,7 +27,7 @@ Benefits of Mollie Checkout
   their card, it is very easy for the customer to make another payment attempt with the same or even a different payment
   method. No need to implement any extra APIs.
 
-* Full support for :doc:`QR codes </guides/qr-codes>`.
+* Full support for :doc:`QR codes </payments/qr-codes>`.
 
 * Full support for wallet-style payments such as :doc:`Apple Pay </wallets/applepay>`.
 
@@ -42,14 +44,16 @@ image at the top of the page is a good example of a fully branded checkout page.
 #. Click on a **Personalize Checkout** button.
 #. Upload images within the specified restrictions.
 
+The personalization of a background can also be viewed on `our Hosted Checkout demo <https://demo.mollie.com/>`_.
+
 Single-click payments for returning customers
 ---------------------------------------------
 Our hosted checkout offers your returning `credit card <https://www.mollie.com/en/payments/credit-card>`_ customers the
 option to complete their payment with a card they previously used at your webshop.
 
-To enable the functionality, simply use the :doc:`Customers API </reference/v2/customers-api/create-customer>` to create
-a unique customer. When setting up the payment for this specific customer, use the customer ID from the Customers API
-in the ``customerId`` field of the Payments API.
+To enable the functionality, simply use the :doc:`Customers API </reference/v2/customers-api/overview>` to create a
+unique customer. When setting up the payment for this specific customer, use the customer ID from the Customers API in
+the ``customerId`` field of the Payments API.
 
 When setting up a subsequent payment for the same customer, the customer will automatically be shown any cards they
 previously used on the same device.

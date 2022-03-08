@@ -24,10 +24,10 @@ class AuthenticationDirective(Directive):
         # References need to be contained within something like an inline text
         # element; they cannot directly be added to the container.
         if self.options["api_keys"]:
-            api_ref = self.create_reference("/guides/authentication", "API keys")
+            api_ref = self.create_reference("/overview/authentication", "API keys")
             inline += api_ref
         if self.options["organization_access_tokens"]:
-            pat_ref = self.create_reference("/guides/authentication", "Organization access tokens")
+            pat_ref = self.create_reference("/overview/authentication", "Organization access tokens")
             inline += pat_ref
         if self.options["oauth"]:
             oauth_ref = self.create_reference("/connect/overview", "App access tokens")

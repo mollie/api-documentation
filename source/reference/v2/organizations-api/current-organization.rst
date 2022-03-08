@@ -25,85 +25,68 @@ Response
 For the full list of fields, see :doc:`/reference/v2/organizations-api/get-organization`. Only
 ``_links`` is listed here.
 
-.. list-table::
-   :widths: auto
+.. parameter:: _links
+   :type: object
 
-   * - ``_links``
+   An object with several URL objects relevant to the organization. Every URL object will contain an ``href`` and
+   a ``type`` field.
 
-       .. type:: object
+   .. parameter:: self
+      :type: URL object
 
-     - An object with several URL objects relevant to the organization. Every URL object will contain an ``href`` and
-       a ``type`` field.
+      The API resource URL of the organization itself.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: chargebacks
+      :type: URL object
 
-          * - ``self``
+      The API resource URL where the organization's :doc:`chargebacks </reference/v2/chargebacks-api/list-chargebacks>`
+      can be retrieved.
 
-              .. type:: URL object
+   .. parameter:: customers
+      :type: URL object
 
-            - The API resource URL of the organization itself.
+      The API resource URL where the organization's :doc:`customers </reference/v2/customers-api/list-customers>` can be
+      retrieved.
 
-          * - ``chargebacks``
+   .. parameter:: invoices
+      :type: URL object
 
-              .. type:: URL object
+      The API resource URL where the organization's :doc:`invoices </reference/v1/invoices-api/list-invoices>` can be
+      retrieved.
 
-            - The API resource URL where the organization's
-              :doc:`chargebacks </reference/v2/chargebacks-api/list-chargebacks>` can be retrieved.
+   .. parameter:: payments
+      :type: URL object
 
-          * - ``customers``
+      The API resource URL where the organization's :doc:`payments </reference/v2/payments-api/list-payments>` can be
+      retrieved.
 
-              .. type:: URL object
+   .. parameter:: profiles
+      :type: URL object
 
-            - The API resource URL where the organization's
-              :doc:`customers </reference/v2/customers-api/list-customers>` can be retrieved.
+      The API resource URL where the organization's :doc:`profiles </reference/v2/profiles-api/list-profiles>` can be
+      retrieved.
 
-          * - ``invoices``
+   .. parameter:: refunds
+      :type: URL object
 
-              .. type:: URL object
+      The API resource URL where the organization's :doc:`refunds </reference/v2/refunds-api/list-refunds>` can be
+      retrieved.
 
-            - The API resource URL where the organization's
-              :doc:`invoices </reference/v1/invoices-api/list-invoices>` can be retrieved.
+   .. parameter:: settlements
+      :type: URL object
 
-          * - ``payments``
+      The API resource URL where the organization's :doc:`settlements </reference/v2/settlements-api/list-settlements>`
+      can be retrieved.
 
-              .. type:: URL object
+   .. parameter:: dashboard
+      :type: URL object
 
-            - The API resource URL where the organization's
-              :doc:`payments </reference/v2/payments-api/list-payments>` can be retrieved.
+      The URL to the organization dashboard
 
-          * - ``profiles``
+   .. parameter:: documentation
+      :type: URL object
 
-              .. type:: URL object
-
-            - The API resource URL where the organization's
-              :doc:`profiles </reference/v2/profiles-api/list-profiles>` can be retrieved.
-
-          * - ``refunds``
-
-              .. type:: URL object
-
-            - The API resource URL where the organization's
-              :doc:`refunds </reference/v2/refunds-api/list-refunds>` can be retrieved.
-
-          * - ``settlements``
-
-              .. type:: URL object
-
-            - The API resource URL where the organization's
-              :doc:`settlements </reference/v2/settlements-api/list-settlements>` can be retrieved.
-
-          * - ``dashboard``
-
-              .. type:: URL object
-
-            - The URL to the organization dashboard
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the payment method retrieval endpoint documentation.
+      The URL to the payment method retrieval endpoint documentation.
 
 Example
 -------

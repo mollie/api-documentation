@@ -14,90 +14,68 @@ List profiles
 
 Retrieve all profiles available on the account.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: from
+   :type: string
+   :condition: optional
 
-   * - ``from``
+   Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the profile with this ID. The profile with
+   this ID is included in the result set as well.
 
-       .. type:: string
-          :required: false
+.. parameter:: limit
+   :type: integer
+   :condition: optional
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the profile with this ID. The profile
-       with this ID is included in the result set as well.
-
-   * - ``limit``
-
-       .. type:: integer
-          :required: false
-
-     - The number of profiles to return (with a maximum of 250).
+   The number of profiles to return (with a maximum of 250).
 
 Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: count
+   :type: integer
 
-   * - ``count``
+   The number of profiles found in ``_embedded``, which is either the requested number (with a maximum of 250) or the
+   default number.
 
-       .. type:: integer
+.. parameter:: _embedded
+   :type: object
+   :collapse-children: false
 
-     - The number of profiles found in ``_embedded``, which is either the requested number (with a maximum of 250) or
-       the default number.
+   The object containing the queried data.
 
-   * - ``_embedded``
+   .. parameter:: profiles
+      :type: array
 
-       .. type:: object
+      An array of profile objects as described in :doc:`Get profile </reference/v2/profiles-api/get-profile>`.
 
-     - The object containing the queried data.
+.. parameter:: _links
+   :type: object
 
-       .. list-table::
-          :widths: auto
+   Links to help navigate through the lists of profiles. Every URL object will contain an ``href`` and a ``type`` field.
 
-          * - ``profiles``
+   .. parameter:: self
+      :type: URL object
 
-              .. type:: array
+      The URL to the current set of profiles.
 
-            - An array of profile objects as described in :doc:`Get profile </reference/v2/profiles-api/get-profile>`.
+   .. parameter:: previous
+      :type: URL object
 
-   * - ``_links``
+      The previous set of profiles, if available.
 
-       .. type:: object
+   .. parameter:: next
+      :type: URL object
 
-     - Links to help navigate through the lists of profiles. Every URL object will contain an ``href`` and a ``type``
-       field.
+      The next set of profiles, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: documentation
+      :type: URL object
 
-          * - ``self``
-
-              .. type:: URL object
-
-            - The URL to the current set of profiles.
-
-          * - ``previous``
-
-              .. type:: URL object
-
-            - The previous set of profiles, if available.
-
-          * - ``next``
-
-              .. type:: URL object
-
-            - The next set of profiles, if available.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the profiles list endpoint documentation.
+      The URL to the profiles list endpoint documentation.
 
 Example
 -------
@@ -140,6 +118,7 @@ Example
 
 Response
 ^^^^^^^^
+
 .. code-block:: none
    :linenos:
 
@@ -157,6 +136,7 @@ Response
                    "website": "https://www.mywebsite.com",
                    "email": "info@mywebsite.com",
                    "phone": "+31208202070",
+                   "businessCategory": "OTHER_MERCHANDISE",
                    "categoryCode": 5399,
                    "status": "verified",
                    "review": {

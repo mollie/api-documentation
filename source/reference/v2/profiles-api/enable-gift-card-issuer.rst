@@ -33,69 +33,46 @@ Response
 --------
 ``201`` ``application/hal+json``
 
-..  list-table::
-    :widths: auto
+.. parameter:: resource
+   :type: string
 
-    * - ``resource``
+   Indicates the response contains an issuer object. Will always contain ``issuer`` for this endpoint.
 
-        .. type:: string
+.. parameter:: id
+   :type: string
 
-      - Indicates the response contains an issuer object. Will always contain ``issuer`` for this endpoint.
+   The unique identifier of the gift card issuer.
 
-    * - ``id``
+.. parameter:: description
+   :type: string
 
-        .. type:: string
+   The full name of the gift card issuer.
 
-      - The unique identifier of the gift card issuer.
+.. parameter:: status
+   :type: string
 
-    * - ``description``
+   The status that the issuer is in.
 
-        .. type:: string
+   Possible values:
 
-      - The full name of the gift card issuer.
+   * ``activated``: The issuer is activated and ready for use.
+   * ``pending-issuer``: Activation of this issuer relies on you taking action with the issuer itself.
 
-    * - ``status``
+.. parameter:: _links
+   :type: object
 
-        .. type:: string
+   An object with several URL objects relevant to the gift card issuer. Every URL object will contain an ``href`` and a
+   ``type`` field.
 
-      - The status that the issuer is in. Possible values: ``pending-issuer`` or ``activated``.
+   .. parameter:: self
+      :type: URL object
 
-        .. list-table::
-           :widths: auto
+      The API resource URL of the gift card issuer itself.
 
-           * - ``activated``
+   .. parameter:: documentation
+      :type: URL object
 
-               .. type:: string
-
-             - The issuer is activated and ready for use.
-
-           * - ``pending-issuer``
-
-               .. type:: string
-
-             - Activation of this issuer relies on you taking action with the issuer itself.
-
-    * - ``_links``
-
-        .. type:: object
-
-      - An object with several URL objects relevant to the gift card issuer. Every URL object will contain an ``href``
-        and a ``type`` field.
-
-        .. list-table::
-           :widths: auto
-
-           * - ``self``
-
-               .. type:: URL object
-
-             - The API resource URL of the gift card issuer itself.
-
-           * - ``documentation``
-
-               .. type:: URL object
-
-             - The URL to the gift card issuer retrieval endpoint documentation.
+      The URL to the gift card issuer retrieval endpoint documentation.
 
 Request
 ^^^^^^^

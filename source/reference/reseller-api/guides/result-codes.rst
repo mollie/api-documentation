@@ -24,66 +24,67 @@ The following elements are present in every API result:
 
 **The following result codes are possible for all API requests:**
 
-.. list-table::
-   :widths: auto
-
    * - ``10``
 
-     - The request was successfully executed.
+   The request was successfully executed.
 
    * - ``22``
 
-     - The parameter ``timestamp`` is missing.
+   The parameter ``timestamp`` is missing.
 
    * - ``23``
 
-     - The parameter ``signature`` is missing.
+   The parameter ``signature`` is missing.
 
    * - ``25``
 
-     - The submitted website profile cannot be found.
+   The submitted website profile cannot be found.
 
    * - ``26``
 
-     - The HTTP method is not allowed, use a method listed in the Allowed header.
+   The HTTP method is not allowed, use a method listed in the Allowed header.
 
    * - ``27``
 
-     - The signature of the API request is incorrect.
+   The signature of the API request is incorrect.
 
    * - ``28``
 
-     - The timestamp has expired, e.g. is located too far in the past or the future.
+   The timestamp has expired, e.g. is located too far in the past or the future.
 
    * - ``29``
 
-     - One of the obligatory parameters is missing.
+   One of the obligatory parameters is missing.
 
    * - ``31``
 
-     - The parameter ``partner_id`` is missing.
+   The parameter ``partner_id`` is missing.
 
    * - ``32``
 
-     - Access denied. The account is already claimed by another partner.
+   Access denied. The account is already claimed by another partner.
+
+   * - ``93``
+
+   Too many requests. Rate limit was hit.
 
    * - ``95``
 
-     - The API is temporarily unavailable.
+   The API is temporarily unavailable.
 
    * - ``96``
 
-     - One of the parameters contains bytes that can not be understood as UTF-8.
+   One of the parameters contains bytes that can not be understood as UTF-8.
 
    * - ``97``
 
-     - The stated object or the requested API method does not exist.
+   The stated object or the requested API method does not exist.
 
    * - ``98``
 
-     - You have no access to the requested object or the API method.
+   You have no access to the requested object or the API method.
 
    * - ``99``
 
-     - An internal error occurred during the processing of the API request.
+   An internal error occurred during the processing of the API request.
 

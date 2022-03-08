@@ -131,6 +131,10 @@
   transform: translate(-50%, -50%);
 }
 
+.mobile-product-navigation.link-dropdown.dk-select {
+  z-index: 99999;
+}
+
 .mobile-product-navigation.link-dropdown .dk-selected {
   height: 44px;
   padding: 0 15px;
@@ -159,7 +163,7 @@
   border-radius: 4px;
 }
 
-@media only screen and (max-width: 979px) {
+@media only screen and (max-width: $mobile-navigation-breakpoint - 1px) {
   body {
     padding-top: 64px;
   }
@@ -177,7 +181,7 @@
     display: none;
   }
 
-  .mobile-product-navigation.dk-select {
+  .mobile-product-navigation.link-dropdown {
     display: block;
   }
 }

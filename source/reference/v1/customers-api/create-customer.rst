@@ -26,58 +26,46 @@ and subscriptions.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: name
+   :type: string
+   :condition: optional
 
-   * - ``name``
+   The full name of the customer.
 
-       .. type:: string
-          :required: false
+.. parameter:: email
+   :type: string
+   :condition: optional
 
-     - The full name of the customer.
+   The email address of the customer.
 
-   * - ``email``
+.. parameter:: locale
+   :type: string
+   :condition: optional
 
-       .. type:: string
-          :required: false
+   Allows you to preset the language to be used in the hosted payment pages shown to the consumer. When this parameter
+   is not provided, the browser language will be used instead in the payment flow (which is usually more accurate).
 
-     - The email address of the customer.
+   Possible values: ``en_US`` ``en_GB`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
+   ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV`` ``lt_LT``
 
-   * - ``locale``
+.. parameter:: metadata
+   :type: mixed
+   :condition: optional
 
-       .. type:: string
-          :required: false
-
-     - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. When this
-       parameter is not provided, the browser language will be used instead in the payment flow (which is usually more
-       accurate).
-
-       Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
-       ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
-       ``lt_LT``
-
-   * - ``metadata``
-
-       .. type:: mixed
-          :required: false
-
-     - Provide any data you like, and we will save the data alongside the customer. Whenever
-       you fetch the customer with our API, we will also include the metadata. You can use up to 1kB of JSON.
+   Provide any data you like, and we will save the data alongside the customer. Whenever you fetch the customer with our
+   API, we will also include the metadata. You can use up to 1kB of JSON.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, the ``testmode`` parameter is also available.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to create a test mode customer.
+   Set this to ``true`` to create a test mode customer.
 
 Response
 --------

@@ -38,6 +38,8 @@ html {
 }
 
 body {
+  background: $background-color;
+  color: $text-color;
   padding-top: 104px;
 }
 
@@ -76,8 +78,7 @@ a {
   text-decoration: none;
 }
 
-a:not([class]):hover,
-a:not([class]):focus {
+a:not([class]):hover {
   text-decoration: underline;
 }
 
@@ -114,8 +115,7 @@ a.headerlink::before {
   max-width: 100%;
 }
 
-.rst-content a:hover,
-.rst-content a:focus {
+.rst-content a:hover {
   text-decoration: underline;
 }
 
@@ -126,81 +126,22 @@ a.headerlink::before {
   margin: -130px 0 0;
 }
 
-/**
- * Specific styles for currencies table
+/*
+ * Dark mode
  */
-#supported-currencies table tr th,
-#supported-currencies table tr td {
-  text-align: left;
-}
-
-#supported-currencies tbody td:only-child {
-  padding-right: 0;
-}
-
-#supported-currencies .note {
-  margin-top: -20px;
-  margin-bottom: 15px;
-
-  @media (min-width: breakpoint('medium')) {
-    margin-top: -50px;
-    margin-bottom: 0;
-  }
-}
-
-@media (max-width: breakpoint('<medium')) {
-  #supported-currencies table {
-    display: block;
+@media (prefers-color-scheme: dark) {
+  body {
+    background: $dark-mode-background-color;
+    color: $dark-mode-text-color;
   }
 
-  #supported-currencies thead {
-    position: absolute;
-    left: -999em;
+  hr {
+    border-top-color: $grey-dark;
   }
 
-  #supported-currencies tr {
-    display: grid;
-    grid-template-columns: 1fr auto;
+  a {
+    color: $dark-mode-brand-primary;
   }
-
-  #supported-currencies td:nth-child(1) {
-    padding-top: 15px;
-    padding-bottom: 0;
-    font-weight: bold;
-    font-size: 16px;
-  }
-
-  #supported-currencies td:nth-child(2) {
-    padding-top: 15px;
-    text-align: right;
-  }
-
-  #supported-currencies td:nth-child(3) {
-    order: 2;
-  }
-
-  #supported-currencies td:nth-child(3)::before {
-    content: 'Decimals: ';
-  }
-
-  #supported-currencies td:nth-child(3),
-  #supported-currencies td:nth-child(4) {
-    padding-bottom: 15px;
-    border-top: 0;
-  }
-}
-
-/**
- * Specific styles for payment method expiry times table
- */
-#expiry-times-per-payment-method table tr th,
-#expiry-times-per-payment-method table tr td {
-  text-align: left;
-}
-
-#expiry-times-per-payment-method table ul {
-  list-style: none;
-  padding: 0;
 }
 
 /**
@@ -231,9 +172,9 @@ a.headerlink::before {
 @import 'components/code';
 @import 'components/content';
 @import 'components/endpoint';
+@import 'components/endpoint-card';
 @import 'components/code-example';
 @import 'components/figure';
-@import 'components/footer';
 @import 'components/github-link';
 @import 'components/link-dropdown';
 @import 'components/main';
@@ -241,11 +182,13 @@ a.headerlink::before {
 @import 'components/mobile-navigation-button';
 @import 'components/note';
 @import 'components/parameters';
+@import 'components/payment-method-expiry-times';
+@import 'components/payment-method-switcher';
 @import 'components/sidebar';
 @import 'components/sub-navigation';
 @import 'components/sub-navigation-item';
+@import 'components/supported-currencies';
 @import 'components/type';
-@import 'components/payment-method-switcher';
 
 /**
  * Utilities

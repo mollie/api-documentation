@@ -20,29 +20,23 @@ Make sure to add the :ref:`obligatory parameters <secret-keys>` always. Besides 
 parameters:
 
 .. note:: It is not necessary to set ``username`` and ``password`` if you are using ``partner_id_customer``. Otherwise
-          both are required to set.
+   both are required to set.
 
-.. list-table::
-   :widths: auto
+.. parameter:: username
+   :type: string
 
-   * - ``username``
+   The username of the account you would like to disconnect.
 
-       .. type:: string
+.. parameter:: password
+   :type: string
 
-     - The username of the account you would like to disconnect.
+   The password of the account you would like to disconnect.
 
-   * - ``password``
+.. parameter:: partner_id_customer
+   :type: string
 
-       .. type:: string
-
-     - The password of the account you would like to disconnect.
-
-   * - ``partner_id_customer``
-
-       .. type:: string
-
-     - 	The partner ID of the account you would like to disconnect. It can be used instead of the parameters
-        ``username`` and ``password``.
+   The partner ID of the account you would like to disconnect. It can be used instead of the parameters ``username`` and
+   ``password``.
 
 Response
 --------
@@ -61,17 +55,14 @@ Response
 
 Possible response codes
 ^^^^^^^^^^^^^^^^^^^^^^^
-.. list-table::
-   :widths: auto
-
    * - ``10``
 
-     - The account has been successfully disconnected.
+   The account has been successfully disconnected.
 
    * - ``30``
 
-     - You cannot disconnect this account because the combination of username and password is incorrect.
+   You cannot disconnect this account because the combination of username and password is incorrect.
 
    * - ``35``
 
-     - You cannot disconnect this account because you did not bring it in.
+   You cannot disconnect this account because you did not bring it in.

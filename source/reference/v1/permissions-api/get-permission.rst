@@ -25,43 +25,35 @@ Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains a permission object. Will always contain ``permission`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains a permission object. Will always contain ``permission`` for this endpoint.
+   The permission's unique identifier, for example ``payments.read``. See
+   :doc:`Permissions </connect/permissions>` for details about the available permissions.
 
-   * - ``id``
+   Possible values: ``apikeys.read`` ``apikeys.write`` ``customers.read`` ``customers.write`` ``mandates.read``
+   ``mandates.write`` ``organizations.read`` ``organizations.write`` ``payments.read`` ``payments.write``
+   ``profiles.read`` ``profiles.write`` ``refunds.read`` ``refunds.write`` ``settlements.read``
 
-       .. type:: string
+.. parameter:: description
+   :type: string
 
-     - The permission's unique identifier, for example ``payments.read``. See
-       :doc:`Permissions </connect/permissions>` for details about the available permissions.
+   A short description of what the permission allows.
 
-       Possible values: ``apikeys.read`` ``apikeys.write`` ``customers.read`` ``customers.write`` ``mandates.read``
-       ``mandates.write`` ``organizations.read`` ``organizations.write`` ``payments.read`` ``payments.write``
-       ``profiles.read`` ``profiles.write`` ``refunds.read`` ``refunds.write`` ``settlements.read``
+.. parameter:: warning
+   :type: string
 
-   * - ``description``
+   A mandatory warning message when necessary.
 
-       .. type:: string
+.. parameter:: granted
+   :type: boolean
 
-     - A short description of what the permission allows.
-
-   * - ``warning``
-
-       .. type:: string
-
-     - A mandatory warning message when necessary.
-
-   * - ``granted``
-
-       .. type:: boolean
-
-     - Whether this permission is granted to the app by the organization or not.
+   Whether this permission is granted to the app by the organization or not.
 
 Example
 -------

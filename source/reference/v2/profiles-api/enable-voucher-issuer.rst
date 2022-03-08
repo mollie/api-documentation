@@ -28,113 +28,71 @@ Parameters
 Replace ``id`` in the endpoint URL by the profile's ID, for example ``pfl_v9hTwCvYqw`` and ``issuer`` with the
 identifier of the issuer you want to activate, for example ``appetiz``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: contractId
+   :type: string
+   :condition: optional
 
-   * - ``contractId``
-
-       .. type:: string
-          :required: false
-
-     - The contract id of the related contractor. Please note, for the first call that will be made to an issuer of the
-       contractor, this field is required. You do not have to provide the same contract id for other issuers of the same
-       contractor. Update of the contract id will be possible through making the same call again with different contract
-       ID value until the contract id is approved by the contractor.
+   The contract id of the related contractor. Please note, for the first call that will be made to an issuer of the
+   contractor, this field is required. You do not have to provide the same contract id for other issuers of the same
+   contractor. Update of the contract id will be possible through making the same call again with different contract ID
+   value until the contract id is approved by the contractor.
 
 Response
 --------
 ``201`` ``application/hal+json``
 
-..  list-table::
-    :widths: auto
+.. parameter:: resource
+   :type: string
 
-    * - ``resource``
+   Indicates the response contains an issuer object. Will always contain ``issuer`` for this endpoint.
 
-        .. type:: string
+.. parameter:: id
+   :type: string
 
-      - Indicates the response contains an issuer object. Will always contain ``issuer`` for this endpoint.
+   The unique identifier of the voucher issuer.
 
-    * - ``id``
+.. parameter:: description
+   :type: string
 
-        .. type:: string
+   The full name of the voucher issuer.
 
-      - The unique identifier of the voucher issuer.
+.. parameter:: status
+   :type: string
 
-    * - ``description``
+   The status that the issuer is in. Possible values: ``pending-issuer`` or ``activated``.
 
-        .. type:: string
+   * ``activated`` The issuer is activated and ready for use.
+   * ``pending-issuer`` Activation of this issuer relies on you taking action with the issuer itself.
 
-      - The full name of the voucher issuer.
+.. parameter:: contractor
+   :type: object
 
-    * - ``status``
+   An object with contractor information.
 
-        .. type:: string
+   .. parameter:: id
+      :type: string
 
-      - The status that the issuer is in. Possible values: ``pending-issuer`` or ``activated``.
+   .. parameter:: name
+      :type: string
 
-        .. list-table::
-           :widths: auto
+   .. parameter:: contractId
+      :type: string
 
-           * - ``activated``
+.. parameter:: _links
+   :type: object
 
-               .. type:: string
+   An object with several URL objects relevant to the voucher issuer. Every URL object will contain an ``href`` and a
+   ``type`` field.
 
-             - The issuer is activated and ready for use.
+   .. parameter:: self
+      :type: URL object
 
-           * - ``pending-issuer``
+      The API resource URL of the voucher issuer itself.
 
-               .. type:: string
+   .. parameter:: documentation
+      :type: URL object
 
-             - Activation of this issuer relies on you taking action with the issuer itself.
-
-    * - ``contractor``
-
-        .. type:: object
-
-      - An object with contractor information
-
-        .. list-table::
-           :widths: auto
-
-           * - ``id``
-
-               .. type:: string
-
-             - The id of the contractor
-
-           * - ``name``
-
-               .. type:: string
-
-             - The name of the contractor
-
-           * - ``contractId``
-
-               .. type:: string
-
-             - The contract id of the contractor.
-
-    * - ``_links``
-
-        .. type:: object
-
-      - An object with several URL objects relevant to the voucher issuer. Every URL object will contain an ``href`` and
-        a ``type`` field.
-
-        .. list-table::
-           :widths: auto
-
-           * - ``self``
-
-               .. type:: URL object
-
-             - The API resource URL of the voucher issuer itself.
-
-           * - ``documentation``
-
-               .. type:: URL object
-
-             - The URL to the voucher issuer retrieval endpoint documentation.
+      The URL to the voucher issuer retrieval endpoint documentation.
 
 Example
 -------

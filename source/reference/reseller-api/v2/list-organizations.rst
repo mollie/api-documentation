@@ -14,89 +14,67 @@ List organizations
 
 Retrieve all organizations that are connected to your partner-account.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: from
+   :type: string
+   :condition: optional
 
-   * - ``from``
-
-       .. type:: string
-          :required: false
-
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the organization with this ID. The
+   Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the organization with this ID. The
        organization with this ID is included in the result set as well.
 
-   * - ``limit``
+.. parameter:: limit
+   :type: integer
+   :condition: optional
 
-       .. type:: integer
-          :required: false
-
-     - The number of organizations to return (with a maximum of 250).
+   The number of organizations to return (with a maximum of 250).
 
 Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: _embedded
+   :type: object
 
-   * - ``_embedded``
+   The object containing the queried data.
 
-       .. type:: object
-
-     - The object containing the queried data.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``organizations``
-
-              .. type:: array
+   .. parameter:: organizations
+      :type: array
 
             - An array of organization objects as described in
               :doc:`Get organization </reference/v2/organizations-api/get-organization>`.
 
-   * - ``count``
+.. parameter:: count
+   :type: integer
 
-       .. type:: integer
-
-     - The number of organizations found in ``_embedded``, which is either the requested number (with a maximum of 250)
+   The number of organizations found in ``_embedded``, which is either the requested number (with a maximum of 250)
        or the default number.
 
-   * - ``_links``
+.. parameter:: _links
+   :type: object
 
-       .. type:: object
-
-     - Links to help navigate through the lists of organizations. Every URL object will contain an ``href`` and a
+   Links to help navigate through the lists of organizations. Every URL object will contain an ``href`` and a
        ``type`` field.
 
-       .. list-table::
-          :widths: auto
-
-          * - ``self``
-
-              .. type:: URL object
+   .. parameter:: self
+      :type: URL object
 
             - The URL to the current set of organizations.
 
-          * - ``previous``
-
-              .. type:: URL object
+   .. parameter:: previous
+      :type: URL object
 
             - The previous set of organizations, if available.
 
-          * - ``next``
-
-              .. type:: URL object
+   .. parameter:: next
+      :type: URL object
 
             - The next set of organizations, if available.
 
-          * - ``documentation``
-
-              .. type:: URL object
+   .. parameter:: documentation
+      :type: URL object
 
             - The URL to the organizations list endpoint documentation.
 

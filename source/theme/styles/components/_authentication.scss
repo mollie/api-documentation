@@ -16,8 +16,21 @@
   transform: translateY(-3px);
 }
 
-.authentication a.reference:hover,
-.authentication a.reference:focus {
+.authentication a.reference:hover {
   color: $brand-primary-hover;
   text-decoration: none;
+}
+
+/*
+ * Dark mode
+ */
+@media (prefers-color-scheme: dark) {
+  .authentication a.reference {
+    color: $dark-mode-brand-primary;
+    border-bottom-color: $dark-mode-brand-primary;
+  }
+
+  .authentication a.reference:hover {
+    color: $dark-mode-brand-primary-hover;
+  }
 }

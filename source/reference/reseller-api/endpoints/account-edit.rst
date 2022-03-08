@@ -20,15 +20,11 @@ Make sure to add the :ref:`obligatory parameters <secret-keys>` always. Besides 
 as described in :doc:`Create account </reference/reseller-api/endpoints/account-create>`. Please note that you will need
 to add one additional required parameter just for this endpoint:
 
-.. list-table::
-   :widths: auto
+.. parameter:: username
+   :type: string
+   :condition: required
 
-   * - ``username``
-
-       .. type:: string
-          :required: true
-
-     - The username of the account you would like to change.
+   The username of the account you would like to change.
 
 Response
 --------
@@ -49,22 +45,8 @@ Response
 
 Possible response codes
 ^^^^^^^^^^^^^^^^^^^^^^^
-.. list-table::
-   :widths: auto
-
-   * - ``10``
-
-     - The account has been successfully adjusted.
-
-   * - ``30``
-
-     - You cannot change this account, because the username is incorrect.
-
-   * - ``34``
-
-     - The account cannot be created because one or more fields were rejected. A more extensive description has been
-       included in the reply.
-
-   * - ``35``
-
-     - You cannot change this account, because you did not bring in this account.
+* ``10`` The account has been successfully adjusted.
+* ``30`` You cannot change this account, because the username is incorrect.
+* ``34`` The account cannot be created because one or more fields were rejected. A more extensive description has been
+  included in the reply.
+* ``35`` You cannot change this account, because you did not bring in this account.

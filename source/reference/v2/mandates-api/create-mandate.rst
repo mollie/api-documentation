@@ -12,12 +12,12 @@ Create mandate
    :organization_access_tokens: true
    :oauth: true
 
-Create a mandate for a specific customer. Mandates allow you to charge a customer's credit card,
-PayPal account or bank account recurrently.
+Create a mandate for a specific customer. Mandates allow you to charge a customer's credit card, PayPal account or bank
+account recurrently.
 
-It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint.
-To create mandates for credit cards, have your customers perform a
-:ref:`'first payment' <payments/recurring/first-payment>` with their credit card.
+It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create mandates
+for credit cards, have your customers perform a :ref:`'first payment' <payments/recurring/first-payment>` with their
+credit card.
 
 .. note:: Created mandates are unique to your account and can not be transferred to other accounts.
 
@@ -25,90 +25,70 @@ Parameters
 ----------
 Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``/v2/customers/cst_8wmqcHMN4U/mandates``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: method
+   :type: string
+   :condition: required
 
-   * - ``method``
+   Payment method of the mandate.
 
-       .. type:: string
-          :required: true
+   SEPA Direct Debit and PayPal mandates can be created directly.
 
-     - Payment method of the mandate.
+   Possible values: ``directdebit`` ``paypal``
 
-       Possible values: ``directdebit`` ``paypal``
+.. parameter:: consumerName
+   :type: string
+   :condition: required
 
-   * - ``consumerName``
+   The consumer's name.
 
-       .. type:: string
-          :required: true
+.. parameter:: consumerAccount
+   :type: string
+   :condition: conditional
 
-     - The consumer's name.
+   The consumer's IBAN. Required for ``directdebit`` mandates.
 
-   * - ``consumerAccount``
+.. parameter:: consumerBic
+   :type: string
+   :condition: optional
 
-       .. type:: string
-          :required: false
+   The consumer's bank's BIC.
 
-     - The consumer's IBAN.
+.. parameter:: consumerEmail
+   :type: string
+   :condition: conditional
 
-       .. note:: Required for ``directdebit`` mandates
+   The consumer's email address. Required for ``paypal`` mandates.
 
-   * - ``consumerBic``
+.. parameter:: signatureDate
+   :type: date
+   :condition: optional
 
-       .. type:: string
-          :required: false
+   The date when the mandate was signed in ``YYYY-MM-DD`` format.
 
-     - The consumer's bank's BIC.
+.. parameter:: mandateReference
+   :type: string
+   :condition: optional
 
-   * - ``consumerEmail``
+   A custom mandate reference. Use an unique ``mandateReference`` as some banks decline a Direct Debit payment if the
+   ``mandateReference`` is not unique.
 
-       .. type:: string
-          :required: false
+.. parameter:: paypalBillingAgreementId
+   :type: string
+   :condition: conditional
 
-     - The consumer's email address.
-
-       .. note:: Required for ``paypal`` mandates
-
-   * - ``signatureDate``
-
-       .. type:: date
-          :required: false
-
-     - The date when the mandate was signed in ``YYYY-MM-DD`` format.
-
-   * - ``mandateReference``
-
-       .. type:: string
-          :required: false
-
-     - A custom mandate reference. Use an unique ``mandateReference`` as some banks decline a
-       Direct Debit payment if the ``mandateReference`` is not unique.
-
-   * - ``paypalBillingAgreementId``
-
-       .. type:: string
-          :required: false
-
-     - The billing agreement ID given by PayPal.
-
-       For example: ``B-12A34567B8901234CD``
-
-       .. note:: Required for ``paypal`` mandates
+   The billing agreement ID given by PayPal. For example: ``B-12A34567B8901234CD``. Required for ``paypal`` mandates.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to create a test mode mandate.
+   Set this to ``true`` to create a test mode mandate.
 
 Response
 --------
@@ -118,7 +98,6 @@ A mandate object is returned, as described in :doc:`Get mandate </reference/v2/m
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:

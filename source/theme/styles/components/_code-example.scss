@@ -56,12 +56,11 @@
 
 .rst-content .section .highlighttable tbody > tr > td {
   padding-bottom: 0;
-  color: $grey-dusty;
 }
 
 .rst-content .section .highlighttable tr td.linenos {
   padding-right: 0;
-  background-color: #fcfcfc;
+  background-color: shade($background-color, 2%);
   border-right: 1px solid $grey-medium;
 }
 
@@ -70,7 +69,7 @@
 }
 
 .rst-content .highlight {
-  background: #fff;
+  background: transparent;
 }
 
 .rst-content .highlighttable pre {
@@ -82,59 +81,40 @@
   color: $grey-dark;
 }
 
-.rst-content .highlight .kc,
+.rst-content .highlight .kc, /* Keyword.Constant */
 .rst-content .highlight .p,
 .rst-content .highlight .l,
-.rst-content .highlight .mf,
-.rst-content .highlight .s2 {
+.rst-content .highlight .mf, /* Literal.Number.Float */ {
   color: $grey-dark;
 }
 
-.rst-content .highlight .nt,
-.rst-content .highlight .kr,
-.rst-content .highlight .na,
-.rst-content .highlight .m,
-.rst-content .highlight .o,
-.rst-content .highlight .ne {
+.rst-content .highlight .nt, /* Name.Tag */
+.rst-content .highlight .kr, /* Keyword.Reserved */
+.rst-content .highlight .na, /* Name.Attribute */
+.rst-content .highlight .m, /* Literal.Number */
+.rst-content .highlight .o, /* Operator */
+.rst-content .highlight .ne /* Name.Exception */ {
   color: $orange-anzac;
 }
 
-.rst-content .highlight .nt,
-.rst-content .highlight .ne,
-.rst-content .highlight .m {
-  font-weight: bold;
-}
-
-.rst-content .highlight .kc,
-.rst-content .highlight .p,
-.rst-content .highlight .s2,
-.rst-content .highlight .se,
-.rst-content .highlight .nt {
-  font-weight: 300;
-}
-
-.rst-content .highlight .err {
+.rst-content .highlight .err /* Error */ {
   border: none;
   color: $grey-dark;
 }
 
-.rst-content .highlight .mi {
+.rst-content .highlight .mi /* Literal.Number.Integer */ {
   color: $orange-anzac;
 }
 
-.rst-content .highlight-bash .highlight .s2,
-.rst-content .highlight-bash .highlight .se,
-.rst-content .highlight-php .highlight .cp,
-.rst-content .highlight-php .highlight .nv,
-.rst-content .highlight-php .highlight .k,
-.rst-content .highlight-php .highlight .nx,
-.rst-content .highlight-php .highlight .c1,
-.rst-content .highlight-php .highlight .o,
-.rst-content .highlight-php .highlight .na {
-  color: #005a9a;
+.rst-content .highlight .nv, /* Name.Variable */
+.rst-content .highlight .vc, /* Name.Variable.Class */
+.rst-content .highlight .vg, /* Name.Variable.Global */
+.rst-content .highlight .vi, /* Name.Variable.Instance */
+.rst-content .highlight .vm /* Name.Variable.Magic */ {
+  color: inherit;
 }
 
-.rst-content .highlight-php .highlight .mi {
+.rst-content .highlight .mi /* Literal.Number.Integer */ {
   color: $grey-dark;
 }
 
@@ -142,4 +122,75 @@ td.linenos pre {
   color: #999 !important;
   background: none !important;
   padding: 0 20px !important;
+}
+
+/*
+ * Dark mode
+ */
+@media (prefers-color-scheme: dark) {
+  .rst-content .examples-switcher .example-switch {
+    color: $dark-mode-brand-primary;
+    border-bottom-color: $dark-mode-brand-primary;
+  }
+
+  .rst-content .examples-switcher .example-switch:hover,
+  .rst-content .examples-switcher .example-switch:focus {
+    color: $dark-mode-brand-primary-hover;
+  }
+
+  .rst-content .highlighttable {
+    border-color: $grey-dark;
+  }
+
+  .rst-content .section .highlighttable tr td.linenos {
+    background-color: tint($dark-mode-background-color, 8%);
+    border-right-color: $grey-dark;
+  }
+
+  .rst-content .highlight pre {
+    color: $grey-medium-light;
+  }
+
+  .rst-content .highlight .kc, /* Keyword.Constant */
+  .rst-content .highlight .p,
+  .rst-content .highlight .l,
+  .rst-content .highlight .mf /* Literal.Number.Float */ {
+    color: $grey-medium;
+  }
+
+  /* Make the default green for keywords a bit brighter */
+  .rst-content .highlight .k, /* Keyword */
+  .rst-content .highlight .cp, /* Comment.Preproc */
+  .rst-content .highlight .kc, /* Keyword.Constant */
+  .rst-content .highlight .kd, /* Keyword.Declaration */
+  .rst-content .highlight .kn, /* Keyword.Namespace */
+  .rst-content .highlight .kp, /* Keyword.Pseudo */
+  .rst-content .highlight .kr, /* Keyword.Reserved */
+  .rst-content .highlight .nb, /* Name.Builtin */
+  .rst-content .highlight .ne, /* Name.Exception */
+  .rst-content .highlight .ow, /* Operator.Word */
+  .rst-content .highlight .bp /* Name.Builtin.Pseudo */ {
+    color: #34a954;
+  }
+
+  /* Make the default blue for strings a bit brighter */
+  .rst-content .highlight .sa, /* Literal.String.Affix */
+  .rst-content .highlight .sb, /* Literal.String.Backtick */
+  .rst-content .highlight .sc, /* Literal.String.Char */
+  .rst-content .highlight .dl, /* Literal.String.Delimiter */
+  .rst-content .highlight .sd, /* Literal.String.Doc */
+  .rst-content .highlight .s2, /* Literal.String.Double */
+  .rst-content .highlight .se, /* Literal.String.Escape */
+  .rst-content .highlight .sh, /* Literal.String.Heredoc */
+  .rst-content .highlight .s1 /* Literal.String.Single */ {
+    color: #4987bc;
+  }
+
+  .rst-content .highlight .err {
+    color: $grey-light;
+  }
+
+  .rst-content .highlight-php .highlight .mi {
+    color: $grey-light;
+  }
 }

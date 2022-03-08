@@ -95,7 +95,7 @@ Support for other currencies than ``EUR`` varies per payment method.
 
 Filtering payment methods
 -------------------------
-When integrating multicurrency we can use the :doc:`Methods API </reference/v2/methods-api/list-methods>` to retrieve
+When integrating multicurrency we can use the :doc:`Methods API </reference/v2/methods-api/overview>` to retrieve
 all methods available for the given amount and currency.
 
 Request

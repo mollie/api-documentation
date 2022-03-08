@@ -11,12 +11,10 @@ API.
 
 Differences and similarities
 ----------------------------
-To create a payment in the orders API the :doc:`Create order </reference/v2/orders-api/create-order>` API needs to be
-used.
-
-The `Create payment` and `Create order` APIs are very similar. Both support the following parameters: ``amount``,
-``redirectUrl``, ``webhookUrl``, ``locale``, ``method`` and ``metadata``.  For orders, ``locale`` is a *required*
-parameter.
+The :doc:`Create payment </reference/v2/payments-api/create-payment>` and
+:doc:`Create order </reference/v2/orders-api/create-order>` endpoints are very similar. Both support the following
+parameters: ``amount``, ``redirectUrl``, ``webhookUrl``, ``locale``, ``method`` and ``metadata``.  For orders,
+``locale`` is a *required* parameter.
 
 For orders, there is no ``description`` field. The Payment description will be automatically created by Mollie and will
 contain the order number, your profile's name and your profile's website.
@@ -52,8 +50,8 @@ The ``billingAddress`` should contain the address of the person who will be bill
 +------------------------+--------------------------------------------+------------------------------------------------+
 | ``locale``             | Recommended in Payments API.               | Required for Orders API.                       |
 +------------------------+--------------------------------------------+------------------------------------------------+
-| ``method``             | Does not support *pay after delivery*      | Supports *Klarna Pay later* and *Klarna Slice  |
-|                        | payment methods.                           | it*.                                           |
+| ``method``             | Does not support payment methods that      | Supports *Klarna Pay now*, *Klarna Pay later*, |
+|                        | require order details.                     | *Klarna Slice it* and voucher payments.        |
 +------------------------+--------------------------------------------+------------------------------------------------+
 | ``metadata``           | *Identical between Payments API and Orders API.*                                            |
 +------------------------+--------------------------------------------+------------------------------------------------+
@@ -103,11 +101,11 @@ Note that orders cannot be canceled by shoppers. The order will remain ``created
 further payments to the order to give your customer a second chance to pay for the order.
 
 If you want to know if your customer canceled the first payment, you will need to retrieve the payment together with the
-order instead of just the order by adding ``?embed=payments`` to the Get Order API request. You can then find the status
-of the first payment under ``_embedded.payments.0.status``.
+order instead of just the order by adding ``?embed=payments`` to the *Get order* endpoint request. You can then find the
+status of the first payment under ``_embedded.payments.0.status``.
 
-Canceling an order should be done from your backend. You can use the :doc:`Cancel Order API
-</reference/v2/orders-api/cancel-order>`.
+Canceling an order should be done from your backend. You can use the
+:doc:`Cancel order endpoint </reference/v2/orders-api/cancel-order>`.
 
 Retrieving available payment methods
 ------------------------------------
@@ -125,8 +123,8 @@ When an order payment is successfully completed by the customer the payment stat
 *Pay later* payment methods will have an `authorized` status. Shipping is required and it ensures you will be settled.
 Note that the customer will receive an invoice per shipment.
 
-Shipping can be done using the :doc:`Create Shipment </reference/v2/shipments-api/create-shipment>` API or directly from
-the `Mollie Dashboard <https://www.mollie.com/dashboard/>`_.
+Shipping can be done using the :doc:`Create shipment endpoint </reference/v2/shipments-api/create-shipment>` or directly
+from the `Mollie Dashboard <https://www.mollie.com/dashboard/>`_.
 
 If needed, you can create multiple shipments per order. In the shipment you specify the order lines that are to be
 shipped.
@@ -136,13 +134,13 @@ When all order lines are either shipped or canceled the order is completed.
 Refunding
 ---------
 Refunding works almost the same as in the payments API. You will have to use the
-:doc:`Create order refund </reference/v2/orders-api/create-order-refund>` API and specify which order lines are to be
-refunded. If no lines are specified the whole order will be refunded.
+:doc:`Create order refund endpoint </reference/v2/refunds-api/create-order-refund>` and specify which order lines are to
+be refunded. If no lines are specified the whole order will be refunded.
 
 Payments
 --------
 An order always has a payment that is used by your customer to pay for the order. If the payment is
 canceled, expired, or failed, it is possible to create a new payment using the
-:doc:`Create order payment </reference/v2/orders-api/create-order-payment>` API. This has the
+:doc:`Create order payment endpoint </reference/v2/orders-api/create-order-payment>`. This has the
 advantage that you do not need to create a new order, and can keep the order relation with your
 internal e-commerce system. Note that this is only possible for orders that have a ``created`` status.

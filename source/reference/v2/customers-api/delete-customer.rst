@@ -20,18 +20,15 @@ Replace ``id`` in the endpoint URL by the customer's ID, for example ``cst_8wmqc
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to delete a test mode customer.
+   Set this to ``true`` to delete a test mode customer.
 
 Response
 --------
@@ -39,9 +36,7 @@ Response
 
 Example
 -------
-
 .. code-block-selector::
-
    .. code-block:: bash
       :linenos:
 

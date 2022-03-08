@@ -1,0 +1,98 @@
+.rst-content .section#endpoints,
+.rst-content .section#objects {
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 20px;
+
+  @media (min-width: breakpoint('medium')) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: $mobile-navigation-breakpoint) {
+    grid-template-columns: auto;
+  }
+
+  @media (min-width: breakpoint('medium-large')) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.rst-content .section#endpoints > h2,
+.rst-content .section#objects > h2 {
+  grid-column-start: 1;
+  grid-column-end: -1; // Stretch until the final column.
+}
+
+.rst-content .endpoint-card {
+}
+
+.rst-content .endpoint-card > a {
+  display: block;
+  height: 100%;
+  margin: 0;
+  padding: 20px 30px;
+  border: 1px solid $grey-lighter;
+  border-radius: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.rst-content .endpoint-card > a:hover {
+  background: $grey-lightest;
+  text-decoration: none;
+}
+
+.rst-content .endpoint-card__name {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.rst-content .endpoint-card__endpoint {
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-gap: 10px;
+  font-weight: 500;
+  margin: 10px 0;
+}
+
+.rst-content .endpoint-card__endpoint code.docutils {
+  background: transparent;
+  color: $grey-dark;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.rst-content .endpoint-card__endpoint code.docutils:first-child {
+  font-weight: 600;
+}
+
+.rst-content .endpoint-card__endpoint code.docutils:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rst-content .endpoint-card__description {
+  font-size: 14px;
+  line-height: 1.6em;
+}
+
+/*
+ * Dark mode
+ */
+@media (prefers-color-scheme: dark) {
+  .rst-content .endpoint-card > a {
+    border-color: $grey-dark;
+  }
+
+  .rst-content .endpoint-card > a:hover {
+    background: tint($dark-mode-background-color, 2%);
+  }
+
+  .rst-content .endpoint-card__endpoint code.docutils {
+    color: $grey-medium-dark;
+  }
+}

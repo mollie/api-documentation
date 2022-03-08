@@ -58,6 +58,7 @@ Request
 
 Response
 ^^^^^^^^
+
 .. code-block:: none
    :linenos:
 
@@ -72,6 +73,7 @@ Response
        "website": "https://www.mywebsite.com",
        "email": "info@mywebsite.com",
        "phone": "+31208202070",
+       "businessCategory": "OTHER_MERCHANDISE",
        "categoryCode": 5399,
        "status": "verified",
        "review": {

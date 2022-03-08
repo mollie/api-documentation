@@ -21,41 +21,34 @@ List invoices
 
 Retrieve all invoices on the account. Optionally filter on year or invoice number.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: reference
+   :type: string
+   :condition: optional
 
-   * - ``reference``
+   Use this parameter to filter for an invoice with a specific invoice number / reference. An example reference would be
+   ``2018.10000``.
 
-       .. type:: string
-          :required: false
+.. parameter:: year
+   :type: integer
+   :condition: optional
 
-     - Use this parameter to filter for an invoice with a specific invoice number / reference. An example
-       reference would be ``2018.10000``.
+   Use this parameter to filter for invoices from a specific year (e.g. ``2018``).
 
-   * - ``year``
+.. parameter:: offset
+   :type: integer
+   :condition: optional
 
-       .. type:: integer
-          :required: false
+   The number of invoices to skip.
 
-     - Use this parameter to filter for invoices from a specific year (e.g. ``2018``).
+.. parameter:: count
+   :type: integer
+   :condition: optional
 
-   * - ``offset``
-
-       .. type:: integer
-          :required: false
-
-     - The number of invoices to skip.
-
-   * - ``count``
-
-       .. type:: integer
-          :required: false
-
-     - The number of invoices to return (with a maximum of 250).
+   The number of invoices to return (with a maximum of 250).
 
 Includes
 ^^^^^^^^
@@ -69,66 +62,51 @@ Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: totalCount
+   :type: integer
 
-   * - ``totalCount``
+   The total number of invoices available.
 
-       .. type:: integer
+.. parameter:: offset
+   :type: integer
 
-     - The total number of invoices available.
+   The number of skipped invoices as requested.
 
-   * - ``offset``
+.. parameter:: count
+   :type: integer
 
-       .. type:: integer
+   The number of invoices found in ``data``, which is either the requested number (with a maximum of 250) or the
+   default number.
 
-     - The number of skipped invoices as requested.
+.. parameter:: data
+   :type: array
 
-   * - ``count``
+   An array of invoice objects as described in :doc:`Get invoice </reference/v1/invoices-api/get-invoice>`.
 
-       .. type:: integer
+.. parameter:: links
+   :type: object
 
-     - The number of invoices found in ``data``, which is either the requested number (with a maximum of 250) or the
-       default number.
+   Links to help navigate through the lists of invoices, based on the given offset.
 
-   * - ``data``
+   .. parameter:: previous
+      :type: string
 
-       .. type:: array
+      The previous set of invoices, if available.
 
-     - An array of invoice objects as described in :doc:`Get invoice </reference/v1/invoices-api/get-invoice>`.
+   .. parameter:: next
+      :type: string
 
-   * - ``links``
+      The next set of invoices, if available.
 
-       .. type:: object
+   .. parameter:: first
+      :type: string
 
-     - Links to help navigate through the lists of invoices, based on the given offset.
+      The first set of invoices, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: last
+      :type: string
 
-          * - ``previous``
-
-              .. type:: string
-
-            - The previous set of invoices, if available.
-
-          * - ``next``
-
-              .. type:: string
-
-            - The next set of invoices, if available.
-
-          * - ``first``
-
-              .. type:: string
-
-            - The first set of invoices, if available.
-
-          * - ``last``
-
-              .. type:: string
-
-            - The last set of invoices, if available.
+      The last set of invoices, if available.
 
 Example
 -------

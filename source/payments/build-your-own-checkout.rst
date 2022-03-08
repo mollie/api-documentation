@@ -16,6 +16,7 @@ The common checkout path
 The most common checkout path can be broken down into a handful of steps.
 
 .. image:: images/checkout-flow-common-with-details@2x.png
+   :class: boxed-in-dark-mode
 
 The steps are roughly as follows:
 
@@ -29,17 +30,18 @@ The steps are roughly as follows:
 #. Depending on the payment method, the customer may need to authenticate the transaction with their bank or card
    issuer.
 
-#. The customer completes the payment, you receive a :doc:`webhook </guides/webhooks>`, and the customer is sent back to
-   your website.
+#. The customer completes the payment, you receive a :doc:`webhook </overview/webhooks>`, and the customer is sent back
+   to your website.
 
 Embedding method selection
 --------------------------
 A good first step towards a deeper checkout integration is to provide your own payment method selection.
 
 .. image:: images/checkout-flow-embedded-method-selection@2x.png
+   :class: boxed-in-dark-mode
 
-To accomplish this, first use the :doc:`Methods API </reference/v2/methods-api/list-methods>` to retrieve the payment
-methods currently active on your account.
+To accomplish this, first use the :doc:`List payment methods endpoint </reference/v2/methods-api/list-methods>` on the
+Methods API to retrieve the payment methods currently active on your account.
 
 Once your customer has selected a payment method, use that selection to fill out the ``method`` field in the
 :doc:`Create payment endpoint </reference/v2/payments-api/create-payment>`.
@@ -108,7 +110,8 @@ an overview of the typical flow for each of our payment methods, and how they ca
        #. Customer returns to the webshop.
      - The issuer selection screen (step 2) can be integrated using the Methods API. See
        :ref:`embedding-issuer-selection` below. The QR flow (step 2) can also be
-       integrated using the QR embed in the Payments API. See the :doc:`QR codes guide </guides/qr-codes>` for details.
+       integrated using the QR embed in the Payments API. See the :doc:`QR codes guide </payments/qr-codes>` for
+       details.
 
    * - **KBC/CBC**
      - #. Customer selects KBC/CBC at checkout.
@@ -165,20 +168,22 @@ an overview of the typical flow for each of our payment methods, and how they ca
 Embedding credit card fields
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. image:: images/checkout-flow-embedded-credit-card-fields@2x.png
+   :class: boxed-in-dark-mode
 
 For the credit card payment method, you can fully embed the credit card input fields while staying PCI-DSS-compliant
-using Mollie Components. Please refer to the guide on :doc:`Mollie Components </guides/mollie-components/overview>` for
-more information on how to integrate.
+using Mollie Components. Please refer to the guide on :doc:`Mollie Components </components/overview>` for more
+information on how to integrate.
 
 .. _embedding-issuer-selection:
 
 Embedding issuer selection
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. image:: images/checkout-flow-embedded-ideal-issuer-selection@2x.png
+   :class: boxed-in-dark-mode
 
 For iDEAL, KBC/CBC, and gift cards, we offer a way to embed the issuer selection into the checkout flow. You can
 retrieve the available issuers for these payment methods using the ``issuers`` include in the
-:doc:`Methods API </reference/v2/methods-api/list-methods>`.
+:doc:`Methods API </reference/v2/methods-api/overview>`.
 
 Once your customer has selected an issuer, use that selection to fill out the ``issuer`` field in the
 :doc:`Create payment endpoint </reference/v2/payments-api/create-payment>`.

@@ -17,8 +17,8 @@ all other cases, the merchant who was already logged in will remain logged in.
 
 When the customer has not yet accepted Mollie's conditions they must first do so before being redirected.
 
-.. note::
-   The use of this API is restricted. Please contact our partner team at partner@mollie.com if you want to use this API.
+.. note:: The use of this API is restricted. Please contact our partner team at partner@mollie.com if you want to use
+   this API.
 
 Parameters
 ----------
@@ -26,36 +26,29 @@ Make sure to add the :ref:`obligatory parameters <secret-keys>` always. Besides 
 parameters:
 
 .. note:: It is not necessary to set ``username`` and ``password`` if you are using ``partner_id_customer``. Otherwise
-          both are required to set.
+   both are required to set.
 
-.. list-table::
-   :widths: auto
+.. parameter:: username
+   :type: string
 
-   * - ``username``
+   The username of the account you would like to generate a login link for.
 
-       .. type:: string
+.. parameter:: password
+   :type: string
 
-     - The username of the account you would like to generate a login link for.
+   The password of the account you would like to generate a login link for.
 
-   * - ``password``
+.. parameter:: partner_id_customer
+   :type: string
 
-       .. type:: string
+   The partner ID of the account you would like to generate a login link for. It can be used instead of the parameters
+   ``username`` and ``password``.
 
-     - The password of the account you would like to generate a login link for.
+.. parameter:: redirect_url
+   :type: URL
+   :condition: optional
 
-   * - ``partner_id_customer``
-
-       .. type:: string
-
-     - 	The partner ID of the account you would like to generate a login link for. It can be used instead of the
-        parameters ``username`` and ``password``.
-
-   * - ``redirect_url``
-
-       .. type:: URL
-          :required: false
-
-     - 	The URL a merchant must be redirected to after logging in. This must be a URL in the www.mollie.com domain.
+   The URL a merchant must be redirected to after logging in. This must be a URL in the www.mollie.com domain.
 
 Response
 --------

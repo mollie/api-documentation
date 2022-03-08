@@ -25,208 +25,157 @@ Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains an invoice object. Will always contain ``invoice`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains an invoice object. Will always contain ``invoice`` for this endpoint.
+   The invoice's unique identifier, for example ``inv_FrvewDA3Pr``.
 
-   * - ``id``
+.. parameter:: reference
+   :type: string
 
-       .. type:: string
+   The reference number of the invoice. An example value would be: ``2018.10000``.
 
-     - The invoice's unique identifier, for example ``inv_FrvewDA3Pr``.
+.. parameter:: vatNumber
+   :type: string
 
-   * - ``reference``
+   The VAT number to which the invoice was issued to (if applicable).
 
-       .. type:: string
+.. parameter:: status
+   :type: string
 
-     - The reference number of the invoice. An example value would be: ``2018.10000``.
+   Status of the invoice.
 
-   * - ``vatNumber``
+   Possible values:
 
-       .. type:: string
+   * ``open`` The invoice is not paid yet.
+   * ``paid`` The invoice is paid.
+   * ``overdue`` Payment of the invoice is overdue.
 
-     - The VAT number to which the invoice was issued to (if applicable).
+.. parameter:: issuedAt
+   :type: string
 
-   * - ``status``
+   The invoice date in ``YYYY-MM-DD`` format.
 
-       .. type:: string
+.. parameter:: paidAt
+   :type: string
 
-     - Status of the invoice.
+   The date on which the invoice was paid, in ``YYYY-MM-DD`` format. Only for paid invoices.
 
-       Possible values:
+.. parameter:: dueAt
+   :type: string
 
-       * ``open`` The invoice is not paid yet.
-       * ``paid`` The invoice is paid.
-       * ``overdue`` Payment of the invoice is overdue.
+   The date on which the invoice is due, in ``YYYY-MM-DD`` format. Only for due invoices.
 
-   * - ``issuedAt``
+.. parameter:: netAmount
+   :type: amount object
 
-       .. type:: string
+   Total amount of the invoice excluding VAT, e.g. ``{"currency":"EUR", "value":"100.00"}``.
 
-     - The invoice date in ``YYYY-MM-DD`` format.
+   .. parameter:: currency
+      :type: string
 
-   * - ``paidAt``
+      The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-       .. type:: string
+   .. parameter:: value
+      :type: string
 
-     - The date on which the invoice was paid, in ``YYYY-MM-DD`` format. Only for paid invoices.
+      A string containing the exact amount of the invoice excluding VAT in the given currency.
 
-   * - ``dueAt``
+.. parameter:: vatAmount
+   :type: amount object
 
-       .. type:: string
+   VAT amount of the invoice. Only for merchants registered in the Netherlands. For EU merchants, VAT will be shifted to
+   recipient (see article 44 and 196 EU VAT Directive 2006/112). For merchants outside the EU, no VAT will be charged.
 
-     - The date on which the invoice is due, in ``YYYY-MM-DD`` format. Only for due invoices.
+   .. parameter:: currency
+      :type: string
 
-   * - ``netAmount``
+      The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-       .. type:: amount object
+   .. parameter:: value
+      :type: string
 
-     - Total amount of the invoice excluding VAT, e.g. ``{"currency":"EUR", "value":"100.00"}``.
+      A string containing the exact VAT amount in the given currency.
 
-       .. list-table::
-          :widths: auto
+.. parameter:: grossAmount
+   :type: amount object
 
-          * - ``currency``
+   Total amount of the invoice including VAT.
 
-              .. type:: string
+   .. parameter:: currency
+      :type: string
 
-            - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+      The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-          * - ``value``
+   .. parameter:: value
+      :type: string
 
-              .. type:: string
+      A string containing the exact total amount of the invoice including VAT in the given currency.
 
-            - A string containing the exact amount of the invoice excluding VAT in the given currency.
+.. parameter:: lines
+   :type: array
 
-   * - ``vatAmount``
+   The collection of products which make up the invoice.
 
-       .. type:: amount object
+   .. parameter:: period
+      :type: string
 
-     - VAT amount of the invoice. Only for merchants registered in the Netherlands. For EU merchants, VAT will be
-       shifted to recipient; article 44 and 196 EU VAT Directive 2006/112. For merchants outside the EU, no VAT
-       will be charged.
+      The administrative period in ``YYYY-MM`` on which the line should be booked.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: description
+      :type: string
 
-          * - ``currency``
+      Description of the product.
 
-              .. type:: string
+   .. parameter:: count
+      :type: integer
 
-            - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+      Number of products invoiced (usually number of payments).
 
-          * - ``value``
+   .. parameter:: vatPercentage
+      :type: decimal
 
-              .. type:: string
+      VAT percentage rate that applies to this product.
 
-            - A string containing the exact VAT amount in the given currency.
+   .. parameter:: amount
+      :type: amount object
 
-   * - ``grossAmount``
+      Amount excluding VAT.
 
-       .. type:: amount object
+      .. parameter:: currency
+         :type: string
 
-     - Total amount of the invoice including VAT.
+         The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-       .. list-table::
-          :widths: auto
+      .. parameter:: value
+         :type: string
 
-          * - ``currency``
+         A string containing the exact amount of this line excluding VAT in the given currency.
 
-              .. type:: string
+.. parameter:: _links
+   :type: object
 
-            - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+   Useful URLs to related resources.
 
-          * - ``value``
+   .. parameter:: self
+      :type: URL object
 
-              .. type:: string
+      The API resource URL of the invoice itself.
 
-            - A string containing the exact total amount of the invoice including VAT in the given currency.
+   .. parameter:: pdf
+      :type: URL object
 
-   * - ``lines``
+      The URL to the PDF version of the invoice. The URL will expire after 60 minutes.
 
-       .. type:: object
+   .. parameter:: documentation
+      :type: URL object
 
-     - The collection of products which make up the invoice.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``period``
-
-              .. type:: string
-
-            - The administrative period in ``YYYY-MM`` on which the line should be booked.
-
-          * - ``description``
-
-              .. type:: string
-
-            - Description of the product.
-
-          * - ``count``
-
-              .. type:: integer
-
-            - Number of products invoiced (usually number of payments).
-
-          * - ``vatPercentage``
-
-              .. type:: decimal
-
-            - VAT percentage rate that applies to this product.
-
-          * - ``amount``
-
-              .. type:: amount object
-
-            - Amount excluding VAT.
-
-              .. list-table::
-                 :widths: auto
-
-                 * - ``currency``
-
-                     .. type:: string
-
-                   - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
-
-                 * - ``value``
-
-                     .. type:: string
-
-                   - A string containing the exact amount of this line excluding VAT in the given currency.
-
-   * - ``_links``
-
-       .. type:: object
-
-     - Useful URLs to related resources.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``self``
-
-              .. type:: URL object
-
-            - The API resource URL of the invoice itself.
-
-          * - ``pdf``
-
-              .. type:: URL object
-
-            - The URL to the PDF version of the invoice. The URL will expire after 60 minutes.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the invoice retrieval endpoint documentation.
+      The URL to the invoice retrieval endpoint documentation.
 
 Example
 -------

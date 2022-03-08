@@ -15,6 +15,7 @@ this token your app will be able to communicate with the Mollie API on behalf of
 The authorization flow looks roughly as follows.
 
 .. image:: images/oauth-overview-flow@2x.png
+   :class: boxed-in-dark-mode
 
 Building an OAuth compatible app
 --------------------------------
@@ -27,6 +28,8 @@ Some examples:
 * `The PHP League's OAuth 2.0 Client <https://github.com/thephpleague/oauth2-client>`_ for PHP
 * `Authlib <https://github.com/lepture/authlib>`_ for Python, with support for common web frameworks like Flask and
   Django
+
+If your application is built with PHP, you can integrate it using the official `mollie/oauth2-mollie-php <https://github.com/mollie/oauth2-mollie-php>`_ package.
 
 Once you have an OAuth compatible app running, let's register your app at Mollie next.
 
@@ -98,6 +101,7 @@ The Connect with Mollie button
 To keep the user experience consistent, we recommend using one of the buttons below in your authorization flow.
 
 .. image:: images/button-small@2x.png
+   :align: left
 
 `Download files <https://www.mollie.com/assets/images/branding/connect-button/connect-with-mollie.zip>`_
 

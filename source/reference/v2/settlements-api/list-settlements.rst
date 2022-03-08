@@ -14,91 +14,69 @@ List settlements
 
 Retrieve all settlements, ordered from new to old.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: from
+   :type: string
+   :condition: optional
 
-   * - ``from``
+   Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the settlement with this ID. The
+   settlement with this ID is included in the result set as well.
 
-       .. type:: string
-          :required: false
+.. parameter:: limit
+   :type: integer
+   :condition: optional
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the settlement with this ID. The
-       settlement with this ID is included in the result set as well.
-
-   * - ``limit``
-
-       .. type:: integer
-          :required: false
-
-     - The number of settlements to return (with a maximum of 250).
+   The number of settlements to return (with a maximum of 250).
 
 Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: count
+   :type: integer
 
-   * - ``count``
+   The number of settlements found in ``_embedded``, which is either the requested number (with a maximum of 250) or
+   the default number.
 
-       .. type:: integer
+.. parameter:: _embedded
+   :type: object
+   :collapse-children: false
 
-     - The number of settlements found in ``_embedded``, which is either the requested number (with a maximum of 250) or
-       the default number.
+   The object containing the queried data.
 
-   * - ``_embedded``
+   .. parameter:: settlements
+      :type: array
 
-       .. type:: object
+      An array of settlement objects as described in :doc:`Get settlement <get-settlement>`.
 
-     - The object containing the queried data.
+.. parameter:: _links
+   :type: object
 
-       .. list-table::
-          :widths: auto
+   Links to help navigate through the lists of settlements. Every URL object will contain an ``href`` and a ``type``
+   field.
 
-          * - ``settlements``
+   .. parameter:: self
+      :type: URL object
 
-              .. type:: array
+      The URL to the current set of settlements.
 
-            - An array of settlement objects as described in
-              :doc:`Get settlement <get-settlement>`.
+   .. parameter:: previous
+      :type: URL object
 
-   * - ``_links``
+      The previous set of settlements, if available.
 
-       .. type:: object
+   .. parameter:: next
+      :type: URL object
 
-     - Links to help navigate through the lists of settlements. Every URL object will contain an ``href`` and a ``type``
-       field.
+      The next set of settlements, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: documentation
+      :type: URL object
 
-          * - ``self``
-
-              .. type:: URL object
-
-            - The URL to the current set of settlements.
-
-          * - ``previous``
-
-              .. type:: URL object
-
-            - The previous set of settlements, if available.
-
-          * - ``next``
-
-              .. type:: URL object
-
-            - The next set of settlements, if available.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the settlements list endpoint documentation.
+      The URL to the settlements list endpoint documentation.
 
 Example
 -------

@@ -27,88 +27,70 @@ Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains a method object. Will always contain ``organization`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains a method object. Will always contain ``organization`` for this endpoint.
+   The unique identifier of the organization method.
 
-   * - ``id``
+.. parameter:: name
+   :type: string
 
-       .. type:: string
+   The name of the organization.
 
-     - The unique identifier of the organization method.
+.. parameter:: locale
+   :type: string
 
-   * - ``name``
+   The preferred locale of the merchant which has been set in Mollie Dashboard.
 
-       .. type:: string
+.. parameter:: address
+   :type: address object
 
-     - The name of the organization.
+   The address of the organization.
 
-   * - ``locale``
+.. parameter:: registrationNumber
+   :type: string
 
-       .. type:: string
+   The registration number of the organization at the (local) chamber of commerce.
 
-     - The preferred locale of the merchant which has been set in Mollie Dashboard.
+.. parameter:: vatNumber
+   :type: string
+   :condition: optional
 
-   * - ``address``
+   The VAT number of the organization, if based in the European Union. The VAT number has been checked with the
+   `VIES <http://ec.europa.eu/taxation_customs/vies/>`_ service by Mollie.
 
-       .. type:: address object
+.. parameter:: vatRegulation
+   :type: string
+   :condition: optional
 
-     - The address of the organization.
+   The organization's VAT regulation, if based in the European Union. Either ``shifted`` (VAT is shifted) or ``dutch``
+   (Dutch VAT rate).
 
-   * - ``registrationNumber``
+.. parameter:: _links
+   :type: object
 
-       .. type:: string
+   An object with several URL objects relevant to the organization. Every URL object will contain an ``href`` and a
+   ``type`` field.
 
-     - The registration number of the organization at the (local) chamber of commerce.
+   .. parameter:: self
+      :type: URL object
 
-   * - ``vatNumber``
+      The API resource URL of the organization itself.
 
-       .. type:: string
-          :required: false
+   .. parameter:: dashboard
+      :type: URL object
 
-     - The VAT number of the organization, if based in the European Union. The VAT number has been checked with the
-       `VIES <http://ec.europa.eu/taxation_customs/vies/>`_ service by Mollie.
+      Direct link to the organization's Mollie Dashboard.
 
-   * - ``vatRegulation``
+   .. parameter:: documentation
+      :type: URL object
 
-       .. type:: string
-          :required: false
-
-     - The organization's VAT regulation, if based in the European Union. Either ``shifted`` (VAT is shifted) or
-       ``dutch`` (Dutch VAT rate).
-
-   * - ``_links``
-
-       .. type:: object
-
-     - An object with several URL objects relevant to the organization. Every URL object will contain an ``href`` and
-       a ``type`` field.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``self``
-
-              .. type:: URL object
-
-            - The API resource URL of the organization itself.
-
-          * - ``dashboard``
-
-              .. type:: URL object
-
-            - Direct link to the organization's Mollie Dashboard.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the payment method retrieval endpoint documentation.
+      The URL to the payment method retrieval endpoint documentation.
 
 Example
 -------

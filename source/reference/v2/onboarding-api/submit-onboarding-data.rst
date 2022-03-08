@@ -21,174 +21,157 @@ Parameters
 ----------
 Please note that even though all parameters are optional, at least one of them needs to be provided in the request.
 
-.. list-table::
-   :widths: auto
+.. parameter:: organization
+   :type: object
+   :condition: optional
 
-   * - ``organization``
+   Data of the organization you want to provide.
 
-       .. type:: object
-          :required: false
+   .. parameter:: name
+      :type: string
+      :condition: optional
 
-     - Data of the organization you want to provide.
+      Name of the organization.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: address
+      :type: address object
+      :condition: optional
 
-          * - ``name``
+      Address of the organization.
 
-              .. type:: string
-                 :required: false
+      .. parameter:: streetAndNumber
+         :type: string
+         :condition: required
 
-            - Name of the organization.
+         The street name and house number of the organization. If an address is provided, this field is required.
 
-          * - ``address``
+      .. parameter:: postalCode
+         :type: string
+         :condition: conditional
 
-              .. type:: address object
-                 :required: false
+         The postal code of the organization. If an address is provided, this field is required for countries with a
+         postal code system.
 
-            - Address of the organization.
+      .. parameter:: city
+         :type: string
+         :condition: required
 
-              .. list-table::
-                 :widths: auto
+         The city of the organization. If an address is provided, this field is required.
 
-                 * - ``streetAndNumber``
+      .. parameter:: country
+         :type: string
+         :condition: required
 
-                     .. type:: string
-                        :required: false
+         The country of the address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+         If an address is provided, this field is required.
 
-                   - The street name and house number of the organization.
+   .. parameter:: registrationNumber
+      :type: string
+      :condition: optional
 
-                 * - ``postalCode``
+      The Chamber of Commerce registration number of the company.
 
-                     .. type:: string
-                        :required: false
+   .. parameter:: vatNumber
+      :type: string
+      :condition: optional
 
-                   - The postal code of the organization.
+      The VAT number of the company, if based in the European Union. The VAT number will be checked with the
+      `VIES <http://ec.europa.eu/taxation_customs/vies/>`_ service by Mollie.
 
-                 * - ``city``
+   .. parameter:: vatRegulation
+      :type: string
+      :condition: optional
 
-                     .. type:: string
-                        :required: false
+      The organization's VAT regulation, if based in the European Union. Either ``shifted`` (VAT is shifted) or
+      ``dutch`` (Dutch VAT rate) is accepted.
 
-                   - The city of the organization.
+.. parameter:: profile
+   :type: object
+   :condition: optional
 
-                 * - ``country``
+   Data of the payment profile you want to provide.
 
-                     .. type:: string
-                        :required: false
+   .. parameter:: name
+      :type: string
+      :condition: optional
 
-                   - The country of the address in
-                     `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+      The profile name should reflect the trade name or brand name of the profile's website or application.
 
-          * - ``registrationNumber``
+   .. parameter:: url
+      :type: string
+      :condition: optional
 
-              .. type:: string
-                 :required: false
+      The URL to the profile's website or application. The URL must be compliant to
+      `RFC3986 <https://tools.ietf.org/html/rfc3986>`_ with the exception that we only accept URLs with ``http://`` or
+      ``https://`` schemes and domains that contain a TLD. URLs containing an ``@`` are not allowed.
 
-            - The Chamber of Commerce registration number of the company.
+   .. parameter:: email
+      :type: string
+      :condition: optional
 
-          * - ``vatNumber``
+      The email address associated with the profile's trade name or brand.
 
-              .. type:: string
-                 :required: false
+   .. parameter:: description
+      :type: string
+      :condition: optional
 
-            - The VAT number of the company, if based in the European Union. The VAT number will be checked with the
-              `VIES <http://ec.europa.eu/taxation_customs/vies/>`_ service by Mollie.
+      A description of what kind of goods and/or products will be offered via the payment profile.
 
-          * - ``vatRegulation``
+   .. parameter:: phone
+      :type: string
+      :condition: optional
 
-              .. type:: string
-                 :required: false
+      The phone number associated with the profile's trade name or brand. Must be in the
+      `E.164 <https://en.wikipedia.org/wiki/E.164>`_ format. For example ``+31208202070``.
 
-            - The organization's VAT regulation, if based in the European Union. Either ``shifted`` (VAT is shifted) or
-              ``dutch`` (Dutch VAT rate) is accepted.
+   .. parameter:: businessCategory
+      :type: string
+      :condition: optional
 
-   * - ``profile``
+      The industry associated with the profile's trade name or brand.
 
-       .. type:: object
-          :required: false
+      Please refer to the documentation of the :ref:`business category <business-category>` for more information on which
+      values are accepted.
 
-     - Data of the payment profile you want to provide.
+   .. parameter:: categoryCode
+      :type: integer
+      :condition: optional
 
-       .. list-table::
-          :widths: auto
+      .. warning:: This parameter is deprecated and will be removed in 2022. Please use the ``businessCategory`` parameter
+                   instead.
 
-          * - ``name``
+      The industry associated with the profile's trade name or brand.
 
-              .. type:: string
-                 :required: false
+      Possible values:
 
-            - The profile name should reflect the trade name or brand name of the profile's website or application.
-
-          * - ``url``
-
-              .. type:: string
-                 :required: false
-
-            - The URL to the profile's website or application. The URL must be compliant to
-              `RFC3986 <https://tools.ietf.org/html/rfc3986>`_ with the exception that we only accept URLs with
-              ``http://`` or ``https://`` schemes and domains that contain a TLD. URLs containing an ``@`` are not
-              allowed.
-
-          * - ``email``
-
-              .. type:: string
-                 :required: false
-
-            - The email address associated with the profile's trade name or brand.
-
-          * - ``description``
-
-              .. type:: string
-                 :required: false
-
-            - A description of what kind of goods and/or products will be offered via the payment profile.
-
-          * - ``phone``
-
-              .. type:: string
-                 :required: false
-
-            - The phone number associated with the profile's trade name or brand. Must be in the
-              `E.164 <https://en.wikipedia.org/wiki/E.164>`_ format. For example ``+31208202070``.
-
-          * - ``categoryCode``
-
-              .. type:: integer
-                 :required: false
-
-            - The industry associated with the profile's trade name or brand.
-
-              Possible values:
-
-               * ``5192`` Books, magazines and newspapers
-               * ``5262`` Marketplaces, crowdfunding, donation platforms
-               * ``5399`` General merchandise
-               * ``5499`` Food and drinks
-               * ``5533`` Automotive Products
-               * ``5641`` Children Products
-               * ``5651`` Clothing & Shoes
-               * ``5712`` Home furnishing
-               * ``5732`` Electronics, computers and software
-               * ``5734`` Hosting/VPN services
-               * ``5735`` Entertainment
-               * ``5815`` Credits/vouchers/giftcards
-               * ``5921`` Alcohol
-               * ``5944`` Jewelry & Accessories
-               * ``5945`` Hobby, Toy, and Game Shops
-               * ``5977`` Health & Beauty products
-               * ``6012`` Financial services
-               * ``6051`` Crypto currency
-               * ``7299`` Consultancy
-               * ``7922`` Events, conferences, concerts, tickets
-               * ``7997`` Gyms, membership fee based sports
-               * ``7999`` Travel, rental and transportation
-               * ``8111`` Lawyers and legal advice
-               * ``8299`` Advising/coaching/training
-               * ``8398`` Charity and donations
-               * ``8699`` Political parties
-               * ``9399`` Government services
-               * ``0`` Other
+      * ``5192`` Books, magazines and newspapers
+      * ``5262`` Marketplaces, crowdfunding, donation platforms
+      * ``5399`` General merchandise
+      * ``5499`` Food and drinks
+      * ``5533`` Automotive Products
+      * ``5641`` Children Products
+      * ``5651`` Clothing & Shoes
+      * ``5712`` Home furnishing
+      * ``5732`` Electronics, computers and software
+      * ``5734`` Hosting/VPN services
+      * ``5735`` Entertainment
+      * ``5815`` Credits/vouchers/giftcards
+      * ``5921`` Alcohol
+      * ``5944`` Jewelry & Accessories
+      * ``5945`` Hobby, Toy, and Game Shops
+      * ``5977`` Health & Beauty products
+      * ``6012`` Financial services
+      * ``6051`` Crypto currency
+      * ``7299`` Consultancy
+      * ``7922`` Events, conferences, concerts, tickets
+      * ``7997`` Gyms, membership fee based sports
+      * ``7999`` Travel, rental and transportation
+      * ``8111`` Lawyers and legal advice
+      * ``8299`` Advising/coaching/training
+      * ``8398`` Charity and donations
+      * ``8699`` Political parties
+      * ``9399`` Government services
+      * ``0`` Other
 
 Example
 -------
@@ -216,7 +199,7 @@ Example
                       "url": "https://www.mollie.com",
                       "email": "info@mollie.com",
                       "phone": "+31208202070",
-                      "categoryCode": 6012
+                      "businessCategory": "MONEY_SERVICES"
                    }
                }'
 
@@ -244,7 +227,7 @@ Example
               "url" => "https://www.mollie.com",
               "email" => "info@mollie.com",
               "phone" => "+31208202070",
-              "categoryCode" => 6012,
+              "businessCategory": "MONEY_SERVICES",
           ],
       ]);
 
@@ -275,7 +258,7 @@ Example
                   'url': 'https://www.mollie.com',
                   'email': 'info@mollie.com',
                   'phone': '+31208202070',
-                  'categoryCode': 6012,
+                  'businessCategory': 'MONEY_SERVICES',
               },
           },
       )
@@ -304,7 +287,7 @@ Example
           url: "https://www.mollie.com",
           email: "info@mollie.com",
           phone: "+31208202070",
-          categoryCode: 6012
+          businessCategory: "MONEY_SERVICES"
         }
       )
 

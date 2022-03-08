@@ -9,7 +9,7 @@ When using :doc:`Application fees </connect/application-fees>`, the connected me
 payment, and any refunds and chargebacks are also processed on their account.
 
 As a platform, you can create refunds on behalf of the connected account by using the
-:doc:`Refunds API </reference/v2/refunds-api/create-refund>` with the connected account's permission. Refunding
+:doc:`Refunds API </reference/v2/refunds-api/create-payment-refund>` with the connected account's permission. Refunding
 previously charged application fees is not possible, however.
 
 For more fine-grained control over the refund and chargeback flows, consider using
@@ -19,7 +19,7 @@ Refunding a split payment
 -------------------------
 When using :doc:`Split payments </connect/splitting-payments>`, your platform is liable for refunds and chargebacks.
 
-You can issue a refund for a split payment by :doc:`creating a refund </reference/v2/refunds-api/create-refund>`
+You can issue a refund for a split payment by :doc:`creating a refund </reference/v2/refunds-api/create-payment-refund>`
 on the original payment, like you would with any other payment. By default, the full refund will be deducted from the
 platform balance. In other words, by default the parts of the payment that were sent to connected accounts will remain
 untouched.
@@ -89,7 +89,7 @@ Partial refund for a split payment
 
 If you wish to pull back the money that was sent to connected accounts within the creation of a partial refund (namely
 a refund of less of the amount of the original payment), you can do so by setting the ``routingReversals`` array in the
-request (see :doc:`create a refund </reference/v2/refunds-api/create-refund>`).
+request (see :doc:`create a refund </reference/v2/refunds-api/create-payment-refund>`).
 
 In the example below we will partially refund the €10,00 payment from earlier, and pull back €2,00 and €3,00 from the
 funds that were sent to connected accounts ``org_23456`` and ``org_56789``.

@@ -1,3 +1,4 @@
 sphinx==1.8.5
+docutils==0.17.1
 sphinx-autobuild==0.7.1
 cloud-sptheme==1.10.0

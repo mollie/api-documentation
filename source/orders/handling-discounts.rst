@@ -49,8 +49,8 @@ Note how the VAT is only calculated over the amount actually charged to your cus
 
 Gift cards
 ----------
-If Mollie does not handle your :doc:`gift cards</guides/gift-cards>` for you, you can add an additional line of the type
-``gift_card`` instead if your customer wants to apply a gift card. The line must then have a negative amount.
+If Mollie does not handle your :doc:`gift cards </payments/gift-cards>` for you, you can add an additional line of the
+type ``gift_card`` instead if your customer wants to apply a gift card. The line must then have a negative amount.
 
 Here's an example where a shopper exchanges a €10.00 gift card:
 

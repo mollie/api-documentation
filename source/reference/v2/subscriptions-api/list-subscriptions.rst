@@ -18,117 +18,92 @@ Parameters
 ----------
 Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``cst_8wmqcHMN4U``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: from
+   :type: string
+   :condition: optional
 
-   * - ``from``
+   Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the subscription with this ID. The
+   subscription with this ID is included in the result set as well.
 
-       .. type:: string
-          :required: false
+.. parameter:: limit
+   :type: integer
+   :condition: optional
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the subscription with this ID. The
-       subscription with this ID is included in the result set as well.
-
-   * - ``limit``
-
-       .. type:: integer
-          :required: false
-
-     - The number of subscriptions to return (with a maximum of 250).
+   The number of subscriptions to return (with a maximum of 250).
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you have to specify which profile you are retrieving subscriptions for using the
 ``profileId`` parameter. Organizations can have multiple profiles for each of their websites. See
-:doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+:doc:`Profiles API </reference/v2/profiles-api/overview>` for more information.
 
 For these authentication methods the optional ``testmode`` parameter is available as well to enable test mode.
 
-.. list-table::
-   :widths: auto
+.. parameter:: profileId
+   :type: string
+   :condition: required for access tokens
+   :collapse: true
 
-   * - ``profileId``
+   The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
 
-       .. type:: string
-          :required: true
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to retrieve test mode subscriptions.
+   Set this to ``true`` to retrieve test mode subscriptions.
 
 Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: count
+   :type: integer
 
-   * - ``count``
+   The number of subscriptions found in ``_embedded``, which is either the requested number (with a maximum of 250) or
+   the default number.
 
-       .. type:: integer
+.. parameter:: _embedded
+   :type: object
+   :collapse-children: false
 
-     - The number of subscriptions found in ``_embedded``, which is either the requested number (with a maximum of 250)
-       or the default number.
+   The object containing the queried data.
 
-   * - ``_embedded``
+   .. parameter:: subscriptions
+      :type: array
 
-       .. type:: object
+      An array of subscription objects as described in
+      :doc:`Get subscription </reference/v2/subscriptions-api/get-subscription>`.
 
-     - The object containing the queried data.
+.. parameter:: _links
+   :type: object
 
-       .. list-table::
-          :widths: auto
+   Links to help navigate through the lists of subscriptions. Every URL object will contain an ``href`` and a ``type``
+   field.
 
-          * - ``subscriptions``
+   .. parameter:: self
+      :type: URL object
 
-              .. type:: array
+      The URL to the current set of subscriptions.
 
-            - An array of subscription objects as described in
-              :doc:`Get subscription </reference/v2/subscriptions-api/get-subscription>`.
+   .. parameter:: previous
+      :type: URL object
 
-   * - ``_links``
+      The previous set of subscriptions, if available.
 
-       .. type:: object
+   .. parameter:: next
+      :type: URL object
 
-     - Links to help navigate through the lists of subscriptions. Every URL object will contain an ``href`` and a
-       ``type`` field.
+      The next set of subscriptions, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: documentation
+      :type: URL object
 
-          * - ``self``
-
-              .. type:: URL object
-
-            - The URL to the current set of subscriptions.
-
-          * - ``previous``
-
-              .. type:: URL object
-
-            - The previous set of subscriptions, if available.
-
-          * - ``next``
-
-              .. type:: URL object
-
-            - The next set of subscriptions, if available.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the subscriptions list endpoint documentation.
+      The URL to the subscriptions list endpoint documentation.
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:

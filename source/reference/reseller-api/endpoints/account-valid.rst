@@ -19,22 +19,17 @@ Parameters
 Make sure to add the :ref:`obligatory parameters <secret-keys>` always. Besides that, add the following
 parameters:
 
-.. list-table::
-   :widths: auto
+.. parameter:: username
+   :type: string
+   :condition: required
 
-   * - ``username``
+   The username of the account you would like to check.
 
-       .. type:: string
-          :required: true
+.. parameter:: password
+   :type: string
+   :condition: required
 
-     - The username of the account you would like to check.
-
-   * - ``password``
-
-       .. type:: string
-          :required: true
-
-     - The password of the account you would like to check.
+   The password of the account you would like to check.
 
 Response
 --------

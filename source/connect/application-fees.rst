@@ -1,18 +1,26 @@
 Receiving application fees
 ==========================
-With **Application fees**, you can split a payment between a platform and connected merchant accounts.
+An easy way to split a payment between your platform and your connected merchant accounts is to charge
+**Application fees** on the incoming payments on the connected accounts.
 
-An example use case is a ticketing platform that charges a fee per successful payment to each connected theatre. In this
-case, each theatre has an account with Mollie with the ticketing platform's OAuth app authorized to create payments on
-their behalf.
+This solution is ideal for simpler use cases, where the connected account remains fully liable and in control of the
+payment, and your platform only deducts a fee.
+
+The connected account in this case will still have their own dashboard, pay their own Mollie payment fees, receive a
+Mollie invoice, and remain liable for potential chargebacks.
+
+An example use case is a ticketing platform that charges a fee per successful payment to each connected theater. In this
+case, each theater has an account with Mollie, and they have the ticketing platform's OAuth app authorized to create
+payments on their behalf.
 
 The ticketing platform can add an application fee to each payment. When the payment is successful, the fee specified in
 the application fee is transferred from the theatre's account to the platforms account.
 
-Mollie will then collect and settle the application fees to the ticketing platform.
+Mollie will then collect and settle the application fees to the ticketing platform. The ticketing platform itself is
+responsible for separately invoicing the theaters for the incurred fees, and for handling VAT.
 
-.. note:: As Mollie only handles the money and does not provide any services to the theaters, the ticketing platform is
-   responsible for invoicing the theatres and handling VAT.
+For more advanced use cases, for example if you want to cover the Mollie payment fees yourself, or for example if you
+want to split a payment with another party, we offer :doc:`Split payments </connect/splitting-payments>`.
 
 Enabling application fees
 -------------------------
@@ -23,13 +31,13 @@ enabled.
 
 How to create an application fee
 --------------------------------
-One-off application fees can be created on Payments or Orders. Application fees can also be set on Subscriptions, in
-which case the application fee will be added to *each Payment* created for the Subscription.
+One-off application fees can be created on payments or orders. Application fees can also be set on Subscriptions, in
+which case the application fee will be added to *each Payment* created for the subscription.
 
 They are created by passing additional parameters to the
-:doc:`/reference/v2/payments-api/create-payment`,
-:doc:`/reference/v2/orders-api/create-order` or the
-:doc:`/reference/v2/subscriptions-api/create-subscription`:
+:doc:`Create payment </reference/v2/payments-api/create-payment>`,
+:doc:`Create order </reference/v2/orders-api/create-order>`, or the
+:doc:`Create subscription </reference/v2/subscriptions-api/create-subscription>` endpoint:
 
 .. list-table::
    :widths: auto

@@ -28,9 +28,9 @@ Settlement is handled by the brand owner, like Sodexo Belgium.
 
 Integration via the Orders API
 ------------------------------
-Vouchers are only available as payment method via the :doc:`Orders API </reference/v2/orders-api/create-order>` since
-these can only be used for eligible products. Therefor you should include the ``lines.category`` parameter for all your
-order lines. We will calculate the eligible amount based on this parameter.
+Vouchers are only available as payment method via the :doc:`Orders API </reference/v2/orders-api/overview>` since these
+can only be used for eligible products. Therefor you should include the ``lines.category`` parameter for all your order
+lines. We will calculate the eligible amount based on this parameter.
 
 If you do not specify the ``lines.category`` for at least one order line, the voucher method will not be available to
 the shopper.
@@ -53,7 +53,8 @@ Getting the details of the remainder payment
 --------------------------------------------
 In some cases it is desirable to receive the details of a payment. This is mostly the case from the remainder payment
 when the consumer partially paid with a voucher. Receiving these details is possible in both the
-:doc:`Payments API </reference/v2/payments-api/get-payment>` and :doc:`Orders API </reference/v2/orders-api/get-order>`.
+:doc:`Get payment </reference/v2/payments-api/get-payment>` and :doc:`Get order </reference/v2/orders-api/get-order>`
+endpoints.
 
 To receive the remainder details in the Payments API, use the ``details.remainderDetails`` include. For example:
 ``GET https://api.mollie.com/v2/payments/tr_xxx?include=details.remainderDetails``. For the Orders API you should use

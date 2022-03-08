@@ -1,9 +1,21 @@
+@import 'variables';
+
 .rst-content code.docutils {
-  background: #fcfcfc;
+  background: shade($background-color, 2%);
   border: 1px solid $grey-medium;
   font-family: $font-family-monospace;
   font-size: 12px;
   border-radius: 3px;
   padding: 4px 8px 3px;
   overflow-wrap: break-word;
+}
+
+/*
+ * Dark mode
+ */
+@media (prefers-color-scheme: dark) {
+  .rst-content code.docutils {
+    background: tint($dark-mode-background-color, 8%);
+    border-color: $grey-dark;
+  }
 }

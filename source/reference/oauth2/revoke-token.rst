@@ -11,28 +11,23 @@ Authentication: :doc:`OAuth client credentials </connect/overview>`
 Revoke an access- or a refresh token. Once revoked the token can not be used anymore.
 
 .. warning:: When you revoke a refresh token, all access tokens based on the same authorization grant will be revoked
-             as well.
+   as well.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: token_type_hint
+   :type: string
+   :condition: required
 
-   * - ``token_type_hint``
+   Type of the token you want to revoke.
 
-       .. type:: string
-          :required: true
+   Possible values: ``access_token`` ``refresh_token``
 
-     - Type of the token you want to revoke.
+.. parameter:: token
+   :type: string
+   :condition: required
 
-       Possible values: ``access_token`` ``refresh_token``
-
-   * - ``token``
-
-       .. type:: string
-          :required: true
-
-     - The token you want to revoke
+   The token you want to revoke
 
 Response
 --------

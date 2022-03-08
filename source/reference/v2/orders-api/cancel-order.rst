@@ -15,7 +15,7 @@ Cancel order
 The order can only be canceled while:
 
 * the order doesn't have any open payments except for the methods ``banktransfer``, ``directdebit``, ``klarnapaylater``,
-  and ``klarnasliceit``.
+  ``klarnapaynow``, and ``klarnasliceit``.
 * the order's ``status`` field is either ``created``, ``authorized`` or ``shipping`` [#f1]_.
 
 #. In case of ``created``, all order lines will be canceled and the new order status will be ``canceled``.
@@ -37,18 +37,15 @@ Replace ``id`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to cancel a test mode order.
+   Set this to ``true`` to cancel a test mode order.
 
 Response
 --------
@@ -58,7 +55,6 @@ An order object is returned, as described in :doc:`Get order </reference/v2/orde
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:

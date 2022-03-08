@@ -21,230 +21,185 @@ example ``/v2/customers/cst_8wmqcHMN4U/subscriptions/sub_rVKGtNd6s3``.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
 :doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` query string parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to retrieve a test mode subscription.
+   Set this to ``true`` to retrieve a test mode subscription.
 
 Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains a subscription object. Will always contain ``subscription`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains a subscription object. Will always contain ``subscription`` for this endpoint.
+   The identifier uniquely referring to this subscription. Mollie assigns this identifier at subscription creation
+   time. For example ``sub_rVKGtNd6s3``.
 
-   * - ``id``
+.. parameter:: mode
+   :type: string
 
-       .. type:: string
+   The mode used to create this subscription. Mode determines whether the subscription's payments are real or test
+   payments.
 
-     - The identifier uniquely referring to this subscription. Mollie assigns this identifier at subscription creation
-       time. For example ``sub_rVKGtNd6s3``.
+   Possible values: ``live`` ``test``
 
-   * - ``mode``
+.. parameter:: createdAt
+   :type: datetime
 
-       .. type:: string
+   The subscription's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-     - The mode used to create this subscription. Mode determines whether the subscription's payments are real or test
-       payments.
+.. parameter:: status
+   :type: string
 
-       Possible values: ``live`` ``test``
+   The subscription's current status, depends on whether the customer has a pending, valid or invalid mandate.
 
-   * - ``createdAt``
+   Possible values: ``pending`` ``active`` ``canceled`` ``suspended`` ``completed``
 
-       .. type:: datetime
+.. parameter:: amount
+   :type: amount object
 
-     - The subscription's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+   The constant amount that is charged with each subscription payment, e.g. ``{"currency":"EUR", "value":"10.00"}`` for
+   a €10.00 subscription.
 
-   * - ``status``
+   .. parameter:: currency
+      :type: string
 
-       .. type:: string
+      The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-     - The subscription's current status, depends on whether the customer has a pending, valid or invalid mandate.
+   .. parameter:: value
+      :type: string
 
-       Possible values: ``pending`` ``active`` ``canceled`` ``suspended`` ``completed``
+      A string containing the exact amount of the payment in the given currency.
 
-   * - ``amount``
+.. parameter:: times
+   :type: integer
 
-       .. type:: amount object
+   Total number of charges for the subscription to complete.
 
-     - The constant amount that is charged with each subscription payment, e.g.
-       ``{"currency":"EUR", "value":"10.00"}`` for a €10.00 subscription.
+.. parameter:: timesRemaining
+   :type: integer
 
-       .. list-table::
-          :widths: auto
+   Number of charges left for the subscription to complete.
 
-          * - ``currency``
+.. parameter:: interval
+   :type: string
 
-              .. type:: string
+   Interval to wait between charges, for example ``1 month`` or ``14 days``.
 
-            - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+   Possible values: ``... months`` ``... weeks`` ``... days``
 
-          * - ``value``
+.. parameter:: startDate
+   :type: date
 
-              .. type:: string
+   The start date of the subscription in ``YYYY-MM-DD`` format.
 
-            - A string containing the exact amount of the payment in the given currency.
+.. parameter:: nextPaymentDate
+   :type: date
+   :condition: optional
 
-   * - ``times``
+   The date of the next scheduled payment in ``YYYY-MM-DD`` format. When there will be no next payment, for example when
+   the subscription has ended, this parameter will not be returned.
 
-       .. type:: integer
+.. parameter:: description
+   :type: string
 
-     - Total number of charges for the subscription to complete.
+   The description specified during subscription creation. This will be included in the payment description.
 
-   * - ``timesRemaining``
+.. parameter:: method
+   :type: string
 
-       .. type:: integer
+   The payment method used for this subscription, either forced on creation or ``null`` if any of the customer's valid
+   mandates may be used.
 
-     - Number of charges left for the subscription to complete.
+   Possible values: ``creditcard`` ``directdebit`` ``paypal`` ``null``
 
-   * - ``interval``
+.. parameter:: mandateId
+   :type: string
+   :condition: optional
 
-       .. type:: string
+   The mandate used for this subscription. When there is no mandate specified, this parameter will not be returned.
 
-     - Interval to wait between charges, for example ``1 month`` or ``14 days``.
+.. parameter:: canceledAt
+   :type: datetime
 
-       Possible values: ``... months`` ``... weeks`` ``... days``
+   The subscription's date and time of cancellation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+   This parameter is omitted if the payment is not canceled (yet).
 
-   * - ``startDate``
+.. parameter:: webhookUrl
+   :type: string
 
-       .. type:: date
+   The URL Mollie will call as soon a payment status change takes place.
 
-     - The start date of the subscription in ``YYYY-MM-DD`` format.
+.. parameter:: metadata
+   :type: mixed
 
-   * - ``nextPaymentDate``
+   The optional metadata you provided upon subscription creation. Metadata can for example be used to link a plan
+   to a subscription.
 
-       .. type:: date
-          :required: false
+.. parameter:: applicationFee
+   :type: object
+   :condition: optional
 
-     - The date of the next scheduled payment in ``YYYY-MM-DD`` format. When there will be no next payment, for example
-       when the subscription has ended, this parameter will not be returned.
+   The application fee, if the subscription was created with one. This will be applied on each payment created for
+   the subscription.
 
-   * - ``description``
+   .. parameter:: amount
+      :type: decimal
 
-       .. type:: string
+      The application fee amount in EUR as specified during subscription creation.
 
-     - The description specified during subscription creation. This will be included in the payment description.
+   .. parameter:: description
+      :type: string
 
-   * - ``method``
+      The description of the application fee as specified during subscription creation.
 
-       .. type:: string
+.. parameter:: _links
+   :type: object
 
-     - The payment method used for this subscription, either forced on creation or ``null`` if any of the
-       customer's valid mandates may be used.
+   An object with several URL objects relevant to the subscription. Every URL object will contain an ``href`` and a
+   ``type`` field.
 
-       Possible values: ``creditcard`` ``directdebit`` ``paypal`` ``null``
+   .. parameter:: self
+      :type: URL object
 
-   * - ``mandateId``
+      The API resource URL of the subscription itself.
 
-       .. type:: string
-          :required: false
+   .. parameter:: customer
+      :type: URL object
 
-     - The mandate used for this subscription. When there is no mandate specified, this parameter will not be returned.
+      The API resource URL of the customer the subscription is for.
 
-   * - ``canceledAt``
+   .. parameter:: profile
+      :type: URL object
+      :condition: optional
 
-       .. type:: datetime
+      The API resource URL of the website profile on which this subscription was created.
 
-     - The subscription's date and time of cancellation, in
-       `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format. This parameter is omitted if the payment is not
-       canceled (yet).
+   .. parameter:: payments
+      :type: URL object
+      :condition: optional
 
-   * - ``webhookUrl``
+      The API resource URL of the payments that are created by this subscription. Not present if no payments yet
+      created.
 
-       .. type:: string
+   .. parameter:: documentation
+      :type: URL object
 
-     - The URL Mollie will call as soon a payment status change takes place.
-
-   * - ``metadata``
-
-       .. type:: mixed
-
-     - The optional metadata you provided upon subscription creation. Metadata can for example be used to link a plan
-       to a subscription.
-
-   * - ``applicationFee``
-
-       .. type:: object
-          :required: false
-
-     - The application fee, if the subscription was created with one. This will be applied on each payment created for
-       the subscription.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``amount``
-
-              .. type:: decimal
-
-            - The application fee amount in EUR as specified during subscription creation.
-
-          * - ``description``
-
-              .. type:: string
-
-            - The description of the application fee as specified during subscription creation.
-
-   * - ``_links``
-
-       .. type:: object
-
-     - An object with several URL objects relevant to the subscription. Every URL object will contain an ``href`` and a
-       ``type`` field.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``self``
-
-              .. type:: URL object
-
-            - The API resource URL of the subscription itself.
-
-          * - ``customer``
-
-              .. type:: URL object
-
-            - The API resource URL of the customer the subscription is for.
-
-          * - ``profile``
-
-              .. type:: URL object
-                 :required: false
-
-            - The API resource URL of the website profile on which this subscription was created.
-
-          * - ``payments``
-
-              .. type:: URL object
-                 :required: false
-
-            - The API resource URL of the payments that are created by this subscription. Not present if no payments yet
-              created.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the subscription retrieval endpoint documentation.
+      The URL to the subscription retrieval endpoint documentation.
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:

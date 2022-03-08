@@ -1,0 +1,60 @@
+#supported-currencies table tr th,
+#supported-currencies table tr td {
+  text-align: left;
+}
+
+#supported-currencies tbody td:only-child {
+  padding-right: 0;
+}
+
+#supported-currencies .note {
+  margin-top: -20px;
+  margin-bottom: 15px;
+
+  @media (min-width: breakpoint('medium')) {
+    margin-top: -50px;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: breakpoint('<medium')) {
+  #supported-currencies table {
+    display: block;
+  }
+
+  #supported-currencies thead {
+    position: absolute;
+    left: -999em;
+  }
+
+  #supported-currencies tr {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
+  #supported-currencies td:nth-child(1) {
+    padding-top: 15px;
+    padding-bottom: 0;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  #supported-currencies td:nth-child(2) {
+    padding-top: 15px;
+    text-align: right;
+  }
+
+  #supported-currencies td:nth-child(3) {
+    order: 2;
+  }
+
+  #supported-currencies td:nth-child(3)::before {
+    content: 'Decimals: ';
+  }
+
+  #supported-currencies td:nth-child(3),
+  #supported-currencies td:nth-child(4) {
+    padding-bottom: 15px;
+    border-top: 0;
+  }
+}

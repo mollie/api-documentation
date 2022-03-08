@@ -35,100 +35,82 @@ Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains an organization object. Will always contain ``organization`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains an organization object. Will always contain ``organization`` for this endpoint.
+   The identifier uniquely referring to this organization, for example ``org_1234567``.
 
-   * - ``id``
+.. parameter:: name
+   :type: string
 
-       .. type:: string
+   The organization's official name.
 
-     - The identifier uniquely referring to this organization, for example ``org_1234567``.
+.. parameter:: email
+   :type: string
 
-   * - ``name``
+   The email address of the organization.
 
-       .. type:: string
+.. parameter:: address
+   :type: string
 
-     - The organization's official name.
+   The address where the organizations is established.
 
-   * - ``email``
+.. parameter:: postalCode
+   :type: string
 
-       .. type:: string
+   The postal code of where the organization is established.
 
-     - The email address of the organization.
+.. parameter:: city
+   :type: string
 
-   * - ``address``
+   The name of the city where the organization is established.
 
-       .. type:: string
+.. parameter:: country
+   :type: string
 
-     - The address where the organizations is established.
+   The name of the country where the organization is established.
 
-   * - ``postalCode``
+.. parameter:: countryCode
+   :type: string
 
-       .. type:: string
+   The two-letter code of the country where the organization is established.
 
-     - The postal code of where the organization is established.
+.. parameter:: registrationType
+   :type: string
 
-   * - ``city``
+   National or international registration type of the organization's legal entity.
 
-       .. type:: string
+.. parameter:: registrationNumber
+   :type: string
 
-     - The name of the city where the organization is established.
+   Registration number of the organization's legal entity.
 
-   * - ``country``
+.. parameter:: registrationDatetime
+   :type: datetime
 
-       .. type:: string
+   Registration date of the organization's legal entity.
 
-     - The name of the country where the organization is established.
+.. parameter:: vatNumber
+   :type: string
 
-   * - ``countryCode``
+   The VAT number of the organization, if based in the European Union. The VAT number has been checked with the
+   `VIES <http://ec.europa.eu/taxation_customs/vies/>`_ service by Mollie.
 
-       .. type:: string
+.. parameter:: vatRegulation
+   :type: string
 
-     - The two-letter code of the country where the organization is established.
+   The organization's VAT regulation, if based in the European Union. Either ``shifted`` (VAT is shifted) or ``dutch``
+   (Dutch VAT rate).
 
-   * - ``registrationType``
+.. parameter:: verifiedDatetime
+   :type: datetime
 
-       .. type:: string
-
-     - National or international registration type of the organization's legal entity.
-
-   * - ``registrationNumber``
-
-       .. type:: string
-
-     - Registration number of the organization's legal entity.
-
-   * - ``registrationDatetime``
-
-       .. type:: datetime
-
-     - Registration date of the organization's legal entity.
-
-   * - ``vatNumber``
-
-       .. type:: string
-
-     - The VAT number of the organization, if based in the European Union. The VAT number has been checked with the
-       `VIES <http://ec.europa.eu/taxation_customs/vies/>`_ service by Mollie.
-
-   * - ``vatRegulation``
-
-       .. type:: string
-
-     - The organization's VAT regulation, if based in the European Union. Either ``shifted`` (VAT is shifted) or
-       ``dutch`` (Dutch VAT rate).
-
-   * - ``verifiedDatetime``
-
-       .. type:: datetime
-
-     - Date on which Mollie's verification of this organization completed successfully.
+   Date on which Mollie's verification of this organization completed successfully.
 
 Example
 -------
