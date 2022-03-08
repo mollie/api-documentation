@@ -241,7 +241,7 @@ Split payment and currencies
 --------------------------------------
 
 It's possible to create a split payment in either EUR or GBP, as long as your platform and the connected accounts
-all have EUR or GBP settlement currency.
+can be settled in the currency in which you created the payment.
 
 If a split payment is created in the same currency as your platform settlement currency,
 there is no conversion done (Like for Like) and no conversion markup fee is calculated.
