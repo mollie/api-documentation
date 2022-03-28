@@ -92,9 +92,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const canceledPayment = await mollieClient.payments.delete('tr_Eq8xzWUPA4');
-      })();
+      const canceledPayment = await mollieClient.payments.cancel('tr_Eq8xzWUPA4');
 
 Response
 ^^^^^^^^

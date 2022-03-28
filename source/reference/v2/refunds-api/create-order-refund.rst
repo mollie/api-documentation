@@ -193,16 +193,14 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const refund = await mollieClient.orders_refunds.create({
-          orderId: 'ord_stTC2WHAuS',
-          lines: {
-            id: 'odl_dgtxyl',
-            quantity: 1,
-          },
-          description: 'Required quantity not in stock, refunding one photo book.',
-        });
-      })();
+      const refund = await mollieClient.orderRefunds.create({
+        orderId: 'ord_stTC2WHAuS',
+        lines: [{
+          id: 'odl_dgtxyl',
+          quantity: 1
+        }],
+        description: 'Required quantity not in stock, refunding one photo book.'
+      });
 
 Response
 ^^^^^^^^

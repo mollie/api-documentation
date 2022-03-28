@@ -323,23 +323,21 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const order = await mollieClient.orders.update('ord_kEn1PlbGa', {
-           billingAddress: {
-             organizationName: 'Mollie B.V.',
-             streetAndNumber: 'Keizersgracht 126',
-             city: 'Amsterdam',
-             region: 'Noord-Holland',
-             postalCode: '1234AB',
-             country: 'NL',
-             title: 'Dhr',
-             givenName: 'Piet',
-             familyName: 'Mondriaan',
-             email: 'piet@mondriaan.com',
-             phone: '+31208202070',
-          },
-        });
-      })();
+      const order = await mollieClient.orders.update('ord_kEn1PlbGa', {
+         billingAddress: {
+           organizationName: 'Mollie B.V.',
+           streetAndNumber: 'Keizersgracht 126',
+           city: 'Amsterdam',
+           region: 'Noord-Holland',
+           postalCode: '1234AB',
+           country: 'NL',
+           title: 'Dhr',
+           givenName: 'Piet',
+           familyName: 'Mondriaan',
+           email: 'piet@mondriaan.com',
+           phone: '+31208202070'
+        }
+      });
 
 Response
 ^^^^^^^^

@@ -121,12 +121,10 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const customer = await mollieClient.customers.create({
-          name: 'Customer A',
-          email: 'customer@example.org',
-        });
-      })();
+      const customer = await mollieClient.customers.create({
+        name: 'Customer A',
+        email: 'customer@example.org'
+      });
 
 Response
 ^^^^^^^^

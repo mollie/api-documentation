@@ -219,12 +219,9 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const mandate = await mollieClient.customers_mandates.get(
-          'mdt_h3gAaD5zP',
-          { customerId: 'cst_4qqhO89gsT' }
-        );
-      })();
+      const mandate = await mollieClient.customerMandates.get('mdt_h3gAaD5zP', {
+        customerId: 'cst_4qqhO89gsT'
+      });
 
 Response
 ^^^^^^^^

@@ -146,10 +146,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const mostRecentOrders = await mollieClient.orders.page();
-        const previousOrders = await mostRecentOrders.nextPage();
-      })();
+      const orders = mollieClient.orders.iterate();
 
 Response
 ^^^^^^^^

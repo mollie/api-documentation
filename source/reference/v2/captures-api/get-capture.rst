@@ -180,12 +180,9 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const capture = await mollieClient.payments_captures.get(
-          'cpt_4qqhO89gsT',
-          { paymentId: 'tr_WDqYK6vllg' }
-        );
-      })();
+      const capture = await mollieClient.paymentCaptures.get('cpt_4qqhO89gsT', {
+        paymentId: 'tr_WDqYK6vllg'
+      });
 
 Response
 ^^^^^^^^

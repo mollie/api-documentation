@@ -78,9 +78,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const status = mollieClient.customers.delete('cst_8wmqcHMN4U');
-      })();
+      await mollieClient.customers.delete('cst_8wmqcHMN4U');
 
 Response
 ^^^^^^^^

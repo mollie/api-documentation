@@ -214,12 +214,9 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async ()  => {
-        const chargeback = await mollieClient.payments_chargebacks.get(
-          'chb_n9z0tp',
-          { paymentId: 'tr_WDqYK6vllg' }
-        );
-      })();
+      const chargeback = await mollieClient.paymentChargebacks.get('chb_n9z0tp', {
+        paymentId: 'tr_WDqYK6vllg'
+      });
 
 Response
 ^^^^^^^^

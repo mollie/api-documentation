@@ -199,19 +199,17 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const subscription = await mollieClient.customers_subscriptions.update('sub_8EjeBVgtEn', {
-          customerId: 'cst_8wmqcHMN4U',
-          amount: {
-            currency: 'EUR',
-            value: '10.00',
-          },
-          times: 42,
-          startDate: '2018-12-12',
-          description: 'Mollie recurring subscription',
-          webhookUrl: 'https://example.org/webhook',
-        });
-      })();
+      const subscription = await mollieClient.customerSubscriptions.update('sub_8EjeBVgtEn', {
+        customerId: 'cst_8wmqcHMN4U',
+        amount: {
+          currency: 'EUR',
+          value: '10.00'
+        },
+        times: 42,
+        startDate: '2018-12-12',
+        description: 'Mollie recurring subscription',
+        webhookUrl: 'https://example.org/webhook'
+      });
 
 Response
 ^^^^^^^^

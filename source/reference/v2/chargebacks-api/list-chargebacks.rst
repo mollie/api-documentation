@@ -134,9 +134,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        chargebacks = await mollieClient.chargebacks.list();
-      })();
+      const chargebacks = mollieClient.chargebacks.iterate();
 
 Response
 ^^^^^^^^

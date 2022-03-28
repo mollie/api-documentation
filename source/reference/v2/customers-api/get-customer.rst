@@ -164,9 +164,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const customer = await mollieClient.customers.get('cst_kEn1PlbGa');
-      })();
+      const customer = await mollieClient.customers.get('cst_kEn1PlbGa');
 
 Response
 ^^^^^^^^

@@ -151,19 +151,17 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const payment = await mollieClient.customers_payments.create({
-          customerId: 'cst_8wmqcHMN4U',
-          amount: {
-            currency: 'EUR',
-            value: '10.00', // We enforce the correct number of decimals through strings
-          },
-          description: 'Order #12345',
-          sequenceType: 'first',
-          redirectUrl: 'https://webshop.example.org/order/12345/',
-          webhookUrl: 'https://webshop.example.org/payments/webhook/',
-        });
-      })();
+      const payment = await mollieClient.customerPayments.create({
+        customerId: 'cst_8wmqcHMN4U',
+        amount: {
+          currency: 'EUR',
+          value: '10.00'
+        },
+        description: 'Order #12345',
+        sequenceType: 'first',
+        redirectUrl: 'https://webshop.example.org/order/12345/',
+        webhookUrl: 'https://webshop.example.org/payments/webhook/'
+      });
 
 Response
 ^^^^^^^^

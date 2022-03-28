@@ -95,9 +95,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const customerPayments = await mollieClient.customers_payments.list({ customerId: 'cst_8wmqcHMN4U' });
-      })();
+      const payments = mollieClient.customerPayments.iterate({ customerId: 'cst_8wmqcHMN4U' });
 
 Response
 ^^^^^^^^

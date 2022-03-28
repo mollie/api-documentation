@@ -72,12 +72,9 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const status = await mollieClient.customers_mandates.delete(
-          'mdt_pWUnw6pkBN',
-          { customerId: 'cst_stTC2WHAuS' }
-        );
-      })();
+      await mollieClient.customerMandates.revoke('mdt_pWUnw6pkBN', {
+        customerId: 'cst_stTC2WHAuS'
+      });
 
    .. code-block:: python
       :linenos:
