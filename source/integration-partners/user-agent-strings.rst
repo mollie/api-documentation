@@ -78,9 +78,9 @@ The code examples below illustrate how the Mollie plugin (v0.9.9) for Magento 2 
 
       const { createMollieClient } = require('@mollie/api-client');
 
-      const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+      const mollieClient = createMollieClient({
         apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM',
-        versionStrings: 'MollieMagento2/0.9.9 Magento/2.1.5'
+        versionStrings: ['MollieMagento2/0.9.9', 'Magento/2.1.5']
       });
 
 If you are using Laravel, check out the ``addVersionString()`` method
