@@ -127,11 +127,12 @@ Parameters
    :type: string
    :condition: optional
    :collapse: true
-
+  
    For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
    rates you have used for the order to ensure your customer's country matches the VAT country.
 
-   Use this parameter to restrict the payment methods available to your customer to those from a single country.
+   Use this parameter to restrict the payment methods available to your customer to those from a single country. You 
+   can provide any country in ISO 3166-1 alpha-2 format.
 
    If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
 
