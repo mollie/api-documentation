@@ -5,7 +5,7 @@ Get balance
 
 .. endpoint::
    :method: GET
-   :url: https://api.mollie.com/v2/balances/*apiBalanceToken*
+   :url: https://api.mollie.com/v2/balances/*balanceId*
 
 .. authentication::
    :api_keys: false
@@ -28,7 +28,7 @@ funds will be shown under the 'incoming amount' in the meanwhile.
 
 Parameters
 ----------
-Replace ``apiBalanceToken`` in the endpoint URL by the balance token, which can be retrieved by the
+Replace ``balanceId`` in the endpoint URL by the balance ID, which can be retrieved by the
 :doc:`List balances </reference/v2/balances-api/list-balances>` endpoint.
 
 Response
@@ -49,7 +49,7 @@ Response
        .. type:: string
 
      - The identifier uniquely referring to this balance. Mollie assigns this identifier at balance creation time. For
-       example ``bal_8irzh1y2``.
+       example ``bal_gVMhHKqSSRYJyPsuoPNFH``.
 
    * - ``mode``
 
@@ -161,14 +161,7 @@ Response
 
               .. type:: string
 
-            - The configured bank account number of the beneficiary the
-              balance amount is to be transferred to.
-
-          * - ``bankAccountId``
-
-              .. type:: string
-
-            - Prefix token of the bank account.
+            - The configured bank account number of the beneficiary the balance amount is to be transferred to.
 
           * - ``beneficiaryName``
 
@@ -271,7 +264,7 @@ Request
 .. code-block:: bash
    :linenos:
 
-   curl -X GET https://api.mollie.com/v2/balances/{api_balance_token} \
+   curl -X GET https://api.mollie.com/v2/balances/{balanceId} \
        -H 'Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW'
 
 Response
@@ -284,7 +277,7 @@ Response
 
    {
      "resource": "balance",
-     "id": "bal_3t2a2h",
+     "id": "bal_gVMhHKqSSRYJyPsuoPNFH",
      "mode": "live",
      "createdAt": "2019-01-10T10:23:41+00:00",
      "currency": "EUR",
@@ -315,7 +308,7 @@ Response
      },
      "_links": {
        "self": {
-         "href": "https://api.mollie.com/v2/balances/bal_3t2a2h",
+         "href": "https://api.mollie.com/v2/balances/bal_gVMhHKqSSRYJyPsuoPNFH",
          "type": "application/hal+json"
        },
        "documentation": {

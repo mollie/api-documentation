@@ -1,5 +1,7 @@
 {%- set url_root = pathto('', 1) -%}
-{%- if "/captures-api/" in pagename -%}
+{%- if "/balances-api/" in pagename -%}
+  {%- set apiName = "Balances API" -%}
+{%- elif "/captures-api/" in pagename -%}
   {%- set apiName = "Captures API" -%}
 {%- elif "/chargebacks-api/" in pagename -%}
   {%- set apiName = "Chargebacks API" -%}

@@ -12,7 +12,7 @@ List balances
    :organization_access_tokens: true
    :oauth: true
 
-Retrieve all the organization's balances, including the default balance, ordered from newest to oldest.
+Retrieve all the organization's balances, including the primary balance, ordered from newest to oldest.
 
 The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
@@ -78,7 +78,7 @@ Response
               .. type:: array
 
             - An array of balance objects as described in
-              :doc:`Get primary balance </reference/v2/balances-api/get-primary-balance>`.
+              :doc:`Get balance </reference/v2/balances-api/get-balance>`.
 
    * - ``_links``
 
@@ -139,7 +139,7 @@ Response
        "balances": [
           {
             "resource": "balance",
-            "id": "bal_hinmkh",
+            "id": "bal_gVMhHKqSSRYJyPsuoPNFH",
             "mode": "live",
             "createdAt": "2019-01-10T12:06:28+00:00",
             "currency": "EUR",
@@ -170,14 +170,14 @@ Response
             },
             "_links": {
               "self": {
-                "href": "https://api.mollie.com/v2/balances/bal_hinmkh",
+                "href": "https://api.mollie.com/v2/balances/bal_gVMhHKqSSRYJyPsuoPNFH",
                 "type": "application/hal+json"
               }
             }
           },
           {
             "resource": "balance",
-            "id": "bal_3t2a2h",
+            "id": "bal_gVMhHKqSSRYJyPsuoPABC",
             "mode": "live",
             "createdAt": "2019-01-10T10:23:41+00:00",
             "status": "active",
@@ -208,7 +208,7 @@ Response
             },
             "_links": {
               "self": {
-                "href": "https://api.mollie.com/v2/balances/bal_3t2a2h",
+                "href": "https://api.mollie.com/v2/balances/bal_gVMhHKqSSRYJyPsuoPABC",
                 "type": "application/hal+json"
               }
             }
@@ -229,7 +229,7 @@ Response
        },
        "previous": null,
        "next": {
-         "href": "https://api.mollie.com/v2/balances?from=bal_i6ow3k81&limit=5",
+         "href": "https://api.mollie.com/v2/balances?from=bal_gVMhHKqSSRYJyPsuoPABC&limit=5",
          "type": "application/hal+json"
        }
      }
