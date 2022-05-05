@@ -12,7 +12,7 @@ List balances
    :organization_access_tokens: true
    :oauth: true
 
-Retrieve all the organization's balances ordered from newest to oldest.
+Retrieve all the organization's balances, including the primary balance, ordered from newest to oldest.
 
 The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
@@ -20,6 +20,20 @@ Parameters
 ----------
 .. list-table::
    :widths: auto
+
+   * - ``currency``
+
+       .. type:: string
+          :required: false
+
+     - Currency filter that will make it so only balances in given currency are returned. For example ``EUR``.
+
+   * - ``testmode``
+
+       .. type:: boolean
+          :required: false
+
+     - Set this to true to only retrieve balances made in test mode. By default, only live balances are returned.
 
    * - ``from``
 
@@ -125,11 +139,11 @@ Response
        "balances": [
           {
             "resource": "balance",
-            "id": "bal_hinmkh",
+            "id": "bal_gVMhHKqSSRYJyPsuoPNFH",
             "mode": "live",
             "createdAt": "2019-01-10T12:06:28+00:00",
             "currency": "EUR",
-            "status": "accepted",
+            "status": "active",
             "availableAmount": {
               "value": "0.00",
               "currency": "EUR"
@@ -147,24 +161,26 @@ Response
               "value": "40.00",
               "currency": "EUR"
             },
+            "transferReference": "Mollie payout",
             "transferDestination": {
               "type": "bank-account",
               "beneficiaryName": "Jack Bauer",
-              "bankAccount": "NL53INGB0654422370"
+              "bankAccount": "NL53INGB0654422370",
+              "bankAccountId": "bnk_jrty3f"
             },
             "_links": {
               "self": {
-                "href": "https://api.mollie.com/v2/balances/bal_hinmkh",
+                "href": "https://api.mollie.com/v2/balances/bal_gVMhHKqSSRYJyPsuoPNFH",
                 "type": "application/hal+json"
               }
             }
           },
           {
             "resource": "balance",
-            "id": "bal_3t2a2h",
+            "id": "bal_gVMhHKqSSRYJyPsuoPABC",
             "mode": "live",
             "createdAt": "2019-01-10T10:23:41+00:00",
-            "status": "accepted",
+            "status": "active",
             "currency": "EUR",
             "availableAmount": {
               "value": "0.00",
@@ -183,14 +199,16 @@ Response
               "value": "5.00",
               "currency": "EUR"
             },
+            "transferReference": "Mollie payout",
             "transferDestination": {
               "type": "bank-account",
               "beneficiaryName": "Jack Bauer",
-              "bankAccount": "NL97MOLL6351480700"
+              "bankAccount": "NL97MOLL6351480700",
+              "bankAccountId": "bnk_jrty3e"
             },
             "_links": {
               "self": {
-                "href": "https://api.mollie.com/v2/balances/bal_3t2a2h",
+                "href": "https://api.mollie.com/v2/balances/bal_gVMhHKqSSRYJyPsuoPABC",
                 "type": "application/hal+json"
               }
             }
@@ -211,7 +229,7 @@ Response
        },
        "previous": null,
        "next": {
-         "href": "https://api.mollie.com/v2/balances?from=bal_i6ow3k81&limit=5",
+         "href": "https://api.mollie.com/v2/balances?from=bal_gVMhHKqSSRYJyPsuoPABC&limit=5",
          "type": "application/hal+json"
        }
      }
