@@ -5,7 +5,7 @@ Get balance
 
 .. endpoint::
    :method: GET
-   :url: https://api.mollie.com/v2/balances/*apiBalanceToken*
+   :url: https://api.mollie.com/v2/balances/*balanceId*
 
 .. authentication::
    :api_keys: false
@@ -28,7 +28,7 @@ funds will be shown under the 'incoming amount' in the meanwhile.
 
 Parameters
 ----------
-Replace ``apiBalanceToken`` in the endpoint URL by the balance token, which can be retrieved by the
+Replace ``balanceId`` in the endpoint URL by the balance ID, which can be retrieved by the
 :doc:`List balances </reference/v2/balances-api/list-balances>` endpoint.
 
 Response
@@ -49,7 +49,7 @@ Response
        .. type:: string
 
      - The identifier uniquely referring to this balance. Mollie assigns this identifier at balance creation time. For
-       example ``bal_8irzh1y2``.
+       example ``bal_gVMhHKqSSRYJyPsuoPNFH``.
 
    * - ``mode``
 
@@ -79,9 +79,8 @@ Response
 
        Possible values:
 
-       * ``accepted`` The balance is operational and ready to be used.
-       * ``pending`` In case the account is still being validated by our team.
-       * ``blocked`` The balance has been blocked. Please
+       * ``active`` The balance is operational and ready to be used.
+       * ``inactive`` In case the account is still being validated by our team or the balance has been blocked. Please
          `contact our support department <https://www.mollie.com/en/contact/>`_ for more information.
 
    * - ``transferFrequency``
@@ -132,6 +131,12 @@ Response
             - A string containing the exact EUR threshold. Make sure to send the right amount of decimals. Non-string
               values are not accepted.
 
+   * - ``transferReference``
+
+       .. type:: string
+
+     - The transfer reference set to be included in all the transfer for this balance. Either a string or ``null``.
+
    * - ``transferDestination``
 
        .. type:: object
@@ -156,8 +161,7 @@ Response
 
               .. type:: string
 
-            - The configured bank account number of the beneficiary the
-              balance amount is to be transferred to.
+            - The configured bank account number of the beneficiary the balance amount is to be transferred to.
 
           * - ``beneficiaryName``
 
@@ -260,7 +264,7 @@ Request
 .. code-block:: bash
    :linenos:
 
-   curl -X GET https://api.mollie.com/v2/balances/{api_balance_token} \
+   curl -X GET https://api.mollie.com/v2/balances/{balanceId} \
        -H 'Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW'
 
 Response
@@ -273,11 +277,11 @@ Response
 
    {
      "resource": "balance",
-     "id": "bal_3t2a2h",
+     "id": "bal_gVMhHKqSSRYJyPsuoPNFH",
      "mode": "live",
      "createdAt": "2019-01-10T10:23:41+00:00",
      "currency": "EUR",
-     "status": "accepted",
+     "status": "active",
      "availableAmount": {
        "value": "905.25",
        "currency": "EUR"
@@ -295,14 +299,16 @@ Response
        "value": "5.00",
        "currency": "EUR"
      },
+    "transferReference": "Mollie payout",
      "transferDestination": {
        "type": "bank-account",
        "beneficiaryName": "Jack Bauer",
-       "bankAccount": "NL53INGB0654422370"
+       "bankAccount": "NL53INGB0654422370",
+       "bankAccountId": "bnk_jrty3f"
      },
      "_links": {
        "self": {
-         "href": "https://api.mollie.com/v2/balances/bal_3t2a2h",
+         "href": "https://api.mollie.com/v2/balances/bal_gVMhHKqSSRYJyPsuoPNFH",
          "type": "application/hal+json"
        },
        "documentation": {
