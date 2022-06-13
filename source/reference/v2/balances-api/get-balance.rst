@@ -1,5 +1,5 @@
 Get balance
-===================
+===========
 .. api-name:: Balances API
    :version: 2
 
@@ -12,19 +12,17 @@ Get balance
    :organization_access_tokens: true
    :oauth: true
 
-When processing payments with Mollie, we put all incoming funds — minus Mollie fees — on a balance. Once you have linked
+When processing payments with Mollie, we put all pending funds — minus Mollie fees — on a balance. Once you have linked
 a bank account to your Mollie account, we can pay out your balance towards this bank account.
 
 With the Balances API you can retrieve your current balance. The response includes three amounts:
 
-* The 'incoming amount'. These are payments that have been marked as 'paid', but are not yet available for paying out.
+* The 'pending amount'. These are payments that have been marked as 'paid', but are not yet available for paying out.
 * The 'available amount'. This is the amount that you can get paid out to your bank account.
-* The 'outgoing amount'. When we process a payout, the funds will be kept on your outgoing balance until your bank
-  confirms the settlement.
 
 With instant payment methods like iDEAL, payments are moved to the available balance instantly. With slower payment
 methods, like credit card for example, it can take a few days before the funds are available on your balance. These
-funds will be shown under the 'incoming amount' in the meanwhile.
+funds will be shown under the 'pending amount' in the meanwhile.
 
 Parameters
 ----------
@@ -167,8 +165,7 @@ Response
 
               .. type:: string
 
-            - The full name of the beneficiary the balance amount is to
-              be transferred to.
+            - The full name of the beneficiary the balance amount is to be transferred to.
 
    * - ``availableAmount``
 
@@ -191,7 +188,7 @@ Response
 
             - A string containing the exact available amount of the balance in the given currency.
 
-   * - ``incomingAmount``
+   * - ``pendingAmount``
 
        .. type:: amount object
 
@@ -212,27 +209,6 @@ Response
               .. type:: string
 
             - A string containing the exact pending amount of the balance in the given currency.
-
-   * - ``outgoingAmount``
-
-       .. type:: amount object
-
-     - The total amount that is in the process of being transferred from your balance to your verified bank account.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``currency``
-
-              .. type:: string
-
-            - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code of the amount in transit.
-
-          * - ``value``
-
-              .. type:: string
-
-            - A string containing the exact amount in transit in the given currency.
 
    * - ``_links``
 
@@ -286,11 +262,7 @@ Response
        "value": "905.25",
        "currency": "EUR"
      },
-     "incomingAmount": {
-       "value": "0.00",
-       "currency": "EUR"
-     },
-     "outgoingAmount": {
+     "pendingAmount": {
        "value": "0.00",
        "currency": "EUR"
      },

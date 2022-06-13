@@ -93,11 +93,7 @@ Response
        "value": "905.25",
        "currency": "EUR"
      },
-     "incomingAmount": {
-       "value": "0.00",
-       "currency": "EUR"
-     },
-     "outgoingAmount": {
+     "pendingAmount": {
        "value": "0.00",
        "currency": "EUR"
      },
