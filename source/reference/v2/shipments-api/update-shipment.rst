@@ -30,13 +30,13 @@ the shipment's ID, for example ``shp_3wmsgCJN4U``.
       :type: string
       :condition: required
 
-      Name of the postal carrier (as specific as possible). For example ``PostNL``.
+      Name of the postal carrier (as specific as possible). For example ``PostNL``. Maximum length: 100 characters.
 
    .. parameter:: code
       :type: string
       :condition: required
 
-      The track and trace code of the shipment. For example ``3SKABA000000000``.
+      The track and trace code of the shipment. For example ``3SKABA000000000``. Maximum length: 100 characters.
 
    .. parameter:: url
       :type: string
