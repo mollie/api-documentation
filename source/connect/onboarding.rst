@@ -11,18 +11,22 @@ Step 1: Enable hosted onboarding
 If you are new to OAuth, please have a look at the :doc:`Mollie Connect overview </connect/overview>` and the
 :doc:`Getting started guide for OAuth </connect/getting-started>` before proceeding.
 
-To be able to use Hosted Onboarding, you will need to reach to our partner management team so that they can enable it for 
-your account.
+To enable Hosted Onboarding for your account, reach out to the Mollie partner management team.
 
-Once the feature has been enabled, you can configure it by clicking on this `link <https://www.mollie.com/dashboard/settings/hosted-onboarding>`_,
-or by navigating to the settings page yourself: you will find it in your Mollie Dashboard under `Settings > Hosted Onboarding`.
+Once the feature has been enabled, you can configure it by navigating to the `Hosted Onboarding <https://www.mollie.com/dashboard/settings/hosted-onboarding>`_
+settings page in your Mollie Dashboard. You can find this page under `Settings > Hosted Onboarding`.
 
-In this page, you will see a toggle to enable Hosted Onboardinitg and, once it has been toggled, you will be prompted to provide a name and a logo
-that will be displayed to your users when they are completing their onboarding steps, and a Redirect URL where your users will be
-redirected after authorizing the appplication.
+On this page, you can toggle Hosted Onboarding. After doing so you need to provide the following:
 
-After clicking `Save` you will see the OAuth application id and application secret, which you can use to implement
-the authorization flow.
+- A name for the OAuth Application
+
+- A logo to be displayed to your users when they are completing their onboardin.
+
+- A Redirect URL where your users will be redirected to after authorizing the application.
+
+Click **Save**.
+
+Now you see the OAuth application ID and the application secret. Implement these in your authorisation flow.
 
 Step 2: Implement the OAuth authorization flow
 ----------------------------------------------
