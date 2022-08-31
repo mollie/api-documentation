@@ -32,7 +32,7 @@ presence and validity of this file will be validated by Apple.
 Download the `domain validation file <http://www.mollie.com/.well-known/apple-developer-merchantid-domain-association>`_
 and place it on your server at ``https://[domain]/.well-known/apple-developer-merchantid-domain-association``.
 
-.. note:: It is advised to use one Mollie profile per domain, e.g. ``stage.merchant.example`` and 
+.. note:: You should use one Mollie profile per domain, e.g. ``stage.merchant.example`` and 
           ``www.merchant.example`` should have different profiles. Otherwise you might receive the error that Apple is
           unable to verify your domain.
 
