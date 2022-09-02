@@ -135,7 +135,7 @@ Example
 
       mollie_client = Client()
       mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      refunds = mollie_client.refunds
+      refunds = mollie_client.refunds.list()
 
    .. code-block:: ruby
       :linenos:
