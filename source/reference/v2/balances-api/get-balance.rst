@@ -49,14 +49,6 @@ Response
      - The identifier uniquely referring to this balance. Mollie assigns this identifier at balance creation time. For
        example ``bal_gVMhHKqSSRYJyPsuoPNFH``.
 
-   * - ``mode``
-
-       .. type:: string
-
-     - The mode used to create this balance. Mode determines whether real or test payments can be moved to this balance.
-
-       Possible values: ``live`` ``test``
-
    * - ``createdAt``
 
        .. type:: datetime

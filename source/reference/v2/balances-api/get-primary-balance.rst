@@ -18,19 +18,6 @@ by default.
 This endpoint is an alias of the :doc:`Get balance </reference/v2/balances-api/get-balance>`. Please refer to the
 documentation of that endpoint for more information.
 
-Parameters
-----------
-.. list-table::
-   :widths: auto
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to get the primary test mode balance. If you omit this parameter, the primary live mode
-       balance will be returned.
-
 Response
 --------
 ``200`` ``application/hal+json``
