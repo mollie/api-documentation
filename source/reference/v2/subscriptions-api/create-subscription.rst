@@ -109,6 +109,9 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, for example
 
    Use this parameter to set a webhook URL for all subscription payments.
 
+   .. note:: This webhook will receive all events for the subscription payments, not only renewals. Please verify the
+             payment status before creating a new order in your system.
+
 .. parameter:: metadata
    :type: mixed
    :condition: optional
