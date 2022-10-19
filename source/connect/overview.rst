@@ -53,13 +53,8 @@ The simplest use case is when your app processes payments for other Mollie accou
 gets sent to your own balance. The user in this case will still have their own dashboard, pay their own Mollie payment
 fees, and receive a Mollie invoice. For this case we offer :doc:`Application fees </connect/application-fees>`.
 
-If you would like to also cover for the payment method fees that Mollie would charge to the users of your application, 
-please reach out to your partner manager.
-
-.. note:: Covering the Mollie fees for your application's users is currently available to select merchants in closed beta.
-    Please reach out to our partnership team if you are interested and would like more information about this feature.
-
-For more advanced use cases, for example if you want to split a payment with another party, we offer :doc:`Split payments </connect/splitting-payments>`.
+For more advanced use cases, for example if you want to cover the Mollie payment fees yourself, or for example if you
+want to split a payment with another party, we offer :doc:`Split payments </connect/splitting-payments>`.
 
 Referral commissions
 --------------------
