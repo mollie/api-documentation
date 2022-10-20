@@ -25,9 +25,8 @@ want to split a payment with another party, we offer :doc:`Split payments </conn
 Enabling application fees
 -------------------------
 In order to enable charging application fees with your app, you must first register to become an app developer. This can
-be done from the `Dashboard <https://www.mollie.com/dashboard/developers/applications>`_. Then,
-`contact <https://www.mollie.com/en/contact/>`_ our support department to have charging application fees on your account
-enabled.
+be done from the `Dashboard <https://www.mollie.com/dashboard/developers/applications>`_. When you signed the developer
+agreement, application fees will automatically be enabled.
 
 How to create an application fee
 --------------------------------
