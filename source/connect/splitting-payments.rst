@@ -242,7 +242,7 @@ Split captures
 ------------------------------------------------
 
 Capture methods (like Klarna Pay now, Klarna Pay later, Klarna Slice it, etc.) require the
-:doc:`Orders API</orders/overview>` Orders API, and cannot be used with the Payments API. To route (part of) captured
+:doc:`Orders API</orders/overview>`, and cannot be used with the Payments API. To route (part of) captured
 funds with your connected merchant accounts, you can specify the routing when
 :doc:`creating a shipment</reference/v2/shipments-api/create-shipment>`.
 
