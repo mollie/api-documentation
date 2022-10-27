@@ -423,7 +423,7 @@ With Mollie Connect you can charge fees on payments that are processed through y
 *application fee* or by *splitting the payment*. To learn more about the difference, please refer to the
 :doc:`Mollie Connect overview </connect/overview>`.
 
-.. warning:: This functionality is currently only available with for captures methods (Klarna Pay now,
+.. warning:: This functionality is currently only available for captures methods (Klarna Pay now,
    Klarna Pay later, Klarna Slice it, etc.)
 
 .. parameter:: routing
