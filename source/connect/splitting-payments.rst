@@ -5,7 +5,7 @@ Splitting payments with Mollie Connect
           our partner management team.
 
 .. warning:: The split payments feature is not available for third-party payments methods (gift cards, Paypal, etc.).
-             For captures (Klarna Pay now, Klarna Pay later, Klarna Slice it, etc.) see Split captures
+             For captures (Klarna Pay now, Klarna Pay later, Klarna Slice it, etc.) see the split captures paragraph.
 
 With **Split payments** you can distribute and split payments between your platform and your connected merchant
 accounts.
@@ -241,13 +241,14 @@ The release date can be up to two years from the day of the payment's creation. 
 Split captures
 ------------------------------------------------
 
-Capture methods (like Klarna Pay now, Klarna Pay later, Klarna Slice it, etc.) require the
-:doc:`Orders API</orders/overview>`, and cannot be used with the Payments API. To route (part of) captured
-funds with your connected merchant accounts, you can specify the routing when
-:doc:`creating a shipment</reference/v2/shipments-api/create-shipment>`.
+To enable Buy Now Pay Later payment methods (like Klarna Pay now, Klarna Pay later, Klarna Slice it, etc.). it is
+required to use the :doc:`Orders API</orders/overview>`. This is necessary because these payment methods require
+the use of captures, something that at the moment is not possible within the Payments API.
+More information on how to implement the Orders API, can be found :doc:`here</orders/migrate-to-orders>`.
 
-In the example below, we will route €3,50 of a €10,00 shipment of two items to the connected account ``org_23456``,
-and €4,00 to the connected account ``org_56789``.
+To route (part of) captured funds with your connected merchant accounts, you can specify the routing when
+:doc:`creating a shipment</reference/v2/shipments-api/create-shipment>`. In the example below, we will route €3,50 of
+a €10,00 shipment of two items to the connected account ``org_23456``, and €4,00 to the connected account ``org_56789``.
 
 On our own account, we will receive the remainder of €2,50 minus any payment fees charged by Mollie.
 
