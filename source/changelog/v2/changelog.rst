@@ -3,6 +3,18 @@ Changelog
 Occasionally, we will add new resources, new fields, or new possible values to existing fields to the v2 Mollie API. All
 changes are documented here.
 
+November 2022
+=============
+
+Monday, 7th
+-----------
+
+- The field `vatRegulation` in the :doc:`Submit onboarding data endpoint </reference/v2/onboarding-api/submit-onboarding-data>`
+  is now ignored.
+
+- The field `vatRegulation` in the :doc:`Get Organization endpoint </reference/v2/organizations-api/get-organization>`
+  has been deprecated and removed from the documentation.
+
 October 2022
 ============
 
