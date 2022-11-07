@@ -65,10 +65,10 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      payment = mollie_client.payments.get('tr_WDqYK6vllg')
-      mollie_client.payment_refunds.on(payment).delete('re_4qqhO89gsT')
+      payment = mollie_client.payments.get("tr_WDqYK6vllg")
+      payment.refunds.delete("re_4qqhO89gsT")
 
    .. code-block:: javascript
       :linenos:

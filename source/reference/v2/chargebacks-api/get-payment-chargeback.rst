@@ -189,10 +189,10 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      payment = mollie_client.payments.get('tr_WDqYK6vllg')
-      chargeback = mollie_client.payment_chargebacks.on(payment).get('chb_n9z0tp')
+      payment = mollie_client.payments.get("tr_WDqYK6vllg")
+      chargeback = payment.chargebacks.get("chb_n9z0tp")
 
    .. code-block:: ruby
       :linenos:

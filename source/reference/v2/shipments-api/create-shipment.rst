@@ -174,37 +174,40 @@ Example
    .. code-block:: python
       :linenos:
 
+      from mollie.api.client import Client
+
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      order = mollie_client.orders.get('ord_kEn1PlbGa')
-      shipment = order.create_shipment({
-         'lines': [
-            {
-               'id': 'odl_dgtxyl',
-               'quantity': 1,  # you can set the quantity if not all is shipped at once
-            },
-            {
-               'id': 'odl_jp31jz',  # all is shipped if no quantity is set
-            }
-         ],
-         'tracking': {
-            'carrier': 'PostNL',
-            'code': '3SKABA000000000',
-            'url': 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C',
-         }
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      order = mollie_client.orders.get("ord_kEn1PlbGa")
+      shipment = order.shipments.create({
+          "lines": [
+              {
+                  "id": "odl_dgtxyl",
+                  "quantity": 1,  # you can set the quantity if not all is shipped at once
+              },
+              {
+                  "id": "odl_jp31jz",  # all is shipped if no quantity is set
+              }
+          ],
+          "tracking": {
+              "carrier": "PostNL",
+              "code": "3SKABA000000000",
+              "url": "http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C",
+          }
       })
 
       # if all lines are shipped, there is no need to specify them
       shipment = order.create_shipment({
-         'tracking': {
-            'carrier': 'PostNL',
-            'code': '3SKABA000000000',
-            'url': 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C',
-         }
+          "tracking": {
+              "carrier": "PostNL",
+              "code": "3SKABA000000000",
+              "url": "http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C",
+          }
       })
 
-      # or when no tracking is specified:
-      shipment = order.create_shipment()
+      # or, when no tracking is specified:
+      shipment = order.shipments.create()
 
    .. code-block:: ruby
       :linenos:

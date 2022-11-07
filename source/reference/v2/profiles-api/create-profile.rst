@@ -144,18 +144,16 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+      mollie_client.set_access_token("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ")
 
-      profile = mollie_client.profiles.create(
-          data={
-              'name': 'My website name',
-              'website': 'https://www.mywebsite.com',
-              'email': 'info@mywebsite.com',
-              'phone': '+31208202070',
-              'businessCategory': 'OTHER_MERCHANDISE',
-              'mode': 'live',
-          }
-      )
+      profile = mollie_client.profiles.create({
+          "name": "My website name",
+          "website": "https://www.mywebsite.com",
+          "email": "info@mywebsite.com",
+          "phone": "+31208202070",
+          "businessCategory": "OTHER_MERCHANDISE",
+          "mode": "live",
+      })
 
    .. code-block:: ruby
       :linenos:

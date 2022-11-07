@@ -237,31 +237,28 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_access_token('access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_access_token("access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      onboarding = mollie_client.onboarding.create(
-          'me',
-          data={
-              'organization': {
-                  'name': 'Mollie B.V.',
-                  'address': {
-                      'streetAndNumber': 'Keizersgracht 126',
-                      'postalCode': '1015 CW',
-                      'city': 'Amsterdam',
-                      'country': 'NL',
-                  },
-                  'registrationNumber': '30204462',
-                  'vatNumber': 'NL815839091B01',
+      onboarding = mollie_client.onboarding.create({
+          "organization": {
+              "name": "Mollie B.V.",
+              "address": {
+                  "streetAndNumber": "Keizersgracht 126",
+                  "postalCode": "1015 CW",
+                  "city": "Amsterdam",
+                  "country": "NL",
               },
-              'profile': {
-                  'name': 'Mollie',
-                  'url': 'https://www.mollie.com',
-                  'email': 'info@mollie.com',
-                  'phone': '+31208202070',
-                  'businessCategory': 'MONEY_SERVICES',
-              },
+              "registrationNumber": "30204462",
+              "vatNumber": "NL815839091B01",
           },
-      )
+          "profile": {
+              "name": "Mollie",
+              "url": "https://www.mollie.com",
+              "email": "info@mollie.com",
+              "phone": "+31208202070",
+              "categoryCode": 6012,
+          },
+      })
 
    .. code-block:: ruby
       :linenos:

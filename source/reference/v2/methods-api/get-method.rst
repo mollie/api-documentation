@@ -245,8 +245,9 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      mollie_client.methods.get('ideal', include='issuers,pricing')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      method = mollie_client.methods.get("ideal", include="issuers,pricing")
 
    .. code-block:: ruby
       :linenos:

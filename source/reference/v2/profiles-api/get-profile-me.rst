@@ -52,9 +52,9 @@ Request
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_access_token("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ")
 
-      profile = mollie_client.profiles.get('me')
+      profile = mollie_client.profiles.get("me")
 
 Response
 ^^^^^^^^

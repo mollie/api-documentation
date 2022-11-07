@@ -244,14 +244,14 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      payment = mollie_client.payments.get('tr_WDqYK6vllg')
-      refund = mollie_client.payment_refunds.on(payment).create({
-         'amount': {
-               'value': '5.95',
-               'currency': 'EUR'
-         }
+      payment = mollie_client.payments.get("tr_WDqYK6vllg")
+      refund = payment.refunds.create({
+          "amount": {
+              "value": "5.95",
+              "currency": "EUR",
+          }
       })
 
    .. code-block:: ruby

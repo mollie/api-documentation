@@ -69,9 +69,10 @@ Request
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+      mollie_client.set_access_token("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ")
 
-      mollie_client.profile_methods.with_parent_id('pfl_v9hTwCvYqw', 'ideal').create()
+      profile = mollie_client.profiles.get("pfl_v9hTwCvYqw")
+      method = profile.methods.enable("ideal")
 
 Response
 ^^^^^^^^

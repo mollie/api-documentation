@@ -55,6 +55,17 @@ Example
       $mandate = $customer->getMandate("mdt_pWUnw6pkBN");
       $mandate->revoke();
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      customer = mollie_client.customers.get("cst_4qqhO89gsT")
+      customer.mandates.delete("mdt_h3gAaD5zP")
+
    .. code-block:: ruby
       :linenos:
 
@@ -75,16 +86,6 @@ Example
       await mollieClient.customerMandates.revoke('mdt_pWUnw6pkBN', {
         customerId: 'cst_stTC2WHAuS'
       });
-
-   .. code-block:: python
-      :linenos:
-
-      from mollie.api.client import Client
-
-      mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-
-      mandate = mollie_client.customer_mandates.with_parent_id('cst_4qqhO89gsT').delete('mdt_h3gAaD5zP')
 
 Response
 ^^^^^^^^

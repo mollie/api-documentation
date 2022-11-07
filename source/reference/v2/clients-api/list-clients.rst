@@ -104,11 +104,22 @@ Response
 
 Example
 -------
-.. code-block:: bash
-  :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-  curl -X GET https://api.mollie.com/v2/clients?limit=3 \
-     -H "Authorization: Bearer access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+      curl -X GET https://api.mollie.com/v2/clients?limit=3 \
+         -H "Authorization: Bearer access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_access_token("access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      client = mollie_client.clients.list()
 
 Response
 ^^^^^^^^

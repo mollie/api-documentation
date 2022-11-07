@@ -94,11 +94,11 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
       customer = mollie_client.customers.create({
-        'name': 'Customer A',
-        'email': 'customer@example.org'
+          "name": "Customer A",
+          "email": "customer@example.org",
       })
 
    .. code-block:: ruby

@@ -128,10 +128,13 @@ Example
    .. code-block:: python
       :linenos:
 
+      from mollie.api.client import Client
+
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      order = mollie_client.orders.get('ord_kEn1PlbGa')
-      shipment = order.get_shipment('shp_3wmsgCJN4U')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      order = mollie_client.orders.get("ord_kEn1PlbGa")
+      shipment = order.shipments.get("shp_3wmsgCJN4U")
 
    .. code-block:: ruby
       :linenos:

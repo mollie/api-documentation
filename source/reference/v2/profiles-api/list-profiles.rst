@@ -101,7 +101,7 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+      mollie_client.set_access_token("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ")
 
       profiles = mollie_client.profiles.list()
 

@@ -231,23 +231,14 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
       order = mollie_client.orders.get('ord_pbjz8x')
-      order = order.update_line(
-          'odl_dgtxyl',
-          data={
-      'name': 'LEGO 71043 Hogwarts™ Castle',
-              'productUrl': 'https://shop.lego.com/en-GB/product/Hogwarts-Castle-71043',
-              'imageUrl': 'https://sh-s7-live-s.legocdn.com/is/image//LEGO/71043_alt1?$main$',
-              'quantity': 2,
-              'vatRate': '21.00',
-              'unitPrice': {'currency': 'EUR', 'value': '349.00'},
-              'totalAmount': {'currency': 'EUR', 'value': '598.00'},
-              'discountAmount': {'currency': 'EUR', 'value': '100.00'},
-              'vatAmount': {'currency': 'EUR', 'value': '103.79'},
-          },
-      )
+      order = order.lines.update("odl_dgtxyl", {
+          "name": "LEGO 71043 Hogwarts™ Castle",
+          "productUrl": "https://shop.lego.com/en-GB/product/Hogwarts-Castle-71043",
+          "imageUrl": "https://sh-s7-live-s.legocdn.com/is/image//LEGO/71043_alt1?$main$",
+      })
 
    .. code-block:: javascript
       :linenos:

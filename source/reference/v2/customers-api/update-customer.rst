@@ -99,9 +99,11 @@ Example
 
       customer = mollie_client.customers.update(
           "cst_8wmqcHMN4U",
-          data={"name": "Updated Customer A", "email": "updated-customer@example.org"},
+          {
+              "name": "Updated Customer A",
+              "email": "updated-customer@example.org"
+          },
       )
-
 
    .. code-block:: ruby
       :linenos:

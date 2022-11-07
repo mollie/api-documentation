@@ -115,9 +115,10 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      mandates = mollie_client.customer_mandates.with_parent_id('cst_stTC2WHAuS').list()
+      customer = mollie_client.customers.get("cst_4qqhO89gsT")
+      mandates = customer.mandates.list()
 
    .. code-block:: ruby
       :linenos:

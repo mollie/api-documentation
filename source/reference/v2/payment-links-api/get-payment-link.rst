@@ -152,6 +152,7 @@ Example
 
       mollie_client = Client()
       mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
       payment_link = mollie_client.payment_links.get("pl_4Y0eZitmBnQ6IDoMqZQKh")
 
 Response

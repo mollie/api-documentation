@@ -522,8 +522,9 @@ Example
       :linenos:
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      order = mollie_client.orders.get('ord_stTC2WHAuS')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      order = mollie_client.orders.get("ord_stTC2WHAuS", embed="payment,refunds")
 
    .. code-block:: ruby
       :linenos:

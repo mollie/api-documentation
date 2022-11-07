@@ -151,18 +151,19 @@ Example
       :linenos:
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      order = mollie_client.orders.get('ord_stTC2WHAuS')
-      order.create_refund({
-        'lines': [
-          'id': 'odl_dgtxyl',
-          'quantity': 1,
-        ],
-        'description': 'Required quantity not in stock, refunding one photo book.'
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      order = mollie_client.orders.get("ord_stTC2WHAuS")
+      refund = order.refunds.create({
+          "lines": [
+              "id": "odl_dgtxyl",
+              "quantity": 1,
+          ],
+          "description": "Required quantity not in stock, refunding one photo book.",
       })
 
       # Alternative shorthand for refunding all eligible order lines
-      order.create_refund()
+      refund = order.refunds.create()
 
    .. code-block:: ruby
       :linenos:

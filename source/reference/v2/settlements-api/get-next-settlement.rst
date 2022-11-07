@@ -43,9 +43,9 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+      mollie_client.set_access_token("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ")
 
-      settlement = mollie_client.settlements.get('next')
+      settlement = mollie_client.settlements.get("next")
 
    .. code-block:: ruby
       :linenos:

@@ -87,10 +87,13 @@ Example
    .. code-block:: python
       :linenos:
 
+      from mollie.api.client import Client
+
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      order = mollie_client.orders.get('ord_kEn1PlbGa')
-      shipments = order.shipments
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      order = mollie_client.orders.get("ord_kEn1PlbGa")
+      shipments = order.shipments.list()
 
    .. code-block:: ruby
       :linenos:

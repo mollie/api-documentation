@@ -158,12 +158,11 @@ Example
       mollie_client = Client()
       mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      subscription = mollie_client.customer_subscriptions.with_parent_id(
-          "cst_8wmqcHMN4U"
-      ).update(
+      customer = mollie_client.customers.get("cst_stTC2WHAuS")
+      subscription = customer.subscriptions.update(
           "sub_8EjeBVgtEn",
-          data={
-      "amount": {
+          {
+              "amount": {
                   "currency": "EUR",
                   "value": "10.00",
               },

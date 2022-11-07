@@ -101,14 +101,17 @@ Example
    .. code-block:: python
       :linenos:
 
+      from mollie.api.client import Client
+
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      order = mollie_client.orders.get('ord_kEn1PlbGa')
-      order.update_shipment('shp_3wmsgCJN4U', {
-         'tracking': {
-            'carrier': 'PostNL',
-            'code': '3SKABA000000000',
-            'url': 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C,
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      order = mollie_client.orders.get("ord_kEn1PlbGa")
+      shipment = order.shipments.update("shp_3wmsgCJN4U", {
+         "tracking": {
+            "carrier": "PostNL",
+            "code": "3SKABA000000000",
+            "url": "http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C,
          },
       })
 

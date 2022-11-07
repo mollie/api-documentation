@@ -123,8 +123,10 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      refunds = mollie_client.payments.get('tr_WDqYK6vllg').refunds
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      payment = mollie_client.payments.get("tr_WDqYK6vllg")
+      refunds = payment.refunds.list()
 
    .. code-block:: ruby
       :linenos:

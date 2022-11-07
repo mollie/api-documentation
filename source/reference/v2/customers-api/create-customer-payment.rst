@@ -115,17 +115,19 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      payment = mollie_client.customer_payments.with_parent_id('cst_8wmqcHMN4U').create(
-          data={
-      'amount': {'value': '10.00', 'currency': 'EUR'},
-              'description': 'Order #12345',
-              'sequenceType': 'first',
-              'redirectUrl': 'https://webshop.example.org/order/12345/',
-              'webhookUrl': 'https://webshop.example.org/payments/webhook/',
-          }
-      )
+      customer = mollie_client.customers.get("cst_8wmqcHMN4U")
+      payment = customer.payments.create({
+          "amount": {
+              "value": "10.00",
+              "currency": "EUR",
+          },
+          "description": "Order #12345",
+          "sequenceType": "first",
+          "redirectUrl": "https://webshop.example.org/order/12345/",
+          "webhookUrl": "https://webshop.example.org/payments/webhook/",
+      })
 
    .. code-block:: ruby
       :linenos:
