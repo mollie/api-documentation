@@ -41,8 +41,8 @@ some small tweaks. You can use the following steps as a guideline for the basic 
    API. The customer will select the address where the product(s) needs to be sent. Following this, the 
    customer then completes the payment.
 
-#. Mollie will receive the address from PayPal and updates the order's ``shippingAddress`` only if there is no 
-   ``shippingAddress`` set already. The consumer will  then be redirected back to your website while we call your webhook, 
+#. Mollie will always update the Mollie order's ``shippingAddress`` to match the ``shippingAddress`` that the customer
+   has filled in PayPal. The consumer will then be redirected back to your website while we call your webhook, 
    if set, to inform you about the latest order state.
 
 #. You can retrieve the shipping address by calling the :doc:`Get order endpoint </reference/v2/orders-api/get-order>`
