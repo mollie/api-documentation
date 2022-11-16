@@ -74,7 +74,7 @@ The API will return a ``qrCode`` object in the ``details`` object. The QR code c
 the QR code image, depending on the payment method. You should support both.
 
 QR codes are only included in the API as long as the payment has the ``open`` status. For iDEAL, the QR code is only
-available if no issuer has been selected yet.
+available if no issuer has been selected yet. 
 
 Custom implementation
 ^^^^^^^^^^^^^^^^^^^^^
