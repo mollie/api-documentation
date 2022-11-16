@@ -15,6 +15,7 @@ flexible way of styling. To see how this works please visit our
 * ``.mollie-component`` Will always be present. You can use this class to style border and background properties.
 * ``.mollie-component--<component name>`` The component will be identified on the component name itself. This can be
   used to target one specific component.
+* ``.mollie-component--is-loading`` Indicates that the component is still loading. It will disappear after the component is loaded.
 
 We also set some dynamic classes to reflect the state of the component as the user interacts with it:
 

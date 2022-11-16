@@ -12,9 +12,9 @@ Cancel order lines
    :organization_access_tokens: true
    :oauth: true
 
-This endpoint can be used to cancel one or more order lines that were previously authorized using a *pay after delivery*
-payment method. Use the :doc:`Cancel order endpoint </reference/v2/orders-api/cancel-order>` if you want to cancel the
-entire order or the remainder of the order.
+This endpoint can be used to cancel one or more order lines that were previously authorized using a Klarna payment
+method. Use the :doc:`Cancel order endpoint </reference/v2/orders-api/cancel-order>` if you want to cancel the entire
+order or the remainder of the order.
 
 Canceling or partially canceling an order line will immediately release the authorization held for that amount. Your
 customer will be able to see the updated order in his portal / app. Any canceled lines will be removed from the

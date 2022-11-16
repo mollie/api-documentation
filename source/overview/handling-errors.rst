@@ -142,7 +142,8 @@ Response
 
 Sometimes a status HTTP ``422 Unprocessable Entity`` is returned. When it occurs there is extra information in the JSON
 about what part or field of your request is likely to be causing the error. In these cases you will find the response
-has the parameter ``field``. In the example below we deliberately used an amount that was too high:
+has the parameter ``field``. This status can also happen when your payment services are suspended. If this happens, 
+you can find more information in your dashboard. In the example below we deliberately used an amount that was too high:
 
 Request
 ~~~~~~~
@@ -210,7 +211,8 @@ The Mollie API will only ever return a subset of all legal HTTP status codes. He
 |   |JSON.                                                                                                             |
 +---+------------------------------------------------------------------------------------------------------------------+
 |422|Unprocessable Entity – We could not process your request due to another reason than the ones listed above. The    |
-|   |response usually contains a ``field`` property to indicate which field is causing the issue.                      |
+|   |response usually contains a ``field`` property to indicate which field is causing the issue. If you account is    |
+|   |suspended, please check your dashboard.                                                                           |
 +---+------------------------------------------------------------------------------------------------------------------+
 |429|Too Many Requests – Your request has hit a rate limit. Please wait for a bit and retry.                           |
 +---+------------------------------------------------------------------------------------------------------------------+

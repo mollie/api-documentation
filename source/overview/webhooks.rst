@@ -51,7 +51,7 @@ following statuses:
 
 Furthermore, the webhook will be called when:
 
-* A refund is performed on the payment
+* A refund is performed on the payment, and the refund reaches state ``refunded`` or ``failed``.
 * A chargeback is received on the payment.
 
 Read more about :doc:`payment status changes </payments/status-changes>`.
@@ -63,8 +63,8 @@ The :doc:`Orders API </reference/v2/orders-api/overview>` calls a webhook when a
 
 Furthermore, the webhook will be called when:
 
-* A shipment is created for the order
-* The order or part of the order is canceled
+* A shipment is created for the order.
+* The order or part of the order is canceled.
 * The order or part of the order is refunded.
 
 Read more about :doc:`order status changes </orders/status-changes>`.
@@ -77,6 +77,11 @@ about webhooks for payments.
 
 The :ref:`Recurring Payments guide <payments/recurring/subscription-webhooks>` has some additional information about
 webhooks for subscriptions.
+
+Payment Links API
+^^^^^^^^^^^^^^^^^
+The webhook URL specified when :doc:`creating a payment link </reference/v2/payment-links-api/create-payment-link>` is
+called every time the underlying payment's status changes. See the `Payments API`_ section for more on the conditions payment webhooks are called on.
 
 Retry schema
 ------------

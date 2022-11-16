@@ -8,7 +8,7 @@ amount of time (default 28 days).
 
 Just as a regular payment, the order will have a ``_links.checkout`` property where you can redirect your customer to
 pay for the order. For each attempt to pay, a payment object is created. If the customer pays for the order, the order
-will transition to the ``paid`` state (or ``authorized`` in case of pay after delivery).
+will transition to the ``paid`` state (or ``authorized`` in case of Klarna payment methods).
 
 Should the initial payment fail, the order remains in the ``created`` state so that your customer can try to pay again.
 This can be done using a dedicated link available through the Dashboard which you can share with your customer, or you
@@ -20,7 +20,7 @@ This is mandatory for pay-after-delivery methods. Only shipped amounts will be s
 The following payment methods require the Orders API and cannot be used with the
 :doc:`Payments API </payments/accepting-payments>`:
 
-* *Pay after delivery* payment methods, such as Klarna Pay later and Klarna Slice it
+* *Pay after delivery* payment methods, such as Klarna Pay later, Klarna Slice it and in3
 * Klarna Pay now
 * Eco vouchers, gift vouchers, and meal vouchers
 

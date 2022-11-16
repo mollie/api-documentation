@@ -14,8 +14,8 @@ List settlement payments
 
 Retrieve all Payments included in a Settlement.
 
-Note that payments for *pay after delivery* methods (such as Klarna Pay later) are not listed in here. These payment
-methods are settled using captures. To retrieve the captures, use the :doc:`list-settlement-captures`.
+Note that payments for Klarna payment methods are not listed in here. These payment methods are settled using captures.
+To retrieve the captures, use the :doc:`List settlement captures endpoint </reference/v2/settlements-api/list-settlement-captures>`.
 
 Parameters
 ----------

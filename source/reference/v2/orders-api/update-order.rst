@@ -14,9 +14,8 @@ Update order
 
 This endpoint can be used to update the billing and/or shipping address of an order.
 
-When updating an order that uses a *pay after delivery* method such as *Klarna Pay later*,
-Klarna may decline the requested changes, resulting in an error response from the Mollie API.
-The order remains intact, though the requested changes are not persisted.
+When updating an order that uses a Klarna payment method, Klarna may decline the requested changes, resulting in an
+error response from the Mollie API. The order remains intact, though the requested changes are not persisted.
 
 Parameters
 ----------

@@ -134,7 +134,7 @@ Example
             "website" => "https://www.mywebsite.com",
             "email" => "info@mywebsite.com",
             "phone" => "+31208202070",
-            "businessCategory": "OTHER_MERCHANDISE",
+            "businessCategory" => "OTHER_MERCHANDISE",
             "mode" => "live",
       ]);
 

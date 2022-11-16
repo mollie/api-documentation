@@ -119,13 +119,6 @@ a.headerlink::before {
   text-decoration: underline;
 }
 
-:target::before {
-  content: '';
-  display: block;
-  height: 150px;
-  margin: -130px 0 0;
-}
-
 /*
  * Dark mode
  */
@@ -184,6 +177,7 @@ a.headerlink::before {
 @import 'components/parameters';
 @import 'components/payment-method-expiry-times';
 @import 'components/payment-method-switcher';
+@import 'components/search';
 @import 'components/sidebar';
 @import 'components/sub-navigation';
 @import 'components/sub-navigation-item';
@@ -199,3 +193,8 @@ a.headerlink::before {
  * Vendor
  */
 @import 'vendor/dropkick/dropkick';
+
+/**
+ * Custom
+ */
+ @import 'custom/balance-api';

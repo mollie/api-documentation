@@ -76,6 +76,7 @@ def to_url(path):
 
 # -- SEO stuff ------------------------------------------------------------
 redirects = {
+    'guides/applepay-direct-integration': to_url('/wallets/applepay-direct-integration'),
     'guides/authentication': to_url('/overview/authentication'),
     'guides/checkout': to_url('/payments/hosted-checkout'),
     'guides/common-data-types': to_url('/overview/common-data-types'),
@@ -98,6 +99,7 @@ redirects = {
     'oauth/permissions': to_url('/connect/permissions'),
     'oauth/splitting-payments': to_url('/connect/splitting-payments'),
     'payments/overview': to_url('/payments/accepting-payments'),
+    'reference/v1/settlements-api/get-open-settlement': to_url('/reference/v1/settlements-api/get-settlement'),
     'reference/v2/chargebacks-api/get-chargeback': to_url('/reference/v2/chargebacks-api/get-payment-chargeback'),
     'reference/v2/orders-api/create-order-refund': to_url('/reference/v2/refunds-api/create-order-refund'),
     'reference/v2/orders-api/list-order-refunds': to_url('/reference/v2/refunds-api/list-order-refunds'),
@@ -107,6 +109,7 @@ redirects = {
     'reference/v2/partners-api/get-partner': to_url('/reference/v2/organizations-api/get-partner'),
     'reference/v2/partners-api/get-client': to_url('/reference/v2/clients-api/get-client'),
     'reference/v2/partners-api/list-clients': to_url('/reference/v2/clients-api/list-clients'),
+    'reference/v2/profiles-api/enable-giftcard-issuer': to_url('/reference/v2/profiles-api/enable-gift-card-issuer'),
     'reference/v2/refunds-api/cancel-refund': to_url('/reference/v2/refunds-api/cancel-payment-refund'),
     'reference/v2/refunds-api/create-refund': to_url('/reference/v2/refunds-api/create-payment-refund'),
     'reference/v2/refunds-api/get-refund': to_url('/reference/v2/refunds-api/get-payment-refund'),

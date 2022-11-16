@@ -51,7 +51,7 @@ The ``billingAddress`` should contain the address of the person who will be bill
 | ``locale``             | Recommended in Payments API.               | Required for Orders API.                       |
 +------------------------+--------------------------------------------+------------------------------------------------+
 | ``method``             | Does not support payment methods that      | Supports *Klarna Pay now*, *Klarna Pay later*, |
-|                        | require order details.                     | *Klarna Slice it* and voucher payments.        |
+|                        | require order details.                     | *Klarna Slice it*, *in3* and voucher payments. |
 +------------------------+--------------------------------------------+------------------------------------------------+
 | ``metadata``           | *Identical between Payments API and Orders API.*                                            |
 +------------------------+--------------------------------------------+------------------------------------------------+
@@ -83,7 +83,7 @@ When the order is created the response will contain a ``checkout`` URL just like
 Your customer should be redirected to this URL to complete the order payment. This is the same as in the Payments API.
 
 The only difference occurs when the customer chooses a payment method that requires authorization. This is the case with
-*pay after delivery* payment methods. The customer will have to authorize the payment, and the payment is not executed
+Klarna payment methods. The customer will have to authorize the payment, and the payment is not executed
 immediately. When a shipment is created for an authorized order a *capture* is made to process the payment. For more
 info on the authorize payment flow please see :doc:`Order status changes </orders/status-changes>` for details on the
 orders' statuses.

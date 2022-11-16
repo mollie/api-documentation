@@ -3,6 +3,23 @@ Changelog
 Occasionally, we will add new resources, new fields, or new possible values to existing fields to the v2 Mollie API. All
 changes are documented here.
 
+October 2022
+============
+
+Friday, 29th
+-------------
+- Added new ``Balances API`` docs.
+
+Monday, 24th
+-------------
+- Added the ``horseandgifts`` and ``shoesandsneakerscadeau`` as gift card issuer.
+
+June 2022
+=========
+Monday, 20th
+------------
+- Added ``in3`` as new payment method, which is only supported by the Orders API. If you are interested in accepting in3 payments, you can enable the payment method via the Mollie Dashboard.
+
 March 2022
 =============
 Tuesday, 1st

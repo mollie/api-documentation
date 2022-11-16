@@ -98,8 +98,8 @@ Parameters
    Possible values: ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps`` ``giftcard`` ``giropay``
    ``ideal`` ``kbc`` ``mistercash`` ``mybank`` ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort``
 
-   .. note:: If you are looking to create payments with the Klarna Pay now, Klarna Pay later, Klarna Slice it or Voucher
-             payment methods, please use the :doc:`Orders API </reference/v2/orders-api/overview>` instead.
+   .. note:: If you are looking to create payments with the Klarna Pay now, Klarna Pay later, Klarna Slice it, in3 or
+             Voucher payment methods, please use the :doc:`Orders API </reference/v2/orders-api/overview>` instead.
 
 .. parameter:: metadata
    :type: mixed
@@ -247,9 +247,9 @@ Gift cards
    our support department. If only one issuer is activated on your account, you can omit this parameter.
 
    Possible values: ``beautycadeaukaart`` ``bloemencadeaukaart`` ``bloemplantgiftcard`` ``boekenbon`` ``decadeaukaart``
-   ``delokalecadeaukaart`` ``dinercadeau`` ``doenkadotickets`` ``fashioncheque`` ``festivalcadeau`` ``good4fun`` ``huistuincadeaukaart``
+   ``delokalecadeaukaart`` ``dinercadeau`` ``doenkadotickets`` ``fashioncheque`` ``festivalcadeau`` ``good4fun`` ``horseandgifts`` ``huistuincadeaukaart``
    ``jewelcard`` ``kluscadeau`` ``kunstencultuurcadeaukaart`` ``nationalebioscoopbon`` ``nationaleentertainmentcard``
-   ``nationalegolfbon`` ``ohmygood`` ``podiumcadeaukaart`` ``reiscadeau`` ``restaurantcadeau``
+   ``nationalegolfbon`` ``ohmygood`` ``podiumcadeaukaart`` ``reiscadeau`` ``restaurantcadeau`` ``shoesandsneakerscadeau``
    ``sodexosportculturepass`` ``sportenfitcadeau`` ``sustainablefashion`` ``travelcheq`` ``vvvgiftcard``
    ``vvvdinercheque`` ``vvvlekkerweg`` ``webshopgiftcard`` ``wijncadeaukaart`` ``yourgift``
 

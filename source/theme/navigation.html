@@ -10,43 +10,60 @@
   {%- set selected = "overview" -%}
 {%- endif -%}
 <nav class="main-navigation">
-  <ul class="title-bar" data-enhancer="nav-logged-in">
-    <li class="title-bar__item title-bar__logo">
-      <a href="https://docs.mollie.com/">
-        <svg viewBox="0 0 81 24">
-          <path d="M 58.551 2.517 C 58.551 1.127 59.676 0 61.064 0 C 62.452 0 63.577 1.127 63.577 2.517 C 63.577 3.908 62.452 5.035 61.064 5.035 C 59.676 5.035 58.551 3.908 58.551 2.517 Z M 22.365 10.129 C 23.546 11.446 24.199 13.15 24.199 14.92 L 24.199 23.648 L 20.346 23.648 L 20.346 14.811 C 20.338 13.074 18.906 11.656 17.163 11.656 C 17.063 11.656 16.954 11.664 16.845 11.673 C 15.287 11.832 13.98 13.309 13.98 14.903 L 13.98 23.648 L 10.127 23.648 L 10.127 14.836 C 10.119 13.091 8.695 11.664 6.952 11.664 C 6.852 11.664 6.743 11.673 6.634 11.681 C 5.084 11.841 3.769 13.317 3.769 14.92 L 3.769 23.648 L 0 23.648 L 0 14.811 C 0 10.951 3.141 7.813 6.994 7.813 C 8.921 7.813 10.755 8.618 12.079 10.02 C 13.402 8.61 15.245 7.813 17.188 7.813 C 17.398 7.813 17.599 7.821 17.808 7.838 C 19.567 7.989 21.184 8.803 22.365 10.129 Z M 48.248 23.664 L 44.395 23.664 L 44.395 0.378 L 48.248 0.378 Z M 55.619 23.664 L 51.766 23.664 L 51.766 0.378 L 55.619 0.378 Z M 62.991 23.656 L 59.138 23.656 L 59.138 8.215 L 62.991 8.215 Z M 81 17.312 L 69.281 17.312 C 69.801 19.175 71.493 20.484 73.453 20.484 C 74.986 20.484 76.368 19.703 77.164 18.386 L 77.323 18.126 L 80.506 19.695 L 80.322 20.006 C 78.872 22.448 76.217 23.966 73.386 23.966 L 73.377 23.966 C 71.216 23.966 69.189 23.11 67.656 21.558 C 66.123 20.006 65.294 17.958 65.319 15.793 C 65.344 13.67 66.182 11.681 67.673 10.179 C 69.164 8.677 71.158 7.838 73.269 7.813 L 73.369 7.813 C 75.405 7.813 77.314 8.627 78.763 10.095 C 80.204 11.564 81 13.494 81 15.541 Z M 69.34 14.123 L 77.105 14.123 C 76.552 12.478 74.977 11.32 73.218 11.32 C 71.459 11.32 69.884 12.478 69.34 14.123 Z M 42.318 15.902 C 42.318 20.35 38.699 23.975 34.26 23.975 C 29.82 23.975 26.201 20.35 26.201 15.902 C 26.201 11.455 29.812 7.829 34.26 7.829 C 38.707 7.829 42.318 11.455 42.318 15.902 Z M 38.498 15.91 C 38.498 13.569 36.597 11.664 34.26 11.664 C 31.923 11.664 30.021 13.569 30.021 15.91 C 30.021 18.252 31.923 20.157 34.26 20.157 C 36.597 20.157 38.498 18.252 38.498 15.91 Z"></path>
-        </svg>
-        <span>docs</span>
-      </a>
-    </li>
-    <li class="title-bar__item js-login-nav-link">
-      <a href="https://www.mollie.com/dashboard/login">Log in</a>
-    </li>
-    <li class="title-bar__item title-bar__signup js-signup-nav-link">
-      <a href="https://www.mollie.com/dashboard/signup">Sign up</a>
-    </li>
-    <li class="title-bar__item title-bar__dashboard js-dashboard-nav-link is-hidden">
-      <a href="https://www.mollie.com/dashboard">Dashboard</a>
-    </li>
-  </ul>
+  <div class="title-bar" data-enhancer="nav-logged-in">
+    <div class="title-bar__wrap">
+      <ul>
+        <li class="title-bar__item title-bar__logo">
+          <a href="https://docs.mollie.com/">
+            <svg viewBox="0 0 81 24">
+              <path d="M 58.551 2.517 C 58.551 1.127 59.676 0 61.064 0 C 62.452 0 63.577 1.127 63.577 2.517 C 63.577 3.908 62.452 5.035 61.064 5.035 C 59.676 5.035 58.551 3.908 58.551 2.517 Z M 22.365 10.129 C 23.546 11.446 24.199 13.15 24.199 14.92 L 24.199 23.648 L 20.346 23.648 L 20.346 14.811 C 20.338 13.074 18.906 11.656 17.163 11.656 C 17.063 11.656 16.954 11.664 16.845 11.673 C 15.287 11.832 13.98 13.309 13.98 14.903 L 13.98 23.648 L 10.127 23.648 L 10.127 14.836 C 10.119 13.091 8.695 11.664 6.952 11.664 C 6.852 11.664 6.743 11.673 6.634 11.681 C 5.084 11.841 3.769 13.317 3.769 14.92 L 3.769 23.648 L 0 23.648 L 0 14.811 C 0 10.951 3.141 7.813 6.994 7.813 C 8.921 7.813 10.755 8.618 12.079 10.02 C 13.402 8.61 15.245 7.813 17.188 7.813 C 17.398 7.813 17.599 7.821 17.808 7.838 C 19.567 7.989 21.184 8.803 22.365 10.129 Z M 48.248 23.664 L 44.395 23.664 L 44.395 0.378 L 48.248 0.378 Z M 55.619 23.664 L 51.766 23.664 L 51.766 0.378 L 55.619 0.378 Z M 62.991 23.656 L 59.138 23.656 L 59.138 8.215 L 62.991 8.215 Z M 81 17.312 L 69.281 17.312 C 69.801 19.175 71.493 20.484 73.453 20.484 C 74.986 20.484 76.368 19.703 77.164 18.386 L 77.323 18.126 L 80.506 19.695 L 80.322 20.006 C 78.872 22.448 76.217 23.966 73.386 23.966 L 73.377 23.966 C 71.216 23.966 69.189 23.11 67.656 21.558 C 66.123 20.006 65.294 17.958 65.319 15.793 C 65.344 13.67 66.182 11.681 67.673 10.179 C 69.164 8.677 71.158 7.838 73.269 7.813 L 73.369 7.813 C 75.405 7.813 77.314 8.627 78.763 10.095 C 80.204 11.564 81 13.494 81 15.541 Z M 69.34 14.123 L 77.105 14.123 C 76.552 12.478 74.977 11.32 73.218 11.32 C 71.459 11.32 69.884 12.478 69.34 14.123 Z M 42.318 15.902 C 42.318 20.35 38.699 23.975 34.26 23.975 C 29.82 23.975 26.201 20.35 26.201 15.902 C 26.201 11.455 29.812 7.829 34.26 7.829 C 38.707 7.829 42.318 11.455 42.318 15.902 Z M 38.498 15.91 C 38.498 13.569 36.597 11.664 34.26 11.664 C 31.923 11.664 30.021 13.569 30.021 15.91 C 30.021 18.252 31.923 20.157 34.26 20.157 C 36.597 20.157 38.498 18.252 38.498 15.91 Z"></path>
+            </svg>
+            <span>docs</span>
+          </a>
+        </li>
+        <li class="title-bar__item title-bar__space title-bar__item--active">
+          <a href="https://docs.mollie.com/">Developers</a>
+        </li>
+        <li class="title-bar__item title-bar__space">
+          <a href="https://help.mollie.com/" target="_blank">Support</a>
+        </li>
+      </ul>
+      <ul>
+        <li class="title-bar__item title-bar__search">
+          <div data-enhancer="algolia-search"></div>
+        </li>
+        <li class="title-bar__item title-bar__login js-login-nav-link">
+          <a href="https://www.mollie.com/dashboard/login" target="_blank">Log in</a>
+        </li>
+        <li class="title-bar__item title-bar__signup js-signup-nav-link">
+          <a href="https://www.mollie.com/dashboard/signup" target="_blank">Sign up</a>
+        </li>
+        <li class="title-bar__item title-bar__dashboard js-dashboard-nav-link is-hidden">
+          <a href="https://www.mollie.com/dashboard" target="_blank">Dashboard</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-  <ul class="product-navigation">
-    <li class="product-navigation__item {%- if selected == 'overview' %} product-navigation__item--active {%- endif %}">
-      <a href="{{ pathto('index') }}">Overview</a>
-    </li>
-    <li class="product-navigation__item {%- if selected == 'payments' %} product-navigation__item--active {%- endif %}">
-      <a href="{{ pathto('payments/accepting-payments') }}">Payments</a>
-    </li>
-    <li class="product-navigation__item {%- if selected == 'connect' %} product-navigation__item--active {%- endif %}">
-      <a href="{{ pathto('connect/overview') }}">Connect</a>
-    </li>
-    <li class="product-navigation__item {%- if selected == 'api' %} product-navigation__item--active {%- endif %}">
-      <a href="{{ pathto('reference/v2/payments-api/overview') }}">API reference</a>
-    </li>
-    <li class="product-navigation__item {%- if selected == 'changelog' %} product-navigation__item--active {%- endif %}">
-      <a href="{{ pathto('changelog/v2/changelog') }}">Changelog</a>
-    </li>
-  </ul>
+  <div class="product-navigation">
+    <ul>
+      <li class="product-navigation__item {%- if selected == 'overview' %} product-navigation__item--active {%- endif %}">
+        <a href="{{ pathto('index') }}">Overview</a>
+      </li>
+      <li class="product-navigation__item {%- if selected == 'payments' %} product-navigation__item--active {%- endif %}">
+        <a href="{{ pathto('payments/accepting-payments') }}">Payments</a>
+      </li>
+      <li class="product-navigation__item {%- if selected == 'connect' %} product-navigation__item--active {%- endif %}">
+        <a href="{{ pathto('connect/overview') }}">Connect</a>
+      </li>
+      <li class="product-navigation__item {%- if selected == 'api' %} product-navigation__item--active {%- endif %}">
+        <a href="{{ pathto('reference/v2/payments-api/overview') }}">API reference</a>
+      </li>
+      <li class="product-navigation__item {%- if selected == 'changelog' %} product-navigation__item--active {%- endif %}">
+        <a href="{{ pathto('changelog/v2/changelog') }}">Changelog</a>
+      </li>
+    </ul>
+  </div>
 
   <select class="mobile-product-navigation link-dropdown js-link-dropdown-dropkick" data-enhancer="link-dropdown">
     <option value="{{ pathto('index') }}" {%- if selected == 'overview' %} selected {%- endif %}>Overview</option>

@@ -46,6 +46,7 @@ Mollie is always adding new payment methods. The Mollie API currently supports t
   YourGift etc.)
 * `Giropay <https://www.mollie.com/en/payments/giropay>`_
 * `iDEAL <https://www.mollie.com/en/payments/ideal>`_
+* `in3 <https://www.mollie.com/en/payments/in3>`_
 * `KBC/CBC Payment Button <https://www.mollie.com/en/payments/kbc-cbc>`_
 * `Klarna Pay now <https://www.mollie.com/en/payments/klarna-pay-now>`_
 * `Klarna Pay later <https://www.mollie.com/en/payments/klarna-pay-later>`_

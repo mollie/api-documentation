@@ -5,18 +5,22 @@
 This project contains the source of all of Mollie's public API documentation. The full documentation (in an easy to use
 format) may be found at https://docs.mollie.com.
 
+The documentation is formatted using [reStructuredText](http://www.sphinx-doc.org/en/master/rest.html). Additionally, we
+use a [Sphinx extension](https://cloud-sptheme.readthedocs.io/en/latest/lib/cloud_sptheme.ext.table_styling.html) to
+help format tables.
+
 ## Contribute
 
 - [Issue Tracker](https://github.com/mollie/api-documentation/issues)
 - [Source Code](https://github.com/mollie/api-documentation)
 
-We take pull requests on our documentation as well, if you think that something can be improved please open a PR.
-
-The documentation is formatted using [reStructuredText](http://www.sphinx-doc.org/en/master/rest.html). Additionally, we
-use a [Sphinx extension](https://cloud-sptheme.readthedocs.io/en/latest/lib/cloud_sptheme.ext.table_styling.html) to
-help format tables.
+We take [pull requests](https://github.com/mollie/api-documentation/pulls) from anyone on our documentation, if you
+think that something can be improved please open a PR.
 
 All documentation should be written in US English.
+
+If you are a Mollie employee, please [don't include](https://en.wikipedia.org/wiki/Operations_security) any links to internal issue trackers or other internal applications
+in your PR or issue description, API examples or commit messages.
 
 Note that PhpStorm comes with a reStructuredText plugin. You can enable it from the Plugins preferences pane. It enables
 some syntax highlighting.

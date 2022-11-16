@@ -68,6 +68,8 @@ Parameters
    `ngrok <https://lornajane.net/posts/2015/test-incoming-webhooks-locally-with-ngrok>`_ to have the webhooks delivered
    to your local machine.
 
+   See :doc:`webhook </overview/webhooks>` documentation for more details.
+
 .. parameter:: expiresAt
    :type: datetime
    :condition: optional
@@ -174,6 +176,7 @@ Response
            "value": "24.95",
            "currency": "EUR"
        },
+       "archived": false,
        "description": "Bicycle tires",
        "redirectUrl": "https://webshop.example.org/thanks",
        "webhookUrl": "https://webshop.example.org/payment-links/webhook/",

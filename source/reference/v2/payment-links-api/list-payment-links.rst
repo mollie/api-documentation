@@ -151,6 +151,7 @@ Response
                          "value": "24.95",
                          "currency": "EUR"
                      },
+                     "archived": false,
                      "description": "Bicycle tires",
                      "redirectUrl": "https://webshop.example.org/thanks",
                      "webhookUrl": "https://webshop.example.org/payment-links/webhook/",

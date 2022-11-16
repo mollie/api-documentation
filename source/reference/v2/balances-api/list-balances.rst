@@ -2,6 +2,7 @@ List balances
 =============
 .. api-name:: Balances API
    :version: 2
+   :beta: true
 
 .. endpoint::
    :method: GET
@@ -18,101 +19,71 @@ The results are paginated. See :doc:`pagination </overview/pagination>` for more
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: currency
+    :type: string
+    :condition: optional
 
-   * - ``currency``
+    Currency filter that will make it so only balances in given currency are returned. For example ``EUR``.
 
-       .. type:: string
-          :required: false
+.. parameter:: from
+    :type: string
+    :condition: optional
 
-     - Currency filter that will make it so only balances in given currency are returned. For example ``EUR``.
+    Offset the result set to the balance with this ID. The balance with this ID is included in the result set as
+    well.
 
-   * - ``testmode``
+.. parameter:: limit
+    :type: integer
+    :condition: optional
 
-       .. type:: boolean
-          :required: false
-
-     - Set this to true to only retrieve balances made in test mode. By default, only live balances are returned.
-
-   * - ``from``
-
-       .. type:: string
-          :required: false
-
-     - Offset the result set to the balance with this ID. The balance with this ID is included in the result set as
-       well.
-
-   * - ``limit``
-
-       .. type:: integer
-          :required: false
-
-     - The number of balances to return (with a maximum of 250).
+    The number of balances to return (with a maximum of 250).
 
 Response
 --------
-``200`` ``application/hal+json; charset=utf-8``
+``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: count
+    :type: integer
 
-   * - ``count``
+    The number of balances found in ``_embedded``, which is either the requested number (with a maximum of 250) or
+    the default number.
 
-       .. type:: integer
+.. parameter:: _embedded
+    :type: object
 
-     - The number of balances found in ``_embedded``, which is either the requested number (with a maximum of 250) or
-       the default number.
+    The object containing the queried data.
 
-   * - ``_embedded``
+    .. parameter:: balances
+        :type: array
 
-       .. type:: object
+        An array of balance objects as described in
+        :doc:`Get balance </reference/v2/balances-api/get-balance>`.
 
-     - The object containing the queried data.
+.. parameter:: _links
+    :type: object
 
-       .. list-table::
-          :widths: auto
+    Links to help navigate through the lists of balances. Every URL object will contain an ``href`` and a ``type``
+    field.
 
-          * - ``balances``
+    .. parameter:: self
+        :type: URL object
 
-              .. type:: array
+        The URL to the current set of balances.
 
-            - An array of balance objects as described in
-              :doc:`Get balance </reference/v2/balances-api/get-balance>`.
+    .. parameter:: previous
+        :type: URL object
 
-   * - ``_links``
+        The previous set of balances, if available.
 
-       .. type:: object
+    .. parameter:: next
+        :type: URL object
 
-     - Links to help navigate through the lists of balances. Every URL object will contain an ``href`` and a ``type``
-       field.
+        The next set of balances, if available.
 
-       .. list-table::
-          :widths: auto
+    .. parameter:: documentation
+        :type: URL object
 
-          * - ``self``
-
-              .. type:: URL object
-
-            - The URL to the current set of balances.
-
-          * - ``previous``
-
-              .. type:: URL object
-
-            - The previous set of balances, if available.
-
-          * - ``next``
-
-              .. type:: URL object
-
-            - The next set of balances, if available.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the balances list endpoint documentation.
+        The URL to the balances list endpoint documentation.
 
 Example
 -------
@@ -131,7 +102,7 @@ Response
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
      "count": 5,
@@ -148,11 +119,7 @@ Response
               "value": "0.00",
               "currency": "EUR"
             },
-            "incomingAmount": {
-              "value": "0.00",
-              "currency": "EUR"
-            },
-            "outgoingAmount": {
+            "pendingAmount": {
               "value": "0.00",
               "currency": "EUR"
             },
@@ -186,11 +153,7 @@ Response
               "value": "0.00",
               "currency": "EUR"
             },
-            "incomingAmount": {
-              "value": "0.00",
-              "currency": "EUR"
-            },
-            "outgoingAmount": {
+            "pendingAmount": {
               "value": "0.00",
               "currency": "EUR"
             },

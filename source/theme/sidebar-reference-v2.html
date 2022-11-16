@@ -538,35 +538,39 @@
 <ul>
   {%- set current = pagename.startswith('reference/v2/balances-api/') -%}
   <li class="sidebar__item sidebar__group {%- if current %} current{% endif %}">
-    <a href="{{ pathto('reference/v2/balances-api/get-balance') }}">Balances API</a>
+    <a href="{{ pathto('reference/v2/balances-api/overview') }}">Balances API <span class="api-name__beta">BETA</span></a>
 
     {%- if current %}
-      <ul>
-        {{ sidebar_item(
-          'reference/v2/balances-api/get-balance',
-          'Get balance'
-        ) }}
-        {{ sidebar_item(
-          'reference/v2/balances-api/get-primary-balance',
-          'Get primary balance'
-        ) }}
-        {{ sidebar_item(
-          'reference/v2/balances-api/list-balances',
-          'List balances'
-        ) }}
-        {{ sidebar_item(
-          'reference/v2/balances-api/get-balance-report',
-          'Get balance report'
-        ) }}
-        {{ sidebar_item(
-          'reference/v2/balances-api/list-balance-transactions',
-          'List balance transactions'
-        ) }}
-        {{ sidebar_item(
-          'reference/v2/balances-api/list-primary-balance-transactions',
-          'List primary balance transactions'
-        ) }}
-      </ul>
+    <ul>
+      {{ sidebar_item(
+      'reference/v2/balances-api/get-balance',
+      'Get balance'
+      ) }}
+      {{ sidebar_item(
+      'reference/v2/balances-api/get-primary-balance',
+      'Get primary balance'
+      ) }}
+      {{ sidebar_item(
+      'reference/v2/balances-api/list-balances',
+      'List balances'
+      ) }}
+      {{ sidebar_item(
+      'reference/v2/balances-api/get-balance-report',
+      'Get balance report'
+      ) }}
+      {{ sidebar_item(
+      'reference/v2/balances-api/get-primary-balance-report',
+      'Get primary balance report'
+      ) }}
+      {{ sidebar_item(
+      'reference/v2/balances-api/list-balance-transactions',
+      'List balance transactions'
+      ) }}
+      {{ sidebar_item(
+      'reference/v2/balances-api/list-primary-balance-transactions',
+      'List primary balance transactions'
+      ) }}
+    </ul>
     {%- endif %}
   </li>
 

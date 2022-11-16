@@ -8,7 +8,28 @@ changes are documented here.
 
              For more information on the v2 API, refer to our :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
-January 2022
+October 2022
+============
+Monday, 24th
+-------------
+- Added the ``horseandgifts`` and ``shoesandsneakerscadeau`` as gift card issuer.
+
+February 2022
+=============
+Monday, 21st
+-------------
+- Added the ``doenkadotickets`` as gift card issuer.
+
+November 2021
+=============
+Tuesday, 23rd
+-------------
+- The `/v1/settlements/next` and `/v1/settlements/open` endpoints are being shut down, since these endpoints were no
+  longer being used. The documentation has been removed accordingly. The corresponding v2 endpoints will remain
+  available.
+- Added the ``wijncadeaukaart`` and ``jewelcard`` as gift card issuers.
+
+October 2021
 ============
 Monday, 3rd
 -----------

@@ -2,6 +2,7 @@ Get primary balance
 ===================
 .. api-name:: Balances API
    :version: 2
+   :beta: true
 
 .. endpoint::
    :method: GET
@@ -18,19 +19,6 @@ by default.
 This endpoint is an alias of the :doc:`Get balance </reference/v2/balances-api/get-balance>`. Please refer to the
 documentation of that endpoint for more information.
 
-Parameters
-----------
-.. list-table::
-   :widths: auto
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to get the primary test mode balance. If you omit this parameter, the primary live mode
-       balance will be returned.
-
 Response
 --------
 ``200`` ``application/hal+json``
@@ -38,30 +26,21 @@ Response
 For the full list of fields, see :doc:`Get balance </reference/v2/balances-api/get-balance>`. Only
 ``_links`` is listed here.
 
-.. list-table::
-   :widths: auto
+.. parameter:: _links
+    :type: object
 
-   * - ``_links``
+    An object with several URL objects relevant to the balance. Every URL object will contain an ``href`` and a
+    ``type`` field.
 
-       .. type:: object
+    .. parameter:: self
+      :type: URL object
 
-     - An object with several URL objects relevant to the balance. Every URL object will contain an ``href`` and a
-       ``type`` field.
+      The API resource URL of the balance itself.
 
-       .. list-table::
-          :widths: auto
+    .. parameter:: documentation
+      :type: URL object
 
-          * - ``self``
-
-              .. type:: URL object
-
-            - The API resource URL of the balance itself.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the balance retrieval endpoint documentation.
+      The URL to the balance retrieval endpoint documentation.
 
 Example
 -------
@@ -80,7 +59,7 @@ Response
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
      "resource": "balance",
@@ -93,11 +72,7 @@ Response
        "value": "905.25",
        "currency": "EUR"
      },
-     "incomingAmount": {
-       "value": "0.00",
-       "currency": "EUR"
-     },
-     "outgoingAmount": {
+     "pendingAmount": {
        "value": "0.00",
        "currency": "EUR"
      },

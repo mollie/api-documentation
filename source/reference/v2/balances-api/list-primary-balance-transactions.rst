@@ -2,6 +2,7 @@ List primary balance transactions
 =================================
 .. api-name:: Balances API
    :version: 2
+   :beta: true
 
 .. endpoint::
    :method: GET
@@ -19,67 +20,51 @@ This endpoint is an alias of the :doc:`List balance transactions </reference/v2/
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: from
+    :type: string
+    :condition: optional
 
-   * - ``from``
+    Offset the result set to the balance transactions with this ID. The balance transaction with this ID is included
+    in the result set as well.
 
-       .. type:: string
-          :required: false
+.. parameter:: limit
+    :type: integer
+    :condition: optional
 
-     - Offset the result set to the balance transactions with this ID. The balance transaction with this ID is included
-       in the result set as well.
-
-   * - ``limit``
-
-       .. type:: integer
-          :required: false
-
-     - The number of balance transactions to return (with a maximum of 250).
+    The number of balance transactions to return (with a maximum of 250).
 
 Response
 --------
-``200`` ``application/hal+json; charset=utf-8``
+``200`` ``application/hal+json``
 
 For the full list of fields, see :doc:`List balance transactions </reference/v2/balances-api/list-balance-transactions>`. Only
 ``_links`` is listed here.
 
-.. list-table::
-   :widths: auto
+.. parameter:: _links
+    :type: object
 
-   * - ``_links``
+    Links to help navigate through the lists of balance transactions. Every URL object will contain an ``href`` and a
+    ``type`` field.
 
-       .. type:: object
+    .. parameter:: self
+        :type: URL object
 
-     - Links to help navigate through the lists of balance transactions. Every URL object will contain an ``href`` and a
-       ``type`` field.
+        The URL to the current set of balance transactions.
 
-       .. list-table::
-          :widths: auto
+    .. parameter:: previous
+        :type: URL object
 
-          * - ``self``
+        The previous set of balance transactions, if available.
 
-              .. type:: URL object
+    .. parameter:: next
+        :type: URL object
 
-            - The URL to the current set of balance transactions.
+        The next set of balance transactions, if available.
 
-          * - ``previous``
+    .. parameter:: documentation
+        :type: URL object
 
-              .. type:: URL object
-
-            - The previous set of balance transactions, if available.
-
-          * - ``next``
-
-              .. type:: URL object
-
-            - The next set of balance transactions, if available.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the balance transactions list endpoint documentation.
+        The URL to the balance transactions list endpoint documentation.
 
 Example
 -------
@@ -98,7 +83,7 @@ Response
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
      "count": 5,
@@ -116,18 +101,14 @@ Response
               "value": "-10.00",
               "currency": "EUR"
             },
-            "fees": {
+            "deductions": {
               "value": "-0.25",
               "currency": "EUR"
             },
             "createdAt": "2021-01-10T12:06:28+00:00",
             "context": {
-              "payment": {
-                "id": "tr_7UhSN1zuXS"
-              },
-              "refund": {
-                "id": "re_4qqhO89gsT"
-              }
+              "paymentId": "tr_7UhSN1zuXS",
+              "refundId": "re_4qqhO89gsT"
             }
           },
           {
@@ -142,20 +123,15 @@ Response
               "value": "10.00",
               "currency": "EUR"
             },
-            "fees": {
+            "deductions": {
               "value": "-0.29",
               "currency": "EUR"
             },
             "createdAt": "2021-01-10T12:06:28+00:00",
             "context": {
-              "payment": {
-                "id": "tr_7UhSN1zuXS"
-              }
+              "paymentId": "tr_7UhSN1zuXS"
             }
-          },
-          { },
-          { },
-          { }
+          }
        ]
      },
      "_links": {

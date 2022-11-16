@@ -2,6 +2,7 @@ List balance transactions
 =========================
 .. api-name:: Balances API
    :version: 2
+   :beta: true
 
 .. endpoint::
    :method: GET
@@ -20,198 +21,154 @@ Parameters
 Replace ``balanceId`` in the endpoint URL by the balance ID, which can be retrieved by the
 :doc:`List balances </reference/v2/balances-api/list-balances>` endpoint.
 
-.. list-table::
-   :widths: auto
+.. parameter:: from
+  :type: string
+  :condition: optional
 
-   * - ``from``
+  Offset the result set to the balance transactions with this ID. The balance transaction with this ID is included
+  in the result set as well.
 
-       .. type:: string
-          :required: false
+.. parameter:: limit
+  :type: integer
+  :condition: optional
 
-     - Offset the result set to the balance transactions with this ID. The balance transaction with this ID is included
-       in the result set as well.
-
-   * - ``limit``
-
-       .. type:: integer
-          :required: false
-
-     - The number of balance transactions to return (with a maximum of 250).
+  The number of balance transactions to return (with a maximum of 250).
 
 Response
 --------
-``200`` ``application/hal+json; charset=utf-8``
+``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+   .. parameter:: count
+      :type: integer
 
-   * - ``count``
+      The number of transactions found in ``_embedded``, which is either the requested number (with a maximum of 250)
+      or the default number.
 
-       .. type:: integer
+   .. parameter:: _embedded
+      :type: object
 
-     - The number of transactions found in ``_embedded``, which is either the requested number (with a maximum of 250)
-       or the default number.
+      The object containing the queried data.
 
-   * - ``_embedded``
+      .. parameter:: resource
+          :type: string
 
-       .. type:: object
+          Indicates the response contains a balance transaction object. Will always contain ``balance_transaction``
+          for this endpoint.
 
-     - The object containing the queried data.
+      .. parameter:: id
+          :type: string
 
-       .. list-table::
-          :widths: auto
+          The identifier uniquely referring to this balance transaction. Mollie assigns this identifier at
+          transaction creation time. For example ``baltr_QM24QwzUWR4ev4Xfgyt29d``.
 
-          * - ``resource``
+      .. parameter:: type
+          :type: string
 
-              .. type:: string
+          The type of movement, for example ``payment`` or ``refund``. Values include the below examples, although
+          this list is not definitive.
 
-            - Indicates the response contains a balance transaction object. Will always contain ``balance_transaction``
-              for this endpoint.
+          Regular payment processing: ``payment`` ``capture`` ``unauthorized-direct-debit`` ``failed-payment``
 
-          * - ``id``
+          Refunds and chargebacks: ``refund`` ``returned-refund`` ``chargeback`` ``chargeback-reversal``
 
-              .. type:: string
+          Settlements: ``outgoing-transfer`` ``canceled-outgoing-transfer`` ``returned-transfer``
 
-            - The identifier uniquely referring to this balance transaction. Mollie assigns this identifier at
-              transaction creation time. For example ``baltr_QM24QwzUWR4ev4Xfgyt29d``.
+          Invoicing: ``invoice-compensation`` ``balance-correction``
 
-          * - ``type``
+          Mollie Connect: ``application-fee`` ``split-payment`` ``platform-payment-refund`` ``platform-payment-chargeback``
 
-              .. type:: string
+      .. parameter:: resultAmount
+          :type: amount object
 
-            - The type of movement, for example ``payment`` or ``refund``. Values include the below examples, although
-              this list is not definitive.
+          The final amount that was moved to or from the balance, e.g. ``{"currency":"EUR", "value":"100.00"}``. If
+          the transaction moves funds away from the balance, for example when it concerns a refund, the amount will
+          be negative.
 
-              Regular payment processing: ``payment`` ``capture`` ``unauthorized-direct-debit`` ``failed-payment``
+          .. parameter:: currency
+            :type: string
 
-              Refunds and chargebacks: ``refund`` ``returned-refund`` ``chargeback`` ``chargeback-reversal``
+            The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code of the movement amount.
 
-              Settlements: ``outgoing-transfer`` ``canceled-outgoing-transfer`` ``returned-transfer``
+          .. parameter:: value
+              :type: string
 
-              Invoicing: ``invoice-compensation`` ``balance-correction``
+              A string containing the exact movement amount in the given currency.
 
-              Mollie Connect: ``application-fee`` ``split-payment`` ``platform-payment-refund`` ``platform-payment-chargeback``
+      .. parameter:: initialAmount
+          :type: amount object
 
-          * - ``resultAmount``
+          The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves
+          funds away from the balance, for example when it concerns a refund, the amount will be negative.
 
-              .. type:: amount object
+          .. parameter:: currency
+              :type: string
 
-            - The final amount that was moved to or from the balance, e.g. ``{"currency":"EUR", "value":"100.00"}``. If
-              the transaction moves funds away from the balance, for example when it concerns a refund, the amount will
-              be negative.
+              The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code of the movement amount.
 
-              .. list-table::
-                 :widths: auto
+          .. parameter:: value
+              :type: string
 
-                 * - ``currency``
+              A string containing the exact movement amount in the given currency.
 
-                     .. type:: string
+      .. parameter:: deductions
+          :type: amount object
+          :condition: optional
 
-                   - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code of the movement amount.
+          The total amount of deductions withheld from the movement. For example, if a €10,00 payment comes in with
+          a €0,29 fee, the ``deductions`` amount will be ``{"currency":"EUR", "value":"-0.29"}``.
 
-                 * - ``value``
+          When moving funds to a balance, we always round the deduction to a 'real' amount. Any differences between
+          these realtime rounded amounts and the final invoice will be compensated when the invoice is generated.
 
-                      .. type:: string
+          .. parameter:: currency
+            :type: string
 
-                   - A string containing the exact movement amount in the given currency.
+            The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code of the deduction.
 
-          * - ``initialAmount``
+          .. parameter:: value
+            :type: string
 
-              .. type:: amount object
+            A string containing the exact deduction in the given currency.
 
-            - The amount that was to be moved to or from the balance, excluding fees. If the transaction moves funds away
-              from the balance, for example when it concerns a refund, the amount will be negative.
+      .. parameter:: createdAt
+          :type: datetime
 
-              .. list-table::
-                 :widths: auto
+          The date and time of the movement, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-                 * - ``currency``
+      .. parameter:: context
+          :type: object
 
-                     .. type:: string
+          Depending on the ``type`` of the balance transaction, we will try to give more context about the specific
+          event that triggered the movement. A few examples:
 
-                   - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code of the movement amount.
+          * For type ``payment``: ``{"paymentId": "tr_..."}``
+          * For type ``refund``: ``{"paymentId": "tr_...", "refundId": "re_..."}``
 
-                 * - ``value``
+   .. parameter:: _links
+      :type: object
 
-                      .. type:: string
+      Links to help navigate through the lists of balance transactions. Every URL object will contain an ``href`` and a
+      ``type`` field.
 
-                   - A string containing the exact movement amount in the given currency.
+      .. parameter:: self
+          :type: URL object
 
-          * - ``fees``
+          The URL to the current set of balance transactions.
 
-              .. type:: amount object
-                :required: false
+      .. parameter:: previous
+          :type: URL object
 
-            - The total amount of fees withheld from the movement. For example, if a €10,00 payment comes in with a
-              €0,29 fee, the ``fees`` amount will be ``{"currency":"EUR", "value":"-0.29"}``.
+          The previous set of balance transactions, if available.
 
-              When moving funds to a balance, we always round the fee to a 'real' amount. Any differences between these
-              realtime rounded amounts and the final invoice will be compensated when the invoice is generated.
+      .. parameter:: next
+          :type: URL object
 
-              .. list-table::
-                 :widths: auto
+          The next set of balance transactions, if available.
 
-                 * - ``currency``
+      .. parameter:: documentation
+          :type: URL object
 
-                     .. type:: string
-
-                   - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code of the fee.
-
-                 * - ``value``
-
-                     .. type:: string
-
-                   - A string containing the exact fee in the given currency.
-
-          * - ``createdAt``
-
-              .. type:: datetime
-
-            - The date and time of the movement, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
-
-          * - ``context``
-
-              .. type:: object
-
-            - Depending on the ``type`` of the balance transaction, we will try to give more context about the specific
-              event that triggered the movement. A few examples:
-
-              * For type ``payment``: ``{"payment": {"id": "tr_..."}}``
-              * For type ``refund``: ``{"payment": {"id": "tr_..."}, "refund": {"id": "re_..."}}``
-
-   * - ``_links``
-
-       .. type:: object
-
-     - Links to help navigate through the lists of balance transactions. Every URL object will contain an ``href`` and a
-       ``type`` field.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``self``
-
-              .. type:: URL object
-
-            - The URL to the current set of balance transactions.
-
-          * - ``previous``
-
-              .. type:: URL object
-
-            - The previous set of balance transactions, if available.
-
-          * - ``next``
-
-              .. type:: URL object
-
-            - The next set of balance transactions, if available.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the balance transactions list endpoint documentation.
+          The URL to the balance transactions list endpoint documentation.
 
 Example
 -------
@@ -230,7 +187,7 @@ Response
    :linenos:
 
    HTTP/1.1 200 OK
-   Content-Type: application/hal+json; charset=utf-8
+   Content-Type: application/hal+json
 
    {
      "count": 5,
@@ -248,18 +205,14 @@ Response
               "value": "-10.00",
               "currency": "EUR"
             },
-            "fees": {
+            "deductions": {
               "value": "-0.25",
               "currency": "EUR"
             },
             "createdAt": "2021-01-10T12:06:28+00:00",
             "context": {
-              "payment": {
-                "id": "tr_7UhSN1zuXS"
-              },
-              "refund": {
-                "id": "re_4qqhO89gsT"
-              }
+              "paymentId": "tr_7UhSN1zuXS",
+              "refundId": "re_4qqhO89gsT"
             }
           },
           {
@@ -274,20 +227,15 @@ Response
               "value": "10.00",
               "currency": "EUR"
             },
-            "fees": {
+            "deductions": {
               "value": "-0.29",
               "currency": "EUR"
             },
             "createdAt": "2021-01-10T12:06:28+00:00",
             "context": {
-              "payment": {
-                "id": "tr_7UhSN1zuXS"
-              }
+              "paymentId": "tr_7UhSN1zuXS"
             }
-          },
-          { },
-          { },
-          { }
+          }
        ]
      },
      "_links": {

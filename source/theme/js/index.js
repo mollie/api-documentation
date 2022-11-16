@@ -1,5 +1,6 @@
 import { bindHandlers, executeEnhancers, makeEnhancers, makeHandlers } from './utils';
 
+import search from './search';
 import navLoggedIn from './navLoggedIn';
 import subNavigation from './subNavigation';
 import mobileNavigationButton from './mobileNavigationButton';
@@ -13,6 +14,7 @@ import sidebar from './sidebar';
 const handlers = makeHandlers([toggleClass, collapsedParameter, childParameters]);
 
 const enhancers = makeEnhancers([
+  search,
   navLoggedIn,
   subNavigation,
   mobileNavigationButton,

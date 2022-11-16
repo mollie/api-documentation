@@ -19,9 +19,9 @@ const animate = ({ from, to, duration, easeFn, cb }) => {
   requestAnimationFrame(() => fn());
 };
 
-const easeIn = t => t ** 2;
+const easeIn = (t) => t ** 2;
 
-const scrollToSection = event => {
+const scrollToSection = (event) => {
   const offset = 100;
 
   const target = document.querySelector(event.target.getAttribute('href'));
@@ -33,9 +33,9 @@ const scrollToSection = event => {
   animate({
     from,
     to,
-    duration: 600,
+    duration: 200,
     easeFn: easeIn,
-    cb: v => {
+    cb: (v) => {
       document.body.scrollTop = v;
       // This line is needed for IE11
       document.body.parentNode.scrollTop = v;
@@ -47,18 +47,18 @@ const scrollToSection = event => {
   });
 };
 
-const toggleSidebarGroup = event => {
+const toggleSidebarGroup = (event) => {
   event.target.parentNode.parentNode.classList.toggle('sidebar__group--collapse');
 };
 
 export default enhance('sidebar', () => {
   const links = document.querySelectorAll('.sidebar__inner .current a, a.headerlink');
-  [].forEach.call(links, link => {
+  [].forEach.call(links, (link) => {
     link.addEventListener('click', scrollToSection);
   });
 
   const groupHeaders = document.querySelectorAll('.sidebar__group > p > a');
-  [].forEach.call(groupHeaders, groupHeader => {
+  [].forEach.call(groupHeaders, (groupHeader) => {
     groupHeader.addEventListener('click', toggleSidebarGroup);
   });
 });

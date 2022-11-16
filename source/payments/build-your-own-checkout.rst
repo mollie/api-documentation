@@ -52,7 +52,7 @@ The next steps for a deeper integration depend on which payment methods you are 
 an overview of the typical flow for each of our payment methods, and how they can be integrated further.
 
 .. list-table::
-   :widths: 15, 50, 35
+   :widths: 25, 45, 30
    :header-rows: 1
 
    * - Method
@@ -113,6 +113,12 @@ an overview of the typical flow for each of our payment methods, and how they ca
        integrated using the QR embed in the Payments API. See the :doc:`QR codes guide </payments/qr-codes>` for
        details.
 
+   * - **in3**
+     - #. Customer selects in3 at checkout.
+       #. Customer gets redirected to in3 to pay the first instalment.
+       #. Customer returns to the webshop.
+     - No deeper integration possible.
+
    * - **KBC/CBC**
      - #. Customer selects KBC/CBC at checkout.
        #. Customer gets redirected to Mollie to select their bank.
@@ -121,17 +127,12 @@ an overview of the typical flow for each of our payment methods, and how they ca
      - The issuer selection screen (step 2) can be integrated using the Methods API. See
        :ref:`embedding-issuer-selection` below.
 
-   * - **Klarna: Pay later**
-     - #. Customer selects Pay later at checkout.
+   * - | **Klarna: Pay now**
+       | **Klarna: Pay later**
+       | **Klarna: Slice it**
+     - #. Customer selects a Klarna payment method at checkout.
        #. Customer gets redirected to Klarna to verify their payment with their Klarna account, or by supplying
           additional information.
-       #. Customer returns to the webshop.
-     - No deeper integration possible.
-
-   * - **Klarna: Slice it**
-     - #. Customer selects Slice it at checkout.
-       #. Customer gets redirected to Klarna to verify their payment instalment plan with their Klarna account, or by
-          supplying additional information.
        #. Customer returns to the webshop.
      - No deeper integration possible.
 

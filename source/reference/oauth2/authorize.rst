@@ -4,7 +4,7 @@ Authorize
 
 .. endpoint::
    :method: GET
-   :url: https://www.mollie.com/oauth2/authorize
+   :url: https://my.mollie.com/oauth2/authorize
 
 .. note:: You should construct the Authorize URL from the endpoint above with the parameters below. Then, you should
           redirect the resource owner to the Authorize endpoint.

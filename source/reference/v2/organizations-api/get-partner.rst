@@ -102,11 +102,23 @@ Response
 
 Example
 -------
-.. code-block:: bash
-  :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-  curl -X GET https://api.mollie.com/v2/organizations/me/partner \
-     -H "Authorization: Bearer access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+      curl -X GET https://api.mollie.com/v2/organizations/me/partner \
+         -H "Authorization: Bearer access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+   .. code-block:: ruby
+      :linenos:
+
+      require 'mollie-api-ruby'
+
+      Mollie::Client.configure do |config|
+         config.api_key = 'access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM'
+      end
+
+      partner = Mollie::Partner.current
 
 Response
 ^^^^^^^^

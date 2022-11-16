@@ -71,5 +71,6 @@ html-production: Makefile source/_static/style.css source/_static/index.js sourc
 	# Go thru all the files, and replace the paths from relative to an absolute CDN path
 	@LC_CTYPE=C LANG=C find build/ -type f -name '*' -exec sed -i.bak 's/\"[\.\/]*_images/\"https:\/\/assets.docs.mollie.com\/_images/g' {} \;
 	@LC_CTYPE=C LANG=C find build/ -type f -name '*' -exec sed -i.bak 's/\"[\.\/]*_static/\"https:\/\/assets.docs.mollie.com\/_static/g' {} \;
+	@LC_CTYPE=C LANG=C find build/ -type f -name 'style.css' -exec sed -i.bak 's/\([ :]url(\)\//\1https:\/\/assets.docs.mollie.com\/_static\//g' {} \;
 	# Cleanup .bak files
 	@find build/ -type f -name '*.bak' -exec rm {} \;

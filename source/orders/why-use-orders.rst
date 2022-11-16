@@ -11,7 +11,7 @@ Which extra features can I use with the Orders API?
 ---------------------------------------------------
 * The Orders API allows you to use Mollie for your order management, including the payment process.
 
-* **Pay after delivery** payment methods such as **Klarna Pay later** or **Klarna Slice it**, **Klarna Pay now**, as
+* **Pay after delivery** payment methods such as **Klarna Pay later**, **Klarna Slice it** or **in3**, **Klarna Pay now**, as
   well as **eco vouchers, gift vouchers, and meal vouchers** require the Orders API and cannot be used with the Payments
   API. This is because the order information is needed to do a risk assessment or to calculate which products are
   eligible per voucher.
