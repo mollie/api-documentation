@@ -21,7 +21,7 @@ At Mollie, we support two types of payment QR codes: The payment-specific QR cod
    and converting this ``paymentLink`` URL to a QR code via most common QR code tools available for most programming languages. The expiry time of the QR code can be defined via the ``expiresAt`` parameter. 
    This type of QR code must be scanned with the camera app of the phone, or in Belgium, via any banking app.
 
-Payment method specific QR codes 
+Payment method specific QR codes
 --------------------------------
 
 How do payment method specific QR codes work?
