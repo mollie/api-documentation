@@ -11,7 +11,7 @@ app. The customer then completes the transaction from his or her mobile device.
 
 At Mollie, we support two types of payment QR codes: The payment-specific QR codes and the payment link QR codes. 
 
-#. A payment method specific QR code is created by Mollie and follows the same expiry pattern as the :doc:`basic payment flow </payments/accepting-payments#the-basic-payment-flow>`. 
+#. A payment method specific QR code is created by Mollie and follows the same expiry pattern as the :doc:`basic payment flow </payments/accepting-payments>`. 
    When a payment with a QR code expires, the QR code itself expires as well. This type of QR code can be created via the :doc:`payments API </reference/v2/payments-api/overview>` or 
    via the `Mollie mobile app <https://www.mollie.com/products/mobile>`_. This type of QR code should only be used for checkout and in-store scenarios and can only be scanned via 
    specific applications. See more information below on the supported methods and how a consumer should use the QR code.
@@ -21,8 +21,11 @@ At Mollie, we support two types of payment QR codes: The payment-specific QR cod
    and converting this ``paymentLink`` URL to a QR code via most common QR code tools available for most programming languages. The expiry time of the QR code can be defined via the ``expiresAt`` parameter. 
    This type of QR code must be scanned with the camera app of the phone, or in Belgium, via any banking app.
 
+Payment method specific QR codes
+--------------------------------
+
 How do payment method specific QR codes work?
----------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 #. You generate a QR code for a payment method using the Mollie :doc:`payments </reference/v2/payments-api/overview>` API.
 #. You show the QR code to the customer during the checkout
 #. The customer opens the app on a mobile device and scans the QR code.
@@ -33,7 +36,7 @@ How do payment method specific QR codes work?
 .. note:: Only iDeal QR works in testmode.
 
 Supported payment methods
--------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^
 +-------------+--------------------------------------------------------------------------------------------------------+
 |iDEAL        |iDEAL QR codes can be scanned using the app of you bank, the dedicated iDEAL app, or the iPhone         |
 |             |camera app directly. After scanning the code, the customer can easily pay via their banking app.        |
@@ -46,7 +49,7 @@ Supported payment methods
 +-------------+--------------------------------------------------------------------------------------------------------+
 
 Implementation options
-----------------------
+^^^^^^^^^^^^^^^^^^^^^^
 Two options for implementation are available:
 
 +---------------------+------------------------------------------------------------------------------------------------+
@@ -59,7 +62,7 @@ Two options for implementation are available:
 +---------------------+------------------------------------------------------------------------------------------------+
 
 Retrieving QR codes
--------------------
+^^^^^^^^^^^^^^^^^^^
 The QR code can be retrieved by adding the ``details.qrCode`` include to the payment creation API call, and a
 ``method`` parameter (``ideal``, ``bancontact`` or ``banktransfer``) to the body of your request as detailed in the
 :doc:`Create payment </reference/v2/payments-api/create-payment>` reference.
@@ -74,14 +77,14 @@ QR codes are only included in the API as long as the payment has the ``open`` st
 available if no issuer has been selected yet. 
 
 Custom implementation
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 The QR code flow is largely similar to normal payment flow.
 
 .. image:: images/qr-flow@2x.png
    :class: boxed-in-dark-mode
 
 Redirecting the customer
-------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 After the payment, we will call the webhook to inform your application of the payment status changes. Since the customer
 has completed the payment on the mobile device, it is your task to ensure that a payment success page is automatically
 shown to the customer on the desktop or laptop computer.
