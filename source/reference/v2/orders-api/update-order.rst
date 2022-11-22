@@ -253,19 +253,22 @@ Example
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-      $order = $mollie->orders->get("ord_kEn1PlbGa");
-      $order->billingAddress->organizationName = "Mollie B.V.";
-      $order->billingAddress->streetAndNumber = "Keizersgracht 126";
-      $order->billingAddress->city = "Amsterdam";
-      $order->billingAddress->region = "Noord-Holland";
-      $order->billingAddress->postalCode = "1234AB";
-      $order->billingAddress->country = "NL";
-      $order->billingAddress->title = "Dhr";
-      $order->billingAddress->givenName = "Piet";
-      $order->billingAddress->familyName = "Mondriaan";
-      $order->billingAddress->email = "piet@mondriaan.com";
-      $order->billingAddress->phone = "+31208202070";
-      $order->update();
+      $orderId = "ord_kEn1PlbGa";
+      $order = $mollie->orders->update($orderId, [
+        "billingAddress" => [
+          "organizationName" => "Mollie B.V.",
+          "streetAndNumber" => "Keizersgracht 126",
+          "city" => "Amsterdam",
+          "region" => "Noord-Holland",
+          "postalCode" => "1234AB",
+          "country" => "NL",
+          "title" => "Dhr",
+          "givenName" => "Piet",
+          "familyName" => "Mondriaan",
+          "email" => "piet@mondriaan.com",
+          "phone" => "+31208202070",
+        ],
+      ]);
 
    .. code-block:: python
       :linenos:
