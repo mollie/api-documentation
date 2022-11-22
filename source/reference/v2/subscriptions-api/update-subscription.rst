@@ -136,18 +136,19 @@ Example
       <?php
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
-      $customer = $mollie->customers->get("cst_8wmqcHMN4U");
 
-      $subscription = $customer->getSubscription("sub_8EjeBVgtEn");
-      $subscription->amount = (object) [
-            "currency" => "EUR",
-            "value" => "10.00",
-      ];
-      $subscription->times = 42;
-      $subscription->startDate = "2018-12-12";
-      $subscription->description = "Mollie recurring subscription";
-      $subscription->webhookUrl = "https://example.org/webhook";
-      $updatedSubscription = $subscription->update();
+      $customerId = "cst_8wmqcHMN4U";
+      $subscriptionId = "sub_8EjeBVgtEn";
+      $mollie->subscriptions->update($customerId, $subscriptionId, [
+        "amount" => [
+          "currency" => "EUR",
+          "value" => "10.00",
+        ],
+        "times" => 42,
+        "startDate" => "2018-12-12",
+        "description" => "Mollie recurring subscription",
+        "webhookUrl" => "https://example.org/webhook",
+      ]);
 
    .. code-block:: python
       :linenos:
