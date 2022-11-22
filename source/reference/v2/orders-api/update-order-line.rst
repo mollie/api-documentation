@@ -191,6 +191,40 @@ Example
                }
          }'
 
+    .. code-block:: php
+      :linenos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+
+      $orderId = "ord_pbjz8x";
+      $orderLineId = "odl_dgtxyl";
+      $mollie->orderLines->update($orderId, $orderLineId, [
+        "name" => "LEGO 71043 Hogwarts™ Castle",
+        "productUrl" => "https://shop.lego.com/en-GB/product/Hogwarts-Castle-71043",
+        "imageUrl" => "https://sh-s7-live-s.legocdn.com/is/image//LEGO/71043_alt1?$main$",
+        "quantity" => 2,
+        "vatRate" => "21.00",
+        "unitPrice" => [
+          "currency" => "EUR",
+          "value" => "349.00"
+        ],
+        "totalAmount" => [
+          "currency" => "EUR",
+          "value" => "598.00"
+        ],
+        "discountAmount" => [
+          "currency" => "EUR",
+          "value" => "100.00"
+        ],
+        "vatAmount" => [
+          "currency" => "EUR",
+          "value" => "103.79"
+        ]
+      ]);
+
+
    .. code-block:: python
       :linenos:
 
