@@ -88,15 +88,15 @@ Example
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-      $order = $mollie->orders->get('ord_kEn1PlbGa');
-      $shipment = $order->getShipment("shp_3wmsgCJN4U");
-
-      $shipment->tracking = [
-            'carrier' => 'PostNL',
-            'code' => '3SKABA000000000',
-            'url' => 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C',
-      ];
-      $shipment = $shipment->update();
+      $orderId = "ord_kEn1PlbGa";
+      $shipmentId = "shp_3wmsgCJN4U";
+      $mollie->shipments->update($orderId, $shipmentId, [
+        "tracking" => [
+          "carrier" => "PostNL",
+          "code" => "3SKABA000000000",
+          "url" => "http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C",
+        ],
+      ]);
 
    .. code-block:: python
       :linenos:
