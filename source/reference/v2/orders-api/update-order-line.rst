@@ -191,7 +191,7 @@ Example
                }
          }'
 
-    .. code-block:: php
+   .. code-block:: php
       :linenos:
 
       <?php
