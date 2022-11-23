@@ -4,8 +4,9 @@ Splitting payments with Mollie Connect
 .. note:: Split Payments are not enabled by default. To enable them for your organization, please reach out to
           our partner management team.
 
-.. warning:: The split payments feature is not available for third-party payments methods (gift cards, Paypal, etc.).
-             For captures (Klarna Pay now, Klarna Pay later, Klarna Slice it, etc.) see the split captures paragraph.
+.. warning:: The split payments feature is not available (yet) for third-party payments methods (Gift Cards, Paypal,
+             etc.). There is currently a closed beta for all Klarna methods (Klarna Pay now, Klarna Pay later, Klarna
+             Slice it), please reach out to partners@mollie.com to unlock this feature.
 
 With **Split payments** you can distribute and split payments between your platform and your connected merchant
 accounts.
@@ -237,120 +238,3 @@ as the payment has already been paid by the consumer**, by simply updating the p
    }
 
 The release date can be up to two years from the day of the payment's creation. For test payments, this limit is 10 days.
-
-Split captures
-------------------------------------------------
-
-To enable Buy Now Pay Later payment methods (like Klarna Pay now, Klarna Pay later, Klarna Slice it, etc.). it is
-required to use the :doc:`Orders API</orders/overview>`. This is necessary because these payment methods require
-the use of captures, something that at the moment is not possible within the Payments API.
-More information on how to implement the Orders API, can be found :doc:`here</orders/migrate-to-orders>`.
-
-To route (part of) captured funds with your connected merchant accounts, you can specify the routing when
-:doc:`creating a shipment</reference/v2/shipments-api/create-shipment>`. In the example below, we will route €3,50 of
-a €10,00 shipment of two items to the connected account ``org_23456``, and €4,00 to the connected account ``org_56789``.
-
-On our own account, we will receive the remainder of €2,50 minus any payment fees charged by Mollie.
-
-.. code-block:: bash
-   :linenos:
-
-   curl -X POST https://api.mollie.com/v2/orders/ord_kEn1PlbGa/shipments \
-      -H "Content-Type: application/json" \
-      -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
-      -d "lines[0][id]=odl_dgtxyl" \
-      -d "lines[0][quantity]=1" \
-      -d "lines[1][id]=odl_jp31jz" \
-      -d "tracking[carrier]=PostNL" \
-      -d "tracking[code]=3SKABA000000000" \
-      -d "tracking[url]=http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C" \
-      -d "routing[0][amount][currency]=EUR" \
-      -d "routing[0][amount][value]=3.50" \
-      -d "routing[0][destination][type]=organization" \
-      -d "routing[0][destination][organizationId]=org_23456" \
-      -d "routing[1][amount][currency]=EUR" \
-      -d "routing[1][amount][value]=4.00" \
-      -d "routing[1][destination][type]=organization" \
-      -d "routing[1][destination][organizationId]=org_56789"
-
-.. code-block:: http
-   :linenos:
-
-   HTTP/1.1 201 Created
-   Content-Type: application/hal+json
-
-   {
-        "resource": "shipment",
-        "id": "shp_3wmsgCJN4U",
-        "orderId": "ord_kEn1PlbGa",
-        "createdAt": "2018-08-09T14:33:54+00:00",
-        "tracking": {
-            "carrier": "PostNL",
-            "code": "3SKABA000000000",
-            "url": "http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C"
-        },
-        "lines": [ "..." ],
-        "routing": [
-            {
-                "resource": "route",
-                "id": "rt_k6cjd01h",
-                "amount": {
-                    "value": "2.50",
-                    "currency": "EUR"
-                },
-                "destination": {
-                    "type": "organization",
-                    "organizationId": "me"
-                }
-            },
-            {
-                "resource": "route",
-                "id": "rt_9dk4al1n",
-                "amount": {
-                    "value": "3.50",
-                    "currency": "EUR"
-                },
-                "destination": {
-                    "type": "organization",
-                    "organizationId": "org_23456"
-                }
-            },
-            {
-                "resource": "route",
-                "id": "rt_ikw93sr2",
-                "amount": {
-                    "value": "4.00",
-                    "currency": "EUR"
-                },
-                "destination": {
-                    "type": "organization",
-                    "organizationId": "org_56789"
-                }
-            }
-        ]
-        "_links": {
-            "self": {
-                "href": "https://api.mollie.com/v2/order/ord_kEn1PlbGa/shipments/shp_3wmsgCJN4U",
-                "type": "application/hal+json"
-            },
-            "order": {
-                "href": "https://api.mollie.com/v2/orders/ord_kEn1PlbGa",
-                "type": "application/hal+json"
-            },
-            "documentation": {
-                "href": "https://docs.mollie.com/reference/v2/shipments-api/get-shipment",
-                "type": "text/html"
-            }
-        }
-    }
-
-Split payment and currencies
---------------------------------------
-
-It's possible to create a split payment in either EUR or GBP, as long as your platform and the connected accounts
-can be settled in the currency in which you created the payment.
-
-If a split payment is created in the same currency as your platform settlement currency,
-there is no conversion done (Like for Like) and no conversion markup fee is calculated.
-If a split payment is created in another currency than the settlement currency, it will be converted to that
-settlement currency and a markup fee will be calculated.
