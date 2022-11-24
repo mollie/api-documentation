@@ -118,7 +118,8 @@ $search-bar-radius: 4px;
 }
 
 .aa-SubmitButton,
-.aa-ClearButton {
+.aa-ClearButton,
+.aa-LoadingIndicator {
   -webkit-appearance: none;
   padding: 0;
   margin: 0;
@@ -131,7 +132,8 @@ $search-bar-radius: 4px;
   opacity: .5;
 }
 
-.aa-SubmitButton {
+.aa-SubmitButton,
+.aa-LoadingIndicator {
   left: 5px;
 }
 
@@ -140,7 +142,8 @@ $search-bar-radius: 4px;
 }
 
 .aa-SubmitButton svg,
-.aa-ClearButton svg {
+.aa-ClearButton svg,
+.aa-LoadingIndicator svg {
   display: block;
 }
 
