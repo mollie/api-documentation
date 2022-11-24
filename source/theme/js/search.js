@@ -13,6 +13,9 @@ export default enhance('algolia-search', (element) => {
           sourceId: 'docs',
           openOnFocus: false,
           getItemInputValue: ({ item }) => item.query,
+          getItemUrl({ item }) {
+            return item.permalink;
+          },
           getItems({ query }) {
             return getAlgoliaResults({
               searchClient,
