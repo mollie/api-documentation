@@ -12,8 +12,8 @@ you.
 
 For advanced users who want to integrate point-of-sale payments themselves, here is how it works.
 
-Receiving your first and foremost terminal
-------------------------------------------
+Receiving your first terminal
+-----------------------------
 To get started, you can request one or more terminal devices either via the Mollie Dashboard or via your account
 manager.
 
