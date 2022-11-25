@@ -12,36 +12,32 @@ you.
 
 For advanced users who want to integrate point-of-sale payments themselves, here is how it works.
 
-Receiving your first terminal
------------------------------
+Receiving your first and foremost terminal
+------------------------------------------
 To get started, you can request one or more terminal devices either via the Mollie Dashboard or via your account
 manager.
 
-You will be asked to give each terminal a description. In return you will receive a terminal ID for each device, for
+You will be asked to give each terminal an alias. In return you will receive a 4 digit terminal passcode and a terminal ID for each device, for
 example ``term_7MgL4wea46qkRcoTZjWEH``.
 
-These terminals will show up in the *List terminals endpoint* already with status ``requested``.
+These terminals will show up in the :doc:`List terminals endpoint </reference/v2/terminals-api/list-terminals>` already with status ``requested``.
 
 Setting up the terminal
 ^^^^^^^^^^^^^^^^^^^^^^^
-Once you receive the device, you can simply turn it on, configure its network preferences and start accepting payments.
+Once you receive the device, you can simply turn it on. The terminal guides you through an onboarding process which
+involves configuring network preferences. Make sure to see that the terminal status is "Ready to use".
+Tap the "Start" button and you can start accepting payments.
 
-If the device says it still has to be paired, then you can do so by:
+.. image:: images/pos-ready-to-use-screen@2x.png
+   :class: boxed-in-dark-mode
 
-#. Calling the *Pair terminal endpoint* for this specific device. An example API call is shown below.
-#. Pressing the 'pair' button on the device itself.
+The terminal menu is protected by the 4 digit passcode shared with you when you received your terminal.
 
-If this went well, the device will confirm that the device was paired with Mollie successfully.
-
-.. code-block:: bash
-   :linenos:
-
-   curl -X POST https://api.mollie.com/v2/terminals/term_7MgL4wea46qkRcoTZjWEH/pair \
-      -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+If you want to access the terminal menu again, tap thrice on the Mollie screen and input your passcode.
 
 Accepting payments
 ------------------
-Once your device is set up and paired, you can start accepting payments.
+Once your device is set up, you can start accepting payments.
 
 Simply call the :doc:`Create payment endpoint </reference/v2/payments-api/create-payment>` like you are used to, but in
 this case provide ``pointofsale`` as the payment method, along with your terminal ID in the ``terminalId`` parameter.
