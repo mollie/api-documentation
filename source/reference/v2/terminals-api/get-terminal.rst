@@ -25,7 +25,7 @@ Response
 .. parameter:: resource
    :type: string
 
-   Indicates the response contains a payment object. Will always contain ``terminal`` for this endpoint.
+   Indicates the response contains a terminal object. Will always contain ``terminal`` for this endpoint.
 
 .. parameter:: id
    :type: string
@@ -37,34 +37,34 @@ Response
 .. parameter:: profileId
    :type: string
 
-   The identifier used for referring to the profile this payment was created on. For example, ``pfl_QkEhN94Ba``.
+   The identifier used for referring to the profile the terminal was created on. For example, ``pfl_QkEhN94Ba``.
 
 .. parameter:: status
    :type: string
 
-   The status of a terminal, which is a read-only value determined by Mollie, according to the actions performed for that terminal.
-   Its values can be ``pending``, ``active``, ``disabled``. Please refer to the documentation regarding statuses for more info about
-   which statuses occur at what point.
+   The status of the terminal, which is a read-only value determined by Mollie, according to the actions performed for that terminal.
+   Its values can be ``pending``, ``active``, ``inactive``. ``pending`` means that the terminal has been created but not yet active. ``active``
+   means that the terminal is active and can take payments. ``inactive`` means that the terminal has been deactivated.
 
 .. parameter:: brand
    :type: string
 
-   The brand of a terminal. The brand will be visible in the Dashboard
+   The brand of the terminal.
 
 .. parameter:: model
    :type: string
 
-   The model of a terminal. The model will be visible in the Dashboard.
+   The model of the terminal.
 
 .. parameter:: serialNumber
    :type: string
 
-   The serial number of a terminal. The serial number is provided at terminal creation time and it will be visible in the Dashboard.
+   The serial number of the terminal. The serial number is provided at terminal creation time.
 
 .. parameter:: currency
    :type: string
 
-   The currency which is set for a terminal, in `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ format.
+   The currency which is set for the terminal, in `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ format.
 
 .. parameter:: description
    :type: string
@@ -79,7 +79,7 @@ Response
 .. parameter:: locale
    :type: string
 
-   This will be a full locale, for example “nl_NL” and it will be provided by the user.
+   This will be a full locale, for example ``nl_NL`` and it will be provided by the user.
 
 .. parameter:: createdAt
    :type: datetime

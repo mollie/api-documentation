@@ -17,7 +17,7 @@ Receiving your first terminal
 To get started, you can request one or more terminal devices either via the Mollie Dashboard or via your account
 manager.
 
-You will be asked to give each terminal an alias. In return you will receive a 4 digit terminal passcode and a terminal ID for each device, for
+You will be asked to give each terminal an alias. In return you will receive a 4-digit terminal passcode and a terminal ID for each device, for
 example ``term_7MgL4wea46qkRcoTZjWEH``.
 
 These terminals will show up in the :doc:`List terminals endpoint </reference/v2/terminals-api/list-terminals>` already with status ``requested``.
@@ -26,14 +26,14 @@ Setting up the terminal
 ^^^^^^^^^^^^^^^^^^^^^^^
 Once you receive the device, you can simply turn it on. The terminal guides you through an onboarding process which
 involves configuring network preferences. Make sure to see that the terminal status is "Ready to use".
-Tap the "Start" button and you can start accepting payments.
+Then, tap the "Start" button and you can start accepting payments.
 
 .. image:: images/pos-ready-to-use-screen@2x.png
    :class: boxed-in-dark-mode
 
-The terminal menu is protected by the 4 digit passcode shared with you when you received your terminal.
+The terminal menu is protected by the 4-digit passcode shared with you when you received your terminal.
 
-If you want to access the terminal menu again, tap thrice on the Mollie screen and input your passcode.
+If you want to access the terminal menu again, tap three times on the Mollie screen and input your passcode.
 
 Accepting payments
 ------------------
