@@ -20,8 +20,8 @@ Adds the component to the DOM, meaning it will become visible for the user from 
 .. code-block:: HTML
    :linenos:
 
-    <label for="card" >Card label</label>
-    <div id="card"></div>
+    <label for="cardNumber">Card number</label>
+    <div id="cardNumber"></div>
 
 .. parameter:: targetElement
    :type: HTMLElement|string
@@ -35,14 +35,14 @@ Javascript
 .. code-block:: js
    :linenos:
 
-    cardNumberEl.mount('#card');
+    cardNUmberEl.mount('#cardNumber');
 
 ES6
 ^^^
 .. code-block:: js
    :linenos:
 
-    cardNumberEl.mount('#card');
+    cardNUmberEl.mount('#cardNumber');
 
 component.addEventListener(event, callback)
 -------------------------------------------
