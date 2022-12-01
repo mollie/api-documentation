@@ -119,7 +119,7 @@ For a credit card integration you need to create four components — one for eac
       :condition: optional
 
       Only available for ``"card"`` type. Allows you to customize individual
-      components inside the Mollie Card Component.
+      Components inside the Mollie Card Component.
 
       .. parameter:: cardHolder
          :type: individualComponent object
