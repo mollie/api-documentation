@@ -2,34 +2,45 @@ Mollie API documentation
 ========================
 With the Mollie API you can integrate online payments by Mollie directly into your website or app.
 
-To get up and running quickly, we recommend starting out with one of our existing :ref:`integrations <clients>`.
+To get started quickly, you can simply drop Mollie into your hosted webshop with one of our free integrations, or
+leverage one of our existing API packages for a more advanced setup.
 
-For more advanced users wishing to implement our API directly, we recommend starting out with the
-:ref:`Mollie API package <clients>` for your programming language of choice.
+We have integrations available for virtually all common e-commerce software, bookkeeping platforms, and so on.
+These can be found in our `integrations directory <https://www.mollie.com/integrations>`_.
+
+For more advanced users, we have made Mollie API packages available for the most popular programming languages and
+frameworks. These include `PHP <https://github.com/mollie/mollie-api-php>`_,
+`Ruby <https://github.com/mollie/mollie-api-ruby>`_, `Node.js <https://github.com/mollie/mollie-api-node>`_,
+and `Python <https://github.com/mollie/mollie-api-python>`_. Please refer to our
+`package list <https://www.mollie.com/developers/packages>`_ for more packages and plugins.
 
 If you have any questions about integrating our API, please `contact us <https://www.mollie.com/contact>`_. We are happy
 to help!
 
-.. _clients:
+API guides
+----------
+To get to know the Mollie API better, a good starting point is to first navigate the *Mollie API* section in the sidebar
+of the current page. These guides take you through the basic flow of authentication, handling responses and errors, and
+receiving webhooks.
 
-Save time with integrations and packages
-----------------------------------------
-Simply drop Mollie into your hosted webshop with one of our free integrations, or build something yourself with our
-packages.
+Next, to learn more about the inner workings and features of our payment processing APIs, please refer to the
+:doc:`Payments guides </payments/accepting-payments>`.
 
-We have made Mollie API packages available for the most popular programming languages and frameworks, including
-`PHP <https://github.com/mollie/mollie-api-php>`_, `Ruby <https://github.com/mollie/mollie-api-ruby>`_,
-`Node.js <https://github.com/mollie/mollie-api-node>`_, and `Python <https://github.com/mollie/mollie-api-python>`_.
-Please refer to our `package list <https://www.mollie.com/developers/packages>`_ for more packages and plugins.
+Optionally, for Mollie users building platforms or products for other merchants or Mollie users, we offer Mollie
+Connect. Mollie Connect is a set of APIs and tools that allows you to connect multiple Mollie accounts together, for
+example to create a white-labeled experiences or to distribute funds across multiple accounts. Read more in the
+:doc:`Mollie Connect guides </connect/overview>`.
 
-We also have integrations available for virtually all common e-commerce software, bookkeeping platforms, and so on.
-These can be found in our `integrations directory <https://www.mollie.com/integrations>`_.
+Lastly, all endpoints of our APIs are also extensively documented in the
+:doc:`API reference section </reference/v2/payments-api/overview>`, with property lists and code examples for each
+endpoint.
 
 Payment methods
 ---------------
 Mollie is continuously expanding its payment method coverage. The Mollie API currently supports the following payments
 methods:
 
+* `Apple Pay <https://www.mollie.com/payments/apple-pay>`_
 * `Bancontact <https://www.mollie.com/payments/bancontact>`_
 * `Bank transfer <https://www.mollie.com/payments/bank-transfer>`_
 * `Belfius Pay Button <https://www.mollie.com/payments/belfius>`_
@@ -52,10 +63,3 @@ methods:
 * `Przelewy24 <https://www.mollie.com/payments/przelewy24>`_
 * `SEPA Direct Debit <https://www.mollie.com/payments/direct-debit>`_
 * `SOFORT Banking <https://www.mollie.com/payments/sofort>`_
-
-Additionally, the following wallets are supported:
-
-* `Apple Pay <https://www.mollie.com/payments/apple-pay>`_
-
-All of the payment methods you have enabled are – where relevant – shown to the consumer. You can enable payment methods
-using the `Mollie Dashboard <https://www.mollie.com/dashboard/settings/profiles>`_.
