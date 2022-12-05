@@ -41,7 +41,7 @@ Response
 
 .. parameter:: id
     :type: string
-    
+
     The identifier uniquely referring to this balance. Mollie assigns this identifier at balance creation time. For
     example ``bal_gVMhHKqSSRYJyPsuoPNFH``.
 
@@ -64,7 +64,7 @@ Response
 
     * ``active`` The balance is operational and ready to be used.
     * ``inactive`` In case the account is still being validated by our team or the balance has been blocked. Please
-      `contact our support department <https://www.mollie.com/en/contact/>`_ for more information.
+      `contact our support department <https://www.mollie.com/contact>`_ for more information.
 
 .. parameter:: transferFrequency
     :type: string

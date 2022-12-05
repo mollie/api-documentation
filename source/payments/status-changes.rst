@@ -26,7 +26,7 @@ them. Then we will show you how the statuses are connected.
     created.
 
     Currently this status is only possible for the payment methods
-    `Klarna Pay now <https://www.mollie.com/en/payments/klarna-pay-now>`_,
+    `Klarna Pay now <https://www.mollie.com/payments/klarna-pay-now>`_,
     `Klarna Pay later <https://www.mollie.com/payments/klarna-pay-later>`_ and
     `Klarna Slice it <https://www.mollie.com/payments/klarna-slice-it>`_.
 
@@ -92,7 +92,7 @@ Expiry times per payment method
 +-------------------------------+-----------------------------------+
 | - Klarna Pay now              | 48 hours                          |
 | - Klarna Pay later            |                                   |
-| - Klarna Slice it             |                                   | 
+| - Klarna Slice it             |                                   |
 | - in3                         |                                   |
 +-------------------------------+-----------------------------------+
 | - Bank transfer [#f1]_        | 12(+2) days                       |

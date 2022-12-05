@@ -10,7 +10,7 @@ account, or change settings of merchants that you have referred to Mollie.
 How to become a reseller?
 -------------------------
 Working with Mollie offers you a reliable and experienced partner in payments. If you want to become a reseller, please
-see the `partner page <https://www.mollie.com/en/partners>`_ on our website.
+see the `partner page <https://www.mollie.com/partners>`_ on our website.
 
 Different base-url comparing to other APIs
 ------------------------------------------

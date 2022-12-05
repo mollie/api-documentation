@@ -112,4 +112,5 @@ Response
 
 Example
 -------
-Please refer to the documentation of the `Mollie API client <https://www.mollie.com/en/modules>`_ you are using.
+Please refer to the documentation of the `Mollie API client <https://www.mollie.com/developers/packages>`_ you are
+using.

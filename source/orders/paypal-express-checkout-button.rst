@@ -9,7 +9,7 @@ This allows you to place the button on any page in your webshop, like the produc
 
 The button
 ----------
-We recommend you to use the button that we provide in the `Mollie Resources <https://www.mollie.com/en/resources>`_
+We recommend you to use the button that we provide in the `Mollie Resources <https://www.mollie.com/resources>`_
 pack. This button is recognizable to customers and improves checkout conversion. Of course it's also possible to design
 and use your own button, according to the PayPal brand guidelines.
 
@@ -38,16 +38,16 @@ some small tweaks. You can use the following steps as a guideline for the basic 
                 all, your request will result in an HTTP status code ``422 Unprocessable Entity``.
 
 #. Redirect your customer to the ``checkout`` URL which you can find in the response of the Create Order
-   API. The customer will select the address where the product(s) needs to be sent. Following this, the 
+   API. The customer will select the address where the product(s) needs to be sent. Following this, the
    customer then completes the payment.
 
-#. Mollie will receive the address from PayPal and updates the order's ``shippingAddress`` only if there is no 
-   ``shippingAddress`` set already. The consumer will  then be redirected back to your website while we call your webhook, 
+#. Mollie will receive the address from PayPal and updates the order's ``shippingAddress`` only if there is no
+   ``shippingAddress`` set already. The consumer will  then be redirected back to your website while we call your webhook,
    if set, to inform you about the latest order state.
 
 #. You can retrieve the shipping address by calling the :doc:`Get order endpoint </reference/v2/orders-api/get-order>`
    and finish your order to ship the product(s).
 
-   .. warning:: PayPal returns the ``shippingAddress`` to us, but it does not return the ``billingAddress``. That info is not 
-      contained in the API response from PayPal, and we have no way of retrieving that. We instead use the ``shippingAddress``, 
+   .. warning:: PayPal returns the ``shippingAddress`` to us, but it does not return the ``billingAddress``. That info is not
+      contained in the API response from PayPal, and we have no way of retrieving that. We instead use the ``shippingAddress``,
       returned to us by PayPal, as the order's ``billingAddress``.

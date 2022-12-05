@@ -124,7 +124,7 @@ When an order payment is successfully completed by the customer the payment stat
 Note that the customer will receive an invoice per shipment.
 
 Shipping can be done using the :doc:`Create shipment endpoint </reference/v2/shipments-api/create-shipment>` or directly
-from the `Mollie Dashboard <https://www.mollie.com/dashboard/>`_.
+from the `Mollie Dashboard <https://www.mollie.com/dashboard>`_.
 
 If needed, you can create multiple shipments per order. In the shipment you specify the order lines that are to be
 shipped.

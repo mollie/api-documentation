@@ -10,8 +10,9 @@ cards stored on their Apple devices.
 
 Accepting Apple Pay via Mollie
 ------------------------------
-In order to accept Apple Pay via Mollie, you need to enable both `credit card <https://www.mollie.com/creditcard>`_ and
-Apple Pay on your website profile in your `Mollie Dashboard <https://www.mollie.com/dashboard>`_.
+In order to accept Apple Pay via Mollie, you need to enable both
+`credit card <https://www.mollie.com/payments/credit-card>`_ and Apple Pay on your website profile in your
+`Mollie Dashboard <https://www.mollie.com/dashboard>`_.
 
 Shoppers using an Apple device with Apple Pay configured will automatically be offered Apple Pay in the :doc:`Mollie
 Checkout </payments/hosted-checkout>`. Additionally, limited support for integrating Apple Pay in your own checkout is

@@ -31,8 +31,8 @@ It might seem a little cumbersome that we do not post the new status immediately
 :doc:`proper security </overview/security>` dictates this flow. Since the status is not transmitted in the webhook, fake
 calls to your webhook will never result in orders being processed without being actually paid.
 
-More examples are available in the documentation of the `Mollie API client <https://www.mollie.com/en/modules>`_ you are
-using.
+More examples are available in the documentation of the
+`Mollie API client <https://www.mollie.com/developers/packages>`_ you are using.
 
 Endpoints supporting webhooks
 -----------------------------

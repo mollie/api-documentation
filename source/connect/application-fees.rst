@@ -108,7 +108,7 @@ Maximum application fees
 | *Orders API*
 |
 | The maximum application fee per payment is 10% of the total amount, up to a maximum of €2.00. If a higher maximum is
-| required for your business, you can request this via Mollie's `customer service <https://www.mollie.com/contact/>`_ or
+| required for your business, you can request this via Mollie's `customer service <https://www.mollie.com/contact>`_ or
 | your account manager at Mollie.
 
 Recurring
