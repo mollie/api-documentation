@@ -23,7 +23,7 @@ We have made Mollie API packages available for the most popular programming lang
 Please refer to our `package list <https://www.mollie.com/developers/packages>`_ for more packages and plugins.
 
 We also have integrations available for virtually all common e-commerce software, bookkeeping platforms, and so on.
-These can be found in our `integrations directory <https://www.mollie.com/integrations>`.
+These can be found in our `integrations directory <https://www.mollie.com/integrations>`_.
 
 Payment methods
 ---------------
