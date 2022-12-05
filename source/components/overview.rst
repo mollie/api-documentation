@@ -119,16 +119,16 @@ your checkout and make them visible to your customer.
 .. code-block:: js
    :linenos:
 
-   const cardNumber = mollie.createComponent('cardNumber');
+   var cardNumber = mollie.createComponent('cardNumber');
    cardNumber.mount('#card-number');
 
-   const cardHolder = mollie.createComponent('cardHolder');
+   var cardHolder = mollie.createComponent('cardHolder');
    cardHolder.mount('#card-holder');
 
-   const expiryDate = mollie.createComponent('expiryDate');
+   var expiryDate = mollie.createComponent('expiryDate');
    expiryDate.mount('#expiry-date');
 
-   const verificationCode = mollie.createComponent('verificationCode');
+   var verificationCode = mollie.createComponent('verificationCode');
    verificationCode.mount('#verification-code');
 
 To add styling to the Mollie Components, see :doc:`Styling
@@ -144,7 +144,7 @@ Mollie Components.
 .. code-block:: js
    :linenos:
 
-   const cardNumberError = document.querySelector('#card-number-error');
+   var cardNumberError = document.querySelector('#card-number-error');
 
    cardNumber.addEventListener('change', event => {
      if (event.error && event.touched) {
@@ -174,7 +174,7 @@ the :ref:`components-mollie-component-mount`.
 .. code-block:: js
    :linenos:
 
-   const cardComponent = mollie.createComponent('card');
+   var cardComponent = mollie.createComponent('card');
    cardComponent.mount('#card');
 
 Translated error messages are provided into DOM automatically.
@@ -193,7 +193,7 @@ You can then place the ``cardToken`` in a hidden input to submit it to your back
    form.addEventListener('submit', async e => {
      e.preventDefault();
 
-     const { token, error } = await mollie.createToken();
+     var { token, error } = await mollie.createToken();
 
      if (error) {
        // Something wrong happened while creating the token. Handle this situation gracefully.
@@ -201,7 +201,7 @@ You can then place the ``cardToken`` in a hidden input to submit it to your back
      }
 
      // Add token to the form
-     const tokenInput = document.createElement('input');
+     var tokenInput = document.createElement('input');
      tokenInput.setAttribute('type', 'hidden');
      tokenInput.setAttribute('name', 'cardToken');
      tokenInput.setAttribute('value', token);

@@ -35,14 +35,14 @@ Javascript
 .. code-block:: js
    :linenos:
 
-    cardNUmberEl.mount('#cardNumber');
+    cardNumberEl.mount('#cardNumber');
 
 ES6
 ^^^
 .. code-block:: js
    :linenos:
 
-    cardNUmberEl.mount('#cardNumber');
+    cardNumberEl.mount('#cardNumber');
 
 component.addEventListener(event, callback)
 -------------------------------------------

@@ -175,7 +175,7 @@ Example for ``cardHolder`` component
 .. code-block:: js
    :linenos:
 
-    const options = {
+    var options = {
       styles: {
         base: {
           color: '#eee',
@@ -187,14 +187,14 @@ Example for ``cardHolder`` component
       }
     }
 
-    const cardNumberEl = mollie.createComponent('cardNumber', options)
+    var cardNumberEl = mollie.createComponent('cardNumber', options)
 
 Example for ``card`` component
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code-block:: js
    :linenos:
 
-    const options = {
+    var options = {
       styles: {
         base: {
           color: '#eee',
@@ -214,4 +214,4 @@ Example for ``card`` component
       }
     }
 
-    const cardNumberEl = mollie.createComponent('cardNumber', options)
+    var cardNumberEl = mollie.createComponent('cardNumber', options)
