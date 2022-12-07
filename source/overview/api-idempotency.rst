@@ -47,8 +47,9 @@ Retrying can potentially be harmful only in the following cases:
 Using an idempotency key
 ------------------------
 Mollie supports the ``Idempotency-Key`` industry standard. When sending a request to the Mollie API, you can send along
-a header with a unique value. If another request is made with the exact same header value within 24 hours, the Mollie
-API will return a cached version of the initial response. This way, your API requests become what we call *idempotent*.
+a header with a unique value. If another request is made with the exact same header value **within one hour**, the
+Mollie API will return a cached version of the initial response. This way, your API requests become what we call
+*idempotent*.
 
 A simple implementation looks as follows:
 
