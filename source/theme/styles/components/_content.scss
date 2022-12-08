@@ -2,3 +2,10 @@
   padding-top: 80px;
   padding-bottom: 80px;
 }
+
+@media only screen and (max-width: $mobile-navigation-breakpoint - 1px) {
+  .content {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
