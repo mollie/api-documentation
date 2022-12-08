@@ -6,11 +6,11 @@ const VISIBLE_STATE_CLASS = 'is-visible';
 const OPENED_STATE_CLASS = 'is-opened';
 const MOBILE_NAV_BREAKPOINT = 980; // _variables.scss:19
 
-export default enhance('mobile-navigation-button', () => {
-  const navigationTrigger = document.querySelector('.js-toggle-mobile-nav');
-  const mobileSidebar = document.querySelector('.js-mobile-sidebar');
+export const mobileNavigationButton = enhance('mobile-navigation-button', () => {
+  const navigationTrigger = document.querySelector('.title-bar__hamburger');
+  const mobileSidebar = document.querySelector('.mobile-navigation');
 
-  navigationTrigger.addEventListener('click', event => {
+  navigationTrigger.addEventListener('click', (event) => {
     event.preventDefault();
     mobileSidebar.classList.toggle(VISIBLE_STATE_CLASS);
     navigationTrigger.classList.toggle(OPENED_STATE_CLASS);
@@ -36,4 +36,25 @@ export default enhance('mobile-navigation-button', () => {
   };
 
   window.addEventListener('resize', debounce(allowScrollingOnDesktop, 200));
+});
+
+export const mobileNavigationToggleGroup = enhance('mobile-navigation-toggle-group', (element) => {
+  element.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const parent = element.parentNode;
+
+    if (parent.classList.contains(OPENED_STATE_CLASS)) {
+      parent.classList.remove(OPENED_STATE_CLASS);
+    } else {
+      // If there's already one open, close that one.
+      const openElement = parent.parentNode.querySelector('.' + OPENED_STATE_CLASS);
+
+      if (openElement) {
+        openElement.classList.remove(OPENED_STATE_CLASS);
+      }
+
+      parent.classList.add(OPENED_STATE_CLASS);
+    }
+  });
 });

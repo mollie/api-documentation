@@ -46,6 +46,9 @@
         <li class="title-bar__item title-bar__dashboard js-dashboard-nav-link is-hidden">
           <a href="https://www.mollie.com/dashboard" target="_blank">Dashboard</a>
         </li>
+        <li class="title-bar__item title-bar__hamburger" data-enhancer="mobile-navigation-button">
+          <a href="#"><span></span><span></span><span></span></a>
+        </li>
       </ul>
     </div>
   </div>
@@ -69,12 +72,52 @@
       </li>
     </ul>
   </div>
+</nav>
 
-  <select class="mobile-product-navigation link-dropdown js-link-dropdown-dropkick" data-enhancer="link-dropdown">
-    <option value="{{ pathto('index') }}" {%- if selected == 'overview' %} selected {%- endif %}>Overview</option>
-    <option value="{{ pathto('payments/accepting-payments') }}" {%- if selected == 'payments' %} selected {%- endif %}>Payments</option>
-    <option value="{{ pathto('connect/overview') }}" {%- if selected == 'connect' %} selected {%- endif %}>Connect</option>
-    <option value="{{ pathto('reference/v2/payments-api/create-payment') }}" {%- if selected == 'api' %} selected {%- endif %}>API reference</option>
-    <option value="{{ pathto('changelog/v2/changelog') }}" {%- if selected == 'changelog' %} selected {%- endif %}>Changelog</option>
-  </select>
+<nav class="mobile-navigation">
+  <ul>
+    <li class="mobile-navigation__item {%- if selected == 'overview' %} is-opened {%- endif %}">
+      <a href="#" data-enhancer="mobile-navigation-toggle-group">Overview</a>
+
+      <div class="mobile-navigation__contents">
+        {%- include "sidebar-overview.html" -%}
+      </div>
+    </li>
+    <li class="mobile-navigation__item {%- if selected == 'payments' %} is-opened {%- endif %}">
+      <a href="#" data-enhancer="mobile-navigation-toggle-group">Payments</a>
+
+      <div class="mobile-navigation__contents">
+        {%- include "sidebar-payments.html" -%}
+      </div>
+    </li>
+    <li class="mobile-navigation__item {%- if selected == 'connect' %} is-opened {%- endif %}">
+      <a href="#" data-enhancer="mobile-navigation-toggle-group">Connect</a>
+
+      <div class="mobile-navigation__contents">
+        {%- include "sidebar-connect.html" -%}
+      </div>
+    </li>
+    <li class="mobile-navigation__item {%- if selected == 'api' %} is-opened {%- endif %}">
+      <a href="#" data-enhancer="mobile-navigation-toggle-group">API reference</a>
+
+      <div class="mobile-navigation__contents">
+        {%- if "/v1/" in pagename -%}
+          {%- include "sidebar-reference-v1.html" -%}
+        {%- else -%}
+          {%- include "sidebar-reference-v2.html" -%}
+        {%- endif -%}
+      </div>
+    </li>
+    <li class="mobile-navigation__item {%- if selected == 'changelog' %} is-opened {%- endif %}">
+      <a href="#" data-enhancer="mobile-navigation-toggle-group">Changelog</a>
+
+      <div class="mobile-navigation__contents">
+        {%- if "/v1/" in pagename -%}
+          {%- include "sidebar-changelog-v1.html" -%}
+        {%- else -%}
+          {%- include "sidebar-changelog-v2.html" -%}
+        {%- endif -%}
+      </div>
+    </li>
+  </ul>
 </nav>
