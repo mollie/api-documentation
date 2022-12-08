@@ -1,0 +1,42 @@
+.mobile-navigation-button {
+  height: 52px;
+  width: 52px;
+  background: #007aff;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.19), 0 5px 15px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  cursor: pointer;
+  z-index: 3;
+
+  @media (min-width: breakpoint("small")) {
+    right: 30px;
+  }
+
+  @media (min-width: $mobile-navigation-breakpoint) {
+    display: none;
+  }
+}
+
+.mobile-navigation-button__arrow {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 15px;
+  transition: transform 300ms ease-in-out;
+}
+
+.mobile-navigation-button__arrow--inverse {
+  top: auto;
+  bottom: 15px;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.mobile-navigation-button.is-opened .mobile-navigation-button__arrow {
+  transform: translateY(10px) translateX(-50%);
+}
+
+.mobile-navigation-button.is-opened .mobile-navigation-button__arrow--inverse {
+  transform: translateY(-10px) translateX(-50%) rotate(180deg);
+}

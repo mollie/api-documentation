@@ -1,8 +1,5 @@
 Changelog
 ~~~~~~~~~
-.. api-name:: Mollie API
-   :version: 2
-
 Occasionally, we will add new resources, new fields, or new possible values to existing fields to the v2 Mollie API. All
 changes are documented here.
 

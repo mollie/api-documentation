@@ -71,6 +71,42 @@ exports.handler = (event, context, callback) => {
     case '/reference/v1':
       redirectTo('/reference/v1/payments-api/create-payment');
       break;
+    case '/reference/reseller-api/account-create':
+      redirectTo('/reference/reseller-api/endpoints/account-create');
+      break;
+    case '/reference/reseller-api/account-claim':
+      redirectTo('/reference/reseller-api/endpoints/account-claim');
+      break;
+    case '/reference/reseller-api/account-edit':
+      redirectTo('/reference/reseller-api/endpoints/account-edit');
+      break;
+    case '/reference/reseller-api/account-valid':
+      redirectTo('/reference/reseller-api/endpoints/account-valid');
+      break;
+    case '/reference/reseller-api/get-login-link':
+      redirectTo('/reference/reseller-api/endpoints/get-login-link');
+      break;
+    case '/reference/reseller-api/disconnect-account':
+      redirectTo('/reference/reseller-api/endpoints/disconnect-account');
+      break;
+    case '/reference/reseller-api/available-payment-methods':
+      redirectTo('/reference/reseller-api/endpoints/available-payment-methods');
+      break;
+    case '/reference/reseller-api/bankaccounts':
+      redirectTo('/reference/reseller-api/endpoints/bankaccounts');
+      break;
+    case '/reference/reseller-api/bankaccount-edit':
+      redirectTo('/reference/reseller-api/endpoints/bankaccount-edit');
+      break;
+    case '/reference/reseller-api/profile-create':
+      redirectTo('/reference/reseller-api/endpoints/profile-create');
+      break;
+    case '/reference/reseller-api/profiles':
+      redirectTo('/reference/reseller-api/endpoints/profiles');
+      break;
+    case '/reference/reseller-api/set-fees':
+      redirectTo('/reference/reseller-api/endpoints/set-fees');
+      break;
   }
 
   // Return modified response

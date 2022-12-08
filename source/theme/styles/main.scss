@@ -159,8 +159,8 @@ a.headerlink::before {
 * Components
 */
 @import 'components/api-name';
+@import 'components/api-version-switcher';
 @import 'components/authentication';
-@import 'components/back-to-v2';
 @import 'components/changelog';
 @import 'components/code';
 @import 'components/content';
@@ -172,6 +172,7 @@ a.headerlink::before {
 @import 'components/link-dropdown';
 @import 'components/main';
 @import 'components/main-navigation';
+@import 'components/mobile-navigation-button';
 @import 'components/note';
 @import 'components/parameters';
 @import 'components/payment-method-expiry-times';

@@ -104,6 +104,7 @@ redirects = {
     'reference/v2/orders-api/create-order-refund': to_url('/reference/v2/refunds-api/create-order-refund'),
     'reference/v2/orders-api/list-order-refunds': to_url('/reference/v2/refunds-api/list-order-refunds'),
     'reference/v2/orders-api/update-orderline': to_url('/reference/v2/orders-api/update-order-line'),
+    'reference/v2/organizations-api/list-organizations': to_url('/reference/reseller-api/v2/list-organizations'),
     'reference/v2/organizations-api/me': to_url('/reference/v2/organizations-api/current-organization'),
     'reference/v2/partners-api/get-partner': to_url('/reference/v2/organizations-api/get-partner'),
     'reference/v2/partners-api/get-client': to_url('/reference/v2/clients-api/get-client'),
@@ -114,6 +115,10 @@ redirects = {
     'reference/v2/refunds-api/get-refund': to_url('/reference/v2/refunds-api/get-payment-refund'),
     'reference/v2/subscriptions-api/list-subscriptions-payments': to_url('/reference/v2/subscriptions-api/list-subscription-payments')
 }
+
+do_not_index = [
+    'reference/reseller-api/endpoints/set-fees'
+]
 
 # -- Options for HTML output ----------------------------------------------
 
@@ -130,7 +135,7 @@ html_context = {
     'github_user': 'mollie',
     'github_repo': 'api-documentation',
     'github_version': 'master/source/',
-    'do_not_index': [],
+    'do_not_index': do_not_index,
 }
 
 html_logo = '_static/img/mollie-logo.png'

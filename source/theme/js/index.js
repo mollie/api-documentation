@@ -3,7 +3,7 @@ import { bindHandlers, executeEnhancers, makeEnhancers, makeHandlers } from './u
 import search from './search';
 import navLoggedIn from './navLoggedIn';
 import subNavigation from './subNavigation';
-import { mobileNavigationButton, mobileNavigationToggleGroup } from './mobileNavigation';
+import mobileNavigationButton from './mobileNavigationButton';
 import toggleClass from './toggleClass';
 import exampleSwitcher from './exampleSwitcher';
 import linkDropdown from './linkDropdown';
@@ -18,7 +18,6 @@ const enhancers = makeEnhancers([
   navLoggedIn,
   subNavigation,
   mobileNavigationButton,
-  mobileNavigationToggleGroup,
   sidebar,
   linkDropdown,
   linkDropdownPaymentMethods,

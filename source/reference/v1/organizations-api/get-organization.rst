@@ -29,7 +29,7 @@ Parameters
 ----------
 Replace ``id`` in the endpoint URL by a full organization ID like ``org_1234567`` or use the ``me`` alias.
 
-If you are an official Mollie reseller, you can retrieve the organizations that you have signed up.
+If you are an official Mollie Reseller, you can retrieve the organizations that you have signed up.
 
 Response
 --------

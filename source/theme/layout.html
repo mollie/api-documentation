@@ -33,6 +33,8 @@
   {%- set apiName = "Profiles API" -%}
 {%- elif "/refunds-api/" in pagename -%}
   {%- set apiName = "Refunds API" -%}
+{%- elif "/reseller-api/" in pagename -%}
+  {%- set apiName = "Reseller API" -%}
 {%- elif "/settlements-api/" in pagename -%}
   {%- set apiName = "Settlements API" -%}
 {%- elif "/shipments-api/" in pagename -%}
@@ -118,6 +120,8 @@
       </section>
     </div>
   </div>
+
+  {% include "mobile-navigation-button.html" %}
 
   <script type="text/javascript" src="{{ pathto('_static/index.js', 1) }}?20210711" async></script>
 
