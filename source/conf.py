@@ -115,9 +115,6 @@ redirects = {
     'reference/v2/subscriptions-api/list-subscriptions-payments': to_url('/reference/v2/subscriptions-api/list-subscription-payments')
 }
 
-do_not_index = [
-]
-
 # -- Options for HTML output ----------------------------------------------
 
 # Add the pathname of pages you want to prevent from being indexed by search engines here.
@@ -133,7 +130,7 @@ html_context = {
     'github_user': 'mollie',
     'github_repo': 'api-documentation',
     'github_version': 'master/source/',
-    'do_not_index': do_not_index,
+    'do_not_index': [],
 }
 
 html_logo = '_static/img/mollie-logo.png'
