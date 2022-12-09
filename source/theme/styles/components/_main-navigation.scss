@@ -284,12 +284,6 @@ ul:last-child > .title-bar__item:first-child {
   }
 }
 
-@media only screen and (max-width: 640px) {
-  .title-bar__item {
-    display: none;
-  }
-}
-
 /*
  * Dark mode
  */
