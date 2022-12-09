@@ -9,6 +9,7 @@ The documentation is formatted using [reStructuredText](http://www.sphinx-doc.or
 use a [Sphinx extension](https://cloud-sptheme.readthedocs.io/en/latest/lib/cloud_sptheme.ext.table_styling.html) to
 help format tables.
 
+
 ## Contribute
 
 - [Issue Tracker](https://github.com/mollie/api-documentation/issues)
