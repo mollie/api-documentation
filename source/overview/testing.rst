@@ -27,6 +27,10 @@ For paid test mode payments the resource will also include the ``changePaymentSt
 can be used to test refund and chargeback functionality.
 
 Apart from the hosted payment pages and the fact that test mode payments are created instead of real ones, the Mollie
-API behaves identical in both environments. This includes calling your :doc:`webhook </overview/webhooks>`.
+API behaves identical in both environments. This includes calling your :doc:`webhook </overview/webhooks>`. 
+
+Note that the webhook is not called if you have specified a ``method`` and the consumer cancels the payment on the payment page. We will redirect the
+customer instead towards the hosted checkout page and allow him to pick a new method. Only on cancelling on this page, the payment 
+will receive the state ``canceled`` and the webhook will be called. 
 
 Just make sure to start using live mode when your site goes public, or your customers will get a free ride.

@@ -54,6 +54,10 @@ Furthermore, the webhook will be called when:
 * A refund is performed on the payment, and the refund reaches state ``refunded`` or ``failed``.
 * A chargeback is received on the payment.
 
+The webhook is not called if you have specified a ``method`` and the consumer cancels the payment on the payment page. We will redirect the
+customer instead towards the hosted checkout page and allow him to pick a new method. Only on cancelling on this page, the payment 
+will receive the state ``canceled`` and the webhook will be called. 
+
 Read more about :doc:`payment status changes </payments/status-changes>`.
 
 Orders API
