@@ -4,9 +4,9 @@ import Dropkick from 'dropkickjs';
 const DEFAULT_METHOD = 'bank-transfer';
 
 // Adds the onchange listener that hides/shows methods based on selection
-export const linkDropdownPaymentMethods = enhance('payment-method-switcher', element => {
+export const linkDropdownPaymentMethods = enhance('payment-method-switcher', (element) => {
   element.addEventListener('change', () => {
-    element.childNodes.forEach(method => {
+    element.childNodes.forEach((method) => {
       const selectedElement = document.getElementById(method.value);
       if (method.value !== element.value) {
         selectedElement.classList.add('u-screenreader-only');
@@ -30,7 +30,9 @@ export const addPaymentMethodDropdown = () => {
   //Gets all possible payment methods and the preferred one from storage
 
   // We need to get the payment methods block (different names in different pages, same prefix)
-  const paymentMethods = document.querySelectorAll('[id^=payment-method-specific]');
+  const paymentMethods = document.querySelectorAll(
+    '#payment-method-specific-parameters, #payment-method-specific-details',
+  );
 
   if (paymentMethods.length) {
     const paymentMethodsBlock = paymentMethods[0];
@@ -42,7 +44,7 @@ export const addPaymentMethodDropdown = () => {
 
     let preferredMethod;
 
-    if (hashMethod && paymentMethodsBlockArray.some(m => m.id === hashMethod)) {
+    if (hashMethod && paymentMethodsBlockArray.some((m) => m.id === hashMethod)) {
       preferredMethod = hashMethod;
     } else if (storedMethod && storedMethod !== 'undefined') {
       preferredMethod = storedMethod;
@@ -52,7 +54,7 @@ export const addPaymentMethodDropdown = () => {
 
     let options = '';
     let firstMethod;
-    paymentMethodsBlockArray.forEach(method => {
+    paymentMethodsBlockArray.forEach((method) => {
       // Adds the selector option for each method (use classic for loop for IE11)
       // Inside the block, we are interested in the divs, not the title nor the description
       if (method.nodeName !== 'DIV') {
