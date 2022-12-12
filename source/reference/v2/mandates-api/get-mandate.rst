@@ -111,7 +111,7 @@ Response
 
       The URL to the mandate retrieval endpoint documentation.
 
-Payment method specific details
+Payment method-specific details
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The mandate detail object contains different fields per payment method.
 

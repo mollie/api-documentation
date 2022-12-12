@@ -17,7 +17,7 @@ This endpoint can be used to update some details of a created payment.
 Parameters
 ----------
 For a more in-depth explanation of each parameter, see the :doc:`create-payment`. There are also
-payment method specific parameters available, see :ref:`below <payment-method-specific-parameters-update>`.
+payment method-specific parameters available, see :ref:`below <payment-method-specific-parameters-update>`.
 
 .. parameter:: description
    :type: string

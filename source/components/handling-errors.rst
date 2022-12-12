@@ -29,7 +29,7 @@ our API. The reason of the error will be present in the ``details`` object of th
 
        .. type:: object
 
-     - An object with credit card specific details on the payment. Note that there are
+     - An object with credit card-specific details on the payment. Note that there are
        :ref:`various other fields <Credit card v2>` which have been omitted here for the sake of brevity.
 
        .. list-table::

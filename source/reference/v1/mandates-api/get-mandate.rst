@@ -99,7 +99,7 @@ Response
 
    The mandate's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-Payment method specific details
+Payment method-specific details
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The mandate detail object contains different fields per payment method.
 

@@ -137,7 +137,7 @@ Parameters
    When creating recurring payments, the ID of a specific :doc:`mandate </reference/v1/mandates-api/get-mandate>` may be
    supplied to indicate which of the consumer's accounts should be credited.
 
-Payment method specific parameters
+Payment method-specific parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you specify the ``method`` parameter, optional parameters may be available for the payment method. If no method is
 specified, you can still send the optional parameters and we will apply them when the consumer selects the relevant

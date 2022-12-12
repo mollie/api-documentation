@@ -11,7 +11,7 @@ app. The customer then completes the transaction from his or her mobile device.
 
 At Mollie, we support two types of payment QR codes: The payment-specific QR codes and the payment link QR codes.
 
-#. A payment method specific QR code is created by Mollie and follows the same expiry pattern as the
+#. A payment method-specific QR code is created by Mollie and follows the same expiry pattern as the
    :doc:`basic payment flow </payments/accepting-payments>`. When a payment with a QR code expires, the QR code itself
    expires as well. This type of QR code can be created via the
    :doc:`Payments API </reference/v2/payments-api/overview>` or via the
@@ -28,10 +28,10 @@ At Mollie, we support two types of payment QR codes: The payment-specific QR cod
    languages. The expiry time of the QR code can be defined via the ``expiresAt`` parameter. This type of QR code must
    be scanned with the camera app of the phone, or in Belgium, via any banking app.
 
-Payment method specific QR codes
+Payment method-specific QR codes
 --------------------------------
 
-How do payment method specific QR codes work?
+How do payment method-specific QR codes work?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 #. You generate a QR code for a payment method using the Mollie :doc:`payments </reference/v2/payments-api/overview>`
    API.

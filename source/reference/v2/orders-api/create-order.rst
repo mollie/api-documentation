@@ -436,7 +436,7 @@ Parameters
    Any payment specific properties (for example, the ``dueDate`` for bank transfer payments) can be passed here. See
    :ref:`payment-parameters` for the possible fields.
 
-   The ``payment`` property should be an *object* where the keys are the payment method specific parameters you want to
+   The ``payment`` property should be an *object* where the keys are the payment method-specific parameters you want to
    pass.
 
 .. parameter:: metadata
@@ -481,8 +481,8 @@ payment methods on your website profile.
 Optional parameters may be available for that payment method. If no method is specified, you can still send the optional
 parameters and we will apply them when your customer selects the relevant payment method.
 
-All payment specific parameters must be passed in the ``payment`` top level object. The following
-payment specific parameters can be passed when creating the Order:
+All payment-specific parameters must be passed in the ``payment`` top level object. The following
+payment-specific parameters can be passed when creating the Order:
 
 * ``applePayPaymentToken``
 * ``cardToken``
