@@ -17,7 +17,7 @@ At Mollie, we support two types of payment QR codes: The payment-specific QR cod
    specific applications. See more information below on the supported methods and how a consumer should use the QR code.
 
 #. A payment link QR code. This QR code stays valid for a longer period and can be used for any method available at Mollie. These methods should be activated in your Mollie account under 'profiles'. 
-   We advise to only use mobile-friendly methods, such as PayPal, Bancontact, and iDEAL. This type of QR code can be created by creating a payment link via the :doc:`payment link API <//reference/v2/payment-links-api/overview>` 
+   We advise to only use mobile-friendly methods, such as PayPal, Bancontact, and iDEAL. This type of QR code can be created by creating a payment link via the :doc:`payment link API </reference/v2/payment-links-api/overview>` 
    and converting this ``paymentLink`` URL to a QR code via most common QR code tools available for most programming languages. The expiry time of the QR code can be defined via the ``expiresAt`` parameter. 
    This type of QR code must be scanned with the camera app of the phone, or in Belgium, via any banking app.
 
