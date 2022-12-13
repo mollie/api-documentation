@@ -71,11 +71,23 @@ Example
 
 Request
 ^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
 
-   curl -X GET https://api.mollie.com/v2/balances/primary/transactions?limit=5 \
-       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW"
+   .. code-block:: bash
+      :linenos:
+
+      curl -X GET https://api.mollie.com/v2/balances/primary/transactions?limit=5 \
+          -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW"
+
+   .. code-block:: php
+      :lineos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setAccessToken("access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW");
+      $balanceTransactions = $mollie->balanceTransactions->listForPrimary([
+         "limit" => 5,
+      ]);
 
 Response
 ^^^^^^^^

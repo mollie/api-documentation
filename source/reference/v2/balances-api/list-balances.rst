@@ -90,11 +90,22 @@ Example
 
 Request
 ^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-   curl -X GET https://api.mollie.com/v2/balances?limit=5 \
-       -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW"
+      curl -X GET https://api.mollie.com/v2/balances?limit=5 \
+         -H "Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW"
+
+   .. code-block:: php
+      :linenos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setAccessToken("access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW");
+      $from = null;
+      $limit = 5;
+      $balances = $mollie->balances->page($from, $limit);
 
 Response
 ^^^^^^^^

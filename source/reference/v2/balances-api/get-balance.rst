@@ -188,11 +188,20 @@ Example
 
 Request
 ^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
+   .. code-block:: bash
+      :linenos:
 
-   curl -X GET https://api.mollie.com/v2/balances/{balanceId} \
-       -H 'Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW'
+      curl -X GET https://api.mollie.com/v2/balances/bal_gVMhHKqSSRYJyPsuoPNFH \
+         -H 'Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW'
+
+   .. code-block:: php
+      :linenos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setAccessToken("access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW");
+      $balance = $mollie->balances->get("bal_gVMhHKqSSRYJyPsuoPNFH");
 
 Response
 ^^^^^^^^

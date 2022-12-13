@@ -77,11 +77,24 @@ Example
 
 Request
 ^^^^^^^
-.. code-block:: bash
-   :linenos:
+   .. code-block:: bash
+      :linenos:
 
-   curl -X GET https://api.mollie.com/v2/balances/primary/report?from=2021-01-01&until=2021-02-01&grouping=transaction-categories \
-       -H 'Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW'
+      curl -X GET https://api.mollie.com/v2/balances/primary/report?from=2021-01-01&until=2021-02-01&grouping=transaction-categories \
+          -H 'Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW'
+
+   .. code-block:: php
+      :lineos:
+
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setAccessToken("access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW");
+      $report = $mollie->balanceReports->getPrimary(
+         [
+            "from" => "2021-01-01",
+            "until" => "2021-02-01",
+            "grouping" => "transaction-categories",
+         ]
+      );
 
 Response
 ^^^^^^^^

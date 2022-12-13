@@ -247,11 +247,30 @@ Example
 
 Request
 ^^^^^^^
-.. code-block:: bash
-   :linenos:
+.. code-block-selector::
 
-   curl -X GET https://api.mollie.com/v2/balances/{balanceId}/report?from=2021-01-01&until=2021-02-01&grouping=transaction-categories \
-       -H 'Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW'
+   .. code-block:: bash
+      :linenos:
+
+      curl -X GET https://api.mollie.com/v2/balances/bal_gVMhHKqSSRYJyPsuoPNFH/report?from=2021-01-01&until=2021-02-01&grouping=transaction-categories \
+          -H 'Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW'
+
+   .. code-block-selector::
+      :lineos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setAccessToken("access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW");
+
+      $report = $mollie->balanceReports->get(
+         "bal_gVMhHKqSSRYJyPsuoPNFH",
+         [
+            "from" => "2021-01-01",
+            "until" => "2021-02-01",
+            "grouping" => "transaction-categories",
+         ]
+      );
+
 
 Response
 ^^^^^^^^
