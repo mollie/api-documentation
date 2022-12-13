@@ -31,7 +31,7 @@ export const addPaymentMethodDropdown = () => {
 
   // We need to get the payment methods block (different names in different pages, same prefix)
   const paymentMethods = document.querySelectorAll(
-    '#payment-method-specific-parameters, #payment-method-specific-details',
+    '#payment-method-specific-parameters, #payment-method-specific-response-parameters, #payment-method-specific-details',
   );
 
   if (paymentMethods.length) {
