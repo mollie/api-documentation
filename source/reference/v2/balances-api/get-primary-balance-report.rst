@@ -84,7 +84,7 @@ Request
           -H 'Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW'
 
    .. code-block:: php
-      :lineos:
+      :linenos:
 
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setAccessToken("access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW");
