@@ -11,6 +11,13 @@ changes are documented here.
 
              For more information on the v2 API, refer to our :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
+November 2022
+=============
+Monday, 7th
+-----------
+- The field `vatRegulation` in the :doc:`Get Organization endpoint </reference/v1/organizations-api/get-organization>`
+  has been deprecated and removed from the documentation.
+
 October 2022
 ============
 Monday, 24th

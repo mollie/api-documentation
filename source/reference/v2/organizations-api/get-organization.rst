@@ -58,15 +58,7 @@ Response
    :type: string
    :condition: optional
 
-   The VAT number of the organization, if based in the European Union. The VAT number has been checked with the
-   `VIES <http://ec.europa.eu/taxation_customs/vies/>`_ service by Mollie.
-
-.. parameter:: vatRegulation
-   :type: string
-   :condition: optional
-
-   The organization's VAT regulation, if based in the European Union. Either ``shifted`` (VAT is shifted) or ``dutch``
-   (Dutch VAT rate).
+   The VAT number of the organization, if based in the European Union or United Kingdom.
 
 .. parameter:: _links
    :type: object
