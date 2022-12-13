@@ -255,7 +255,7 @@ Request
       curl -X GET https://api.mollie.com/v2/balances/bal_gVMhHKqSSRYJyPsuoPNFH/report?from=2021-01-01&until=2021-02-01&grouping=transaction-categories \
           -H 'Authorization: Bearer access_vR6naacwfSpfaT5CUwNTdV5KsVPJTNjURkgBPdvW'
 
-   .. code-block-selector::
+   .. code-block-selector:: php
       :lineos:
 
       <?php
