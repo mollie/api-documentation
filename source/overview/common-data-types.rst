@@ -12,22 +12,17 @@ Amount object
 -------------
 In v2 endpoints, an amount object is always represented as follows.
 
-.. list-table::
-   :widths: auto
+.. parameter:: currency
+   :type: string
+   :condition: required
 
-   * - ``currency``
+   An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-       .. type:: string
-          :required: true
+.. parameter:: value
+   :type: string
+   :condition: required
 
-     - An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
-
-   * - ``value``
-
-       .. type:: string
-          :required: true
-
-     - A string containing the exact amount in the given currency.
+   A string containing the exact amount in the given currency.
 
 .. _address-object:
 
@@ -35,57 +30,48 @@ Address object
 --------------
 In the v2 endpoints, an address object includes at least the following fields.
 
-.. list-table::
-   :widths: auto
+.. parameter:: streetAndNumber
+   :type: string
+   :condition: required
 
-   * - ``streetAndNumber``
+   The street and street number of the address.
 
-       .. type:: string
-          :required: true
+.. parameter:: streetAdditional
+   :type: string
+   :condition: optional
 
-     - The street and street number of the address.
+   Any additional addressing details, for example an apartment number.
 
-   * - ``streetAdditional``
+.. parameter:: postalCode
+   :type: string
+   :condition: optional
 
-       .. type:: string
-          :required: false
+   The postal code of the address. Required for countries that use postal codes. May only be
+   omitted for these country codes:
 
-     - Any additional addressing details, for example an apartment number.
+   ``AE`` ``AN`` ``AO`` ``AW`` ``BF`` ``BI`` ``BJ`` ``BO`` ``BS`` ``BV`` ``BW`` ``BZ`` ``CD`` ``CF`` ``CG`` ``CI``
+   ``CK`` ``CM`` ``DJ`` ``DM`` ``ER`` ``FJ`` ``GA`` ``GD`` ``GH`` ``GM`` ``GN`` ``GQ`` ``GY`` ``HK`` ``JM`` ``KE``
+   ``KI`` ``KM`` ``KN`` ``KP`` ``LC`` ``ML`` ``MO`` ``MR`` ``MS`` ``MU`` ``MW`` ``NA`` ``NR`` ``NU`` ``PA`` ``QA``
+   ``RW`` ``SB`` ``SC`` ``SL`` ``SO`` ``SR`` ``ST`` ``SY`` ``TF`` ``TK`` ``TL`` ``TO`` ``TT`` ``TV`` ``UG`` ``VU``
+   ``YE`` ``ZM`` ``ZW``
 
-   * - ``postalCode``
+.. parameter:: city
+   :type: string
+   :condition: required
 
-       .. type:: string
-          :required: false
+   The city of the address.
 
-     - The postal code of the address. Required for countries that use postal codes. May only be
-       omitted for these country codes:
+.. parameter:: region
+   :type: string
+   :condition: optional
 
-       ``AE`` ``AN`` ``AO`` ``AW`` ``BF`` ``BI`` ``BJ`` ``BO`` ``BS`` ``BV`` ``BW`` ``BZ`` ``CD`` ``CF`` ``CG`` ``CI``
-       ``CK`` ``CM`` ``DJ`` ``DM`` ``ER`` ``FJ`` ``GA`` ``GD`` ``GH`` ``GM`` ``GN`` ``GQ`` ``GY`` ``HK`` ``JM`` ``KE``
-       ``KI`` ``KM`` ``KN`` ``KP`` ``LC`` ``ML`` ``MO`` ``MR`` ``MS`` ``MU`` ``MW`` ``NA`` ``NR`` ``NU`` ``PA`` ``QA``
-       ``RW`` ``SB`` ``SC`` ``SL`` ``SO`` ``SR`` ``ST`` ``SY`` ``TF`` ``TK`` ``TL`` ``TO`` ``TT`` ``TV`` ``UG`` ``VU``
-       ``YE`` ``ZM`` ``ZW``
+   The region of the address.
 
-   * - ``city``
+.. parameter:: country
+   :type: string
+   :condition: required
 
-       .. type:: string
-          :required: true
-
-     - The city of the address.
-
-   * - ``region``
-
-       .. type:: string
-          :required: false
-
-     - The region of the address.
-
-   * - ``country``
-
-       .. type:: string
-          :required: true
-
-     - The country of the address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+   The country of the address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
 
 When providing an address object as parameter to a request, the following conditions must be met:
 
@@ -329,44 +315,33 @@ QR code object
 --------------
 The QR code object represents an image of a QR code.
 
-.. list-table::
-   :widths: auto
+.. parameter:: height
+   :type: string
 
-   * - ``height``
+   Height of the image in pixels.
 
-       .. type:: integer
+.. parameter:: width
+   :type: string
 
-     - Height of the image in pixels.
+   Width of the image in pixels.
 
-   * - ``width``
+.. parameter:: src
+   :type: string
 
-       .. type:: integer
-
-     - Width of the image in pixels.
-
-   * - ``src``
-
-       .. type:: string
-
-     - The URI you can use to display the QR code. Note that we can send both data URIs as well as links to HTTPS
-       images. You should support both.
+   The URI you can use to display the QR code. Note that we can send both data URIs as well as links to HTTPS
+   images. You should support both.
 
 URL object
 ----------
 In v2 endpoints, URLs are commonly represented as objects with an ``href`` and ``type`` field.
 
-.. list-table::
-   :widths: auto
+.. parameter:: href
+   :type: string
 
-   * - ``href``
+   The actual URL string.
 
-       .. type:: string
+.. parameter:: type
+   :condition: required
+   :type: string
 
-     - The actual URL string.
-
-   * - ``type``
-
-       .. type:: string
-          :required: true
-
-     - The content type of the page or endpoint the URL points to.
+   The content type of the page or endpoint the URL points to.
