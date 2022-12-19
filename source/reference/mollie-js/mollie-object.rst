@@ -97,7 +97,7 @@ For a credit card integration you need to create four components — one for eac
 
    The ``createComponent`` method will create an component ready to be mounted.
 
-   Possible values: ``"cardHolder"`` ``"cardNumber"`` ``"verificationCode"`` ``"expiryDate"`` |  ``"card"``
+   Possible values: ``"card"`` | ``"cardHolder"`` ``"cardNumber"`` ``"verificationCode"`` ``"expiryDate"``
 
    .. note:: Value ``"card"`` can not be used together with other ones (because it already contain all of the others).
      For more info please read :doc:`Mollie Components </components/overview>`.
