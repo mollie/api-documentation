@@ -83,16 +83,16 @@ Create and mount Mollie Components
 After initializing the Mollie object, you can start consuming data from the
 shopper. You have two options to achieve this:
 
-- Option 1: Mollie Card Component - provides "out of the box" functionality
+- Option 1: Card component - provides "out of the box" functionality
 - Option 2: Mollie Components - provides the best flexibility, but requires additional implementation steps
 
-Option 1: Mollie Card Component
+Option 1: Card component
 -------------------------------
 
-Mollie Card Component is a collection of all mandatory card fields, that allows
-you to quickly create a card form. It abstracts you from the DOM details, making
-it easier to implement while still keeping the flexibility for most of the use
-cases. You can create Mollie Card Component using the
+The card component is a collection of all mandatory fields needed to create an
+embedded card form. With this component, you can abstract your implementation
+from the DOM. This makes it easier to implement while covering most use cases.
+You can create the card component using the
 :ref:`components-mollie-create-component` and mount it in your checkout using
 the :ref:`components-mollie-component-mount`.
 
@@ -111,9 +111,9 @@ the :ref:`components-mollie-component-mount`.
 
 Translated error messages are provided into DOM automatically.
 
-To customize Mollie Card Component, see :ref:`components-mollie-create-component`.
+To customize the card component, see :ref:`components-mollie-create-component`.
 
-To add styling to the Mollie Card Component, see
+To add styling to the card component, see
 :doc:`Styling </components/styling>`.
 
 Option 2: Mollie Components

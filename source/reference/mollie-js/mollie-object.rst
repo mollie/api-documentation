@@ -119,13 +119,13 @@ For a credit card integration you need to create four components — one for eac
       :condition: optional
 
       Only available for ``"card"`` type. Allows you to customize individual
-      Components inside the Mollie Card Component.
+      Components inside the card component.
 
       .. parameter:: cardHolder
          :type: individualComponent object
          :condition: optional
 
-         Allows you to customize card holder component inside the Mollie Card Component.
+         Allows you to customize card holder component inside the card component.
 
          .. parameter:: label
             :type: string
@@ -137,7 +137,7 @@ For a credit card integration you need to create four components — one for eac
          :type: individualComponent object
          :condition: optional
 
-         Allows you to customize card number component inside the Mollie Card Component.
+         Allows you to customize card number component inside the card component.
 
          .. parameter:: label
             :type: string
@@ -149,7 +149,7 @@ For a credit card integration you need to create four components — one for eac
          :type: individualComponent object
          :condition: optional
 
-         Allows you to customize verification code component inside the Mollie Card Component.
+         Allows you to customize verification code component inside the card component.
 
          .. parameter:: label
             :type: string
@@ -161,7 +161,7 @@ For a credit card integration you need to create four components — one for eac
          :type: individualComponent object
          :condition: optional
 
-         Allows you to customize expiration date component inside the Mollie Card Component.
+         Allows you to customize expiration date component inside the card component.
 
          .. parameter:: label
             :type: string
