@@ -80,11 +80,11 @@ an object that you can use for creating the four Components your customer will u
 
 Create and mount Mollie Components
 ----------------------------------
-After initializing the Mollie object, you can start consuming data from the
-shopper. You have two options to achieve this:
+After initialising the Mollie object, you can start to consume the shopper's
+data. There are two ways to do this:
 
-- Option 1: Card component - provides "out of the box" functionality
-- Option 2: Mollie Components - provides the best flexibility, but requires additional implementation steps
+1. Use the card component to implement our out-of-the-box solution.
+2. Use Mollie Components to build your own solution that covers your specific use cases.
 
 Option 1: Card component
 -------------------------------
