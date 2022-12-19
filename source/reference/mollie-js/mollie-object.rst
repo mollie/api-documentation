@@ -190,7 +190,7 @@ Example for ``cardHolder`` component
     var cardNumberEl = mollie.createComponent('cardNumber', options)
 
 Example for ``card`` component
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code-block:: js
    :linenos:
 
