@@ -87,7 +87,7 @@ data. There are two ways to do this:
 2. Use Mollie Components to build your own solution that covers your specific use cases.
 
 Option 1: Card component
--------------------------------
+------------------------
 
 The card component is a collection of all mandatory fields needed to create an
 embedded card form. With this component, you can abstract your implementation
@@ -109,7 +109,7 @@ the :ref:`components-mollie-component-mount`.
    var cardComponent = mollie.createComponent('card');
    cardComponent.mount('#card');
 
-Translated error messages are provided into DOM automatically.
+Translated error messages will be rendered within the DOM automatically.
 
 To customize the card component, see :ref:`components-mollie-create-component`.
 
