@@ -282,6 +282,9 @@ Response
    The country code you provided upon payment creation, to restrict the payment methods available to your customer to
    methods from a single country only.
 
+   The field expects a country code in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format,
+   for example `NL`.
+
 .. parameter:: metadata
    :type: mixed
    :collapse: true

@@ -135,6 +135,9 @@ Parameters
 
    If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
 
+   The field expects a country code in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format,
+   for example `NL`.
+
 .. parameter:: metadata
    :type: mixed
    :condition: optional
