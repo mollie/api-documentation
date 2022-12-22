@@ -35,7 +35,7 @@ Refunds have their own status, independent of the Payment or Order they were cre
   The refund is being processed. Cancelation is no longer possible.
 
 *refunded*
-  The refund has been completed and your customer has received the funds.
+  The refund has been completed and your customer has either received the funds or the funds are on their way.
 
 *failed*
   The refund has failed after processing. For example, the customer has closed his / her bank account. The funds will
