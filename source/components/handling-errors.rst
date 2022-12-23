@@ -22,40 +22,30 @@ you want to let the consumer attempt to pay again, you should collect a new card
 our API. The reason of the error will be present in the ``details`` object of the
 :doc:`Get payment endpoint </reference/v2/payments-api/get-payment>` response, as shown below:
 
-.. list-table::
-   :widths: auto
+.. parameter:: details
+   :type: object
 
-   * - ``details``
+   An object with credit card-specific details on the payment. Note that there are
+   :ref:`various other fields <Credit card v2>` which have been omitted here for the sake of brevity.
 
-       .. type:: object
+   .. parameter:: failureReason
+      :type: string
 
-     - An object with credit card-specific details on the payment. Note that there are
-       :ref:`various other fields <Credit card v2>` which have been omitted here for the sake of brevity.
+      Only available for failed payments. Contains a failure reason code.
 
-       .. list-table::
-          :widths: auto
+      Possible values: ``authentication_abandoned`` ``authentication_failed`` ``authentication_required``
+      ``authentication_unavailable_acs`` ``card_declined`` ``card_expired`` ``inactive_card`` ``insufficient_funds``
+      ``invalid_cvv`` ``invalid_card_holder_name`` ``invalid_card_number`` ``invalid_card_type`` ``possible_fraud``
+      ``refused_by_issuer`` ``unknown_reason``
 
-          * - ``failureReason``
+   .. parameter:: failureMessage
+      :type: string
 
-              .. type:: string
+      A localized message that can be shown to the consumer, depending on the ``failureReason``.
 
-            - Only available for failed payments. Contains a failure reason code.
+      Example value: ``Der Kontostand Ihrer Kreditkarte ist unzureichend. Bitte verwenden Sie eine andere Karte.``
 
-              Possible values: ``authentication_abandoned`` ``authentication_failed`` ``authentication_required``
-              ``authentication_unavailable_acs`` ``card_declined`` ``card_expired`` ``inactive_card``
-              ``insufficient_funds`` ``invalid_cvv`` ``invalid_card_holder_name`` ``invalid_card_number``
-              ``invalid_card_type`` ``possible_fraud`` ``refused_by_issuer`` ``unknown_reason``
-
-          * - ``failureMessage``
-
-              .. type:: string
-
-            - A localized message that can be shown to the consumer, depending on the ``failureReason``.
-
-              Example value:
-              ``Der Kontostand Ihrer Kreditkarte ist unzureichend. Bitte verwenden Sie eine andere Karte.``.
-
-              This is provided as a convenience, you can of course also use your own messages.
+      This is provided as a convenience, you can of course also use your own messages.
 
 Example Payments API response for ``failed`` payment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

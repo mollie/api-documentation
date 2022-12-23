@@ -19,55 +19,41 @@ You can get the next page of objects by following the ``next`` link.
 
 Response object
 ^^^^^^^^^^^^^^^
-.. list-table::
-   :widths: auto
+.. parameter:: count
+   :type: integer
 
-   * - ``count``
+   The number of objects found in ``_embedded``, which is either the requested number (with a maximum of 250) or the
+   default number.
 
-       .. type:: integer
+.. parameter:: _embedded
+   :type: object
 
-     - The number of objects found in ``_embedded``, which is either the requested number (with a maximum of 250) or the
-       default number.
+   The actual data you are looking for.
 
-   * - ``_embedded``
+.. parameter:: _links
+   :type: object
 
-       .. type:: object
+   Links to help navigate through the lists of objects. Every URL object will contain an ``href`` and a ``type`` field.
 
-     - The actual data you are looking for.
+   .. parameter:: self
+      :type: object
 
-   * - ``_links``
+      The URL to the current set of objects.
 
-       .. type:: object
+   .. parameter:: previous
+      :type: object
 
-     - Links to help navigate through the lists of objects. Every URL object will contain an ``href`` and a ``type``
-       field.
+      The previous set of objects, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: next
+      :type: object
 
-          * - ``self``
+      The next set of objects, if available.
 
-              .. type:: object
+   .. parameter:: documentation
+      :type: object
 
-            - The URL to the current set of objects.
-
-          * - ``previous``
-
-              .. type:: object
-
-            - The previous set of objects, if available.
-
-          * - ``next``
-
-              .. type:: object
-
-            - The next set of objects, if available.
-
-          * - ``documentation``
-
-              .. type:: object
-
-            - The URL to the current list endpoint documentation.
+      The URL to the current list endpoint documentation.
 
 Example of v2 pagination
 ^^^^^^^^^^^^^^^^^^^^^^^^
