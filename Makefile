@@ -28,9 +28,6 @@ source/_static/style.css: $(wildcard source/theme/styles/**/*) node_modules/.bin
 source/_static/index.js: source/theme/js/index.js node_modules/.bin/parcel
 	node_modules/.bin/parcel build source/theme/js/index.js --out-dir source/_static --out-file index --no-source-maps --detailed-report
 
-source/_static/gtm.js: source/theme/js/gtm.js
-	cp source/theme/js/gtm.js $@
-
 css-reload:
 	@./node_modules/.bin/parcel source/theme/styles/main.scss --out-dir build/_static --out-file style --no-hmr --port 8001
 
@@ -57,17 +54,15 @@ verify:
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option. ${O} is meant as a shortcut for ${DEV_SPHINX_OPTS}.
-html: Makefile source/_static/style.css source/_static/index.js source/_static/gtm.js verify
+html: Makefile source/_static/style.css source/_static/index.js verify
 	$(MAKE) html-only
 
 .PHONY: html-only
 html-only: verify
 	${DEV_SPHINX_BUILD} -M html "${SOURCE_DIR}" "${BUILD_DIR}" ${DEV_SPHINX_OPTS} ${O}
 
-html-production: Makefile source/_static/style.css source/_static/index.js source/_static/gtm.js verify
+html-production: Makefile source/_static/style.css source/_static/index.js verify
 	${PROD_SPHINX_BUILD} -M html "${SOURCE_DIR}" "${BUILD_DIR}" ${PROD_SPHINX_OPTS} ${O}
-	# Go thru all the files, and replace the snippet with the google tag manager code
-	@LC_CTYPE=C LANG=C find build/ -type f -name '*' -exec sed -i.bak 's/<!-- GOOGLE_TAG_MANAGER -->/<script type=\"text\/javascript\" src=\"\/_static\/gtm.js\" async><\/script>/g' {} \;
 	# Go thru all the files, and replace the paths from relative to an absolute CDN path
 	@LC_CTYPE=C LANG=C find build/ -type f -name '*' -exec sed -i.bak 's/\"[\.\/]*_images/\"https:\/\/assets.docs.mollie.com\/_images/g' {} \;
 	@LC_CTYPE=C LANG=C find build/ -type f -name '*' -exec sed -i.bak 's/\"[\.\/]*_static/\"https:\/\/assets.docs.mollie.com\/_static/g' {} \;
