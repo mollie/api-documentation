@@ -522,8 +522,9 @@ Example
       :linenos:
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      order = mollie_client.orders.get('ord_stTC2WHAuS')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      order = mollie_client.orders.get("ord_stTC2WHAuS", embed="payment,refunds")
 
    .. code-block:: ruby
       :linenos:
@@ -542,9 +543,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const order = await mollieClient.orders.get('ord_stTC2WHAuS');
-      })();
+      const order = await mollieClient.orders.get('ord_stTC2WHAuS');
 
 Response
 ^^^^^^^^

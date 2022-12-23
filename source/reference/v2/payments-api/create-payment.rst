@@ -135,6 +135,9 @@ Parameters
 
    If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
 
+   The field expects a country code in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format,
+   for example `NL`.
+
 .. parameter:: metadata
    :type: mixed
    :condition: optional
@@ -348,9 +351,9 @@ Gift cards
    If you need a brand that is not in the list, contact our support department. We can also support closed-loop cards.
 
    Possible values: ``beautycadeaukaart`` ``bloemencadeaukaart`` ``bloemplantgiftcard`` ``boekenbon`` ``decadeaukaart``
-   ``delokalecadeaukaart`` ``dinercadeau`` ``doenkadotickets`` ``fashioncheque`` ``festivalcadeau`` ``good4fun`` ``huistuincadeaukaart``
+   ``delokalecadeaukaart`` ``dinercadeau`` ``doenkadotickets`` ``fashioncheque`` ``festivalcadeau`` ``good4fun`` ``horseandgifts`` ``huistuincadeaukaart``
    ``jewelcard`` ``kluscadeau`` ``kunstencultuurcadeaukaart`` ``nationalebioscoopbon`` ``nationaleentertainmentcard``
-   ``nationalegolfbon`` ``ohmygood`` ``podiumcadeaukaart`` ``reiscadeau`` ``restaurantcadeau``
+   ``nationalegolfbon`` ``ohmygood`` ``podiumcadeaukaart`` ``reiscadeau`` ``restaurantcadeau`` ``shoesandsneakerscadeau``
    ``sodexosportculturepass`` ``sportenfitcadeau`` ``sustainablefashion`` ``travelcheq`` ``vvvgiftcard``
    ``vvvdinercheque`` ``vvvlekkerweg`` ``webshopgiftcard`` ``wijncadeaukaart`` ``yourgift``
 
@@ -771,18 +774,18 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
       payment = mollie_client.payments.create({
-         'amount': {
-               'currency': 'EUR',
-               'value': '10.00'
-         },
-         'description': 'Order #12345',
-         'redirectUrl': 'https://webshop.example.org/order/12345/',
-         'webhookUrl': 'https://webshop.example.org/payments/webhook/',
-         'metadata': {
-               'order_id': '12345'
-         }
+          "amount": {
+              "currency": "EUR",
+              "value": "10.00",
+          },
+          "description": "Order #12345",
+          "redirectUrl": "https://webshop.example.org/payments/webhook/",
+          "webhookUrl": "https://webshop.example.org/order/12345/",
+          "metadata": {
+              "order_id": "12345",
+          }
       })
 
    .. code-block:: ruby
@@ -813,20 +816,18 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const payment = await mollieClient.payments.create({
-          amount: {
-            currency: 'EUR',
-            value: '10.00', // We enforce the correct number of decimals through strings
-          },
-          description: 'Order #12345',
-          redirectUrl: 'https://webshop.example.org/order/12345/',
-          webhookUrl: 'https://webshop.example.org/payments/webhook/',
-          metadata: {
-            order_id: '12345',
-          },
-        });
-      })();
+      const payment = await mollieClient.payments.create({
+        amount: {
+          currency: 'EUR',
+          value: '10.00'
+        },
+        description: 'Order #12345',
+        redirectUrl: 'https://webshop.example.org/order/12345/',
+        webhookUrl: 'https://webshop.example.org/payments/webhook/',
+        metadata: {
+          order_id: '12345'
+        }
+      });
 
 Response
 ^^^^^^^^

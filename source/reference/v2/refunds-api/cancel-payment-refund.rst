@@ -65,10 +65,10 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      payment = mollie_client.payments.get('tr_WDqYK6vllg')
-      mollie_client.payment_refunds.on(payment).delete('re_4qqhO89gsT')
+      payment = mollie_client.payments.get("tr_WDqYK6vllg")
+      payment.refunds.delete("re_4qqhO89gsT")
 
    .. code-block:: javascript
       :linenos:
@@ -76,9 +76,9 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const status = await mollieClient.payments_refunds.cancel('re_4qqhO89gsT', { paymentId: 'tr_WDqYK6vllg' });
-      })();
+      await mollieClient.paymentRefunds.cancel('re_4qqhO89gsT', {
+        paymentId: 'tr_WDqYK6vllg'
+      });
 
 Response
 ^^^^^^^^

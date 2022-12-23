@@ -57,9 +57,9 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      mollie_client.customers.delete('cst_8wmqcHMN4U')
+      mollie_client.customers.delete("cst_8wmqcHMN4U")
 
    .. code-block:: ruby
       :linenos:
@@ -78,9 +78,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const status = mollieClient.customers.delete('cst_8wmqcHMN4U');
-      })();
+      await mollieClient.customers.delete('cst_8wmqcHMN4U');
 
 Response
 ^^^^^^^^

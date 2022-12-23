@@ -144,6 +144,7 @@ Example
 
       mollie_client = Client()
       mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
       payment_link = mollie_client.payment_links.create({
          "amount": {
                "currency": "EUR",
@@ -176,6 +177,7 @@ Response
            "value": "24.95",
            "currency": "EUR"
        },
+       "archived": false,
        "description": "Bicycle tires",
        "redirectUrl": "https://webshop.example.org/thanks",
        "webhookUrl": "https://webshop.example.org/payment-links/webhook/",

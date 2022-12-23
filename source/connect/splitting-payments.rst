@@ -1,11 +1,12 @@
 Splitting payments with Mollie Connect
 ======================================
 
-.. note:: Split Payments are not enabled by default. To enable them for your organization, please reach out to 
+.. note:: Split Payments are not enabled by default. To enable them for your organization, please reach out to
           our partner management team.
 
-.. warning:: The split payments feature is not available for third-party payments methods (gift cards, Paypal, etc.) or
-             captures (Klarna Pay now, Klarna Pay later, Klarna Slice it, etc.)
+.. warning:: The split payments feature is not available (yet) for third-party payments methods (Gift Cards, Paypal,
+             etc.). There is currently a closed beta for all Klarna methods (Klarna Pay now, Klarna Pay later, Klarna
+             Slice it), please reach out to our partner management team to enable this feature.
 
 With **Split payments** you can distribute and split payments between your platform and your connected merchant
 accounts.

@@ -113,7 +113,7 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
       chargebacks = mollie_client.chargebacks.list()
 
@@ -134,9 +134,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        chargebacks = await mollieClient.chargebacks.list();
-      })();
+      const chargebacks = mollieClient.chargebacks.iterate();
 
 Response
 ^^^^^^^^

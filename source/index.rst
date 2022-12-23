@@ -1,68 +1,65 @@
-Mollie API: simple & powerful
-=============================
+Mollie API documentation
+========================
+With the Mollie API you can integrate online payments by Mollie directly into your website or app.
 
-Use the Mollie API to integrate online payments by Mollie directly into your website or app. Mollie and your website
-or app back-end will communicate by sending HTTP requests back and forth.
+To get started quickly, you can simply drop Mollie into your hosted webshop with one of our free integrations, or
+leverage one of our existing API packages for a more advanced setup.
 
-This page provides an overview of the Mollie API. The topics in the chapter deal with a number of specific aspects of
-the API. We recommend to read these topics entirely.
+We have integrations available for virtually all common e-commerce software, bookkeeping platforms, and so on.
+These can be found in our `integrations directory <https://www.mollie.com/integrations>`_.
 
-If possible it would be wise to leave communication at this level to our ready-made :ref:`Clients <clients>`. This
-allows you to still be in control without reinventing the wheel.
+For more advanced users, we have made Mollie API packages available for the most popular programming languages and
+frameworks. These include `PHP <https://github.com/mollie/mollie-api-php>`_,
+`Ruby <https://github.com/mollie/mollie-api-ruby>`_, `Node.js <https://github.com/mollie/mollie-api-node>`_,
+and `Python <https://github.com/mollie/mollie-api-python>`_. Please refer to our
+`package list <https://www.mollie.com/developers/packages>`_ for more packages and plugins.
 
-If you have any questions about integrating our API, please `contact us <https://www.mollie.com/en/contact/>`_. We are
-happy to help!
+If you have any questions about integrating our API, please `contact us <https://www.mollie.com/contact>`_. We are happy
+to help!
 
-The Mollie REST API
--------------------
-The API implements a **Representational state transfer** (REST) architecture. Sounds technical, but it's really quite
-easy. It mainly breaks down to HTTP-methods ``GET``, ``PATCH``, ``POST`` and ``DELETE`` matching the operations to
-**read**, **update**, **create** and **delete**.
+API guides
+----------
+To get to know the Mollie API better, a good starting point is to first navigate the *Mollie API* section in the sidebar
+of the current page. These guides take you through the basic flow of authentication, handling responses and errors, and
+receiving webhooks.
 
-REST also implies a nice and clean structure for URLs or endpoints. This means you can reach any part of the Mollie API
-on ``https://api.mollie.com/v2/`` adding the name of the resource you want to interact with.
+Next, to learn more about the inner workings and features of our payment processing APIs, please refer to the
+:doc:`Payments guides </payments/accepting-payments>`.
 
-.. _clients:
+Optionally, for Mollie users building platforms or products for other merchants or Mollie users, we offer Mollie
+Connect. Mollie Connect is a set of APIs and tools that allows you to connect multiple Mollie accounts together, for
+example to create a white-labeled experiences or to distribute funds across multiple accounts. Read more in the
+:doc:`Mollie Connect guides </connect/overview>`.
 
-Clients, modules and plugins
-----------------------------
-Well begun is half done. Save time and build on solid foundations. Mollie API clients are available for
-`PHP <https://github.com/mollie/mollie-api-php>`_, `Ruby <https://github.com/mollie/mollie-api-ruby>`_,
-`Node.js <https://github.com/mollie/mollie-api-node>`_ and `Python <https://github.com/mollie/mollie-api-python>`_.
-
-Of course we also provide `modules and plugins <https://www.mollie.com/integrations>`_ for just about every webshop
-software out there.
+Lastly, all endpoints of our APIs are also extensively documented in the
+:doc:`API reference section </reference/v2/payments-api/overview>`, with property lists and code examples for each
+endpoint.
 
 Payment methods
 ---------------
-Mollie is always adding new payment methods. The Mollie API currently supports the following payments methods:
-
-* `Bancontact <https://www.mollie.com/en/payments/bancontact>`_
-* `Bank transfer <https://www.mollie.com/en/payments/bank-transfer>`_
-* `Belfius Pay Button <https://www.mollie.com/en/payments/belfius>`_
-* `Credit card <https://www.mollie.com/en/payments/credit-card>`_ (VISA, MasterCard, Maestro and American Express)
-* `EPS <https://www.mollie.com/en/payments/eps>`_
-* `Gift cards <https://www.mollie.com/en/payments/gift-cards>`_ (Webshop Giftcard, Podium Cadeaukaart, VVV Cadeaukaart,
-  YourGift etc.)
-* `Giropay <https://www.mollie.com/en/payments/giropay>`_
-* `iDEAL <https://www.mollie.com/en/payments/ideal>`_
-* `in3 <https://www.mollie.com/en/payments/in3>`_
-* `KBC/CBC Payment Button <https://www.mollie.com/en/payments/kbc-cbc>`_
-* `Klarna Pay now <https://www.mollie.com/en/payments/klarna-pay-now>`_
-* `Klarna Pay later <https://www.mollie.com/en/payments/klarna-pay-later>`_
-* `Klarna Slice it <https://www.mollie.com/en/payments/klarna-slice-it>`_
-* `Meal vouchers, eco vouchers, and various other gift vouchers
-  <https://www.mollie.com/en/payments/meal-and-eco-vouchers>`_ (Appetiz, Cadeau Pass, Chèque Déjeuner, Eco Pass, Lunch
-  Pass, Monizze, PassRestaurant, Swile)
-* `PayPal <https://www.mollie.com/en/payments/paypal>`_
-* `paysafecard <https://www.mollie.com/en/payments/paysafecard>`_
-* `Przelewy24 <https://www.mollie.com/en/payments/przelewy24>`_
-* `SEPA Direct Debit <https://www.mollie.com/en/payments/direct-debit>`_
-* `SOFORT Banking <https://www.mollie.com/en/payments/sofort>`_
-
-Additionally, the following wallets are supported:
+Mollie is continuously expanding its payment method coverage. The Mollie API currently supports the following payments
+methods:
 
 * `Apple Pay <https://www.mollie.com/payments/apple-pay>`_
-
-All of the payment methods you have enabled are – where relevant – shown to the consumer. You can enable payment methods
-using the `Mollie Dashboard <https://www.mollie.com/dashboard/settings/profiles>`_.
+* `Bancontact <https://www.mollie.com/payments/bancontact>`_
+* `Bank transfer <https://www.mollie.com/payments/bank-transfer>`_
+* `Belfius Pay Button <https://www.mollie.com/payments/belfius>`_
+* `Card payments <https://www.mollie.com/payments/credit-card>`_ (VISA, Mastercard, American Express, debit cards, etc.)
+* `EPS <https://www.mollie.com/payments/eps>`_
+* `Gift cards <https://www.mollie.com/payments/gift-cards>`_ (Webshop Giftcard, Podium Cadeaukaart, VVV Cadeaukaart,
+  YourGift, etc.)
+* `giropay <https://www.mollie.com/payments/giropay>`_
+* `iDEAL <https://www.mollie.com/payments/ideal>`_
+* `in3 <https://www.mollie.com/payments/in3>`_
+* `KBC/CBC Payment Button <https://www.mollie.com/payments/kbc-cbc>`_
+* `Klarna Pay now <https://www.mollie.com/payments/klarna-pay-now>`_
+* `Klarna Pay later <https://www.mollie.com/payments/klarna-pay-later>`_
+* `Klarna Slice it <https://www.mollie.com/payments/klarna-slice-it>`_
+* `Meal vouchers, eco vouchers, and various other gift vouchers
+  <https://www.mollie.com/payments/meal-eco-gift-vouchers>`_ (Appetiz, Cadeau Pass, Chèque Déjeuner, Eco Pass, Lunch
+  Pass, Monizze, PassRestaurant, Swile, etc.)
+* `PayPal <https://www.mollie.com/payments/paypal>`_
+* `paysafecard <https://www.mollie.com/payments/paysafecard>`_
+* `Przelewy24 <https://www.mollie.com/payments/przelewy24>`_
+* `SEPA Direct Debit <https://www.mollie.com/payments/direct-debit>`_
+* `SOFORT Banking <https://www.mollie.com/payments/sofort>`_

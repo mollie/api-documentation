@@ -148,12 +148,12 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      # get the first page
+      # Get the first page
       payments = mollie_client.payments.list()
 
-      # get the next page
+      # Get the next page
       next_payments = payments.get_next()
 
    .. code-block:: ruby
@@ -176,9 +176,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const payments = await mollieClient.payments.list();
-      })();
+      const payments = mollieClient.payments.iterate();
 
 Response
 ^^^^^^^^

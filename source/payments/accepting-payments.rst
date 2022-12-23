@@ -64,7 +64,8 @@ programmer's perspective.
    `paid`, your website can send out a confirmation email to the customer and start the order fulfilment.
 
 #. At this point Mollie returns the visitor to your website using the redirect URL specified when the payment was
-   created. Your website usually already knows the payment was successful, and thanks the customer.
+   created. Make sure that you have received our webhook before rendering a payment status to the customer, since 
+   it happens sometimes that the webhook arrives later than the customer redirection. 
 
 Tracking your order reference
 -----------------------------

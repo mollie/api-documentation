@@ -191,29 +191,54 @@ Example
                }
          }'
 
+   .. code-block:: php
+      :linenos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+
+      $orderId = "ord_pbjz8x";
+      $orderLineId = "odl_dgtxyl";
+      $mollie->orderLines->update($orderId, $orderLineId, [
+        "name" => "LEGO 71043 Hogwarts™ Castle",
+        "productUrl" => "https://shop.lego.com/en-GB/product/Hogwarts-Castle-71043",
+        "imageUrl" => "https://sh-s7-live-s.legocdn.com/is/image//LEGO/71043_alt1?$main$",
+        "quantity" => 2,
+        "vatRate" => "21.00",
+        "unitPrice" => [
+          "currency" => "EUR",
+          "value" => "349.00"
+        ],
+        "totalAmount" => [
+          "currency" => "EUR",
+          "value" => "598.00"
+        ],
+        "discountAmount" => [
+          "currency" => "EUR",
+          "value" => "100.00"
+        ],
+        "vatAmount" => [
+          "currency" => "EUR",
+          "value" => "103.79"
+        ]
+      ]);
+
+
    .. code-block:: python
       :linenos:
 
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
       order = mollie_client.orders.get('ord_pbjz8x')
-      order = order.update_line(
-          'odl_dgtxyl',
-          data={
-      'name': 'LEGO 71043 Hogwarts™ Castle',
-              'productUrl': 'https://shop.lego.com/en-GB/product/Hogwarts-Castle-71043',
-              'imageUrl': 'https://sh-s7-live-s.legocdn.com/is/image//LEGO/71043_alt1?$main$',
-              'quantity': 2,
-              'vatRate': '21.00',
-              'unitPrice': {'currency': 'EUR', 'value': '349.00'},
-              'totalAmount': {'currency': 'EUR', 'value': '598.00'},
-              'discountAmount': {'currency': 'EUR', 'value': '100.00'},
-              'vatAmount': {'currency': 'EUR', 'value': '103.79'},
-          },
-      )
+      order = order.lines.update("odl_dgtxyl", {
+          "name": "LEGO 71043 Hogwarts™ Castle",
+          "productUrl": "https://shop.lego.com/en-GB/product/Hogwarts-Castle-71043",
+          "imageUrl": "https://sh-s7-live-s.legocdn.com/is/image//LEGO/71043_alt1?$main$",
+      })
 
    .. code-block:: javascript
       :linenos:
@@ -221,14 +246,12 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const order = await mollieClient.orders_lines.update('odl_dgtxyl', {
-          orderId: 'ord_pbjz8x',
-          name: 'LEGO 71043 Hogwarts™ Castle',
-          productUrl: 'https://shop.lego.com/en-GB/product/Hogwarts-Castle-71043',
-          imageUrl: 'https://sh-s7-live-s.legocdn.com/is/image//LEGO/71043_alt1?$main$',
-        });
-      })();
+      const order = await mollieClient.orderLines.update('odl_dgtxyl', {
+        orderId: 'ord_pbjz8x',
+        name: 'LEGO 71043 Hogwarts™ Castle',
+        productUrl: 'https://shop.lego.com/en-GB/product/Hogwarts-Castle-71043',
+        imageUrl: 'https://sh-s7-live-s.legocdn.com/is/image//LEGO/71043_alt1?$main$'
+      });
 
 Response
 ^^^^^^^^

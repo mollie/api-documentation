@@ -83,10 +83,11 @@ Example
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-      $customer = $mollie->customers->get("cst_8wmqcHMN4U");
-      $customer->name = "Updated Customer A";
-      $customer->email = "updated-customer@example.org";
-      $customer->update();
+      $customerId = "cst_8wmqcHMN4U";
+      $customer = $mollie->customers->update($customerId, [
+        "name" => "Updated Customer A",
+        "email" => "updated-customer@example.org",
+      ]);
 
    .. code-block:: python
       :linenos:
@@ -98,9 +99,11 @@ Example
 
       customer = mollie_client.customers.update(
           "cst_8wmqcHMN4U",
-          data={"name": "Updated Customer A", "email": "updated-customer@example.org"},
+          {
+              "name": "Updated Customer A",
+              "email": "updated-customer@example.org"
+          },
       )
-
 
    .. code-block:: ruby
       :linenos:
@@ -123,12 +126,10 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const customer = await mollieClient.customers.update('cst_8wmqcHMN4U' , {
-          name: 'Updated Customer A',
-          email: 'updated-customer@example.org'
-        });
-      })();
+      const customer = await mollieClient.customers.update('cst_8wmqcHMN4U', {
+        name: 'Updated Customer A',
+        email: 'updated-customer@example.org'
+      });
 
 Response
 ^^^^^^^^

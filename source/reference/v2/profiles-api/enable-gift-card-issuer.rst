@@ -89,9 +89,10 @@ Request
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+      mollie_client.set_access_token("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ")
 
-      mollie_client.profile_methods.with_parent_id('pfl_v9hTwCvYqw', 'giftcard').create('festivalcadeau')
+      profile = mollie_client.profiles.get("pfl_v9hTwCvYqw")
+      issuer = profile.methods.enable_issuer("giftcard", "festivalcadeau")
 
 Response
 ^^^^^^^^

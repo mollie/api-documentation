@@ -282,6 +282,9 @@ Response
    The country code you provided upon payment creation, to restrict the payment methods available to your customer to
    methods from a single country only.
 
+   The field expects a country code in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format,
+   for example `NL`.
+
 .. parameter:: metadata
    :type: mixed
    :collapse: true
@@ -1095,7 +1098,7 @@ Mollie Connect response parameters
 
 QR codes (optional)
 ^^^^^^^^^^^^^^^^^^^
-A QR code object with payment method specific values is available for certain payment methods if you pass the include
+A QR code object with payment method-specific values is available for certain payment methods if you pass the include
 ``details.qrCode`` to the resource endpoint.
 
 The ``qrCode`` key in the ``details`` object will then become available. The key will contain this object:
@@ -1144,8 +1147,9 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      payment = mollie_client.payments.get('tr_WDqYK6vllg')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      payment = mollie_client.payments.get("tr_WDqYK6vllg", embed="refunds,chargebacks", include="details.qrCode")
 
    .. code-block:: ruby
       :linenos:
@@ -1164,9 +1168,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const payment = await mollieClient.payments.get('tr_Eq8xzWUPA4');
-      })();
+      const payment = await mollieClient.payments.get('tr_Eq8xzWUPA4');
 
 Response
 ^^^^^^^^

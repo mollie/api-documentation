@@ -109,10 +109,11 @@ Request
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      subscription = mollie_client.customer_subscriptions.with_parent_id('cst_8wmqcHMN4U').get('sub_8JfGzs6v3K')
-      payments = subscription.payments
+      customer = mollie_client.customers.get("cst_stTC2WHAuS")
+      subscription = customer.subscriptions.get("sub_8JfGzs6v3K")
+      payments = subscription.payments.list()
 
 Response
 ^^^^^^^^

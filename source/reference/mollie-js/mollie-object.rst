@@ -97,13 +97,16 @@ For a credit card integration you need to create four components — one for eac
 
    The ``createComponent`` method will create an component ready to be mounted.
 
-   Possible values: ``"cardHolder"`` ``"cardNumber"`` ``"verificationCode"`` ``"expiryDate"``
+   Possible values: ``"card"`` | ``"cardHolder"`` ``"cardNumber"`` ``"verificationCode"`` ``"expiryDate"``
+
+   .. note:: Value ``"card"`` can not be used together with other ones (because it already contain all of the others).
+     For more info please read :doc:`Mollie Components </components/overview>`.
 
 .. parameter:: options
    :type: options object
    :condition: optional
 
-   The options you want to give to Mollie Components. E.g. ``{ styles: fontSize: "10px"}``
+   The options you want to give to Mollie Components.
 
    .. parameter:: styles
       :type: styles object
@@ -111,17 +114,73 @@ For a credit card integration you need to create four components — one for eac
 
       See :doc:`Styling Mollie Components </components/styling>`.
 
-Javascript
-^^^^^^^^^^
+   .. parameter:: components
+      :type: components object
+      :condition: optional
+
+      Only available for ``"card"`` type. Allows you to customize individual
+      Components inside the card component.
+
+      .. parameter:: cardHolder
+         :type: individualComponent object
+         :condition: optional
+
+         Allows you to customize card holder component inside the card component.
+
+         .. parameter:: label
+            :type: string
+            :condition: optional
+
+            Customize label for this component
+
+      .. parameter:: cardNumber
+         :type: individualComponent object
+         :condition: optional
+
+         Allows you to customize card number component inside the card component.
+
+         .. parameter:: label
+            :type: string
+            :condition: optional
+
+            Customize label for this component
+
+      .. parameter:: verificationCode
+         :type: individualComponent object
+         :condition: optional
+
+         Allows you to customize verification code component inside the card component.
+
+         .. parameter:: label
+            :type: string
+            :condition: optional
+
+            Customize label for this component
+
+      .. parameter:: expiryDate
+         :type: individualComponent object
+         :condition: optional
+
+         Allows you to customize expiration date component inside the card component.
+
+         .. parameter:: label
+            :type: string
+            :condition: optional
+
+            Customize label for this component
+
+
+Example for ``cardHolder`` component
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code-block:: js
    :linenos:
 
     var options = {
-      styles : {
+      styles: {
         base: {
           color: '#eee',
           fontSize: '10px',
-          '::placeholder' : {
+          '::placeholder': {
             color: 'rgba(68, 68, 68, 0.2)',
           }
         }
@@ -130,21 +189,29 @@ Javascript
 
     var cardNumberEl = mollie.createComponent('cardNumber', options)
 
-ES6
-^^^
+Example for ``card`` component
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code-block:: js
    :linenos:
 
-    const options = {
-      styles : {
+    var options = {
+      styles: {
         base: {
           color: '#eee',
           fontSize: '10px',
-          '::placeholder' : {
+          '::placeholder': {
             color: 'rgba(68, 68, 68, 0.2)',
           }
+        }
+      },
+      components: {
+        cardHolder: {
+          label: 'Custom card holder label'
+        },
+        verificationCode: {
+          label: 'Custom verification code label'
         }
       }
     }
 
-    const cardNumberEl = mollie.createComponent('cardNumber', options)
+    var cardNumberEl = mollie.createComponent('cardNumber', options)

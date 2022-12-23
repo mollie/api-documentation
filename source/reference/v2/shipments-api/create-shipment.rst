@@ -174,37 +174,40 @@ Example
    .. code-block:: python
       :linenos:
 
+      from mollie.api.client import Client
+
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      order = mollie_client.orders.get('ord_kEn1PlbGa')
-      shipment = order.create_shipment({
-         'lines': [
-            {
-               'id': 'odl_dgtxyl',
-               'quantity': 1,  # you can set the quantity if not all is shipped at once
-            },
-            {
-               'id': 'odl_jp31jz',  # all is shipped if no quantity is set
-            }
-         ],
-         'tracking': {
-            'carrier': 'PostNL',
-            'code': '3SKABA000000000',
-            'url': 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C',
-         }
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      order = mollie_client.orders.get("ord_kEn1PlbGa")
+      shipment = order.shipments.create({
+          "lines": [
+              {
+                  "id": "odl_dgtxyl",
+                  "quantity": 1,  # you can set the quantity if not all is shipped at once
+              },
+              {
+                  "id": "odl_jp31jz",  # all is shipped if no quantity is set
+              }
+          ],
+          "tracking": {
+              "carrier": "PostNL",
+              "code": "3SKABA000000000",
+              "url": "http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C",
+          }
       })
 
       # if all lines are shipped, there is no need to specify them
       shipment = order.create_shipment({
-         'tracking': {
-            'carrier': 'PostNL',
-            'code': '3SKABA000000000',
-            'url': 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C',
-         }
+          "tracking": {
+              "carrier": "PostNL",
+              "code": "3SKABA000000000",
+              "url": "http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C",
+          }
       })
 
-      # or when no tracking is specified:
-      shipment = order.create_shipment()
+      # or, when no tracking is specified:
+      shipment = order.shipments.create()
 
    .. code-block:: ruby
       :linenos:
@@ -239,43 +242,28 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        let shipment = await mollieClient.orders_shipments.create({
-          orderId: 'ord_kEn1PlbGa',
-          lines: [
-            {
-              id: 'odl_dgtxyl',
-              quantity: 1,  // you can set the quantity if not all is shipped at once
-            },
-            {
-              id: 'odl_jp31jz',  // all is shipped if no quantity is set
-            },
-          ],
-          tracking: {
-            carrier: 'PostNL',
-            code: '3SKABA000000000',
-            url: 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C',
+      const shipment = await mollieClient.orderShipments.create({
+        orderId: 'ord_kEn1PlbGa',
+        lines: [
+          {
+            id: 'odl_dgtxyl',
+            quantity: 1
           },
-        });
-
-        // If all lines are shipped, there is no need to specify them:
-        shipment = await mollieClient.orders_shipments.create({
-          orderId: 'ord_kEn1PlbGa',
-          lines: [],
-          tracking: {
-            carrier: 'PostNL',
-            code: '3SKABA000000000',
-            url: 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C',
-          },
-        });
-
-        // Or when no tracking is specified:
-        shipment = await mollieClient.orders_shipments.create({ orderId: 'ord_kEn1PlbGa', lines: [] });
-      })();
+          {
+            id: 'odl_jp31jz'
+            // If no quantity is specified, the shipment ships the complete order line
+          }
+        ],
+        tracking: {
+          carrier: 'PostNL',
+          code: '3SKABA000000000',
+          url: 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C'
+        }
+      });
 
 Response
 ^^^^^^^^
-.. code-block:: none
+.. code-block:: http
    :linenos:
 
    HTTP/1.1 201 Created
@@ -388,7 +376,7 @@ Response
 Response (amount required)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: none
+.. code-block:: http
    :linenos:
 
    HTTP/1.1 422 Unprocessable Entity
@@ -416,3 +404,69 @@ Response (amount required)
             }
         }
     }
+
+Mollie Connect parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^
+With Mollie Connect you can charge fees on payments that are processed through your app, either by defining an
+*application fee* or by *splitting the payment*. To learn more about the difference, please refer to the
+:doc:`Mollie Connect overview </connect/overview>`.
+
+.. warning:: This functionality is currently only available for captures methods (Klarna Pay now,
+   Klarna Pay later, Klarna Slice it, etc.)
+
+.. parameter:: routing
+   :type: array
+   :condition: optional
+   :collapse: true
+
+   An optional routing configuration which enables you to route a successful shipment, or part of the shipmnt, to one or
+   more connected accounts.
+
+   See the :doc:`Split payments </connect/splitting-payments>` guide for more information on payment and capture routing.
+
+   If a routing array is supplied, it must contain one or more routing objects with the following parameters.
+
+   .. parameter:: amount
+      :type: amount object
+      :condition: conditional
+
+      If more than one routing object is given, the routing objects must indicate what portion of the total payment
+      amount is being routed.
+
+      .. parameter:: currency
+         :type: string
+         :condition: required
+
+         An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+
+      .. parameter:: value
+         :type: string
+         :condition: required
+
+         A string containing the exact amount of this portion of the shipment in the given currency. Make sure to send
+         the right amount of decimals. Non-string values are not accepted.
+
+   .. parameter:: destination
+      :type: object
+      :condition: required
+
+      The destination of this portion of the payment.
+
+      .. parameter:: type
+         :type: string
+         :condition: required
+
+         The type of destination. Currently only the destination type ``organization`` is supported.
+
+         Possible values: ``organization``
+
+      .. parameter:: organizationId
+         :type: string
+         :condition: conditional
+
+         Required for destination type ``organization``. The ID of the connected organization the funds should be routed
+         to, for example ``org_12345``.
+
+         **Please note:** ``me`` or the ID of the current organization are not accepted as an ``organizationId``. After
+         all portions of the total shipment amount have been routed, the amount left will be routed to the current
+         organization automatically.

@@ -118,7 +118,7 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
       # First page
       customers = mollie_client.customers.list()
@@ -143,13 +143,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        // First page
-        let customers = await mollieClient.customers.page();
-
-        // Next page
-        customers = await customers.nextPage();
-      })();
+      const customers = mollieClient.customers.iterate();
 
 Response
 ^^^^^^^^

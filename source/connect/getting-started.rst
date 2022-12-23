@@ -29,7 +29,7 @@ Some examples:
 * `Authlib <https://github.com/lepture/authlib>`_ for Python, with support for common web frameworks like Flask and
   Django
 
-If your application is built with PHP, you can integrate it using the official `mollie/oauth2-mollie-php <https://github.com/mollie/oauth2-mollie-php>`_ package.
+If your application is built with PHP, you can integrate it using the official `mollie/oauth2-mollie-php <https://github.com/mollie/oauth2-mollie-php>`_ package. The `official Python client <https://github.com/mollie/mollie-api-python>`_ even supports OAuth out of the box.
 
 Once you have an OAuth compatible app running, let's register your app at Mollie next.
 

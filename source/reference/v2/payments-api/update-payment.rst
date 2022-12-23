@@ -17,7 +17,7 @@ This endpoint can be used to update some details of a created payment.
 Parameters
 ----------
 For a more in-depth explanation of each parameter, see the :doc:`create-payment`. There are also
-payment method specific parameters available, see :ref:`below <payment-method-specific-parameters-update>`.
+payment method-specific parameters available, see :ref:`below <payment-method-specific-parameters-update>`.
 
 .. parameter:: description
    :type: string
@@ -75,6 +75,9 @@ payment method specific parameters available, see :ref:`below <payment-method-sp
    Use this parameter to restrict the payment methods available to your customer to those from a single country.
 
    If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+
+   The field expects a country code in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format,
+   for example `NL`.
 
 .. _payment-method-specific-parameters-update:
 
@@ -163,14 +166,14 @@ Example
       <?php
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
-      $payment = $mollie->payments->get("tr_7UhSN1zuXS");
 
-      $payment->description = "Order #98765";
-      $payment->redirectUrl = "https://example.org/webshop/order/98765/";
-      $payment->webhookUrl = "https://example.org/webshop/payments/webhook/";
-      $payment->metadata = ["order_id" => "98765"];
-
-      $payment = $payment->update();
+      $paymentId = "tr_7UhSN1zuXS";
+      $mollie->payments->update($paymentId, [
+        "description" => "Order #98765",
+        "redirectUrl" => "https://example.org/webshop/order/98765/",
+        "webhookUrl" => "https://example.org/webshop/payments/webhook/",
+        "metadata" => ["order_id" => "98765"],
+      ]);
 
    .. code-block:: python
       :linenos:
@@ -178,12 +181,15 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
       payment = mollie_client.payments.update("tr_7UhSN1zuXS", {
-        'description': 'Order #98765',
-        'redirectUrl': 'https://webshop.example.org/order/98765/',
-        'webhookUrl': 'https://webshop.example.org/payments/webhook/',
-        'metadata': {'order_id': '98765'}
+          "description": "Order #98765",
+          "webhookUrl": "https://webshop.example.org/order/98765/",
+          "redirectUrl": "https://webshop.example.org/payments/webhook/",
+          "metadata": {
+              "order_id": "98765",
+          }
       })
 
    .. code-block:: ruby

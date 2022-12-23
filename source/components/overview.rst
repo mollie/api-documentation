@@ -78,11 +78,52 @@ an object that you can use for creating the four Components your customer will u
 .. note:: Be aware the profile ID is *not* your API key. Your API key is private and should never be used in a browser
           context. The profile ID starts with ``pfl_``, where as API keys start with ``live_`` or ``test_``.
 
-Create and mount the card holder data Components
-------------------------------------------------
-After initializing the Mollie object, you should create the four card holder data Components using the
-:ref:`components-mollie-create-component` function and mount them in your checkout using the
-:ref:`components-mollie-component-mount` function:
+Create and mount Mollie Components
+----------------------------------
+After initialising the Mollie object, you can start to consume the shopper's
+data. There are two ways to do this:
+
+1. Use the card component to implement our out-of-the-box solution.
+2. Use Mollie Components to build your own solution that covers your specific use cases.
+
+Option 1: Card component
+------------------------
+
+The card component is a collection of all mandatory fields needed to create an
+embedded card form. With this component, you can abstract your implementation
+from the DOM. This makes it easier to implement while covering most use cases.
+You can create the card component using the
+:ref:`components-mollie-create-component` and mount it in your checkout using
+the :ref:`components-mollie-component-mount`.
+
+.. code-block:: html
+   :linenos:
+
+   <form>
+     <div id="card"></div>
+   </form>
+
+.. code-block:: js
+   :linenos:
+
+   var cardComponent = mollie.createComponent('card');
+   cardComponent.mount('#card');
+
+Translated error messages will be rendered within the DOM automatically.
+
+To customize the card component, see :ref:`components-mollie-create-component`.
+
+To add styling to the card component, see
+:doc:`Styling </components/styling>`.
+
+Option 2: Mollie Components
+---------------------------
+
+Mollie Components are individual mandatory components out of which you can
+create a card form. You can create them using the
+:ref:`components-mollie-create-component` and mount them in your checkout using
+the :ref:`components-mollie-component-mount`. This will add the input fields to
+your checkout and make them visible to your customer.
 
 .. code-block:: html
    :linenos:
@@ -118,15 +159,15 @@ After initializing the Mollie object, you should create the four card holder dat
    var verificationCode = mollie.createComponent('verificationCode');
    verificationCode.mount('#verification-code');
 
-This will add the input fields to your checkout and make them visible for your customer. To add styling to the
-Components, see :doc:`Styling </components/styling>`.
+To add styling to the Mollie Components, see :doc:`Styling
+</components/styling>`.
 
-Handling errors
----------------
-Add a change event listener to each component to listen for errors. Displaying the error is up to you. The example below
-assumes an empty element in which the error can be rendered.
+To handle errors in Mollie Components you have to add a change event listener to
+each component to listen for errors. Displaying the error is up to you. The
+example below assumes an empty element in which the error can be rendered.
 
-Errors will be localized according to the locale defined when initializing Mollie Components.
+Errors will be localized according to the locale defined when initializing
+Mollie Components.
 
 .. code-block:: js
    :linenos:
@@ -152,7 +193,7 @@ You can then place the ``cardToken`` in a hidden input to submit it to your back
    form.addEventListener('submit', async e => {
      e.preventDefault();
 
-     const { token, error } = await mollie.createToken();
+     var { token, error } = await mollie.createToken();
 
      if (error) {
        // Something wrong happened while creating the token. Handle this situation gracefully.
@@ -160,7 +201,7 @@ You can then place the ``cardToken`` in a hidden input to submit it to your back
      }
 
      // Add token to the form
-     const tokenInput = document.createElement('input');
+     var tokenInput = document.createElement('input');
      tokenInput.setAttribute('type', 'hidden');
      tokenInput.setAttribute('name', 'cardToken');
      tokenInput.setAttribute('value', token);
@@ -262,19 +303,17 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const payment = await mollieClient.payments.create({
-          method: 'creditcard',
-          amount: {
-            currency: 'EUR',
-            value: '10.00', // We enforce the correct number of decimals through strings
-          },
-          description: 'Order #12345',
-          redirectUrl: 'https://webshop.example.org/order/12345/',
-          webhookUrl: 'https://webshop.example.org/payments/webhook/',
-          cardToken: 'tkn_UqAvArS3gw'
-        });
-      })();
+      const payment = await mollieClient.payments.create({
+        method: 'creditcard',
+        amount: {
+          currency: 'EUR',
+          value: '10.00'
+        },
+        description: 'Order #12345',
+        redirectUrl: 'https://webshop.example.org/order/12345/',
+        webhookUrl: 'https://webshop.example.org/payments/webhook/',
+        cardToken: 'tkn_UqAvArS3gw'
+      });
 
 Response
 ^^^^^^^^

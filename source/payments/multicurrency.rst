@@ -1,18 +1,9 @@
 Multicurrency
 =============
-Mollie offers payments in non-EUR currencies via its ``v2`` APIs. This allows your shoppers outside of the
-Eurozone to pay in their own currency. The payments will be settled to your account in ``EUR``. Mollie will take care of
-the conversion. You can retrieve the settlement amount via the API or view it in your
-`Mollie Dashboard <https://www.mollie.com/dashboard>`_.
-
-When creating a payment in a non-EUR currency, we will immediately give you the amount we will settle in the API
-response.
-
-Creating payments, orders, refunds or subscriptions in a different currency than ``EUR`` is only possible via the ``v2``
-API. Review the :doc:`Payments API reference </reference/v2/payments-api/create-payment>` for more information.
-
-Payments in non-EUR currencies (created via the ``v2`` API) that are retrieved via the ``v1`` API will show the
-settlement amount (in ``EUR``) in the ``amount`` field.
+Mollie offers payments in non-EUR currencies via its ``v2`` APIs. This allows your shoppers outside of the eurozone to
+pay in their own currency. If you have a Mollie balance in the same currency as the payment, it will be settled on that
+balance directly without conversion. In all other cases, the payment will be converted to your primary balance currency.
+You can view the converted amount via the API or via your `Mollie Dashboard <https://www.mollie.com/dashboard>`_.
 
 Supported currencies
 --------------------

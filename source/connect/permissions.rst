@@ -108,3 +108,11 @@ Permissions can be requested by redirecting the resource owner to the
    * - | ``payment-links.write``
        | Payment links API
      - Create payment links for the merchant.
+
+   * - | ``balances.read``
+       | Balances API
+     - View the merchant's balances information.
+
+   * - | ``balances.write``
+       | Balances API
+     - Create new balances for the merchant.

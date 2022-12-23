@@ -111,7 +111,7 @@ Response
 
       The URL to the mandate retrieval endpoint documentation.
 
-Payment method specific details
+Payment method-specific details
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The mandate detail object contains different fields per payment method.
 
@@ -198,9 +198,10 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      mandate = mollie_client.customer_mandates.with_parent_id('cst_4qqhO89gsT').get('mdt_h3gAaD5zP')
+      customer = mollie_client.customers.get("cst_4qqhO89gsT")
+      mandate = customer.mandates.get("mdt_h3gAaD5zP")
 
    .. code-block:: ruby
       :linenos:
@@ -219,12 +220,9 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const mandate = await mollieClient.customers_mandates.get(
-          'mdt_h3gAaD5zP',
-          { customerId: 'cst_4qqhO89gsT' }
-        );
-      })();
+      const mandate = await mollieClient.customerMandates.get('mdt_h3gAaD5zP', {
+        customerId: 'cst_4qqhO89gsT'
+      });
 
 Response
 ^^^^^^^^

@@ -101,10 +101,10 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      payment = mollie_client.payments.get('tr_WDqYK6vllg')
-      chargebacks = payment.chargebacks
+      payment = mollie_client.payments.get("tr_WDqYK6vllg")
+      chargebacks = payment.chargebacks.list()
 
    .. code-block:: ruby
       :linenos:
@@ -124,9 +124,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        let chargebacks = await mollieClient.payments_chargebacks.list({ paymentId: 'tr_WDqYK6vllg' });
-      })();
+      const chargebacks = mollieClient.paymentChargebacks.iterate({ paymentId: 'tr_WDqYK6vllg' });
 
 Response
 ^^^^^^^^

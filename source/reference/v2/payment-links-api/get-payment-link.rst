@@ -67,6 +67,11 @@ Response
 
       A string containing the exact amount of the payment link in the given currency.
 
+.. parameter:: archived
+   :type: boolean
+
+   Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+
 .. parameter:: redirectUrl
    :type: string
 
@@ -147,6 +152,7 @@ Example
 
       mollie_client = Client()
       mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
       payment_link = mollie_client.payment_links.get("pl_4Y0eZitmBnQ6IDoMqZQKh")
 
 Response
@@ -170,6 +176,7 @@ Response
            "value": "24.95",
            "currency": "EUR"
        },
+       "archived": false,
        "description": "Bicycle tires",
        "redirectUrl": "https://webshop.example.org/thanks",
        "webhookUrl": "https://webshop.example.org/payment-links/webhook/",

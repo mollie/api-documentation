@@ -1,5 +1,7 @@
 {%- set url_root = pathto('', 1) -%}
-{%- if "/captures-api/" in pagename -%}
+{%- if "/balances-api/" in pagename -%}
+  {%- set apiName = "Balances API" -%}
+{%- elif "/captures-api/" in pagename -%}
   {%- set apiName = "Captures API" -%}
 {%- elif "/chargebacks-api/" in pagename -%}
   {%- set apiName = "Chargebacks API" -%}
@@ -31,8 +33,6 @@
   {%- set apiName = "Profiles API" -%}
 {%- elif "/refunds-api/" in pagename -%}
   {%- set apiName = "Refunds API" -%}
-{%- elif "/reseller-api/" in pagename -%}
-  {%- set apiName = "Reseller API" -%}
 {%- elif "/settlements-api/" in pagename -%}
   {%- set apiName = "Settlements API" -%}
 {%- elif "/shipments-api/" in pagename -%}
@@ -75,7 +75,6 @@
   <link rel="index" title="Mollie API" href="{{ pathto('index') }}" />{% if next -%}
   <link rel="next" title="{{ next.title|striptags|e }}" href="{{ next.link|e }}" /> {%- endif %} {% if prev -%}
   <link rel="prev" title="{{ prev.title|striptags|e }}" href="{{ prev.link|e }}" /> {%- endif %}
-  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
   <link rel="dns-prefetch" href="https://cdn.mollie.com" />
   <link rel="dns-prefetch" href="https://images.contentful.com" />
   <link rel="preconnect" href="https://cdn.mollie.com" />
@@ -111,11 +110,7 @@
     </div>
   </div>
 
-  {% include "mobile-navigation-button.html" %}
-
   <script type="text/javascript" src="{{ pathto('_static/index.js', 1) }}?20210711" async></script>
-
-  <!-- GOOGLE_TAG_MANAGER -->
 </body>
 
 </html>

@@ -131,14 +131,15 @@ Example
       <?php
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
-      $profile = $mollie->profiles->get("pfl_v9hTwCvYqw");
 
-      $profile->name = "My website name - Update 1";
-      $profile->website = "https://www.mywebsite2.com";
-      $profile->email = "info@mywebsite2.com";
-      $profile->phone = "+31208202070";
-      $profile->businessCategory = "OTHER_MERCHANDISE";
-      $updatedProfile = $profile->update();
+      $profileId = "pfl_v9hTwCvYqw";
+      $mollie->profiles->update($profileId, [
+        "name" => "My website name - Update 1",
+        "website" => "https://www.mywebsite2.com",
+        "email" => "info@mywebsite2.com",
+        "phone" => "+31208202070",
+        "businessCategory" => "OTHER_MERCHANDISE",
+      ]);
 
    .. code-block:: python
       :linenos:
@@ -146,17 +147,16 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+      mollie_client.set_access_token("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ")
 
       profile = mollie_client.profiles.update(
-          'pfl_v9hTwCvYqw',
-          data={
-              'name': 'My website name - Update 1',
-              'website': 'https://www.mywebsite2.com',
-              'email': 'info@mywebsite2.com',
-              'phone': '+31208202070',
-              'businessCategory': 'OTHER_MERCHANDISE',
-          },
+          "pfl_v9hTwCvYqw", {
+              "name": "My website name - Update 1",
+              "website": "https://www.mywebsite2.com",
+              "email": "info@mywebsite2.com",
+              "phone": "+31208202070",
+              "businessCategory": "OTHER_MERCHANDISE",
+          }
       )
 
    .. code-block:: ruby

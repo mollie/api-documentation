@@ -115,9 +115,10 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      mandates = mollie_client.customer_mandates.with_parent_id('cst_stTC2WHAuS').list()
+      customer = mollie_client.customers.get("cst_4qqhO89gsT")
+      mandates = customer.mandates.list()
 
    .. code-block:: ruby
       :linenos:
@@ -137,9 +138,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const mandates = await mollieClient.customers_mandates.page({ customerId: 'cst_stTC2WHAuS' });
-      })();
+      const mandates = mollieClient.customerMandates.iterate({ customerId: 'cst_stTC2WHAuS' });
 
 Response
 ^^^^^^^^
@@ -177,7 +176,7 @@ Response
                            "type": "application/hal+json"
                        },
                        "documentation": {
-                           "href": "https://mollie.com/en/docs/reference/customers/create-mandate",
+                           "href": "https://docs.mollie.com/reference/v2/mandates-api/create-mandate",
                            "type": "text/html"
                        }
                    }

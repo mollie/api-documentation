@@ -225,7 +225,8 @@ Example
       mollie_client = Client()
       mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      subscription = mollie_client.customer_subscriptions.with_parent_id('cst_stTC2WHAuS').get('sub_rVKGtNd6s3')
+      customer = mollie_client.customers.get("cst_stTC2WHAuS")
+      subscription = customer.subscriptions.get("sub_rVKGtNd6s3")
 
    .. code-block:: ruby
       :linenos:
@@ -247,9 +248,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const subscription = await mollieClient.customers_subscriptions.get('sub_rVKGtNd6s3', { customerId: 'cst_stTC2WHAuS' });
-      })();
+      const subscriptions = mollieClient.customerSubscriptions.iterate({ customerId: 'cst_8wmqcHMN4U' });
 
 Response
 ^^^^^^^^

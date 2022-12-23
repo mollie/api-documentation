@@ -19,7 +19,7 @@ Which extra features can I use with the Orders API?
 * Some payment methods communicate the order lines to the customer in their hosted payment pages or in an invoice.
   For example, the customer will see the order lines on the checkout page of PayPal.
 
-* You can manage the created orders in the `Mollie Dashboard <https://www.mollie.com/en/features/dashboard>`_.
+* You can manage the created orders in the `Mollie Dashboard <https://www.mollie.com/products/dashboard>`_.
 
 When is it better to use the Payments API?
 ------------------------------------------

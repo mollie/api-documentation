@@ -144,21 +144,27 @@ Example
       :linenos:
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      order = mollie_client.orders.get('ord_8wmqcHMN4U')
-      order.cancel_lines({
-        'lines': [
-          {
-            'id': 'odl_dgtxyl',
-            'quantity': 1,  # you can partially cancel the line.
-          }
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      order = mollie_client.orders.get("ord_8wmqcHMN4U")
+
+      # To cancel a single line, simply delete it by id:
+      order.lines.delete("odl_dgtxyl")
+
+      # To partially cancel a line, change its quantity:
+      order.lines.delete_lines({
+        "lines": [
+            {
+                "id": "odl_dgtxyl",
+                "quantity": 1,
+            }
         ]
       })
 
-      # if you want to cancel all eligible lines, you can use this shorthand:
-      # order.cancel_lines()
+      # If you want to cancel all eligible lines, you can use this shorthand:
+      order.lines.delete_lines()
 
-      updated_order = mollie_client.orders.get('ord_8wmqcHMN4U')
+      updated_order = mollie_client.orders.get("ord_8wmqcHMN4U")
 
    .. code-block:: ruby
       :linenos:

@@ -136,18 +136,19 @@ Example
       <?php
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
-      $customer = $mollie->customers->get("cst_8wmqcHMN4U");
 
-      $subscription = $customer->getSubscription("sub_8EjeBVgtEn");
-      $subscription->amount = (object) [
-            "currency" => "EUR",
-            "value" => "10.00",
-      ];
-      $subscription->times = 42;
-      $subscription->startDate = "2018-12-12";
-      $subscription->description = "Mollie recurring subscription";
-      $subscription->webhookUrl = "https://example.org/webhook";
-      $updatedSubscription = $subscription->update();
+      $customerId = "cst_8wmqcHMN4U";
+      $subscriptionId = "sub_8EjeBVgtEn";
+      $mollie->subscriptions->update($customerId, $subscriptionId, [
+        "amount" => [
+          "currency" => "EUR",
+          "value" => "10.00",
+        ],
+        "times" => 42,
+        "startDate" => "2018-12-12",
+        "description" => "Mollie recurring subscription",
+        "webhookUrl" => "https://example.org/webhook",
+      ]);
 
    .. code-block:: python
       :linenos:
@@ -157,12 +158,11 @@ Example
       mollie_client = Client()
       mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      subscription = mollie_client.customer_subscriptions.with_parent_id(
-          "cst_8wmqcHMN4U"
-      ).update(
+      customer = mollie_client.customers.get("cst_stTC2WHAuS")
+      subscription = customer.subscriptions.update(
           "sub_8EjeBVgtEn",
-          data={
-      "amount": {
+          {
+              "amount": {
                   "currency": "EUR",
                   "value": "10.00",
               },
@@ -198,19 +198,17 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const subscription = await mollieClient.customers_subscriptions.update('sub_8EjeBVgtEn', {
-          customerId: 'cst_8wmqcHMN4U',
-          amount: {
-            currency: 'EUR',
-            value: '10.00',
-          },
-          times: 42,
-          startDate: '2018-12-12',
-          description: 'Mollie recurring subscription',
-          webhookUrl: 'https://example.org/webhook',
-        });
-      })();
+      const subscription = await mollieClient.customerSubscriptions.update('sub_8EjeBVgtEn', {
+        customerId: 'cst_8wmqcHMN4U',
+        amount: {
+          currency: 'EUR',
+          value: '10.00'
+        },
+        times: 42,
+        startDate: '2018-12-12',
+        description: 'Mollie recurring subscription',
+        webhookUrl: 'https://example.org/webhook'
+      });
 
 Response
 ^^^^^^^^

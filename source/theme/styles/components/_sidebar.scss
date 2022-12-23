@@ -31,19 +31,10 @@
   }
 }
 
-.sidebar.is-visible {
-  pointer-events: all;
-  display: block;
-}
-
 .sidebar__inner {
   padding-top: 80px;
   padding-bottom: 80px;
   font-size: 15px;
-}
-
-.sidebar.is-visible .sidebar__inner {
-  padding-top: 100px;
 }
 
 .sidebar__inner ul {

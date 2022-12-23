@@ -87,10 +87,13 @@ Example
    .. code-block:: python
       :linenos:
 
+      from mollie.api.client import Client
+
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      order = mollie_client.orders.get('ord_kEn1PlbGa')
-      shipments = order.shipments
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      order = mollie_client.orders.get("ord_kEn1PlbGa")
+      shipments = order.shipments.list()
 
    .. code-block:: ruby
       :linenos:
@@ -109,9 +112,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const shipments = await mollieClient.orders_shipments.all({ orderId: 'ord_kEn1PlbGa' });
-      })();
+      const shipments = await mollieClient.orderShipments.list({ orderId: 'ord_kEn1PlbGa' });
 
 Response
 ^^^^^^^^

@@ -76,6 +76,7 @@ def to_url(path):
 
 # -- SEO stuff ------------------------------------------------------------
 redirects = {
+    'guides/applepay-direct-integration': to_url('/wallets/applepay-direct-integration'),
     'guides/authentication': to_url('/overview/authentication'),
     'guides/checkout': to_url('/payments/hosted-checkout'),
     'guides/common-data-types': to_url('/overview/common-data-types'),
@@ -98,24 +99,21 @@ redirects = {
     'oauth/permissions': to_url('/connect/permissions'),
     'oauth/splitting-payments': to_url('/connect/splitting-payments'),
     'payments/overview': to_url('/payments/accepting-payments'),
+    'reference/v1/settlements-api/get-open-settlement': to_url('/reference/v1/settlements-api/get-settlement'),
     'reference/v2/chargebacks-api/get-chargeback': to_url('/reference/v2/chargebacks-api/get-payment-chargeback'),
     'reference/v2/orders-api/create-order-refund': to_url('/reference/v2/refunds-api/create-order-refund'),
     'reference/v2/orders-api/list-order-refunds': to_url('/reference/v2/refunds-api/list-order-refunds'),
     'reference/v2/orders-api/update-orderline': to_url('/reference/v2/orders-api/update-order-line'),
-    'reference/v2/organizations-api/list-organizations': to_url('/reference/reseller-api/v2/list-organizations'),
     'reference/v2/organizations-api/me': to_url('/reference/v2/organizations-api/current-organization'),
     'reference/v2/partners-api/get-partner': to_url('/reference/v2/organizations-api/get-partner'),
     'reference/v2/partners-api/get-client': to_url('/reference/v2/clients-api/get-client'),
     'reference/v2/partners-api/list-clients': to_url('/reference/v2/clients-api/list-clients'),
+    'reference/v2/profiles-api/enable-giftcard-issuer': to_url('/reference/v2/profiles-api/enable-gift-card-issuer'),
     'reference/v2/refunds-api/cancel-refund': to_url('/reference/v2/refunds-api/cancel-payment-refund'),
     'reference/v2/refunds-api/create-refund': to_url('/reference/v2/refunds-api/create-payment-refund'),
     'reference/v2/refunds-api/get-refund': to_url('/reference/v2/refunds-api/get-payment-refund'),
     'reference/v2/subscriptions-api/list-subscriptions-payments': to_url('/reference/v2/subscriptions-api/list-subscription-payments')
 }
-
-do_not_index = [
-    'reference/reseller-api/endpoints/set-fees'
-]
 
 # -- Options for HTML output ----------------------------------------------
 
@@ -132,7 +130,7 @@ html_context = {
     'github_user': 'mollie',
     'github_repo': 'api-documentation',
     'github_version': 'master/source/',
-    'do_not_index': do_not_index,
+    'do_not_index': [],
 }
 
 html_logo = '_static/img/mollie-logo.png'

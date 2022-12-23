@@ -1,7 +1,21 @@
 Changelog
 ~~~~~~~~~
+.. api-name:: Mollie API
+   :version: 2
+
 Occasionally, we will add new resources, new fields, or new possible values to existing fields to the v2 Mollie API. All
 changes are documented here.
+
+October 2022
+============
+
+Friday, 29th
+-------------
+- Added new ``Balances API`` docs.
+
+Monday, 24th
+-------------
+- Added the ``horseandgifts`` and ``shoesandsneakerscadeau`` as gift card issuer.
 
 June 2022
 =========
@@ -257,7 +271,7 @@ Friday, 26th
 
 Tuesday, 23rd
 -------------
-- `Pay later <https://www.mollie.com/en/payments/klarna-pay-later>`_ is now available for Belgian shoppers.
+- `Pay later <https://www.mollie.com/payments/klarna-pay-later>`_ is now available for Belgian shoppers.
 
 May 2020
 ========
@@ -569,7 +583,7 @@ Thursday, 21th
 
 Tuesday, 12th
 -------------
-- Added the new payment method `Przelewy24 <https://www.mollie.com/en/payments/przelewy24>`_ (``przelewy24``).
+- Added the new payment method `Przelewy24 <https://www.mollie.com/payments/przelewy24>`_ (``przelewy24``).
 
 February 2019
 =============
@@ -641,7 +655,7 @@ Tuesday, 18th
 
 Friday, 14th
 ------------
-- The expiry period for `Belfius Pay Button <https://www.mollie.com/en/payments/belfius>`_ has been decreased from 1 day
+- The expiry period for `Belfius Pay Button <https://www.mollie.com/payments/belfius>`_ has been decreased from 1 day
   to 1 hour.
 
 Thursday, 13th
@@ -755,7 +769,7 @@ Tuesday, 2nd
   bank account to finish the payment.
 
 - Added the new payment status ``authorized`` for payments that still require a capture to receive the money. Currently,
-  this status is only used for payment methods `Klarna Pay now <https://www.mollie.com/en/payments/klarna-pay-now>`_,
+  this status is only used for payment methods `Klarna Pay now <https://www.mollie.com/payments/klarna-pay-now>`_,
   `Klarna Pay later <https://www.mollie.com/payments/klarna-pay-later>`_ and
   `Klarna Slice it <https://www.mollie.com/payments/klarna-slice-it>`_. Because payments with these payment methods
   can only be created with the :doc:`Orders API </reference/v2/orders-api/overview>`, there is no change required in
@@ -865,4 +879,4 @@ May 2018
 
 Wednesday, 9th
 --------------
-- Launched `Multicurrency <https://www.mollie.com/nl/features/multicurrency>`_  and the new v2 api.
+- Launched multicurrency payments, along with the new v2 API.

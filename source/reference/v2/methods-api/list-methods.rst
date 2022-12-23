@@ -210,13 +210,16 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
       # Methods for the Payments API
       methods = mollie_client.methods.list()
 
       # Methods for the Orders API
-      methods = mollie_client.methods.list(resource='orders')
+      methods = mollie_client.methods.list(resource="orders")
+
+      # Methods including pricing
+      methods = mollie_client.methods.list(include="pricing")
 
    .. code-block:: ruby
       :linenos:
@@ -242,13 +245,11 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        // Methods for the Payments API
-        let methods = await mollieClient.methods.all();
+      // Methods for the Payments API.
+      let methods = await mollieClient.methods.list();
 
-        // Methods for the Orders API
-        methods = await mollieClient.methods.all({ resource: 'orders' });
-      })();
+      // Methods for the Orders API.
+      methods = await mollieClient.methods.list({ resource: 'orders' });
 
 Response
 ^^^^^^^^

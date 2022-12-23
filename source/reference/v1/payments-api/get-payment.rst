@@ -818,7 +818,7 @@ Mollie Connect response parameters
 
 QR codes (optional)
 ^^^^^^^^^^^^^^^^^^^
-A QR code object with payment method specific values is available for certain payment methods if you pass the include
+A QR code object with payment method-specific values is available for certain payment methods if you pass the include
 ``details.qrCode`` to the resource endpoint.
 
 The ``qrCode`` key in the ``details`` object will then become available. The key will contain this object:

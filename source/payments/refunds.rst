@@ -32,14 +32,17 @@ Refunds have their own status, independent of the Payment or Order they were cre
   The refund is ready to be sent to the bank. You can still cancel the refund if you like.
 
 *processing*
-  The refund is being processed. Cancellation is no longer possible.
+  The refund is being processed. Cancelation is no longer possible.
 
 *refunded*
-  The refund has been settled to your customer.
+  The refund has been completed and your customer has either received the funds or the funds are on their way.
 
 *failed*
   The refund has failed after processing. For example, the customer has closed his / her bank account. The funds will
   be returned to your account.
+
+*canceled*
+  The refund was canceled and will no longer be processed.
 
 Insufficient balance
 --------------------

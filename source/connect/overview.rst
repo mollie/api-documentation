@@ -63,4 +63,4 @@ your account is configured as a partner account, any merchant you sign up throug
 automatically be linked to your account.
 
 For more information about partnering with Mollie, please see our
-`Partner page <https://www.mollie.com/en/partners/>`_ or reach out to your Mollie partner manager.
+`Partner page <https://www.mollie.com/partners>`_ or reach out to your Mollie partner manager.

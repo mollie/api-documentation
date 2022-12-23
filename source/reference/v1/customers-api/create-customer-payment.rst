@@ -22,7 +22,7 @@ Create customer payment
 Creates a payment for the customer.
 
 Linking customers to payments enables a number of
-`Mollie Checkout <https://www.mollie.com/en/checkout>`_ features, including:
+`Mollie Checkout <https://www.mollie.com/products/checkout>`_ features, including:
 
 * Keeping track of payment preferences for your customers.
 * Enabling your customers to charge a previously used credit card with a single click.

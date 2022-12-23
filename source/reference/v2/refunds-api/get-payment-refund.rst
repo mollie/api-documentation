@@ -236,10 +236,10 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      payment = mollie_client.payments.get('tr_WDqYK6vllg')
-      refund = mollie_client.payment_refunds.on(payment).get('re_4qqhO89gsT')
+      payment = mollie_client.payments.get("tr_WDqYK6vllg")
+      refund = payment.refunds.get("re_4qqhO89gsT")
 
    .. code-block:: ruby
       :linenos:
@@ -261,9 +261,9 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const refund = await mollieClient.payments_refunds.get('re_4qqhO89gsT', { paymentId: 'tr_WDqYK6vllg' });
-      })();
+      const refund = await mollieClient.paymentRefunds.get('re_4qqhO89gsT', {
+        paymentId: 'tr_WDqYK6vllg'
+      });
 
 Response
 ^^^^^^^^

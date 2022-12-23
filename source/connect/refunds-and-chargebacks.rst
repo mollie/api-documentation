@@ -156,16 +156,16 @@ Chargebacks of Split Payments
 ----------------------------------
 
 Whenever one of your split payment gets charged back, your Mollie account will be charged the Mollie fees and the initial
-compensation to the consumer. Depending on the chargeback amount and on whether the payment was split across one or multiple 
+compensation to the consumer. Depending on the chargeback amount and on whether the payment was split across one or multiple
 submerchants, you might be eligible to receive a compensation for the amount that was routed to the other accounts.
 
 Specifically, if the payment was split between you and only one other organization you will be automatically compensated for the
-amount that was routed to the submerchant, independently of the amount of the chargeback but limited to the originally routed amount. 
+amount that was routed to the submerchant, independently of the amount of the chargeback but limited to the originally routed amount.
 
-If the payment was split across multiple submerchants, you will only receive compensations for each of the routes if the chargeback was for 
+If the payment was split across multiple submerchants, you will only receive compensations for each of the routes if the chargeback was for
 the full amount of the original payment (or higher). If we receive a chargeback for a lower amount than the original payment, we will
 detract the amount from your balance and you will not receive any compensation for it since we can't know which route should be reversed.
 
-In case you and your submerchant(s) decide to object to the chargeback and can provide enough evidence for it to be reversed, any 
+In case you and your submerchant(s) decide to object to the chargeback and can provide enough evidence for it to be reversed, any
 amount that was compensated to your account from your submerchant's balances will be returned back to them as soon as we receive the money
 from the bank.

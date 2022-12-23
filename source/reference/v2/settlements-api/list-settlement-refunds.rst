@@ -62,9 +62,10 @@ Request
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+      mollie_client.set_access_token("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ")
 
-      refunds = mollie_client.settlement_refunds.with_parent_id('stl_jDk30akdN').list()
+      settlement = mollie_client.settlements.get("stl_jDk30akdN")
+      refunds = settlement.refunds.list()
 
    .. code-block:: ruby
       :linenos:

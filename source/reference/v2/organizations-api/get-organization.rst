@@ -14,9 +14,6 @@ Get organization
 
 Retrieve an organization by its ID.
 
-If you do not know the organization's ID, you can use the organizations list endpoint to retrieve all organizations that
-are accessible.
-
 .. note:: You can only retrieve organizations that the authenticated organization is connected to.
 
 Parameters
@@ -115,9 +112,9 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_access_token('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ')
+      mollie_client.set_access_token("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ")
 
-      organization = mollie_client.organizations.get('org_12345678')
+      organization = mollie_client.organizations.get("org_12345678")
 
    .. code-block:: ruby
       :linenos:

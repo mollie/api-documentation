@@ -63,9 +63,10 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      mollie_client.customer_subscriptions.with_parent_id('cst_stTC2WHAuS').delete('sub_rVKGtNd6s3')
+      customer = mollie_client.customers.get("cst_stTC2WHAuS")
+      customer.subscriptions.delete("sub_rVKGtNd6s3")
 
    .. code-block:: ruby
       :linenos:
@@ -87,9 +88,9 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const subscription = await mollieClient.customers_subscriptions.cancel('sub_rVKGtNd6s3', { customerId: 'cst_stTC2WHAuS' });
-      })();
+      const canceledSubscription = await mollieClient.customerSubscriptions.cancel('sub_rVKGtNd6s3', {
+        customerId: 'cst_stTC2WHAuS'
+      });
 
 Response
 ^^^^^^^^
