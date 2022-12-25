@@ -6,8 +6,7 @@ const VISIBLE_STATE_CLASS = 'is-visible';
 const OPENED_STATE_CLASS = 'is-opened';
 const MOBILE_NAV_BREAKPOINT = 980; // _variables.scss:19
 
-export const mobileNavigationButton = enhance('mobile-navigation-button', () => {
-  const navigationTrigger = document.querySelector('.title-bar__hamburger');
+export const mobileNavigationButton = enhance('mobile-navigation-button', (navigationTrigger) => {
   const mobileSidebar = document.querySelector('.mobile-navigation');
 
   navigationTrigger.addEventListener('click', (event) => {

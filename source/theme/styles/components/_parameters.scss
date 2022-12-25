@@ -1,92 +1,92 @@
 @import 'variables';
 
-.rst-content dl.docutils dd {
+.content dl.docutils dd {
   padding-bottom: 30px;
   padding-top: 10px;
 }
 
-.rst-content table.docutils {
+.content table.docutils {
   width: 100%;
   font-size: 14px;
 }
 
-.rst-content table.docutils,
-.rst-content table.docutils th,
-.rst-content table.docutils tr,
-.rst-content table.docutils td {
+.content table.docutils,
+.content table.docutils th,
+.content table.docutils tr,
+.content table.docutils td {
   border: 0;
 }
 
-.rst-content table.docutils > thead > tr > th {
+.content table.docutils > thead > tr > th {
   padding-bottom: 20px;
 }
 
-.rst-content table.docutils > tbody > tr > td {
+.content table.docutils > tbody > tr > td {
   border-top: 1px solid #e9edef;
   padding-top: 30px;
   padding-bottom: 30px;
 }
 
-.rst-content .section table > tbody > tr > td {
+.content .section table > tbody > tr > td {
   padding-bottom: 30px;
 }
 
-.rst-content .section table > tbody > tr:last-child > td {
+.content .section table > tbody > tr:last-child > td {
   padding-bottom: 0;
 }
 
-.rst-content .section table {
+.content .section table {
   margin-top: 12px;
 }
 
-.rst-content .section > table.docutils {
+.content .section > table.docutils {
   margin-bottom: 60px;
 }
 
-.rst-content table.docutils p,
-.rst-content table.docutils ul,
-.rst-content table.docutils ol,
-.rst-content table.docutils div.admonition {
+.content table.docutils p,
+.content table.docutils ul,
+.content table.docutils ol,
+.content table.docutils div.admonition {
   margin-bottom: 20px;
 }
 
-.rst-content table.docutils p:last-child,
-.rst-content table.docutils ul:last-child,
-.rst-content table.docutils ol:last-child,
-.rst-content table.docutils div.admonition:last-child {
+.content table.docutils p:last-child,
+.content table.docutils ul:last-child,
+.content table.docutils ol:last-child,
+.content table.docutils div.admonition:last-child {
   margin-bottom: 0;
 }
 
-.rst-content .section table > tbody > tr > td:first-child {
+.content .section table > tbody > tr > td:first-child {
   max-width: 160px;
   padding-right: 40px;
   text-align: right;
 }
 
-.rst-content .section table.docutils > thead > tr > th.right-align,
-.rst-content .section table.docutils > tbody > tr > td.right-align {
+.content .section table.docutils > thead > tr > th.right-align,
+.content .section table.docutils > tbody > tr > td.right-align {
   text-align: right !important;
 }
 
-.rst-content .section table.docutils > thead > tr > th.left-align,
-.rst-content .section table.docutils > tbody > tr > td.left-align {
+.content .section table.docutils > thead > tr > th.left-align,
+.content .section table.docutils > tbody > tr > td.left-align {
   text-align: left !important;
 }
 
-.rst-content .section table > tbody > tr > td:first-child p {
+.content .section table > tbody > tr > td:first-child p {
   margin-bottom: 0;
 }
 
-.rst-content .section > table.docutils tbody tr td:first-child .container {
+.content .section > table.docutils tbody tr td:first-child .container {
   margin-top: 6px;
 }
 
-.rst-content .section table > tbody > tr > td table + p {
+.content .section table > tbody > tr > td table + p {
   margin-top: 20px;
 }
 
 @media (min-width: breakpoint('medium')) {
-  .rst-content .section > table.docutils > tbody > tr:last-child > td {
+  .content .section > table.docutils > tbody > tr:last-child > td {
     border-bottom: 1px solid #e9edef;
     padding-bottom: 30px;
   }
@@ -142,8 +142,8 @@
   color: #333;
 }
 
-/** override .rst-content a:hover */
-.rst-content .parameter__collapse-button:hover {
+/** override .content a:hover */
+.content .parameter__collapse-button:hover {
   text-decoration: none;
 }
 
@@ -256,7 +256,7 @@
  * Dark mode
  */
 @media (prefers-color-scheme: dark) {
-  .rst-content table.docutils > tbody > tr > td {
+  .content table.docutils > tbody > tr > td {
     border-top-color: $grey-dark;
   }
 

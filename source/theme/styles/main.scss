@@ -108,17 +108,6 @@ a.headerlink::before {
   padding-right: 22px;
 }
 
-/**
- * Main content wrapper
- */
-[role='main'].document {
-  max-width: 100%;
-}
-
-.rst-content a:hover {
-  text-decoration: underline;
-}
-
 /*
  * Dark mode
  */
@@ -163,7 +152,6 @@ a.headerlink::before {
 @import 'components/back-to-v2';
 @import 'components/changelog';
 @import 'components/code';
-@import 'components/content';
 @import 'components/endpoint';
 @import 'components/endpoint-card';
 @import 'components/code-example';

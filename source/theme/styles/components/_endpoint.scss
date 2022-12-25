@@ -1,6 +1,6 @@
 @import 'variables';
 
-.rst-content .endpoint {
+.endpoint {
   border-radius: 4px;
   background: shade($background-color, 2%);
   font-size: 14px;
@@ -13,38 +13,38 @@
   overflow: hidden;
 }
 
-.rst-content .endpoint code.docutils {
+.endpoint code.docutils {
   display: inline-block;
   background: none;
   border: none;
   padding: 0;
 }
 
-.rst-content .endpoint code span {
+.endpoint code span {
   padding: 10px 16px;
   display: inline-block;
 }
 
-.rst-content .endpoint code {
+.endpoint code {
   margin: 0;
 }
 
 // Endpoint method
-.rst-content .endpoint .method {
+.endpoint .method {
   font-weight: bold;
   color: $brand-primary;
 }
 
-.rst-content .endpoint .method span {
+.endpoint .method span {
   border-right: 1px solid $grey-medium;
 }
 
 // Endpoint URL
-.rst-content .endpoint .url {
+.endpoint .url {
   font-family: $font-family-monospace;
 }
 
-.rst-content .endpoint .url span {
+.endpoint .url span {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -59,16 +59,16 @@
  * Dark mode
  */
 @media (prefers-color-scheme: dark) {
-  .rst-content .endpoint {
+  .endpoint {
     background: tint($dark-mode-background-color, 8%);
     border-color: $grey-dark;
   }
 
-  .rst-content .endpoint .method {
+  .endpoint .method {
     color: $dark-mode-brand-primary;
   }
 
-  .rst-content .endpoint .method span {
+  .endpoint .method span {
     border-right-color: $grey-dark;
   }
 }

@@ -101,18 +101,13 @@
       </nav>
 
       <section class="main__content">
-        <div class="main__content-inner content">
-          <div class="wy-nav-content">
-            <div class="rst-content">
-              <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-                {%- block document %}
-                <div itemprop="articleBody">
-                  {% block body %}{% endblock %}
-                </div>
-                {%- endblock %}
-              </div>
-            </div>
+        <div class="content" role="main" itemscope="itemscope" itemtype="http://schema.org/Article">
+          {%- block document %}
+          <div itemprop="articleBody">
+            {% block body %}{% endblock %}
           </div>
+          {%- endblock %}
+        </div>
         </div>
       </section>
     </div>

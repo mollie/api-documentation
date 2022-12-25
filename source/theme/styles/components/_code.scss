@@ -1,6 +1,6 @@
 @import 'variables';
 
-.rst-content code.docutils {
+.content code.docutils {
   background: shade($background-color, 2%);
   border: 1px solid $grey-medium;
   font-family: $font-family-monospace;
@@ -14,7 +14,7 @@
  * Dark mode
  */
 @media (prefers-color-scheme: dark) {
-  .rst-content code.docutils {
+  .content code.docutils {
     background: tint($dark-mode-background-color, 8%);
     border-color: $grey-dark;
   }

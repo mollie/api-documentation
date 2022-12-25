@@ -1,11 +1,11 @@
-.rst-content img {
+.content img {
   display: block; /* Otherwise center alignment won't work and margins will be inconsistent */
   border-radius: 8px;
   margin: 20px auto 40px; /* Center align by default */
 }
 
-.rst-content .figure.align-left,
-.rst-content img.align-left {
+.content .figure.align-left,
+.content img.align-left {
   margin-left: 0;
   margin-right: 0;
   text-align: left;
@@ -15,8 +15,8 @@
  * Dark mode
  */
 @media (prefers-color-scheme: dark) {
-  .rst-content .figure.boxed-in-dark-mode,
-  .rst-content img.boxed-in-dark-mode {
+  .content .figure.boxed-in-dark-mode,
+  .content img.boxed-in-dark-mode {
     background: #fff;
     padding: 20px;
   }

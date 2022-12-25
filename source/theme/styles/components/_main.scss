@@ -25,26 +25,17 @@
   min-width: 0;
   max-width: 100%;
   width: 100%;
-  padding-left: 0;
-  padding-right: 0;
+  margin: 0 auto;
+  padding: 80px 0;
 }
 
-.main__content::before {
-  @media (max-width: $mobile-navigation-breakpoint) {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: transparent;
-    pointer-events: none;
-    z-index: 2;
-    transition: 200ms background ease-in-out;
+@media only screen and (max-width: $mobile-navigation-breakpoint - 1px) {
+  .main__content {
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 }
 
-.main__content-inner {
-  width: 100%;
-  margin: 0 auto;
+.main__content a:hover {
+  text-decoration: underline;
 }
