@@ -134,6 +134,7 @@ td.linenos pre {
   }
 
   .content .highlighttable {
+    color-scheme: dark; /* Force the scrollbars to dark mode */
     border-color: $grey-dark;
   }
 
