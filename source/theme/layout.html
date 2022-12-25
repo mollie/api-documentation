@@ -83,9 +83,6 @@
   <link rel="index" title="Mollie API" href="{{ pathto('index') }}" />{% if next -%}
   <link rel="next" title="{{ next.title|striptags|e }}" href="{{ next.link|e }}" /> {%- endif %} {% if prev -%}
   <link rel="prev" title="{{ prev.title|striptags|e }}" href="{{ prev.link|e }}" /> {%- endif %}
-  <link rel="dns-prefetch" href="https://cdn.mollie.com" />
-  <link rel="dns-prefetch" href="https://images.contentful.com" />
-  <link rel="preconnect" href="https://cdn.mollie.com" />
 </head>
 <body>
   {% include 'navigation.html' %}
