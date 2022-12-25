@@ -14,8 +14,6 @@ them. Then we will show you how the statuses are connected.
     Your customer has canceled the payment. This is a definitive status. Mollie will call your webhook when this status
     is reached.
 
-    .. note:: In the ``v1`` API, this status was misspelled as ``cancelled``. This has been rectified in later versions.
-
 ``pending``
     This is a temporary status that can occur when the actual payment process has been started, but it's not complete
     yet. Nothing really needs to happen on your end when this status occurs. Mollie will not call your webhook when this
