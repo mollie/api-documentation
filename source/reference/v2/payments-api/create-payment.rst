@@ -77,6 +77,20 @@ Parameters
    The parameter can be omitted for recurring payments (``sequenceType: recurring``) and for Apple Pay payments with an
    ``applePayPaymentToken``.
 
+.. parameter:: cancelUrl
+   :type: string
+   :condition: optional
+
+   .. note:: This parameter is currently in open beta. Feel free to share feedback on
+             `our Discord <https://discord.gg/VaTVkXB4aQ>`_.
+
+   The URL your consumer will be redirected to when the consumer explicitly cancels the payment. If this URL is not
+   provided, the consumer will be redirected to the ``redirectUrl`` instead — see above.
+
+   Mollie will always give you status updates via :doc:`webhooks </overview/webhooks>`, including for the ``canceled``
+   status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated
+   consumer-facing flow to handle payment cancellations.
+
 .. parameter:: webhookUrl
    :type: string
    :condition: optional
