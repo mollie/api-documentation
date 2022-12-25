@@ -241,6 +241,17 @@ Response
 
    The URL will be ``null`` for recurring payments.
 
+.. parameter:: cancelUrl
+   :type: string
+   :condition: optional
+
+   The optional redirect URL you provided during payment creation. Consumer that explicitly cancel the payment will be
+   redirected to this URL if provided, or otherwise to the ``redirectUrl`` instead — see above.
+
+   Mollie will always give you status updates via :doc:`webhooks </overview/webhooks>`, including for the ``canceled``
+   status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated
+   consumer-facing flow to handle payment cancellations.
+
 .. parameter:: webhookUrl
    :type: string
    :condition: optional
