@@ -56,7 +56,7 @@ class CodeBlockSelectorDirective(Directive):
         # We need to inject HTML here to make the JS functionality work.
         selector_container += nodes.raw(
           '',
-          '<div class="examples-switcher" data-enhancer="example-switcher"/>',
+          '<div class="examples-switcher" data-enhancer="example-switcher"></div>',
           format='html'
         )
 
