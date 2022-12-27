@@ -56,7 +56,7 @@ class CodeBlockSelectorDirective(Directive):
         # We need to inject HTML here to make the JS functionality work.
         selector_container += nodes.raw(
           '',
-          '<div class="examples-switcher" data-enhancer="example-switcher"></div>',
+          '<div class="examples-switcher" data-enhancer="example-switcher">',
           format='html'
         )
 
@@ -66,6 +66,9 @@ class CodeBlockSelectorDirective(Directive):
             button["ids"].append("example-switch-{}".format(properties["language"]))
 
             selector_container += button
+
+        selector_container += nodes.raw('', '</div>', format='html')
+
         return selector_container
 
     def extract_code_examples(self, code_blocks):
