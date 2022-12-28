@@ -35,6 +35,15 @@ payment method-specific parameters available, see :ref:`below <payment-method-sp
 
    Updating this field is only possible when the payment is not yet finalized.
 
+.. parameter:: cancelUrl
+   :type: string
+   :condition: optional
+
+   The URL your consumer will be redirected to when the consumer explicitly cancels the payment. If this URL is not
+   provided, the consumer will be redirected to the ``redirectUrl`` instead — see above.
+
+   Updating this field is only possible when the payment is not yet finalized.
+
 .. parameter:: webhookUrl
    :type: string
    :condition: optional

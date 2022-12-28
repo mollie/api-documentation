@@ -252,6 +252,8 @@ Response
    status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated
    consumer-facing flow to handle payment cancellations.
 
+   The URL will be ``null`` for recurring payments.
+
 .. parameter:: webhookUrl
    :type: string
    :condition: optional

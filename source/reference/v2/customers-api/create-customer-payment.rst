@@ -47,6 +47,13 @@ endpoint. For recurring payments, the following parameters have notable differen
    If the ``recurringType`` parameter is set to ``recurring``, this parameter can be omitted. Since the payment will
    take place without customer interaction, a redirect is not needed.
 
+.. parameter:: cancelUrl
+   :type: string
+   :condition: optional
+
+   If the ``recurringType`` parameter is set to ``recurring``, this parameter can be omitted just like the
+   ``redirectUrl``. Since the payment will take place without customer interaction, a redirect is not needed.
+
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 If you are using :doc:`organization access tokens </overview/authentication>` or are creating an

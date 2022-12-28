@@ -389,6 +389,22 @@ Parameters
    The URL your customer will be redirected to after the payment process. The parameter can be omitted for orders with
    ``payment.sequenceType`` set to ``recurring``.
 
+.. parameter:: cancelUrl
+   :type: string
+   :condition: conditional
+
+   .. note:: This parameter is currently in open beta. Feel free to share feedback on
+             `our Discord <https://discord.gg/VaTVkXB4aQ>`_.
+
+   The URL your consumer will be redirected to when the consumer explicitly cancels the payment. If this URL is not
+   provided, the consumer will be redirected to the ``redirectUrl`` instead — see above.
+
+   Mollie will always give you status updates via :doc:`webhooks </overview/webhooks>`, including for the ``canceled``
+   status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated
+   consumer-facing flow to handle payment cancellations.
+
+   The parameter can be omitted for orders with ``payment.sequenceType`` set to ``recurring``.
+
 .. parameter:: webhookUrl
    :type: string
    :condition: optional

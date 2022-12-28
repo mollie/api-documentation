@@ -8,8 +8,9 @@ changes are documented here.
 
 December 2022
 =============
-- Added support for a dedicated ``cancelUrl`` in the Payments API where the consumer will be sent to if they cancel a
-  payment. If not provided, the consumer will be sent to the ``redirectUrl`` as was already the case.
+- Added support for a dedicated ``cancelUrl`` in the Payments API and Orders API. The consumer will be sent to this URL
+  if they cancel a payment or order. If the ``cancelUrl`` is not provided, the consumer will be sent to the
+  ``redirectUrl`` as was already the case.
 
 - Added support for ``Idempotency-Key`` headers in the Mollie API, making API requests repeatable and idempotent within
   a specific timeframe. See :doc:`API idempotency </overview/api-idempotency>`.
