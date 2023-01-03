@@ -11,6 +11,10 @@ changes are documented here.
 
              For more information on the v2 API, refer to our :doc:`v2 migration guide </payments/migrating-v1-to-v2>`.
 
+January 2023
+============
+- We have deprecated and removed the API Key management from the :doc:`Profiles API</reference/v1/profiles-api/create-profile>`.
+
 October 2022
 ============
 - Added gift card issuers ``horseandgifts`` and ``shoesandsneakerscadeau``.
