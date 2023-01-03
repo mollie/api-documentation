@@ -63,8 +63,8 @@ Response
     Possible values:
 
     * ``active`` The balance is operational and ready to be used.
-    * ``inactive`` In case the account is still being validated by our team or the balance has been blocked. Please
-      `contact our support department <https://www.mollie.com/contact>`_ for more information.
+    * ``inactive`` In case the account is still being validated by our team or the balance has been blocked.
+      `Contact our support department <https://www.mollie.com/contact>`_ for more information.
 
 .. parameter:: transferFrequency
     :type: string

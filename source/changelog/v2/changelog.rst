@@ -111,7 +111,7 @@ February 2021
 =============
 - We discontinued the support for ING Home'Pay as a payment method. This means that the API now rejects all
   :doc:`Create payment endpoint </reference/v2/payments-api/create-payment>` calls with the method ``inghomepay``. Be
-  sure to remove this payment method from your checkout if needed. Please `contact us <https://www.mollie.com/contact>`_
+  sure to remove this payment method from your checkout if needed. `Contact us <https://www.mollie.com/contact>`_
   for more info.
 
 January 2021
@@ -149,7 +149,7 @@ November 2020
 
 October 2020
 ============
-- We brought the method ``vouchers`` out of beta, you can enable this method in the dashboard. Please see the
+- We brought the method ``vouchers`` out of beta, you can enable this method in the dashboard. See the
   :doc:`voucher guide </orders/integrating-vouchers>` for more info and the requirements.
 
 - Some ``feeRegion`` values for credit card were missing in the documentation. We have added them now.
@@ -195,8 +195,8 @@ May 2020
   :doc:`Update order line endpoint </reference/v2/orders-api/update-order-line>`.
 
 - Added ``voucher`` as new payment method. See our :doc:`guide </orders/integrating-vouchers>` for how you can integrate
-  this into your checkout. Please note that this payment method is currently in a private beta state. If you are
-  interested in participating, reach out to your account manager or our support department.
+  this into your checkout. This payment method is currently in a private beta state. If you are interested in
+  participating, reach out to your account manager or our support department.
 
 April 2020
 ==========
@@ -336,7 +336,7 @@ July 2019
   :doc:`Create order </reference/v2/orders-api/create-order>` for more info.
 
 - Added MyBank (``mybank``) as new payment method. Currently, it's not possible to activate MyBank via the Dashboard.
-  Please contact your account manager to enable this new method.
+  Contact your account manager to enable this new method.
 - Polish złoty (``PLN``) is now supported as a currency for the Przelewy24 payment method.
 
 - Settlements can now be retrieved using either their ID or their bank reference. See
@@ -447,8 +447,8 @@ December 2018
 - It is now possible to create (another) payment for an order via the
   :doc:`Create order payment endpoint </reference/v2/orders-api/create-order-payment>` on the Orders API.
 
-- We are now offering webhooks for order payments. Please note that when the status of the payment becomes ``paid`` we
-  are calling your order webhook instead. See the :doc:`Orders API </reference/v2/orders-api/overview>` for more
+- We are now offering webhooks for order payments. Note that when the status of the payment becomes ``paid`` we are
+  calling your order webhook instead. See the :doc:`Orders API </reference/v2/orders-api/overview>` for more
   info.
 
 - Enabling and disabling payment methods via the API is now possible via the

@@ -9,7 +9,7 @@ temporarily. We will automatically attempt to process the refund again as soon a
 Refunds for payment-based and order-based integrations are slightly different. Each have their own endpoints
 accordingly.
 
-Please refer to the :doc:`Refunds guide </payments/refunds>` for more details about processing refunds.
+Refer to the :doc:`Refunds guide </payments/refunds>` for more details about processing refunds.
 
 Endpoints
 ---------

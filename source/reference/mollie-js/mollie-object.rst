@@ -7,7 +7,7 @@ Mollie object
 
 The ``Mollie`` object in the Mollie JavaScript SDK is used to initialize the Mollie integration.
 
-For a step-by-step tutorial on integrating Mollie Components, please refer to the
+For a step-by-step tutorial on integrating Mollie Components, refer to the
 :doc:`Mollie Components guide </components/overview>`.
 
 .. _components-mollie-constructor:
@@ -86,7 +86,7 @@ mollie.createComponent(type[, options])
 This will create a *Component* which the shopper uses to enter the card holder data. After creating, the components
 should be mounted in your checkout.
 
-Please refer to :doc:`Component object </reference/mollie-js/component-object>` to see which methods are available on
+Refer to :doc:`Component object </reference/mollie-js/component-object>` to see which methods are available on
 the object.
 
 For a credit card integration you need to create four components — one for each card holder data field.
@@ -100,7 +100,7 @@ For a credit card integration you need to create four components — one for eac
    Possible values: ``"card"`` | ``"cardHolder"`` ``"cardNumber"`` ``"verificationCode"`` ``"expiryDate"``
 
    .. note:: Value ``"card"`` can not be used together with other ones (because it already contain all of the others).
-     For more info please read :doc:`Mollie Components </components/overview>`.
+     For more info, see :doc:`Mollie Components </components/overview>`.
 
 .. parameter:: options
    :type: options object

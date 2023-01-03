@@ -63,7 +63,7 @@ Providing merchant validation
 The merchant validation proves (to Apple) that a validated merchant is calling the Apple Pay Javascript APIs. To perform
 the validation, your server should make an API call to Mollie and pass the response to the Apple Pay Session object.
 
-Please see Apple's documentation on `providing merchant validation
+See Apple's documentation on `providing merchant validation
 <https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation>`_ for
 details.
 

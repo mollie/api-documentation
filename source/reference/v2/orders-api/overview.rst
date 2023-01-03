@@ -13,7 +13,7 @@ In its simplest form, processing an order requires three steps: setting up the o
 :doc:`Shipments API </reference/v2/shipments-api/overview>` as you ship the items to the customer. The captured
 amount or amounts will then be settled to your account.
 
-Please refer to the :doc:`Orders API guide </orders/overview>` for a step-by-step guide on implementing the Orders API.
+Refer to the :doc:`Orders API guide </orders/overview>` for a step-by-step guide on implementing the Orders API.
 
 Endpoints
 ---------

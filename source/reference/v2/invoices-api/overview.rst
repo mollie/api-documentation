@@ -8,7 +8,7 @@ in the previous month.
 Normally, Mollie fees are charged automatically by deducting fees from your balance as payments come in. In most cases
 the Mollie invoice is thus already paid for by the time it is issued.
 
-For more information on invoices, please refer to our
+For more information on invoices, refer to our
 `knowledge base <https://help.mollie.com/hc/en-us/sections/360004838360-Invoices>`_.
 
 Endpoints

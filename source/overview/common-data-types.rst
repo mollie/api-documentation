@@ -77,7 +77,7 @@ When providing an address object as parameter to a request, the following condit
 
 * At least the ``streetAndNumber``, ``city``, and ``country`` fields should be provided to create a valid address.
 * The ``postalCode`` field is required for countries that have postal codes. See the list above.
-* For certain PayPal payments the ``region`` field is required. Please see the
+* For certain PayPal payments the ``region`` field is required. See the
   :ref:`Create payment documentation <paypal-method-details>` for more information.
 
 Boolean

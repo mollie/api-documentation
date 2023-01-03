@@ -8,7 +8,7 @@ This guide provides an overview of how to set up our white-label onboarding for 
 
 Step 1: Enable hosted onboarding
 --------------------------------
-If you are new to OAuth, please have a look at the :doc:`Mollie Connect overview </connect/overview>` and the
+If you are new to OAuth, have a look at the :doc:`Mollie Connect overview </connect/overview>` and the
 :doc:`Getting started guide for OAuth </connect/getting-started>` before proceeding.
 
 Once you have an OAuth app up and running, you can
@@ -21,8 +21,8 @@ Step 2: Implement the OAuth authorization flow
 Now that you have registered your OAuth app, you can implement the basic OAuth authorization flow. This is necessary
 because you will have to ask your user permission to control their Mollie onboarding.
 
-Again, if you are unfamiliar with OAuth, please refer to the :doc:`Getting started guide </connect/getting-started>` for
-more details on the authorization flow.
+Again, if you are unfamiliar with OAuth, see the :doc:`Getting started guide </connect/getting-started>` for more
+details on the authorization flow.
 
 To onboard customers, you commonly need these three permissions:
 
@@ -88,7 +88,7 @@ We recommend showing the following onboarding status messages to your customers:
 |                |                  |                     | information. <Link to onboarding URL>                      |
 +----------------+------------------+---------------------+------------------------------------------------------------+
 | ``needs-data`` | ``true``         | ``false``           | You can start receiving payments. Before Mollie can pay    |
-|                |                  |                     | out to your bank, please provide some additional           |
+|                |                  |                     | out to your bank, you need to provide some additional      |
 |                |                  |                     | information. <Link to onboarding URL>                      |
 +----------------+------------------+---------------------+------------------------------------------------------------+
 | ``in-review``  | ``false``        | ``false``           | Mollie has all the required information and is verifying   |

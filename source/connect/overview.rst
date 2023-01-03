@@ -38,12 +38,12 @@ The following guide will dive into these last two use cases.
 
 Accessing your customer's Mollie account
 ----------------------------------------
-To access or manage the account of your customer, you need an OAuth app. Please follow the
+To access or manage the account of your customer, you need an OAuth app. Follow the
 :doc:`Getting started guide </connect/getting-started>` for instructions.
 
 Once you have set up the app, you can access virtually any Mollie API endpoint with the OAuth access token, as long as
-your user gave permission for your app to access their data. Please refer to :doc:`/connect/permissions` for a full list
-of available permissions.
+your user gave permission for your app to access their data. Refer to :doc:`/connect/permissions` for a full list of
+available permissions.
 
 Charging fees on payments processed through your app
 ----------------------------------------------------
@@ -62,5 +62,5 @@ You can sign up for our referral program to receive commissions for merchants th
 your account is configured as a partner account, any merchant you sign up through the OAuth onboarding flow will
 automatically be linked to your account.
 
-For more information about partnering with Mollie, please see our
+For more information about partnering with Mollie, see our
 `Partner page <https://www.mollie.com/partners>`_ or reach out to your Mollie partner manager.

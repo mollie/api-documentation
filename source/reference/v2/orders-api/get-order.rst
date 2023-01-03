@@ -263,8 +263,8 @@ Response
 
    The person and the address the order is billed to.
 
-   Please refer to the documentation of the :ref:`address object <address-object>` for more information on which formats
-   are accepted.
+   Refer to the documentation of the :ref:`address object <address-object>` for more information on which formats are
+   accepted.
 
    .. parameter:: organizationName
       :type: string
@@ -324,8 +324,8 @@ Response
 
    The person and the address the order is billed to.
 
-   Please refer to the documentation of the :ref:`address object <address-object>` for more information on which formats
-   are accepted.
+   Refer to the documentation of the :ref:`address object <address-object>` for more information on which formats are
+   accepted.
 
    .. parameter:: organizationName
       :type: string

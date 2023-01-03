@@ -172,8 +172,8 @@ Embedding credit card fields
    :class: boxed-in-dark-mode
 
 For the credit card payment method, you can fully embed the credit card input fields while staying PCI-DSS-compliant
-using Mollie Components. Please refer to the guide on :doc:`Mollie Components </components/overview>` for more
-information on how to integrate.
+using Mollie Components. Refer to the guide on :doc:`Mollie Components </components/overview>` for more information on
+how to integrate.
 
 .. _embedding-issuer-selection:
 

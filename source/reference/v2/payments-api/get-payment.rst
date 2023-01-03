@@ -85,8 +85,8 @@ Response
 .. parameter:: status
    :type: string
 
-   The payment's status. Please refer to the documentation regarding statuses for more info about which statuses occur
-   at what point.
+   The payment's status. Refer to the documentation regarding statuses for more info about which statuses occur at what
+   point.
 
 .. parameter:: isCancelable
    :type: boolean

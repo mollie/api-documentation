@@ -9,7 +9,7 @@ How to style a component
 
 Most of the styling should be applied to the injected ``.mollie-component`` container. The
 ``<div class="mollie-component" />`` container lives completely in your own environment and thus will give the most
-flexible way of styling. To see how this works please visit our
+flexible way of styling. To see how this works, visit our
 `Components Examples repository <https://github.com/mollie/components-examples>`_ for examples.
 
 * ``.mollie-component`` Will always be present. You can use this class to style border and background properties.

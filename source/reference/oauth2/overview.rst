@@ -14,8 +14,8 @@ those access tokens, you can talk to the Mollie API on behalf of your users.
 Lastly, we offer the *Revoke token* endpoint where your app can proactively revoke authorizations (as per the standard
 OAuth revoke flow).
 
-Please refer to :doc:`Getting started with Mollie Connect </connect/getting-started>` for a step-by-step guide on
-implementing OAuth.
+Refer to :doc:`Getting started with Mollie Connect </connect/getting-started>` for a step-by-step guide on implementing
+OAuth.
 
 Endpoints
 ---------

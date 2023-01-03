@@ -42,7 +42,7 @@ brands are supported:
 * `Wijn Cadeaukaart <https://www.wijn-cadeaukaart.nl/>`_
 * `YourGift <https://www.yourgift.nl/>`_
 
-If you need a different brand, please reach out to your account manager or our support department. We can also support
+If you need a different brand, reach out to your account manager or our support department. We can also support
 closed-loop gift cards.
 
 When using the :doc:`hosted checkout </payments/hosted-checkout>`, your customer can pay part of the payment using gift

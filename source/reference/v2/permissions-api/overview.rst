@@ -9,7 +9,7 @@ As per the OAuth standard, you need to request specific *permissions* (or *scope
 gain access to specific resources on the user's Mollie account. For example, to gain read access to the user's invoices,
 your user will need to grant you the ``invoices.read`` permission.
 
-Please refer to :doc:`Getting started with Mollie Connect </connect/getting-started>` for a step-by-step guide on
+Refer to :doc:`Getting started with Mollie Connect </connect/getting-started>` for a step-by-step guide on
 implementing OAuth.
 
 Endpoints

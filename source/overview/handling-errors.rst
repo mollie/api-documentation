@@ -142,7 +142,7 @@ Response
 
 Sometimes a status HTTP ``422 Unprocessable Entity`` is returned. When it occurs there is extra information in the JSON
 about what part or field of your request is likely to be causing the error. In these cases you will find the response
-has the parameter ``field``. This status can also happen when your payment services are suspended. If this happens, 
+has the parameter ``field``. This status can also happen when your payment services are suspended. If this happens,
 you can find more information in your dashboard. In the example below we deliberately used an amount that was too high:
 
 Request
@@ -207,23 +207,23 @@ The Mollie API will only ever return a subset of all legal HTTP status codes. He
 +---+------------------------------------------------------------------------------------------------------------------+
 |410|Gone – You are trying to access an object, which has previously been deleted (only in v2).                        |
 +---+------------------------------------------------------------------------------------------------------------------+
-|415|Unsupported Media Type – Your request's encoding is not supported or is incorrectly understood. Please always use |
-|   |JSON.                                                                                                             |
+|415|Unsupported Media Type – Your request's encoding is not supported or is incorrectly understood. We recommend to   |
+|   |always use JSON.                                                                                                  |
 +---+------------------------------------------------------------------------------------------------------------------+
 |422|Unprocessable Entity – We could not process your request due to another reason than the ones listed above. The    |
-|   |response usually contains a ``field`` property to indicate which field is causing the issue. If you account is    |
-|   |suspended, please check your dashboard.                                                                           |
+|   |response usually contains a ``field`` property to indicate which field is causing the issue. If your account is   |
+|   |suspended, visit your dashboard for more information.                                                             |
 +---+------------------------------------------------------------------------------------------------------------------+
-|429|Too Many Requests – Your request has hit a rate limit. Please wait for a bit and retry.                           |
+|429|Too Many Requests – Your request has hit a rate limit. You can try again after a short period.                    |
 +---+------------------------------------------------------------------------------------------------------------------+
 |500|Internal Server Error – An internal server error occurred while processing your request. Our developers are       |
-|   |notified automatically, but if you have any information on how you triggered the problem, please contact us.      |
+|   |notified automatically, but if you have any information on how you triggered the problem, contact us.             |
 +---+------------------------------------------------------------------------------------------------------------------+
-|502|Bad Gateway – The service is temporarily unavailable, either due to calamity or (planned) maintenance. Please     |
-|   |retry the request at a later time.                                                                                |
+|502|Bad Gateway – The service is temporarily unavailable, either due to calamity or (planned) maintenance. Retry the  |
+|   |request at a later time.                                                                                          |
 +---+------------------------------------------------------------------------------------------------------------------+
 |503|Service Unavailable – The service is temporarily unavailable, either due to calamity or (planned) maintenance.    |
-|   |Please retry the request at a later time.                                                                         |
+|   |Retry the request at a later time.                                                                                |
 +---+------------------------------------------------------------------------------------------------------------------+
 |504|Gateway Timeout – Your request is causing an unusually long process time.                                         |
 +---+------------------------------------------------------------------------------------------------------------------+

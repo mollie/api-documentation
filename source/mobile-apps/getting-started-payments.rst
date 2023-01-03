@@ -290,7 +290,7 @@ Step 5: Share the status of the payment with your app
 -----------------------------------------------------
 Since the API-key is not included in your app, you can not request the status of the payment directly from Mollie.
 Therefor you should create a way to inform your app about the status update of the payment from your server. An option
-you have is to use a Silence Notification. Please see the guides for
+you have is to use a Silence Notification. See the guides for
 `iOS <https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_updates_to_your_app_silently>`_
 and `Android <https://firebase.google.com/docs/cloud-messaging/concept-options#notifications_and_data_messages>`_ about
 how to integrate this in your app.

@@ -17,7 +17,7 @@ test mode is enabled for Mollie Components, the card tokens you receive should b
 
 Test card numbers
 -----------------
-You can use test card numbers provided by the different card issuers to test different types of cards. Please refer to
+You can use test card numbers provided by the different card issuers to test different types of cards. Refer to
 our :doc:`testing guide </overview/testing>` for a list of test card numbers.
 
 Testing failure scenarios
@@ -27,5 +27,5 @@ issuer reject the payment due to insufficient funds. In the case of a failed cre
 includes a ``failureReason`` in the :doc:`payment response </reference/v2/payments-api/get-payment>` to provide more
 context.
 
-To test the various card payment failure reasons the Mollie API can return, please refer to our
+To test the various card payment failure reasons the Mollie API can return, refer to our
 :doc:`testing guide </overview/testing>`.

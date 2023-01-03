@@ -88,8 +88,8 @@ Response
 
    This object is a collection of Period objects, which describe the settlement by month in full detail.
 
-   Please note the periods are sorted by date. For example, the field may contain an object called ``2018``, which
-   contains a Period object called ``03``. The Period object fields are listed below.
+   The periods are sorted by date. For example, the field may contain an object called ``2018``, which contains a Period
+   object called ``03``. The Period object fields are listed below.
 
    .. parameter:: revenue
       :type: array

@@ -6,7 +6,7 @@ automatically create recurring payments for you at the interval you specified.
 The Subscriptions API is not required to implement recurring payments. You can just as easily charge the recurring
 payments yourself on the customer using the Payments API.
 
-For a step-by-step guide on charging your customers recurrently, please refer to
+For a step-by-step guide on charging your customers recurrently, refer to
 :doc:`Recurring payments </payments/recurring>`.
 
 Endpoints

@@ -123,7 +123,7 @@ The following diagram shows how one order status leads to another:
     expiry period, the order will expire. When an order is paid using a payment method that supports authorizations,
     the order has to be *completed* within the given expiry period.
 
-    *Please note*: the default expiry period of 28 days might change in the future.
+    *Note*: the default expiry period of 28 days might change in the future.
 
     * Mollie will call your webhook when the order reaches this state.
     * All order lines will be ``canceled``.

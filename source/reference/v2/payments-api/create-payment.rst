@@ -138,7 +138,7 @@ Parameters
    ``giftcard`` ``giropay`` ``ideal`` ``kbc`` ``mybank``  ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort``
 
    .. note:: If you are looking to create payments with the Klarna Pay now, Klarna Pay later, Klarna Slice it, in3 or
-      voucher payment methods, please use :doc:`/reference/v2/orders-api/create-order` instead.
+      voucher payment methods, use :doc:`/reference/v2/orders-api/create-order` instead.
 
 .. parameter:: restrictPaymentMethodsToCountry
    :type: string
@@ -268,16 +268,16 @@ Bank transfer
    :type: string
    :condition: optional
 
-   Consumer's email address, to automatically send the bank transfer details to. **Please note:** the payment
-   instructions will be sent immediately when creating the payment. If you do not specify the ``locale`` parameter, the
-   email will be sent in English, as we haven't yet been able to detect the consumer's browser language.
+   Consumer's email address, to automatically send the bank transfer details to. **Note:** the payment instructions will
+   will be sent immediately when creating the payment. If you do not specify the ``locale`` parameter, the email will be
+   sent in English, as we haven't yet been able to detect the consumer's browser language.
 
 .. parameter:: dueDate
    :type: string
    :condition: optional
 
-   The date the payment should :doc:`expire </payments/status-changes>`, in ``YYYY-MM-DD`` format. **Please note:** the
-   minimum date is tomorrow and the maximum date is 100 days after tomorrow.
+   The date the payment should :doc:`expire </payments/status-changes>`, in ``YYYY-MM-DD`` format. **Note:** the minimum
+   date is tomorrow and the maximum date is 100 days after tomorrow.
 
    After you created the payment, you can still update the ``dueDate`` via
    :doc:`/reference/v2/payments-api/update-payment`.
@@ -302,8 +302,8 @@ Credit card
    The card holder's address details. We advise to provide these details to improve the credit card fraud protection,
    and thus improve conversion.
 
-   If an address is provided, then the address has to be in a valid format. Please refer to the documentation of the
-   :ref:`address object <address-object>` for more information on which formats are accepted.
+   If an address is provided, then the address has to be in a valid format. See the
+   :ref:`address object <address-object>` documentation for more information on which formats are accepted.
 
    .. parameter:: streetAndNumber
       :type: string
@@ -349,8 +349,8 @@ Credit card
    The shipping address details. We advise to provide these details to improve the credit card fraud protection, and
    thus improve conversion.
 
-   If an address is provided, then the address has to be in a valid format. Please refer to the documentation of the
-   :ref:`address object <address-object>` for more information on which formats are accepted.
+   If an address is provided, then the address has to be in a valid format. See the
+   :ref:`address object <address-object>` documentation for more information on which formats are accepted.
 
    .. parameter:: streetAndNumber
       :type: string
@@ -458,7 +458,7 @@ Klarna Pay now. / Pay later. / Slice it.
    containing any of the allowed keys and sub objects described at the `Klarna Developer Documentation
    <https://docs.klarna.com/klarna-payments/api/#tag/Attachment-Schema>`_ under ``attachment.body``.
 
-   Please reach out to your account manager at Mollie to enable this feature with Klarna, and to agree on which fields
+   Reach out to your account manager at Mollie to enable this feature with Klarna, and to agree on which fields
    you can send.
 
 .. _paypal-method-details:
@@ -485,8 +485,8 @@ PayPal
    The shipping address details. We advise to provide these details to improve PayPal's fraud protection, and thus
    improve conversion.
 
-   If an address is provided, then the address has to be in a valid format. Please refer to the documentation of the
-   :ref:`address object <address-object>` for more information on which formats are accepted.
+   If an address is provided, then the address has to be in a valid format. See the
+   :ref:`address object <address-object>` documentation for more information on which formats are accepted.
 
    .. parameter:: givenName
       :type: string
@@ -525,8 +525,8 @@ PayPal
       :type: string
       :condition: optional
 
-      The region of the shipping address. The maximum character length is 100. **Please note**: this field is required
-      if ``country`` is one of the following countries: ``AR`` ``BR`` ``CA`` ``CN`` ``ID`` ``IN`` ``JP`` ``MX`` ``TH``
+      The region of the shipping address. The maximum character length is 100. **Note**: this field is required if
+      ``country`` is one of the following countries: ``AR`` ``BR`` ``CA`` ``CN`` ``ID`` ``IN`` ``JP`` ``MX`` ``TH``
       ``US``
 
    .. parameter:: country
@@ -543,7 +543,7 @@ PayPal
    The unique ID you have used for the PayPal fraud library. You should include this if you use PayPal for an on-demand
    payment. The maximum character length is 32.
 
-   Please refer to the :doc:`Recurring payments guide </payments/recurring>` for more information on how to implement
+   Refer to the :doc:`Recurring payments guide </payments/recurring>` for more information on how to implement
    the fraud library.
 
 .. parameter:: digitalGoods
@@ -551,7 +551,7 @@ PayPal
    :condition: optional
 
    Indicate if you are about to deliver digital goods, like for example a license. Setting this parameter can have
-   consequences for your Seller Protection by PayPal. Please see
+   consequences for your Seller Protection by PayPal. See
    `PayPal's help article <https://www.paypal.com/us/brc/article/seller-protection>`_ about Seller Protection for more
    information.
 
@@ -600,7 +600,7 @@ SEPA Direct Debit
     One-off SEPA Direct Debit payments using Mollie Checkout can only be created if this is enabled on your account. In
     general, it is not very useful for webshops but may be useful for charities.
 
-    Please contact our support department to enable this.
+    Contact our support department to enable this.
 
     If you want to use recurring payments, take a look at our :doc:`Recurring payments guide </payments/recurring>`.
 
@@ -656,7 +656,7 @@ For these authentication methods the optional ``testmode`` parameter is availabl
 Mollie Connect parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 With Mollie Connect you can charge fees on payments that are processed through your app, either by defining an
-*application fee* or by *splitting the payment*. To learn more about the difference, please refer to the
+*application fee* or by *splitting the payment*. To learn more about the difference, refer to the
 :doc:`Mollie Connect overview </connect/overview>`.
 
 .. parameter:: applicationFee
@@ -704,8 +704,8 @@ With Mollie Connect you can charge fees on payments that are processed through y
    :condition: optional
    :collapse: true
 
-   .. note:: This functionality is currently in closed beta. Please contact our partner management team if you are
-      interested in testing this functionality with us.
+   .. note:: This functionality is currently in closed beta. Contact our partner management team if you are interested
+             in testing this functionality with us.
 
    An optional routing configuration which enables you to route a successful payment, or part of the payment, to one or
    more connected accounts. Additionally, you can schedule (parts of) the payment to become available on the connected
@@ -757,8 +757,8 @@ With Mollie Connect you can charge fees on payments that are processed through y
          Required for destination type ``organization``. The ID of the connected organization the funds should be routed
          to, for example ``org_12345``.
 
-         **Please note:** ``me`` or the ID of the current organization are not accepted as an ``organizationId``. After
-         all portions of the total payment amount have been routed, the amount left will be routed to the current
+         **Note:** ``me`` or the ID of the current organization are not accepted as an ``organizationId``. After all
+         portions of the total payment amount have been routed, the amount left will be routed to the current
          organization automatically.
 
    .. parameter:: releaseDate

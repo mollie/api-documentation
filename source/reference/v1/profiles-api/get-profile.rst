@@ -72,15 +72,15 @@ Response
 
    The industry associated with the profile's trade name or brand.
 
-   Please refer to the documentation of the :ref:`business category <business-category>` for more information on which
-   values are accepted.
+   Refer to the documentation of the :ref:`business category <business-category>` for more information on which values
+   are accepted.
 
 .. parameter:: categoryCode
    :type: integer
 
    The industry associated with the profile's trade name or brand.
 
-   .. warning:: This parameter is deprecated and will be removed in 2022. Please use the ``businessCategory`` parameter
+   .. warning:: This parameter is deprecated and will be removed in 2022. Use the ``businessCategory`` parameter
                 instead.
 
    Possible values:

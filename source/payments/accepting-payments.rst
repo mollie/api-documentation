@@ -16,7 +16,7 @@ the payment is completed. You can find an example of the hosted checkout in
 `our demo environment <https://demo.mollie.com>`_.
 
 You can also opt for a deeper integration, from offering your own payment method selection all the way to embedding
-credit card fields in your own checkout experience. Please refer to our guide on
+credit card fields in your own checkout experience. Refer to our guide on
 :doc:`building your own checkout </payments/build-your-own-checkout>` to dive into how the Mollie checkout flow can be
 fully integrated.
 
@@ -64,8 +64,8 @@ programmer's perspective.
    `paid`, your website can send out a confirmation email to the customer and start the order fulfilment.
 
 #. At this point Mollie returns the visitor to your website using the redirect URL specified when the payment was
-   created. Make sure that you have received our webhook before rendering a payment status to the customer, since 
-   it happens sometimes that the webhook arrives later than the customer redirection. 
+   created. Make sure that you have received our webhook before rendering a payment status to the customer, since
+   it happens sometimes that the webhook arrives later than the customer redirection.
 
 Tracking your order reference
 -----------------------------

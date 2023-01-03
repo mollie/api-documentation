@@ -4,12 +4,13 @@ Mollie provides a hosted checkout environment dubbed **Mollie Checkout**. These 
 to select their payment method of choice and to complete the payment.
 
 Using Mollie Checkout is optional. We do recommend using it, since it is battle-tested and optimized for performance and
-conversion. If, however, you would like to provide a custom checkout experience, please refer to our guide on
+conversion. If, however, you would like to provide a custom checkout experience, refer to our guide on
 :doc:`building your own checkout </payments/build-your-own-checkout>`.
 
 Our full hosted checkout experience can be viewed on `our Hosted Checkout demo <https://demo.mollie.com/>`_.
 
-Please also refer to the `Mollie Checkout product page <https://www.mollie.com/products/checkout>`_ on our website.
+More details are available on the `Mollie Checkout product page <https://www.mollie.com/products/checkout>`_ on our
+website.
 
 .. figure:: images/mollie-checkout-example-a@2x.jpg
 
@@ -58,7 +59,7 @@ the ``customerId`` field of the Payments API.
 When setting up a subsequent payment for the same customer, the customer will automatically be shown any cards they
 previously used on the same device.
 
-Please note customer consent is required to support one-click payments.
+Customer consent is required to support one-click payments.
 
 .. figure:: images/mollie-checkout-example-b@2x.jpg
 

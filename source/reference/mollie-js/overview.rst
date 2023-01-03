@@ -7,7 +7,7 @@ checkout experience. See the guides on :doc:`Mollie Components </components/over
 The ``Mollie`` object is used to initialize Mollie Components. ``Component`` objects each reference an embeddable
 checkout component, such as a credit card number field or a credit card expiry date field.
 
-For a step-by-step tutorial on integrating Mollie Components, please refer to the
+For a step-by-step tutorial on integrating Mollie Components, refer to the
 :doc:`Mollie Components guide </components/overview>`.
 
 Objects

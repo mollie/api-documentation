@@ -99,7 +99,7 @@ Parameters
    ``ideal`` ``kbc`` ``mistercash`` ``mybank`` ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort``
 
    .. note:: If you are looking to create payments with the Klarna Pay now, Klarna Pay later, Klarna Slice it, in3 or
-             Voucher payment methods, please use the :doc:`Orders API </reference/v2/orders-api/overview>` instead.
+             Voucher payment methods, use the :doc:`Orders API </reference/v2/orders-api/overview>` instead.
 
 .. parameter:: metadata
    :type: mixed
@@ -149,16 +149,16 @@ Bank transfer
    :type: string
    :condition: optional
 
-   Consumer's email address, to automatically send the bank transfer details to. **Please note:** the payment
-   instructions will be sent immediately when creating the payment. If you do not specify the ``locale`` parameter, the
-   email will be sent in English, as we haven't yet been able to detect the consumer's browser language.
+   Consumer's email address, to automatically send the bank transfer details to. **Note:** the payment instructions will
+   be sent immediately when creating the payment. If you do not specify the ``locale`` parameter, the email will be sent
+   in English, as we haven't yet been able to detect the consumer's browser language.
 
 .. parameter:: dueDate
    :type: string
    :condition: optional
 
-   The date the payment should :doc:`expire </payments/status-changes>`, in ``YYYY-MM-DD`` format. **Please note:** the
-   minimum date is tomorrow and the maximum date is 100 days after tomorrow.
+   The date the payment should :doc:`expire </payments/status-changes>`, in ``YYYY-MM-DD`` format. **Note:** the minimum
+   date is tomorrow and the maximum date is 100 days after tomorrow.
 
 .. parameter:: locale
    :type: string

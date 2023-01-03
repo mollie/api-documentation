@@ -23,8 +23,8 @@ In the following sections we explain the following topics.
 * :ref:`Charging periodically with subscriptions <payments/recurring/charging-periodically>`
 * :ref:`How do webhooks for subscriptions work? <payments/recurring/subscription-webhooks>`
 
-For more information on how to test recurring payments, please refer to our :doc:`guide </overview/testing>` for testing
-the Mollie API.
+For more information on how to test recurring payments, refer to our :doc:`guide </overview/testing>` for testing the
+Mollie API.
 
 .. _payments/recurring/first-payment:
 
@@ -106,8 +106,7 @@ regular payment with a ``redirectUrl``, a recurring payment happens in the backg
 without the customer going through payments steps. You can create a recurring payment with the ``sequenceType`` set to
 ``recurring`` when creating a payment with the :doc:`Payments API </reference/v2/payments-api/create-payment>`.
 
-Please note that in order to do recurring payments, SEPA Direct Debit, PayPal or credit card has to be activated on
-your profile.
+In order to do recurring payments, SEPA Direct Debit, PayPal or credit card has to be activated on your profile.
 
 #. Make sure the customer has valid mandates. Find out using the
    :doc:`Mandates API </reference/v2/mandates-api/overview>`.
@@ -227,7 +226,7 @@ The configuration should contain JSON with the following attributes:
        .. type:: string
           :required: true
 
-     - Your unique PayPal Website ID. Please contact your PayPal account manager to get this identifier.
+     - Your unique PayPal Website ID. Contact your PayPal account manager to get this identifier.
 
    * - ``f``
 

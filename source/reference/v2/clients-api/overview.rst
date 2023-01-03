@@ -3,7 +3,7 @@ Clients API
 The Clients API is part of our partnerships toolkit. If you are a registered Mollie partner, you can use the Clients API
 to retrieve a list of Mollie merchants connected to your partner account.
 
-For more information on our partnership program, please visit `mollie.com/partners <https://www.mollie.com/partners>`_.
+For more information on our partnership program, visit `mollie.com/partners <https://www.mollie.com/partners>`_.
 
 Endpoints
 ---------

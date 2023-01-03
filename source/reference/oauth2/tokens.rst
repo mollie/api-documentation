@@ -58,8 +58,8 @@ Response
 .. parameter:: refresh_token
    :type: string
 
-   The refresh token, with which you will be able to retrieve new access tokens on this endpoint. Please note that the
-   refresh token does not expire.
+   The refresh token, with which you will be able to retrieve new access tokens on this endpoint. The refresh token does
+   not expire.
 
 .. parameter:: expires_in
    :type: integer
@@ -77,8 +77,8 @@ Response
 .. parameter:: scope
    :type: string
 
-   A space separated list of permissions. Please refer to :doc:`Permissions </connect/permissions>` for the full
-   permission list.
+   A space separated list of permissions. Refer to :doc:`Permissions </connect/permissions>` for the full permission
+   list.
 
 Example
 -------

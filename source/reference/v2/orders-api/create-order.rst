@@ -79,7 +79,7 @@ Parameters
       For information on the ``discount``, ``store_credit`` and ``gift_card`` types, see our guide on
       :doc:`handling discounts </orders/handling-discounts>`.
 
-      For selling digitally delivered goods through PayPal, please request PayPal to `enable this on your account
+      For selling digitally delivered goods through PayPal, request PayPal to `enable this on your account
       <https://developer.paypal.com/docs/classic/express-checkout/digital-goods/IntroducingExpressCheckoutDG/>`_.
 
    .. parameter:: category
@@ -230,8 +230,8 @@ Parameters
    This field is not required if you make use of the
    :doc:`PayPal Express Checkout button </orders/paypal-express-checkout-button>`
 
-   Please refer to the documentation of the :ref:`address object <address-object>` for more information on which formats
-   are accepted.
+   Refer to the documentation of the :ref:`address object <address-object>` for more information on which formats are
+   accepted.
 
    .. parameter:: organizationName
       :type: string
@@ -305,9 +305,8 @@ Parameters
 
    The shipping address for the order.
 
-   This field is optional, but if it is provided, then the full name and address have to be in a valid format. Please
-   refer to the documentation of the :ref:`address object <address-object>` for more information on which formats are
-   accepted.
+   This field is optional, but if it is provided, then the full name and address have to be in a valid format. See the
+   :ref:`address object <address-object>` documentation for more information on which formats are accepted.
 
    .. parameter:: organizationName
       :type: string

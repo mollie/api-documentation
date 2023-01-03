@@ -4,7 +4,7 @@ The Onboarding API is designed for platforms who wish to automatically onboard t
 with OAuth, allowing you to submit onboarding details of your customers on behalf of them, and to check up on their
 onboarding status.
 
-For a step-by-step tutorial, please refer to the :doc:`Onboarding guide </connect/onboarding>`.
+For a step-by-step tutorial, refer to the :doc:`Onboarding guide </connect/onboarding>`.
 
 Endpoints
 ---------

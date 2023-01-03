@@ -68,7 +68,7 @@ access to, and request the merchant to confirm the authorization. An example aut
 
 .. image:: images/oauth-consent-screen@2x.png
 
-Please refer to :doc:`OAuth: Permissions </connect/permissions>` for a full list of available permissions you can
+See :doc:`OAuth: Permissions </connect/permissions>` for a full list of available permissions you can
 request from your user.
 
 Working with access tokens

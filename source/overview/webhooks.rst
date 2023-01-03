@@ -55,8 +55,8 @@ Furthermore, the webhook will be called when:
 * A chargeback is received on the payment.
 
 The webhook is not called if you have specified a ``method`` and the consumer cancels the payment on the payment page. We will redirect the
-customer instead towards the hosted checkout page and allow him to pick a new method. Only on cancelling on this page, the payment 
-will receive the state ``canceled`` and the webhook will be called. 
+customer instead towards the hosted checkout page and allow him to pick a new method. Only on cancelling on this page, the payment
+will receive the state ``canceled`` and the webhook will be called.
 
 Read more about :doc:`payment status changes </payments/status-changes>`.
 
@@ -76,8 +76,8 @@ Read more about :doc:`order status changes </orders/status-changes>`.
 Subscriptions API
 ^^^^^^^^^^^^^^^^^
 The webhook URL specified when :doc:`creating a subscription </reference/v2/subscriptions-api/create-subscription>` is
-used for each payment that is created by this subscription. Please refer to the explanation above for more information
-about webhooks for payments.
+used for each payment that is created by this subscription. Refer to the explanation above for more information about
+webhooks for payments.
 
 The :ref:`Recurring Payments guide <payments/recurring/subscription-webhooks>` has some additional information about
 webhooks for subscriptions.

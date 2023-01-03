@@ -39,9 +39,9 @@ them. Then we will show you how the statuses are connected.
     The payment has failed and cannot be completed with a different payment method. We will call your webhook when a
     payment transitions to the ``failed`` status.
 
-    Please note that when you use :doc:`Mollie Checkout </payments/hosted-checkout>` and you offer multiple payment
-    methods you will be redirected to the method selection screen after a payment failure. So, the consumer can choose
-    another method to finish the payment.
+    When you use :doc:`Mollie Checkout </payments/hosted-checkout>` and you offer multiple payment methods you will be
+    redirected to the method selection screen after a payment failure. So, the consumer can choose another method to
+    finish the payment.
 
 ``paid``
     This status occurs whenever a payment is successfully paid. When this status occurs we will call your webhook.
@@ -52,7 +52,7 @@ them. Then we will show you how the statuses are connected.
 
 How does one status lead to another?
 ------------------------------------
-Please look at the below diagram. It tells you exactly when to expect what status:
+The below diagram shows exactly when to expect which status.
 
 .. image:: images/payment-status-flow@2x.png
 

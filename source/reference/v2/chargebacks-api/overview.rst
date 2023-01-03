@@ -9,7 +9,7 @@ The Chargebacks API then allows you to retrieve details of the chargebacks that 
 As soon as we receive notification of a chargeback, we will notify you. Depending on the nature of the chargeback, there
 will be an opportunity to respond to this notification.
 
-For more information on dealing with chargebacks, please refer to our
+For more information on dealing with chargebacks, refer to our
 `knowledge base <https://help.mollie.com/hc/en-us/articles/115001470869-What-are-chargebacks->`_.
 
 Endpoints

@@ -137,9 +137,9 @@ amount that you want to pull back from the single routes.
          Required for source type ``organization``. The ID of the connected organization the funds
          should reversed from, for example ``org_12345``.
 
-         **Please note:** ``me`` or the ID of the current organization are not accepted as an ``organizationId``.
+         **Note:** ``me`` or the ID of the current organization are not accepted as an ``organizationId``.
 
-To learn more about creating refunds for split payments, please refer to the
+To learn more about creating refunds for split payments, refer to the
 :doc:`Refunds and chargebacks for split payments guide </connect/refunds-and-chargebacks>`.
 
 When creating **partial** refunds for split payments, you should instead use the ``routingReversals`` array to set the

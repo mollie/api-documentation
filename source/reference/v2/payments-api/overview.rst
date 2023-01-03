@@ -8,7 +8,7 @@ In its simplest form, processing a payment requires only three steps: setting up
 :doc:`hosted checkout </payments/hosted-checkout>`, and processing the :doc:`webhook </overview/webhooks>` we send once
 the payment is completed.
 
-Please refer to :doc:`Accepting payments </payments/accepting-payments>` for a step-by-step guide on implementing the
+Refer to :doc:`Accepting payments </payments/accepting-payments>` for a step-by-step guide on implementing the
 Payments API.
 
 Endpoints

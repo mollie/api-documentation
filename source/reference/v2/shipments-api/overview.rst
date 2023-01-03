@@ -7,8 +7,8 @@ will then be settled to your balance.
 The word "shipping" is used in the figurative sense here. It can also mean that a service was provided or digital
 content was delivered.
 
-Please refer to the :doc:`Orders API guide </orders/overview>` for a step-by-step guide on implementing the Orders API
-and the Shipments API.
+Refer to the :doc:`Orders API guide </orders/overview>` for a step-by-step guide on implementing the Orders API and the
+Shipments API.
 
 Endpoints
 ---------

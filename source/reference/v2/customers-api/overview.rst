@@ -13,7 +13,7 @@ The Customers API allows you to provide customer information. Although not requi
 recognizable name for each customer. This makes it easier to manage your customers and their payments in the Mollie
 Dashboard.
 
-For a step-by-step guide on charging your customers recurrently, please refer to
+For a step-by-step guide on charging your customers recurrently, refer to
 :doc:`Recurring payments </payments/recurring>`.
 
 Endpoints

@@ -96,8 +96,8 @@ Response
 .. parameter:: state
    :type: string
 
-   The random string you've sent with your request to prevent CSRF attacks. Please always check if this matches the
-   expected value.
+   The random string you've sent with your request to prevent CSRF attacks. Always check if this matches the expected
+   value.
 
 .. parameter:: error
    :type: string
@@ -112,5 +112,4 @@ Response
 
 Example
 -------
-Please refer to the documentation of the `Mollie API client <https://www.mollie.com/developers/packages>`_ you are
-using.
+Refer to the documentation of the `Mollie API client <https://www.mollie.com/developers/packages>`_ you are using.

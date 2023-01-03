@@ -6,7 +6,7 @@ authentication methods of their own devices.
 The :doc:`Mollie hosted checkout </payments/hosted-checkout>` provides wallet payment methods such as Apple Pay out of
 the box. If you wish to fully integrate a wallet payment method into your checkout, you can do so using the Wallets API.
 
-Please refer to the :doc:`Wallets guides </wallets/applepay>` for step-by-step tutorials.
+Refer to the :doc:`Wallets guides </wallets/applepay>` for step-by-step tutorials.
 
 Endpoints
 ---------

@@ -8,7 +8,7 @@ Settlements are created automatically based on the settlement frequency configur
 Where possible, the settlements will include information on which payments were included in the settlement, which
 refunds were deducted from it, and so forth.
 
-For more information on settlements and on receiving payments, please refer to our
+For more information on settlements and on receiving payments, refer to our
 `knowledge base <https://help.mollie.com/hc/en-us/sections/360004882139-Receiving-payments>`_.
 
 Endpoints

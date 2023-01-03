@@ -29,7 +29,7 @@ result in a ``completed`` order line status.
 If the order line is ``paid`` or already ``completed``, you should create a refund using the
 :doc:`Create order refund endpoint </reference/v2/refunds-api/create-order-refund>` instead.
 
-For more information about the status transitions please check our
+For more information about the status transitions, check our
 :doc:`order status changes guide </orders/status-changes>`.
 
 Parameters

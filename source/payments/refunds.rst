@@ -5,7 +5,7 @@ account balance.
 
 Refunds for regular payment integrations are created using the :doc:`Refunds API </reference/v2/refunds-api/overview>`.
 
-To create refunds for order-based integrations, please refer to the
+To create refunds for order-based integrations, refer to the
 :doc:`Create order refund endpoint </reference/v2/refunds-api/create-order-refund>` instead.
 
 Next to the API endpoint, you can also `create refunds manually

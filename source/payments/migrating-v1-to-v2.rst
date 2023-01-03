@@ -96,7 +96,7 @@ have been replaced by address objects. Instead of passing ``billingAddress``, ``
        }
    }
 
-.. note:: The usage of the address object parameters remains optional. Please refer to the
+.. note:: The usage of the address object parameters remains optional. Refer to the
           :doc:`Create payment documentation </reference/v2/payments-api/create-payment>` for exact specifications on
           what input is accepted.
 

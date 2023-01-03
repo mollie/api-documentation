@@ -5,7 +5,7 @@ Note that the Payments API is not going to be replaced by the Orders API.
 
 Prerequisites
 -------------
-This guide assumes you are migrating from the v2 Payments API. If you are migrating from the v1 API please first review
+This guide assumes you are migrating from the v2 Payments API. If you are migrating from the v1 API, then first review
 the :doc:`v2 migration guide </payments/migrating-v1-to-v2>` to learn about the differences between the v1 and the v2
 API.
 
@@ -85,8 +85,7 @@ Your customer should be redirected to this URL to complete the order payment. Th
 The only difference occurs when the customer chooses a payment method that requires authorization. This is the case with
 Klarna payment methods. The customer will have to authorize the payment, and the payment is not executed
 immediately. When a shipment is created for an authorized order a *capture* is made to process the payment. For more
-info on the authorize payment flow please see :doc:`Order status changes </orders/status-changes>` for details on the
-orders' statuses.
+information on the authorize payment flow see :doc:`Order status changes </orders/status-changes>`.
 
 Note that the ``checkout`` link has a longer expiry period than a payment checkout URL. The exact expiry time can be
 retrieved from the ``expiresAt`` property in the API response.

@@ -24,7 +24,7 @@ The order can only be canceled while:
 #. In case of ``shipping``, any order lines that are still ``authorized`` will be canceled and order lines that are
    ``shipping`` will be completed. The new order status will be ``completed``.
 
-For more information about the status transitions please check our
+For more information about the status transitions, check our
 :doc:`order status changes guide </orders/status-changes>`.
 
 .. [#f1] If the order status is ``shipping``, some order lines can have the status ``paid`` if the order was paid using

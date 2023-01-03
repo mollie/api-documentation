@@ -8,7 +8,7 @@ Component object
 A ``Component`` object in the Mollie JavaScript SDK references an embeddable checkout component, such as a credit card
 number field or a credit card expiry date field.
 
-For a step-by-step tutorial on integrating Mollie Components, please refer to the
+For a step-by-step tutorial on integrating Mollie Components, refer to the
 :doc:`Mollie Components guide </components/overview>`.
 
 .. _components-mollie-component-mount:

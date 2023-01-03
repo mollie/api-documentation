@@ -21,8 +21,7 @@ Parameters
 ----------
 Replace ``id`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN4U``.
 
-Please note that even though all parameters are optional, at least one of them needs to be provided
-in the request.
+Even though all parameters are optional, at least one of them needs to be provided in the request.
 
 .. parameter:: billingAddress
    :type: address object
@@ -30,8 +29,8 @@ in the request.
 
    The billing person and address for the order.
 
-   Please refer to the documentation of the :ref:`address object <address-object>` for more information on which formats
-   are accepted.
+   Refer to the documentation of the :ref:`address object <address-object>` for more information on which formats are
+   accepted.
 
    .. parameter:: organizationName
       :type: string
@@ -105,8 +104,8 @@ in the request.
 
    The shipping address for the order.
 
-   This field is optional, but if it is provided, then the full name and address have to be in a valid format. Please
-   refer to the documentation of the :ref:`address object <address-object>` for more information on which formats are
+   This field is optional, but if it is provided, then the full name and address have to be in a valid format. Refer to
+   the documentation of the :ref:`address object <address-object>` for more information on which formats are
    accepted.
 
    .. parameter:: organizationName

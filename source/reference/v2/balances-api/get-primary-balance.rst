@@ -16,7 +16,7 @@ Get primary balance
 Retrieve the primary balance. This is the balance of your account's primary currency, where all payments are settled to
 by default.
 
-This endpoint is an alias of the :doc:`Get balance </reference/v2/balances-api/get-balance>`. Please refer to the
+This endpoint is an alias of the :doc:`Get balance </reference/v2/balances-api/get-balance>`. Refer to the
 documentation of that endpoint for more information.
 
 Response

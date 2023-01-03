@@ -51,7 +51,7 @@ February 2021
 =============
 - We discontinued the support for ING Home'Pay as a payment method. This means that the API now rejects all
   :doc:`Create payment endpoint</reference/v2/payments-api/create-payment>` calls with the method ``inghomepay``. Be
-  sure to remove this payment method from your checkout if needed. Please `contact us <https://www.mollie.com/contact>`_
+  sure to remove this payment method from your checkout if needed. `Contact us <https://www.mollie.com/contact>`_
   for more information.
 
 December 2020
@@ -144,7 +144,7 @@ August 2019
 July 2019
 =========
 - Added MyBank (``mybank``) as new payment method. Currently, it's not possible to activate MyBank via the Dashboard.
-  Please contact your account manager to enable this new method.
+  Contact your account manager to enable this new method.
 
 May 2019
 ========

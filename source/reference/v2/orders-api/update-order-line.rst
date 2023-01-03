@@ -34,8 +34,7 @@ Parameters
 Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_pbjz8x``. And replace the
 ``orderLineId`` in the URL by the order line ID, for example ``odl_dgtxyl``
 
-Please note that even though all parameters are optional, at least one of them needs to be provided
-in the request.
+Even though all parameters are optional, at least one of them needs to be provided in the request.
 
 .. parameter:: name
    :type: string

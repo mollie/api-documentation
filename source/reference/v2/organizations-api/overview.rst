@@ -6,7 +6,7 @@ to your person, while the organization represents the business entity that will 
 In some cases, you may want to retrieve organization details via the API. This is specifically useful if you have an
 :doc:`OAuth app </connect/getting-started>` and you wish to retrieve details of the organizations using your app.
 
-To create new organizations, please refer to the :doc:`Onboarding guide </connect/onboarding>`.
+To create new organizations, refer to the :doc:`Onboarding guide </connect/onboarding>`.
 
 Endpoints
 ---------

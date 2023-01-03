@@ -18,8 +18,8 @@ Reset API key
    :organization_access_tokens: false
    :oauth: true
 
-You can reset the API keys, for instance when you feel your keys may have been compromised. Please note the old API key
-can no longer be used once it has been reset.
+You can reset the API keys, for instance when you feel your keys may have been compromised. The old API key can no
+longer be used once it has been reset.
 
 Parameters
 ----------

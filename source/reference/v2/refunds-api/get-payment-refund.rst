@@ -200,7 +200,7 @@ Mollie Connect response parameters
    :collapse: true
 
    An object containing information relevant to a refund issued for a *split payment*. To learn more about split
-   payments, please refer to the :doc:`Mollie Connect overview </connect/overview>`.
+   payments, refer to the :doc:`Mollie Connect overview </connect/overview>`.
 
    .. parameter:: amount
       :type: amount object

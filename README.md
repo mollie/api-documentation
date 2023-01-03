@@ -16,12 +16,12 @@ help format tables.
 - [Source Code](https://github.com/mollie/api-documentation)
 
 We take [pull requests](https://github.com/mollie/api-documentation/pulls) from anyone on our documentation, if you
-think that something can be improved please open a PR.
+think that something can be improved, feel free to open a PR.
 
 All documentation should be written in US English.
 
-If you are a Mollie employee, please [don't include](https://en.wikipedia.org/wiki/Operations_security) any links to internal issue trackers or other internal applications
-in your PR or issue description, API examples or commit messages.
+If you are a Mollie employee: [don't include](https://en.wikipedia.org/wiki/Operations_security) any links to internal
+issue trackers or other internal applications in your PR or issue description, API examples or commit messages.
 
 Note that PhpStorm comes with a reStructuredText plugin. You can enable it from the Plugins preferences pane. It enables
 some syntax highlighting.
@@ -101,7 +101,7 @@ Successful builds on the `master` branch will be automatically deployed.
 
 ## Support
 
-If you are having issues, please let us know. We accept pull requests on our public documentation.
+If you are having issues, let us know. We accept pull requests on our public documentation.
 
 You can get support via info@mollie.com.
 

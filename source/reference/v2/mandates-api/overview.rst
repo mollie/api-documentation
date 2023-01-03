@@ -8,7 +8,7 @@ suffices to :doc:`create a customer </reference/v2/customers-api/create-customer
 customer, and then charge recurring payments on the customer. A mandate is created automatically for the
 *first payment*, and that mandate is automatically used for any consecutive recurring payments.
 
-For a step-by-step guide on charging your customers recurrently, please refer to
+For a step-by-step guide on charging your customers recurrently, refer to
 :doc:`Recurring payments </payments/recurring>`.
 
 Endpoints

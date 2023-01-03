@@ -12,14 +12,14 @@ Submit onboarding data
    :organization_access_tokens: true
    :oauth: true
 
-Submit data that will be prefilled in the merchant's onboarding. Please note that the data you submit will only be
-processed when the :doc:`onboarding status </reference/v2/onboarding-api/get-onboarding-status>` is ``needs-data``.
+Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
+:doc:`onboarding status </reference/v2/onboarding-api/get-onboarding-status>` is ``needs-data``.
 
 .. note:: Information that the merchant has entered in their dashboard will not be overwritten.
 
 Parameters
 ----------
-Please note that even though all parameters are optional, at least one of them needs to be provided in the request.
+Even though all parameters are optional, at least one of them needs to be provided in the request.
 
 .. parameter:: organization
    :type: object
@@ -130,14 +130,14 @@ Please note that even though all parameters are optional, at least one of them n
 
       The industry associated with the profile's trade name or brand.
 
-      Please refer to the documentation of the :ref:`business category <business-category>` for more information on which
+      Refer to the documentation of the :ref:`business category <business-category>` for more information on which
       values are accepted.
 
    .. parameter:: categoryCode
       :type: integer
       :condition: optional
 
-      .. warning:: This parameter is deprecated and will be removed in 2022. Please use the ``businessCategory`` parameter
+      .. warning:: This parameter is deprecated and will be removed in 2022. Use the ``businessCategory`` parameter
                    instead.
 
       The industry associated with the profile's trade name or brand.

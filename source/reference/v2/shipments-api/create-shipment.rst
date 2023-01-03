@@ -408,7 +408,7 @@ Response (amount required)
 Mollie Connect parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 With Mollie Connect you can charge fees on payments that are processed through your app, either by defining an
-*application fee* or by *splitting the payment*. To learn more about the difference, please refer to the
+*application fee* or by *splitting the payment*. To learn more about the difference, refer to the
 :doc:`Mollie Connect overview </connect/overview>`.
 
 .. warning:: This functionality is currently only available for captures methods (Klarna Pay now,
@@ -467,6 +467,6 @@ With Mollie Connect you can charge fees on payments that are processed through y
          Required for destination type ``organization``. The ID of the connected organization the funds should be routed
          to, for example ``org_12345``.
 
-         **Please note:** ``me`` or the ID of the current organization are not accepted as an ``organizationId``. After
-         all portions of the total shipment amount have been routed, the amount left will be routed to the current
+         **Note:** ``me`` or the ID of the current organization are not accepted as an ``organizationId``. After all
+         portions of the total shipment amount have been routed, the amount left will be routed to the current
          organization automatically.

@@ -11,10 +11,10 @@ These can be found in our `integrations directory <https://www.mollie.com/integr
 For more advanced users, we have made Mollie API packages available for the most popular programming languages and
 frameworks. These include `PHP <https://github.com/mollie/mollie-api-php>`_,
 `Ruby <https://github.com/mollie/mollie-api-ruby>`_, `Node.js <https://github.com/mollie/mollie-api-node>`_,
-and `Python <https://github.com/mollie/mollie-api-python>`_. Please refer to our
+and `Python <https://github.com/mollie/mollie-api-python>`_. Refer to our
 `package list <https://www.mollie.com/developers/packages>`_ for more packages and plugins.
 
-If you have any questions about integrating our API, please `contact us <https://www.mollie.com/contact>`_. We are happy
+If you have any questions about integrating our API, `contact us <https://www.mollie.com/contact>`_. We are happy
 to help!
 
 API guides
@@ -23,7 +23,7 @@ To get to know the Mollie API better, a good starting point is to first navigate
 of the current page. These guides take you through the basic flow of authentication, handling responses and errors, and
 receiving webhooks.
 
-Next, to learn more about the inner workings and features of our payment processing APIs, please refer to the
+Next, to learn more about the inner workings and features of our payment processing APIs, refer to the
 :doc:`Payments guides </payments/accepting-payments>`.
 
 Optionally, for Mollie users building platforms or products for other merchants or Mollie users, we offer Mollie
