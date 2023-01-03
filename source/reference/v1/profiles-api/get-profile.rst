@@ -158,11 +158,6 @@ Response
 
    Useful URLs to related resources.
 
-   .. parameter:: apikeys
-      :type: string
-
-      The URL to the nested :doc:`API keys resource </reference/v1/profiles-api/list-keys>`.
-
    .. parameter:: checkoutPreviewUrl
       :type: string
 
