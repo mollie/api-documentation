@@ -129,7 +129,7 @@ Response
                "createdDatetime": "2018-03-16T23:33:43.0Z",
                "updatedDatetime": "2018-03-16T23:33:43.0Z",
                "links": {
-                   "apikeys": "https://api.mollie.com/v1/profiles/pfl_v9hTwCvYqw/apikeys"
+                   "checkoutPreviewUrl": "https://www.mollie.com/payscreen/preview/pfl_v9hTwCvYqw"
                }
            },
            {
@@ -146,7 +146,7 @@ Response
                "createdDatetime": "2018-03-17T01:47:45.0Z",
                "updatedDatetime": "2018-03-17T01:47:45.0Z",
                "links": {
-                   "apikeys": "https://api.mollie.com/v1/profiles/pfl_tqWEcAdnjG/apikeys"
+                   "checkoutPreviewUrl": "https://www.mollie.com/payscreen/preview/pfl_tqWEcAdnjG"
                }
            },
            { }

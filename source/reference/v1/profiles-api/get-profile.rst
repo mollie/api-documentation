@@ -199,7 +199,6 @@ Response
        "createdDatetime": "2018-03-16T18:46:21.0Z",
        "updatedDatetime": "2018-03-16T18:46:21.0Z",
        "links": {
-           "apikeys": "https://api.mollie.com/v1/profiles/pfl_8tv5FmWcn4/apikeys",
-           "checkout": "https://www.mollie.com/payscreen/preview/pfl_8tv5FmWcn4"
+           "checkoutPreviewUrl": "https://www.mollie.com/payscreen/preview/pfl_8tv5FmWcn4"
        }
    }
