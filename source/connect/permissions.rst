@@ -112,7 +112,3 @@ Permissions can be requested by redirecting the resource owner to the
    * - | ``balances.read``
        | Balances API
      - View the merchant's balances information.
-
-   * - | ``balances.write``
-       | Balances API
-     - Create new balances for the merchant.
