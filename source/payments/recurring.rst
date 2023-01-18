@@ -201,15 +201,14 @@ the subscription was created. This allows you to recognize where the payment bel
 
 We do not provide webhooks specifically for status changes of a Subscription itself.
 
-How to implement the PayPal fraud library?
-------------------------------------------
-.. note:: You do not have to implement the library for recurring payments.
+Charging recurring payments via PayPal
+--------------------------------------
+When creating a mandate for recurring payments via PayPal, PayPal requires you to perform an anti-fraud check on your
+consumer as they are checking out. PayPal provides a JavaScript library for this purpose that you will need to embed on
+your checkout page.
 
-Using PayPal for on-demand payments requires an extra set of tools. You should integrate the fraud library of PayPal by
-adding the Javascript library to your checkout page with the necessary configuration included.
-
-You need to load the library from the PayPal domain through a ``<script>``-tag. Before that, you should provide the
-configuration for the library with a ``<script>``-tag of the type ``application/json``. Both tags should be placed
+You need to load the library from the PayPal domain through a ``<script>`` tag. Before that, you should provide the
+configuration for the library with a ``<script>`` tag of the type ``application/json``. Both tags should be placed
 inside the ``<head>`` section.
 
 In the configuration block you need to make sure that you include the ``fncls`` attribute as follows:
@@ -254,3 +253,7 @@ The configuration should contain JSON with the following attributes:
         <script type="text/javascript" src="https://c.paypal.com/da/r/fb.js"></script>
         ...
       </head>
+
+With this check in place on your checkout page, you can then proceed to set up the PayPal payment as usual with
+``sequenceType`` set to ``first``. Mollie will then create a mandate for this payment which you can use just like other
+mandates, as described earlier in this guide.
