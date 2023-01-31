@@ -166,8 +166,8 @@ Parameters
 Parameters for recurring payments
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Recurring payments are created through the Payments API by providing a ``sequenceType``. For the ``recurring`` sequence
-type, you have to provide either a ``customerId`` or ``mandateId`` to indicate which account or card you want to charge.
-See our guide on :doc:`Recurring </payments/recurring>` for more information.
+type, you have to provide a ``customerId`` to indicate which account you want to charge. You can charge a card by
+providing a ``mandateId``. See our guide on :doc:`Recurring </payments/recurring>` for more information.
 
 .. parameter:: sequenceType
    :type: string
@@ -189,53 +189,22 @@ See our guide on :doc:`Recurring </payments/recurring>` for more information.
 
 .. parameter:: customerId
    :type: string
-   :condition: conditional
+   :condition: required
    :collapse: true
 
    The ID of the :doc:`customer </reference/v2/customers-api/get-customer>` for whom the payment is being created. This
    is used primarily for :doc:`recurring payments </payments/recurring>`, but can also be used on regular payments to
    enable :doc:`single-click payments </payments/hosted-checkout>`.
 
-   Either this field or the ``mandateId`` field needs to be provided for payments with the ``recurring`` sequence type.
+   Tthis field needs to be provided for payments with the ``recurring`` sequence type.
 
 .. parameter:: mandateId
    :type: string
-   :condition: conditional
+   :condition: optional
    :collapse: true
 
    When creating recurring payments, the ID of a specific :doc:`mandate </reference/v2/mandates-api/get-mandate>` can be
    supplied to indicate which of the consumer's accounts should be credited.
-
-   Either this field or the ``customerId`` field needs to be provided for payments with the ``recurring`` sequence type.
-
-Parameters for pre-authorized payments
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Pre-authorized payments are created through the Payments API by providing a ``captureMode``. With the ``manual`` capture
-mode, you decide when to capture the funds. See our guide on
-:doc:`Placing a hold for a payment </payments/place-a-hold-for-a-payment>` for more information.
-
-.. parameter:: captureMode
-   :type: string
-   :condition: optional
-
-   Indicates whether the capture will be scheduled automatically or not. Set to ``manual`` to capture the payment
-   manually using the :doc:`Create capture </reference/v2/captures-api/create-capture>` endpoint.
-
-   Set to ``automatic`` by default, which indicates the payment will be captured automatically, without having to
-   separately request it. Setting ``automatic`` without a ``captureDelay`` will result in a regular payment.
-
-   Possible values: ``automatic`` ``manual``
-
-.. parameter:: captureDelay
-   :type: string
-   :condition: optional
-
-   Interval to wait before the payment is captured, for example ``8 hours`` or ``2 days``. In order to schedule an
-   automatic capture, the ``captureMode`` must be set to either ``automatic`` or be omitted.
-
-   Possible values: ``... hours`` ``... days``
-
-   .. note:: The maximum delay is 7 days (``168 hours``).
 
 .. _payment-method-specific-parameters:
 
@@ -396,7 +365,7 @@ Gift cards
 
    If you need a brand that is not in the list, contact our support department. We can also support closed-loop cards.
 
-   Possible values: ``beautycadeaukaart`` ``bloemencadeaukaart`` ``bloemplantgiftcard`` ``boekenbon`` ``dagiftcard`` ``decadeaukaart``
+   Possible values: ``beautycadeaukaart`` ``bloemencadeaukaart`` ``bloemplantgiftcard`` ``boekenbon`` ``decadeaukaart``
    ``delokalecadeaukaart`` ``dinercadeau`` ``doenkadotickets`` ``fashioncheque`` ``festivalcadeau`` ``good4fun`` ``horseandgifts`` ``huistuincadeaukaart``
    ``jewelcard`` ``kluscadeau`` ``kunstencultuurcadeaukaart`` ``nationalebioscoopbon`` ``nationaleentertainmentcard``
    ``nationalegolfbon`` ``ohmygood`` ``podiumcadeaukaart`` ``reiscadeau`` ``restaurantcadeau`` ``shoesandsneakerscadeau``
