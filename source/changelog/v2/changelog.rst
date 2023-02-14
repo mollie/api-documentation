@@ -27,7 +27,8 @@ October 2022
 
 June 2022
 =========
-- Added ``in3`` as new payment method, which is only supported by the Orders API. If you are interested in accepting in3 payments, you can enable the payment method via the Mollie Dashboard.
+- Added ``in3`` as new payment method, which is only supported by the Orders API. If you are interested in accepting in3
+  payments, you can enable the payment method via the Mollie Dashboard.
 
 March 2022
 ==========

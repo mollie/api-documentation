@@ -440,7 +440,7 @@ Example
    .. code-block:: bash
       :linenos:
 
-      curl -X PATCH https://api.mollie.com/v2/orders/ord_pbjz8x/lines/odl_dgtxyl \
+      curl -X PATCH https://api.mollie.com/v2/orders/ord_pbjz8x/lines \
          -H "Content-Type: application/json" \
          -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
          -d '{
@@ -493,7 +493,7 @@ Response
 
    {
     "resource": "order",
-    "id": "ord_xvb27g",
+    "id": "ord_pbjz8x",
     "profileId": "pfl_h7UgNeDGTA",
     "method": "klarnapaylater",
     "amount": {
@@ -524,7 +524,7 @@ Response
         {
             "resource": "orderline",
             "id": "odl_1.1l9vx0",
-            "orderId": "ord_xvb27g",
+            "orderId": "ord_pbjz8x",
             "name": "New orderline name",
             "sku": "123456",
             "type": "digital",
@@ -568,7 +568,7 @@ Response
         {
             "resource": "orderline",
             "id": "odl_1.4hqjw6",
-            "orderId": "ord_xvb27g",
+            "orderId": "ord_pbjz8x",
             "name": "A cancelled orderline",
             "sku": "1234444",
             "type": "digital",
@@ -612,7 +612,7 @@ Response
         {
             "resource": "orderline",
             "id": "odl_1.3ccpk8",
-            "orderId": "ord_xvb27g",
+            "orderId": "ord_pbjz8x",
             "name": "Adding new orderline",
             "sku": "12345679",
             "type": "digital",
