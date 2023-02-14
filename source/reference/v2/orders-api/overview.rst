@@ -66,6 +66,14 @@ Endpoints
    Update the details of a specific order line.
 
 .. endpoint-card::
+   :name: Manage order lines
+   :method: PATCH
+   :url: /v2/orders/*id*/lines
+   :ref: /reference/v2/orders-api/manage-order-lines
+
+   Update, add, or cancel multiple order lines of a specific order.
+
+.. endpoint-card::
    :name: Cancel order lines
    :method: DELETE
    :url: /v2/orders/*id*/lines

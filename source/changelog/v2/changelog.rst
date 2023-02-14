@@ -6,6 +6,10 @@ Changelog
 Occasionally, we will add new resources, new fields, or new possible values to existing fields to the v2 Mollie API. All
 changes are documented here.
 
+February 2023
+=============
+- Added new :doc:`Manage order lines endpoint </reference/v2/orders-api/manage-order-lines>`
+
 December 2022
 =============
 - Added support for a dedicated ``cancelUrl`` in the Payments API and Orders API. The consumer will be sent to this URL
@@ -23,8 +27,7 @@ October 2022
 
 June 2022
 =========
-- Added ``in3`` as new payment method, which is only supported by the Orders API. If you are interested in accepting in3
-  payments, you can enable the payment method via the Mollie Dashboard.
+- Added ``in3`` as new payment method, which is only supported by the Orders API. If you are interested in accepting in3 payments, you can enable the payment method via the Mollie Dashboard.
 
 March 2022
 ==========
