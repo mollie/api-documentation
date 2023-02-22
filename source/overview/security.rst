@@ -1,17 +1,13 @@
 Security
 ========
 
-Maximum safety and usability
-----------------------------
-How does Mollie create an API that's maximally safe while being as easy to implement for developers as possible? By not
-giving in to the reflex of stacking equivalent safety measures and by not sending sensitive information when it's not
-required.
+Security comes first at Mollie, and the Mollie API is no exception. Mollie guarantees a safe yet easy-to-use API in a
+number of key ways described below.
 
-Secure connection required
---------------------------
-Mollie uses the API-key as :doc:`means of authentication </overview/authentication>` and requires HTTPS connections
-encrypted via TLS1.2 (or higher) to guarantee security. This means the Mollie API can only be accessed through the
-secure ``https`` protocol. All of the API clients we publish use HTTPS.
+Connecting to the Mollie API
+----------------------------
+To connect to the Mollie API, an HTTPS connection with at minimum TLS1.2 is required. Requests are authenticated using
+:doc:`API keys </overview/authentication>`. This follows the industry's best practices.
 
 End-to-end safety on the transport level is guaranteed by the HTTPS-requirement, no need to encrypt the data itself
 again.  We only support TLS 1.2 (or higher). Connection is not possible when using a lower version.
@@ -20,26 +16,26 @@ HTTPS mitigates *packet sniffing* and *timing & replay attacks*. Thanks to HTTPS
 merchant is protected and guaranteed to be authentic. HTTPS implements *hashed signatures*, *nonces* and other tried and
 tested cryptographic safeties.
 
-*Man-in-the-middle attacks* are prevented by strictly checking the HTTPS-certificate used on
-``https://api.mollie.com/``. If the client detects a fake certificate – let's say because of a hacked DNS-server – no
-connection will be set up.
+*Man-in-the-middle attacks* are prevented by strictly checking the HTTPS certificate used on
+``https://api.mollie.com/``. If the client detects a fake certificate — for example because of a hacked DNS-server — no
+connection will be established.
 
 Sensitive information
---------------------------
-All sensitive payment information is entered on our platform. So there is no need to jump trough hoops to make your
-website `PCI DSS certified <https://en.wikipedia.org/wiki/Payment_Card_Industry_Data_Security_Standard>`_. We have got
-you covered.
+---------------------
+Any sensitive payment information entered by your customer on our platform is stored securely. Our credit card platform
+specifically is `PCI DSS certified <https://en.wikipedia.org/wiki/Payment_Card_Industry_Data_Security_Standard>`_. Your
+own website does not require any form of certification, since we handle the entire transaction for you.
 
 What about the webhooks?
 ------------------------
-The :doc:`webhooks </overview/webhooks>` are secured by HTTPS too, even if the merchant's hosting service is not using
-HTTPS. This is because the webhook requests – which Mollie sends out to communicate
-:doc:`status changes </payments/status-changes>` – simply do not contain sensitive information. Your webhook
-script will always have to :doc:`fetch the object </reference/v2/payments-api/get-payment>` in order to know its status,
-and this can only be done using an HTTPS-secured connection. Here too, the fact ``https://api.mollie.com/`` can only be
-reached using HTTPS forces merchant-sites that do not use HTTPS into security.
+The Mollie API :doc:`webhooks </overview/webhooks>` never contain sensitive information. Instead, webhooks will only
+signal to your server that an update is ready to be fetched from the Mollie API, after which you are expected to
+:doc:`fetch the object </reference/v2/payments-api/get-payment>` yourself in order to retrieve the updated details — for
+example the updated status of a payment. Since your API call to us takes place over HTTPS, all the earlier-mentioned
+security guarantees stay in effect.
 
-What's left?
-------------
-An API that's so convenient you'll :doc:`integrate </index>` it just for kicks. Make sure you enjoy yourself because
-you'll be done in no time.
+Reporting vulnerabilities
+-------------------------
+If you believe you have found a security issue in our product or service, please notify us as soon as possible by
+emailing us at `security@mollie.com <mailto:security@mollie.com>`_. For more information on this program, please refer
+to our `Responsible Disclosure Policy <https://www.mollie.com/responsible-disclosure>`_.
