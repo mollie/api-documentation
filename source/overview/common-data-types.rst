@@ -30,6 +30,18 @@ Address object
 --------------
 In the v2 endpoints, an address object includes at least the following fields.
 
+.. parameter:: givenName
+   :type: string
+   :condition: required
+
+   The given name (first name) of the person should be more than 1 character and cannot contain only numbers.
+
+.. parameter:: familyName
+   :type: string
+   :condition: required
+
+   The family name (surname) of the person should be more than 1 character and cannot contain only numbers.
+
 .. parameter:: streetAndNumber
    :type: string
    :condition: required
