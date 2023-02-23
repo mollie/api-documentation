@@ -93,9 +93,8 @@ periodically through *subscriptions*.
 .. note:: Created mandates are unique to your account and can not be transferred to other accounts.
 
 .. warning:: Using recurring payments with PayPal is only possible if PayPal has activated Reference Transactions on
-             your merchant account. Check if your account is eligible via our
-             :doc:`Methods API </reference/v2/methods-api/overview>`. Make sure to set the ``sequenceType`` parameter to
-             ``first``. Your account is eligible if you get PayPal as method returned.
+             your merchant account. After this is done, please contact Mollie support to enable recurring payments
+             via PayPal on your Mollie profile.
 
 .. _payments/recurring/charging-on-demand:
 
