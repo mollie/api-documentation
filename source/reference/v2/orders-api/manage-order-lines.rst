@@ -418,7 +418,7 @@ its type and a ``data`` field that contains the operation's payload.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-To use :doc:organization access tokens </overview/authentication> or to create an :doc:OAuth app </connect/overview>,
+To use :doc:`organization access tokens </overview/authentication>` or to create an :doc:`OAuth app </connect/overview>`,
 enable test mode using the testmode parameter.
 
 .. parameter:: testmode
@@ -432,7 +432,7 @@ Response
 --------
 ``200`` ``application/hal+json``
 
-Returns an :doc:order object </reference/v2/orders-api/get-order>.
+Returns an :doc:`order object </reference/v2/orders-api/get-order>`.
 
 Example
 -------
