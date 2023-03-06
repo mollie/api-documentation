@@ -112,3 +112,11 @@ Permissions can be requested by redirecting the resource owner to the
    * - | ``balances.read``
        | Balances API
      - View the merchant's balances information.
+
+   * - | ``terminals.read``
+       | Terminals API
+     - View the merchant's Point of Sale terminals.
+
+   * - | ``terminals.write``
+       | Terminals API
+     - Manage the merchant's Point of Sale terminals.
