@@ -29,6 +29,9 @@ Even though all parameters are optional, at least one of them needs to be provid
 
    The billing person and address for the order.
 
+   Please note that we'll update the billing address that you see in the Mollie API, but the change might not be
+   propagated to the supplier. Unfortunately, not all suppliers support updating the address.
+
    Refer to the documentation of the :ref:`address object <address-object>` for more information on which formats are
    accepted.
 
