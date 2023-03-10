@@ -246,7 +246,7 @@ Gift cards
    can be retrieved by using the ``issuers`` include in the Methods API. If you need a brand not in the list, contact
    our support department. If only one issuer is activated on your account, you can omit this parameter.
 
-   Possible values: ``beautycadeaukaart`` ``bloemencadeaukaart`` ``bloemplantgiftcard`` ``boekenbon`` ``decadeaukaart``
+   Possible values: ``beautycadeaukaart`` ``bloemencadeaukaart`` ``bloemplantgiftcard`` ``boekenbon`` ``dagiftcard`` ``decadeaukaart``
    ``delokalecadeaukaart`` ``dinercadeau`` ``doenkadotickets`` ``fashioncheque`` ``festivalcadeau`` ``good4fun`` ``horseandgifts`` ``huistuincadeaukaart``
    ``jewelcard`` ``kluscadeau`` ``kunstencultuurcadeaukaart`` ``nationalebioscoopbon`` ``nationaleentertainmentcard``
    ``nationalegolfbon`` ``ohmygood`` ``podiumcadeaukaart`` ``reiscadeau`` ``restaurantcadeau`` ``shoesandsneakerscadeau``
