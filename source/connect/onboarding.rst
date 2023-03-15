@@ -81,20 +81,44 @@ Any data you submit up front in this fashion will be prefilled in the white-labe
 .. note:: This is possible as long as the onboarding status of the new account is set to ``needs-data``.
 
 You can use the :doc:`Get onboarding status </reference/v2/onboarding-api/get-onboarding-status>` endpoint to get a link
-to the white-labeled onboarding flow. We recommend that you redirect your customer right away to this URL so they can
-provide the required onboarding information.
+to the white-labeled onboarding flow under the ``_links/dashboard`` property. We recommend that you redirect your
+customer right away to this URL so they can provide the required onboarding information.
 
-.. code-block-selector::
-   .. code-block:: php
-      :linenos:
+Example response
+^^^^^^^^^^^^^^^^
 
-      <?php
+.. code-block:: php
+   :linenos:
 
-      $mollie = new \Mollie\Api\MollieApiClient();
-      $mollie->setAccessToken("access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+    HTTP/1.1 200 OK
+    Content-Type: application/json
 
-      $onboarding = $mollie->onboarding->get();
-      return redirect($onboarding->_links->dashboard->href);
+    {
+        "resource": "onboarding",
+        "name": "Mollie B.V.",
+        "signedUpAt": "2018-12-20T10:49:08+00:00",
+        "status": "completed",
+        "canReceivePayments": true,
+        "canReceiveSettlements": true,
+        "_links": {
+            "self": {
+                "href": "https://api.mollie.com/v2/onboarding/me",
+                "type": "application/hal+json"
+            },
+            "dashboard": {
+                "href": "https://www.mollie.com/dashboard/hosted-onboarding/<app_id>/<organization_id>/onboarding",
+                "type": "text/html"
+            },
+            "organization": {
+                "href": "https://api.mollie.com/v2/organization/org_12345",
+                "type": "application/hal+json"
+            },
+            "documentation": {
+                "href": "https://docs.mollie.com/reference/v2/onboarding-api/get-onboarding-status",
+                "type": "text/html"
+            }
+        }
+    }
 
 
 Step 5: Wait for your customer to complete the onboarding
