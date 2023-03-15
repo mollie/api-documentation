@@ -30,6 +30,10 @@ We recommend having at least the following permissions to onboard your customers
        Onboarding API
      - Submit onboarding data on behalf of the merchant.
 
+   * - ``organizations.read``
+       Organizations API
+     - View the details of the merchant organization.
+
    * - ``organizations.write``
        Organizations API
      - Change the details of the merchant organization.
