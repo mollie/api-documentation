@@ -133,7 +133,7 @@ Response
            },
            "dashboard": {
                "href": "https://www.mollie.com/dashboard/org_12345678/payments/tr_WDqYK6vllg",
-               "type": "application/json"
+               "type": "text/html"
            },
            "documentation": {
                "href": "https://docs.mollie.com/reference/v2/payments-api/cancel-payment",

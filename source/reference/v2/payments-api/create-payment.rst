@@ -895,7 +895,7 @@ Response
            },
            "dashboard": {
                "href": "https://www.mollie.com/dashboard/org_12345678/payments/tr_7UhSN1zuXS",
-               "type": "application/json"
+               "type": "text/html"
            },
            "documentation": {
                "href": "https://docs.mollie.com/reference/v2/payments-api/create-payment",
