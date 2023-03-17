@@ -51,7 +51,7 @@ following statuses:
 
 Furthermore, the webhook will be called when:
 
-* A refund is performed on the payment, and the refund reaches state ``refunded`` or ``failed``.
+* A refund is performed on the payment, and the refund reaches state ``processing``, ``refunded`` or ``failed``.
 * A chargeback is received on the payment.
 
 The webhook is not called if you have specified a ``method`` and the consumer cancels the payment on the payment page. We will redirect the
