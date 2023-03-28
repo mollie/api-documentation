@@ -15,59 +15,59 @@ Support for other currencies than ``EUR`` varies per payment method.
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 | Currency                       | ISO code | Decimal places | Payment methods                                         |
 +================================+==========+================+=========================================================+
-| United Arab Emirates dirham    | ``AED``  |              2 | Credit card                                             |
+| United Arab Emirates dirham    | ``AED``  |              2 | Credit card, Apple Pay                                  |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Australian dollar              | ``AUD``  |              2 | PayPal, credit card                                     |
+| Australian dollar              | ``AUD``  |              2 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Bulgarian lev                  | ``BGN``  |              2 | Credit card                                             |
+| Bulgarian lev                  | ``BGN``  |              2 | Credit card, Apple Pay                                  |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 | Brazilian real                 | ``BRL``  |              2 | PayPal                                                  |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Canadian dollar                | ``CAD``  |              2 | PayPal, credit card                                     |
+| Canadian dollar                | ``CAD``  |              2 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Swiss franc                    | ``CHF``  |              2 | PayPal, credit card                                     |
+| Swiss franc                    | ``CHF``  |              2 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Czech koruna                   | ``CZK``  |              2 | PayPal, credit card                                     |
+| Czech koruna                   | ``CZK``  |              2 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Danish krone                   | ``DKK``  |              2 | PayPal, credit card                                     |
+| Danish krone                   | ``DKK``  |              2 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 | Euro                           | ``EUR``  |              2 | All payment methods                                     |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| British pound                  | ``GBP``  |              2 | PayPal, credit card                                     |
+| British pound                  | ``GBP``  |              2 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Hong Kong dollar               | ``HKD``  |              2 | PayPal, credit card                                     |
+| Hong Kong dollar               | ``HKD``  |              2 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Hungarian forint               | ``HUF``  |              2 | PayPal, credit card                                     |
+| Hungarian forint               | ``HUF``  |              2 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 | .. note::                                                                                                            |
 |    Note that at PayPal, fillér are not supported, but at Mollie they                                                 |
 |    are. We will round the amount sent to PayPal to whole forints.                                                    |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Israeli new shekel             | ``ILS``  |              2 | PayPal, credit card                                     |
+| Israeli new shekel             | ``ILS``  |              2 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Icelandic króna                | ``ISK``  |              0 | Credit card                                             |
+| Icelandic króna                | ``ISK``  |              0 | Credit card, Apple Pay                                  |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Japanese yen                   | ``JPY``  |              0 | PayPal, credit card                                     |
+| Japanese yen                   | ``JPY``  |              0 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 | Mexican peso                   | ``MXN``  |              2 | PayPal                                                  |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 | Malaysian ringgit              | ``MYR``  |              2 | PayPal                                                  |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Norwegian krone                | ``NOK``  |              2 | PayPal, credit card                                     |
+| Norwegian krone                | ``NOK``  |              2 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| New Zealand dollar             | ``NZD``  |              2 | PayPal, credit card                                     |
+| New Zealand dollar             | ``NZD``  |              2 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Philippine piso                | ``PHP``  |              2 | PayPal, credit card                                     |
+| Philippine piso                | ``PHP``  |              2 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Polish złoty                   | ``PLN``  |              2 | Przelewy24, PayPal, credit card                         |
+| Polish złoty                   | ``PLN``  |              2 | Przelewy24, PayPal, credit card, Apple Pay              |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Romanian leu                   | ``RON``  |              2 | Credit card                                             |
+| Romanian leu                   | ``RON``  |              2 | Credit card, Apple Pay                                  |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Russian ruble                  | ``RUB``  |              2 | PayPal, credit card                                     |
+| Russian ruble                  | ``RUB``  |              2 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Swedish krona                  | ``SEK``  |              2 | PayPal, credit card                                     |
+| Swedish krona                  | ``SEK``  |              2 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Singapore dollar               | ``SGD``  |              2 | PayPal, credit card                                     |
+| Singapore dollar               | ``SGD``  |              2 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 | Thai baht                      | ``THB``  |              2 | PayPal                                                  |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
@@ -77,9 +77,9 @@ Support for other currencies than ``EUR`` varies per payment method.
 |    Note that at PayPal, cents are not supported, but at Mollie they                                                  |
 |    are. We will round the amount sent to PayPal to whole dollars.                                                    |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| United States dollar           | ``USD``  |              2 | PayPal, credit card                                     |
+| United States dollar           | ``USD``  |              2 | PayPal, credit card, Apple Pay                          |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| South African rand             | ``ZAR``  |              2 | Credit card                                             |
+| South African rand             | ``ZAR``  |              2 | Credit card, Apple Pay                                  |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 
 Filtering payment methods
