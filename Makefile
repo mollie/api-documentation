@@ -3,12 +3,13 @@
 
 # Minimal makefile for Sphinx documentation
 #
+PYTHON_USER_BASE_PATH = $(shell python3 -m site --user-base)/bin
 
 # You can set these variables from the command line. When editing extensions, it is
 # recommended to use the "-E" flag to force a rebuild every time you run 'Make', as
 # it is not guaranteed it will rebuild when no '.rst' files have changed.
-DEV_PYTHON        = MOLLIE_DOCS_URL='http://127.0.0.1:8000' MOLLIE_FILE_SUFFIX='.html' python3
-PROD_PYTHON       = MOLLIE_DOCS_URL='https://private.docs.molops.io' MOLLIE_FILE_SUFFIX='' python3
+DEV_PYTHON        = PATH=${PYTHON_USER_BASE_PATH}:$$PATH MOLLIE_DOCS_URL='http://127.0.0.1:8000' MOLLIE_FILE_SUFFIX='.html' python3
+PROD_PYTHON       = MOLLIE_DOCS_URL='https://docs.mollie.com' MOLLIE_FILE_SUFFIX='' python3
 DEV_SPHINX_OPTS   = -W
 PROD_SPHINX_OPTS  = -W -n
 DEV_SPHINX_BUILD  = ${DEV_PYTHON} -msphinx
@@ -20,6 +21,7 @@ clean:
 	rm -rf build/
 
 node_modules/.bin/parcel: package-lock.json
+	# this requires python 2 for a successfull install
 	npm install --no-optional --no-audit
 
 source/_static/style.css: $(wildcard source/theme/styles/**/*) node_modules/.bin/parcel
