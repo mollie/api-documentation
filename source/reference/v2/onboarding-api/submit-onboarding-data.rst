@@ -69,14 +69,13 @@ Even though all parameters are optional, at least one of them needs to be provid
       :type: string
       :condition: optional
 
-      The Chamber of Commerce registration number of the company.
+      The Chamber of Commerce (or local equivalent) registration number of the organization.
 
    .. parameter:: vatNumber
       :type: string
       :condition: optional
 
-      The VAT number of the company, if based in the European Union. The VAT number will be checked with the
-      `VIES <http://ec.europa.eu/taxation_customs/vies/>`_ service by Mollie.
+      The VAT number of the organization, if based in the European Union or the United Kingdom.
 
    .. parameter:: vatRegulation
       :type: string

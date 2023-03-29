@@ -9,6 +9,14 @@ For a step-by-step tutorial, refer to the :doc:`Onboarding guide </connect/onboa
 Endpoints
 ---------
 .. endpoint-card::
+   :name: Create signup request
+   :method: POST
+   :url: /v2/onboarding/signup-requests
+   :ref: /reference/v2/onboarding-api/create-signup-request
+
+   Retrieve the onboarding status of the currently authenticated organization.
+
+.. endpoint-card::
    :name: Submit onboarding data
    :method: POST
    :url: /v2/onboarding/me

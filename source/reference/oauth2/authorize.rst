@@ -91,7 +91,7 @@ Response
 .. parameter:: code
    :type: string
 
-   The auth code, with which you can request an :doc:`access token </reference/oauth2/tokens>`.
+   The auth code, with which you can request an :doc:`app access token </reference/oauth2/tokens>`.
 
 .. parameter:: state
    :type: string
