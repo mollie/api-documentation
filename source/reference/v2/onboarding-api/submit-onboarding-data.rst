@@ -77,6 +77,8 @@ Even though all parameters are optional, at least one of them needs to be provid
 
       The VAT number of the organization, if based in the European Union or the United Kingdom.
 
+      Example: ``NL123456789B01``
+
    .. parameter:: vatRegulation
       :type: string
       :condition: optional
@@ -88,7 +90,7 @@ Even though all parameters are optional, at least one of them needs to be provid
    :type: object
    :condition: optional
 
-   Data of the payment profile you want to provide.
+   Data of the website profile you want to provide.
 
    .. parameter:: name
       :type: string
@@ -114,7 +116,7 @@ Even though all parameters are optional, at least one of them needs to be provid
       :type: string
       :condition: optional
 
-      A description of what kind of goods and/or products will be offered via the payment profile.
+      A description of what kind of goods and/or products will be offered via the website profile.
 
    .. parameter:: phone
       :type: string

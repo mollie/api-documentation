@@ -41,7 +41,7 @@ We recommend requesting at least the following permissions to onboard your custo
        Organizations API
      - Change the details of the merchant organization.
 
-To ensure that your onboarded customers can create payments, it is essential that you request permissions for the Payments API and any related APIs. 
+To ensure that your onboarded customers can create payments, it is essential that you request permissions for the Payments API and any related APIs.
 
 Step 2: Enable hosted onboarding
 --------------------------------
@@ -76,8 +76,8 @@ completing the OAuth authorization flow.
 Step 4: Your customer starts onboarding
 ---------------------------------------
 
-Now, your customer is ready to start onboarding. To make the process even easier for them, you can send data you already
-have using the :doc:`/reference/v2/onboarding-api/submit-onboarding-data` endpoint.
+Now, your customer is ready to start onboarding at Mollie. To make the process even easier for them, you can send any
+additional data you already have using the :doc:`/reference/v2/onboarding-api/submit-onboarding-data` endpoint.
 
 Any data you submit up front in this fashion will be prefilled in the white-labeled onboarding flow. This is possible as
 long as the onboarding status of the new account is set to ``needs-data``.
