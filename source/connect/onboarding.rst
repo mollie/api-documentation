@@ -41,8 +41,7 @@ We recommend requesting at least the following permissions to onboard your custo
        Organizations API
      - Change the details of the merchant organization.
 
-Since you are probably onboarding your customers with the end goal of creating payments, you should probably also
-request permissions for the Payments API and related APIs.
+To ensure that your onboarded customers can create payments, it is essential that you request permissions for the Payments API and any related APIs. 
 
 Step 2: Enable hosted onboarding
 --------------------------------
