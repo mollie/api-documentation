@@ -20,7 +20,7 @@ you requested. You can provide onboarding data that will be pre-filled in the or
 
 This API's response will contain a special ``signup`` link where you are expected to redirect your customer. After you
 have redirected the customer, an organization will be created, your OAuth application will be authorized automatically
-and your customer will be logged in in their (newly created) Mollie Dashboard.
+and your customer will be logged in to their (newly created) Mollie Dashboard.
 
 If the organization already exists, no new organization will be created. Instead the OAuth Authorize screen will be
 shown to your customer, allowing them to grant the requested authorizations for their existing organization to your
@@ -70,7 +70,7 @@ Parameters
       :type: string
       :condition: required
 
-      A space separated list of permissions your app requires. Refer to :doc:`Permissions </connect/permissions>` for more
+      A space-separated list of permissions your app requires. Refer to :doc:`Permissions </connect/permissions>` for more
       information about the available scopes.
 
       .. note:: At a minimum, we recommend you request ``onboarding.read onboarding.write`` and any scopes required for

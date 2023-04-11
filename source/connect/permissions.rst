@@ -7,7 +7,7 @@ Your app may request a set of permissions, which allow access to various endpoin
 available permissions are listed below.
 
 Permissions can be requested by redirecting the resource owner to the
-:doc:`Authorize endpoint </reference/oauth2/authorize>` with the requested permissions as a space separated list in the
+:doc:`Authorize endpoint </reference/oauth2/authorize>` with the requested permissions as a space-separated list in the
 ``scope`` parameter.
 
 .. list-table::

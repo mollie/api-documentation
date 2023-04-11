@@ -77,7 +77,7 @@ Response
 .. parameter:: scope
    :type: string
 
-   A space separated list of permissions. Refer to :doc:`Permissions </connect/permissions>` for the full permission
+   A space-separated list of permissions. Refer to :doc:`Permissions </connect/permissions>` for the full permission
    list.
 
 Example

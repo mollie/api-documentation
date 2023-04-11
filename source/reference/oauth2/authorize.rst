@@ -44,7 +44,7 @@ Parameters
    :type: string
    :condition: required
 
-   A space separated list of permissions your app requires. Refer to :doc:`Permissions </connect/permissions>` for more
+   A space-separated list of permissions your app requires. Refer to :doc:`Permissions </connect/permissions>` for more
    information about the available scopes.
 
 .. parameter:: response_type

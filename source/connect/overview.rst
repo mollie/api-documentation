@@ -32,7 +32,7 @@ If your customers do not yet have a Mollie account, you can either:
 * Have them sign up by themselves, and have them install your app at a later point
 * Sign them up yourself and have them complete the onboarding in the Mollie Dashboard
 * Offer a complete white-label onboarding experience in your app, which includes creating organizations for them using
-  an API.
+  an API
 
 The following guide will dive into these last two use cases.
 
