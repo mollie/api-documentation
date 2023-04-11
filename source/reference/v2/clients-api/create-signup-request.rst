@@ -1,11 +1,11 @@
-Create client
-=============
+Create sign-up request
+======================
 .. api-name:: Clients API
    :version: 2
 
 .. endpoint::
    :method: POST
-   :url: https://api.mollie.com/v2/clients
+   :url: https://api.mollie.com/v2/clients/signup-requests
 
 .. authentication::
    :api_keys: false
@@ -176,14 +176,14 @@ Example
    .. code-block:: bash
       :linenos:
 
-      curl -X POST https://api.mollie.com/v2/clients \
+      curl -X POST https://api.mollie.com/v2/clients/signup-requests \
            -H "Content-Type: application/json" \
            -H "Authorization: Bearer access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
            -d '{
                    "oauth": {
                       "clientId": "app_j9Pakf56Ajta6Y65AkdTtAv",
                       "state": "da82ec0b8a72d8f0",
-                      "scope": "onboarding.read onboarding.write payments.read payments.write"
+                      "scope": "organization.read onboarding.read onboarding.write payments.read payments.write"
                    },
                    "user": {
                       "email": "norris@chucknorrisfacts.net",
@@ -221,7 +221,7 @@ Response
                "type": "text/html"
            },
            "documentation": {
-               "href": "https://docs.mollie.com/reference/v2/clients-api/create-client",
+               "href": "https://docs.mollie.com/reference/v2/clients-api/create-signup-request",
                "type": "text/html"
            }
        }
