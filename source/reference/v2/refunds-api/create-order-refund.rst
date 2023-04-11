@@ -70,6 +70,20 @@ Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wm
       amount cannot be determined automatically. The error will contain the ``extra.minimumAmount`` and
       ``extra.maximumAmount`` properties that allow you pick the right amount.
 
+      .. parameter:: currency
+         :type: string
+         :condition: required
+
+         An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code. The currency must be the same as the
+         corresponding payment.
+
+      .. parameter:: value
+         :type: string
+         :condition: required
+         
+         A string containing the exact amount you want to refund in the given currency. Make sure to send the right amount
+         of decimals. Non-string values are not accepted.
+
 .. parameter:: description
    :type: string
    :condition: optional
