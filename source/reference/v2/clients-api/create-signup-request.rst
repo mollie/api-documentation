@@ -120,7 +120,7 @@ Parameters
 
    .. parameter:: name
       :type: string
-      :condition: optional
+      :condition: required
 
       Name of the organization.
 
