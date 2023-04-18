@@ -81,9 +81,6 @@ Parameters
    :type: string
    :condition: optional
 
-   .. note:: This parameter is currently in open beta. Feel free to share feedback on
-             `our Discord <https://discord.gg/VaTVkXB4aQ>`_.
-
    The URL your consumer will be redirected to when the consumer explicitly cancels the payment. If this URL is not
    provided, the consumer will be redirected to the ``redirectUrl`` instead — see above.
 
