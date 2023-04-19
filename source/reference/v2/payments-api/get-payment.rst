@@ -222,11 +222,16 @@ Response
    :type: amount object
    :condition: optional
 
-   This optional field will contain the amount that will be settled to your account, converted to the currency your
-   account is settled in. It follows the same syntax as the ``amount`` property.
+   This optional field will contain the approximate amount that will be settled to your account, converted to the
+   currency your account is settled in. It follows the same syntax as the ``amount`` property.
 
    Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is
    settled by Mollie the ``settlementAmount`` is omitted from the response.
+   
+   Please note that this amount might be recalculated and changed when the payment's status changes.
+   We suggest using Balances API's
+   :doc:`List balance transactions </reference/v2/balances-api/list-balance-transactions>` endpoint instead to get a
+   more accurate settlement amount for your payments.
 
 .. parameter:: description
    :type: string
