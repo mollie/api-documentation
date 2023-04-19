@@ -228,10 +228,9 @@ Response
    Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is
    settled by Mollie the ``settlementAmount`` is omitted from the response.
    
-   Please note that this amount might be recalculated and changed when the payment's status changes.
-   We suggest using Balances API's
-   :doc:`List balance transactions </reference/v2/balances-api/list-balance-transactions>` endpoint instead to get a
-   more accurate settlement amount for your payments.
+   Please note that this amount might be recalculated and changed when the status of the payment changes.
+   We suggest using the :doc:`List balance transactions </reference/v2/balances-api/list-balance-transactions>`
+   endpoint instead to get more accurate settlement amounts for your payments.
 
 .. parameter:: description
    :type: string
