@@ -6,13 +6,19 @@ Changelog
 Occasionally, we will add new resources, new fields, or new possible values to existing fields to the v2 Mollie API. All
 changes are documented here.
 
+April 2023
+==========
+
+- Added a new value for the ``status`` field in the :doc:`/reference/v2/onboarding-api/get-onboarding-status` endpoint:
+  ``payments-disabled``.
+
 March 2023
 ============
 - Added the ``dagiftcard`` as gift card issuer.
 
 February 2023
 =============
-- Added new :doc:`Manage order lines endpoint </reference/v2/orders-api/manage-order-lines>`
+- Added new :doc:`Manage order lines endpoint </reference/v2/orders-api/manage-order-lines>`.
 
 December 2022
 =============

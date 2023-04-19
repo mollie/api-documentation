@@ -48,12 +48,15 @@ Embedding of related resources
 This endpoint also allows for embedding additional information by appending the following values via
 the ``embed`` query string parameter.
 
-* ``organization`` Include the :doc:`organization </reference/v2/organizations-api/get-organization>` of the client.
-  Available when partner type is ``signuplink`` or when partner type is ``oauth`` and the scopes (of the app that causes
-  the link on the organization) include ``organizations.read``.
-* ``onboarding`` Include the :doc:`onboarding status </reference/v2/onboarding-api/get-onboarding-status>` of the
-  client. Available when partner type is ``signuplink`` or when partner type is ``oauth`` and the scopes (of the app
-  that causes the link on the organization) include ``onboarding.read``.
+``organization``
+    Include the :doc:`organization </reference/v2/organizations-api/get-organization>` of the client.
+    Available when partner type is ``signuplink`` or when partner type is ``oauth`` and your app has been granted the
+    ``organizations.read`` permission.
+
+``onboarding``
+    Include the :doc:`onboarding status </reference/v2/onboarding-api/get-onboarding-status>` of the
+    client. Available when partner type is ``signuplink`` and your app has been granted the ``onboarding.read``
+    permission.
 
 Response
 --------
