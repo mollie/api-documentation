@@ -85,8 +85,8 @@ Response
    :type: amount object
    :condition: optional
 
-   This optional field will contain the approximate mount that will be deducted from your account balance, converted to the
-   currency your account is settled in. It follows the same syntax as the ``amount`` property.
+   This optional field will contain the approximate amount that will be deducted from your account balance, converted
+   to the currency your account is settled in. It follows the same syntax as the ``amount`` property.
 
    For refunds, the ``value`` key of ``settlementAmount`` will be negative.
 
