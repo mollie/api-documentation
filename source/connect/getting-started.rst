@@ -50,7 +50,7 @@ Use the details below to configure your app to work with our platform.
 * **Client ID**: received upon app registration
 * **Client Secret**: received upon app registration
 * **Redirect URL**: a URL within your app that processes authorizations
-* **Authorization URL**: ``https://www.mollie.com/oauth2/authorize``, see the
+* **Authorization URL**: ``https://my.mollie.com/oauth2/authorize``, see the
   :doc:`Authorize endpoint </reference/oauth2/authorize>`
 * **Access token URL**: ``https://api.mollie.com/oauth2/tokens``, see the
   :doc:`Tokens endpoint </reference/oauth2/tokens>`
