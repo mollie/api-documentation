@@ -36,7 +36,7 @@ shown to your customer, allowing them to grant the requested authorizations for 
 OAuth application.
 
 Finally, your customer will be redirected back to you (to the ``redirect_uri`` you specified when creating your OAuth
-application). Then, the normal :doc:`OAuth Authorize flow </reference/oauth2/authorize>` where you exchange an `auth
+application). Then, the normal :doc:`OAuth Authorize flow </connect/getting-started>` where you exchange an `auth
 token` for an `app access token` can be followed.
 
 Once you have received the `app access token` for the organization, you can perform any other API calls on behalf of the
