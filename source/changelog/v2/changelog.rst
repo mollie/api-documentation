@@ -6,8 +6,14 @@ Changelog
 Occasionally, we will add new resources, new fields, or new possible values to existing fields to the v2 Mollie API. All
 changes are documented here.
 
+May 2023
+========
+
+- Added the :doc:`/reference/v2/clients-api/create-client` endpoint.
+- Deprecated the :doc:`/reference/v2/onboarding-api/submit-onboarding-data` endpoint.
+
 March 2023
-============
+==========
 - Added the ``dagiftcard`` as gift card issuer.
 
 February 2023
