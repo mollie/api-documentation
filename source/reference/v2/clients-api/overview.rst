@@ -9,10 +9,10 @@ For more information on our partnership program, visit `mollie.com/partners <htt
 Endpoints
 ---------
 .. endpoint-card::
-   :name: Create sign-up request
+   :name: Create client
    :method: POST
    :url: /v2/clients
-   :ref: /reference/v2/clients-api/create-signup-request
+   :ref: /reference/v2/clients-api/create-client
 
    Create a new client connected to your partner account.
 

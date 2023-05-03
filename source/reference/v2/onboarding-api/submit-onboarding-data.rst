@@ -12,10 +12,13 @@ Submit onboarding data
    :organization_access_tokens: true
    :oauth: true
 
-Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
-:doc:`onboarding status </reference/v2/onboarding-api/get-onboarding-status>` is ``needs-data``.
+.. warning:: This endpoint has been deprecated. It will be supported for the foreseeable future, but new implementations
+             should  use the :doc:`/reference/v2/clients-api/create-client` endpoint to create new clients and submit
+             their organization's details in one go.
 
-.. note:: Information that the merchant has entered in their dashboard will not be overwritten.
+Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
+:doc:`onboarding status </reference/v2/onboarding-api/get-onboarding-status>` is ``needs-data``. Information that the
+merchant has entered in their dashboard will not be overwritten.
 
 Parameters
 ----------

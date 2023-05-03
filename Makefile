@@ -10,7 +10,7 @@ PYTHON_USER_BASE_PATH = $(shell python3 -m site --user-base)/bin
 # it is not guaranteed it will rebuild when no '.rst' files have changed.
 DEV_PYTHON        = PATH=${PYTHON_USER_BASE_PATH}:$$PATH MOLLIE_DOCS_URL='http://127.0.0.1:8000' MOLLIE_FILE_SUFFIX='.html' python3
 PROD_PYTHON       = MOLLIE_DOCS_URL='https://docs.mollie.com' MOLLIE_FILE_SUFFIX='' python3
-DEV_SPHINX_OPTS   = -W
+DEV_SPHINX_OPTS   = -W -q
 PROD_SPHINX_OPTS  = -W -n
 DEV_SPHINX_BUILD  = ${DEV_PYTHON} -msphinx
 PROD_SPHINX_BUILD = ${PROD_PYTHON} -msphinx
