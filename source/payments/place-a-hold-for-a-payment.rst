@@ -40,13 +40,13 @@ Have the consumer authorize the payment either via our hosted checkout or using 
 complete a regular payment. See the guide on :doc:`building your own checkout </payments/build-your-own-checkout>` for
 more details.
 
-Once the consumer authorizes the payment, the payment will move to status `authorized`.
+Once the consumer authorizes the payment, the payment status will change to `authorized`.
 
 Capturing the authorized funds
 ------------------------------
 To collect the funds that the consumer authorized, you can create a capture on the payment using the
 :doc:`Create capture </reference/v2/captures-api/overview>` endpoint. A capture can either be for the full amount or for
-a reduced amount.
+a reduced amount. If you leave the amount field empty, Mollie will capture the full authorized amount.
 
 .. code-block:: bash
    :linenos:
@@ -57,12 +57,18 @@ a reduced amount.
       -d "amount[value]=10.00" \
       -d "description=Capture for order #12345"
 
-Voiding an authorization
-------------------------
-To void an authorization, simply call the :doc:`Cancel payment endpoint </reference/v2/payments-api/cancel-payment>` on
-a payment that is set to `authorized`.
+Sometimes your capture request can fail, either because your request is incorrect (payment was already captured or 
+canceled, wrong paymentId, etc.) or because you captured the payment too late, please refer to the "Authorization 
+expiration window" section below for further details.
 
-Voiding an authorization can also be performed in the Mollie dashboard.
+Once the capture has been successfully processed, the payment status will change to `paid`.
+
+Cancel an authorization
+-----------------------
+To cancel an authorization, simply call the :doc:`Cancel payment endpoint </reference/v2/payments-api/cancel-payment>` on
+a payment that is set to `authorized`. Please note that the full remaining amount will be reversed.
+
+Canceling an authorization can also be performed in the Mollie dashboard.
 
 .. code-block:: bash
    :linenos:
@@ -70,31 +76,34 @@ Voiding an authorization can also be performed in the Mollie dashboard.
    curl -X DELETE https://api.mollie.com/v2/payments/tr_... \
       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
 
-Authorization expiry window
----------------------------
-Authorizations are generally not meant to remain open for longer than a number of days. Leaving the authorizations open
-for too long can even lead to a fine from the card network. To prevent such fines and ensure a smooth consumer
-experience, Mollie will therefore automatically expire (i.e. void) any authorization that is left open for too long.
+It's important to notice that Mollie will process your Cancel request but it's up to the Issuing bank if, and when, to
+process the cancel payment; there's no guarantee that the hold will be released or when it will be released. If you 
+cancel the payment, the payment status will change to `canceled`.
 
-The exact allowed authorization window depends on the type of card your consumer used — the different card schemes will
-have slightly different rules depending on your type of business.
+Authorization expiration window
+-------------------------------
+An authorized payment is a guaranteed amount yet authorizations are generally not meant to remain open for longer than
+a number of days. The exact allowed authorization window depends on the type of card your consumer used — the different 
+card schemes will have slightly different rules.
 
-Generally speaking, credit card authorizations remain open for at least 7 days and up to 30 days.
+Authorizations remain open for at least 7 days for American Express and Cartes Bancaires cards and up to 30 days for 
+Visa and Mastercard cards. It is highly recommended to capture payments as soon as you can fulfill the order and within 
+the recommended time period. If you do not capture a payment in time the authorization will expire and the capture will 
+be declined by the issuing bank. Once the issuer declined the payment due to authorization expired, the payment status
+will change to `failed`.
 
 The Payments API will include an `captureBefore` field on authorized payments that indicates by what time you need to
-capture the payment, to prevent Mollie from automatically voiding the authorization.
-
-If you wish to gather an authorization to collect funds for a longer period of time, please consider implementing
-:doc:`recurring payments </payments/recurring>` instead. With the right mandate from the consumer, you can then manually
-charge their account after any period of time and for any amount.
+capture the payment, to prevent you from being unable to capture the funds.
 
 Delayed automatic capturing
 ---------------------------
-In some cases you may want Mollie to always capture the funds after a number of days, unless you explicitly void the
+In some cases you may want Mollie to always capture the funds after a number of days, unless you explicitly cancel the
 authorization in the meantime.
 
 In these cases you can set `captureMode` back to `automatic`, and provide a `captureDelay`. The payment will then first
-move to `authorized`, and after the delay you specified Mollie will automatically capture the funds.
+move to `authorized`, and after the delay you specified Mollie will automatically capture the funds. As mentioned, you 
+will still be able to either cancel the payment or to use the Captures API to manually capture the payment before the
+automatic capture is executed by Mollie.
 
 Since the exact authorization window depends on the card used by the consumer, and the card is not known up front, we
 only support automatic capturing for up to 7 days after the authorization.
