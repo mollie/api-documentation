@@ -3,6 +3,7 @@ from .api_endpoint_directive import ApiEndpointDirective
 from .api_endpoint_card_directive import ApiEndpointCardDirective
 from .authentication_directive import AuthenticationDirective
 from .code_block_selector_directive import CodeBlockSelectorDirective
+from .customize_document_title_directive import CustomizeDocumentTitleDirective
 from .data_type_directive import DataTypeDirective
 from .js_object_card_directive import JsObjectCardDirective
 from .param_name_directive import ParamNameDirective
@@ -20,6 +21,7 @@ def setup(app):
     app.add_directive('endpoint', ApiEndpointDirective)
     app.add_directive('endpoint-card', ApiEndpointCardDirective)
     app.add_directive('code-block-selector', CodeBlockSelectorDirective)
+    app.add_directive('customize-document-title', CustomizeDocumentTitleDirective)
     app.add_directive('object-card', JsObjectCardDirective)
     app.add_directive('param-name', ParamNameDirective)
     app.add_directive('parameter', ParameterDirective)

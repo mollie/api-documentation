@@ -1,9 +1,7 @@
 Balances API
 ============
-
-.. raw:: html
-   
-   <span class="api-name__beta">BETA</span>
+.. customize-document-title::
+   :beta: true
 
 The Balances API allows you to retrieve real-time as well as historical information about your Mollie balance.
 This may be useful to for example integrate Mollie into your bookkeeping, or for SaaS providers to enrich the experience they offer their Mollie users.
@@ -16,7 +14,7 @@ With the Balances API, you can:
 The Balances API has some overlap with the :doc:`Settlements API </reference/v2/settlements-api/overview>`, since the Settlements API allows you to retrieve the fixed list of balance movements that were included in each settlement.
 Both APIs can be used for accounting and reconciliation purposes, however the Balances API will give you the most complete overview where you don't have to wait for the execution of the actual Settlement.
 
-For more information please refer to 
+For more information please refer to
 `knowledge base <https://help.mollie.com/hc/en-us/sections/360004882219-Accounting>`_.
 
 .. note:: Due to technical limitations, data from before 1 July 2022 is not available via this API.

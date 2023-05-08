@@ -1,5 +1,8 @@
 Terminals API
 =============
+.. customize-document-title::
+   :beta: true
+
 If you process point-of-sale payments with Mollie, the Terminals API allows you to manage your point-of-sale devices.
 
 With the Terminals API, you can list all terminals connected to your organisation and profiles.
