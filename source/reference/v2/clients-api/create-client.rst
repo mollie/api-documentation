@@ -117,27 +117,6 @@ Parameters
       The country of the address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
       This field is always required.
 
-.. parameter:: bankaccount
-   :type: object
-   :condition: optional
-
-   Bank account details of the organization.
-
-   .. parameter:: accountNumber
-      :type: string
-      :condition: required
-
-      The IBAN of the organization.
-
-   .. parameter:: currency
-      :type: string
-      :condition: optional
-
-      The currency the organization must be settled in. An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency
-      code. Supported settlement currencies are ``EUR`` and ``GBP``.
-
-      Example: ``EUR``.
-
 .. parameter:: registrationNumber
    :type: string
    :condition: optional

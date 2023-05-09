@@ -95,6 +95,11 @@ Response
 --------
 ``301 Redirect``
 
+Errors are indicated by redirecting back to the provided redirect URL with additional parameters in the query string (as
+per the `OAuth2 specification <https://www.oauth.com/oauth2-servers/server-side-apps/possible-errors/>`_).
+
+There will always be an ``error`` parameter, and the redirect may also include ``error_description``.
+
 .. parameter:: code
    :type: string
 
