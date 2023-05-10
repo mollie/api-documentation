@@ -42,6 +42,9 @@ If you are using :doc:`organization access tokens </overview/authentication>`, t
    :condition: optional
    :collapse: true
 
+   The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``. Omit this parameter to retrieve all payments
+   across all profiles.
+
 Response
 --------
 ``200`` ``application/hal+json``
@@ -60,8 +63,9 @@ Response
 
    .. parameter:: terminals
       :type: array
+      :collapse: true
 
-      An array of terminal objects.
+      An array of terminal objects as described below.
 
       Terminal object:
         .. parameter:: resource
@@ -136,15 +140,15 @@ Response
            An object with several URL objects relevant to the terminal. Every URL object will contain an ``href`` and a ``type``
            field.
 
-        .. parameter:: self
-           :type: URL object
+           .. parameter:: self
+              :type: URL object
 
-           The API resource URL of the terminal itself.
+              The API resource URL of the terminal itself.
 
-        .. parameter:: documentation
-           :type: URL object
+           .. parameter:: documentation
+              :type: URL object
 
-           The URL to the terminal retrieval endpoint documentation.
+              The URL to the terminal retrieval endpoint documentation.
 
 .. parameter:: _links
    :type: object
