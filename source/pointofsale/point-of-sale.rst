@@ -1,16 +1,15 @@
 Point-of-sale payments
 ======================
 With Mollie you can accept in-person card payments next to your online payments, neatly unifying both your online and
-in-person presence.
-
-Mollie provides pre-certified card readers ('terminals') as well as fleet management tools via the Mollie API and Mollie
-Dashboard.
+in-person presence. Mollie provides pre-certified card readers ('terminals') as well as fleet management tools via the
+Mollie API and Mollie Dashboard.
 
 A Mollie point-of-sale setup will typically simply consist of cashier software provided to you by one of our partners,
 and terminals provided to you by Mollie. Please contact your account manager to discover the options that work best for
 you.
 
-For advanced users who want to integrate point-of-sale payments themselves, here is how it works.
+For advanced users who want to integrate point-of-sale payments themselves, here is how it works. If you are looking to
+test your integration without the need for a physical terminal, you can do so using :doc:`test mode </pointofsale/testing>`.
 
 Receiving your first terminal
 -----------------------------
