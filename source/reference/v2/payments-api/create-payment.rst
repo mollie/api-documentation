@@ -527,6 +527,16 @@ paysafecard
 
    If not provided, Mollie will send a hashed version of the shopper IP address.
 
+Point-of-sale
+"""""""""""""
+.. parameter:: terminalId
+   :type: string
+   :condition: required
+
+   The unique identifier used for referring to a terminal. This ID is used for assigning the payment to a specific terminal
+   and it can be retrieved via :doc:`List terminals </reference/v2/terminals-api/list-terminals>`.
+   For more information about Point-of-Sale payments, please check our guide :doc:`Point-of-sale payments </payments/point-of-sale>`.
+
 Przelewy24
 """"""""""
 .. parameter:: billingEmail

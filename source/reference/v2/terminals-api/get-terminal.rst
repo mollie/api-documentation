@@ -43,7 +43,7 @@ Response
    :type: string
 
    The status of the terminal, which is a read-only value determined by Mollie, according to the actions performed for that terminal.
-   Its values can be ``pending``, ``active``, ``inactive``. ``pending`` means that the terminal has been created but not yet active. ``active``
+   Its values can be ``pending``, ``active``, ``inactive``. ``pending`` means that the terminal has been created, but not yet activated. ``active``
    means that the terminal is active and can take payments. ``inactive`` means that the terminal has been deactivated.
 
 .. parameter:: brand
@@ -71,16 +71,6 @@ Response
 
    A short description of the terminal. The description will be visible in the Dashboard, but also on the device itself for identification purposes.
 
-.. parameter:: timezone
-   :type: string
-
-   The timezone of the terminal. Example: “Europe/Brussels”.
-
-.. parameter:: locale
-   :type: string
-
-   This will be a full locale, for example ``nl_NL`` and it will be provided by the user.
-
 .. parameter:: createdAt
    :type: datetime
 
@@ -91,19 +81,12 @@ Response
 
    The date and time the terminal was last updated, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-.. parameter:: disabledAt
+.. parameter:: deactivatedAt
    :type: datetime
    :condition: optional
 
-   The date and time the terminal was disabled, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format. This
-   parameter is omitted if the terminal is not disabled yet.
-
-.. parameter:: activatedAt
-   :type: datetime
-   :condition: optional
-
-   The date and time the terminal was activated, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format. This
-   parameter is omitted if the terminal is not active yet.
+   The date and time the terminal was deactivated, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format. This
+   parameter is omitted if the terminal is not deactivated yet.
 
 .. parameter:: _links
    :type: object
@@ -186,11 +169,9 @@ Response
        "serialNumber": "1234567890",
        "currency": "EUR",
        "description": "Terminal #12345",
-       "timezone": "GMT +08:00",
-       "locale": "nl_NL",
        "createdAt": "2022-02-12T11:58:35.0Z",
-       "updatedAt": "2022-11-15T13:32:11+00:00"
-       "activatedAt": "2022-02-12T12:13:35.0Z",
+       "updatedAt": "2022-11-15T13:32:11+00:00",
+       "deactivatedAt": "2022-02-12T12:13:35.0Z",
        "_links": {
            "self": {
                "href": "https://api.mollie.com/v2/terminals/term_7MgL4wea46qkRcoTZjWEH",
