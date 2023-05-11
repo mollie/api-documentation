@@ -34,6 +34,7 @@ To place a hold, simply create a card payment via the
       -d "amount[value]=10.00" \
       -d "description=Order #12345" \
       -d "redirectUrl=https://webshop.example.org/order/12345/" \
+      -d "method=creditcard" \
       -d "captureMode=manual"
 
 Have the consumer authorize the payment either via our hosted checkout or using Mollie Components, just like they would
@@ -117,4 +118,5 @@ only support automatic capturing for up to 7 days after the authorization.
       -d "amount[value]=10.00" \
       -d "description=Order #12345" \
       -d "redirectUrl=https://webshop.example.org/order/12345/" \
+      -d "method=creditcard" \
       -d "captureDelay=2 days"
