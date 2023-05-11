@@ -79,7 +79,7 @@ Example
       curl -X POST https://api.mollie.com/v2/payments/tr_WDqYK6vllg/captures \
          -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
          -d "amount[currency]=EUR" \
-         -d "amount[value]=5.95" \
+         -d "amount[value]=35.95" \
          -d "description=Capture for cart #12345"
 
 Response
@@ -95,11 +95,7 @@ Response
        "id": "cpt_mNepDkEtco6ah3QNPUGYH",
        "mode": "live",
        "amount": {
-           "value": "1027.99",
-           "currency": "EUR"
-       },
-       "settlementAmount": {
-           "value": "1027.99",
+           "value": "35.95",
            "currency": "EUR"
        },
        "paymentId": "tr_WDqYK6vllg",
