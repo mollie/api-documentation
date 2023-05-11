@@ -12,7 +12,15 @@ Create capture
    :organization_access_tokens: true
    :oauth: true
 
-Creates a capture for a specific payment.
+Capture an 'authorized' payment.
+
+Some payment methods allow you to first collect a consumer's authorization, and capture the amount at a later point.
+
+By default, Mollie captures payments automatically. If however you configured your payment with captureMode: ``manual``,
+you can capture the payment using this endpoint after having collected the consumer's authorization.
+
+For more details about capturing payments, see the guide on
+:doc:`Placing a hold for a payment </payments/place-a-hold-for-a-payment>`.
 
 Parameters
 ----------
