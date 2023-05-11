@@ -57,8 +57,8 @@ a reduced amount. If you leave the amount field empty, Mollie will capture the f
       -d "amount[value]=10.00" \
       -d "description=Capture for order #12345"
 
-Sometimes your capture request can fail, either because your request is incorrect (payment was already captured or 
-canceled, wrong paymentId, etc.) or because you captured the payment too late, please refer to the "Authorization 
+Sometimes your capture request can fail, either because your request is incorrect (payment was already captured or
+canceled, wrong paymentId, etc.) or because you captured the payment too late, please refer to the "Authorization
 expiration window" section below for further details.
 
 Once the capture has been successfully processed, the payment status will change to `paid`.
@@ -77,22 +77,22 @@ Canceling an authorization can also be performed in the Mollie dashboard.
       -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
 
 It's important to notice that Mollie will process your Cancel request but it's up to the Issuing bank if, and when, to
-process the cancel payment; there's no guarantee that the hold will be released or when it will be released. If you 
+process the cancel payment; there's no guarantee that the hold will be released or when it will be released. If you
 cancel the payment, the payment status will change to `canceled`.
 
 Authorization expiration window
 -------------------------------
 An authorized payment is a guaranteed amount yet authorizations are generally not meant to remain open for longer than
-a number of days. The exact allowed authorization window depends on the type of card your consumer used — the different 
+a number of days. The exact allowed authorization window depends on the type of card your consumer used — the different
 card schemes will have slightly different rules.
 
-Authorizations remain open for at least 7 days for American Express and Cartes Bancaires cards and up to 30 days for 
-Visa and Mastercard cards. It is highly recommended to capture payments as soon as you can fulfill the order and within 
-the recommended time period. If you do not capture a payment in time the authorization will expire and the capture will 
+Authorizations remain open for at least 7 days for American Express and Cartes Bancaires cards and up to 30 days for
+Visa and Mastercard cards. It is highly recommended to capture payments as soon as you can fulfill the order and within
+the recommended time period. If you do not capture a payment in time the authorization will expire and the capture will
 be declined by the issuing bank. Once the issuer declined the payment due to authorization expired, the payment status
 will change to `failed`.
 
-The Payments API will include an `captureBefore` field on authorized payments that indicates by what time you need to
+The Payments API will include a `captureBefore` field on authorized payments that indicates by what time you need to
 capture the payment, to prevent you from being unable to capture the funds.
 
 Delayed automatic capturing
@@ -101,7 +101,7 @@ In some cases you may want Mollie to always capture the funds after a number of 
 authorization in the meantime.
 
 In these cases you can set `captureMode` back to `automatic`, and provide a `captureDelay`. The payment will then first
-move to `authorized`, and after the delay you specified Mollie will automatically capture the funds. As mentioned, you 
+move to `authorized`, and after the delay you specified Mollie will automatically capture the funds. As mentioned, you
 will still be able to either cancel the payment or to use the Captures API to manually capture the payment before the
 automatic capture is executed by Mollie.
 
