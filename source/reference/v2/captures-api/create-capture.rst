@@ -103,8 +103,6 @@ Response
            "currency": "EUR"
        },
        "paymentId": "tr_WDqYK6vllg",
-       "shipmentId": "shp_3wmsgCJN4U",
-       "settlementId": "stl_jDk30akdN",
        "createdAt": "2018-08-02T09:29:56+00:00",
        "description": "Capture for cart #12345",
        "_links": {
