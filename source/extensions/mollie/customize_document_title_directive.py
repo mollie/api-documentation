@@ -20,6 +20,11 @@ directive directly under the title of your document.
 class CustomizeDocumentTitleDirective(Directive):
     has_content = False
     required_arguments = 0
+
+    # If you add a new customization to this directive, please double-check that the
+    # HTML page titles are being generated correctly. Any content added to the title
+    # node is reflected in the 'title' variable in 'source/theme/layout.html', which
+    # influences how the HTML page title is generated.
     option_spec = {
         "beta": utilities.validate_bool
     }
