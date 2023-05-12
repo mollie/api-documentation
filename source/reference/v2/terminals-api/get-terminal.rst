@@ -43,8 +43,9 @@ Response
    :type: string
 
    The status of the terminal, which is a read-only value determined by Mollie, according to the actions performed for that terminal.
-   Its values can be ``pending``, ``active``, ``inactive``. ``pending`` means that the terminal has been created, but not yet activated. ``active``
-   means that the terminal is active and can take payments. ``inactive`` means that the terminal has been deactivated.
+   Its values can be ``pending``, ``active``, ``inactive``. ``pending`` means the device has been linked to your account,
+   but has not yet been activated. ``active`` means that the terminal is active and can take payments.
+   ``inactive`` means that the terminal has been deactivated.
 
 .. parameter:: brand
    :type: string
