@@ -42,6 +42,10 @@ token` for an `app access token` can be followed.
 Once you have received the `app access token` for the organization, you can perform any other API calls on behalf of the
 (newly created) organization using OAuth.
 
+Your next step should probably be to create a Profile using the :doc:`/reference/v2/profiles-api/create-profile`
+endpoint and :doc:`enable the payment methods </reference/v2/profiles-api/enable-method>` you want your customer to
+use with Mollie.
+
 Parameters
 ----------
 
