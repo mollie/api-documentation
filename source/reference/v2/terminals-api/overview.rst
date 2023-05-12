@@ -3,7 +3,7 @@ Terminals API
 .. customize-document-title::
    :beta: true
 
-.. note:: The Terminals API is currently in beta. If you are interested in offering Point of Sale payments, please see
+.. note:: The Terminals API is currently in beta. If you are interested in offering point-of-sale payments, please see
    `this page <https://www.mollie.com/products/payments-terminal>`_ for more information on our product offering. Once
    there, you can register your interest to be kept up-to-date.
 
