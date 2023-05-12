@@ -33,9 +33,11 @@ Parameters
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </overview/authentication>`, the
-``profileId`` parameter can be used to retrieve terminals for a specific profile. If the
-``profileId`` parameter is not sent, the API will return all terminals across all profiles.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, the following query string parameters are also available. With the ``profileId``
+parameter, you can specify which profile you want to look at when listing terminals. If you omit the ``profileId``
+parameter, you will get all terminals on the organization. Organizations can have multiple profiles for each of their
+websites. See :doc:`Profiles API </reference/v1/profiles-api/create-profile>` for more information.
 
 .. parameter:: profileId
    :type: string
@@ -44,6 +46,14 @@ If you are using :doc:`organization access tokens </overview/authentication>`, t
 
    The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``. Omit this parameter to retrieve all terminals
    across all profiles.
+
+
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
+
+   Set this to true to only retrieve terminals made in test mode. By default, only live terminals are returned.
 
 Response
 --------
