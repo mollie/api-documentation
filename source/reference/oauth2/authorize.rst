@@ -57,7 +57,7 @@ Parameters
 
 .. parameter:: approval_prompt
    :type: string
-   :condition: required
+   :condition: optional
 
    This parameter can be set to ``force`` to force showing the :doc:`consent screen </connect/getting-started>` to the
    merchant, even when it is not necessary. Note that already active authorizations will be revoked when the user
