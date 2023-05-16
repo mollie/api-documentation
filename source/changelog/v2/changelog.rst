@@ -6,13 +6,19 @@ Changelog
 Occasionally, we will add new resources, new fields, or new possible values to existing fields to the v2 Mollie API. All
 changes are documented here.
 
+May 2023
+========
+
+The parameters ``year`` and ``month`` of the :doc:`/reference/v2/clients-api/list-clients` endpoint have been deprecated
+and will be removed later this year.
+
 March 2023
 ============
 - Added the ``dagiftcard`` as gift card issuer.
 
 February 2023
 =============
-- Added new :doc:`Manage order lines endpoint </reference/v2/orders-api/manage-order-lines>`
+- Added new :doc:`Manage order lines endpoint </reference/v2/orders-api/manage-order-lines>`.
 
 December 2022
 =============

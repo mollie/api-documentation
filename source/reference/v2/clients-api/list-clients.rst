@@ -37,11 +37,15 @@ Parameters
 
    Show the statistics for the given year.
 
+   .. warning:: This parameter is deprecated and will be removed in 2023.
+
 .. parameter:: month
    :type: integer
    :condition: optional
 
    Show the statistics for the given month.
+
+   .. warning:: This parameter is deprecated and will be removed in 2023.
 
 Embedding of related resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
