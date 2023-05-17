@@ -18,7 +18,7 @@ export const enhance = argumentsToObject;
  * It does this with failsafe and duplicate key checking so we know when the
  * wrong arguments were received or when we try to pass in a duplicate key.
  */
-const make = type => arr =>
+const make = (type) => (arr) =>
   arr.reduce((carry, item) => {
     if (!item) {
       console.warn(`Argument supplied to ${type} function is undefined`);
@@ -39,8 +39,8 @@ export const makeHandlers = make('handler');
 export const makeEnhancers = make('enhancer');
 
 // Use this function to install the registered enhancers
-export const executeEnhancers = enhancers => {
-  [].forEach.call(document.querySelectorAll('[data-enhancer]'), element => {
+export const executeEnhancers = (enhancers) => {
+  [].forEach.call(document.querySelectorAll('[data-enhancer]'), (element) => {
     const enhancerAttribute = element.getAttribute('data-enhancer');
 
     if (!enhancerAttribute) {
@@ -48,7 +48,7 @@ export const executeEnhancers = enhancers => {
     }
 
     const enhancerIds = enhancerAttribute.split(' ');
-    enhancerIds.forEach(id => {
+    enhancerIds.forEach((id) => {
       if (typeof enhancers[id] === 'function') {
         enhancers[id](element);
       } else {
@@ -59,8 +59,8 @@ export const executeEnhancers = enhancers => {
 };
 
 // Use this function to install the registered handlers
-export const bindHandlers = handlers => {
-  document.addEventListener('click', event => {
+export const bindHandlers = (handlers) => {
+  document.addEventListener('click', (event) => {
     const handlerAttribute = event.target && event.target.getAttribute('data-handler');
 
     if (!handlerAttribute) {
@@ -72,7 +72,7 @@ export const bindHandlers = handlers => {
     }
 
     const handlerIds = handlerAttribute.split(' ');
-    handlerIds.forEach(id => {
+    handlerIds.forEach((id) => {
       if (typeof handlers[id] === 'function') {
         handlers[id](event.target, event);
       } else {

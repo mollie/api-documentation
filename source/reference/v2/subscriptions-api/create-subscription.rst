@@ -246,7 +246,7 @@ Example
 
 Response
 ^^^^^^^^
-.. code-block:: json
+.. code-block:: http
    :linenos:
 
    HTTP/1.1 201 Created

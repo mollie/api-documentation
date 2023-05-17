@@ -1,5 +1,5 @@
-.section#endpoints,
-.section#objects {
+section#endpoints,
+section#objects {
   display: grid;
   grid-template-columns: auto;
   grid-gap: 20px;
@@ -17,8 +17,8 @@
   }
 }
 
-.section#endpoints > h2,
-.section#objects > h2 {
+section#endpoints > h2,
+section#objects > h2 {
   grid-column-start: 1;
   grid-column-end: -1; // Stretch until the final column.
 }

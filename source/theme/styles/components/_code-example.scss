@@ -49,17 +49,17 @@
   width: 100%;
 }
 
-.content .section .highlighttable tbody > tr > td {
+.content section .highlighttable tbody > tr > td {
   padding-bottom: 0;
 }
 
-.content .section .highlighttable tr td.linenos {
+.content section .highlighttable tr td.linenos {
   padding-right: 0;
   background-color: shade($background-color, 2%);
   border-right: 1px solid $grey-medium;
 }
 
-.content .section .highlighttable tr td.code {
+.content section .highlighttable tr td.code {
   vertical-align: top;
 }
 
@@ -138,7 +138,7 @@ td.linenos pre {
     border-color: $grey-dark;
   }
 
-  .content .section .highlighttable tr td.linenos {
+  .content section .highlighttable tr td.linenos {
     background-color: tint($dark-mode-background-color, 8%);
     border-right-color: $grey-dark;
   }

@@ -27,19 +27,19 @@
   padding-bottom: 30px;
 }
 
-.content .section table > tbody > tr > td {
+.content section table > tbody > tr > td {
   padding-bottom: 30px;
 }
 
-.content .section table > tbody > tr:last-child > td {
+.content section table > tbody > tr:last-child > td {
   padding-bottom: 0;
 }
 
-.content .section table {
+.content section table {
   margin-top: 12px;
 }
 
-.content .section > table.docutils {
+.content section > table.docutils {
   margin-bottom: 60px;
 }
 
@@ -57,36 +57,36 @@
   margin-bottom: 0;
 }
 
-.content .section table > tbody > tr > td:first-child {
+.content section table > tbody > tr > td:first-child {
   max-width: 160px;
   padding-right: 40px;
   text-align: right;
 }
 
-.content .section table.docutils > thead > tr > th.right-align,
-.content .section table.docutils > tbody > tr > td.right-align {
+.content section table.docutils > thead > tr > th.right-align,
+.content section table.docutils > tbody > tr > td.right-align {
   text-align: right !important;
 }
 
-.content .section table.docutils > thead > tr > th.left-align,
-.content .section table.docutils > tbody > tr > td.left-align {
+.content section table.docutils > thead > tr > th.left-align,
+.content section table.docutils > tbody > tr > td.left-align {
   text-align: left !important;
 }
 
-.content .section table > tbody > tr > td:first-child p {
+.content section table > tbody > tr > td:first-child p {
   margin-bottom: 0;
 }
 
-.content .section > table.docutils tbody tr td:first-child .container {
+.content section > table.docutils tbody tr td:first-child .container {
   margin-top: 6px;
 }
 
-.content .section table > tbody > tr > td table + p {
+.content section table > tbody > tr > td table + p {
   margin-top: 20px;
 }
 
 @media (min-width: breakpoint('medium')) {
-  .content .section > table.docutils > tbody > tr:last-child > td {
+  .content section > table.docutils > tbody > tr:last-child > td {
     border-bottom: 1px solid #e9edef;
     padding-bottom: 30px;
   }
