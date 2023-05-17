@@ -31,18 +31,6 @@ Parameters
 
    The number of clients to return (with a maximum of 250).
 
-.. parameter:: year
-   :type: integer
-   :condition: optional
-
-   Show the statistics for the given year.
-
-.. parameter:: month
-   :type: integer
-   :condition: optional
-
-   Show the statistics for the given month.
-
 Embedding of related resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This endpoint also allows for embedding additional information by appending the following values via
@@ -137,13 +125,6 @@ Response
                    "resource": "client",
                    "id": "org_1337",
                    "organizationCreatedAt": "2018-03-21T13:13:37+00:00",
-                   "commission": {
-                       "count": 200,
-                       "totalAmount": {
-                           "currency": "EUR",
-                           "value": "10.00"
-                       }
-                   },
                    "_links": {
                        "self": {
                            "href": "https://api.mollie.com/v2/clients/org_1337",
