@@ -2,6 +2,7 @@ Get Terminal
 ============
 .. api-name:: Terminals API
    :version: 2
+   :coming-soon: true
 
 .. endpoint::
    :method: GET
@@ -12,7 +13,7 @@ Get Terminal
    :organization_access_tokens: true
    :oauth: true
 
-Retrieve a single terminal object by its terminal ID.
+Retrieve a single terminal object by its terminal ID. Please note that this endpoint is not publicly available yet.
 
 Parameters
 ----------
