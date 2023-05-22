@@ -197,7 +197,7 @@ Response
 
    {
        "resource": "capture",
-       "id": "cpt_4qqhO89gsT",
+       "id": "cpt_mNepDkEtco6ah3QNPUGYH",
        "mode": "live",
        "amount": {
            "value": "1027.99",
@@ -213,7 +213,7 @@ Response
        "createdAt": "2018-08-02T09:29:56+00:00",
        "_links": {
            "self": {
-               "href": "https://api.mollie.com/v2/payments/tr_WDqYK6vllg/captures/cpt_4qqhO89gsT",
+               "href": "https://api.mollie.com/v2/payments/tr_WDqYK6vllg/captures/cpt_mNepDkEtco6ah3QNPUGYH",
                "type": "application/hal+json"
            },
            "payment": {

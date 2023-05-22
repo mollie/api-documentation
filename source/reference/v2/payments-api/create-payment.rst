@@ -188,6 +188,35 @@ See our guide on :doc:`Recurring </payments/recurring>` for more information.
 
    Either this field or the ``customerId`` field needs to be provided for payments with the ``recurring`` sequence type.
 
+Parameters for pre-authorized payments
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Pre-authorized payments are created through the Payments API by providing a ``captureMode``. With the ``manual`` capture
+mode, you decide when to capture the funds. See our guide on
+:doc:`Placing a hold for a payment </payments/place-a-hold-for-a-payment>` for more information.
+
+.. parameter:: captureMode
+   :type: string
+   :condition: optional
+
+   Indicates whether the capture will be scheduled automatically or not. Set to ``manual`` to capture the payment
+   manually using the :doc:`Create capture </reference/v2/captures-api/create-capture>` endpoint.
+
+   Set to ``automatic`` by default, which indicates the payment will be captured automatically, without having to
+   separately request it. Setting ``automatic`` without a ``captureDelay`` will result in a regular payment.
+
+   Possible values: ``automatic`` ``manual``
+
+.. parameter:: captureDelay
+   :type: string
+   :condition: optional
+
+   Interval to wait before the payment is captured, for example ``8 hours`` or ``2 days``. In order to schedule an
+   automatic capture, the ``captureMode`` must be set to either ``automatic`` or be omitted.
+
+   Possible values: ``... hours`` ``... days``
+
+   .. note:: The maximum delay is 7 days (``168 hours``).
+
 .. _payment-method-specific-parameters:
 
 Payment method-specific parameters
