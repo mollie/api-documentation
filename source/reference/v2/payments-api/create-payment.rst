@@ -564,7 +564,7 @@ Point-of-sale
 
    The unique identifier used for referring to a terminal. This ID is used for assigning the payment to a specific terminal
    and it can be retrieved via :doc:`List terminals </reference/v2/terminals-api/list-terminals>`.
-   For more information about point-of-sale payments, please check our guide :doc:`point-of-sale payments </payments/point-of-sale>`.
+   For more information about point-of-sale payments, please check our guide :doc:`point-of-sale payments </pointofsale/point-of-sale>`.
 
 Przelewy24
 """"""""""
