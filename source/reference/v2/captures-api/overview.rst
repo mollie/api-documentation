@@ -17,6 +17,14 @@ For a step-by-step guide on integrating orders and shipments, see the :doc:`Orde
 Endpoints
 ---------
 .. endpoint-card::
+   :name: Create capture
+   :method: POST
+   :url: /v2/payments/*paymentId*/captures
+   :ref: /reference/v2/captures-api/create-capture
+
+   Create a capture for a payment.
+
+.. endpoint-card::
    :name: Get capture
    :method: GET
    :url: /v2/payments/*paymentId*/captures/*id*
