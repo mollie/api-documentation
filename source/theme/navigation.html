@@ -1,4 +1,9 @@
-{%- if pagename.startswith('payments/') or pagename.startswith('orders/') or pagename.startswith('wallets/') or 'mollie-components/' in pagename -%}
+{%- if pagename.startswith('payments/')
+  or pagename.startswith("orders/")
+  or pagename.startswith("components/")
+  or pagename.startswith("wallets/")
+  or pagename.startswith("pointofsale/")
+-%}
   {%- set selected = "payments" -%}
 {%- elif pagename.startswith('connect/') -%}
   {%- set selected = "connect" -%}
