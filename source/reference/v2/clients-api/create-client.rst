@@ -2,6 +2,7 @@ Create client
 =============
 .. api-name:: Clients API
    :version: 2
+   :beta: true
 
 .. endpoint::
    :method: POST
