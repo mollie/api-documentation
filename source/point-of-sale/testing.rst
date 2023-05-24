@@ -17,7 +17,7 @@ Setting up a test mode terminal
 In order to set up a test mode terminal, you will only have to enable the point-of-sale payment method. A test mode
 terminal will then be created for you automatically.
 
-As described in the :doc:`point-of-sale payments guide </pointofsale/point-of-sale>`, you will need to provide the
+As described in the :doc:`point-of-sale payments guide </point-of-sale/overview>`, you will need to provide the
 terminal ID of a terminal in order to create a point-of-sale payment. You can retrieve the terminal ID of the test mode
 terminal by calling the :doc:`List Terminals endpoint </reference/v2/terminals-api/list-terminals>` with your test mode
 credentials. This would either be your test API key or an organization or app access token while passing the

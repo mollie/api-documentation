@@ -13,7 +13,7 @@ and terminals provided to you by Mollie. Please contact your account manager to 
 you.
 
 For advanced users who want to integrate point-of-sale payments themselves, here is how it works. If you are looking to
-test your integration without the need for a physical terminal, you can do so using :doc:`test mode </pointofsale/testing>`.
+test your integration without the need for a physical terminal, you can do so using :doc:`test mode </point-of-sale/testing>`.
 
 Receiving your first terminal
 -----------------------------
