@@ -13,7 +13,7 @@ Submit onboarding data
    :oauth: true
 
 .. warning:: This endpoint has been deprecated. It will be supported for the foreseeable future, but new implementations
-             should  use the :doc:`/reference/v2/clients-api/create-client` endpoint to create new clients and submit
+             should  use the :doc:`/reference/v2/clients-api/create-client-link` endpoint to create new clients and submit
              their organization's details in one go.
 
 Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the

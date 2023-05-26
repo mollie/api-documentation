@@ -1,12 +1,12 @@
-Create client
-=============
+Create client link
+==================
 .. api-name:: Clients API
    :version: 2
    :beta: true
 
 .. endpoint::
    :method: POST
-   :url: https://api.mollie.com/v2/clients
+   :url: https://api.mollie.com/v2/client-links
 
 .. authentication::
    :api_keys: false
@@ -16,18 +16,18 @@ Create client
 .. note:: This functionality is currently in closed beta. Contact our partner management team if you are interested in
           testing this functionality with us.
 
-Create a new client that will be connected to your :doc:`OAuth application </connect/getting-started>`. This is a
-two step process.
+Link a new organization to your :doc:`OAuth application </connect/getting-started>`, in effect creating a new client.
+This is a two step process.
 
-First, you must send your client's details to this endpoint. You can provide onboarding data that will be pre-filled in
-the organization.
+First, you must send your customer's details to this endpoint. You can provide data that will be pre-filled during
+onboarding.
 
-This endpoint's response will contain a special ``signup`` link where you are expected to redirect your customer. This is
-the second step.
+This endpoint's response will contain a special ``clientLink`` link where you are expected to redirect your customer.
+This is the second step.
 
-To the ``signup`` link, you must add the OAuth details of your application, the ``client_id``, ``scopes`` you want to
-request et cetera. These are the same parameters the :doc:`/reference/oauth2/authorize` endpoint takes. All accepted
-parameters are :ref:`listed below <signup-parameters>`.
+To the ``clientLink`` link, you must then add the OAuth details of your application, the ``client_id``, ``scopes`` you
+want to request et cetera. These are the same parameters the :doc:`/reference/oauth2/authorize` endpoint takes. All
+accepted parameters are :ref:`listed below <clientlink-parameters>`.
 
 When you redirect your customer, an organization will be created, your OAuth application will be authorized
 automatically and your customer will be logged in to their (newly created) Mollie Dashboard.
@@ -92,13 +92,13 @@ Parameters
 
 .. parameter:: address
    :type: address object
-   :condition: optional
+   :condition: required
 
-   Address of the organization. Note that the ``county`` parameter must always be provided.
+   Address of the organization. Note that the ``country`` parameter must always be provided.
 
    .. parameter:: streetAndNumber
       :type: string
-      :condition: required
+      :condition: conditional
 
       The street name and house number of the organization. If an address is provided, this field is required.
 
@@ -111,7 +111,7 @@ Parameters
 
    .. parameter:: city
       :type: string
-      :condition: required
+      :condition: conditional
 
       The city of the organization. If an address is provided, this field is required.
 
@@ -136,18 +136,26 @@ Parameters
 
    Example: ``NL123456789B01``
 
-.. _signup-parameters:
+.. _clientlink-parameters:
 
-Parameters for the ``signup`` link
-------------------------------------
+Parameters for the ``clientLink`` link
+--------------------------------------
 
-The signup link takes a subset of the parameters allowed for the :doc:`/reference/oauth2/authorize` endpoint:
+The ``clientLink`` link takes a subset of the parameters allowed for the :doc:`/reference/oauth2/authorize` endpoint:
 ``client_id``, ``state``, ``approval_prompt`` and ``scopes``.
 
 .. note:: At a minimum, we recommend you request ``onboarding.read onboarding.write`` and any scopes required for
           orders or payments you want to create. ``onboarding.read`` is required if you wish to follow the onboarding
           progress via the :doc:`/reference/v2/onboarding-api/get-onboarding-status` endpoint
           or `Mollie Dashboard <https://www.mollie.com/dashboard/partners/clients>`_.
+
+Example
+^^^^^^^
+
+.. code-block:: none
+   :linenos:
+
+   https://my.mollie.com/dashboard/client-link/finalize/csr_vZCnNQsV2UtfXxYifWKWH?client_id=app_j9Pakf56Ajta6Y65AkdTtAv&state=decafbad&scopes=onboarding.read+organization.read+payments.write+payments.read+profiles.write
 
 In case of an invalid value, your customer will be redirected to the redirect URI set for your OAuth application with
 the ``error`` and ``error_description`` query parameters added.
@@ -158,7 +166,7 @@ Example
    .. code-block:: bash
       :linenos:
 
-      curl -X POST https://api.mollie.com/v2/clients \
+      curl -X POST https://api.mollie.com/v2/client-links \
            -H "Content-Type: application/json" \
            -H "Authorization: Bearer access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
            -d '{
@@ -189,14 +197,14 @@ Response
 
    {
        "id": "csr_vZCnNQsV2UtfXxYifWKWH",
-       "resource": "signup-requests",
+       "resource": "client-link",
        "_links": {
-           "signup": {
-               "href": "https://my.mollie.com/partner-onboarding/finalize/csr_vZCnNQsV2UtfXxYifWKWH",
+           "clientLink": {
+               "href": "https://my.mollie.com/dashboard/client-link/finalize/csr_vZCnNQsV2UtfXxYifWKWH",
                "type": "text/html"
            },
            "documentation": {
-               "href": "https://docs.mollie.com/reference/v2/clients-api/create-client",
+               "href": "https://docs.mollie.com/reference/v2/clients-api/create-client-link-link",
                "type": "text/html"
            }
        }
