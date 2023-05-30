@@ -37,7 +37,7 @@ js-reload:
 	@./node_modules/.bin/parcel source/theme/js/index.js --out-dir build/_static --out-file index --no-hmr --port 8002
 
 html-reload:
-	${DEV_PYTHON} -msphinx_autobuild --ignore '*.rst~' -b html "${SOURCE_DIR}" "${BUILD_DIR}" ${DEV_SPHINX_OPTS} ${O}
+	${DEV_PYTHON} -msphinx_autobuild --ignore '*.*~' -b html "${SOURCE_DIR}" "${BUILD_DIR}" ${DEV_SPHINX_OPTS} ${O}
 
 start:
 	make html-reload & make css-reload & make js-reload

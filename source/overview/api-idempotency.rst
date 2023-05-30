@@ -1,9 +1,6 @@
 API idempotency
 ===============
 
-.. note:: This functionality is currently in open beta. The exact implementation details may still be changed in the
-          final release. Feel free to share feedback on `our Discord <https://discord.gg/VaTVkXB4aQ>`_.
-
 When issuing requests to an API, there is always a small chance of issues on either side of the connection.
 
 For example, the API may not respond to the request within a reasonable timeframe. Your server will then consider the

@@ -81,9 +81,6 @@ Parameters
    :type: string
    :condition: optional
 
-   .. note:: This parameter is currently in open beta. Feel free to share feedback on
-             `our Discord <https://discord.gg/VaTVkXB4aQ>`_.
-
    The URL your consumer will be redirected to when the consumer explicitly cancels the payment. If this URL is not
    provided, the consumer will be redirected to the ``redirectUrl`` instead — see above.
 
@@ -544,6 +541,17 @@ paysafecard
    Due to data privacy regulations, make sure not to use any personal identifiable information in this parameter.
 
    If not provided, Mollie will send a hashed version of the shopper IP address.
+
+Point-of-sale
+"""""""""""""
+.. parameter:: terminalId
+   :type: string
+   :condition: required
+
+   The unique identifier used for referring to a terminal. This ID is used for assigning the payment to a specific terminal
+   and it can be retrieved via :doc:`List terminals </reference/v2/terminals-api/list-terminals>`.
+   For more information about point-of-sale payments, please check our guide
+   :doc:`point-of-sale payments </point-of-sale/overview>`.
 
 Przelewy24
 """"""""""

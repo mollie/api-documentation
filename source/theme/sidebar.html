@@ -6,7 +6,12 @@
 	{%- include "sidebar-changelog-v1.html" -%}
 {%- elif pagename.startswith("changelog/v2/") -%}
 	{%- include "sidebar-changelog-v2.html" -%}
-{%- elif pagename.startswith("payments/") or pagename.startswith("orders/") or pagename.startswith("components/") or pagename.startswith("wallets/") -%}
+{%- elif pagename.startswith("payments/")
+  or pagename.startswith("orders/")
+  or pagename.startswith("components/")
+  or pagename.startswith("wallets/")
+  or pagename.startswith("point-of-sale/")
+-%}
 	{%- include "sidebar-payments.html" -%}
 {%- elif pagename.startswith("connect/") -%}
 	{%- include "sidebar-connect.html" -%}

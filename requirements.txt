@@ -1,4 +1,5 @@
 sphinx==1.8.6
 jinja2==3.0.0
+urllib3==1.*
 sphinx-autobuild==0.7.1
 cloud-sptheme==1.10.0

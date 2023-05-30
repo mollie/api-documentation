@@ -115,8 +115,8 @@ Permissions can be requested by redirecting the resource owner to the
 
    * - | ``terminals.read``
        | Terminals API
-     - View the merchant's Point of Sale terminals.
+     - View the merchant's point-of-sale terminals.
 
    * - | ``terminals.write``
        | Terminals API
-     - Manage the merchant's Point of Sale terminals.
+     - Manage the merchant's point-of-sale terminals.
