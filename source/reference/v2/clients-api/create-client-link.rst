@@ -204,7 +204,7 @@ Response
                "type": "text/html"
            },
            "documentation": {
-               "href": "https://docs.mollie.com/reference/v2/clients-api/create-client-link-link",
+               "href": "https://docs.mollie.com/reference/v2/clients-api/create-client-link",
                "type": "text/html"
            }
        }
