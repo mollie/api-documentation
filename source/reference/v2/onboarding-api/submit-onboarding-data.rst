@@ -12,10 +12,13 @@ Submit onboarding data
    :organization_access_tokens: true
    :oauth: true
 
-Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
-:doc:`onboarding status </reference/v2/onboarding-api/get-onboarding-status>` is ``needs-data``.
+.. warning:: This endpoint has been deprecated. It will be supported for the foreseeable future, but new implementations
+             should  use the :doc:`/reference/v2/clients-api/create-client-link` endpoint to create new clients and submit
+             their organization's details in one go.
 
-.. note:: Information that the merchant has entered in their dashboard will not be overwritten.
+Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
+:doc:`onboarding status </reference/v2/onboarding-api/get-onboarding-status>` is ``needs-data``. Information that the
+merchant has entered in their dashboard will not be overwritten.
 
 Parameters
 ----------
@@ -69,14 +72,15 @@ Even though all parameters are optional, at least one of them needs to be provid
       :type: string
       :condition: optional
 
-      The Chamber of Commerce registration number of the company.
+      The Chamber of Commerce (or local equivalent) registration number of the organization.
 
    .. parameter:: vatNumber
       :type: string
       :condition: optional
 
-      The VAT number of the company, if based in the European Union. The VAT number will be checked with the
-      `VIES <http://ec.europa.eu/taxation_customs/vies/>`_ service by Mollie.
+      The VAT number of the organization, if based in the European Union or the United Kingdom.
+
+      Example: ``NL123456789B01``
 
    .. parameter:: vatRegulation
       :type: string
@@ -89,7 +93,7 @@ Even though all parameters are optional, at least one of them needs to be provid
    :type: object
    :condition: optional
 
-   Data of the payment profile you want to provide.
+   Data of the website profile you want to provide.
 
    .. parameter:: name
       :type: string
@@ -115,7 +119,7 @@ Even though all parameters are optional, at least one of them needs to be provid
       :type: string
       :condition: optional
 
-      A description of what kind of goods and/or products will be offered via the payment profile.
+      A description of what kind of goods and/or products will be offered via the website profile.
 
    .. parameter:: phone
       :type: string

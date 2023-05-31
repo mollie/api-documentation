@@ -23,8 +23,7 @@ Most payment methods support :doc:`refunds </payments/refunds>`. This means you 
 to your customer. The amount of the refund will be withheld from your next settlement.
 
 By supplying the optional ``amount`` parameter, you can issue a partial refund where your customer is only refunded part
-of the total payment. It is also possible to refund up to €25.00 more than the original transaction amount, for example
-to credit costs for return shipping.
+of the total payment.
 
 Refunds support descriptions, which we will show in the Dashboard, your exports and pass to your customer if possible.
 
@@ -36,8 +35,7 @@ Replace ``id`` in the endpoint URL by the payment's ID, for example ``tr_7UhSN1z
    :type: decimal
    :condition: optional
 
-   The amount to refund. When ommitted, the full amount is refunded. Can be up to €25.00 more than the original
-   transaction amount.
+   The amount to refund. When ommitted, the full amount is refunded.
 
 .. parameter:: description
    :type: string

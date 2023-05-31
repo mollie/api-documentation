@@ -3,9 +3,10 @@ Mollie Connect
 **Mollie Connect** is a set of APIs and tools that allows you to connect multiple Mollie accounts together. This toolkit
 can be used for varying purposes, including:
 
-* Automating or white-labeling the Mollie onboarding for your customers
+* Automating or white-labeling the :doc:`Mollie onboarding <onboarding>` for your customers
 * Allowing your app to view your customer's Mollie data
 * Enabling your app to manage your customer's Mollie account
+* Allowing your app to create payments, orders and refunds on behalf of your customer
 * Charging fees on payments processed through your app
 * Routing and splitting payments between connected accounts
 * Receiving referral commissions for your customers' payment volumes
@@ -26,11 +27,12 @@ OAuth app. The following guide offers detailed instructions.
 
 Onboarding your customers
 -------------------------
-If your users do not yet have a Mollie account, you can either:
+If your customers do not yet have a Mollie account, you can either:
 
 * Have them sign up by themselves, and have them install your app at a later point
 * Sign them up yourself and have them complete the onboarding in the Mollie Dashboard
-* Offer a complete white-label onboarding experience in your app
+* Offer a complete white-label onboarding experience in your app, which includes creating organizations for them using
+  an API
 
 The following guide will dive into these last two use cases.
 

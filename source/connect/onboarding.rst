@@ -17,7 +17,7 @@ If you do not have an OAuth application or want to create a new one, have a look
 :doc:`Getting started guide for OAuth </connect/getting-started>` before proceeding. You will need an OAuth app
 with the authorization flow implemented for the next steps.
 
-We recommend having at least the following permissions to onboard your customers:
+We recommend requesting at least the following permissions to onboard your customers during the authorization flow:
 
 .. list-table::
    :widths: auto
@@ -25,6 +25,9 @@ We recommend having at least the following permissions to onboard your customers
    * - ``onboarding.read``
        Onboarding API
      - View the merchant's onboarding status.
+
+       This permission is required if you want to monitor the onboarding progress of your customers in the
+       `Mollie Dashboard <https://www.mollie.com/dashboard/partners/clients>`_.
 
    * - ``onboarding.write``
        Onboarding API
@@ -38,9 +41,12 @@ We recommend having at least the following permissions to onboard your customers
        Organizations API
      - Change the details of the merchant organization.
 
-.. note:: If you want to monitor the onboarding status of your customers in the `Mollie Dashboard <https://www.mollie.com/dashboard/partners/clients>`_,
-          make sure to include the ``onboarding.read`` permission.
+   * - ``profiles.write``
+       Profiles API
+     - Create a dedicated website profile for your app.
 
+
+To ensure that your onboarded customers can create payments, it is essential that you request permissions for the Payments API and any related APIs.
 
 Step 2: Enable hosted onboarding
 --------------------------------
@@ -57,30 +63,31 @@ Once you have an OAuth app up and running, you can
 
 .. note:: With hosted onboarding, the name of your application will be visible to your customers all the way through their onboarding journey.
 
-Step 3: Your customer signs up and grants permission
-----------------------------------------------------
-With the OAuth authorization flow implemented and the right permissions configured, you can start sending your
-customers to the authorization screen.
+Step 3: Create an organization for your customer
+------------------------------------------------
 
-On this screen your customers can either use an existing Mollie account, or sign up for a new Mollie account on the
-spot.
+With the OAuth authorization flow implemented and the right permissions configured, you can start creating organizations
+for your customers using the :doc:`/reference/v2/clients-api/create-client-link` endpoint.
 
-Once they are logged in, your customers will be asked to give permission to your app to submit onboarding data on their
-behalf.
+The Create client link endpoint will return a special link where you will have to redirect your customer to.
 
-.. image:: images/oauth-permission-onboarding@2x.png
-  :width: 75%
+If an organization already exists for your customer, your customer will be asked to grant the permissions you requested
+for your application. Otherwise, the permissions will be granted to your application for the newly created organization
+automatically.
+
+Your customer will then return to the ``redirect_uri`` of your OAuth application and you will receive the `auth code`,
+completing the OAuth authorization flow.
 
 Step 4: Your customer starts onboarding
 ---------------------------------------
 
-Now, the customer is ready to start onboarding. To make the process even easier for them, you can send data you already
-have using the :doc:`Submit onboarding data </reference/v2/onboarding-api/submit-onboarding-data>` endpoint.
-Any data you submit up front in this fashion will be prefilled in the white-labeled onboarding flow.
+Now, your customer is ready to start onboarding at Mollie. To make the process even easier for them, you can send data
+to create a profile for your app using the :doc:`/reference/v2/profiles-api/create-profile` endpoint.
 
-.. note:: This is possible as long as the onboarding status of the new account is set to ``needs-data``.
+Any data you submit up front in this fashion will be prefilled in the white-labeled onboarding flow. This is possible as
+long as the onboarding status of the new account is set to ``needs-data``.
 
-You can use the :doc:`Get onboarding status </reference/v2/onboarding-api/get-onboarding-status>` endpoint to get a link
+You can use the :doc:`/reference/v2/onboarding-api/get-onboarding-status` endpoint to get a link
 to the white-labeled onboarding flow under the ``_links/dashboard`` property. We recommend that you redirect your
 customer right away to this URL so they can provide the required onboarding information.
 
@@ -106,7 +113,7 @@ Example response
                 "type": "application/hal+json"
             },
             "dashboard": {
-                "href": "https://www.mollie.com/dashboard/hosted-onboarding/<app_id>/<organization_id>/onboarding",
+                "href": "https://www.mollie.com/dashboard/hosted-onboarding/app_j9Pakf56Ajta6Y65AkdTtAv/org_12345/onboarding",
                 "type": "text/html"
             },
             "organization": {
@@ -129,13 +136,13 @@ appropriate message to your customer.
 
 The possible onboarding statuses are ``needs-data``, ``in-review``, and ``completed``.
 
-Additionally, there are two milestones that the customer reaches during the Mollie onboarding: ``canReceivePayments``
+Additionally, there are two milestones that your customer reaches during the Mollie onboarding: ``canReceivePayments``
 (basic information has been provided) and ``canReceiveSettlements`` (all information has been provided and verified).
 
 We recommend showing the following onboarding status messages to your customers:
 
 +----------------+------------------+---------------------+------------------------------------------------------------+
-| Status         | Payments enabled | Settlements enabled | Message you can show to customer                           |
+| Status         | Payments enabled | Settlements enabled | Message you can show to your customer                      |
 +================+==================+=====================+============================================================+
 | ``needs-data`` | ``false``        | ``false``           | Before you can receive payments, Mollie needs more         |
 |                |                  |                     | information. <Link to onboarding URL>                      |
@@ -152,3 +159,6 @@ We recommend showing the following onboarding status messages to your customers:
 +----------------+------------------+---------------------+------------------------------------------------------------+
 | ``completed``  | ``true``         | ``true``            | Setup is complete!                                         |
 +----------------+------------------+---------------------+------------------------------------------------------------+
+
+Once your customer has the ``canReceivePayments`` flag set to ``true``, you can start
+:doc:`creating payments </reference/v2/payments-api/create-payment>`.

@@ -7,7 +7,7 @@ Your app may request a set of permissions, which allow access to various endpoin
 available permissions are listed below.
 
 Permissions can be requested by redirecting the resource owner to the
-:doc:`Authorize endpoint </reference/oauth2/authorize>` with the requested permissions as a space separated list in the
+:doc:`Authorize endpoint </reference/oauth2/authorize>` with the requested permissions as a space-separated list in the
 ``scope`` parameter.
 
 .. list-table::
@@ -115,8 +115,8 @@ Permissions can be requested by redirecting the resource owner to the
 
    * - | ``terminals.read``
        | Terminals API
-     - View the merchant's Point of Sale terminals.
+     - View the merchant's point-of-sale terminals.
 
    * - | ``terminals.write``
        | Terminals API
-     - Manage the merchant's Point of Sale terminals.
+     - Manage the merchant's point-of-sale terminals.

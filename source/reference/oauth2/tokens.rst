@@ -8,7 +8,7 @@ Generate tokens
 
 Authentication: :doc:`OAuth client credentials </connect/overview>`
 
-Exchange the auth code received at the :doc:`Authorize endpoint </reference/oauth2/authorize>` for an actual access
+Exchange the auth code received at the :doc:`Authorize endpoint </reference/oauth2/authorize>` for an actual app access
 token, with which you can communicate with the Mollie API.
 
 Parameters
@@ -17,8 +17,8 @@ Parameters
    :type: string
    :condition: required
 
-   If you wish to exchange your auth code for an access token, use grant type ``authorization_code``. If you wish to
-   renew your access token with your refresh token, use grant type ``refresh_token``.
+   If you wish to exchange your auth code for an app access token, use grant type ``authorization_code``. If you wish to
+   renew your app access token with your refresh token, use grant type ``refresh_token``.
 
    Possible values: ``authorization_code`` ``refresh_token``
 
@@ -53,31 +53,31 @@ Response
 .. parameter:: access_token
    :type: string
 
-   The access token, with which you will be able to access the Mollie API on the merchant's behalf.
+   The app access token, with which you will be able to access the Mollie API on the merchant's behalf.
 
 .. parameter:: refresh_token
    :type: string
 
-   The refresh token, with which you will be able to retrieve new access tokens on this endpoint. The refresh token does
-   not expire.
+   The refresh token, with which you will be able to retrieve new app access tokens on this endpoint. The refresh token
+   does not expire.
 
 .. parameter:: expires_in
    :type: integer
 
-   The number of seconds left before the access token expires. Be sure to renew your access token before this reaches
-   zero.
+   The number of seconds left before the app access token expires. Be sure to renew your app access token before this
+   reaches zero.
 
 .. parameter:: token_type
    :type: string
 
-   As per OAuth standards, the provided access token can only be used with bearer authentication.
+   As per OAuth standards, the provided app access token can only be used with bearer authentication.
 
    Possible values: ``bearer``
 
 .. parameter:: scope
    :type: string
 
-   A space separated list of permissions. Refer to :doc:`Permissions </connect/permissions>` for the full permission
+   A space-separated list of permissions. Refer to :doc:`Permissions </connect/permissions>` for the full permission
    list.
 
 Example
@@ -107,7 +107,7 @@ Initial response
        "scope": "payments.read organizations.read"
    }
 
-Now that we have a refresh token, we should renew the access token before its expiry date as follows:
+Now that we have a refresh token, we should renew the app access token before its expiry date as follows:
 
 Refresh request
 ^^^^^^^^^^^^^^^

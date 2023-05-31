@@ -47,7 +47,7 @@ iOS
       :linenos:
 
       @IBAction func loginButtonClicked() {
-            let authorizeLink = "https://www.mollie.com/oauth2/authorize?client_id=xxx&state=xxx&scope=payments.read&response_type=code&approval_prompt=auto";
+            let authorizeLink = "https://my.mollie.com/oauth2/authorize?client_id=xxx&state=xxx&scope=payments.read&response_type=code&approval_prompt=auto";
             UIApplication.shared.open(NSURL(string: authorizeLink)! as URL)
       }
 
@@ -57,7 +57,7 @@ Android (Java)
       :linenos:
 
       private void onClick(View v) {
-            String authorizeLink = "https://www.mollie.com/oauth2/authorize?client_id=xxx&state=xxx&scope=payments.read&response_type=code&approval_prompt=auto";
+            String authorizeLink = "https://my.mollie.com/oauth2/authorize?client_id=xxx&state=xxx&scope=payments.read&response_type=code&approval_prompt=auto";
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(authorizeLink));
             startActivity(browserIntent);
       }
@@ -69,7 +69,7 @@ Android (Kotlin)
 
       button.setOnClickListener {
             val browserIntent = Intent(android.content.Intent.ACTION_VIEW)
-            String authorizeLink = "https://www.mollie.com/oauth2/authorize?client_id=xxx&state=xxx&scope=payments.read&response_type=code&approval_prompt=auto"
+            String authorizeLink = "https://my.mollie.com/oauth2/authorize?client_id=xxx&state=xxx&scope=payments.read&response_type=code&approval_prompt=auto"
             browserIntent.data = Uri.parse(authorizeLink)
             startActivity(browserIntent)
       }

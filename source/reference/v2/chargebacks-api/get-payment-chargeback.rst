@@ -84,12 +84,16 @@ Response
 .. parameter:: settlementAmount
    :type: amount object
 
-   This optional field will contain the amount that will be deducted from your account, converted to the currency your
-   account is settled in. It follows the same syntax as the ``amount`` property.
+   This optional field will contain the approximate amount that will be deducted from your account, converted
+   to the currency your account is settled in. It follows the same syntax as the ``amount`` property.
 
    Note that for chargebacks, the ``value`` key of ``settlementAmount`` will be negative.
 
    Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal chargebacks.
+
+   Please note that this amount might be recalculated and changed when the status of the chargeback changes.
+   We suggest using the :doc:`List balance transactions </reference/v2/balances-api/list-balance-transactions>`
+   endpoint instead to get more accurate settlement amounts for your chargebacks.
 
    .. parameter:: currency
       :type: string

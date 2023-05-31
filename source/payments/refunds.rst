@@ -52,14 +52,10 @@ is available again. We will automatically process the refund once your balance i
 Additionally, you can also manually top up your balance via the `Administration page
 <https://www.mollie.com/dashboard/administration>`_ in the Mollie Dashboard.
 
-Partial refunds and over-refunding
+Partial refunds
 ----------------------------------
 Partial refunds are fully supported. You can create multiple partial refunds if needed. Note that we will prevent
 duplicate refunds in a short time frame.
-
-Additionally, most payment methods (notable exceptions being credit card and PayPal) support over refunding, where you
-can refund an additional €25.00 more than the original payment's amount. You can use this for crediting shipping costs
-for returns to your customer, for example.
 
 Possible errors
 ---------------

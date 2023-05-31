@@ -39,6 +39,8 @@
   {%- set apiName = "Shipments API" -%}
 {%- elif "/subscriptions-api/" in pagename -%}
   {%- set apiName = "Subscriptions API" -%}
+{%- elif "/terminals-api/" in pagename -%}
+  {%- set apiName = "Terminals API" -%}
 {%- elif "/wallets-api/" in pagename -%}
   {%- set apiName = "Wallets API" -%}
 {%- endif -%}
@@ -47,6 +49,12 @@
 {%- elif "/v2/" in pagename -%}
   {%- set versionName = "v2" -%}
 {%- endif -%}
+
+{# Make sure that the HTML page title is correctly set for BETA endpoints. #}
+{%- if "BETA" in title -%}
+  {%- set title = apiName -%}
+{%- endif -%}
+
 <!DOCTYPE html>
 <html lang="en">
 
