@@ -30,8 +30,8 @@ the ``embed`` query string parameter.
 
 ``onboarding``
     Include the :doc:`onboarding status </reference/v2/onboarding-api/get-onboarding-status>` of the
-    client. Available when partner type is ``signuplink`` and your app has been granted the ``onboarding.read``
-    permission.
+    client. Available when partner type is ``signuplink`` or when partner type is ``oauth`` and your app has been
+    granted the ``onboarding.read`` permission.
 
 Response
 --------
