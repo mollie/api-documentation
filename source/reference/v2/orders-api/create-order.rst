@@ -238,6 +238,7 @@ Parameters
       :condition: optional
 
       The person's organization, if applicable.
+      This parameter is required when creating Billie orders.
 
    .. parameter:: title
       :type: string
@@ -508,6 +509,9 @@ payment-specific parameters can be passed when creating the Order:
 * ``voucherNumber``
 * ``voucherPin``
 * ``webhookUrl``
+* ``company.registrationNumber``
+* ``company.vatNumber``
+* ``company.entityType``
 
 See the :ref:`payment-method-specific-parameters` for more information on these parameters.
 

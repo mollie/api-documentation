@@ -6,6 +6,11 @@ Changelog
 Occasionally, we will add new resources, new fields, or new possible values to existing fields to the v2 Mollie API. All
 changes are documented here.
 
+June 2023
+=========
+
+- Added Billie specific parameters to :ref:`payment-method-specific-parameters`.
+
 May 2023
 ========
 

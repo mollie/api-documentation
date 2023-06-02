@@ -427,6 +427,43 @@ Klarna Pay now. / Pay later. / Slice it.
    Reach out to your account manager at Mollie to enable this feature with Klarna, and to agree on which fields
    you can send.
 
+Billie
+""""""""""""""""""""""""""""""""""""""""
+.. note::
+    Billie payments can only be created via the :doc:`Orders API </reference/v2/orders-api/create-order>`.
+
+.. note::
+    Billie payments require an organization name. It should be included as part of
+    the ``billingAddress`` object, field ``organizationName``.
+
+.. parameter:: company
+   :type: object
+   :condition: optional
+
+   Billie is a B2B payment method, thus it requires some extra information to identify the business that is creating the order.
+   It is recommended to include these parameters as part of the create order request for a seamless flow, otherwise the
+   customer will be asked to fill the missing fields at the Billie's checkout page.
+
+   .. parameter:: registrationNumber
+      :type: string
+      :condition: optional
+
+      Organization's registration number.
+
+   .. parameter:: vatNumber
+      :type: string
+      :condition: optional
+
+      Organization's VAT number.
+
+   .. parameter:: entityType
+      :type: string
+      :condition: optional
+
+      Organization's entity type. Must be one of: ``limited-company``, ``public-limited-company``, ``entrepreneurial-company``,
+      ``limited-partnership-limited-company``, ``limited-partnership``, ``general-partnership``, ``registered-sole-trader``,
+      ``sole-trader``, ``civil-law-partnership``, ``public-institution``
+
 .. _paypal-method-details:
 
 PayPal
