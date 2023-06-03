@@ -6,11 +6,14 @@ Changelog
 Occasionally, we will add new resources, new fields, or new possible values to existing fields to the v2 Mollie API. All
 changes are documented here.
 
+========
 May 2023
 ========
 
 - Added the :doc:`/reference/v2/clients-api/create-client-link` endpoint.
 - Deprecated the :doc:`/reference/v2/onboarding-api/submit-onboarding-data` endpoint.
+- Added a new value for the ``status`` field in the :doc:`/reference/v2/onboarding-api/get-onboarding-status` endpoint:
+  ``payments-disabled``.
 
 March 2023
 ==========
@@ -18,7 +21,7 @@ March 2023
 
 February 2023
 =============
-- Added new :doc:`Manage order lines endpoint </reference/v2/orders-api/manage-order-lines>`
+- Added new :doc:`Manage order lines endpoint </reference/v2/orders-api/manage-order-lines>`.
 
 December 2022
 =============

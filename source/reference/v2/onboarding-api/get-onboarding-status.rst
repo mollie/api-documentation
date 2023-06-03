@@ -42,9 +42,10 @@ Response
 
    The current status of the organization's onboarding process. Possible values:
 
-   * ``needs-data`` The onboarding is not completed and the merchant needs to provide (more) information
-   * ``in-review`` The merchant provided all information and Mollie needs to check this
-   * ``completed`` The onboarding is completed
+   * ``needs-data`` The onboarding is not completed and the merchant needs to provide (more) information.
+   * ``in-review`` The merchant provided all information and Mollie needs to check this.
+   * ``completed`` The onboarding is completed.
+   * ``payments-disabled`` Payments have been disabled by Mollie. Reach out to Mollie for more information.
 
 .. parameter:: canReceivePayments
    :type: boolean
