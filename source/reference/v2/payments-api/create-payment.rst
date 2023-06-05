@@ -428,13 +428,70 @@ Klarna Pay now. / Pay later. / Slice it.
    you can send.
 
 Billie
-""""""""""""""""""""""""""""""""""""""""
+""""""
 .. note::
-    Billie payments can only be created via the :doc:`Orders API </reference/v2/orders-api/create-order>`.
+   Billie payments can only be created via the :doc:`Orders API </reference/v2/orders-api/create-order>`.
 
-.. note::
-    Billie payments require an organization name. It should be included as part of
-    the ``billingAddress`` object, field ``organizationName``.
+.. parameter:: billingAddress
+   :type: address object
+   :condition: optional
+
+   Company address details. We advise to provide these details to improve the Billie's risk system.
+
+   If an address is provided, then the address has to be in a valid format. See the
+   :ref:`address object <address-object>` documentation for more information on which formats are accepted.
+
+   .. parameter:: organizationName
+      :type: string
+      :condition: required
+
+      The organization's name. It is mandatory for Billie orders.
+
+   .. parameter:: givenName
+      :type: string
+      :condition: required
+
+      The given name (first name) of the buyer.
+
+   .. parameter:: familyName
+      :type: string
+      :condition: required
+
+      The family name (surname) of the buyer.
+
+   .. parameter:: email
+      :type: string
+      :condition: required
+
+      The contact email address of the organization.
+
+   .. parameter:: streetAndNumber
+      :type: string
+      :condition: required
+
+   .. parameter:: streetAdditional
+      :type: string
+      :condition: optional
+
+   .. parameter:: postalCode
+      :type: string
+      :condition: conditional
+
+      This field is required if the provided ``country`` has a postal code system.
+
+   .. parameter:: city
+      :type: string
+      :condition: required
+
+   .. parameter:: region
+      :type: string
+      :condition: optional
+
+   .. parameter:: country
+      :type: string
+      :condition: required
+
+      The country of the address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
 
 .. parameter:: company
    :type: object
