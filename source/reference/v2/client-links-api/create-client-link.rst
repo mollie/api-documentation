@@ -25,7 +25,7 @@ onboarding.
 This endpoint's response will contain a special ``clientLink`` link where you are expected to redirect your customer.
 This is the second step.
 
-To the ``clientLink`` link, you must then add the OAuth details of your application, the ``client_id``, ``scopes`` you
+To the ``clientLink`` link, you must then add the OAuth details of your application, the ``client_id``, ``scope`` you
 want to request et cetera. These are the same parameters the :doc:`/reference/oauth2/authorize` endpoint takes. All
 accepted parameters are :ref:`listed below <clientlink-parameters>`.
 
@@ -142,7 +142,7 @@ Parameters for the ``clientLink`` link
 --------------------------------------
 
 The ``clientLink`` link takes a subset of the parameters allowed for the :doc:`/reference/oauth2/authorize` endpoint:
-``client_id``, ``state``, ``approval_prompt`` and ``scopes``.
+``client_id``, ``state``, ``approval_prompt`` and ``scope``.
 
 .. note:: At a minimum, we recommend you request ``onboarding.read onboarding.write`` and any scopes required for
           orders or payments you want to create. ``onboarding.read`` is required if you wish to follow the onboarding
@@ -155,7 +155,7 @@ Example
 .. code-block:: none
    :linenos:
 
-   https://my.mollie.com/dashboard/client-link/finalize/csr_vZCnNQsV2UtfXxYifWKWH?client_id=app_j9Pakf56Ajta6Y65AkdTtAv&state=decafbad&scopes=onboarding.read+organization.read+payments.write+payments.read+profiles.write
+   https://my.mollie.com/dashboard/client-link/finalize/cl_vZCnNQsV2UtfXxYifWKWH?client_id=app_j9Pakf56Ajta6Y65AkdTtAv&state=decafbad&scope=onboarding.read+organization.read+payments.write+payments.read+profiles.write
 
 In case of an invalid value, your customer will be redirected to the redirect URI set for your OAuth application with
 the ``error`` and ``error_description`` query parameters added.
@@ -196,11 +196,11 @@ Response
    Content-Type: application/hal+json; charset=utf-8
 
    {
-       "id": "csr_vZCnNQsV2UtfXxYifWKWH",
+       "id": "cl_vZCnNQsV2UtfXxYifWKWH",
        "resource": "client-link",
        "_links": {
            "clientLink": {
-               "href": "https://my.mollie.com/dashboard/client-link/finalize/csr_vZCnNQsV2UtfXxYifWKWH",
+               "href": "https://my.mollie.com/dashboard/client-link/finalize/cl_vZCnNQsV2UtfXxYifWKWH",
                "type": "text/html"
            },
            "documentation": {
