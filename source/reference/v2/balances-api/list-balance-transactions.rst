@@ -67,15 +67,26 @@ Response
           this list is not definitive.
 
           Regular payment processing: ``payment`` ``capture`` ``unauthorized-direct-debit`` ``failed-payment``
+          ``payment-fee`` ``reimbursement-fee`` ``failed-payment-fee`` ``bank-charged-failure-fee``
+          ``api-payment-rolling-reserve-release`` ``capture-rolling-reserve-release``
 
           Refunds and chargebacks: ``refund`` ``returned-refund`` ``chargeback`` ``chargeback-reversal``
 
           Settlements: ``outgoing-transfer`` ``canceled-outgoing-transfer`` ``returned-transfer``
 
-          Invoicing: ``invoice-compensation`` ``balance-correction``
+          Invoicing: ``invoice-compensation``
 
-          Mollie Connect: ``application-fee`` ``split-payment`` ``platform-payment-refund``
-          ``platform-payment-chargeback``
+          Balance changes: ``balance-correction`` ``topup`` ``movement``
+
+          Partnerships: ``payment-commission`` ``capture-commission``
+
+          Capital: ``cash-advance-loan``
+
+          Mollie Connect: ``application-fee`` ``split-payment`` ``failed-split-payment-platform``
+          ``failed-split-payment-compensation`` ``platform-payment-refund`` ``returned-platform-payment-refund``
+          ``refund-compensation`` ``returned-refund-compensation`` ``platform-payment-chargeback``
+          ``chargeback-compensation`` ``reversed-platform-payment-chargeback`` ``reversed-chargeback-compensation``
+          ``platform-connected-organizations-fee``
 
       .. parameter:: resultAmount
           :type: amount object
@@ -157,10 +168,30 @@ Response
           * Type ``returned-transfer``:  ``settlementId`` ``transferId``
           * Type ``invoice-compensation``: ``invoiceId``
           * Type ``balance-correction``: none
+          * Type ``topup``: none
+          * Type ``movement``: none
           * Type ``application-fee``: ``paymentId``
+          * Type ``payment-fee``: ``paymentId``
+          * Type ``reimbursement-fee``: ``paymentId`` ``refundId`` (optional)
+          * Type ``failed-payment-fee``: ``paymentId``
+          * Type ``bank-charged-failure-fee``: ``paymentId``
+          * Type ``payment-commission``: ``paymentId``
+          * Type ``capture-commission``: ``paymentId``
+          * Type ``api-payment-rolling-reserve-release``: ``paymentId``
+          * Type ``capture-rolling-reserve-release``: ``paymentId`` ``captureId``
+          * Type ``cash-advance-loan``: none
           * Type ``split-payment``: ``paymentId``
+          * Type ``failed-split-payment-platform``: ``paymentId``
+          * Type ``failed-split-payment-compensation``: ``paymentId``
           * Type ``platform-payment-refund``: ``paymentId`` ``refundId``
+          * Type ``returned-platform-payment-refund``: ``paymentId`` ``refundId``
+          * Type ``refund-compensation``: ``paymentId`` ``refundId``
+          * Type ``returned-refund-compensation``: ``paymentId`` ``refundId``
           * Type ``platform-payment-chargeback``: ``paymentId`` ``chargebackId``
+          * Type ``chargeback-compensation``: ``paymentId`` ``chargebackId``
+          * Type ``reversed-platform-payment-chargeback``: ``paymentId`` ``chargebackId``
+          * Type ``reversed-chargeback-compensation``: ``paymentId`` ``chargebackId``
+          * Type ``platform-connected-organizations-fee``: none
 
    .. parameter:: _links
       :type: object
