@@ -193,7 +193,7 @@ providing a ``mandateId``. See our guide on :doc:`Recurring </payments/recurring
    is used primarily for :doc:`recurring payments </payments/recurring>`, but can also be used on regular payments to
    enable :doc:`single-click payments </payments/hosted-checkout>`.
 
-   Tthis field needs to be provided for payments with the ``recurring`` sequence type.
+   This field needs to be provided for payments with the ``recurring`` sequence type.
 
 .. parameter:: mandateId
    :type: string
