@@ -410,6 +410,23 @@ KBC/CBC Payment Button
 
    Possible values: ``kbc`` ``cbc``
 
+Klarna
+""""""""""""""""""""""""""""""""""""""""
+.. note::
+    Klarna payments can only be created via the :doc:`Orders API </reference/v2/orders-api/create-order>`.
+
+.. parameter:: extraMerchantData
+   :type: object
+   :condition: optional
+
+   For some industries, additional purchase information can be sent to Klarna to increase the authorization rate. You
+   can submit your extra data in this field if you have agreed upon this with Klarna. This field should be an object
+   containing any of the allowed keys and sub objects described at the `Klarna Developer Documentation
+   <https://docs.klarna.com/klarna-payments/api/#tag/Attachment-Schema>`_ under ``attachment.body``.
+
+   Reach out to your account manager at Mollie to enable this feature with Klarna, and to agree on which fields
+   you can send.
+
 Klarna Pay now. / Pay later. / Slice it.
 """"""""""""""""""""""""""""""""""""""""
 .. note::
