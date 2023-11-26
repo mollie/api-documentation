@@ -39,9 +39,11 @@ const scrollToSection = (event) => {
       document.body.scrollTop = v;
       // This line is needed for IE11
       document.body.parentNode.scrollTop = v;
-      // This line is needed for Firefox because it doesn't scroll the document.body.
-      // And we can't remove the line above because although Safari and Chrome recognize
-      // the document.documentElement they are unable to scroll it.
+      /**
+       * This line is needed for Firefox because it doesn't scroll the document.body.
+       * And we can't remove the line above because although Safari and Chrome recognize
+       * the document.documentElement they are unable to scroll it.
+       */
       document.documentElement.scrollTop = v;
     },
   });

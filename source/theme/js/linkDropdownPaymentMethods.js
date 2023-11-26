@@ -24,8 +24,10 @@ export const linkDropdownPaymentMethods = enhance('payment-method-switcher', (el
   });
 });
 
-// Adds the payment method dropdown to the DOM
-// We need to do this with JS, as the doc file is compiled from the .rst files
+/**
+ * Adds the payment method dropdown to the DOM
+ * We need to do this with JS, as the doc file is compiled from the .rst files
+ */
 export const addPaymentMethodDropdown = () => {
   //Gets all possible payment methods and the preferred one from storage
 
@@ -55,9 +57,11 @@ export const addPaymentMethodDropdown = () => {
     let options = '';
     let firstMethod;
     paymentMethodsBlockArray.forEach((method) => {
-      // Adds the selector option for each method (use classic for loop for IE11)
-      // Inside the block, we are interested in the divs, not the title nor the description
-      if (method.nodeName !== 'DIV') {
+      /*
+       * Adds the selector option for each method (use classic for loop for IE11)
+       * Inside the block, we are interested in the divs, not the title nor the description
+       */
+      if (method.nodeName !== 'SECTION') {
         return;
       }
       // We save the first payment method to append the dropdown to it later.

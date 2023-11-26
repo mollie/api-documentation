@@ -16,6 +16,6 @@ export default handle('toggle-class', (element, event) => {
     return;
   }
 
-  [].forEach.call(document.querySelectorAll(target), el => el.classList.toggle(toggleClass));
+  [].forEach.call(document.querySelectorAll(target), (el) => el.classList.toggle(toggleClass));
   event.preventDefault();
 });

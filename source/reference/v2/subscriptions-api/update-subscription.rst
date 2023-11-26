@@ -215,9 +215,6 @@ Response
 .. code-block:: json
    :linenos:
 
-    HTTP/1.1 200 OK
-    Content-Type: application/hal+json
-
     {
         "resource": "subscription",
         "id": "sub_8EjeBVgtEn",

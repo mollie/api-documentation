@@ -3,9 +3,9 @@ import { enhance } from './utils';
 const DEFAULT_LANGUAGE = 'curl';
 
 // Gets all the codeblocks present and hides all of them except the one from the argument
-const hideCodeBlocks = language => {
+const hideCodeBlocks = (language) => {
   const codeBlocks = Array.from(document.querySelectorAll('[id^="request-"]'));
-  codeBlocks.forEach(block => {
+  codeBlocks.forEach((block) => {
     const elementId = `request-${language.toLowerCase()}`;
     if (block.id !== elementId) {
       block.classList.add('is-hidden');
@@ -17,7 +17,7 @@ const hideCodeBlocks = language => {
   });
 };
 
-export default enhance('example-switcher', element => {
+export default enhance('example-switcher', (element) => {
   // Gets stored language if present
   const storedLanguage = localStorage.getItem('preferredLanguage');
   let language;
@@ -38,12 +38,12 @@ export default enhance('example-switcher', element => {
 
   // Adds onclick listeners to switches
   const exampleSwitches = Array.from(element.children);
-  exampleSwitches.forEach(link => {
+  exampleSwitches.forEach((link) => {
     const { id } = link;
     const language = id.replace('example-switch-', '');
     link.addEventListener('click', () => {
       // Removes selected status from others and adds it to clicked one
-      exampleSwitches.forEach(selected => selected.classList.remove('is-selected'));
+      exampleSwitches.forEach((selected) => selected.classList.remove('is-selected'));
       link.classList.add('is-selected');
       // Hides all the blocks except the clicked one
       hideCodeBlocks(language);
