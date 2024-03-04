@@ -17,73 +17,76 @@ This endpoint can be used to update some details of a created payment.
 Parameters
 ----------
 For a more in-depth explanation of each parameter, see the :doc:`create-payment`. There are also
-payment method specific parameters available, see :ref:`below <payment-method-specific-parameters-update>`.
+payment method-specific parameters available, see :ref:`below <payment-method-specific-parameters-update>`.
 
-.. list-table::
-   :widths: auto
+.. parameter:: description
+   :type: string
+   :condition: optional
 
-   * - ``description``
+   The description of the payment. The maximum length of the description field differs per payment method, with the
+   absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will
+   truncate them to fit.
 
-       .. type:: string
-          :required: false
+.. parameter:: redirectUrl
+   :type: string
+   :condition: optional
 
-     - The description of the payment.
+   The URL your customer will be redirected to after the payment process.
 
-   * - ``redirectUrl``
+   Updating this field is only possible when the payment is not yet finalized.
 
-       .. type:: string
-          :required: false
+.. parameter:: cancelUrl
+   :type: string
+   :condition: optional
 
-     - The URL your customer will be redirected to after the payment process.
+   The URL your consumer will be redirected to when the consumer explicitly cancels the payment. If this URL is not
+   provided, the consumer will be redirected to the ``redirectUrl`` instead — see above.
 
-       .. note::
-          Updating this field is only possible when the payment is not yet finalized.
+   Updating this field is only possible when the payment is not yet finalized.
 
-   * - ``webhookUrl``
+.. parameter:: webhookUrl
+   :type: string
+   :condition: optional
 
-       .. type:: string
-          :required: false
+   Set the webhook URL, where we will send payment status updates to.
 
-     - Set the webhook URL, where we will send payment status updates to.
+.. parameter:: metadata
+   :type: mixed
+   :condition: optional
 
-   * - ``metadata``
+   Provide any data you like, for example a string or a JSON object. We will save the data alongside the payment.
+   Whenever you fetch the payment with our API, we will also include the metadata. You can use up to approximately 1kB.
 
-       .. type:: mixed
-          :required: false
+.. parameter:: method
+   :type: string
+   :condition: optional
 
-     - Provide any data you like, for example a string or a JSON object. We will save the data alongside the
-       payment. Whenever you fetch the payment with our API, we will also include the metadata. You can use up to
-       approximately 1kB.
+   Change the payment to a different payment method.
 
-   * - ``method``
+   Updating this field is only possible when the payment was created *without* a payment method and is not yet
+   finalized.
 
-       .. type:: string
-          :required: false
+.. parameter:: locale
+   :type: string
+   :condition: optional
 
-     - Change the payment to a different payment method.
+   Allows you to update the language to be used in the hosted payment pages shown to the consumer. Can be any ``xx_XX``
+   format ISO 15897 locale.
 
-       .. note::
-          Updating this field is only possible when the payment was created *without* a payment
-          method and is not yet finalized.
+.. parameter:: restrictPaymentMethodsToCountry
+   :type: string
+   :condition: optional
+   :collapse: true
 
-   * - ``locale``
+   For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+   rates you have used for the order to ensure your customer's country matches the VAT country.
 
-       .. type:: string
-          :required: false
+   Use this parameter to restrict the payment methods available to your customer to those from a single country.
 
-     - Allows you to update the language to be used in the hosted payment pages shown to the consumer.
+   If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
 
-   * - ``restrictPaymentMethodsToCountry``
-
-       .. type:: string
-          :required: false
-
-     - For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
-       rates you have used for the order to ensure your customer's country matches the VAT country.
-
-       Use this parameter to restrict the payment methods available to your customer to those from a single country.
-
-       If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+   The field expects a country code in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format,
+   for example `NL`.
 
 .. _payment-method-specific-parameters-update:
 
@@ -95,82 +98,57 @@ payment method.
 
 Bank transfer
 """""""""""""
-.. list-table::
-   :widths: auto
+.. parameter:: billingEmail
+   :type: string
+   :condition: optional
 
-   * - ``billingEmail``
+   Consumer's email address.
 
-       .. type:: string
-          :required: false
+.. parameter:: dueDate
+   :type: string
+   :condition: optional
 
-     - Consumer's email address.
+   The date the payment should :doc:`expire </payments/status-changes>`, in ``YYYY-MM-DD`` format.
 
-   * - ``dueDate``
-
-       .. type:: string
-          :required: false
-
-     - The date the payment should :doc:`expire </payments/status-changes>`, in ``YYYY-MM-DD`` format.
-
-       .. note::
-          Updating this field is only possible when the payment is not yet finalized.
+   Updating this field is only possible when the payment is not yet finalized.
 
 Gift cards
 """"""""""
-.. list-table::
-   :widths: auto
+.. parameter:: issuer
+   :type: string
+   :condition: optional
 
-   * - ``issuer``
+   See :ref:`Payments API <payment-method-specific-parameters>`.
 
-       .. type:: string
-          :required: false
-
-     - See :ref:`Payments API <payment-method-specific-parameters>`.
-
-       .. note::
-          Updating this field is only possible when the payment is not yet finalized.
+   Updating this field is only possible when the payment is not yet finalized.
 
 iDEAL
 """""
-.. list-table::
-   :widths: auto
+.. parameter:: issuer
+   :type: string
+   :condition: optional
 
-   * - ``issuer``
+   See :ref:`Payments API <payment-method-specific-parameters>`.
 
-       .. type:: string
-          :required: false
-
-     - See :ref:`Payments API <payment-method-specific-parameters>`.
-
-       .. note::
-          Updating this field is only possible when the payment is not yet finalized.
+   Updating this field is only possible when the payment is not yet finalized.
 
 KBC/CBC Payment Button
 """"""""""""""""""""""
-.. list-table::
-   :widths: auto
+.. parameter:: issuer
+   :type: string
+   :condition: optional
 
-   * - ``issuer``
+   See :ref:`Payments API <payment-method-specific-parameters>`.
 
-       .. type:: string
-          :required: false
-
-     - See :ref:`Payments API <payment-method-specific-parameters>`.
-
-       .. note::
-          Updating this field is only possible when the payment is not yet finalized.
+   Updating this field is only possible when the payment is not yet finalized.
 
 Przelewy24
 """"""""""
-.. list-table::
-   :widths: auto
+.. parameter:: billingEmail
+   :type: string
+   :condition: optional
 
-   * - ``billingEmail``
-
-       .. type:: string
-          :required: false
-
-     - Consumer's email address.
+   Consumer's email address.
 
 Response
 --------
@@ -197,14 +175,14 @@ Example
       <?php
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
-      $payment = $mollie->payments->get("tr_7UhSN1zuXS");
 
-      $payment->description = "Order #98765";
-      $payment->redirectUrl = "https://example.org/webshop/order/98765/";
-      $payment->webhookUrl = "https://example.org/webshop/payments/webhook/";
-      $payment->metadata = ["order_id" => "98765"];
-
-      $payment = $payment->update();
+      $paymentId = "tr_7UhSN1zuXS";
+      $mollie->payments->update($paymentId, [
+        "description" => "Order #98765",
+        "redirectUrl" => "https://example.org/webshop/order/98765/",
+        "webhookUrl" => "https://example.org/webshop/payments/webhook/",
+        "metadata" => ["order_id" => "98765"],
+      ]);
 
    .. code-block:: python
       :linenos:
@@ -212,12 +190,15 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
       payment = mollie_client.payments.update("tr_7UhSN1zuXS", {
-        'description': 'Order #98765',
-        'webhookUrl': 'https://webshop.example.org/order/98765/',
-        'redirectUrl': 'https://webshop.example.org/payments/webhook/',
-        'metadata': {'order_id': '98765'}
+          "description": "Order #98765",
+          "webhookUrl": "https://webshop.example.org/order/98765/",
+          "redirectUrl": "https://webshop.example.org/payments/webhook/",
+          "metadata": {
+              "order_id": "98765",
+          }
       })
 
    .. code-block:: ruby
@@ -280,7 +261,7 @@ Response
            },
            "dashboard": {
                "href": "https://www.mollie.com/dashboard/org_12345678/payments/tr_7UhSN1zuXS",
-               "type": "application/json"
+               "type": "text/html"
            },
            "documentation": {
                "href": "https://docs.mollie.com/reference/v2/payments-api/update-payment",

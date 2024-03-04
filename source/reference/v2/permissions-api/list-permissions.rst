@@ -22,51 +22,37 @@ Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: count
+   :type: integer
 
-   * - ``count``
+   The number of permissions found in ``_embedded``.
 
-       .. type:: integer
+.. parameter:: _embedded
+   :type: object
+   :collapse-children: false
 
-     - The number of permissions found in ``_embedded``.
+   The object containing the queried data.
 
-   * - ``_embedded``
+   .. parameter:: permissions
+      :type: array
 
-       .. type:: object
+      An array of permission objects as described in
+      :doc:`Get permission </reference/v2/permissions-api/get-permission>`.
 
-     - The object containing the queried data.
+.. parameter:: _links
+   :type: object
 
-       .. list-table::
-          :widths: auto
+   Links related to the lists of permissions. Every URL object will contain an ``href`` and a ``type`` field.
 
-          * - ``permissions``
+   .. parameter:: self
+      :type: object
 
-              .. type:: array
+      The URL to the current set of permissions.
 
-            - An array of permission objects as described in
-              :doc:`Get permission </reference/v2/permissions-api/get-permission>`.
+   .. parameter:: documentation
+      :type: object
 
-   * - ``_links``
-
-       .. type:: object
-
-     - Links related to the lists of permissions. Every URL object will contain an ``href`` and a ``type`` field.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``self``
-
-              .. type:: object
-
-            - The URL to the current set of permissions.
-
-          * - ``documentation``
-
-              .. type:: object
-
-            - The URL to the permissions list endpoint documentation.
+      The URL to the permissions list endpoint documentation.
 
 Example
 -------
@@ -84,6 +70,16 @@ Example
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
       $permissions = $mollie->permissions->all();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_access_token("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ")
+
+      permissions = mollie_client.permissions.list()
 
    .. code-block:: ruby
       :linenos:

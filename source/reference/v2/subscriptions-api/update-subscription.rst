@@ -21,114 +21,92 @@ Parameters
 Replace ``customerId`` in the endpoint URL by the customer's ID, and replace ``id`` by the subscription's ID. For
 example: ``/v2/customers/cst_5a2pPrwaWy/subscriptions/sub_8EjeBVgtEn``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: amount
+   :type: amount object
+   :condition: optional
 
-   * - ``amount``
+   The amount that you want to charge, e.g. ``{"currency":"EUR", "value":"100.00"}`` if you would want to change the
+   charge to €100.00.
 
-       .. type:: amount object
-          :required: false
+   .. parameter:: currency
+      :type: string
+      :condition: required
 
-     - The amount that you want to charge, e.g. ``{"currency":"EUR", "value":"100.00"}`` if you would want to change the
-       charge to €100.00.
+      An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code. The currencies supported depend on the
+      payment methods that are enabled on your account.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: value
+      :type: string
+      :condition: required
 
-          * - ``currency``
+      A string containing the exact amount you want to charge in the given currency. Make sure to send the right amount
+      of decimals. Non-string values are not accepted.
 
-              .. type:: string
-                 :required: true
+.. parameter:: description
+   :type: string
+   :condition: optional
 
-            - An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code. The currencies supported depend on
-              the payment methods that are enabled on your account.
+   A description unique per subscription. This will be included in the payment description.
 
-          * - ``value``
+.. parameter:: interval
+   :type: string
+   :condition: optional
 
-              .. type:: string
-                 :required: true
+   Interval to wait between charges, for example ``1 month`` or ``14 days``.
 
-            - A string containing the exact amount you want to charge in the given currency. Make sure to send the right
-              amount of decimals. Non-string values are not accepted.
+   Possible values: ``... months`` ``... weeks`` ``... days``
 
-   * - ``description``
+   .. note:: The new interval will be calculated from the last charge date.
 
-       .. type:: string
-          :required: false
+.. parameter:: mandateId
+   :type: string
+   :condition: optional
 
-     - A description unique per subscription. This will be included in the payment description.
+   Use this parameter to set a specific mandate for all subscription payments. If you set a ``method`` before, it will
+   be changed to ``null`` when setting this parameter.
 
-   * - ``interval``
+.. parameter:: metadata
+   :type: mixed
+   :condition: optional
 
-       .. type:: string
-          :required: false
+   Provide any data you like, and we will save the data alongside the subscription. Whenever you fetch the subscription
+   with our API, we will also include the metadata. You can use up to 1kB of JSON.
 
-     - Interval to wait between charges, for example ``1 month`` or ``14 days``.
+.. parameter:: startDate
+   :type: date
+   :condition: optional
 
-       Possible values: ``... months`` ``... weeks`` ``... days``
+   The start date of the subscription in ``YYYY-MM-DD`` format. This is the first day on which your customer will be
+   charged. Should always be in the future.
 
-       .. note::
-          The new interval will be calculated from the last charge date.
+   .. note:: A subscription's start date cannot be changed if it has already been charged.
 
-   * - ``mandateId``
+.. parameter:: times
+   :type: integer
+   :condition: optional
 
-       .. type:: string
-          :required: false
+   Total number of charges for the subscription to complete. Can not be less than number of times that subscription has
+   been charged.
 
-     - Use this parameter to set a specific mandate for all subscription payments. If you set a ``method`` before, it
-       will be changed to ``null`` when setting this parameter.
+   .. note:: Subscriptions in test mode will be canceled automatically after 10 charges.
 
-   * - ``metadata``
+.. parameter:: webhookUrl
+   :type: string
+   :condition: optional
 
-       .. type:: mixed
-          :required: false
-
-     - Provide any data you like, and we will save the data alongside the subscription. Whenever you fetch the
-       subscription with our API, we will also include the metadata. You can use up to 1kB of JSON.
-
-   * - ``startDate``
-
-       .. type:: date
-          :required: false
-
-     - The start date of the subscription in ``YYYY-MM-DD`` format. This is the first day on which your customer will be
-       charged. Should always be in the future.
-
-       .. note::
-          A subscription's start date cannot be changed if it has already been charged.
-
-   * - ``times``
-
-       .. type:: integer
-          :required: false
-
-     - Total number of charges for the subscription to complete. Can not be less than number of times that subscription
-       has been charged.
-
-       .. note::
-          Subscriptions in test mode will be canceled automatically after 10 charges.
-
-   * - ``webhookUrl``
-
-       .. type:: string
-          :required: false
-
-     - Use this parameter to set a webhook URL for all subscription payments.
+   Use this parameter to set a webhook URL for all subscription payments.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you can enable test mode through the ``testmode`` parameter.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to update a test mode subscription.
+   Set this to ``true`` to update a test mode subscription.
 
 Response
 --------
@@ -139,7 +117,6 @@ A subscription object is returned, as described in
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -159,18 +136,42 @@ Example
       <?php
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
-      $customer = $mollie->customers->get("cst_8wmqcHMN4U");
 
-      $subscription = $customer->getSubscription("sub_8EjeBVgtEn");
-      $subscription->amount = (object) [
-            "currency" => "EUR",
-            "value" => "10.00",
-      ];
-      $subscription->times = 42;
-      $subscription->startDate = "2018-12-12";
-      $subscription->description = "Mollie recurring subscription";
-      $subscription->webhookUrl = "https://example.org/webhook";
-      $updatedSubscription = $subscription->update();
+      $customerId = "cst_8wmqcHMN4U";
+      $subscriptionId = "sub_8EjeBVgtEn";
+      $mollie->subscriptions->update($customerId, $subscriptionId, [
+        "amount" => [
+          "currency" => "EUR",
+          "value" => "10.00",
+        ],
+        "times" => 42,
+        "startDate" => "2018-12-12",
+        "description" => "Mollie recurring subscription",
+        "webhookUrl" => "https://example.org/webhook",
+      ]);
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      customer = mollie_client.customers.get("cst_stTC2WHAuS")
+      subscription = customer.subscriptions.update(
+          "sub_8EjeBVgtEn",
+          {
+              "amount": {
+                  "currency": "EUR",
+                  "value": "10.00",
+              },
+              "times": 42,
+              "startDate": "2018-12-12",
+              "description": "Mollie recurring subscription",
+              "webhookUrl": "https://example.org/webhook",
+          },
+      )
 
    .. code-block:: ruby
       :linenos:
@@ -197,19 +198,17 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const subscription = await mollieClient.customers_subscriptions.update('sub_8EjeBVgtEn', {
-          customerId: 'cst_8wmqcHMN4U',
-          amount: {
-            currency: 'EUR',
-            value: '10.00',
-          },
-          times: 42,
-          startDate: '2018-12-12',
-          description: 'Mollie recurring subscription',
-          webhookUrl: 'https://example.org/webhook',
-        });
-      })();
+      const subscription = await mollieClient.customerSubscriptions.update('sub_8EjeBVgtEn', {
+        customerId: 'cst_8wmqcHMN4U',
+        amount: {
+          currency: 'EUR',
+          value: '10.00'
+        },
+        times: 42,
+        startDate: '2018-12-12',
+        description: 'Mollie recurring subscription',
+        webhookUrl: 'https://example.org/webhook'
+      });
 
 Response
 ^^^^^^^^

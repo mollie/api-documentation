@@ -21,106 +21,83 @@ List customers
 
 Retrieve all customers created.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: offset
+   :type: integer
+   :condition: optional
 
-   * - ``offset``
+   The number of customers to skip.
 
-       .. type:: integer
-          :required: false
+.. parameter:: count
+   :type: integer
+   :condition: optional
 
-     - The number of customers to skip.
-
-   * - ``count``
-
-       .. type:: integer
-          :required: false
-
-     - The number of customers to return (with a maximum of 250).
+   The number of customers to return (with a maximum of 250).
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is also available.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, the ``testmode`` query string parameter is also available.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to list test mode customers.
+   Set this to ``true`` to list test mode customers.
 
 Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: totalCount
+   :type: integer
 
-   * - ``totalCount``
+   The total number of customers available.
 
-       .. type:: integer
+.. parameter:: offset
+   :type: integer
 
-     - The total number of customers available.
+   The number of skipped customers as requested.
 
-   * - ``offset``
+.. parameter:: count
+   :type: integer
 
-       .. type:: integer
+   The number of customers found in ``data``, which is either the requested number (with a maximum of 250) or the
+   default number.
 
-     - The number of skipped customers as requested.
+.. parameter:: data
+   :type: array
 
-   * - ``count``
+   An array of customers objects as described in :doc:`Get customer </reference/v1/customers-api/get-customer>`.
 
-       .. type:: integer
+.. parameter:: links
+   :type: object
 
-     - The number of customers found in ``data``, which is either the requested number (with a maximum of 250) or the
-       default number.
+   Links to help navigate through the lists of customers, based on the given offset.
 
-   * - ``data``
+   .. parameter:: previous
+      :type: string
 
-       .. type:: array
+      The previous set of customers, if available.
 
-     - An array of customers objects as described in :doc:`Get customer </reference/v1/customers-api/get-customer>`.
+   .. parameter:: next
+      :type: string
 
-   * - ``links``
+      The next set of customers, if available.
 
-       .. type:: object
+   .. parameter:: first
+      :type: string
 
-     - Links to help navigate through the lists of customers, based on the given offset.
+      The first set of customers, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: last
+      :type: string
 
-          * - ``previous``
-
-              .. type:: string
-
-            - The previous set of customers, if available.
-
-          * - ``next``
-
-              .. type:: string
-
-            - The next set of customers, if available.
-
-          * - ``first``
-
-              .. type:: string
-
-            - The first set of customers, if available.
-
-          * - ``last``
-
-              .. type:: string
-
-            - The last set of customers, if available.
+      The last set of customers, if available.
 
 Example
 -------

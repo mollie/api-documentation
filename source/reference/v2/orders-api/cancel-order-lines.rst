@@ -12,8 +12,8 @@ Cancel order lines
    :organization_access_tokens: true
    :oauth: true
 
-This endpoint can be used to cancel one or more order lines that were previously authorized using a *pay after delivery*
-payment method. Use the :doc:`Cancel Order API </reference/v2/orders-api/cancel-order>` if you want to cancel the entire
+This endpoint can be used to cancel one or more order lines that were previously authorized using a Klarna payment
+method. Use the :doc:`Cancel order endpoint </reference/v2/orders-api/cancel-order>` if you want to cancel the entire
 order or the remainder of the order.
 
 Canceling or partially canceling an order line will immediately release the authorization held for that amount. Your
@@ -27,80 +27,68 @@ an ``authorized`` order line, the new order line status will be ``canceled``. Ca
 result in a ``completed`` order line status.
 
 If the order line is ``paid`` or already ``completed``, you should create a refund using the
-:doc:`Create Order Refund API </reference/v2/orders-api/create-order-refund>` instead.
+:doc:`Create order refund endpoint </reference/v2/refunds-api/create-order-refund>` instead.
 
-For more information about the status transitions please check our
+For more information about the status transitions, check our
 :doc:`order status changes guide </orders/status-changes>`.
 
 Parameters
 ----------
 Replace ``orderId`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN4U``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: lines
+   :type: array
+   :condition: required
+   :collapse-children: false
 
-   * - ``lines``
+   An array of objects containing the order line details you want to cancel.
 
-       .. type:: array
-          :required: true
+   .. parameter:: id
+      :type: string
+      :condition: required
 
-     - An array of objects containing the order line details you want to cancel.
+      The API resource token of the order line, for example: ``odl_jp31jz``.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: quantity
+      :type: int
+      :condition: optional
 
-          * - ``id``
+      The number of items that should be canceled for this order line. When this parameter is omitted, the whole order
+      line will be canceled. When part of the line has been shipped, it will cancel the remainder and the order line
+      will be completed.
 
-              .. type:: string
-                 :required: true
+      Must be less than the number of items already shipped or canceled for this order line.
 
-            - The API resource token of the order line, for example: ``odl_jp31jz``.
+   .. parameter:: amount
+      :type: amount object
+      :condition: optional
 
-          * - ``quantity``
+      The amount that you want to cancel. In almost all cases, Mollie can determine the amount automatically.
 
-              .. type:: int
-                 :required: false
+      The amount is required only if you are *partially* canceling an order line which has a non-zero
+      ``discountAmount``.
 
-            - The number of items that should be canceled for this order line. When this parameter is omitted, the
-              whole order line will be canceled. When part of the line has been shipped, it will cancel the remainder
-              and the order line will be completed.
+      The amount you can cancel depends on various properties of the order line and the cancel order lines request. The
+      maximum that can be canceled is ``unit price x quantity to cancel``.
 
-              Must be less than the number of items already shipped or canceled for this order line.
+      The minimum amount depends on the discount applied to the line, the quantity already shipped or canceled, the
+      amounts already shipped or canceled and the quantity you want to cancel.
 
-          * - ``amount``
-
-              .. type:: amount object
-                 :required: false
-
-            - The amount that you want to cancel. In almost all cases, Mollie can determine the amount automatically.
-
-              The amount is required only if you are *partially* canceling an order line which has a non-zero
-              ``discountAmount``.
-
-              The amount you can cancel depends on various properties of the order line and the cancel order lines
-              request. The maximum that can be canceled is ``unit price x quantity to cancel``.
-
-              The minimum amount depends on the discount applied to the line, the quantity already shipped or canceled,
-              the amounts already shipped or canceled and the quantity you want to cancel.
-
-              If you do not send an amount, Mollie will determine the amount automatically or respond with an error
-              if the amount cannot be determined automatically. The error will contain the ``extra.minimumAmount`` and
-              ``extra.maximumAmount`` properties that allow you pick the right amount.
+      If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the
+      amount cannot be determined automatically. The error will contain the ``extra.minimumAmount`` and
+      ``extra.maximumAmount`` properties that allow you pick the right amount.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you can enable test mode through the ``testmode`` parameter.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to cancel test mode order lines.
+   Set this to ``true`` to cancel test mode order lines.
 
 Response
 --------
@@ -108,7 +96,6 @@ Response
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -157,21 +144,27 @@ Example
       :linenos:
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      order = mollie_client.orders.get('ord_8wmqcHMN4U')
-      order.cancel_lines({
-        'lines': [
-          {
-            'id': 'odl_dgtxyl',
-            'quantity': 1,  # you can partially cancel the line.
-          }
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      order = mollie_client.orders.get("ord_8wmqcHMN4U")
+
+      # To cancel a single line, simply delete it by id:
+      order.lines.delete("odl_dgtxyl")
+
+      # To partially cancel a line, change its quantity:
+      order.lines.delete_lines({
+        "lines": [
+            {
+                "id": "odl_dgtxyl",
+                "quantity": 1,
+            }
         ]
       })
 
-      # if you want to cancel all eligible lines, you can use this shorthand:
-      # order.cancel_lines()
+      # If you want to cancel all eligible lines, you can use this shorthand:
+      order.lines.delete_lines()
 
-      updated_order = mollie_client.orders.get('ord_8wmqcHMN4U')
+      updated_order = mollie_client.orders.get("ord_8wmqcHMN4U")
 
    .. code-block:: ruby
       :linenos:
@@ -246,7 +239,7 @@ Response (cancellation rejected)
        "detail": "Update authorization not allowed. Decision is based on order state and outcome of risk assessment.",
        "_links": {
            "documentation": {
-               "href": "https://docs.mollie.com/guides/handling-errors",
+               "href": "https://docs.mollie.com/overview/handling-errors",
                "type": "text/html"
            }
        }

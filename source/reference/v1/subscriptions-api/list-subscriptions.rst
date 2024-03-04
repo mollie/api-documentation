@@ -25,112 +25,89 @@ Parameters
 ----------
 Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``cst_8wmqcHMN4U``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: offset
+   :type: integer
+   :condition: optional
 
-   * - ``offset``
+   The number of subscriptions to skip.
 
-       .. type:: integer
-          :required: false
+.. parameter:: count
+   :type: integer
+   :condition: optional
 
-     - The number of subscriptions to skip.
-
-   * - ``count``
-
-       .. type:: integer
-          :required: false
-
-     - The number of subscriptions to return (with a maximum of 250).
+   The number of subscriptions to return (with a maximum of 250).
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the only mandatory extra query string parameter is the ``profileId`` parameter. With
-it, you can specify for which profile you want to retrieve subscriptions. Organizations can have multiple profiles for
-each of their websites. See :doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more information.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, the only mandatory extra query string parameter is the ``profileId`` parameter.
+With it, you can specify for which profile you want to retrieve subscriptions. Organizations can have multiple profiles
+for each of their websites. See :doc:`Profiles API </reference/v1/profiles-api/create-profile>` for more information.
 
-.. list-table::
-   :widths: auto
+.. parameter:: profileId
+   :type: string
+   :condition: required
+   :collapse: true
 
-   * - ``profileId``
+   The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
 
-       .. type:: string
-          :required: true
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-     - The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to retrieve test mode subscriptions.
+   Set this to ``true`` to retrieve test mode subscriptions.
 
 Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: totalCount
+   :type: integer
 
-   * - ``totalCount``
+   The total number of subscriptions available.
 
-       .. type:: integer
+.. parameter:: offset
+   :type: integer
 
-     - The total number of subscriptions available.
+   The number of skipped subscriptions as requested.
 
-   * - ``offset``
+.. parameter:: count
+   :type: integer
 
-       .. type:: integer
+   The number of subscriptions found in ``data``, which is either the requested number (with a maximum of 250) or the
+   default number.
 
-     - The number of skipped subscriptions as requested.
+.. parameter:: data
+   :type: array
 
-   * - ``count``
+   An array of subscription objects as described in
+   :doc:`Get subscription </reference/v1/subscriptions-api/get-subscription>`.
 
-       .. type:: integer
+.. parameter:: links
+   :type: object
 
-     - The number of subscriptions found in ``data``, which is either the requested number (with a maximum of 250) or
-       the default number.
+   Links to help navigate through the lists of subscriptions, based on the given offset.
 
-   * - ``data``
+   .. parameter:: previous
+      :type: string
 
-       .. type:: array
+      The previous set of subscriptions, if available.
 
-     - An array of subscription objects as described in
-       :doc:`Get subscription </reference/v1/subscriptions-api/get-subscription>`.
+   .. parameter:: next
+      :type: string
 
-   * - ``links``
+      The next set of subscriptions, if available.
 
-       .. type:: object
+   .. parameter:: first
+      :type: string
 
-     - Links to help navigate through the lists of subscriptions, based on the given offset.
+      The first set of subscriptions, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: last
+      :type: string
 
-          * - ``previous``
-
-              .. type:: string
-
-            - The previous set of subscriptions, if available.
-
-          * - ``next``
-
-              .. type:: string
-
-            - The next set of subscriptions, if available.
-
-          * - ``first``
-
-              .. type:: string
-
-            - The first set of subscriptions, if available.
-
-          * - ``last``
-
-              .. type:: string
-
-            - The last set of subscriptions, if available.
+      The last set of subscriptions, if available.
 
 Example
 -------

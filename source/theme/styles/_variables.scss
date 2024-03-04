@@ -10,6 +10,8 @@ $breakpoints: (
   '<medium': 719px,
   'large': 960px,
   '<large': 959px,
+  'medium-large': 1110px,
+  '<medium-large': 1109px,
   'extra-large': 1260px,
   '<extra-large': 1259px,
   'huge': 1440px,
@@ -45,11 +47,16 @@ $orange-pancho: #efcca5;
 $orange-anzac: #e0994c;
 $blue-cornflower: #7373ff;
 
-$text-color: $blackish;
+$background-color: #fff;
+$text-color: #000;
 
-$brand-primary: #0095ff;
-$brand-primary-hover: #0077cb;
+$brand-primary: #0040ff;
+$brand-primary-hover: #0000ee;
 $brand-warning: #ffb100;
+
+$brand-green-accent: #32ad30;
+$brand-orange-accent: #ffbe2a;
+$brand-purple-accent: #8513ee;
 
 $color-error: #ff1d1d;
 $color-success: #4cd964;
@@ -61,19 +68,20 @@ $color-recurring: #ffc64f;
 $text-color-recurring: #733517;
 
 /**
+ * Dark mode
+ */
+$dark-mode-background-color: #1a1a1a;
+$dark-mode-text-color: #fff;
+
+$dark-mode-brand-primary: tint($brand-primary, 40%);
+$dark-mode-brand-primary-hover: tint($brand-primary, 50%);
+
+/**
  * Type
  */
-$font-family-default: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+$font-family-default: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
   Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 
 // No max line-length for monospace fonts
 // stylelint-disable-next-line max-line-length
 $font-family-monospace: 'SFMono', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-
-$line-height-default: 1.5;
-
-$font-weight-light: 300;
-$font-weight-medium: 500;
-$font-weight-extra-bold: 800;
-
-$navigation-height: 45px;

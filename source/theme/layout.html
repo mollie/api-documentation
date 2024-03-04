@@ -1,5 +1,7 @@
 {%- set url_root = pathto('', 1) -%}
-{%- if "/captures-api/" in pagename -%}
+{%- if "/balances-api/" in pagename -%}
+  {%- set apiName = "Balances API" -%}
+{%- elif "/captures-api/" in pagename -%}
   {%- set apiName = "Captures API" -%}
 {%- elif "/chargebacks-api/" in pagename -%}
   {%- set apiName = "Chargebacks API" -%}
@@ -12,15 +14,17 @@
 {%- elif "/methods-api/" in pagename -%}
   {%- set apiName = "Methods API" -%}
 {%- elif "/oauth2/" in pagename -%}
-  {%- set apiName = "Connect API" -%}
+  {%- set apiName = "OAuth API" -%}
 {%- elif "/onboarding-api/" in pagename -%}
   {%- set apiName = "Onboarding API" -%}
 {%- elif "/orders-api/" in pagename -%}
   {%- set apiName = "Orders API" -%}
 {%- elif "/organizations-api/" in pagename -%}
   {%- set apiName = "Organizations API" -%}
-{%- elif "/partners-api/" in pagename -%}
-  {%- set apiName = "Partners API" -%}
+{%- elif "/clients-api/" in pagename -%}
+  {%- set apiName = "Clients API" -%}
+{%- elif "/payment-links-api/" in pagename -%}
+  {%- set apiName = "Payment links API" -%}
 {%- elif "/payments-api/" in pagename -%}
   {%- set apiName = "Payments API" -%}
 {%- elif "/permissions-api/" in pagename -%}
@@ -29,14 +33,14 @@
   {%- set apiName = "Profiles API" -%}
 {%- elif "/refunds-api/" in pagename -%}
   {%- set apiName = "Refunds API" -%}
-{%- elif "/reseller-api/" in pagename -%}
-  {%- set apiName = "Reseller API" -%}
 {%- elif "/settlements-api/" in pagename -%}
   {%- set apiName = "Settlements API" -%}
 {%- elif "/shipments-api/" in pagename -%}
   {%- set apiName = "Shipments API" -%}
 {%- elif "/subscriptions-api/" in pagename -%}
   {%- set apiName = "Subscriptions API" -%}
+{%- elif "/terminals-api/" in pagename -%}
+  {%- set apiName = "Terminals API" -%}
 {%- elif "/wallets-api/" in pagename -%}
   {%- set apiName = "Wallets API" -%}
 {%- endif -%}
@@ -45,6 +49,12 @@
 {%- elif "/v2/" in pagename -%}
   {%- set versionName = "v2" -%}
 {%- endif -%}
+
+{# Make sure that the HTML page title is correctly set for BETA endpoints. #}
+{%- if "BETA" in title -%}
+  {%- set title = apiName -%}
+{%- endif -%}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +64,9 @@
   {% if pagename in do_not_index -%}
     <meta name="robots" content="noindex" />
   {%- endif %}
-  {% if apiName and versionName -%}
+  {% if title == apiName -%}
+    <title>{{ apiName }} {{ versionName }} documentation &mdash; Mollie</title>
+  {%- elif apiName and versionName -%}
     <title>{{ title|striptags|e }} &mdash; {{ apiName }} {{ versionName }} documentation &mdash; Mollie</title>
   {%- elif apiName -%}
     <title>{{ title|striptags|e }} &mdash; {{ apiName }} documentation &mdash; Mollie</title>
@@ -64,19 +76,13 @@
     <title>{{ title|striptags|e }} &mdash; API documentation &mdash; Mollie</title>
   {%- endif %}
 
-  <link rel="preload" as="font" type="font/woff2" href="https://cdn.mollie.com/assets/circular-pro-book.woff2" crossorigin="anonymous" />
-  <link rel="preload" as="font" type="font/woff2" href="https://cdn.mollie.com/assets/circular-pro-bold.woff2" crossorigin="anonymous" />
-  <link rel="preload" as="font" type="font/woff2" href="https://cdn.mollie.com/assets/circular-pro-medium.woff2" crossorigin="anonymous" />
   <link rel="shortcut icon" href="{{ pathto('_static/' + favicon, 1) }}" />
-  <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}" type="text/css" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700" type="text/css" />
   <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css" />
+  <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}?20221225" type="text/css" referrerpolicy="no-referrer" />
   <link rel="index" title="Mollie API" href="{{ pathto('index') }}" />{% if next -%}
   <link rel="next" title="{{ next.title|striptags|e }}" href="{{ next.link|e }}" /> {%- endif %} {% if prev -%}
   <link rel="prev" title="{{ prev.title|striptags|e }}" href="{{ prev.link|e }}" /> {%- endif %}
-  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
-  <link rel="dns-prefetch" href="https://cdn.mollie.com" />
-  <link rel="dns-prefetch" href="https://images.contentful.com" />
-  <link rel="preconnect" href="https://cdn.mollie.com" />
 </head>
 <body>
   {% include 'navigation.html' %}
@@ -92,28 +98,23 @@
       </nav>
 
       <section class="main__content">
-        <div class="main__content-inner content">
-          <div class="wy-nav-content">
-            <div class="rst-content">
-              <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-                {%- block document %}
-                <div itemprop="articleBody">
-                  {% block body %}{% endblock %}
-                </div>
-                {%- endblock %}
-              </div>
-            </div>
+        <div class="content" role="main" itemscope="itemscope" itemtype="http://schema.org/Article">
+          {%- block document %}
+          <div itemprop="articleBody">
+            {% block body %}{% endblock %}
           </div>
+          {%- endblock %}
+        </div>
+
+        <div class="footer">
+          Was this page helpful? Feel free to share your feedback with us directly on
+          <a href="https://discord.gg/VaTVkXB4aQ">our Discord</a>.
         </div>
       </section>
     </div>
   </div>
 
-  {% include "mobile-navigation-button.html" %}
-
-  <script type="text/javascript" src="{{ pathto('_static/index.js', 1) }}" async></script>
-
-  <!-- GOOGLE_TAG_MANAGER -->
+  <script type="text/javascript" src="{{ pathto('_static/index.js', 1) }}?20221225" async></script>
 </body>
 
 </html>

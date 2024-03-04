@@ -49,8 +49,8 @@ Note how the VAT is only calculated over the amount actually charged to your cus
 
 Gift cards
 ----------
-If Mollie does not handle your :doc:`gift cards</guides/gift-cards>` for you, you can add an additional line of the type
-``gift_card`` instead if your customer wants to apply a gift card. The line must then have a negative amount.
+If Mollie does not handle your :doc:`gift cards </payments/gift-cards>` for you, you can add an additional line of the
+type ``gift_card`` instead if your customer wants to apply a gift card. The line must then have a negative amount.
 
 Here's an example where a shopper exchanges a €10.00 gift card:
 
@@ -148,11 +148,11 @@ Here is an example where a shopper uses a discount code for 10% off:
        }
    ]
 
-Please make sure you use the same VAT rate for the discount as you use for other products in the order.
+Make sure you use the same VAT rate for the discount as you use for other products in the order.
 
 If you have multiple VAT rates in your order (e.g., the order contains both low and high rate VAT products), and you
-want to use discounts, please make sure that if you sum the VAT per rate, none of the sums go below zero. In that case,
-it may be necessary to add multiple discount lines, one for each VAT rate used in the order.
+want to use discounts, make sure that if you sum the VAT per rate, none of the sums go below zero. In that case, it may
+be necessary to add multiple discount lines, one for each VAT rate used in the order.
 
 Any orders with a negative total VAT amount will be rejected by the Mollie API.
 

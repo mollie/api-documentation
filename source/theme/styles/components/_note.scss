@@ -1,10 +1,10 @@
 .admonition {
-  background-color: #f1fafd;
-  border: 1px solid #0070c1;
+  background-color: #f2fbf2;
+  border: 1px solid #117510;
   padding: 11px 15px;
-  color: #00508a;
+  color: #093c08;
   font-size: 13px;
-  line-height: 20px;
+  line-height: 1.9em;
   border-radius: 4px;
   margin-bottom: 35px;
 }
@@ -27,11 +27,28 @@
 }
 
 .admonition p.admonition-title {
-  font-weight: $font-weight-extra-bold;
+  font-weight: 600;
 }
 
 .admonition.warning {
   background-color: #fffcf9;
   border-color: #ce5e24;
   color: #b33d00;
+}
+
+/*
+ * Dark mode
+ */
+@media (prefers-color-scheme: dark) {
+  .admonition {
+    background-color: #2a522a;
+    border-color: #2a522a;
+    color: $dark-mode-text-color;
+  }
+
+  .admonition.warning {
+    background-color: #4a2424;
+    border-color: #4a2424;
+    color: $dark-mode-text-color;
+  }
 }

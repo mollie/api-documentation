@@ -14,9 +14,6 @@ Get organization
 
 Retrieve an organization by its ID.
 
-If you do not know the organization's ID, you can use the organizations list endpoint to retrieve all organizations that
-are accessible.
-
 .. note:: You can only retrieve organizations that the authenticated organization is connected to.
 
 Parameters
@@ -27,88 +24,75 @@ Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains a method object. Will always contain ``organization`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains a method object. Will always contain ``organization`` for this endpoint.
+   The unique identifier of the organization method.
 
-   * - ``id``
+.. parameter:: name
+   :type: string
 
-       .. type:: string
+   The name of the organization.
 
-     - The unique identifier of the organization method.
+.. parameter:: email
+   :type: string
 
-   * - ``name``
+   The email address associated with the organization.
 
-       .. type:: string
+.. parameter:: locale
+   :type: string
 
-     - The name of the organization.
+   The preferred locale of the merchant which has been set in Mollie Dashboard.
 
-   * - ``locale``
+.. parameter:: address
+   :type: address object
 
-       .. type:: string
+   The address of the organization.
 
-     - The preferred locale of the merchant which has been set in Mollie Dashboard.
+.. parameter:: registrationNumber
+   :type: string
 
-   * - ``address``
+   The registration number of the organization at the (local) chamber of commerce.
 
-       .. type:: address object
+.. parameter:: vatNumber
+   :type: string
+   :condition: optional
 
-     - The address of the organization.
+   The VAT number of the organization, if based in the European Union. The VAT number has been checked with the
+   `VIES <http://ec.europa.eu/taxation_customs/vies/>`_ service by Mollie.
 
-   * - ``registrationNumber``
+.. parameter:: vatRegulation
+   :type: string
+   :condition: optional
 
-       .. type:: string
+   The organization's VAT regulation, if based in the European Union. Either ``shifted`` (VAT is shifted) or ``dutch``
+   (Dutch VAT rate).
 
-     - The registration number of the organization at the (local) chamber of commerce.
+.. parameter:: _links
+   :type: object
 
-   * - ``vatNumber``
+   An object with several URL objects relevant to the organization. Every URL object will contain an ``href`` and a
+   ``type`` field.
 
-       .. type:: string
-          :required: false
+   .. parameter:: self
+      :type: URL object
 
-     - The VAT number of the organization, if based in the European Union. The VAT number has been checked with the
-       `VIES <http://ec.europa.eu/taxation_customs/vies/>`_ service by Mollie.
+      The API resource URL of the organization itself.
 
-   * - ``vatRegulation``
+   .. parameter:: dashboard
+      :type: URL object
 
-       .. type:: string
-          :required: false
+      Direct link to the organization's Mollie Dashboard.
 
-     - The organization's VAT regulation, if based in the European Union. Either ``shifted`` (VAT is shifted) or
-       ``dutch`` (Dutch VAT rate).
+   .. parameter:: documentation
+      :type: URL object
 
-   * - ``_links``
-
-       .. type:: object
-
-     - An object with several URL objects relevant to the organization. Every URL object will contain an ``href`` and
-       a ``type`` field.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``self``
-
-              .. type:: URL object
-
-            - The API resource URL of the organization itself.
-
-          * - ``dashboard``
-
-              .. type:: URL object
-
-            - Direct link to the organization's Mollie Dashboard.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the payment method retrieval endpoint documentation.
+      The URL to the payment method retrieval endpoint documentation.
 
 Example
 -------
@@ -126,6 +110,16 @@ Example
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
       $organization = $mollie->organizations->get("org_12345678");
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_access_token("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ")
+
+      organization = mollie_client.organizations.get("org_12345678")
 
    .. code-block:: ruby
       :linenos:

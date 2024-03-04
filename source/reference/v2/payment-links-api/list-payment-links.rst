@@ -2,7 +2,6 @@ List payment links
 ==================
 .. api-name:: Payment links API
    :version: 2
-   :beta: true
 
 .. endpoint::
    :method: GET
@@ -15,126 +14,118 @@ List payment links
 
 Retrieve all payments links created with the current website profile, ordered from newest to oldest.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: from
+   :type: string
+   :condition: optional
 
-   * - ``from``
+   Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the payment link with this ID. The payment
+   link with this ID is included in the result set as well.
 
-       .. type:: string
-          :required: false
+.. parameter:: limit
+   :type: integer
+   :condition: optional
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the payment link with this ID. The payment link
-       with this ID is included in the result set as well.
-
-   * - ``limit``
-
-       .. type:: integer
-          :required: false
-
-     - The number of payment links to return (with a maximum of 250).
+   The number of payment links to return (with a maximum of 250).
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the following query string parameters are also available. With the ``profileId``
-parameter, you can specify which profile you want to look at when listing payment links. If you omit the ``profileId``
-parameter, you will get all payment links on the organization. Organizations can have multiple profiles for each of their
-websites. See :doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, the following query string parameters are also available.
 
-.. list-table::
-   :widths: auto
+.. parameter:: profileId
+   :type: string
+   :condition: optional
+   :collapse: true
 
-   * - ``profileId``
+   The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``. Omit this parameter to retrieve the payment
+   links of all profiles of the current organization.
 
-       .. type:: string
-          :required: false
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to true to only retrieve payment links made in test mode. By default, only live payment links are
-       returned.
+   Set this to ``true`` to only retrieve payment links made in test mode. By default, only live payment links are
+   returned.
 
 Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: count
+   :type: integer
 
-   * - ``count``
+   The number of payment links found in ``_embedded``, which is either the requested number (with a maximum of 250) or
+   the default number.
 
-       .. type:: integer
+.. parameter:: _embedded
+   :type: object
+   :collapse-children: false
 
-     - The number of payment links found in ``_embedded``, which is either the requested number (with a maximum of 250) or
-       the default number.
+   The object containing the queried data.
 
-   * - ``_embedded``
+   .. parameter:: payment_links
+      :type: array
 
-       .. type:: object
+      An array of payment link objects as described in
+      :doc:`Get payment link </reference/v2/payment-links-api/get-payment-link>`.
 
-     - The object containing the queried data.
+.. parameter:: _links
+   :type: object
 
-       .. list-table::
-          :widths: auto
+   Links to help navigate through the lists of payment links. Every URL object will contain an ``href`` and a ``type``
+   field.
 
-          * - ``paymentLinks``
+   .. parameter:: self
+      :type: URL object
 
-              .. type:: array
+      The URL to the current set of payment links.
 
-            - An array of payment link objects as described in :doc:`Get payment link </reference/v2/payment-links-api/get-payment-link>`.
+   .. parameter:: previous
+      :type: URL object
 
-   * - ``_links``
+      The previous set of payment links, if available.
 
-       .. type:: object
+   .. parameter:: next
+      :type: URL object
 
-     - Links to help navigate through the lists of payment links. Every URL object will contain an ``href`` and a ``type``
-       field.
+      The next set of payment links, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: documentation
+      :type: URL object
 
-          * - ``self``
-
-              .. type:: URL object
-
-            - The URL to the current set of payment links.
-
-          * - ``previous``
-
-              .. type:: URL object
-
-            - The previous set of payment links, if available.
-
-          * - ``next``
-
-              .. type:: URL object
-
-            - The next set of payment links, if available.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the payment links list endpoint documentation.
+      The URL to the payment links list endpoint documentation.
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
 
       curl -X GET https://api.mollie.com/v2/payment-links?limit=5 \
          -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+   .. code-block:: php
+      :linenos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+      $paymentLinks = $mollie->paymentLinks->page(null, 5);
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      payment_links = mollie_client.payment_links.list()
 
 Response
 ^^^^^^^^
@@ -161,6 +152,7 @@ Response
                          "value": "24.95",
                          "currency": "EUR"
                      },
+                     "archived": false,
                      "description": "Bicycle tires",
                      "redirectUrl": "https://webshop.example.org/thanks",
                      "webhookUrl": "https://webshop.example.org/payment-links/webhook/",
@@ -170,7 +162,7 @@ Response
                              "type": "application/json"
                          },
                          "paymentLink": {
-                             "href": "https://useplink.com/payment/4Y0eZitmBnQ6IDoMqZQKh/",
+                             "href": "https://paymentlink.mollie.com/payment/4Y0eZitmBnQ6IDoMqZQKh/",
                              "type": "text/html"
                          },
                          "documentation": {

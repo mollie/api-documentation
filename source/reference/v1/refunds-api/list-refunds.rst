@@ -26,94 +26,74 @@ List refunds
 Retrieve all :doc:`refunds </payments/refunds>`. If the payment-specific endpoint is used, only refunds for that
 specific payment are returned.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
 When using the payment-specific endpoint, replace ``paymentId`` in the endpoint URL by the payment's ID, for example
 ``tr_7UhSN1zuXS``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: offset
+   :type: integer
+   :condition: optional
 
-   * - ``offset``
+   The number of refunds to skip.
 
-       .. type:: integer
-          :required: false
+.. parameter:: count
+   :type: integer
+   :condition: optional
 
-     - The number of refunds to skip.
-
-   * - ``count``
-
-       .. type:: integer
-          :required: false
-
-     - The number of refunds to return (with a maximum of 250).
+   The number of refunds to return (with a maximum of 250).
 
 Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: totalCount
+   :type: integer
 
-   * - ``totalCount``
+   The total number of refunds available.
 
-       .. type:: integer
+.. parameter:: offset
+   :type: integer
 
-     - The total number of refunds available.
+   The number of skipped refunds as requested.
 
-   * - ``offset``
+.. parameter:: count
+   :type: integer
 
-       .. type:: integer
+   The number of refunds found in ``data``, which is either the requested number (with a maximum of 250) or the default
+   number.
 
-     - The number of skipped refunds as requested.
+.. parameter:: data
+   :type: array
 
-   * - ``count``
+   An array of refund objects as described in :doc:`Get refund </reference/v1/refunds-api/get-refund>`.
 
-       .. type:: integer
+.. parameter:: links
+   :type: object
 
-     - The number of refunds found in ``data``, which is either the requested number (with a maximum of 250) or the
-       default number.
+   Links to help navigate through the lists of refunds, based on the given offset.
 
-   * - ``data``
+   .. parameter:: previous
+      :type: string
 
-       .. type:: array
+      The previous set of refunds, if available.
 
-     - An array of refund objects as described in :doc:`Get refund </reference/v1/refunds-api/get-refund>`.
+   .. parameter:: next
+      :type: string
 
-   * - ``links``
+      The next set of refunds, if available.
 
-       .. type:: object
+   .. parameter:: first
+      :type: string
 
-     - Links to help navigate through the lists of refunds, based on the given offset.
+      The first set of refunds, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: last
+      :type: string
 
-          * - ``previous``
-
-              .. type:: string
-
-            - The previous set of refunds, if available.
-
-          * - ``next``
-
-              .. type:: string
-
-            - The next set of refunds, if available.
-
-          * - ``first``
-
-              .. type:: string
-
-            - The first set of refunds, if available.
-
-          * - ``last``
-
-              .. type:: string
-
-            - The last set of refunds, if available.
+      The last set of refunds, if available.
 
 Example
 -------

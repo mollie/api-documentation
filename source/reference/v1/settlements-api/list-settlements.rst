@@ -21,100 +21,79 @@ List settlements
 
 Retrieve all settlements, ordered from new to old.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: reference
+   :type: string
+   :condition: optional
 
-   * - ``reference``
+   Use this parameter to filter for a settlement with a specific reference. The reference is visible on your bank
+   statement and in emails. An example reference would be ``1182161.1506.02``.
 
-       .. type:: string
-          :required: false
+.. parameter:: offset
+   :type: integer
+   :condition: optional
 
-     - Use this parameter to filter for a settlement with a specific reference. The reference is visible on
-       your bank statement and in emails. An example reference would be ``1182161.1506.02``.
+   The number of settlements to skip.
 
-   * - ``offset``
+.. parameter:: count
+   :type: integer
+   :condition: optional
 
-       .. type:: integer
-          :required: false
-
-     - The number of settlements to skip.
-
-   * - ``count``
-
-       .. type:: integer
-          :required: false
-
-     - The number of settlements to return (with a maximum of 250).
+   The number of settlements to return (with a maximum of 250).
 
 Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: totalCount
+   :type: integer
 
-   * - ``totalCount``
+   The total number of settlements available.
 
-       .. type:: integer
+.. parameter:: offset
+   :type: integer
 
-     - The total number of settlements available.
+   The number of skipped settlements as requested.
 
-   * - ``offset``
+.. parameter:: count
+   :type: integer
 
-       .. type:: integer
+   The number of settlements found in ``data``, which is either the requested number (with a maximum of 250) or the
+   default number.
 
-     - The number of skipped settlements as requested.
+.. parameter:: data
+   :type: array
 
-   * - ``count``
+   An array of settlement objects as described in
+   :doc:`Get settlement </reference/v1/settlements-api/get-settlement>`.
 
-       .. type:: integer
+.. parameter:: links
+   :type: object
 
-     - The number of settlements found in ``data``, which is either the requested number (with a maximum of 250) or the
-       default number.
+   Links to help navigate through the lists of settlements, based on the given offset.
 
-   * - ``data``
+   .. parameter:: previous
+      :type: string
 
-       .. type:: array
+      The previous set of settlements, if available.
 
-     - An array of settlement objects as described in
-       :doc:`Get settlement </reference/v1/settlements-api/get-settlement>`.
+   .. parameter:: next
+      :type: string
 
-   * - ``links``
+      The next set of settlements, if available.
 
-       .. type:: object
+   .. parameter:: first
+      :type: string
 
-     - Links to help navigate through the lists of settlements, based on the given offset.
+      The first set of settlements, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: last
+      :type: string
 
-          * - ``previous``
-
-              .. type:: string
-
-            - The previous set of settlements, if available.
-
-          * - ``next``
-
-              .. type:: string
-
-            - The next set of settlements, if available.
-
-          * - ``first``
-
-              .. type:: string
-
-            - The first set of settlements, if available.
-
-          * - ``last``
-
-              .. type:: string
-
-            - The last set of settlements, if available.
+      The last set of settlements, if available.
 
 Example
 -------

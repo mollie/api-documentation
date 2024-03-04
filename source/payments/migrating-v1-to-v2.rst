@@ -9,12 +9,11 @@ The **Mollie API v2** offers some compelling new features compared to the older 
   non-``EUR`` currencies. Your account will still be settled in ``EUR``, so new fields have been added in the API to
   reflect the settlement amount for various resources.
 * Possible to update details of payments via the new :doc:`/reference/v2/payments-api/update-payment`.
-* Improved support for accessing large sets of objects, now uses :doc:`cursor-based pagination </guides/pagination>`
+* Improved support for accessing large sets of objects, now uses :doc:`cursor-based pagination </overview/pagination>`
   instead of pagination based on counts and offsets.
 * Settlement details are now available for refunds and chargebacks as well.
-* New features such as :doc:`Mollie Components </guides/mollie-components/overview>`, using
-  :doc:`/orders/overview` for Pay later and Slice it, and wallets such as :doc:`/wallets/applepay` are
-  only available in the Mollie API v2.
+* New features such as :doc:`Mollie Components </components/overview>`, using :doc:`/orders/overview` for Pay later and
+  Slice it, and wallets such as :doc:`/wallets/applepay` are only available in the Mollie API v2.
 * Improved error messages. Error message will contain more details to help you quickly resolve any implementation
   problems.
 
@@ -30,7 +29,7 @@ API.
 
 Some resources support embedding of related sub-resources. For instance, when retrieving a payment any refunds can be
 embedded by using the ``embed=refunds`` query string parameter. See the
-:doc:`Get Payment API</reference/v2/payments-api/get-payment>` for more information.
+:doc:`Get payment endpoint </reference/v2/payments-api/get-payment>` for more information.
 
 Amount changes
 ^^^^^^^^^^^^^^
@@ -97,7 +96,7 @@ have been replaced by address objects. Instead of passing ``billingAddress``, ``
        }
    }
 
-.. note:: The usage of the address object parameters remains optional. Please refer to the
+.. note:: The usage of the address object parameters remains optional. Refer to the
           :doc:`Create payment documentation </reference/v2/payments-api/create-payment>` for exact specifications on
           what input is accepted.
 
@@ -122,7 +121,7 @@ The following fields have been removed:
 * ``expiryPeriod`` has been removed from the Payment resource. You can use ``expiresAt`` which contains the same
   information.
 * ``issuer`` has been removed from the Payment resource. You can however, still pass it to the
-  :doc:`Create Payment API </reference/v2/payments-api/create-payment>`.
+  :doc:`Create payment endpoint </reference/v2/payments-api/create-payment>`.
 * ``details.bitcoinRate`` has been removed from the Bitcoin detail object.
 * ``details.bitcoinAmount`` has been removed from the Bitcoin detail object.
 * ``details.cardCountry`` has been removed from the credit card detail object.
@@ -134,8 +133,8 @@ These new fields have been added:
 
 * ``settlementAmount`` has been added to the responses of the
   :doc:`Payments API </reference/v2/payments-api/get-payment>`, the
-  :doc:`Refunds API </reference/v2/refunds-api/get-refund>` and the
-  :doc:`Chargebacks API </reference/v2/chargebacks-api/get-chargeback>`.
+  :doc:`Refunds API </reference/v2/refunds-api/get-payment-refund>` and the
+  :doc:`Chargebacks API </reference/v2/chargebacks-api/get-payment-chargeback>`.
   This optional field will contain the amount that will be settled to your account, converted to the currency your
   account is settled in. It follows the same syntax as the ``amount`` property.
 
@@ -203,7 +202,7 @@ The following parameters have been changed or added:
 Changes in the Issuers API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 The issuers API has been removed. Instead, you can get the issuers via the
-:doc:`Get Method API </reference/v2/methods-api/get-method>` using the ``issuers`` include.
+:doc:`Get method endpoint </reference/v2/methods-api/get-method>` on the Methods API using the ``issuers`` include.
 
 Changes in the Customers API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -235,7 +234,7 @@ The following fields have been changed, renamed or removed:
 * ``phone`` is now formatted in `E.164 <https://en.wikipedia.org/wiki/E.164>`_ formatting.
 * The API keys subresource has been removed.
 
-New APIs have been added, such as het :doc:`/reference/v2/profiles-api/get-profile-me`.
+New APIs have been added, such as the :doc:`Get current profile endpoint </reference/v2/profiles-api/get-profile-me>`.
 
 Changes in the Settlements API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -249,8 +248,8 @@ The following fields have been changed, renamed or moved:
 * ``amount.net``, ``amount.vat`` and ``amount.gross`` have been moved one level up as ``amountNet``, ``amountVat`` and
   ``amountGross``.
 * If the settlement has been invoiced, it will contain the ``invoice`` key in the ``_links`` property.
-* The ``reference`` parameter in the :doc:`List Settlements API </reference/v2/settlements-api/list-settlements>` has
-  been removed.
+* The ``reference`` parameter in the :doc:`List settlements endpoint </reference/v2/settlements-api/list-settlements>`
+  has been removed.
 
 Changes in the Mandates API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -297,7 +296,7 @@ The new error reporting format in ``v2`` is the following:
        "detail": "Missing authentication, or failed to authenticate",
        "_links": {
            "documentation": {
-               "href": "https://docs.mollie.com/guides/authentication",
+               "href": "https://docs.mollie.com/overview/authentication",
                "type": "text/html"
            }
        }

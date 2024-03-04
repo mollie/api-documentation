@@ -14,109 +14,84 @@ List invoices
 
 Retrieve all invoices on the account. Optionally filter on year or invoice number.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: reference
+   :type: string
+   :condition: optional
 
-   * - ``reference``
+   Use this parameter to filter for an invoice with a specific invoice number / reference. An example reference would be
+   ``2018.10000``.
 
-       .. type:: string
-          :required: false
+.. parameter:: year
+   :type: integer
+   :condition: optional
 
-     - Use this parameter to filter for an invoice with a specific invoice number / reference. An example reference
-       would be ``2018.10000``.
+   Use this parameter to filter for invoices from a specific year (e.g. ``2018``).
 
-   * - ``year``
+.. parameter:: from
+   :type: integer
+   :condition: optional
 
-       .. type:: integer
-          :required: false
+   Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the invoice with this ID. The invoice with
+   this ID is included in the result set as well.
 
-     - Use this parameter to filter for invoices from a specific year (e.g. ``2018``).
+.. parameter:: limit
+   :type: integer
+   :condition: optional
 
-   * - ``from``
-
-       .. type:: integer
-          :required: false
-
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the invoice with this ID. The invoice
-       with this ID is included in the result set as well.
-
-   * - ``limit``
-
-       .. type:: integer
-          :required: false
-
-     - The number of invoices to return (with a maximum of 250).
+   The number of invoices to return (with a maximum of 250).
 
 Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: count
+   :type: integer
 
-   * - ``count``
+   The number of invoices found in ``_embedded``, which is either the requested number (with a maximum of 250) or the
+   default number.
 
-       .. type:: integer
+.. parameter:: _embedded
+   :type: object
+   :collapse-children: false
 
-     - The number of invoices found in ``_embedded``, which is either the requested number (with a maximum of 250) or
-       the default number.
+   The object containing the queried data.
 
-   * - ``_embedded``
+   .. parameter:: invoices
+      :type: array
 
-       .. type:: object
+      An array of invoice objects as described in :doc:`Get invoice </reference/v2/invoices-api/get-invoice>`.
 
-     - The object containing the queried data.
+.. parameter:: _links
+   :type: object
 
-       .. list-table::
-          :widths: auto
+   Links to help navigate through the lists of invoices. Every URL object will contain an ``href`` and a ``type`` field.
 
-          * - ``invoices``
+   .. parameter:: self
+      :type: URL object
 
-              .. type:: array
+      The URL to the current set of invoices.
 
-            - An array of invoice objects as described in :doc:`Get invoice </reference/v2/invoices-api/get-invoice>`.
+   .. parameter:: previous
+      :type: URL object
 
-   * - ``_links``
+      The previous set of invoices, if available.
 
-       .. type:: object
+   .. parameter:: next
+      :type: URL object
 
-     - Links to help navigate through the lists of invoices. Every URL object will contain an ``href`` and a ``type``
-       field.
+      The next set of invoices, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: documentation
+      :type: URL object
 
-          * - ``self``
-
-              .. type:: URL object
-
-            - The URL to the current set of invoices.
-
-          * - ``previous``
-
-              .. type:: URL object
-
-            - The previous set of invoices, if available.
-
-          * - ``next``
-
-              .. type:: URL object
-
-            - The next set of invoices, if available.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the invoice list endpoint documentation.
+      The URL to the invoice list endpoint documentation.
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -131,6 +106,16 @@ Example
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
       $invoices = $mollie->invoices->page();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_access_token("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ")
+
+      invoices = mollie_client.invoices.list()
 
    .. code-block:: ruby
       :linenos:

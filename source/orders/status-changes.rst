@@ -58,8 +58,8 @@ The following diagram shows how one order status leads to another:
 ``pending``
 ^^^^^^^^^^^
     It is possible that the payment supplier will manually check an order. In that case we will set the order to this
-    status. It can take a couple of days before the order is set to another status. Currently only *Klarna Pay later*
-    and *Klarna Slice it* use this status.
+    status. It can take a couple of days before the order is set to another status. Currently only *Klarna Pay now*,
+    *Klarna Pay later* and *Klarna Slice it* use this status.
 
     * This is not a status Mollie will call your webhook for.
     * All order lines will be ``created``.
@@ -71,7 +71,7 @@ The following diagram shows how one order status leads to another:
 ^^^^^^^^^^^^^^
     If the order's payment is successfully completed with a payment method that does support authorizations, the order
     is set to this status. The money will only be transferred once a shipment is created for the order. Currently only
-    *Klarna Pay later* and *Klarna Slice it* use this status.
+    *Klarna Pay now*, *Klarna Pay later* and *Klarna Slice it* use this status.
 
     * Mollie will call your webhook when the order reaches this state.
     * Order lines can be in the state ``authorized`` or ``canceled``. Not all lines are ``canceled``.
@@ -111,8 +111,9 @@ The following diagram shows how one order status leads to another:
     * All order lines will also be in the ``canceled`` state.
     * This is a final state, the order cannot transition to another state.
 
-    .. note:: Orders can only be canceled by the merchant, not by the shopper. Use the :doc:`Cancel Order API
-              </reference/v2/orders-api/cancel-order>` or cancel the order from the the Mollie Dashboard.
+    .. note:: Orders can only be canceled by the merchant, not by the shopper. Use the
+              :doc:`Cancel order endpoint </reference/v2/orders-api/cancel-order>` or cancel the order from the the
+              Mollie Dashboard.
 
 .. _order-status-expired:
 
@@ -122,7 +123,7 @@ The following diagram shows how one order status leads to another:
     expiry period, the order will expire. When an order is paid using a payment method that supports authorizations,
     the order has to be *completed* within the given expiry period.
 
-    *Please note*: the default expiry period of 28 days might change in the future.
+    *Note*: the default expiry period of 28 days might change in the future.
 
     * Mollie will call your webhook when the order reaches this state.
     * All order lines will be ``canceled``.
@@ -160,7 +161,7 @@ The following diagram shows how one order line status leads to another:
 ^^^^^^^^^^^^^^
     If the order's payment is successfully completed with a payment method that does support authorizations, the order
     lines are set to this status. The money will only be transferred once a shipment is created for the order line.
-    Currently only *Klarna Pay later* and *Klarna Slice it* use this status.
+    Currently only *Klarna Pay now*, *Klarna Pay later* and *Klarna Slice it* use this status.
 
     * The order has status ``authorized`` or ``shipping``.
     * Can transition to: ``shipping`` or ``canceled``.

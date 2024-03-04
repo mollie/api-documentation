@@ -14,8 +14,7 @@ Cancel order
 
 The order can only be canceled while:
 
-* the order doesn't have any open payments except for the methods ``banktransfer``, ``directdebit``, ``klarnapaylater``,
-  and ``klarnasliceit``.
+* the order doesn't have any open payments.
 * the order's ``status`` field is either ``created``, ``authorized`` or ``shipping`` [#f1]_.
 
 #. In case of ``created``, all order lines will be canceled and the new order status will be ``canceled``.
@@ -24,7 +23,7 @@ The order can only be canceled while:
 #. In case of ``shipping``, any order lines that are still ``authorized`` will be canceled and order lines that are
    ``shipping`` will be completed. The new order status will be ``completed``.
 
-For more information about the status transitions please check our
+For more information about the status transitions, check our
 :doc:`order status changes guide </orders/status-changes>`.
 
 .. [#f1] If the order status is ``shipping``, some order lines can have the status ``paid`` if the order was paid using
@@ -37,18 +36,15 @@ Replace ``id`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you can enable test mode through the ``testmode`` parameter.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to cancel a test mode order.
+   Set this to ``true`` to cancel a test mode order.
 
 Response
 --------
@@ -58,7 +54,6 @@ An order object is returned, as described in :doc:`Get order </reference/v2/orde
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -78,8 +73,9 @@ Example
       :linenos:
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      order = mollie_client.orders.delete('ord_8wmqcHMN4U')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      order = mollie_client.orders.delete("ord_8wmqcHMN4U")
 
    .. code-block:: ruby
       :linenos:
@@ -98,9 +94,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const canceledOrder = await mollieClient.orders.cancel('ord_8wmqcHMN4U');
-      })();
+      const canceledOrder = await mollieClient.orders.cancel('ord_8wmqcHMN4U');
 
 Response
 ^^^^^^^^

@@ -30,73 +30,57 @@ Replace ``id`` in the endpoint URL by the issuer's ID, for example ``ideal_ABNAN
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is also available.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, the ``testmode`` query string parameter is also available.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to true to only retrieve the issuer if it is available in test mode.
+   Set this to true to only retrieve the issuer if it is available in test mode.
 
 Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains an issuer object. Will always contain ``issuer`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains an issuer object. Will always contain ``issuer`` for this endpoint.
+   The identifier uniquely referring to this issuer. When supplying this ID as the ``issuer`` parameter during
+   :doc:`payment creation </reference/v1/payments-api/create-payment>`, the issuer selection screen is skipped.
 
-   * - ``id``
+.. parameter:: name
+   :type: string
 
-       .. type:: string
+   The full name of the issuer, for example 'ABN AMRO'.
 
-     - The identifier uniquely referring to this issuer. When supplying this ID as the ``issuer`` parameter during
-       :doc:`payment creation </reference/v1/payments-api/create-payment>`, the issuer selection screen is skipped.
+.. parameter:: method
+   :type: string
 
-   * - ``name``
+   The :doc:`payment method </reference/v1/methods-api/list-methods>` this issuer belongs to.
 
-       .. type:: string
+   Possible values: ``ideal``
 
-     - The full name of the issuer, for example 'ABN AMRO'.
+.. parameter:: image
+   :type: object
 
-   * - ``method``
+   URLs of images representing the payment method issuer.
 
-       .. type:: string
+   .. parameter:: normal
+      :type: string
 
-     - The :doc:`payment method </reference/v1/methods-api/list-methods>` this issuer belongs to.
+      The URL for an issuer icon of 55x37 pixels.
 
-       Possible values: ``ideal``
+   .. parameter:: bigger
+      :type: string
 
-   * - ``image``
-
-       .. type:: object
-
-     - URLs of images representing the payment method issuer.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``normal``
-
-              .. type:: string
-
-            - The URL for an issuer icon of 55x37 pixels.
-
-          * - ``bigger``
-
-              .. type:: string
-
-            - The URL for an issuer icon of 110x74 pixels.
+      The URL for an issuer icon of 110x74 pixels.
 
 Example
 -------

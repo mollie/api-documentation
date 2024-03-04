@@ -20,27 +20,24 @@ Replace ``id`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is also available.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, the ``testmode`` query string parameter is also available.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to retrieve a test mode order.
+   Set this to ``true`` to retrieve a test mode order.
 
 Embedding of related resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This endpoint also allows for embedding additional information by appending the following values via the ``embed``
 query string parameter.
 
-* ``payments`` Include all :doc:`payments </reference/v2/payments-api/get-payment>` created for the order.
-* ``refunds`` Include all :doc:`refunds </reference/v2/orders-api/list-order-refunds>` created for the order.
-* ``shipments`` Include all :doc:`shipments </reference/v2/shipments-api/get-shipment>` created for the order.
+* ``payments`` Include all :doc:`payments </reference/v2/payments-api/overview>` created for the order.
+* ``refunds`` Include all :doc:`refunds </reference/v2/refunds-api/overview>` created for the order.
+* ``shipments`` Include all :doc:`shipments </reference/v2/shipments-api/overview>` created for the order.
 
 You can combine multiple embeds and add the includes of the embeds as well, for example:
 ``embed=payments.details.remainderDetails``
@@ -49,527 +46,471 @@ Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains an order object. Will always contain ``order`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains an order object. Will always contain ``order`` for this endpoint.
+   The order's unique identifier, for example ``ord_vsKJpSsabw``.
 
-   * - ``id``
+.. parameter:: profileId
+   :type: string
 
-       .. type:: string
+   The profile the order was created on, for example ``pfl_v9hTwCvYqw``.
 
-     - The order's unique identifier, for example ``ord_vsKJpSsabw``.
+.. parameter:: lines
+   :type: array
 
-   * - ``profileId``
+   An array of order line objects. Each object will have the properties listed below.
 
-       .. type:: string
+   .. parameter:: resource
+      :type: string
 
-     - The profile the order was created on, for example ``pfl_v9hTwCvYqw``.
+      Always ``orderline``.
 
-   * - ``method``
+   .. parameter:: id
+      :type: string
 
-       .. type:: string|null
+      The order line's unique identifier, for example ``odl_dgtxyl``.
 
-     - The payment method last used when paying for the order.
+   .. parameter:: orderId
+      :type: string
 
-   * - ``mode``
+      The ID of the order the line belongs too, for example ``ord_kEn1PlbGa``.
 
-       .. type:: string
+   .. parameter:: type
+      :type: string
 
-     - The mode used to create this order.
+      The type of product bought, for example, a physical or a digital product.
 
-       Possible values: ``live`` ``test``
+      Possible values: ``physical`` ``discount`` ``digital`` ``shipping_fee`` ``store_credit`` ``gift_card``
+      ``surcharge``
 
-   * - ``amount``
+   .. parameter:: name
+      :type: string
 
-       .. type:: amount object
+      A description of the order line, for example *LEGO 4440 Forest Police Station*.
 
-     - The total amount of the order, including VAT and discounts.
+   .. parameter:: status
+      :type: string
 
-   * - ``amountCaptured``
+      Status of the order line.
 
-       .. type:: amount object
-          :required: false
+      Possible values: ``created`` ``authorized`` ``paid`` ``shipping`` ``canceled`` ``completed``
 
-     - The amount captured, thus far. The captured amount will be settled to your account.
+   .. parameter:: isCancelable
+      :type: boolean
 
-       For orders that have the status ``authorized``, you must
-       :doc:`ship the order </reference/v2/shipments-api/create-shipment>` to ensure the order amount gets captured.
+      Whether or not the order line can be (partially) canceled.
 
-   * - ``amountRefunded``
+   .. parameter:: quantity
+      :type: int
 
-       .. type:: amount object
-          :required: false
+      The number of items in the order line.
 
-     - The total amount refunded, thus far.
+   .. parameter:: quantityShipped
+      :type: int
 
-   * - ``status``
+      The number of items that are shipped for this order line.
 
-       .. type:: string
+   .. parameter:: amountShipped
+      :type: amount object
 
-     - The status of the order. One of the following values:
+      The total amount that is shipped for this order line.
 
-       * ``created``
-       * ``paid``
-       * ``authorized``
-       * ``canceled``
-       * ``shipping``
-       * ``completed``
-       * ``expired``
+   .. parameter:: quantityRefunded
+      :type: int
 
-       See :doc:`Order status changes </orders/status-changes>` for details on the orders' statuses.
+      The number of items that are refunded for this order line.
 
-   * - ``isCancelable``
+   .. parameter:: amountRefunded
+      :type: amount object
 
-       .. type:: boolean
+      The total amount that is refunded for this order line.
 
-     - Whether or not the order can be (partially) canceled.
+   .. parameter:: quantityCanceled
+      :type: int
 
-   * - ``billingAddress``
+      The number of items that are canceled in this order line.
 
-       .. type:: object
+   .. parameter:: amountCanceled
+      :type: amount object
 
-     - The person and the address the order is billed to. See below.
+      The total amount that is canceled in this order line.
 
-   * - ``shopperCountryMustMatchBillingCountry``
+   .. parameter:: shippableQuantity
+      :type: int
 
-       .. type:: boolean
+      The number of items that can still be shipped for this order line.
 
-     - |
-       | If set to true during order creation, we restrict the payment methods available to your customer
-         to methods from the billing country only.
+   .. parameter:: refundableQuantity
+      :type: int
 
-   * - ``consumerDateOfBirth``
+      The number of items that can still be refunded for this order line.
 
-       .. type:: date
-          :required: false
+   .. parameter:: cancelableQuantity
+      :type: int
 
-     - The date of birth of your customer, if available.
+      The number of items that can still be canceled for this order line.
 
-   * - ``orderNumber``
+   .. parameter:: unitPrice
+      :type: amount object
 
-       .. type:: string
+      The price of a single item including VAT in the order line.
 
-     - Your order number that was used when creating the order.
+   .. parameter:: discountAmount
+      :type: amount object
+      :condition: optional
 
-   * - ``shippingAddress``
+      Any discounts applied to the order line.
 
-       .. type:: object
+   .. parameter:: totalAmount
+      :type: amount object
 
-     - The person and the address the order is billed to. See below.
+      The total amount of the line, including VAT and discounts.
 
-   * - ``locale``
+   .. parameter:: vatRate
+      :type: string
 
-       .. type:: string
+      The VAT rate applied to the order line, for example ``"21.00"`` for 21%. The ``vatRate`` is passed as a string and
+      not as a float to ensure the correct number of decimals are passed.
 
-     - The locale used during checkout. Note that the locale may have been changed by your customer during checkout.
+   .. parameter:: vatAmount
+      :type: amount object
 
-       Can be any ISO 15897 locale. Example values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE``
-       ``de_AT`` ``de_CH`` ``es_ES`` ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS``
-       ``hu_HU`` ``pl_PL`` ``lv_LV`` ``lt_LT``.
+      The amount of value-added tax on the line.
 
-   * - ``metadata``
+   .. parameter:: sku
+      :type: string
+      :condition: optional
 
-       .. type:: mixed
+      The SKU, EAN, ISBN or UPC of the product sold.
 
-     - Data provided during the order creation.
+   .. parameter:: createdAt
+      :type: datetime
 
-   * - ``redirectUrl``
+      The order line's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-       .. type:: string|null
+   .. parameter:: _links
+      :type: object
 
-     - The URL your customer will be redirected to after completing or canceling the payment process.
+      An object with several URL objects relevant to the order line. Every URL object will contain an ``href`` and a
+      ``type`` field.
 
-       .. note:: The URL will be ``null`` for recurring orders.
+      .. parameter:: productUrl
+         :type: string
+         :condition: optional
 
-   * - ``webhookUrl``
+         A link pointing to the product page in your web shop of the product sold.
 
-       .. type:: string
-          :required: false
+      .. parameter:: imageUrl
+         :type: string
+         :condition: optional
 
-     - The URL Mollie will call as soon an important status change on the order takes place.
+         A link pointing to an image of the product sold.
 
-   * - ``createdAt``
+.. parameter:: method
+   :type: string
 
-       .. type:: datetime
+   The payment method last used when paying for the order.
 
-     - The order's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+.. parameter:: mode
+   :type: string
 
-   * - ``expiresAt``
+   The mode used to create this order.
 
-       .. type:: datetime
-          :required: false
+   Possible values: ``live`` ``test``
 
-     - The date and time the order will expire, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format. Note
-       that you have until this date to fully ship the order.
+.. parameter:: amount
+   :type: amount object
 
-       For some payment methods, such as *Klarna Pay later* this means that you will lose the authorization and not be
-       settled for the amounts of the unshipped order lines.
+   The total amount of the order, including VAT and discounts.
 
-       The expiry period for orders is 28 days.
+.. parameter:: amountCaptured
+   :type: amount object
+   :condition: optional
 
-   * - ``expiredAt``
+   The amount captured, thus far. The captured amount will be settled to your account.
 
-       .. type:: datetime
-          :required: false
+   For orders that have the status ``authorized``, you must
+   :doc:`ship the order </reference/v2/shipments-api/create-shipment>` to ensure the order amount gets captured.
 
-     - If the order is expired, the time of expiration will be present in
-       `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+.. parameter:: amountRefunded
+   :type: amount object
+   :condition: optional
 
-   * - ``paidAt``
+   The total amount refunded, thus far.
 
-       .. type:: datetime
-          :required: false
+.. parameter:: status
+   :type: string
 
-     - If the order has been paid, the time of payment will be present in
-       `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+   The status of the order.
 
-   * - ``authorizedAt``
+   Possible values: ``created`` ``paid`` ``authorized`` ``canceled`` ``shipping`` ``completed`` ``expired``
 
-       .. type:: datetime
-          :required: false
+   See :doc:`Order status changes </orders/status-changes>` for details on the orders' statuses.
 
-     - If the order has been authorized, the time of authorization will be present in
-       `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+.. parameter:: isCancelable
+   :type: boolean
 
-   * - ``canceledAt``
+   Whether or not the order can be (partially) canceled.
 
-       .. type:: datetime
-          :required: false
+.. parameter:: billingAddress
+   :type: address object
 
-     - If the order has been canceled, the time of cancellation will be present in
-       `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+   The person and the address the order is billed to.
 
-   * - ``completedAt``
+   Refer to the documentation of the :ref:`address object <address-object>` for more information on which formats are
+   accepted.
 
-       .. type:: datetime
-          :required: false
+   .. parameter:: organizationName
+      :type: string
 
-     - If the order is completed, the time of completion will be present in
-       `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+   .. parameter:: title
+      :type: string
 
-   * - ``_embedded``
+   .. parameter:: givenName
+      :type: string
 
-       .. type:: object
-          :required: false
+   .. parameter:: familyName
+      :type: string
 
-     - An object with the requested embedded resources, such as payments, that belong to this order.
+   .. parameter:: email
+      :type: string
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: phone
+      :type: phone number
 
-          * - ``payments``
+   .. parameter:: streetAndNumber
+      :type: string
 
-              .. type:: Payment object
-                 :required: false
+   .. parameter:: streetAdditional
+      :type: string
 
-            - An array of embedded payment resources.
+   .. parameter:: postalCode
+      :type: string
 
-          * - ``refunds``
+   .. parameter:: city
+      :type: string
 
-              .. type:: Refund object
-                  :required: false
+   .. parameter:: region
+      :type: string
 
-            - An array of embedded refunds.
+   .. parameter:: country
+      :type: string
 
-   * - ``_links``
+.. parameter:: shopperCountryMustMatchBillingCountry
+   :type: boolean
 
-       .. type:: object
+   If set to true during order creation, we restrict the payment methods available to your customer to methods from the
+   billing country only.
 
-     - An object with several URL objects relevant to the order. Every URL object will contain an ``href`` and a
-       ``type`` field.
+.. parameter:: consumerDateOfBirth
+   :type: date
+   :condition: optional
 
-       .. list-table::
-          :widths: auto
+   The date of birth of your customer, if available.
 
-          * - ``self``
+.. parameter:: orderNumber
+   :type: string
 
-              .. type:: URL object
+   Your order number that was used when creating the order.
 
-            - The API resource URL of the order itself.
+.. parameter:: shippingAddress
+   :type: address object
 
-          * - ``checkout``
+   The person and the address the order is billed to.
 
-              .. type:: URL object
-                 :required: false
+   Refer to the documentation of the :ref:`address object <address-object>` for more information on which formats are
+   accepted.
 
-            - The URL your customer should visit to make the payment for the order. This is where you should redirect
-              the customer to after creating the order.
+   .. parameter:: organizationName
+      :type: string
 
-              As long as order is still in the ``created`` state, this link can be used by your customer to pay for this
-              order. You can safely share this URL with your customer.
+   .. parameter:: title
+      :type: string
 
-              The URL can also be retrieved and copied from the Mollie Dashboard.
+   .. parameter:: givenName
+      :type: string
 
-              .. note :: You should use HTTP ``GET`` for the redirect to the checkout URL. Using HTTP ``POST`` for
-                         redirection will cause issues with some payment methods or iDEAL issuers. Use HTTP status code
-                         ``303 See Other`` to force an HTTP ``GET`` redirect.
+   .. parameter:: familyName
+      :type: string
 
-              Recurring, authorized, paid and finalized orders do not have a checkout URL.
+   .. parameter:: email
+      :type: string
 
-          * - ``dashboard``
+   .. parameter:: phone
+      :type: phone number
 
-              .. type:: URL object
+   .. parameter:: streetAndNumber
+      :type: string
 
-            - Direct link to the order in the Mollie Dashboard.
+   .. parameter:: streetAdditional
+      :type: string
 
-          * - ``documentation``
+   .. parameter:: postalCode
+      :type: string
 
-              .. type:: URL object
+   .. parameter:: city
+      :type: string
 
-            - The URL to the order retrieval endpoint documentation.
+   .. parameter:: region
+      :type: string
 
-Order line details
-^^^^^^^^^^^^^^^^^^
-The order lines contain the actual things the your customer bought.
+   .. parameter:: country
+      :type: string
 
-.. list-table::
-   :widths: auto
+.. parameter:: locale
+   :type: string
 
-   * - ``resource``
+   The locale used during checkout. Note that the locale may have been changed by your customer during checkout.
 
-       .. type:: string
+   Can be any ``xx_XX`` format ISO 15897 locale. Example values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE``
+   ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES`` ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK``
+   ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV`` ``lt_LT``
 
-     - Always ``orderline``.
+.. parameter:: metadata
+   :type: mixed
 
-   * - ``id``
+   Data provided during the order creation.
 
-       .. type:: string
+.. parameter:: redirectUrl
+   :type: string
 
-     - The order line's unique identifier, for example ``odl_dgtxyl``.
+   The URL your customer will be redirected to after completing or canceling the payment process.
 
-   * - ``orderId``
+   The URL will be ``null`` for recurring orders.
 
-       .. type:: string
+.. parameter:: cancelUrl
+   :type: string
 
-     - The ID of the order the line belongs too, for example ``ord_kEn1PlbGa``.
+   The optional redirect URL you provided during payment creation. Consumer that explicitly cancel the order will be
+   redirected to this URL if provided, or otherwise to the ``redirectUrl`` instead — see above.
 
-   * - ``type``
+   Mollie will always give you status updates via :doc:`webhooks </overview/webhooks>`, including for the ``canceled``
+   status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated
+   consumer-facing flow to handle order cancellations.
 
-       .. type:: string
+   The URL will be ``null`` for recurring orders.
 
-     - The type of product bought, for example, a physical or a digital product. Will be one of the following values:
+.. parameter:: webhookUrl
+   :type: string
+   :condition: optional
 
-       * ``physical``
-       * ``discount``
-       * ``digital``
-       * ``shipping_fee``
-       * ``store_credit``
-       * ``gift_card``
-       * ``surcharge``
+   The URL Mollie will call as soon an important status change on the order takes place.
 
-   * - ``name``
+.. parameter:: createdAt
+   :type: datetime
 
-       .. type:: string
+   The order's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-     - A description of the order line, for example *LEGO 4440 Forest Police Station*.
+.. parameter:: expiresAt
+   :type: datetime
+   :condition: optional
 
-   * - ``status``
+   The date and time the order will expire, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format. This should
+   be the final date for you to fully ship the order.
 
-       .. type:: string
+   For some payment methods, such as *Klarna Pay later* this means that you will lose the authorization and not be
+   settled for the amounts of the unshipped order lines.
 
-     - Status of the order line. One of the following values:
+   The expiry period for orders is 28 days.
 
-       * ``created``
-       * ``authorized``
-       * ``paid``
-       * ``shipping``
-       * ``canceled``
-       * ``completed``
+.. parameter:: expiredAt
+   :type: datetime
+   :condition: optional
 
-   * - ``isCancelable``
+   If the order is expired, the time of expiration will be present in
+   `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-       .. type:: boolean
+.. parameter:: paidAt
+   :type: datetime
+   :condition: optional
 
-     - Whether or not the order line can be (partially) canceled.
+   If the order has been paid, the time of payment will be present in
+   `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-   * - ``quantity``
+.. parameter:: authorizedAt
+   :type: datetime
+   :condition: optional
 
-       .. type:: int
+   If the order has been authorized, the time of authorization will be present in
+   `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-     - The number of items in the order line.
+.. parameter:: canceledAt
+   :type: datetime
+   :condition: optional
 
-   * - ``quantityShipped``
+   If the order has been canceled, the time of cancellation will be present in
+   `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-       .. type:: int
+.. parameter:: completedAt
+   :type: datetime
+   :condition: optional
 
-     - The number of items that are shipped for this order line.
+   If the order is completed, the time of completion will be present in
+   `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-   * - ``amountShipped``
+.. parameter:: _embedded
+   :type: object
+   :condition: optional
+   :collapse-children: false
 
-       .. type:: amount object
+   An object with the requested embedded resources, such as payments, that belong to this order.
 
-     - The total amount that is shipped for this order line.
+   .. parameter:: payments
+      :type: Payment object
+      :condition: optional
 
-   * - ``quantityRefunded``
+      An array of embedded payments.
 
-       .. type:: int
+   .. parameter:: refunds
+      :type: Refund object
+      :condition: optional
 
-     - The number of items that are refunded for this order line.
+      An array of embedded refunds.
 
-   * - ``amountRefunded``
+.. parameter:: _links
+   :type: object
 
-       .. type:: amount object
+   An object with several URL objects relevant to the order. Every URL object will contain an ``href`` and a ``type``
+   field.
 
-     - The total amount that is refunded for this order line.
+   .. parameter:: self
+      :type: URL object
 
-   * - ``quantityCanceled``
+      The API resource URL of the order itself.
 
-       .. type:: int
+   .. parameter:: checkout
+      :type: URL object
+      :condition: optional
 
-     - The number of items that are canceled in this order line.
+      The URL your customer should visit to make the payment for the order. This is where you should redirect the
+      customer to after creating the order.
 
-   * - ``amountCanceled``
+      As long as order is still in the ``created`` state, this link can be used by your customer to pay for this order.
+      You can safely share this URL with your customer.
 
-       .. type:: amount object
+      The URL can also be retrieved and copied from the Mollie Dashboard.
 
-     - The total amount that is canceled in this order line.
+      .. note:: You should use HTTP ``GET`` for the redirect to the checkout URL. Using HTTP ``POST`` for redirection
+         will cause issues with some payment methods or iDEAL issuers. Use HTTP status code ``303 See Other`` to force
+         an HTTP ``GET`` redirect.
 
-   * - ``shippableQuantity``
+         Recurring, authorized, paid and finalized orders do not have a checkout URL.
 
-       .. type:: int
+   .. parameter:: dashboard
+      :type: URL object
 
-     - The number of items that can still be shipped for this order line.
+      Direct link to the order in the Mollie Dashboard.
 
-   * - ``refundableQuantity``
+   .. parameter:: documentation
+      :type: URL object
 
-       .. type:: int
-
-     - The number of items that can still be refunded for this order line.
-
-   * - ``cancelableQuantity``
-
-       .. type:: int
-
-     - The number of items that can still be canceled for this order line.
-
-   * - ``unitPrice``
-
-       .. type:: amount object
-
-     - The price of a single item including VAT in the order line.
-
-   * - ``discountAmount``
-
-       .. type:: amount object
-          :required: false
-
-     - Any discounts applied to the order line.
-
-   * - ``totalAmount``
-
-       .. type:: amount object
-
-     - The total amount of the line, including VAT and discounts.
-
-   * - ``vatRate``
-
-       .. type:: string
-
-     - The VAT rate applied to the order line, for example ``"21.00"`` for 21%. The ``vatRate`` is passed as a string
-       and not as a float to ensure the correct number of decimals are passed.
-
-   * - ``vatAmount``
-
-       .. type:: amount object
-
-     - The amount of value-added tax on the line.
-
-   * - ``sku``
-
-       .. type:: string
-          :required: false
-
-     - The SKU, EAN, ISBN or UPC of the product sold.
-
-   * - ``createdAt``
-
-       .. type:: datetime
-
-     - The order line's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
-
-   * - ``_links``
-
-       .. type:: object
-
-     - An object with several URL objects relevant to the order line. Every URL object will contain an ``href`` and a
-       ``type`` field.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``productUrl``
-
-              .. type:: string
-                 :required: false
-
-            - A link pointing to the product page in your web shop of the product sold.
-
-          * - ``imageUrl``
-
-              .. type:: string
-                 :required: false
-
-            - A link pointing to an image of the product sold.
-
-Addresses
-^^^^^^^^^
-In the Orders API, the address objects identify both the address and the person the order is billed or shipped to.
-
-These properties can be found in the ``billingAddress`` and ``shippingAddress`` address objects.
-
-.. list-table::
-   :widths: auto
-
-   * - ``organizationName``
-
-       .. type:: string
-          :required: false
-
-     - The person's organization, if applicable.
-
-   * - ``title``
-
-       .. type:: string
-          :required: false
-
-     - The title of the person.
-
-   * - ``givenName``
-
-       .. type:: string
-
-     - The given name (first name) of the person.
-
-   * - ``familyName``
-
-       .. type:: string
-
-     - The family name (surname) of the person.
-
-   * - ``email``
-
-       .. type:: string
-
-     - The email address of the person.
-
-   * - ``phone``
-
-       .. type:: phone number
-          :required: false
-
-     - The phone number of the person. Will be in the `E.164 <https://en.wikipedia.org/wiki/E.164>`_ format. For example
-       ``+31208202070``.
-
-   * - ``streetAndNumber`` ``streetAdditional`` ``postalCode`` ``city`` ``region`` ``country``
-
-       .. type:: string
-
-     - See :ref:`address-object` for details on these fields.
+      The URL to the order retrieval endpoint documentation.
 
 Example
 ^^^^^^^
@@ -593,8 +534,9 @@ Example
       :linenos:
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      order = mollie_client.orders.get('ord_stTC2WHAuS')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      order = mollie_client.orders.get("ord_stTC2WHAuS", embed="payment,refunds")
 
    .. code-block:: ruby
       :linenos:
@@ -613,9 +555,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const order = await mollieClient.orders.get('ord_stTC2WHAuS');
-      })();
+      const order = await mollieClient.orders.get('ord_stTC2WHAuS');
 
 Response
 ^^^^^^^^

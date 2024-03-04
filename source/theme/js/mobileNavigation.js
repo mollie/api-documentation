@@ -1,43 +1,59 @@
-import { handle } from './utils';
+import { debounce } from 'lodash';
+import { enhance } from './utils';
 
-// Define properties
-const nav = document.querySelector('.js-main-navigation');
-const NOSCROLL_CLASS = 'no-scroll';
-const OPEN_CLASS = 'is-open';
-let scrollPosition = 0;
-let isOpen = false;
+const NO_SCROLL_UTILITY_CLASS = 'u-no-scroll';
+const VISIBLE_STATE_CLASS = 'is-visible';
+const OPENED_STATE_CLASS = 'is-opened';
+const MOBILE_NAV_BREAKPOINT = 980; // _variables.scss:19
 
-// Create function
-const close = () => {
-  document.body.classList.remove(NOSCROLL_CLASS);
-  nav.classList.remove(OPEN_CLASS);
-  document.body.scrollTop = scrollPosition;
-  // This line is needed for IE11
-  document.body.parentNode.scrollTop = scrollPosition;
-  // This line is needed for Firefox because it doesn't scroll the document.body.
-  // And we can't remove the line above because although Safari and Chrome recognize
-  // the document.documentElement they are unable to scroll it.
-  document.documentElement.scrollTop = scrollPosition;
-  isOpen = false;
-};
+export const mobileNavigationButton = enhance('mobile-navigation-button', (navigationTrigger) => {
+  const mobileSidebar = document.querySelector('.mobile-navigation');
 
-const open = () => {
-  scrollPosition = window.pageYOffset;
-  document.body.classList.add(NOSCROLL_CLASS);
-  nav.classList.add(OPEN_CLASS);
-  isOpen = true;
-};
-
-// Trigger
-const toggle = handle('toggle-nav', (element, event) => {
-  if (isOpen) {
-    close();
-  } else {
-    open();
-  }
-  if (event) {
+  navigationTrigger.addEventListener('click', (event) => {
     event.preventDefault();
-  }
+    mobileSidebar.classList.toggle(VISIBLE_STATE_CLASS);
+    navigationTrigger.classList.toggle(OPENED_STATE_CLASS);
+    document.documentElement.classList.toggle(NO_SCROLL_UTILITY_CLASS);
+  });
+
+  const allowScrollingOnDesktop = () => {
+    const { documentElement } = document;
+    const documentScrollBlocked = documentElement.classList.contains(NO_SCROLL_UTILITY_CLASS);
+
+    if (documentScrollBlocked) {
+      requestAnimationFrame(() => {
+        const documentWidth = window.innerWidth;
+
+        // If we're on desktop and the mobile nav was previously opened, close it.
+        if (documentWidth > MOBILE_NAV_BREAKPOINT) {
+          documentElement.classList.remove(NO_SCROLL_UTILITY_CLASS);
+          mobileSidebar.classList.remove(VISIBLE_STATE_CLASS);
+          navigationTrigger.classList.remove(OPENED_STATE_CLASS);
+        }
+      });
+    }
+  };
+
+  window.addEventListener('resize', debounce(allowScrollingOnDesktop, 200));
 });
 
-export default toggle;
+export const mobileNavigationToggleGroup = enhance('mobile-navigation-toggle-group', (element) => {
+  element.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const parent = element.parentNode;
+
+    if (parent.classList.contains(OPENED_STATE_CLASS)) {
+      parent.classList.remove(OPENED_STATE_CLASS);
+    } else {
+      // If there's already one open, close that one.
+      const openElement = parent.parentNode.querySelector('.' + OPENED_STATE_CLASS);
+
+      if (openElement) {
+        openElement.classList.remove(OPENED_STATE_CLASS);
+      }
+
+      parent.classList.add(OPENED_STATE_CLASS);
+    }
+  });
+});

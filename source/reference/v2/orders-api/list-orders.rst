@@ -14,123 +14,103 @@ List orders
 
 Retrieve all orders.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: from
+   :type: string
+   :condition: optional
 
-   * - ``from``
+   Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the order with this ID. The order with this
+   ID is included in the result set as well.
 
-       .. type:: string
-          :required: false
+.. parameter:: sort
+   :type: string
+   :condition: optional
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the order with this ID. The order with
-       this ID is included in the result set as well.
+   Used for setting the direction of the results based on the ``from`` parameter. Can be set to ``desc`` or ``asc``.
+   Default is `desc`.
 
-   * - ``limit``
+.. parameter:: limit
+   :type: integer
+   :condition: optional
 
-       .. type:: integer
-          :required: false
-
-     - The number of orders to return (with a maximum of 250).
+   The number of orders to return (with a maximum of 250).
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you can specify which profile you are retrieving orders for using the
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can specify which profile you are retrieving orders for using the
 ``profileId`` parameter. Organizations can have multiple profiles for each of their websites. If you omit the
 ``profileId`` parameter, the API will return all orders across all profiles. See
-:doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+:doc:`Profiles API </reference/v2/profiles-api/overview>` for more information.
 
 For these authentication methods the optional ``testmode`` parameter is available as well to enable test mode.
 
-.. list-table::
-   :widths: auto
+.. parameter:: profileId
+   :type: string
+   :condition: optional
+   :collapse: true
 
-   * - ``profileId``
+   The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``. Omit this parameter to retrieve all orders
+   across all profiles.
 
-       .. type:: string
-          :required: false
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``. Omit this parameter to retrieve all
-       orders across all profiles.
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to list test mode orders.
+   Set this to ``true`` to list test mode orders.
 
 Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: count
+   :type: integer
 
-   * - ``count``
+   The number of orders found in ``_embedded``, which is either the requested number (with a maximum of 250) or the
+   default number.
 
-       .. type:: integer
+.. parameter:: _embedded
+   :type: object
+   :collapse-children: false
 
-     - The number of orders found in ``_embedded``, which is either the requested number (with a maximum of 250) or
-       the default number.
+   The object containing the queried data.
 
-   * - ``_embedded``
+   .. parameter:: orders
+      :type: array
 
-       .. type:: object
+      An array of order objects as described in :doc:`Get order </reference/v2/orders-api/get-order>`.
 
-     - The object containing the queried data.
+.. parameter:: _links
+   :type: object
 
-       .. list-table::
-          :widths: auto
+   Links to help navigate through the lists of orders. Every URL object will contain an ``href`` and a ``type`` field.
 
-          * - ``orders``
+   .. parameter:: self
+      :type: URL object
 
-              .. type:: array
+      The URL to the current set of orders.
 
-            - An array of order objects as described in
-              :doc:`Get order </reference/v2/orders-api/get-order>`.
+   .. parameter:: previous
+      :type: URL object
 
-   * - ``_links``
+      The previous set of orders, if available.
 
-       .. type:: object
+   .. parameter:: next
+      :type: URL object
 
-     - Links to help navigate through the lists of orders. Every URL object will contain an ``href`` and a ``type``
-       field.
+      The next set of orders, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: documentation
+      :type: URL object
 
-          * - ``self``
-
-              .. type:: URL object
-
-            - The URL to the current set of orders.
-
-          * - ``previous``
-
-              .. type:: URL object
-
-            - The previous set of orders, if available.
-
-          * - ``next``
-
-              .. type:: URL object
-
-            - The next set of orders, if available.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the orders list endpoint documentation.
+      The URL to the orders list endpoint documentation.
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -152,7 +132,8 @@ Example
       :linenos:
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
       most_recent_orders = mollie_client.orders.list()
       previous_orders = most_recent_orders.get_next()
 
@@ -173,10 +154,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const mostRecentOrders = await mollieClient.orders.page();
-        const previousOrders = await mostRecentOrders.nextPage();
-      })();
+      const orders = mollieClient.orders.iterate();
 
 Response
 ^^^^^^^^

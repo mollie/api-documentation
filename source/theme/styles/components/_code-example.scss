@@ -1,50 +1,45 @@
-.rst-content #example {
+.content #example {
   max-width: 700px;
   @media (min-width: breakpoint('extra-large')) {
     max-width: 846px;
   }
 }
 
-.rst-content {
-  .examples-switcher {
-    .example-switch {
-      font-weight: 300;
-      font-size: 14px;
-      font-family: $font-family-monospace;
-      margin-right: 15px;
-      color: $brand-primary;
-      padding-bottom: 2px;
-      border-bottom: 1px solid $brand-primary;
-      text-decoration: none;
-      transform: translateY(-3px);
-      cursor: pointer;
-
-      &:hover,
-      &:focus {
-        color: $brand-primary-hover;
-      }
-
-      &.is-selected {
-        font-weight: 600;
-        border-bottom: none;
-      }
-    }
-  }
-  .code-blocks > div {
-    &:not(.is-hidden) {
-      -webkit-transition: opacity 600ms, visibility 600ms;
-      transition: opacity 600ms, visibility 600ms;
-    }
-
-    &.is-hidden {
-      opacity: 0;
-      position: absolute;
-      width: 0;
-    }
-  }
+.content .examples-switcher .example-switch {
+  font-weight: 300;
+  font-size: 14px;
+  font-family: $font-family-monospace;
+  margin-right: 15px;
+  color: $brand-primary;
+  padding-bottom: 2px;
+  border-bottom: 1px solid $brand-primary;
+  text-decoration: none;
+  transform: translateY(-3px);
+  cursor: pointer;
 }
 
-.rst-content .highlighttable {
+.content .examples-switcher .example-switch:hover,
+.content .examples-switcher .example-switch:focus {
+  color: $brand-primary-hover;
+}
+
+.content .examples-switcher .example-switch.is-selected {
+  font-weight: 600;
+  border-bottom: none;
+}
+
+.content .code-blocks > div:not(.is-hidden) {
+  -webkit-transition: opacity 600ms, visibility 600ms;
+  transition: opacity 600ms, visibility 600ms;
+}
+
+.content .code-blocks > div.is-hidden {
+  opacity: 0;
+  position: absolute;
+  width: 0;
+}
+
+.content .highlighttable {
   border: 1px solid $grey-medium;
   border-radius: 4px;
   margin-bottom: 40px;
@@ -54,87 +49,67 @@
   width: 100%;
 }
 
-.rst-content .section .highlighttable tbody > tr > td {
+.content .section .highlighttable tbody > tr > td {
   padding-bottom: 0;
-  color: $grey-dusty;
 }
 
-.rst-content .section .highlighttable tr td.linenos {
+.content .section .highlighttable tr td.linenos {
   padding-right: 0;
-  background-color: #fcfcfc;
+  background-color: shade($background-color, 2%);
   border-right: 1px solid $grey-medium;
 }
 
-.rst-content .section .highlighttable tr td.code {
+.content .section .highlighttable tr td.code {
   vertical-align: top;
 }
 
-.rst-content .highlight {
-  background: #fff;
+.content .highlight {
+  background: transparent;
 }
 
-.rst-content .highlighttable pre {
+.content .highlighttable pre {
   min-height: 0;
 }
 
-.rst-content .highlight pre {
+.content .highlight pre {
   font-family: $font-family-monospace;
   color: $grey-dark;
 }
 
-.rst-content .highlight .kc,
-.rst-content .highlight .p,
-.rst-content .highlight .l,
-.rst-content .highlight .mf,
-.rst-content .highlight .s2 {
+.content .highlight .kc, /* Keyword.Constant */
+.content .highlight .p,
+.content .highlight .l,
+.content .highlight .mf, /* Literal.Number.Float */ {
   color: $grey-dark;
 }
 
-.rst-content .highlight .nt,
-.rst-content .highlight .kr,
-.rst-content .highlight .na,
-.rst-content .highlight .m,
-.rst-content .highlight .o,
-.rst-content .highlight .ne {
+.content .highlight .nt, /* Name.Tag */
+.content .highlight .kr, /* Keyword.Reserved */
+.content .highlight .na, /* Name.Attribute */
+.content .highlight .m, /* Literal.Number */
+.content .highlight .o, /* Operator */
+.content .highlight .ne /* Name.Exception */ {
   color: $orange-anzac;
 }
 
-.rst-content .highlight .nt,
-.rst-content .highlight .ne,
-.rst-content .highlight .m {
-  font-weight: bold;
-}
-
-.rst-content .highlight .kc,
-.rst-content .highlight .p,
-.rst-content .highlight .s2,
-.rst-content .highlight .se,
-.rst-content .highlight .nt {
-  font-weight: 300;
-}
-
-.rst-content .highlight .err {
+.content .highlight .err /* Error */ {
   border: none;
   color: $grey-dark;
 }
 
-.rst-content .highlight .mi {
+.content .highlight .mi /* Literal.Number.Integer */ {
   color: $orange-anzac;
 }
 
-.rst-content .highlight-bash .highlight .s2,
-.rst-content .highlight-bash .highlight .se,
-.rst-content .highlight-php .highlight .cp,
-.rst-content .highlight-php .highlight .nv,
-.rst-content .highlight-php .highlight .k,
-.rst-content .highlight-php .highlight .nx,
-.rst-content .highlight-php .highlight .c1,
-.rst-content .highlight-php .highlight .o,
-.rst-content .highlight-php .highlight .na {
-  color: #005a9a;
+.content .highlight .nv, /* Name.Variable */
+.content .highlight .vc, /* Name.Variable.Class */
+.content .highlight .vg, /* Name.Variable.Global */
+.content .highlight .vi, /* Name.Variable.Instance */
+.content .highlight .vm /* Name.Variable.Magic */ {
+  color: inherit;
 }
 
-.rst-content .highlight-php .highlight .mi {
+.content .highlight .mi /* Literal.Number.Integer */ {
   color: $grey-dark;
 }
 
@@ -142,4 +117,76 @@ td.linenos pre {
   color: #999 !important;
   background: none !important;
   padding: 0 20px !important;
+}
+
+/*
+ * Dark mode
+ */
+@media (prefers-color-scheme: dark) {
+  .content .examples-switcher .example-switch {
+    color: $dark-mode-brand-primary;
+    border-bottom-color: $dark-mode-brand-primary;
+  }
+
+  .content .examples-switcher .example-switch:hover,
+  .content .examples-switcher .example-switch:focus {
+    color: $dark-mode-brand-primary-hover;
+  }
+
+  .content .highlighttable {
+    color-scheme: dark; /* Force the scrollbars to dark mode */
+    border-color: $grey-dark;
+  }
+
+  .content .section .highlighttable tr td.linenos {
+    background-color: tint($dark-mode-background-color, 8%);
+    border-right-color: $grey-dark;
+  }
+
+  .content .highlight pre {
+    color: $grey-medium-light;
+  }
+
+  .content .highlight .kc, /* Keyword.Constant */
+  .content .highlight .p,
+  .content .highlight .l,
+  .content .highlight .mf /* Literal.Number.Float */ {
+    color: $grey-medium;
+  }
+
+  /* Make the default green for keywords a bit brighter */
+  .content .highlight .k, /* Keyword */
+  .content .highlight .cp, /* Comment.Preproc */
+  .content .highlight .kc, /* Keyword.Constant */
+  .content .highlight .kd, /* Keyword.Declaration */
+  .content .highlight .kn, /* Keyword.Namespace */
+  .content .highlight .kp, /* Keyword.Pseudo */
+  .content .highlight .kr, /* Keyword.Reserved */
+  .content .highlight .nb, /* Name.Builtin */
+  .content .highlight .ne, /* Name.Exception */
+  .content .highlight .ow, /* Operator.Word */
+  .content .highlight .bp /* Name.Builtin.Pseudo */ {
+    color: #34a954;
+  }
+
+  /* Make the default blue for strings a bit brighter */
+  .content .highlight .sa, /* Literal.String.Affix */
+  .content .highlight .sb, /* Literal.String.Backtick */
+  .content .highlight .sc, /* Literal.String.Char */
+  .content .highlight .dl, /* Literal.String.Delimiter */
+  .content .highlight .sd, /* Literal.String.Doc */
+  .content .highlight .s2, /* Literal.String.Double */
+  .content .highlight .se, /* Literal.String.Escape */
+  .content .highlight .sh, /* Literal.String.Heredoc */
+  .content .highlight .s1 /* Literal.String.Single */ {
+    color: #4987bc;
+  }
+
+  .content .highlight .err {
+    color: $grey-light;
+  }
+
+  .content .highlight-php .highlight .mi {
+    color: $grey-light;
+  }
 }

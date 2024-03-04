@@ -14,8 +14,8 @@ List settlement payments
 
 Retrieve all Payments included in a Settlement.
 
-Note that payments for *pay after delivery* methods (such as Klarna Pay Later) are not listed in here. These payment
-methods are settled using captures. To retrieve the captures, use the :doc:`list-settlement-captures`.
+Note that payments for Klarna payment methods are not listed in here. These payment methods are settled using captures.
+To retrieve the captures, use the :doc:`List settlement captures endpoint </reference/v2/settlements-api/list-settlement-captures>`.
 
 Parameters
 ----------
@@ -52,6 +52,17 @@ Request
 
       $settlement = $mollie->settlements->get("stl_jDk30akdN");
       $payments = $settlement->payments();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_access_token("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ")
+
+      settlement = mollie_client.settlements.get("stl_jDk30akdN")
+      payments = settlement.payments.list()
 
    .. code-block:: ruby
       :linenos:

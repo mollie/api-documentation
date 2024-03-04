@@ -2,7 +2,6 @@ Get payment link
 ================
 .. api-name:: Payment links API
    :version: 2
-   :beta: true
 
 .. endpoint::
    :method: GET
@@ -23,135 +22,111 @@ Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains a payment link object. Will always contain ``payment-link`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains a payment link object. Will always contain ``payment-link`` for this endpoint.
+   The identifier uniquely referring to this payment link. Mollie assigns this identifier at creation time. For example
+   ``pl_4Y0eZitmBnQ6IDoMqZQKh``. Its ID will always be used by Mollie to refer to a certain payment link.
 
-   * - ``id``
+.. parameter:: description
+   :type: string
 
-       .. type:: string
+   A short description of the payment link. The description is visible in the Dashboard and will be shown on the
+   customer's bank or card statement when possible. This description will eventual been used as payment description.
 
-     - The identifier uniquely referring to this payment link. Mollie assigns this identifier at creation time. For
-       example ``pl_4Y0eZitmBnQ6IDoMqZQKh``. Its ID will always be used by Mollie to refer to a certain payment link.
+.. parameter:: mode
+   :type: string
 
-   * - ``description``
+   The mode used to create this payment link. Mode determines whether a payment link is *real* (live mode) or a *test*
+   payment link.
 
-       .. type:: string
+   Possible values: ``live`` ``test``
 
-     - A short description of the payment link. The description is visible in the Dashboard and will be shown on the
-       customer's bank or card statement when possible. This description will eventual been used as payment description.
+.. parameter:: profileId
+   :type: string
 
-   * - ``mode``
+   The identifier referring to the profile this payment link was created on. For example, ``pfl_QkEhN94Ba``.
 
-       .. type:: string
+.. parameter:: amount
+   :type: amount object
 
-     - The mode used to create this payment link. Mode determines whether a payment link is *real* (live mode) or a *test*
-       payment link.
+   The amount of the payment link, e.g. ``{"currency":"EUR", "value":"100.00"}`` for a €100.00 payment link.
 
-       Possible values: ``live`` ``test``
+   .. parameter:: currency
+      :type: string
 
-   * - ``profileId``
+      The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-       .. type:: string
+   .. parameter:: value
+      :type: string
 
-     - The identifier referring to the profile this payment link was created on. For example, ``pfl_QkEhN94Ba``.
+      A string containing the exact amount of the payment link in the given currency.
 
-   * - ``amount``
+.. parameter:: archived
+   :type: boolean
 
-       .. type:: amount object
+   Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
 
-     - The amount of the payment link, e.g. ``{"currency":"EUR", "value":"100.00"}`` for a €100.00 payment link.
+.. parameter:: redirectUrl
+   :type: string
 
-       .. list-table::
-          :widths: auto
+   The URL your customer will be redirected to after completing the payment process.
 
-          * - ``currency``
+.. parameter:: webhookUrl
+   :type: string
+   :condition: optional
 
-              .. type:: string
+   The URL Mollie will call as soon an important status change takes place.
 
-            - The `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+.. parameter:: createdAt
+   :type: datetime
 
-          * - ``value``
+   The payment link's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-              .. type:: string
+.. parameter:: paidAt
+   :type: datetime
+   :condition: optional
 
-            - A string containing the exact amount of the payment link in the given currency.
+   The date and time the payment link became paid, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-   * - ``redirectUrl``
+.. parameter:: updatedAt
+   :type: datetime
+   :condition: optional
 
-       .. type:: string|null
+   The date and time the payment link last status change, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_
+   format.
 
-     - The URL your customer will be redirected to after completing the payment process.
+.. parameter:: expiresAt
+   :type: datetime
+   :condition: optional
 
-   * - ``webhookUrl``
+   The expiry date and time of the payment link, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-       .. type:: string
-          :required: false
+.. parameter:: _links
+   :type: object
 
-     - The URL Mollie will call as soon an important status change takes place.
+   An object with several URL objects relevant to the payment link. Every URL object will contain an ``href`` and a
+   ``type`` field.
 
-   * - ``createdAt``
+   .. parameter:: self
+      :type: URL object
 
-       .. type:: datetime
+      The API resource URL of the payment link itself.
 
-     - The payment link's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+   .. parameter:: paymentLink
+      :type: URL object
 
-   * - ``paidAt``
+      Direct link to the payment link.
 
-       .. type:: datetime
-          :required: false
+   .. parameter:: documentation
+      :type: URL object
 
-     - The date and time the payment link became paid, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_
-       format.
-
-   * - ``updatedAt``
-
-       .. type:: datetime
-          :required: false
-
-     - The date and time the payment link last status change, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_
-       format.
-
-   * - ``expiresAt``
-
-       .. type:: datetime
-          :required: false
-
-     - The expiry date and time of the payment link, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_
-       format.
-
-   * - ``_links``
-
-       .. type:: object
-
-     - An object with several URL objects relevant to the payment link. Every URL object will contain an ``href`` and a
-       ``type`` field.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``self``
-
-              .. type:: URL object
-
-            - The API resource URL of the payment link itself.
-
-          * - ``paymentLink``
-
-              .. type:: URL object
-
-            - Direct link to the payment link.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the payment link retrieval endpoint documentation.
+      The URL to the payment link retrieval endpoint documentation.
 
 Example
 -------
@@ -161,6 +136,24 @@ Example
 
       curl -X GET https://api.mollie.com/v2/payment-links/pl_4Y0eZitmBnQ6IDoMqZQKh \
          -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
+
+   .. code-block:: php
+      :linenos:
+
+      <?php
+      $mollie = new \Mollie\Api\MollieApiClient();
+      $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+      $paymentLink = $mollie->paymentLinks->get("pl_4Y0eZitmBnQ6IDoMqZQKh");
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      payment_link = mollie_client.payment_links.get("pl_4Y0eZitmBnQ6IDoMqZQKh")
 
 Response
 ^^^^^^^^
@@ -183,6 +176,7 @@ Response
            "value": "24.95",
            "currency": "EUR"
        },
+       "archived": false,
        "description": "Bicycle tires",
        "redirectUrl": "https://webshop.example.org/thanks",
        "webhookUrl": "https://webshop.example.org/payment-links/webhook/",
@@ -192,7 +186,7 @@ Response
                "type": "application/json"
            },
            "paymentLink": {
-               "href": "https://useplink.com/payment/4Y0eZitmBnQ6IDoMqZQKh/",
+               "href": "https://paymentlink.mollie.com/payment/4Y0eZitmBnQ6IDoMqZQKh/",
                "type": "text/html"
            },
            "documentation": {

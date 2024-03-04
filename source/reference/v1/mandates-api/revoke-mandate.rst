@@ -29,18 +29,15 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, and replace ``i
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are creating an app with :doc:`Mollie Connect/OAuth </oauth/overview>`, the ``testmode`` parameter is also
+If you are creating an app with :doc:`Mollie Connect </connect/overview>`, the ``testmode`` parameter is also
 available.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to revoke a test mode mandate.
+   Set this to ``true`` to revoke a test mode mandate.
 
 Response
 --------

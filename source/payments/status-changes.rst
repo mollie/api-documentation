@@ -8,13 +8,11 @@ them. Then we will show you how the statuses are connected.
 
 ``open``
     The payment has been created, but nothing else has happened yet. This is not a status Mollie will call your
-    :doc:`webhook </guides/webhooks>` for.
+    :doc:`webhook </overview/webhooks>` for.
 
 ``canceled``
     Your customer has canceled the payment. This is a definitive status. Mollie will call your webhook when this status
     is reached.
-
-    .. note:: In the ``v1`` API, this status was misspelled as ``cancelled``. This has been rectified in later versions.
 
 ``pending``
     This is a temporary status that can occur when the actual payment process has been started, but it's not complete
@@ -26,6 +24,7 @@ them. Then we will show you how the statuses are connected.
     created.
 
     Currently this status is only possible for the payment methods
+    `Klarna Pay now <https://www.mollie.com/payments/klarna-pay-now>`_,
     `Klarna Pay later <https://www.mollie.com/payments/klarna-pay-later>`_ and
     `Klarna Slice it <https://www.mollie.com/payments/klarna-slice-it>`_.
 
@@ -40,9 +39,9 @@ them. Then we will show you how the statuses are connected.
     The payment has failed and cannot be completed with a different payment method. We will call your webhook when a
     payment transitions to the ``failed`` status.
 
-    Please note that when you use :doc:`/guides/checkout` and you offer multiple payment methods you will be
-    redirected to the method selection screen after a payment failure. So, the consumer can choose
-    another method to finish the payment.
+    When you use :doc:`Mollie Checkout </payments/hosted-checkout>` and you offer multiple payment methods you will be
+    redirected to the method selection screen after a payment failure. So, the consumer can choose another method to
+    finish the payment.
 
 ``paid``
     This status occurs whenever a payment is successfully paid. When this status occurs we will call your webhook.
@@ -53,7 +52,7 @@ them. Then we will show you how the statuses are connected.
 
 How does one status lead to another?
 ------------------------------------
-Please look at the below diagram. It tells you exactly when to expect what status:
+The below diagram shows exactly when to expect which status.
 
 .. image:: images/payment-status-flow@2x.png
 
@@ -68,31 +67,35 @@ abandons it. The expiry time is different for each payment method:
 Expiry times per payment method
 -------------------------------
 
-+---------------------------------+-----------------------------------+
-| Payment methods                 | Expiry time                       |
-+=================================+===================================+
-| - iDEAL                         | 15 minutes                        |
-| - paysafecard                   |                                   |
-+---------------------------------+-----------------------------------+
-| - Credit card                   | 30 minutes                        |
-+---------------------------------+-----------------------------------+
-| - Bancontact                    | 1 hour                            |
-| - Belfius Pay Button            |                                   |
-| - EPS                           |                                   |
-| - Giropay                       |                                   |
-| - KBC                           |                                   |
-| - MyBank                        |                                   |
-| - Przelewy24                    |                                   |
-+---------------------------------+-----------------------------------+
-| - SOFORT Banking                | 2 hours                           |
-+---------------------------------+-----------------------------------+
-| - PayPal                        | 3 hours                           |
-| - Vouchers                      |                                   |
-+---------------------------------+-----------------------------------+
-| - Klarna Pay Later. / Slice It. | 48 hours                          |
-+---------------------------------+-----------------------------------+
-| - Bank transfer [#f1]_          | 12(+2) days                       |
-+---------------------------------+-----------------------------------+
++-------------------------------+-----------------------------------+
+| Payment methods               | Expiry time                       |
++===============================+===================================+
+| - iDEAL                       | 15 minutes                        |
+| - paysafecard                 |                                   |
++-------------------------------+-----------------------------------+
+| - Credit card                 | 30 minutes                        |
+| - Giropay                     |                                   |
++-------------------------------+-----------------------------------+
+| - MyBank                      | 45 minutes                        |
++-------------------------------+-----------------------------------+
+| - Bancontact                  | 1 hour                            |
+| - Belfius Pay Button          |                                   |
+| - EPS                         |                                   |
+| - KBC                         |                                   |
+| - Przelewy24                  |                                   |
++-------------------------------+-----------------------------------+
+| - SOFORT Banking              | 2 hours                           |
+| - Vouchers                    |                                   |
++-------------------------------+-----------------------------------+
+| - Klarna Pay now              | 48 hours                          |
+| - Klarna Pay later            |                                   |
+| - Klarna Slice it             |                                   |
+| - in3                         |                                   |
++-------------------------------+-----------------------------------+
+| - PayPal                      | 72 hours                          |
++-------------------------------+-----------------------------------+
+| - Bank transfer [#f1]_        | 12(+2) days                       |
++-------------------------------+-----------------------------------+
 
 .. note:: It is not a good idea to predict payment expiry. Best wait until your webhook is called and fetch the status
           as usual. This is the most reliable way to keep your system in sync with Mollie, also in the case of expiring

@@ -23,6 +23,9 @@ Enable payment method
 
 Enable a payment method on a specific or authenticated profile to use it with payments.
 
+The payment method ``vouchers`` cannot be enabled via this API. Instead, refer to
+:doc:`/reference/v2/profiles-api/enable-voucher-issuer`.
+
 .. note:: Some payment methods might need extra steps to be activated, for example an OAuth connection with the
           supplier. In those cases, the status will be set to ``pending-external`` and the response will contain a link
           to continue the activation.
@@ -59,6 +62,17 @@ Request
       $profile = $mollie->profiles->get('pfl_v9hTwCvYqw');
 
       $profile->enableMethod('ideal');
+
+  .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_access_token("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ")
+
+      profile = mollie_client.profiles.get("pfl_v9hTwCvYqw")
+      method = profile.methods.enable("ideal")
 
 Response
 ^^^^^^^^

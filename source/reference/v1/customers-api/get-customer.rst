@@ -27,91 +27,74 @@ Replace ``id`` in the endpoint URL by the customer's ID, for example ``cst_8wmqc
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is also available.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, the ``testmode`` query string parameter is also available.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to retrieve a test mode customer.
+   Set this to ``true`` to retrieve a test mode customer.
 
 Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains a customer object. Will always contain ``customer`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains a customer object. Will always contain ``customer`` for this endpoint.
+   The customer's unique identifier, for example ``cst_vsKJpSsabw``.
 
-   * - ``id``
+.. parameter:: mode
+   :type: string
 
-       .. type:: string
+   The mode used to create this customer.
 
-     - The customer's unique identifier, for example ``cst_vsKJpSsabw``.
+   Possible values: ``live`` ``test``
 
-   * - ``mode``
+.. parameter:: name
+   :type: string
 
-       .. type:: string
+   The full name of the customer as provided when the customer was created.
 
-     - The mode used to create this customer.
+.. parameter:: email
+   :type: string
 
-       Possible values: ``live`` ``test``
+   The email address of the customer as provided when the customer was created.
 
-   * - ``name``
+.. parameter:: locale
+   :type: string
 
-       .. type:: string
+   Allows you to preset the language to be used in the hosted payment pages shown to the consumer. If this parameter was
+   not provided when the customer was created, the browser language will be used instead in the payment flow (which is
+   usually more accurate).
 
-     - The full name of the customer as provided when the customer was created.
+   Possible values: ``en_US`` ``en_GB`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
+   ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV`` ``lt_LT``
 
-   * - ``email``
+.. parameter:: metadata
+   :type: mixed
 
-       .. type:: string
+   Data provided during the customer creation.
 
-     - The email address of the customer as provided when the customer was created.
+.. parameter:: recentlyUsedMethods
+   :type: array
 
-   * - ``locale``
+   Payment methods that the customer recently used for payments.
 
-       .. type:: string
+   Possible array values: ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps`` ``giftcard`` ``giropay``
+   ``ideal`` ``kbc`` ``mistercash`` ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort``
 
-     - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. If this parameter
-       was not provided when the customer was created, the browser language will be used instead in the payment flow
-       (which is usually more accurate).
+.. parameter:: createdDatetime
+   :type: datetime
 
-       Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
-       ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
-       ``lt_LT``
-
-   * - ``metadata``
-
-       .. type:: mixed
-
-     - Data provided during the customer creation.
-
-   * - ``recentlyUsedMethods``
-
-       .. type:: array
-
-     - Payment methods that the customer recently used for payments.
-
-       Possible array values: ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``
-       ``giftcard`` ``giropay`` ``ideal`` ``kbc`` ``mistercash`` ``paypal`` ``paysafecard``
-       ``przelewy24`` ``sofort``
-
-   * - ``createdDatetime``
-
-       .. type:: datetime
-
-     - The customer record's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+   The customer record's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
 Example
 -------

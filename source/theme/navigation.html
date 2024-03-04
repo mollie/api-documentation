@@ -1,214 +1,123 @@
-<div class="main-navigation__wrapper">
-  <nav class="main-navigation js-main-navigation headroom headroom--top headroom--not-bottom"
-       data-enhancer="nav-logged-in sub-navigation"
-       data-dashboard-url="https://www.mollie.com/dashboard/">
-    <div class="mobile-navigation">
-      <div class="mobile-navigation__logo"><a href="https://www.mollie.com" class="is-active">
-        <svg viewBox="0 0 65 19" class="jsx-2214451602">
-          <path
-            d="M27.482 16.068c-1.917 0-3.476-1.55-3.476-3.453s1.559-3.453 3.476-3.453 3.476 1.549 3.476 3.453-1.56 3.453-3.476 3.453m0-9.825c3.537 0 6.415 2.859 6.415 6.372s-2.878 6.372-6.415 6.372-6.415-2.859-6.415-6.372 2.878-6.372 6.415-6.372zM49.036 0c1.077 0 1.954.87 1.954 1.94 0 1.07-.877 1.94-1.954 1.94a1.949 1.949 0 0 1-1.953-1.94c0-1.07.876-1.94 1.953-1.94zM13.92 6.229a5.515 5.515 0 0 1 3.843 1.71 5.606 5.606 0 0 1 1.57 3.898v6.886h-2.964v-6.976c-.01-1.412-1.177-2.571-2.604-2.584h-.023c-1.424 0-2.627 1.218-2.627 2.66v6.9H8.15v-6.958a2.628 2.628 0 0 0-2.597-2.593h-.025c-1.426 0-2.632 1.22-2.632 2.665v6.886H0v-6.976c0-3.041 2.493-5.516 5.558-5.516a5.58 5.58 0 0 1 4.09 1.789 5.595 5.595 0 0 1 4.27-1.791zm21.78 12.503V.304h2.964v18.428zm5.928 0V.304h2.964v18.428zm5.927-.01V6.548h2.964v12.176zM65 12.323v1.347h-9.44a3.553 3.553 0 0 0 3.441 2.66 3.53 3.53 0 0 0 3.04-1.705l.095-.158 2.315 1.132.032.09a.206.206 0 0 1-.021.164 6.458 6.458 0 0 1-5.517 3.118h-.004a6.387 6.387 0 0 1-4.554-1.901 6.301 6.301 0 0 1-1.857-4.547 6.316 6.316 0 0 1 1.875-4.427 6.397 6.397 0 0 1 4.452-1.868 5.997 5.997 0 0 1 4.365 1.8A6.07 6.07 0 0 1 65 12.323zm-2.973-1.062h-6.43a3.396 3.396 0 0 1 3.215-2.368c1.466 0 2.791.986 3.215 2.368z"
-            fill-rule="evenodd" class="jsx-2214451602"></path>
-        </svg>
-      </a></div>
-      <div class="mobile-navigation__actions"><a class="mobile-navigation__signup js-signup-nav-link is-dashboard"
-                                                 href="https://www.mollie.com/dashboard">Dashboard</a><a
-        href="#toggle-navigation" data-handler="toggle-nav" class="mobile-navigation__toggle">
-        <svg width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg"
-             class="mobile-navigation__hamburger">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H20V1H0V0ZM0 6H20V7H0V6ZM20 12H0V13H20V12Z"
-                fill="black"></path>
-        </svg>
-      </a></div>
-    </div>
-    <ul class="main-navigation__items">
-      <li class="main-navigation__item"><a class="main-navigation__link main-navigation__logo is-active" href="https://www.mollie.com/">
-        <svg viewBox="0 0 65 19" class="jsx-2214451602">
-          <path
-            d="M27.482 16.068c-1.917 0-3.476-1.55-3.476-3.453s1.559-3.453 3.476-3.453 3.476 1.549 3.476 3.453-1.56 3.453-3.476 3.453m0-9.825c3.537 0 6.415 2.859 6.415 6.372s-2.878 6.372-6.415 6.372-6.415-2.859-6.415-6.372 2.878-6.372 6.415-6.372zM49.036 0c1.077 0 1.954.87 1.954 1.94 0 1.07-.877 1.94-1.954 1.94a1.949 1.949 0 0 1-1.953-1.94c0-1.07.876-1.94 1.953-1.94zM13.92 6.229a5.515 5.515 0 0 1 3.843 1.71 5.606 5.606 0 0 1 1.57 3.898v6.886h-2.964v-6.976c-.01-1.412-1.177-2.571-2.604-2.584h-.023c-1.424 0-2.627 1.218-2.627 2.66v6.9H8.15v-6.958a2.628 2.628 0 0 0-2.597-2.593h-.025c-1.426 0-2.632 1.22-2.632 2.665v6.886H0v-6.976c0-3.041 2.493-5.516 5.558-5.516a5.58 5.58 0 0 1 4.09 1.789 5.595 5.595 0 0 1 4.27-1.791zm21.78 12.503V.304h2.964v18.428zm5.928 0V.304h2.964v18.428zm5.927-.01V6.548h2.964v12.176zM65 12.323v1.347h-9.44a3.553 3.553 0 0 0 3.441 2.66 3.53 3.53 0 0 0 3.04-1.705l.095-.158 2.315 1.132.032.09a.206.206 0 0 1-.021.164 6.458 6.458 0 0 1-5.517 3.118h-.004a6.387 6.387 0 0 1-4.554-1.901 6.301 6.301 0 0 1-1.857-4.547 6.316 6.316 0 0 1 1.875-4.427 6.397 6.397 0 0 1 4.452-1.868 5.997 5.997 0 0 1 4.365 1.8A6.07 6.07 0 0 1 65 12.323zm-2.973-1.062h-6.43a3.396 3.396 0 0 1 3.215-2.368c1.466 0 2.791.986 3.215 2.368z"
-            fill-rule="evenodd" class="jsx-2214451602"></path>
-        </svg>
-      </a></li>
-      <li class="main-navigation__item"><a class="main-navigation__link" href="https://www.mollie.com/payments">Payments</a></li>
-      <li class="main-navigation__item"><a class="main-navigation__link" href="https://www.mollie.com/recurring">Recurring</a></li>
-      <li class="main-navigation__item"><a class="main-navigation__link is-active" href="https://www.mollie.com/developers">Developers</a>
-      </li>
-      <li class="main-navigation__item"><a class="main-navigation__link" href="https://www.mollie.com/partners">Partners</a></li>
-      <li class="main-navigation__item"><a class="main-navigation__link" href="https://www.mollie.com/support">Support</a></li>
-      <li class="main-navigation__item"><a class="main-navigation__link" href="https://www.mollie.com/pricing">Pricing</a></li>
-      <li class="main-navigation__item js-login-nav-item" style="display: none;"><a class="main-navigation__link"
-                                                                                    href="https://www.mollie.com/dashboard/login">Log in</a></li>
-      <li class="main-navigation__item main-navigation__signup"><a
-        class="main-navigation__link cta-link js-signup-nav-link is-dashboard" href="https://www.mollie.com/dashboard">Dashboard</a>
-      </li>
-    </ul>
-  </nav>
-  <div class="products-navigation js-products-navigation">
-    <div class="products-navigation-items products-navigation-items--has-border">
-      <a class="products-navigation-items__link" href="https://www.mollie.com/payments">
-        <div class="products-navigation-items__inner">
-          <figure class="products-navigation-items__logo">
-            <img src="https://images.ctfassets.net/k4kk06v59kf0/5VYUiGuuPYO8Q0S82WMeM0/b6dd6372ee5c39261382019f3a4853f7/icon-payments.svg"
-              alt="">
-          </figure>
-          <div class="products-navigation-items__text">
-            <p class="products-navigation-items__heading">Payments</p>
-            <p class="products-navigation-items__subtitle">Accept payments online.</p>
-          </div>
-        </div>
-      </a>
-      <a class="products-navigation-items__link" href="https://www.mollie.com/recurring">
-        <div class="products-navigation-items__inner">
-          <figure class="products-navigation-items__logo">
-            <img src="https://images.ctfassets.net/k4kk06v59kf0/5jOkarx2wwAsIukEu8AOaa/584b4d86c376b996ec85a1f508522d9c/icon-product-recurring.svg"
-              alt="">
-          </figure>
-          <div class="products-navigation-items__text">
-            <p class="products-navigation-items__heading">Recurring</p>
-            <p class="products-navigation-items__subtitle">Collect recurring payments.</p>
-          </div>
-        </div>
-      </a>
+{%- if pagename.startswith('payments/')
+  or pagename.startswith("orders/")
+  or pagename.startswith("components/")
+  or pagename.startswith("wallets/")
+  or pagename.startswith("point-of-sale/")
+-%}
+  {%- set selected = "payments" -%}
+{%- elif pagename.startswith('connect/') -%}
+  {%- set selected = "connect" -%}
+{%- elif pagename.startswith('reference/') -%}
+  {%- set selected = "api" -%}
+{%- elif pagename.startswith('changelog/') -%}
+  {%- set selected = "changelog" -%}
+{%- else -%}
+  {%- set selected = "overview" -%}
+{%- endif -%}
+<nav class="main-navigation">
+  <div class="title-bar" data-enhancer="nav-logged-in">
+    <div class="title-bar__wrap">
+      <ul>
+        <li class="title-bar__item title-bar__logo">
+          <a href="https://docs.mollie.com/">
+            <svg viewBox="0 0 81 24">
+              <path d="M 58.551 2.517 C 58.551 1.127 59.676 0 61.064 0 C 62.452 0 63.577 1.127 63.577 2.517 C 63.577 3.908 62.452 5.035 61.064 5.035 C 59.676 5.035 58.551 3.908 58.551 2.517 Z M 22.365 10.129 C 23.546 11.446 24.199 13.15 24.199 14.92 L 24.199 23.648 L 20.346 23.648 L 20.346 14.811 C 20.338 13.074 18.906 11.656 17.163 11.656 C 17.063 11.656 16.954 11.664 16.845 11.673 C 15.287 11.832 13.98 13.309 13.98 14.903 L 13.98 23.648 L 10.127 23.648 L 10.127 14.836 C 10.119 13.091 8.695 11.664 6.952 11.664 C 6.852 11.664 6.743 11.673 6.634 11.681 C 5.084 11.841 3.769 13.317 3.769 14.92 L 3.769 23.648 L 0 23.648 L 0 14.811 C 0 10.951 3.141 7.813 6.994 7.813 C 8.921 7.813 10.755 8.618 12.079 10.02 C 13.402 8.61 15.245 7.813 17.188 7.813 C 17.398 7.813 17.599 7.821 17.808 7.838 C 19.567 7.989 21.184 8.803 22.365 10.129 Z M 48.248 23.664 L 44.395 23.664 L 44.395 0.378 L 48.248 0.378 Z M 55.619 23.664 L 51.766 23.664 L 51.766 0.378 L 55.619 0.378 Z M 62.991 23.656 L 59.138 23.656 L 59.138 8.215 L 62.991 8.215 Z M 81 17.312 L 69.281 17.312 C 69.801 19.175 71.493 20.484 73.453 20.484 C 74.986 20.484 76.368 19.703 77.164 18.386 L 77.323 18.126 L 80.506 19.695 L 80.322 20.006 C 78.872 22.448 76.217 23.966 73.386 23.966 L 73.377 23.966 C 71.216 23.966 69.189 23.11 67.656 21.558 C 66.123 20.006 65.294 17.958 65.319 15.793 C 65.344 13.67 66.182 11.681 67.673 10.179 C 69.164 8.677 71.158 7.838 73.269 7.813 L 73.369 7.813 C 75.405 7.813 77.314 8.627 78.763 10.095 C 80.204 11.564 81 13.494 81 15.541 Z M 69.34 14.123 L 77.105 14.123 C 76.552 12.478 74.977 11.32 73.218 11.32 C 71.459 11.32 69.884 12.478 69.34 14.123 Z M 42.318 15.902 C 42.318 20.35 38.699 23.975 34.26 23.975 C 29.82 23.975 26.201 20.35 26.201 15.902 C 26.201 11.455 29.812 7.829 34.26 7.829 C 38.707 7.829 42.318 11.455 42.318 15.902 Z M 38.498 15.91 C 38.498 13.569 36.597 11.664 34.26 11.664 C 31.923 11.664 30.021 13.569 30.021 15.91 C 30.021 18.252 31.923 20.157 34.26 20.157 C 36.597 20.157 38.498 18.252 38.498 15.91 Z"></path>
+            </svg>
+            <span>docs</span>
+          </a>
+        </li>
+        <li class="title-bar__item title-bar__space title-bar__item--active">
+          <a href="https://docs.mollie.com/">Developers</a>
+        </li>
+        <li class="title-bar__item title-bar__space">
+          <a href="https://help.mollie.com/" target="_blank">Support</a>
+        </li>
+      </ul>
+      <ul>
+        <li class="title-bar__item title-bar__search">
+          <div data-enhancer="algolia-search"></div>
+        </li>
+        <li class="title-bar__item title-bar__login js-login-nav-link">
+          <a href="https://www.mollie.com/dashboard/login" target="_blank">Log in</a>
+        </li>
+        <li class="title-bar__item title-bar__signup js-signup-nav-link">
+          <a href="https://www.mollie.com/dashboard/signup" target="_blank">Sign up</a>
+        </li>
+        <li class="title-bar__item title-bar__dashboard js-dashboard-nav-link is-hidden">
+          <a href="https://www.mollie.com/dashboard" target="_blank">Dashboard</a>
+        </li>
+        <li class="title-bar__item title-bar__hamburger" data-enhancer="mobile-navigation-button">
+          <a href="#"><span></span><span></span><span></span></a>
+        </li>
+      </ul>
     </div>
   </div>
-  <div id="mobile-navigation" class="mobile-navigation is-hidden js-mobile-navigation" aria-hidden="true" data-enhancer="nav-logged-in"
-    data-dashboard-url="https://www.mollie.com/dashboard">
-    <a href="#close-navigation" class="mobile-navigation__hide" data-handler="hide-mobile-nav">Hide</a>
-    <div class="products-navigation-items products-navigation-items--small mobile-navigation__products">
-      <a class="products-navigation-items__link" href="https://www.mollie.com/payments">
-        <div class="products-navigation-items__inner">
-          <figure class="products-navigation-items__logo">
-            <img src="https://images.ctfassets.net/k4kk06v59kf0/5VYUiGuuPYO8Q0S82WMeM0/b6dd6372ee5c39261382019f3a4853f7/icon-payments.svg"
-              alt="">
-          </figure>
-          <div class="products-navigation-items__text">
-            <p class="products-navigation-items__heading">Payments</p>
-            <p class="products-navigation-items__subtitle">Accept payments online.</p>
-          </div>
-        </div>
-      </a>
-      <a class="products-navigation-items__link" href="https://www.mollie.com/recurring">
-        <div class="products-navigation-items__inner">
-          <figure class="products-navigation-items__logo">
-            <img src="https://images.ctfassets.net/k4kk06v59kf0/5jOkarx2wwAsIukEu8AOaa/584b4d86c376b996ec85a1f508522d9c/icon-product-recurring.svg"
-              alt="">
-          </figure>
-          <div class="products-navigation-items__text">
-            <p class="products-navigation-items__heading">Recurring</p>
-            <p class="products-navigation-items__subtitle">Collect recurring payments.</p>
-          </div>
-        </div>
-      </a>
-    </div>
-    <ul class="mobile-navigation__links">
-      <li class="mobile-navigation__link">
-        <a href="https://www.mollie.com/pricing">Pricing</a>
+
+  <div class="product-navigation">
+    <ul>
+      <li class="product-navigation__item {%- if selected == 'overview' %} product-navigation__item--active {%- endif %}">
+        <a href="{{ pathto('index') }}">Overview</a>
       </li>
-      <li class="mobile-navigation__link">
-        <a href="https://www.mollie.com/features">Features</a>
+      <li class="product-navigation__item {%- if selected == 'payments' %} product-navigation__item--active {%- endif %}">
+        <a href="{{ pathto('payments/accepting-payments') }}">Payments</a>
       </li>
-      <li class="mobile-navigation__link">
-        <a href="https://www.mollie.com/partners">Partners</a>
+      <li class="product-navigation__item {%- if selected == 'connect' %} product-navigation__item--active {%- endif %}">
+        <a href="{{ pathto('connect/overview') }}">Connect</a>
       </li>
-      <li class="mobile-navigation__link">
-        <a href="https://www.mollie.com/developers" class="is-active">Developers</a>
+      <li class="product-navigation__item {%- if selected == 'api' %} product-navigation__item--active {%- endif %}">
+        <a href="{{ pathto('reference/v2/payments-api/overview') }}">API reference</a>
       </li>
-      <li class="mobile-navigation__link">
-        <a href="https://www.mollie.com/support">Help Center</a>
-      </li>
-      <li class="mobile-navigation__link">
-        <a href="https://www.mollie.com/about">About</a>
-      </li>
-      <li class="mobile-navigation__link">
-        <a href="https://blog.mollie.com">Blog</a>
-      </li>
-      <li class="mobile-navigation__link">
-        <a href="https://www.mollie.com/contact">Contact</a>
+      <li class="product-navigation__item {%- if selected == 'changelog' %} product-navigation__item--active {%- endif %}">
+        <a href="{{ pathto('changelog/v2/changelog') }}">Changelog</a>
       </li>
     </ul>
-    <div class="mobile-navigation__buttons">
-      <a class="button button--theme-light button--outline button--small mobile-navigation__button js-login-nav-item" href="https://www.mollie.com/dashboard/login"
-        style="display: none;">Log in</a>
-      <a class="button button--small mobile-navigation__button js-signup-nav-link is-dashboard" href="https://www.mollie.com/dashboard">Dashboard</a>
-    </div>
   </div>
-</div>
-<div class="sub-navigation js-sub-navigation">
-  <ul class="sub-navigation__items">
-    <li class="sub-navigation-item sub-navigation__item js-sub-navigation-item">
-      <a href="https://www.mollie.com/developers" class="sub-navigation-item__link">
-        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="sub-navigation-item__icon">
-          <path d="m15 23h6c.5522847 0 1-.4477153 1-1v-12.05224174c0-.29993313-.1346268-.58402831-.3667622-.7739573l-9-7.36363637c-.3683659-.30139027-.8981097-.30139027-1.2664756 0l-8.99999999 7.36363637c-.23213543.18992899-.36676221.47402417-.36676221.7739573v12.05224174c0 .5522847.44771525 1 1 1h6v-8c0-1.1045695.8954305-2 2-2h2c1.1045695 0 2 .8954305 2 2zm-1 0v-8c0-.5522847-.4477153-1-1-1h-2c-.5522847 0-1 .4477153-1 1v8c0 .5522847-.44771525 1-1 1h-6c-1.1045695 0-2-.8954305-2-2v-12.05224174c0-.59986626.26925355-1.16805662.73352442-1.5479146l8.99999998-7.36363637c.7367318-.60278053 1.7962194-.60278053 2.5329512 0l9 7.36363637c.4642708.37985798.7335244.94804834.7335244 1.5479146v12.05224174c0 1.1045695-.8954305 2-2 2h-6c-.5522847 0-1-.4477153-1-1z"
-            class="sub-navigation-item__path" />
-        </svg>
-        <span class="sub-navigation-item__text">
-          Overview
-        </span>
-      </a>
+</nav>
+
+<nav class="mobile-navigation">
+  <ul>
+    <li class="mobile-navigation__item {%- if selected == 'overview' %} is-opened {%- endif %}">
+      <a href="#" data-enhancer="mobile-navigation-toggle-group">Overview</a>
+
+      <div class="mobile-navigation__contents">
+        {%- include "sidebar-overview.html" -%}
+      </div>
     </li>
-    <li class="sub-navigation-item sub-navigation__item {% if not pagename.startswith("reference/") and not pagename.startswith("changelog/")  -%} sub-navigation-item--active {%- endif %} js-sub-navigation-item">
-      <a href="{{ pathto('index') }}" class="sub-navigation-item__link">
-        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="sub-navigation-item__icon">
-          <path d="m13 17.9450712v6.0549288h-1v-6.5-.5c4.418278 0 8-3.581722 8-8s-3.581722-8-8-8-8 3.581722-8 8h-1c0-4.97056275 4.02943725-9 9-9 4.9705627 0 9 4.02943725 9 9 0 4.6325537-3.5000495 8.4476269-8 8.9450712z"
-            class="sub-navigation-item__path" fill-rule="evenodd" />
-        </svg>
-        <span class="sub-navigation-item__text">
-          Guides
-        </span>
-      </a>
+    <li class="mobile-navigation__item {%- if selected == 'payments' %} is-opened {%- endif %}">
+      <a href="#" data-enhancer="mobile-navigation-toggle-group">Payments</a>
+
+      <div class="mobile-navigation__contents">
+        {%- include "sidebar-payments.html" -%}
+      </div>
     </li>
-    <li class="sub-navigation-item sub-navigation__item {%- if pagename.startswith("reference/") %} sub-navigation-item--active {%- endif %} js-sub-navigation-item">
-      <a href="{{ pathto('reference/v2/payments-api/create-payment') }}" class="sub-navigation-item__link">
-        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="sub-navigation-item__icon">
-          <path d="m21 6h-5v-1-4h-11.4361148c-.66185192 0-.86340448.03892159-1.06913204.1489459-.15165746.0811073-.26469996.1941498-.34580726.34580726-.11002431.20572756-.1489459.40728012-.1489459 1.06913204v18.8722296c0 .6618519.03892159.8634045.1489459 1.069132.0811073.1516575.1941498.2647.34580726.3458073.20572756.1100243.40728012.1489459 1.06913204.1489459h14.8722296c.6618519 0 .8634045-.0389216 1.069132-.1489459.1516575-.0811073.2647-.1941498.3458073-.3458073.1100243-.2057275.1489459-.4072801.1489459-1.069132zm-.4142136-1-3.5857864-3.58578644v3.58578644zm-16.0219012-5h12.4361148l5 5v16.4361148c0 .8915187-.0928256 1.214805-.2671327 1.5407309s-.4300957.5817145-.7560216.7560216-.6492122.2671327-1.5407309.2671327h-14.8722296c-.89151874 0-1.21480498-.0928256-1.5407309-.2671327-.32592593-.1743071-.5817145-.4300957-.7560216-.7560216-.17430709-.3259259-.2671327-.6492122-.2671327-1.5407309v-18.8722296c0-.89151874.09282561-1.21480498.2671327-1.5407309.1743071-.32592593.43009567-.5817145.7560216-.7560216.32592592-.17430709.64921216-.2671327 1.5407309-.2671327z"
-            class="sub-navigation-item__path" />
-        </svg>
-        <span class="sub-navigation-item__text">
-          API Reference
-        </span>
-      </a>
+    <li class="mobile-navigation__item {%- if selected == 'connect' %} is-opened {%- endif %}">
+      <a href="#" data-enhancer="mobile-navigation-toggle-group">Connect</a>
+
+      <div class="mobile-navigation__contents">
+        {%- include "sidebar-connect.html" -%}
+      </div>
     </li>
-    <li class="sub-navigation-item sub-navigation__item js-sub-navigation-item">
-      <a href="https://www.mollie.com/en/developers/packages" class="sub-navigation-item__link">
-        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="sub-navigation-item__icon">
-          <path d="m12 23v-3h1v3h8.4361148c.6618519 0 .8634045-.0389216 1.069132-.1489459.1516575-.0811073.2647-.1941498.3458073-.3458073.1100243-.2057275.1489459-.4072801.1489459-1.069132v-18.8722296c0-.66185192-.0389216-.86340448-.1489459-1.06913204-.0811073-.15165746-.1941498-.26469996-.3458073-.34580726-.2057275-.11002431-.4072801-.1489459-1.069132-.1489459h-8.4361148v3h-1v-3h-8.4361148c-.66185192 0-.86340448.03892159-1.06913204.1489459-.15165746.0811073-.26469996.1941498-.34580726.34580726-.11002431.20572756-.1489459.40728012-.1489459 1.06913204v18.8722296c0 .6618519.03892159.8634045.1489459 1.069132.0811073.1516575.1941498.2647.34580726.3458073.20572756.1100243.40728012.1489459 1.06913204.1489459zm-8.4361148-23h17.8722296c.8915187 0 1.214805.09282561 1.5407309.2671327.3259259.1743071.5817145.43009567.7560216.7560216.1743071.32592592.2671327.64921216.2671327 1.5407309v18.8722296c0 .8915187-.0928256 1.214805-.2671327 1.5407309s-.4300957.5817145-.7560216.7560216-.6492122.2671327-1.5407309.2671327h-17.8722296c-.89151874 0-1.21480498-.0928256-1.5407309-.2671327-.32592593-.1743071-.5817145-.4300957-.7560216-.7560216-.17430709-.3259259-.2671327-.6492122-.2671327-1.5407309v-18.8722296c0-.89151874.09282561-1.21480498.2671327-1.5407309.1743071-.32592593.43009567-.5817145.7560216-.7560216.32592592-.17430709.64921216-.2671327 1.5407309-.2671327z"
-            class="sub-navigation-item__path" />
-        </svg>
-        <span class="sub-navigation-item__text">
-          Packages
-        </span>
-      </a>
+    <li class="mobile-navigation__item {%- if selected == 'api' %} is-opened {%- endif %}">
+      <a href="#" data-enhancer="mobile-navigation-toggle-group">API reference</a>
+
+      <div class="mobile-navigation__contents">
+        {%- if "/v1/" in pagename -%}
+          {%- include "sidebar-reference-v1.html" -%}
+        {%- else -%}
+          {%- include "sidebar-reference-v2.html" -%}
+        {%- endif -%}
+      </div>
     </li>
-    <li class="sub-navigation-item sub-navigation__item js-sub-navigation-item {%- if pagename.startswith("changelog/") %} sub-navigation-item--active {%- endif %}">
-      <a href="{{ pathto('changelog/v2/changelog') }}" class="sub-navigation-item__link">
-        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="sub-navigation-item__icon">
-          <path d="m12 12h6v1h-6-1v-7h1zm0 12c-6.627417 0-12-5.372583-12-12s5.372583-12 12-12 12 5.372583 12 12-5.372583 12-12 12zm0-1c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11z"
-            class="sub-navigation-item__path" />
-        </svg>
-        <span class="sub-navigation-item__text">
-          Changelog
-        </span>
-      </a>
-    </li>
-    <li class="sub-navigation-item sub-navigation__item js-sub-navigation-item sub-navigation-item--github">
-      <a href="https://github.com/mollie/api-documentation/tree/master/source/{{ sourcename|e }}" class="sub-navigation-item__link"
-        target="_blank" rel="noopener nofollow">
-        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-          class="sub-navigation-item__icon">
-          <g id="Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="Desktop:-default" transform="translate(-1054.000000, -71.000000)" fill="#999999" fill-rule="nonzero">
-              <g id="Group-32" transform="translate(455.000000, 71.000000)">
-                <g id="Group-22" transform="translate(571.000000, 0.000000)">
-                  <path d="M33.2590246,17.503941 C33.4216343,17.754388 33.5680455,18.037059 33.7048884,18.3806942 C33.7433723,18.4971185 33.8640383,18.7077891 34.0934206,18.9247579 C34.6715041,19.471557 35.5981305,19.7031661 37.0179871,19.4000394 L37.6,19.2757849 L37.6,21.9655919 C37.6,22.6302689 37.0811969,23.1199136 36.2071599,22.9563722 C31.3449517,21.3681452 28,16.8892905 28,11.7790604 C28,5.27437729 33.373618,0 40,0 C46.6270167,0 52,5.27405794 52,11.7790604 C52,16.8873749 48.6589036,21.3651185 43.7402668,22.9709305 C42.9210975,23.1267306 42.4,22.636862 42.4,21.9655919 L42.4,18.8625162 C42.4,18.0435246 42.1466799,17.4398792 41.7758749,17.124996 L40.9451015,16.4195132 L42.0368933,16.3003919 C45.2650821,15.9481765 46.86976,14.6296726 46.86976,11.1891651 C46.86976,10.1221754 46.5035555,9.21463941 45.810326,8.47231285 L45.6043564,8.25175567 L45.720132,7.97497742 C45.9623542,7.39591071 46.0344784,6.58035623 45.703745,5.60228693 C45.1932497,5.61796974 44.3555043,5.9119467 43.1549709,6.71025429 L42.9712732,6.83240609 L42.7574651,6.77419354 C41.8911818,6.5383346 40.9491299,6.41520845 40.0023529,6.41063019 C39.0509411,6.41520811 38.1099571,6.53831679 37.2456638,6.7741257 L37.0318503,6.83246138 L36.8480701,6.71036131 C35.6460824,5.91178377 34.8069896,5.61779925 34.2954029,5.60227748 C33.9653338,6.57948646 34.037582,7.39383955 34.2800792,7.97548319 L34.3951321,8.25144427 L34.1903039,8.471637 C33.4965587,9.21742148 33.12928,10.1247389 33.12928,11.1891651 C33.12928,14.6217284 34.7352738,15.9486019 37.9521781,16.3099869 L39.0353295,16.4316675 L38.2124876,17.1337022 C37.9361542,17.3694651 37.7209635,17.7895602 37.6415695,18.3540223 L37.6051813,18.6127294 L37.3623901,18.719539 C35.8966659,19.3643456 34.3760173,19.2310375 33.3931533,17.5771056 C33.3337475,17.4710588 33.2004957,17.2903253 33.0030449,17.1094239 C32.9628098,17.0725611 32.9218119,17.0376553 32.8801254,17.0048085 C33.0056509,17.1448461 33.1333796,17.3104261 33.2590246,17.503941 Z M43.36,18.8403026 L43.36,21.9367596 C43.36,22.0465561 43.366884,22.0530137 43.4971133,22.0323692 C47.9660511,20.5726565 51.04,16.4617314 51.04,11.7719551 C51.04,5.80014884 46.0968233,0.958333333 40,0.958333333 C33.9037989,0.958333333 28.96,5.80047963 28.96,11.7719551 C28.96,16.4633793 32.0374812,20.5753048 36.4461793,22.0170342 C36.6310659,22.0505928 36.64,22.0421788 36.64,21.9367596 L36.64,20.3963374 C35.2124194,20.5838665 34.1485848,20.2603231 33.4272874,19.5795155 C33.0715596,19.2437565 32.8752283,18.9017128 32.8016807,18.6768268 C32.6972348,18.416944 32.5788088,18.1887906 32.4494619,17.9899989 C32.1686654,17.5584465 31.9072722,17.3445051 31.6976178,17.2414589 C31.2457867,16.9386933 31.0160893,16.6736203 31.0460005,16.3283074 C31.0785203,15.9528786 31.3428232,15.7987662 31.6923612,15.7306245 C31.8247914,15.7048076 31.9499462,15.6970771 32.0502958,15.6977689 C32.6925027,15.7406139 33.2187818,16.0019161 33.6580841,16.4035397 C33.9396037,16.6609135 34.1298906,16.9184549 34.2283575,17.0941708 C34.8525213,18.1420621 35.7545604,18.2926635 36.7386986,17.9326563 C36.8037417,17.6297067 36.9026876,17.3537231 37.0304701,17.1104304 C33.8901611,16.5486105 32.16928,14.8485053 32.16928,11.183318 C32.16928,9.98476956 32.5594109,8.92986349 33.2894996,8.05496438 C33.0302055,7.24451919 33.0183898,6.19493433 33.5016758,4.99552134 L33.585248,4.78811296 L33.8020981,4.72026183 C33.8358709,4.70969451 33.8808897,4.6992353 33.9371669,4.69060476 C34.645343,4.58200074 35.7254355,4.86919142 37.2028347,5.81583238 C38.0905167,5.59422846 39.0404658,5.47926918 40.0023529,5.47467164 C40.9599766,5.47926962 41.9105119,5.59425033 42.7998187,5.8158773 C44.2759762,4.86920168 45.3548505,4.58196375 46.0621217,4.69062485 C46.118388,4.69926928 46.1634116,4.70974945 46.1972053,4.72034433 L46.4137655,4.78823947 L46.4973084,4.9953828 C46.9810576,6.19483255 46.969717,7.2457311 46.7107911,8.05464162 C47.4407979,8.92730847 47.82976,9.9829177 47.82976,11.183318 C47.82976,14.8547099 46.1108061,16.5484745 42.9652542,17.102312 C43.2173876,17.5734177 43.36,18.1649219 43.36,18.8403026 Z"
-                    class="sub-navigation-item__path" id="Shape"></path>
-                </g>
-              </g>
-            </g>
-          </g>
-        </svg>
-        <span class="sub-navigation-item__text">
-          Edit on Github
-        </span>
-      </a>
+    <li class="mobile-navigation__item {%- if selected == 'changelog' %} is-opened {%- endif %}">
+      <a href="#" data-enhancer="mobile-navigation-toggle-group">Changelog</a>
+
+      <div class="mobile-navigation__contents">
+        {%- if "/v1/" in pagename -%}
+          {%- include "sidebar-changelog-v1.html" -%}
+        {%- else -%}
+          {%- include "sidebar-changelog-v2.html" -%}
+        {%- endif -%}
+      </div>
     </li>
   </ul>
-</div>
+</nav>

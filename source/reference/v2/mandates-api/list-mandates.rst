@@ -14,112 +14,85 @@ List mandates
 
 Retrieve all mandates for the given ``customerId``, ordered from newest to oldest.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
 Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``cst_8wmqcHMN4U``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: from
+   :type: string
+   :condition: optional
 
-   * - ``from``
+   Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the mandate with this ID. The mandate with
+   this ID is included in the result set as well.
 
-       .. type:: string
-          :required: false
+.. parameter:: limit
+   :type: integer
+   :condition: optional
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the mandate with this ID. The mandate
-       with this ID is included in the result set as well.
-
-   * - ``limit``
-
-       .. type:: integer
-          :required: false
-
-     - The number of mandates to return (with a maximum of 250).
+   The number of mandates to return (with a maximum of 250).
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you can enable test mode through the ``testmode`` query string parameter.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` query string parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to true to only retrieve mandates made in test mode. By default, only live mandates are
-       returned.
+   Set this to true to only retrieve mandates made in test mode. By default, only live mandates are returned.
 
 Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: count
+   :type: integer
 
-   * - ``count``
+   The number of mandates found in ``_embedded``, which is either the requested number (with a maximum of 250) or the
+   default number.
 
-       .. type:: integer
+.. parameter:: _embedded
+   :type: object
+   :collapse-children: false
 
-     - The number of mandates found in ``_embedded``, which is either the requested number (with a maximum of 250) or
-       the default number.
+   The object containing the queried data.
 
-   * - ``_embedded``
+   .. parameter:: mandates
+      :type: array
 
-       .. type:: object
+      An array of mandate objects as described in :doc:`Get mandate </reference/v2/mandates-api/get-mandate>`.
 
-     - The object containing the queried data.
+.. parameter:: _links
+   :type: object
 
-       .. list-table::
-          :widths: auto
+   Links to help navigate through the lists of mandates. Every URL object will contain an ``href`` and a ``type`` field.
 
-          * - ``mandates``
+   .. parameter:: self
+      :type: URL object
 
-              .. type:: array
+      The URL to the current set of mandates.
 
-            - An array of mandate objects as described in :doc:`Get mandate </reference/v2/mandates-api/get-mandate>`.
+   .. parameter:: previous
+      :type: URL object
 
-   * - ``_links``
+      The previous set of mandates, if available.
 
-       .. type:: object
+   .. parameter:: next
+      :type: URL object
 
-     - Links to help navigate through the lists of mandates. Every URL object will contain an ``href`` and a ``type``
-       field.
+      The next set of mandates, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: documentation
+      :type: URL object
 
-          * - ``self``
-
-              .. type:: URL object
-
-            - The URL to the current set of mandates.
-
-          * - ``previous``
-
-              .. type:: URL object
-
-            - The previous set of mandates, if available.
-
-          * - ``next``
-
-              .. type:: URL object
-
-            - The next set of mandates, if available.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the mandates list endpoint documentation.
+      The URL to the mandates list endpoint documentation.
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -135,6 +108,17 @@ Example
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
       $customer = $mollie->customers->get("cst_stTC2WHAuS");
       $mandates = $customer->mandates();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      customer = mollie_client.customers.get("cst_4qqhO89gsT")
+      mandates = customer.mandates.list()
 
    .. code-block:: ruby
       :linenos:
@@ -154,9 +138,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const mandates = await mollieClient.customers_mandates.page({ customerId: 'cst_stTC2WHAuS' });
-      })();
+      const mandates = mollieClient.customerMandates.iterate({ customerId: 'cst_stTC2WHAuS' });
 
 Response
 ^^^^^^^^
@@ -194,7 +176,7 @@ Response
                            "type": "application/hal+json"
                        },
                        "documentation": {
-                           "href": "https://mollie.com/en/docs/reference/customers/create-mandate",
+                           "href": "https://docs.mollie.com/reference/v2/mandates-api/create-mandate",
                            "type": "text/html"
                        }
                    }

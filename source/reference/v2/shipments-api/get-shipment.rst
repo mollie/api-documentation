@@ -21,119 +21,93 @@ the shipment's ID, for example ``shp_3wmsgCJN4U``
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you can enable test mode through the ``testmode`` query string parameter.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` query string parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to retrieve a test mode shipment.
+   Set this to ``true`` to retrieve a test mode shipment.
 
 Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains a shipment object. Will always contain ``shipment`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains a shipment object. Will always contain ``shipment`` for this endpoint.
+   The shipment's unique identifier, for example ``shp_3wmsgCJN4U``.
 
-   * - ``id``
+.. parameter:: orderId
+   :type: string
 
-       .. type:: string
+   The order this shipment was created on, for example ``ord_8wmqcHMN4U``.
 
-     - The shipment's unique identifier, for example ``shp_3wmsgCJN4U``.
+.. parameter:: createdAt
+   :type: datetime
 
-   * - ``orderId``
+   The shipment's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-       .. type:: string
+.. parameter:: tracking
+   :type: object
 
-     - The order this shipment was created on, for example ``ord_8wmqcHMN4U``.
+   An object containing shipment tracking details. Will be omitted when no tracking details are available.
 
-   * - ``createdAt``
+   .. parameter:: carrier
+      :type: string
 
-       .. type:: datetime
+      The name of the postal carrier.
 
-     - The shipment's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+   .. parameter:: code
+      :type: string
 
-   * - ``tracking``
+      The track and trace code for the shipment.
 
-       .. type:: object
+   .. parameter:: url
+      :type: string
 
-     - An object containing shipment tracking details. Will be omitted when no tracking details are available.
+      The URL where your customer can track the shipment.
 
-       .. list-table::
-          :widths: auto
+.. parameter:: lines
+   :type: array
 
-          * - ``carrier``
+   An array of :ref:`order line objects<order-lines-details>` as described in
+   :doc:`Get order </reference/v2/orders-api/get-order>`.
 
-              .. type:: string
+   The lines will show the ``quantity``, ``discountAmount``, ``vatAmount`` and ``totalAmount`` shipped in this shipment.
+   If the line was partially shipped, these values will be different from the values in response from the *Get order*
+   endpoint.
 
-            - The name of the postal carrier.
+.. parameter:: _links
+   :type: object
 
-          * - ``code``
+   An object with several URL objects relevant to the shipment. Every URL object will contain an ``href`` and a ``type``
+   field.
 
-              .. type:: string
+   .. parameter:: self
+      :type: URL object
 
-            - The track and trace code for the shipment.
+      The API resource URL of the shipment itself.
 
-          * - ``url``
+   .. parameter:: order
+      :type: URL object
 
-              .. type:: string
+      The resource URL of the order this shipment was created for.
 
-            - The URL where your customer can track the shipment.
+   .. parameter:: documentation
+      :type: URL object
 
-   * - ``lines``
-
-       .. type:: array
-
-     - An array of :ref:`order line objects<order-lines-details>` as described in
-       :doc:`Get order </reference/v2/orders-api/get-order>`.
-
-       The lines will show the ``quantity``, ``discountAmount``, ``vatAmount`` and ``totalAmount`` shipped in this
-       shipment. If the line was partially shipped, these values will be different from the values in response from the
-       Get order API.
-
-   * - ``_links``
-
-       .. type:: object
-
-     - An object with several URL objects relevant to the shipment. Every URL object will contain an ``href`` and a
-       ``type`` field.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``self``
-
-              .. type:: URL object
-
-            - The API resource URL of the shipment itself.
-
-          * - ``order``
-
-              .. type:: URL object
-
-            - The resource URL of the order this shipment was created for.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the shipment retrieval endpoint documentation.
+      The URL to the shipment retrieval endpoint documentation.
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -154,10 +128,13 @@ Example
    .. code-block:: python
       :linenos:
 
+      from mollie.api.client import Client
+
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      order = mollie_client.orders.get('ord_kEn1PlbGa')
-      shipment = order.get_shipment('shp_3wmsgCJN4U')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      order = mollie_client.orders.get("ord_kEn1PlbGa")
+      shipment = order.shipments.get("shp_3wmsgCJN4U")
 
    .. code-block:: ruby
       :linenos:
@@ -179,11 +156,9 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const shipment = await mollieClient.orders_shipments.get('shp_3wmsgCJN4U', {
-          orderId: 'ord_kEn1PlbGa',
-        });
-      })();
+      const shipment = await mollieClient.orderShipments.get('shp_3wmsgCJN4U', {
+        orderId: 'ord_kEn1PlbGa'
+      });
 
 Response
 ^^^^^^^^

@@ -44,6 +44,17 @@ Request
      curl -X DELETE https://api.mollie.com/v2/profiles/pfl_v9hTwCvYqw/methods/giftcard/issuers/festivalcadeau \
          -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
 
+  .. code-block:: python
+     :linenos:
+
+     from mollie.api.client import Client
+
+     mollie_client = Client()
+     mollie_client.set_access_token("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ")
+
+     profile = mollie_client.profiles.get("pfl_v9hTwCvYqw")
+     profile.methods.disable_issuer("giftcard", "festivalcadeau")
+
 Response
 ^^^^^^^^
 .. code-block:: none

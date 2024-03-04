@@ -16,88 +16,68 @@ List all permissions available with the current app access token.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: offset
+   :type: integer
+   :condition: optional
 
-   * - ``offset``
+   The number of permissions to skip.
 
-       .. type:: integer
-          :required: false
+.. parameter:: count
+   :type: integer
+   :condition: optional
 
-     - The number of permissions to skip.
-
-   * - ``count``
-
-       .. type:: integer
-          :required: false
-
-     - The number of permissions to return (with a maximum of 250).
+   The number of permissions to return (with a maximum of 250).
 
 Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: totalCount
+   :type: integer
 
-   * - ``totalCount``
+   The total number of permissions available.
 
-       .. type:: integer
+.. parameter:: offset
+   :type: integer
 
-     - The total number of permissions available.
+   The number of skipped permissions as requested.
 
-   * - ``offset``
+.. parameter:: count
+   :type: integer
 
-       .. type:: integer
+   The number of permissions found in ``data``, which is either the requested number (with a maximum of 250) or the
+   default number.
 
-     - The number of skipped permissions as requested.
+.. parameter:: data
+   :type: array
 
-   * - ``count``
+   An array of permission objects as described in
+   :doc:`Get permission </reference/v1/permissions-api/get-permission>`.
 
-       .. type:: integer
+.. parameter:: links
+   :type: object
 
-     - The number of permissions found in ``data``, which is either the requested number (with a maximum of 250) or the
-       default number.
+   Links to help navigate through the lists of permissions, based on the given offset.
 
-   * - ``data``
+   .. parameter:: previous
+      :type: string
 
-       .. type:: array
+      The previous set of permissions, if available.
 
-     - An array of permission objects as described in
-       :doc:`Get permission </reference/v1/permissions-api/get-permission>`.
+   .. parameter:: next
+      :type: string
 
-   * - ``links``
+      The next set of permissions, if available.
 
-       .. type:: object
+   .. parameter:: first
+      :type: string
 
-     - Links to help navigate through the lists of permissions, based on the given offset.
+      The first set of permissions, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: last
+      :type: string
 
-          * - ``previous``
-
-              .. type:: string
-
-            - The previous set of permissions, if available.
-
-          * - ``next``
-
-              .. type:: string
-
-            - The next set of permissions, if available.
-
-          * - ``first``
-
-              .. type:: string
-
-            - The first set of permissions, if available.
-
-          * - ``last``
-
-              .. type:: string
-
-            - The last set of permissions, if available.
+      The last set of permissions, if available.
 
 Example
 -------

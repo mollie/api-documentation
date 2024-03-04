@@ -25,18 +25,15 @@ Replace ``id`` in the endpoint URL by the payment's ID, for example ``tr_7UhSN1z
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you can enable test mode through the ``testmode`` parameter.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to cancel a test mode payment.
+   Set this to ``true`` to cancel a test mode payment.
 
 Response
 --------
@@ -46,7 +43,6 @@ A Payment object is returned, as described in :doc:`/reference/v2/payments-api/g
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -68,8 +64,9 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      canceled_payment = mollie_client.payments.delete('tr_WDqYK6vllg')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      canceled_payment = mollie_client.payments.delete("tr_WDqYK6vllg")
 
    .. code-block:: ruby
       :linenos:
@@ -88,9 +85,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const canceledPayment = await mollieClient.payments.delete('tr_Eq8xzWUPA4');
-      })();
+      const canceledPayment = await mollieClient.payments.cancel('tr_Eq8xzWUPA4');
 
 Response
 ^^^^^^^^
@@ -130,7 +125,7 @@ Response
            },
            "dashboard": {
                "href": "https://www.mollie.com/dashboard/org_12345678/payments/tr_WDqYK6vllg",
-               "type": "application/json"
+               "type": "text/html"
            },
            "documentation": {
                "href": "https://docs.mollie.com/reference/v2/payments-api/cancel-payment",

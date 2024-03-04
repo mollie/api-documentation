@@ -15,7 +15,7 @@ List captures
 Retrieve all captures for a certain payment.
 
 Captures are used for payments that have the *authorize-then-capture* flow. The only payment methods at the moment
-that have this flow are *Klarna Pay later* and *Klarna Slice it*.
+that have this flow are *Klarna Pay now*, *Klarna Pay later* and *Klarna Slice it*.
 
 Parameters
 ----------
@@ -23,94 +23,72 @@ Replace ``paymentId`` in the endpoint URL by the payment's ID. For example: ``/v
 
 Embedding of related resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This endpoint allows for embedding additional information by appending the following values via the ``embed``
-query string parameter.
+This endpoint allows for embedding additional information by appending the following values via the ``embed`` query
+string parameter.
 
 * ``payment`` Include the :doc:`payments </reference/v2/payments-api/get-payment>` the captures were created for.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you can enable test mode through the ``testmode`` query string parameter.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` query string parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to retrieve captures for a test mode payment.
+   Set this to ``true`` to retrieve captures for a test mode payment.
 
 Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: count
+   :type: integer
 
-   * - ``count``
+   The number of captures found in ``_embedded``, which is either the requested number (with a maximum of 250) or the
+   default number.
 
-       .. type:: integer
+.. parameter:: _embedded
+   :type: object
+   :collapse-children: false
 
-     - The number of captures found in ``_embedded``, which is either the requested number (with a maximum of 250) or
-       the default number.
+   The object containing the queried data.
 
-   * - ``_embedded``
+   .. parameter:: captures
+      :type: array
 
-       .. type:: object
+      An array of capture objects as described in :doc:`Get capture </reference/v2/captures-api/get-capture>`.
 
-     - The object containing the queried data.
+.. parameter:: _links
+   :type: object
 
-       .. list-table::
-          :widths: auto
+   Links to help navigate through the lists of captures. Every URL object will contain an ``href`` and a ``type`` field.
 
-          * - ``captures``
+   .. parameter:: self
+      :type: object
 
-              .. type:: array
+      The URL to the current set of captures.
 
-            - An array of capture objects as described in :doc:`Get capture </reference/v2/captures-api/get-capture>`.
+   .. parameter:: previous
+      :type: object
 
-   * - ``_links``
+      The previous set of captures, if available.
 
-       .. type:: object
+   .. parameter:: next
+      :type: object
 
-     - Links to help navigate through the lists of captures. Every URL object will contain an ``href`` and a ``type``
-       field.
+      The next set of captures, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: documentation
+      :type: object
 
-          * - ``self``
-
-              .. type:: object
-
-            - The URL to the current set of captures.
-
-          * - ``previous``
-
-              .. type:: object
-
-            - The previous set of captures, if available.
-
-          * - ``next``
-
-              .. type:: object
-
-            - The next set of captures, if available.
-
-          * - ``documentation``
-
-              .. type:: object
-
-            - The URL to the List payment captures endpoint documentation.
+      The URL to the List payment captures endpoint documentation.
 
 Example
 -------
-
 .. code-block-selector::
-
    .. code-block:: bash
       :linenos:
 
@@ -126,6 +104,17 @@ Example
 
       $payment = $mollie->payments->get("tr_WDqYK6vllg");
       $captures = $payment->captures();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      payment = mollie_client.payments.get("tr_WDqYK6vllg")
+      captures = payment.captures.list()
 
    .. code-block:: ruby
       :linenos:
@@ -144,9 +133,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const captures = await mollieClient.payments_captures.list({ paymentId: 'tr_WDqYK6vllg'});
-      })();
+      const captures = mollieClient.paymentCaptures.iterate({ paymentId: 'tr_WDqYK6vllg' });
 
 Response
 ^^^^^^^^
@@ -161,7 +148,7 @@ Response
            "captures": [
                {
                    "resource": "capture",
-                   "id": "cpt_4qqhO89gsT",
+                   "id": "cpt_mNepDkEtco6ah3QNPUGYH",
                    "mode": "live",
                    "amount": {
                        "value": "1027.99",
@@ -177,7 +164,7 @@ Response
                    "createdAt": "2018-08-02T09:29:56+00:00",
                    "_links": {
                        "self": {
-                           "href": "https://api.mollie.com/v2/payments/tr_WDqYK6vllg/captures/cpt_4qqhO89gsT",
+                           "href": "https://api.mollie.com/v2/payments/tr_WDqYK6vllg/captures/cpt_mNepDkEtco6ah3QNPUGYH",
                            "type": "application/hal+json"
                        },
                        "payment": {

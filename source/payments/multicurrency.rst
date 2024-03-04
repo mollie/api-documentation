@@ -1,18 +1,9 @@
 Multicurrency
 =============
-Mollie offers payments in non-EUR currencies via its ``v2`` APIs. This allows your shoppers outside of the
-Eurozone to pay in their own currency. The payments will be settled to your account in ``EUR``. Mollie will take care of
-the conversion. You can retrieve the settlement amount via the API or view it in your
-`Mollie Dashboard <https://www.mollie.com/dashboard>`_.
-
-When creating a payment in a non-EUR currency, we will immediately give you the amount we will settle in the API
-response.
-
-Creating payments, orders, refunds or subscriptions in a different currency than ``EUR`` is only possible via the ``v2``
-API. Review the :doc:`Payments API reference </reference/v2/payments-api/create-payment>` for more information.
-
-Payments in non-EUR currencies (created via the ``v2`` API) that are retrieved via the ``v1`` API will show the
-settlement amount (in ``EUR``) in the ``amount`` field.
+Mollie offers payments in non-EUR currencies via its ``v2`` APIs. This allows your shoppers outside of the eurozone to
+pay in their own currency. If you have a Mollie balance in the same currency as the payment, it will be settled on that
+balance directly without conversion. In all other cases, the payment will be converted to your primary balance currency.
+You can view the converted amount via the API or via your `Mollie Dashboard <https://www.mollie.com/dashboard>`_.
 
 Supported currencies
 --------------------
@@ -38,15 +29,13 @@ Support for other currencies than ``EUR`` varies per payment method.
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 | Czech koruna                   | ``CZK``  |              2 | PayPal, credit card                                     |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Danish krone                   | ``DKK``  |              2 | PayPal, credit card                                     |
+| Danish krone                   | ``DKK``  |              2 | PayPal, credit card, Klarna                             |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 | Euro                           | ``EUR``  |              2 | All payment methods                                     |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 | British pound                  | ``GBP``  |              2 | PayPal, credit card                                     |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 | Hong Kong dollar               | ``HKD``  |              2 | PayPal, credit card                                     |
-+--------------------------------+----------+----------------+---------------------------------------------------------+
-| Croatian kuna                  | ``HRK``  |              2 | Credit card                                             |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 | Hungarian forint               | ``HUF``  |              2 | PayPal, credit card                                     |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
@@ -64,7 +53,7 @@ Support for other currencies than ``EUR`` varies per payment method.
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 | Malaysian ringgit              | ``MYR``  |              2 | PayPal                                                  |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Norwegian krone                | ``NOK``  |              2 | PayPal, credit card                                     |
+| Norwegian krone                | ``NOK``  |              2 | PayPal, credit card, Klarna                             |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 | New Zealand dollar             | ``NZD``  |              2 | PayPal, credit card                                     |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
@@ -76,7 +65,7 @@ Support for other currencies than ``EUR`` varies per payment method.
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 | Russian ruble                  | ``RUB``  |              2 | PayPal, credit card                                     |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
-| Swedish krona                  | ``SEK``  |              2 | PayPal, credit card                                     |
+| Swedish krona                  | ``SEK``  |              2 | PayPal, credit card, Klarna                             |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
 | Singapore dollar               | ``SGD``  |              2 | PayPal, credit card                                     |
 +--------------------------------+----------+----------------+---------------------------------------------------------+
@@ -95,7 +84,7 @@ Support for other currencies than ``EUR`` varies per payment method.
 
 Filtering payment methods
 -------------------------
-When integrating multicurrency we can use the :doc:`Methods API </reference/v2/methods-api/list-methods>` to retrieve
+When integrating multicurrency we can use the :doc:`Methods API </reference/v2/methods-api/overview>` to retrieve
 all methods available for the given amount and currency.
 
 Request

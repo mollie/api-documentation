@@ -14,81 +14,216 @@ Update order
 
 This endpoint can be used to update the billing and/or shipping address of an order.
 
-When updating an order that uses a *pay after delivery* method such as *Klarna Pay later*,
-Klarna may decline the requested changes, resulting in an error response from the Mollie API.
-The order remains intact, though the requested changes are not persisted.
+When updating an order that uses a Klarna payment method, Klarna may decline the requested changes, resulting in an
+error response from the Mollie API. The order remains intact, though the requested changes are not persisted.
 
 Parameters
 ----------
 Replace ``id`` in the endpoint URL by the order's ID, for example ``ord_8wmqcHMN4U``.
 
-Please note that even though all parameters are optional, at least one of them needs to be provided
-in the request.
+Even though all parameters are optional, at least one of them needs to be provided in the request.
 
-.. list-table::
-   :widths: auto
+.. parameter:: billingAddress
+   :type: address object
+   :condition: optional
 
-   * - ``billingAddress``
+   The billing person and address for the order.
 
-       .. type:: address object
-          :required: false
+   Note that the billing address is updated in the Mollie API only. If the update operation is supported by the supplier,
+   it will be updated there as well.
 
-     - The billing person and address for the order. See :ref:`order-address-details` for the exact
-       fields needed.
+   Refer to the documentation of the :ref:`address object <address-object>` for more information on which formats are
+   accepted.
 
-   * - ``shippingAddress``
+   .. parameter:: organizationName
+      :type: string
+      :condition: optional
 
-       .. type:: address object
-          :required: false
+      The person's organization, if applicable.
 
-     - The shipping address for the order. See :ref:`order-address-details` for the exact fields
-       needed.
+   .. parameter:: title
+      :type: string
+      :condition: optional
 
-   * - ``orderNumber``
+      The title of the person, for example *Mr.* or *Mrs.*.
 
-       .. type:: string
-          :required: false
+   .. parameter:: givenName
+      :type: string
+      :condition: required
 
-     - The order number. For example, ``16738``.
+      The given name (first name) of the person.
 
-       We recommend that each order should have a unique order number.
+   .. parameter:: familyName
+      :type: string
+      :condition: required
 
-   * - ``redirectUrl``
+      The family name (surname) of the person.
 
-       .. type:: string
-          :required: false
+   .. parameter:: email
+      :type: string
+      :condition: required
 
-     - The URL your customer will be redirected to after the payment process.
+      The email address of the person.
 
-       .. note::
-          Updating this field is only possible when the payment is not yet finalized.
+   .. parameter:: phone
+      :type: phone number
+      :condition: optional
 
-   * - ``webhookUrl``
+      The phone number of the person. Some payment methods require this information. If you have it, you should pass it
+      so that your customer does not have to enter it again in the checkout. Must be in the
+      `E.164 <https://en.wikipedia.org/wiki/E.164>`_ format. For example ``+31208202070``.
 
-       .. type:: string
-          :required: false
+   .. parameter:: streetAndNumber
+      :type: string
+      :condition: required
 
-     - Set the webhook URL, where we will send :doc:`order status changes </orders/status-changes>` to.
+   .. parameter:: streetAdditional
+      :type: string
+      :condition: optional
 
-       .. note:: The ``webhookUrl`` must be reachable from Mollie's point of view, so you cannot use ``localhost``. If
-          you want to use webhook during development on ``localhost``, you must use a tool like
-          `ngrok <https://lornajane.net/posts/2015/test-incoming-webhooks-locally-with-ngrok>`_ to have the webhooks
-          delivered to your local machine.
+   .. parameter:: postalCode
+      :type: string
+      :condition: conditional
+
+      This field is required if the provided ``country`` has a postal code system.
+
+   .. parameter:: city
+      :type: string
+      :condition: required
+
+   .. parameter:: region
+      :type: string
+      :condition: optional
+
+   .. parameter:: country
+      :type: string
+      :condition: required
+
+      The country of the address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+
+.. parameter:: shippingAddress
+   :type: address object
+   :condition: optional
+
+   The shipping address for the order.
+
+   This field is optional, but if it is provided, then the full name and address have to be in a valid format. Refer to
+   the documentation of the :ref:`address object <address-object>` for more information on which formats are
+   accepted.
+
+   .. parameter:: organizationName
+      :type: string
+      :condition: optional
+
+      The person's organization, if applicable.
+
+   .. parameter:: title
+      :type: string
+      :condition: optional
+
+      The title of the person, for example *Mr.* or *Mrs.*.
+
+   .. parameter:: givenName
+      :type: string
+      :condition: required
+
+      The given name (first name) of the person.
+
+   .. parameter:: familyName
+      :type: string
+      :condition: required
+
+      The family name (surname) of the person.
+
+   .. parameter:: email
+      :type: string
+      :condition: required
+
+      The email address of the person.
+
+   .. parameter:: phone
+      :type: phone number
+      :condition: optional
+
+      The phone number of the person. Some payment methods require this information. If you have it, you should pass it
+      so that your customer does not have to enter it again in the checkout. Must be in the
+      `E.164 <https://en.wikipedia.org/wiki/E.164>`_ format. For example ``+31208202070``.
+
+   .. parameter:: streetAndNumber
+      :type: string
+      :condition: required
+
+   .. parameter:: streetAdditional
+      :type: string
+      :condition: optional
+
+   .. parameter:: postalCode
+      :type: string
+      :condition: conditional
+
+      This field is required if the provided ``country`` has a postal code system.
+
+   .. parameter:: city
+      :type: string
+      :condition: required
+
+   .. parameter:: region
+      :type: string
+      :condition: optional
+
+   .. parameter:: country
+      :type: string
+      :condition: required
+
+      The country of the address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+
+.. parameter:: orderNumber
+   :type: string
+   :condition: optional
+
+   The order number. For example, ``16738``.
+
+   We recommend that each order should have a unique order number.
+
+.. parameter:: redirectUrl
+   :type: string
+   :condition: optional
+
+   The URL your customer will be redirected to after the payment process.
+
+   Updating this field is only possible when the payment is not yet finalized.
+
+.. parameter:: cancelUrl
+   :type: string
+   :condition: optional
+
+   The URL your consumer will be redirected to when the consumer explicitly cancels the order. If this URL is not
+   provided, the consumer will be redirected to the ``redirectUrl`` instead — see above.
+
+   Updating this field is only possible when the payment is not yet finalized.
+
+.. parameter:: webhookUrl
+   :type: string
+   :condition: optional
+
+   Set the webhook URL, where we will send :doc:`order status changes </orders/status-changes>` to.
+
+   The ``webhookUrl`` must be reachable from Mollie's point of view, so you cannot use ``localhost``. If you want to use
+   webhook during development on ``localhost``, you should use a tool like
+   `ngrok <https://lornajane.net/posts/2015/test-incoming-webhooks-locally-with-ngrok>`_ to have the webhooks delivered
+   to your local machine.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you can enable test mode through the ``testmode`` parameter.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to update a test mode order.
+   Set this to ``true`` to update a test mode order.
 
 Response
 --------
@@ -99,7 +234,6 @@ An order object is returned, as described in
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -130,40 +264,44 @@ Example
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-      $order = $mollie->orders->get("ord_kEn1PlbGa");
-      $order->billingAddress->organizationName = "Mollie B.V.";
-      $order->billingAddress->streetAndNumber = "Keizersgracht 126";
-      $order->billingAddress->city = "Amsterdam";
-      $order->billingAddress->region = "Noord-Holland";
-      $order->billingAddress->postalCode = "1234AB";
-      $order->billingAddress->country = "NL";
-      $order->billingAddress->title = "Dhr";
-      $order->billingAddress->givenName = "Piet";
-      $order->billingAddress->familyName = "Mondriaan";
-      $order->billingAddress->email = "piet@mondriaan.com";
-      $order->billingAddress->phone = "+31208202070";
-      $order->update();
+      $orderId = "ord_kEn1PlbGa";
+      $order = $mollie->orders->update($orderId, [
+        "billingAddress" => [
+          "organizationName" => "Mollie B.V.",
+          "streetAndNumber" => "Keizersgracht 126",
+          "city" => "Amsterdam",
+          "region" => "Noord-Holland",
+          "postalCode" => "1234AB",
+          "country" => "NL",
+          "title" => "Dhr",
+          "givenName" => "Piet",
+          "familyName" => "Mondriaan",
+          "email" => "piet@mondriaan.com",
+          "phone" => "+31208202070",
+        ],
+      ]);
 
    .. code-block:: python
       :linenos:
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      mollie_client.order.update('ord_kEn1PlbGa', {
-        'billingAddress': {
-            'organizationName': 'Mollie B.V.',
-            'streetAndNumber': 'Keizersgracht 126',
-            'city': 'Amsterdam',
-            'region': 'Noord-Holland',
-            'postalCode': '1234AB',
-            'country': 'NL',
-            'title': 'Dhr',
-            'givenName': 'Piet',
-            'familyName': 'Mondriaan',
-            'email': 'piet@mondriaan.com',
-            'phone': '+31208202070'
-        }
-      }
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      mollie_client.order.update("ord_kEn1PlbGa", {
+          "billingAddress": {
+              "organizationName": "Mollie B.V.",
+              "streetAndNumber": "Keizersgracht 126",
+              "city": "Amsterdam",
+              "region": "Noord-Holland",
+              "postalCode": "1234AB",
+              "country": "NL",
+              "title": "Dhr",
+              "givenName": "Piet",
+              "familyName": "Mondriaan",
+              "email": "piet@mondriaan.com",
+              "phone": "+31208202070",
+          }
+      })
 
    .. code-block:: ruby
       :linenos:
@@ -197,23 +335,21 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const order = await mollieClient.orders.update('ord_kEn1PlbGa', {
-           billingAddress: {
-             organizationName: 'Mollie B.V.',
-             streetAndNumber: 'Keizersgracht 126',
-             city: 'Amsterdam',
-             region: 'Noord-Holland',
-             postalCode: '1234AB',
-             country: 'NL',
-             title: 'Dhr',
-             givenName: 'Piet',
-             familyName: 'Mondriaan',
-             email: 'piet@mondriaan.com',
-             phone: '+31208202070',
-          },
-        });
-      })();
+      const order = await mollieClient.orders.update('ord_kEn1PlbGa', {
+         billingAddress: {
+           organizationName: 'Mollie B.V.',
+           streetAndNumber: 'Keizersgracht 126',
+           city: 'Amsterdam',
+           region: 'Noord-Holland',
+           postalCode: '1234AB',
+           country: 'NL',
+           title: 'Dhr',
+           givenName: 'Piet',
+           familyName: 'Mondriaan',
+           email: 'piet@mondriaan.com',
+           phone: '+31208202070'
+        }
+      });
 
 Response
 ^^^^^^^^

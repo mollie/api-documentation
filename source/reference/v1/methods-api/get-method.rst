@@ -25,50 +25,41 @@ Parameters
 ----------
 Replace ``id`` in the endpoint URL by the payment method's ID, for example ``creditcard``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: include
+   :type: string
+   :condition: required
 
-   * - ``include``
+   Include additional data. Must be a comma-separated list of one or more includes.
 
-       .. type:: string
-          :required: true
+.. parameter:: locale
+   :type: string
+   :condition: optional
 
-     - Include additional data. Must be a comma-separated list of one or more includes.
+   Passing a locale will translate the payment method name to the corresponding language.
 
-   * - ``locale``
-
-       .. type:: string
-          :required: false
-
-     - Passing a locale will translate the payment method name to the corresponding language.
-
-       Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
-       ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
-       ``lt_LT``
+   Possible values: ``en_US`` ``en_GB`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
+   ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV`` ``lt_LT``
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the only mandatory extra query string parameter is the ``profileId`` parameter. With
-it, you can specify which profile you want to retrieve a method for. Organizations can have multiple profiles for each
-of their websites. See :doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more information.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, the only mandatory extra query string parameter is the ``profileId`` parameter.
+With it, you can specify which profile you want to retrieve a method for. Organizations can have multiple profiles for
+each of their websites. See :doc:`Profiles API </reference/v1/profiles-api/create-profile>` for more information.
 
-.. list-table::
-   :widths: auto
+.. parameter:: profileId
+   :type: string
+   :condition: required
+   :collapse: true
 
-   * - ``profileId``
+   The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
 
-       .. type:: string
-          :required: true
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-     - The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to true to only retrieve the payment method if it is available in test mode.
+   Set this to true to only retrieve the payment method if it is available in test mode.
 
 Includes
 ^^^^^^^^
@@ -81,71 +72,53 @@ Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains a payment method object. Will always contain ``method`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains a payment method object. Will always contain ``method`` for this endpoint.
+   The identifier uniquely referring to this payment method. When supplying this ID as the ``method`` parameter
+   during :doc:`payment creation </reference/v1/payments-api/create-payment>`, the payment method selection screen is
+   skipped.
 
-   * - ``id``
+.. parameter:: description
+   :type: string
 
-       .. type:: string
+   The full name of the payment method.
 
-     - The identifier uniquely referring to this payment method. When supplying this ID as the ``method`` parameter
-       during :doc:`payment creation </reference/v1/payments-api/create-payment>`, the payment method selection screen
-       is skipped.
+.. parameter:: amount
+   :type: object
 
-   * - ``description``
+   The minimum and maximum allowed payment amount will differ between payment methods.
 
-       .. type:: string
+   .. parameter:: minimum
+      :type: decimal
 
-     - The full name of the payment method.
+      The minimum payment amount in EUR required to use this payment method.
 
-   * - ``amount``
+   .. parameter:: maximum
+      :type: decimal
 
-       .. type:: object
+      The maximum payment amount in EUR allowed when using this payment method. For gift cards, the maximum amount may
+      be ignored.
 
-     - The minimum and maximum allowed payment amount will differ between payment methods.
+.. parameter:: image
+   :type: object
 
-       .. list-table::
-          :widths: auto
+   URLs of images representing the payment method.
 
-          * - ``minimum``
+   .. parameter:: normal
+      :type: string
 
-              .. type:: decimal
+      The URL for a payment method icon of 55x37 pixels.
 
-            - The minimum payment amount in EUR required to use this payment method.
+   .. parameter:: bigger
+      :type: string
 
-          * - ``maximum``
-
-              .. type:: decimal
-
-            - The maximum payment amount in EUR allowed when using this payment method. For gift cards, the maximum
-              amount may be ignored.
-
-   * - ``image``
-
-       .. type:: object
-
-     - URLs of images representing the payment method.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``normal``
-
-              .. type:: string
-
-            - The URL for a payment method icon of 55x37 pixels.
-
-          * - ``bigger``
-
-              .. type:: string
-
-            - The URL for a payment method icon of 110x74 pixels.
+      The URL for a payment method icon of 110x74 pixels.
 
 Example
 -------

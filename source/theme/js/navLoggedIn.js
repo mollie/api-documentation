@@ -1,20 +1,25 @@
 import { enhance } from './utils';
 
-export default enhance('nav-logged-in', element => {
+export default enhance('nav-logged-in', (element) => {
   if (document.cookie.indexOf('mollieId') < 0) {
     return;
   }
-  const item = element.querySelector('.js-login-nav-item');
 
-  if (item) {
-    item.style.display = 'none';
+  const loginLink = element.querySelector('.js-login-nav-link');
+
+  if (loginLink) {
+    loginLink.classList.add('is-hidden');
   }
 
-  const link = element.querySelector('.js-signup-nav-link');
+  const signupLink = element.querySelector('.js-signup-nav-link');
 
-  if (link) {
-    link.classList.add('is-dashboard');
-    link.href = element.getAttribute('data-dashboard-url');
-    link.textContent = 'Dashboard';
+  if (signupLink) {
+    signupLink.classList.add('is-hidden');
+  }
+
+  const dashboardLink = element.querySelector('.js-dashboard-nav-link');
+
+  if (dashboardLink) {
+    dashboardLink.classList.remove('is-hidden');
   }
 });

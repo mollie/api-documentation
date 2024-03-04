@@ -39,102 +39,88 @@ Parameters
 Replace ``customerId`` in the endpoint URL by the customer's ID, for example
 ``/v1/customers/cst_8wmqcHMN4U/subscriptions``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: amount
+   :type: decimal
+   :condition: required
 
-   * - ``amount``
+   The amount in EUR that you want to charge with each subscription payment, e.g. ``100.00`` if you would want to charge
+   €100.00 every time.
 
-       .. type:: decimal
-          :required: true
+.. parameter:: times
+   :type: integer
+   :condition: optional
 
-     - The amount in EUR that you want to charge with each subscription payment, e.g. ``100.00`` if you would want to
-       charge €100.00 every time.
+   Total number of charges for the subscription to complete. Leave empty for an ongoing subscription.
 
-   * - ``times``
+   .. note:: Subscriptions in test mode will be canceled automatically after 10 charges.
 
-       .. type:: integer
-          :required: false
+.. parameter:: interval
+   :type: string
+   :condition: required
 
-     - Total number of charges for the subscription to complete. Leave empty for an ongoing subscription.
+   Interval to wait between charges, for example ``1 month`` or ``14 days``.
 
-       .. note::
-          Subscriptions in test mode will be canceled automatically after 10 charges.
+   Possible values: ``... months`` ``... weeks`` ``... days``
 
-   * - ``interval``
+.. parameter:: startDate
+   :type: date
+   :condition: optional
 
-       .. type:: string
-          :required: true
+   The start date of the subscription in ``YYYY-MM-DD`` format. This is the first day on which your customer will be
+   charged. When this parameter is not provided, the current date will be used instead.
 
-     - Interval to wait between charges, for example ``1 month`` or ``14 days``.
+.. parameter:: description
+   :type: string
+   :condition: required
 
-       Possible values: ``... months`` ``... weeks`` ``... days``
+   A description unique per subscription. This will be included in the payment description.
 
-   * - ``startDate``
+.. parameter:: method
+   :type: string
+   :condition: optional
 
-       .. type:: date
-          :required: false
+   The payment method used for this subscription, either forced on creation or ``null`` if any of the customer's valid
+   mandates may be used.
 
-     - The start date of the subscription in ``YYYY-MM-DD`` format. This is the first day on which your
-       customer will be charged. When this parameter is not provided, the current date will be used instead.
+   Possible values: ``creditcard`` ``directdebit`` ``paypal`` ``null``
 
-   * - ``description``
+   .. warning:: Using PayPal Reference Transactions is only possible if PayPal has activated this feature on your
+      PayPal merchant account.
 
-       .. type:: string
-          :required: true
+.. parameter:: webhookUrl
+   :type: string
+   :condition: optional
 
-     - A description unique per subscription. This will be included in the payment description.
+   Use this parameter to set a webhook URL for all subscription payments.
 
-   * - ``method``
+   .. note:: The ``webhookUrl`` must be reachable from Mollie's point of view, so you cannot use ``localhost``. If you
+      want to use webhook during development on ``localhost``, you should use a tool like
+      `ngrok <https://lornajane.net/posts/2015/test-incoming-webhooks-locally-with-ngrok>`_ to have the webhooks
+      delivered to your local machine.
 
-       .. type:: string
-          :required: false
-
-     - The payment method used for this subscription, either forced on creation or ``null`` if any of the
-       customer's valid mandates may be used.
-
-       Possible values: ``creditcard`` ``directdebit`` ``paypal`` ``null``
-
-       .. warning:: Using PayPal Reference Transactions is only possible if PayPal has activated this feature on your
-                    merchant-account.
-
-   * - ``webhookUrl``
-
-       .. type:: string
-          :required: false
-
-     - Use this parameter to set a webhook URL for all subscription payments.
-
-       .. note:: The ``webhookUrl`` must be reachable from Mollie's point of view, so you cannot use ``localhost``. If
-          you want to use webhook during development on ``localhost``, you must use a tool like
-          `ngrok <https://lornajane.net/posts/2015/test-incoming-webhooks-locally-with-ngrok>`_ to have the webhooks
-          delivered to your local machine.
-
-       .. warning:: The ``webhookUrl`` is optional, but without a webhook you will not be informed when new payments
-          are created on your subscription.
+   .. warning:: The ``webhookUrl`` is optional, but without a webhook you will not be informed when new payments are
+      created on your subscription.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the only mandatory extra parameter is the ``profileId`` parameter. With it, you can
-specify to which profile the subscription belongs. Organizations can have multiple profiles for each of their websites.
-See :doc:`Profiles API </reference/v1/profiles-api/get-profile>` for more information.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, the only mandatory extra parameter is the ``profileId`` parameter. With it, you
+can specify to which profile the subscription belongs. Organizations can have multiple profiles for each of their
+websites. See :doc:`Profiles API </reference/v1/profiles-api/create-profile>` for more information.
 
-.. list-table::
-   :widths: auto
+.. parameter:: profileId
+   :type: string
+   :condition: required
+   :collapse: true
 
-   * - ``profileId``
+   The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
 
-       .. type:: string
-          :required: true
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-     - The payment profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to create a test mode subscription.
+   Set this to ``true`` to create a test mode subscription.
 
 Response
 --------

@@ -86,12 +86,17 @@ You can find the decrypted credit card mandate export in ``verified.csv``.
 
 Export file format
 ------------------
-The exported mandates file will be formatted as a pipe separated file with the following columns:
+The exported mandates file will be formatted as a comma separated file with the following columns:
 
 .. code-block:: none
    :linenos:
 
-   IDENTIFIER|CARDNO|EXPIRY|CARDNAME
-   mdt_pWUnw6pkBN|4111111111111111|0618|Chuck Norris
+   old_customer_id,card_number,card_exp_month,card_exp_year,transaction_id,name
+   mdt_123456,4242424242424242,12,2023,987654321234567,"John Doe"
 
-.. note:: ``EXPIRY`` is in the ``MMYY`` format.
+.. note:: ``transaction_id`` refers to the scheme transaction ID of the initial transaction that authorized the
+          recurring payments.
+
+          ``card_exp_month`` refers to the month number without a leading zero. For example, ``1`` for January.
+
+          ``card_exp_year`` refers to the year in the yyyy format. For example, ``2000`` for the start of the millennium.

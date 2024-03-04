@@ -56,7 +56,7 @@ class CodeBlockSelectorDirective(Directive):
         # We need to inject HTML here to make the JS functionality work.
         selector_container += nodes.raw(
           '',
-          '<div class="examples-switcher" data-enhancer="example-switcher"/>',
+          '<div class="examples-switcher" data-enhancer="example-switcher">',
           format='html'
         )
 
@@ -66,6 +66,9 @@ class CodeBlockSelectorDirective(Directive):
             button["ids"].append("example-switch-{}".format(properties["language"]))
 
             selector_container += button
+
+        selector_container += nodes.raw('', '</div>', format='html')
+
         return selector_container
 
     def extract_code_examples(self, code_blocks):
@@ -101,8 +104,8 @@ class CodeBlockSelectorDirective(Directive):
         properties = self.supported_lexers[lexer]
         content = (
             "We don't have a {} code example for this API call yet.\n\n" +
-            "If you have some time to spare, feel free to open a pull request at:\n" +
-            "https://github.com/mollie/api-documentation"
+            "If you have some time to spare, feel free to share suggestions on our Discord:\n" +
+            "https://discord.gg/VaTVkXB4aQ"
         ).format(properties["language_text"])
 
         code_block = CodeBlock(

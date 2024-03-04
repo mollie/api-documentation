@@ -17,7 +17,11 @@ sys.path.insert(0, os.path.abspath("extensions"))
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["mollie.setup", "cloud_sptheme.ext.table_styling"]
+extensions = [
+    'mollie.setup',
+    'cloud_sptheme.ext.table_styling',
+    'sphinx_reredirects_fork'
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = []
@@ -63,10 +67,57 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
+root_url = os.environ['MOLLIE_DOCS_URL']
+
+html_file_suffix = os.environ['MOLLIE_FILE_SUFFIX']
+
+def to_url(path):
+    return root_url + path + html_file_suffix
+
+# -- SEO stuff ------------------------------------------------------------
+redirects = {
+    'guides/applepay-direct-integration': to_url('/wallets/applepay-direct-integration'),
+    'guides/authentication': to_url('/overview/authentication'),
+    'guides/checkout': to_url('/payments/hosted-checkout'),
+    'guides/common-data-types': to_url('/overview/common-data-types'),
+    'guides/gift-cards': to_url('/payments/gift-cards'),
+    'guides/handling-errors': to_url('/overview/handling-errors'),
+    'guides/mollie-components/handling-errors': to_url('/components/handling-errors'),
+    'guides/mollie-components/overview': to_url('/components/overview'),
+    'guides/mollie-components/reference': to_url('/reference/mollie-js/overview'),
+    'guides/mollie-components/styling': to_url('/components/styling'),
+    'guides/mollie-components/testing': to_url('/components/testing'),
+    'guides/pagination': to_url('/overview/pagination'),
+    'guides/qr-codes': to_url('/payments/qr-codes'),
+    'guides/security': to_url('/overview/security'),
+    'guides/testing': to_url('/overview/testing'),
+    'guides/webhooks': to_url('/overview/webhooks'),
+    'oauth/application-fees': to_url('/connect/application-fees'),
+    'oauth/getting-started': to_url('/connect/getting-started'),
+    'oauth/onboarding': to_url('/connect/onboarding'),
+    'oauth/overview': to_url('/connect/overview'),
+    'oauth/permissions': to_url('/connect/permissions'),
+    'oauth/splitting-payments': to_url('/connect/splitting-payments'),
+    'payments/overview': to_url('/payments/accepting-payments'),
+    'reference/v1/settlements-api/get-open-settlement': to_url('/reference/v1/settlements-api/get-settlement'),
+    'reference/v2/chargebacks-api/get-chargeback': to_url('/reference/v2/chargebacks-api/get-payment-chargeback'),
+    'reference/v2/orders-api/create-order-refund': to_url('/reference/v2/refunds-api/create-order-refund'),
+    'reference/v2/orders-api/list-order-refunds': to_url('/reference/v2/refunds-api/list-order-refunds'),
+    'reference/v2/orders-api/update-orderline': to_url('/reference/v2/orders-api/update-order-line'),
+    'reference/v2/organizations-api/me': to_url('/reference/v2/organizations-api/current-organization'),
+    'reference/v2/partners-api/get-partner': to_url('/reference/v2/organizations-api/get-partner'),
+    'reference/v2/partners-api/get-client': to_url('/reference/v2/clients-api/get-client'),
+    'reference/v2/partners-api/list-clients': to_url('/reference/v2/clients-api/list-clients'),
+    'reference/v2/profiles-api/enable-giftcard-issuer': to_url('/reference/v2/profiles-api/enable-gift-card-issuer'),
+    'reference/v2/refunds-api/cancel-refund': to_url('/reference/v2/refunds-api/cancel-payment-refund'),
+    'reference/v2/refunds-api/create-refund': to_url('/reference/v2/refunds-api/create-payment-refund'),
+    'reference/v2/refunds-api/get-refund': to_url('/reference/v2/refunds-api/get-payment-refund'),
+    'reference/v2/subscriptions-api/list-subscriptions-payments': to_url('/reference/v2/subscriptions-api/list-subscription-payments')
+}
+
 # -- Options for HTML output ----------------------------------------------
 
 # Add the pathname of pages you want to prevent from being indexed by search engines here.
-do_not_index = ['reference/reseller-api/endpoints/set-fees']
 
 # The theme to use for HTML and HTML Help pages. See the documentation for
 # a list of builtin themes.
@@ -79,7 +130,7 @@ html_context = {
     'github_user': 'mollie',
     'github_repo': 'api-documentation',
     'github_version': 'master/source/',
-    'do_not_index': do_not_index,
+    'do_not_index': [],
 }
 
 html_logo = '_static/img/mollie-logo.png'

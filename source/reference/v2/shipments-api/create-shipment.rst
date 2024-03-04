@@ -12,115 +12,93 @@ Create shipment
    :organization_access_tokens: true
    :oauth: true
 
-The **Create Shipment API** is used to ship order lines created by the
-:doc:`/reference/v2/orders-api/create-order`.
+Create a shipment for specific order lines of an :doc:`order </reference/v2/orders-api/overview>`.
 
-When using *Klarna Pay later* and *Klarna Slice it* this is mandatory for the order amount to be captured. A capture
-will automatically be created for the shipment.
+When using *Klarna Pay now*, *Klarna Pay later* and *Klarna Slice it*, using this endpoint is mandatory for the order
+amount to be captured. A capture will automatically be created for the shipment.
 
 The word "shipping" is used in the figurative sense here. It can also mean that a service was provided or digital
 content was delivered.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: lines
+   :type: array
+   :condition: optional
 
-   * - ``lines``
+   An array of objects containing the order line details you want to create a shipment for.  If you leave out this
+   parameter, the entire order will be shipped. If the order is already partially shipped, any remaining lines will be
+   shipped.
 
-       .. type:: array
-          :required: false
+   .. parameter:: id
+      :type: string
 
-     - An array of objects containing the order line details you want to create a shipment for.  If you leave out this
-       parameter, the entire order will be shipped. If the order is already partially shipped, any remaining lines will
-       be shipped.
+      The API resource token of the order line, for example: ``odl_jp31jz``.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: quantity
+      :type: int
+      :condition: optional
 
-          * - ``id``
+      The number of items that should be shipped for this order line. When this parameter is omitted, the whole order
+      line will be shipped.
 
-              .. type:: string
+      Must be less than the number of items already shipped for this order line.
 
-            - The API resource token of the order line, for example: ``odl_jp31jz``.
+   .. parameter:: amount
+      :type: amount object
+      :condition: optional
 
-          * - ``quantity``
+      The amount that you want to ship. In almost all cases, Mollie can determine the amount automatically.
 
-              .. type:: int
-                 :required: false
+      The amount is required only if you are *partially* shipping an order line which has a non-zero ``discountAmount``.
 
-            - The number of items that should be shipped for this order line. When this parameter is omitted, the
-              whole order line will be shipped.
+      The amount you can ship depends on various properties of the order line and the create shipment request. The
+      maximum that can be shipped is ``unit price x quantity to ship``.
 
-              Must be less than the number of items already shipped for this order line.
+      The minimum amount depends on the discount applied to the line, the quantity already shipped or canceled, the
+      amounts already shipped or canceled and the quantity you want to ship.
 
-          * - ``amount``
+      If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the
+      amount cannot be determined automatically. The error will contain the ``extra.minimumAmount`` and
+      ``extra.maximumAmount`` properties that allow you pick the right amount.
 
-              .. type:: amount object
-                 :required: false
+.. parameter:: tracking
+   :type: object
+   :condition: optional
 
-            - The amount that you want to ship. In almost all cases, Mollie can determine the amount automatically.
+   An object containing tracking details for the shipment. When sent, the ``carrier`` and ``code`` parameters become
+   required for this endpoint.
 
-              The amount is required only if you are *partially* shipping an order line which has a non-zero
-              ``discountAmount``.
+   .. parameter:: carrier
+      :type: string
+      :condition: required
 
-              The amount you can ship depends on various properties of the order line and the create shipment request.
-              The maximum that can be shipped is ``unit price x quantity to ship``.
+      Name of the postal carrier (as specific as possible). For example ``PostNL``. Maximum length: 100 characters.
 
-              The minimum amount depends on the discount applied to the line, the quantity already shipped or canceled,
-              the amounts already shipped or canceled and the quantity you want to ship.
+   .. parameter:: code
+      :type: string
+      :condition: required
 
-              If you do not send an amount, Mollie will determine the amount automatically or respond with an error
-              if the amount cannot be determined automatically. The error will contain the ``extra.minimumAmount`` and
-              ``extra.maximumAmount`` properties that allow you pick the right amount.
+      The track and trace code of the shipment. For example ``3SKABA000000000``. Maximum length: 100 characters.
 
-   * - ``tracking``
+   .. parameter:: url
+      :type: string
+      :condition: optional
 
-       .. type:: object
-          :required: false
-
-     - An object containing tracking details for the shipment. When sent, the ``carrier`` and ``code`` parameters become
-       required for this endpoint.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``carrier``
-
-              .. type:: string
-                 :required: true
-
-            - Name of the postal carrier (as specific as possible). For example ``PostNL``.
-
-          * - ``code``
-
-              .. type:: string
-                 :required: true
-
-            - The track and trace code of the shipment. For example ``3SKABA000000000``.
-
-          * - ``url``
-
-              .. type:: string
-                 :required: false
-
-            - The URL where your customer can track the shipment, for example:
-              ``http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C``.
+      The URL where your customer can track the shipment, for example:
+      ``http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C``.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you can enable test mode through the ``testmode`` parameter.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to make this order a test shipment.
+   Set this to ``true`` to make this order a test shipment.
 
 Response
 --------
@@ -130,7 +108,6 @@ A shipment object is returned, as described in :doc:`Get shipment </reference/v2
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -197,37 +174,40 @@ Example
    .. code-block:: python
       :linenos:
 
+      from mollie.api.client import Client
+
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-      order = mollie_client.orders.get('ord_kEn1PlbGa')
-      shipment = order.create_shipment({
-         'lines': [
-            {
-               'id': 'odl_dgtxyl',
-               'quantity': 1,  # you can set the quantity if not all is shipped at once
-            },
-            {
-               'id': 'odl_jp31jz',  # all is shipped if no quantity is set
-            }
-         ],
-         'tracking': {
-            'carrier': 'PostNL',
-            'code': '3SKABA000000000',
-            'url': 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C',
-         }
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      order = mollie_client.orders.get("ord_kEn1PlbGa")
+      shipment = order.shipments.create({
+          "lines": [
+              {
+                  "id": "odl_dgtxyl",
+                  "quantity": 1,  # you can set the quantity if not all is shipped at once
+              },
+              {
+                  "id": "odl_jp31jz",  # all is shipped if no quantity is set
+              }
+          ],
+          "tracking": {
+              "carrier": "PostNL",
+              "code": "3SKABA000000000",
+              "url": "http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C",
+          }
       })
 
       # if all lines are shipped, there is no need to specify them
       shipment = order.create_shipment({
-         'tracking': {
-            'carrier': 'PostNL',
-            'code': '3SKABA000000000',
-            'url': 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C',
-         }
+          "tracking": {
+              "carrier": "PostNL",
+              "code": "3SKABA000000000",
+              "url": "http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C",
+          }
       })
 
-      # or when no tracking is specified:
-      shipment = order.create_shipment()
+      # or, when no tracking is specified:
+      shipment = order.shipments.create()
 
    .. code-block:: ruby
       :linenos:
@@ -262,43 +242,28 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        let shipment = await mollieClient.orders_shipments.create({
-          orderId: 'ord_kEn1PlbGa',
-          lines: [
-            {
-              id: 'odl_dgtxyl',
-              quantity: 1,  // you can set the quantity if not all is shipped at once
-            },
-            {
-              id: 'odl_jp31jz',  // all is shipped if no quantity is set
-            },
-          ],
-          tracking: {
-            carrier: 'PostNL',
-            code: '3SKABA000000000',
-            url: 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C',
+      const shipment = await mollieClient.orderShipments.create({
+        orderId: 'ord_kEn1PlbGa',
+        lines: [
+          {
+            id: 'odl_dgtxyl',
+            quantity: 1
           },
-        });
-
-        // If all lines are shipped, there is no need to specify them:
-        shipment = await mollieClient.orders_shipments.create({
-          orderId: 'ord_kEn1PlbGa',
-          lines: [],
-          tracking: {
-            carrier: 'PostNL',
-            code: '3SKABA000000000',
-            url: 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C',
-          },
-        });
-
-        // Or when no tracking is specified:
-        shipment = await mollieClient.orders_shipments.create({ orderId: 'ord_kEn1PlbGa', lines: [] });
-      })();
+          {
+            id: 'odl_jp31jz'
+            // If no quantity is specified, the shipment ships the complete order line
+          }
+        ],
+        tracking: {
+          carrier: 'PostNL',
+          code: '3SKABA000000000',
+          url: 'http://postnl.nl/tracktrace/?B=3SKABA000000000&P=1015CW&D=NL&T=C'
+        }
+      });
 
 Response
 ^^^^^^^^
-.. code-block:: none
+.. code-block:: http
    :linenos:
 
    HTTP/1.1 201 Created
@@ -411,7 +376,7 @@ Response
 Response (amount required)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: none
+.. code-block:: http
    :linenos:
 
    HTTP/1.1 422 Unprocessable Entity
@@ -439,3 +404,69 @@ Response (amount required)
             }
         }
     }
+
+Mollie Connect parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^
+With Mollie Connect you can charge fees on payments that are processed through your app, either by defining an
+*application fee* or by *splitting the payment*. To learn more about the difference, refer to the
+:doc:`Mollie Connect overview </connect/overview>`.
+
+.. warning:: This functionality is currently only available for captures methods (Klarna Pay now,
+   Klarna Pay later, Klarna Slice it, etc.)
+
+.. parameter:: routing
+   :type: array
+   :condition: optional
+   :collapse: true
+
+   An optional routing configuration which enables you to route a successful shipment, or part of the shipmnt, to one or
+   more connected accounts.
+
+   See the :doc:`Split payments </connect/splitting-payments>` guide for more information on payment and capture routing.
+
+   If a routing array is supplied, it must contain one or more routing objects with the following parameters.
+
+   .. parameter:: amount
+      :type: amount object
+      :condition: conditional
+
+      If more than one routing object is given, the routing objects must indicate what portion of the total payment
+      amount is being routed.
+
+      .. parameter:: currency
+         :type: string
+         :condition: required
+
+         An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+
+      .. parameter:: value
+         :type: string
+         :condition: required
+
+         A string containing the exact amount of this portion of the shipment in the given currency. Make sure to send
+         the right amount of decimals. Non-string values are not accepted.
+
+   .. parameter:: destination
+      :type: object
+      :condition: required
+
+      The destination of this portion of the payment.
+
+      .. parameter:: type
+         :type: string
+         :condition: required
+
+         The type of destination. Currently only the destination type ``organization`` is supported.
+
+         Possible values: ``organization``
+
+      .. parameter:: organizationId
+         :type: string
+         :condition: conditional
+
+         Required for destination type ``organization``. The ID of the connected organization the funds should be routed
+         to, for example ``org_12345``.
+
+         **Note:** ``me`` or the ID of the current organization are not accepted as an ``organizationId``. After all
+         portions of the total shipment amount have been routed, the amount left will be routed to the current
+         organization automatically.

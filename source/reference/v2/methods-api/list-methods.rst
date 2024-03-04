@@ -30,116 +30,111 @@ payments.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: sequenceType
+   :type: string
+   :condition: optional
 
-   * - ``sequenceType``
+   Passing ``first`` will only show payment methods eligible for making a first payment. Passing ``recurring`` shows
+   payment methods which can be used to automatically charge your customer's account when authorization has been given.
 
-       .. type:: string
-          :required: false
+   Set to ``oneoff`` by default, which indicates the payment method is available for a regular non-recurring payment.
 
-     - Passing ``first`` will only show payment methods eligible for making a first payment. Passing
-       ``recurring`` shows payment methods which can be used to automatically charge your customer's account when
-       authorization has been given. Set to ``oneoff`` by default, which indicates the payment method is available for a
-       regular non-recurring payment.
+   Possible values: ``oneoff`` ``first`` ``recurring``
 
-       Possible values: ``oneoff`` ``first`` ``recurring``
+.. parameter:: locale
+   :type: string
+   :condition: optional
 
-   * - ``locale``
+   Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment
+   method names in the corresponding language.
 
-       .. type:: string
-          :required: false
+   Possible values: ``en_US`` ``en_GB`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
+   ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV`` ``lt_LT``
 
-     - Passing a locale will sort the payment methods in the preferred order for the country, and translate
-       the payment method names in the corresponding language.
+.. parameter:: amount
+   :type: amount object
+   :condition: optional
 
-       Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
-       ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
-       ``lt_LT``
+   If supplied, only payment methods that support the amount and currency are returned.
 
-   * - ``amount``
+   Example: ``https://api.mollie.com/v2/methods?amount[value]=100.00&amount[currency]=USD``
 
-       .. type:: amount object
-          :required: false
+   .. parameter:: currency
+      :type: string
 
-     - An object containing ``value`` and ``currency``. Only payment methods that support the amount and currency
-       are returned.
+      An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-       Example: ``https://api.mollie.com/v2/methods?amount[value]=100.00&amount[currency]=USD``
+   .. parameter:: value
+      :type: string
 
-   * - ``resource``
+      A string containing the exact amount in the given currency.
 
-       .. type:: string
-          :required: false
+.. parameter:: resource
+   :type: string
+   :condition: optional
 
-     - Use the ``resource`` parameter to indicate if you will use the result with the
-       :doc:`Create Order </reference/v2/orders-api/create-order>` or :doc:`Create
-       Payment </reference/v2/payments-api/create-payment>` API.
+   Use the ``resource`` parameter to indicate if you will use the result with the
+   :doc:`Create order </reference/v2/orders-api/create-order>` or
+   :doc:`Create payment </reference/v2/payments-api/create-payment>` endpoints.
 
-       For example: when passing ``orders`` the result will include payment methods that can only be used in conjunction
-       with orders, such as *Klarna Pay later* and meal vouchers. Default behaviour is returning all
-       available payment methods for ``payments``.
+   For example: when passing ``orders`` the result will include payment methods that can only be used in conjunction
+   with orders, such as *Klarna Pay later* and meal vouchers. Default behaviour is returning all available payment
+   methods for ``payments``.
 
-       Possible values: ``orders`` ``payments``.
+   Possible values: ``orders`` ``payments``
 
-   * - ``billingCountry``
+.. parameter:: billingCountry
+   :type: string
+   :condition: optional
 
-       .. type:: string
-          :required: false
+   The country taken from your customer's billing address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_
+   format. This parameter can be used to check whether your customer is eligible for certain payment methods, for
+   example *Klarna Slice it*.
 
-     - The billing country of your customer in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_
-       format. This parameter can be used to check whether your customer is eligible for certain payment methods, for
-       example *Klarna Slice it*.
+   Example: ``https://api.mollie.com/v2/methods?resource=orders&billingCountry=DE``
 
-       Example: ``https://api.mollie.com/v2/methods?resource=orders&billingCountry=DE``
+.. parameter:: includeWallets
+   :type: string
+   :condition: optional
 
-   * - ``includeWallets``
+   A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code to
+   check if they are available on the shoppers device, hence the need to indicate your support.
 
-       .. type:: string
-          :required: false
+   Example: ``https://api.mollie.com/v2/methods?includeWallets=applepay``
 
-     - A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code to
-       check if they are available on the shoppers device, hence the need to indicate your support.
+   Possible values: ``applepay``
 
-       At the moment, the only supported wallet is ``applepay``.
+.. parameter:: orderLineCategories
+   :type: string
+   :condition: optional
 
-       Example: ``https://api.mollie.com/v2/methods?includeWallets=applepay``
+   A comma-separated list of the order line categories you support in your checkout. The available categories can be
+   found on the :doc:`Create order endpoint </reference/v2/orders-api/create-order>`.
 
-   * - ``orderLineCategories``
-
-       .. type:: string
-          :required: false
-
-     - A comma-separated list of the order line categories you support in your checkout. The available
-       categories can be found on the :doc:`Create Order API </reference/v2/orders-api/create-order>` page.
-
-       Example: ``https://api.mollie.com/v2/methods?resource=orders&orderLineCategories=eco,meal``
+   Example: ``https://api.mollie.com/v2/methods?resource=orders&orderLineCategories=eco,meal``
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you have to specify which profile you are retrieving payment method details for
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you have to specify which profile you are retrieving payment method details for
 using the ``profileId`` parameter. Organizations can have multiple profiles for each of their websites. See
-:doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+:doc:`Profiles API </reference/v2/profiles-api/overview>` for more information.
 
 For these authentication methods the optional ``testmode`` parameter is available as well to enable test mode.
 
-.. list-table::
-   :widths: auto
+.. parameter:: profileId
+   :type: string
+   :condition: required for access tokens
+   :collapse: true
 
-   * - ``profileId``
+   The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
 
-       .. type:: string
-          :required: true
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to list all payment methods available in testmode.
+   Set this to ``true`` to list all payment methods available in testmode.
 
 Includes
 --------
@@ -153,55 +148,39 @@ Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: count
+   :type: integer
 
-   * - ``count``
+   The number of payment methods found in ``_embedded``.
 
-       .. type:: integer
+.. parameter:: _embedded
+   :type: object
+   :collapse-children: false
 
-     - The number of payment methods found in ``_embedded``.
+   The object containing the queried data.
 
-   * - ``_embedded``
+   .. parameter:: methods
+      :type: array
 
-       .. type:: object
+      An array of methods objects as described in :doc:`Get method </reference/v2/methods-api/get-method>`.
 
-     - The object containing the queried data.
+.. parameter:: _links
+   :type: object
 
-       .. list-table::
-          :widths: auto
+   Links related to the lists of payment methods. Every URL object will contain an ``href`` and a ``type`` field.
 
-          * - ``methods``
+   .. parameter:: self
+      :type: object
 
-              .. type:: array
+      The URL to the current set of methods.
 
-            - An array of methods objects as described in :doc:`Get method </reference/v2/methods-api/get-method>`.
+   .. parameter:: documentation
+      :type: object
 
-   * - ``_links``
-
-       .. type:: object
-
-     - Links related to the lists of payment methods. Every URL object will contain an ``href`` and a ``type``
-       field.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``self``
-
-              .. type:: object
-
-            - The URL to the current set of methods.
-
-          * - ``documentation``
-
-              .. type:: object
-
-            - The URL to the List payment methods endpoint documentation.
+      The URL to the List payment methods endpoint documentation.
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -231,13 +210,16 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
       # Methods for the Payments API
       methods = mollie_client.methods.list()
 
       # Methods for the Orders API
-      methods = mollie_client.methods.list(resource='orders')
+      methods = mollie_client.methods.list(resource="orders")
+
+      # Methods including pricing
+      methods = mollie_client.methods.list(include="pricing")
 
    .. code-block:: ruby
       :linenos:
@@ -263,13 +245,11 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        // Methods for the Payments API
-        let methods = await mollieClient.methods.all();
+      // Methods for the Payments API.
+      let methods = await mollieClient.methods.list();
 
-        // Methods for the Orders API
-        methods = await mollieClient.methods.all({ resource: 'orders' });
-      })();
+      // Methods for the Orders API.
+      methods = await mollieClient.methods.list({ resource: 'orders' });
 
 Response
 ^^^^^^^^

@@ -1,4 +1,4 @@
-{% if pagename.startswith("reference/v2/") or pagename.startswith("reference/oauth2/") -%}
+{% if pagename.startswith("reference/v2/") or pagename.startswith("reference/mollie-js") or pagename.startswith("reference/oauth2/") -%}
 	{%- include "sidebar-reference-v2.html" -%}
 {%- elif pagename.startswith("reference/v1/") -%}
 	{%- include "sidebar-reference-v1.html" -%}
@@ -6,8 +6,15 @@
 	{%- include "sidebar-changelog-v1.html" -%}
 {%- elif pagename.startswith("changelog/v2/") -%}
 	{%- include "sidebar-changelog-v2.html" -%}
-{%- elif pagename.startswith("reference/reseller-api/") -%}
-	{%- include "sidebar-reseller-api.html" -%}
+{%- elif pagename.startswith("payments/")
+  or pagename.startswith("orders/")
+  or pagename.startswith("components/")
+  or pagename.startswith("wallets/")
+  or pagename.startswith("point-of-sale/")
+-%}
+	{%- include "sidebar-payments.html" -%}
+{%- elif pagename.startswith("connect/") -%}
+	{%- include "sidebar-connect.html" -%}
 {%- else -%}
-	{%- include "sidebar-guides.html" -%}
+	{%- include "sidebar-overview.html" -%}
 {%- endif -%}

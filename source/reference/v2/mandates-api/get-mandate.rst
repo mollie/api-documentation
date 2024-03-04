@@ -25,199 +25,157 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, and replace ``i
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you can enable test mode through the ``testmode`` query string parameter.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` query string parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to retrieve a test mode mandate.
+   Set this to ``true`` to retrieve a test mode mandate.
 
 Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains a mandate object. Will always contain ``mandate`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains a mandate object. Will always contain ``mandate`` for this endpoint.
+   The identifier uniquely referring to this mandate. Mollie assigns this identifier at mandate creation time. For
+   example ``mdt_pWUnw6pkBN``.
 
-   * - ``id``
+.. parameter:: mode
+   :type: string
 
-       .. type:: string
+   The mode used to create this mandate.
 
-     - The identifier uniquely referring to this mandate. Mollie assigns this identifier at mandate creation time. For
-       example ``mdt_pWUnw6pkBN``.
+.. parameter:: status
+   :type: string
 
-   * - ``mode``
+   The status of the mandate. A status can be ``pending`` for mandates when the first payment is not yet finalized or
+   when we did not received the IBAN yet.
 
-       .. type:: string
+   Possible values: ``valid`` ``pending`` ``invalid``
 
-     - The mode used to create this mandate.
+.. parameter:: method
+   :type: string
 
-   * - ``status``
+   Payment method of the mandate.
 
-       .. type:: string
+   Possible values: ``directdebit`` ``creditcard`` ``paypal``
 
-     - The status of the mandate. Please note that a status can be ``pending`` for mandates when the
-       first payment is not yet finalized or when we did not received the IBAN yet.
+.. parameter:: details
+   :type: object
 
-       Possible values: ``valid`` ``pending`` ``invalid``
+   The mandate detail object contains different fields per payment method. See the list below.
 
-   * - ``method``
+.. parameter:: mandateReference
+   :type: string
 
-       .. type:: string
+   The mandate's custom reference, if this was provided when creating the mandate.
 
-     - Payment method of the mandate.
+.. parameter:: signatureDate
+   :type: string
 
-       Possible values: ``directdebit`` ``creditcard`` ``paypal``
+   The signature date of the mandate in ``YYYY-MM-DD`` format.
 
-   * - ``details``
+.. parameter:: createdAt
+   :type: datetime
 
-       .. type:: object
+   The mandate's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-     - The mandate detail object contains different fields per payment method. See the list below.
+.. parameter:: _links
+   :type: object
 
-   * - ``mandateReference``
+   An object with several URL objects relevant to the mandate. Every URL object will contain an ``href`` and a ``type``
+   field.
 
-       .. type:: string
+   .. parameter:: self
+      :type: URL object
 
-     - The mandate's custom reference, if this was provided when creating the mandate.
+      The API resource URL of the mandate itself.
 
-   * - ``signatureDate``
+   .. parameter:: customer
+      :type: URL object
 
-       .. type:: string
+      The API resource URL of the customer the mandate is for.
 
-     - The signature date of the mandate in ``YYYY-MM-DD`` format.
+   .. parameter:: documentation
+      :type: URL object
 
-   * - ``createdAt``
+      The URL to the mandate retrieval endpoint documentation.
 
-       .. type:: datetime
-
-     - The mandate's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
-
-   * - ``_links``
-
-       .. type:: object
-
-     - An object with several URL objects relevant to the mandate. Every URL object will contain an ``href`` and a
-       ``type`` field.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``self``
-
-              .. type:: URL object
-
-            - The API resource URL of the mandate itself.
-
-          * - ``customer``
-
-              .. type:: URL object
-
-            - The API resource URL of the customer the mandate is for.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the mandate retrieval endpoint documentation.
-
-Payment method specific details
+Payment method-specific details
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The mandate detail object contains different fields per payment method.
 
 Direct Debit
 """"""""""""
-.. list-table::
-   :widths: auto
+.. parameter:: consumerName
+   :type: string
 
-   * - ``consumerName``
+   The account holder's name.
 
-       .. type:: string
+.. parameter:: consumerAccount
+   :type: string
 
-     - The account holder's name.
+   The account holder's IBAN.
 
-   * - ``consumerAccount``
+.. parameter:: consumerBic
+   :type: string
 
-       .. type:: string
-
-     - The account holder's IBAN.
-
-   * - ``consumerBic``
-
-       .. type:: string
-
-     - The account holder's bank's BIC.
+   The account holder's bank's BIC.
 
 Credit Card
 """""""""""
-.. list-table::
-   :widths: auto
+.. parameter:: cardHolder
+   :type: string
 
-   * - ``cardHolder``
+   The credit card holder's name.
 
-       .. type:: string
+.. parameter:: cardNumber
+   :type: string
 
-     - The credit card holder's name.
+   The last four digits of the credit card number.
 
-   * - ``cardNumber``
+.. parameter:: cardLabel
+   :type: string
 
-       .. type:: string
+   The credit card's label. Note that not all labels can be processed through Mollie.
 
-     - The last four digits of the credit card number.
+   Possible values: ``American Express`` ``Carta Si`` ``Carte Bleue`` ``Dankort`` ``Diners Club`` ``Discover`` ``JCB``
+   ``Laser`` ``Maestro`` ``Mastercard`` ``Unionpay`` ``Visa`` ``null``
 
-   * - ``cardLabel``
+.. parameter:: cardFingerprint
+   :type: string
 
-       .. type:: string
+   Unique alphanumeric representation of the credit card, usable for identifying returning customers.
 
-     - The credit card's label. Note that not all labels can be processed through Mollie.
+.. parameter:: cardExpiryDate
+   :type: date
 
-       Possible values: ``American Express`` ``Carta Si`` ``Carte Bleue`` ``Dankort`` ``Diners Club`` ``Discover``
-       ``JCB`` ``Laser`` ``Maestro`` ``Mastercard`` ``Unionpay`` ``Visa`` ``null``
-
-   * - ``cardFingerprint``
-
-       .. type:: string
-
-     - Unique alphanumeric representation of the credit card, usable for identifying returning customers.
-
-   * - ``cardExpiryDate``
-
-       .. type:: date
-
-     - Expiry date of the credit card in ``YYYY-MM-DD`` format.
+   Expiry date of the credit card in ``YYYY-MM-DD`` format.
 
 PayPal
 """"""
-.. list-table::
-   :widths: auto
+.. parameter:: consumerName
+   :type: string
 
-   * - ``consumerName``
+   The consumer's first and last name.
 
-       .. type:: string
+.. parameter:: consumerAccount
+   :type: string
 
-     - The consumer's first and last name.
-
-   * - ``consumerAccount``
-
-       .. type:: string
-
-     - The consumer's email address.
+   The consumer's email address.
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -240,9 +198,10 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
-      mandate = mollie_client.customer_mandates.with_parent_id('cst_4qqhO89gsT').get('mdt_h3gAaD5zP')
+      customer = mollie_client.customers.get("cst_4qqhO89gsT")
+      mandate = customer.mandates.get("mdt_h3gAaD5zP")
 
    .. code-block:: ruby
       :linenos:
@@ -261,12 +220,9 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const mandate = await mollieClient.customers_mandates.get(
-          'mdt_h3gAaD5zP',
-          { customerId: 'cst_4qqhO89gsT' }
-        );
-      })();
+      const mandate = await mollieClient.customerMandates.get('mdt_h3gAaD5zP', {
+        customerId: 'cst_4qqhO89gsT'
+      });
 
 Response
 ^^^^^^^^

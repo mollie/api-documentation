@@ -10,6 +10,9 @@ pip install awscli
 AWS_SECRET_ACCESS_KEY=${UPLOAD_AWS_SECRET_ACCESS_KEY}
 AWS_ACCESS_KEY_ID=${UPLOAD_AWS_ACCESS_KEY_ID}
 
+# Remove existing HTML files and assets. This is a suboptimal solution for issue #54.
+aws s3 rm s3://${AWS_BUCKET}/ --recursive
+
 # Upload HTML files
 aws s3 cp build/html s3://${AWS_BUCKET}/ --recursive ${AWS_OPTIONS} \
     --exclude ".buildinfo" \

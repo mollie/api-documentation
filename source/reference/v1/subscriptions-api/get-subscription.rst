@@ -28,129 +28,105 @@ example ``/v1/customers/cst_8wmqcHMN4U/subscriptions/sub_rVKGtNd6s3``.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` query string parameter is also available.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, the ``testmode`` query string parameter is also available.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to retrieve a test mode subscription.
+   Set this to ``true`` to retrieve a test mode subscription.
 
 Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains a subscription object. Will always contain ``subscription`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains a subscription object. Will always contain ``subscription`` for this endpoint.
+   The identifier uniquely referring to this subscription. Mollie assigns this identifier at subscription creation time.
+   For example ``sub_rVKGtNd6s3``.
 
-   * - ``id``
+.. parameter:: customerId
+   :type: string
 
-       .. type:: string
+   The customer's unique identifier, for example ``cst_8wmqcHMN4U``.
 
-     - The identifier uniquely referring to this subscription. Mollie assigns this identifier at subscription creation
-       time. For example ``sub_rVKGtNd6s3``.
+.. parameter:: mode
+   :type: string
 
-   * - ``customerId``
+   The mode used to create this subscription. Mode determines whether the subscription's payments are real or test
+   payments.
 
-       .. type:: string
+   Possible values: ``live`` ``test``
 
-     - The customer's unique identifier, for example ``cst_8wmqcHMN4U``.
+.. parameter:: createdDatetime
+   :type: datetime
 
-   * - ``mode``
+   The subscription's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-       .. type:: string
+.. parameter:: status
+   :type: string
 
-     - The mode used to create this subscription. Mode determines whether the subscription's payments are real or test
-       payments.
+   The subscription's current status, depends on whether the customer has a pending, valid or invalid mandate.
 
-       Possible values: ``live`` ``test``
+   Possible values: ``pending`` ``active`` ``cancelled`` ``suspended`` ``completed``
 
-   * - ``createdDatetime``
+.. parameter:: amount
+   :type: decimal
 
-       .. type:: datetime
+   The constant amount that is charged with each subscription payment.
 
-     - The subscription's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+.. parameter:: times
+   :type: integer
 
-   * - ``status``
+   Total number of charges for the subscription to complete.
 
-       .. type:: string
+.. parameter:: interval
+   :type: string
 
-     - The subscription's current status, depends on whether the customer has a pending, valid or invalid mandate.
+   Interval to wait between charges, for example ``1 month`` or ``14 days``.
 
-       Possible values: ``pending`` ``active`` ``cancelled`` ``suspended`` ``completed``
+   Possible values: ``... months`` ``... weeks`` ``... days``
 
-   * - ``amount``
+.. parameter:: startDate
+   :type: date
 
-       .. type:: decimal
+   The start date of the subscription in ``YYYY-MM-DD`` format.
 
-     - The constant amount that is charged with each subscription payment.
+.. parameter:: description
+   :type: string
 
-   * - ``times``
+   The description specified during subscription creation. This will be included in the payment description.
 
-       .. type:: integer
+.. parameter:: method
+   :type: string
 
-     - Total number of charges for the subscription to complete.
+   The payment method used for this subscription, either forced on creation or ``null`` if any of the customer's valid
+   mandates may be used.
 
-   * - ``interval``
+   Possible values: ``creditcard`` ``directdebit`` ``paypal`` ``null``
 
-       .. type:: string
+.. parameter:: cancelledDatetime
+   :type: datetime
 
-     - Interval to wait between charges, for example ``1 month`` or ``14 days``.
+   The subscription's date and time of cancellation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-       Possible values: ``... months`` ``... weeks`` ``... days``
+.. parameter:: links
+   :type: object
 
-   * - ``startDate``
+   An object with URLs important to the subscription.
 
-       .. type:: date
+   .. parameter:: webhookUrl
+      :type: string
 
-     - The start date of the subscription in ``YYYY-MM-DD`` format.
-
-   * - ``description``
-
-       .. type:: string
-
-     - The description specified during subscription creation. This will be included in the payment description.
-
-   * - ``method``
-
-       .. type:: string
-
-     - The payment method used for this subscription, either forced on creation or ``null`` if any of the
-       customer's valid mandates may be used.
-
-       Possible values: ``creditcard`` ``directdebit`` ``paypal`` ``null``
-
-   * - ``cancelledDatetime``
-
-       .. type:: datetime
-
-     - The subscription's date and time of cancellation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
-
-   * - ``links``
-
-       .. type:: object
-
-     - An object with URLs important to the subscription.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``webhookUrl``
-
-              .. type:: string
-
-            - The URL Mollie will call as soon a payment status change takes place.
+      The URL Mollie will call as soon a payment status change takes place.
 
 Example
 -------

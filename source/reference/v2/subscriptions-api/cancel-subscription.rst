@@ -21,18 +21,15 @@ example: ``/v2/customers/cst_stTC2WHAuS/subscriptions/sub_rVKGtNd6s3``.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you can enable test mode through the ``testmode`` parameter.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to cancel a test mode subscription.
+   Set this to ``true`` to cancel a test mode subscription.
 
 Response
 --------
@@ -43,7 +40,6 @@ A subscription object is returned, as described in
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -60,6 +56,17 @@ Example
 
       $customer = $mollie->customers->get("cst_stTC2WHAuS");
       $subscription = $customer->cancelSubscription("sub_rVKGtNd6s3");
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      customer = mollie_client.customers.get("cst_stTC2WHAuS")
+      customer.subscriptions.delete("sub_rVKGtNd6s3")
 
    .. code-block:: ruby
       :linenos:
@@ -81,9 +88,9 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const subscription = await mollieClient.customers_subscriptions.cancel('sub_rVKGtNd6s3', { customerId: 'cst_stTC2WHAuS' });
-      })();
+      const canceledSubscription = await mollieClient.customerSubscriptions.cancel('sub_rVKGtNd6s3', {
+        customerId: 'cst_stTC2WHAuS'
+      });
 
 Response
 ^^^^^^^^

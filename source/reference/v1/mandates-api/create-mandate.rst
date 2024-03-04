@@ -31,68 +31,56 @@ Parameters
 ----------
 Replace ``customerId`` in the endpoint URL by the customer's ID, for example ``/v1/customers/cst_8wmqcHMN4U/mandates``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: method
+   :type: string
+   :condition: required
 
-   * - ``method``
+   Payment method of the mandate.
 
-       .. type:: string
-          :required: true
+   Possible values: ``directdebit``
 
-     - Payment method of the mandate.
+.. parameter:: consumerName
+   :type: string
+   :condition: required
 
-       Possible values: ``directdebit``
+   The consumer's name.
 
-   * - ``consumerName``
+.. parameter:: consumerAccount
+   :type: string
+   :condition: required
 
-       .. type:: string
-          :required: true
+   The consumer's IBAN.
 
-     - The consumer's name.
+.. parameter:: consumerBic
+   :type: string
+   :condition: optional
 
-   * - ``consumerAccount``
+   The consumer's bank's BIC.
 
-       .. type:: string
-          :required: true
+.. parameter:: signatureDate
+   :type: date
+   :condition: optional
 
-     - The consumer's IBAN.
+   The date when the mandate was signed in ``YYYY-MM-DD`` format.
 
-   * - ``consumerBic``
+.. parameter:: mandateReference
+   :type: date
+   :condition: optional
 
-       .. type:: string
-          :required: false
-
-     - The consumer's bank's BIC.
-
-   * - ``signatureDate``
-
-       .. type:: date
-          :required: false
-
-     - The date when the mandate was signed in ``YYYY-MM-DD`` format.
-
-   * - ``mandateReference``
-
-       .. type:: date
-          :required: false
-
-     - A custom mandate reference. Use an unique ``mandateReference`` as some banks decline a Direct Debit payment if
-       the ``mandateReference`` is not unique.
+   A custom mandate reference. Use an unique ``mandateReference`` as some banks decline a Direct Debit payment if the
+   ``mandateReference`` is not unique.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, the ``testmode`` parameter is also available.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, the ``testmode`` parameter is also available.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to create a test mode mandate.
+   Set this to ``true`` to create a test mode mandate.
 
 Response
 --------

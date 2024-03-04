@@ -22,18 +22,15 @@ Replace ``customerId`` in the endpoint URL by the customer's ID, and replace ``i
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you can enable test mode through the ``testmode`` parameter.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to revoke a test mode mandate.
+   Set this to ``true`` to revoke a test mode mandate.
 
 Response
 --------
@@ -41,7 +38,6 @@ Response
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -58,6 +54,17 @@ Example
       $customer = $mollie->customers->get("cst_stTC2WHAuS");
       $mandate = $customer->getMandate("mdt_pWUnw6pkBN");
       $mandate->revoke();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      customer = mollie_client.customers.get("cst_4qqhO89gsT")
+      customer.mandates.delete("mdt_h3gAaD5zP")
 
    .. code-block:: ruby
       :linenos:
@@ -76,22 +83,9 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const status = await mollieClient.customers_mandates.delete(
-          'mdt_pWUnw6pkBN',
-          { customerId: 'cst_stTC2WHAuS' }
-        );
-      })();
-
-   .. code-block:: python
-      :linenos:
-
-      from mollie.api.client import Client
-
-      mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
-
-      mandate = mollie_client.customer_mandates.with_parent_id('cst_4qqhO89gsT').delete('mdt_h3gAaD5zP')
+      await mollieClient.customerMandates.revoke('mdt_pWUnw6pkBN', {
+        customerId: 'cst_stTC2WHAuS'
+      });
 
 Response
 ^^^^^^^^

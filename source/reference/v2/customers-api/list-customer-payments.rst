@@ -22,31 +22,28 @@ This API accepts the same parameters as the :doc:`/reference/v2/payments-api/lis
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you have to specify which profile you are retrieving payments for using the
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you have to specify which profile you are retrieving payments for using the
 ``profileId`` parameter. Organizations can have multiple profiles for each of their websites. See
-:doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+:doc:`Profiles API </reference/v2/profiles-api/overview>` for more information.
 
 For these authentication methods the optional ``testmode`` parameter is available as well to enable test mode.
 
-.. list-table::
-   :widths: auto
+.. parameter:: profileId
+   :type: string
+   :condition: optional
+   :collapse: true
 
-   * - ``profileId``
+   The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``. Omit this parameter to retrieve all the
+   customer's payments across all profiles.
 
-       .. type:: string
-          :required: false
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``. Omit this parameter to retrieve all
-       the customer's payments across all profiles.
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to get payments made in test mode. If you omit this parameter, you can only retrieve live
-       mode payments.
+   Set this to ``true`` to get payments made in test mode. If you omit this parameter, you can only retrieve live mode
+   payments.
 
 Response
 --------
@@ -56,7 +53,6 @@ This API returns results in the same format as the :doc:`/reference/v2/payments-
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -71,6 +67,17 @@ Example
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
       $payments = $mollie->customers->get("cst_8wmqcHMN4U")->payments();
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      customer = mollie_client.customers.get("cst_8wmqcHMN4U")
+      payments = customer.payments.list()
 
    .. code-block:: ruby
       :linenos:
@@ -89,9 +96,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const customerPayments = await mollieClient.customers_payments.list({ customerId: 'cst_8wmqcHMN4U' });
-      })();
+      const payments = mollieClient.customerPayments.iterate({ customerId: 'cst_8wmqcHMN4U' });
 
 Response
 ^^^^^^^^

@@ -18,181 +18,221 @@ Once you have created a payment, you should redirect your customer to the URL in
 the response.
 
 To wrap your head around the payment process, an explanation and flow charts can be found in the
-:doc:`Payments API Overview </payments/overview>`.
+:doc:`Accepting payments guide </payments/accepting-payments>`.
 
 .. note::
    :ref:`Optional parameters<payment-method-specific-parameters>` are accepted for certain payment methods.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: amount
+   :type: amount object
+   :condition: required
 
-   * - .. param-name:: amount
+   The amount that you want to charge, e.g. ``{"currency":"EUR", "value":"1000.00"}`` if you would want to charge
+   €1000.00.
 
-       .. type:: amount object
-          :required: true
+   You can find the `minimum and maximum amounts <https://help.mollie.com/hc/en-us/articles/115000667365>`_ per payment
+   method in our help center. Additionally, they can be retrieved using :doc:`/reference/v2/methods-api/get-method`.
 
-     - The amount that you want to charge, e.g. ``{"currency":"EUR", "value":"1000.00"}`` if you would want to charge
-       €1000.00.
+   .. parameter:: currency
+      :type: string
+      :condition: required
 
-       You can find the `minimum and maximum amounts <https://help.mollie.com/hc/en-us/articles/115000667365>`_
-       per payment method in our help center. Additionally, they can be retrieved using the
-       :doc:`/reference/v2/methods-api/get-method`.
+      An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code. The
+      :doc:`currencies supported </payments/multicurrency>` depend on the payment methods that are enabled on your
+      account.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: value
+      :type: string
+      :condition: required
 
-          * - .. param-name:: currency
+      A string containing the exact amount you want to charge in the given currency. Make sure to send the right amount
+      of decimals and omit the thousands separator. Non-string values are not accepted.
 
-              .. type:: string
-                 :required: true
+.. parameter:: description
+   :type: string
+   :condition: required
+   :collapse-children: true
 
-            - An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code. The :doc:`currencies supported
-              </payments/multicurrency>` depend on the payment methods that are enabled on your account.
+   The description of the payment you are creating. This will be shown to your customer on their card or bank statement
+   when possible. We truncate the description automatically according to the limits of the used payment method. The
+   description is also visible in any exports you generate.
 
-          * - ``value``
+   We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+   This is particularly useful for bookkeeping.
 
-              .. type:: string
-                 :required: true
+   The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters.
+   The API will not reject strings longer than the maximum length but it will truncate them to fit.
 
-            - A string containing the exact amount you want to charge in the given currency. Make sure to send the right
-              amount of decimals and omit the thousands separator. Non-string values are not accepted.
+.. parameter:: redirectUrl
+   :type: string
+   :condition: required
 
-   * - ``description``
+   The URL your customer will be redirected to after the payment process.
 
-       .. type:: string
-          :required: true
+   It could make sense for the ``redirectUrl`` to contain a unique identifier – like your order ID – so you can show the
+   right page referencing the order when your customer returns.
 
-     - The description of the payment you are creating. This will be shown to your customer on their card or bank
-       statement when possible. We truncate the description automatically according to the limits of the used payment
-       method. The description is also visible in any exports you generate.
+   The parameter can be omitted for recurring payments (``sequenceType: recurring``) and for Apple Pay payments with an
+   ``applePayPaymentToken``.
 
-       We recommend you use a unique identifier so that you can always link the payment to the order in your back
-       office. This is particularly useful for bookkeeping.
+.. parameter:: cancelUrl
+   :type: string
+   :condition: optional
 
-   * - ``redirectUrl``
+   The URL your consumer will be redirected to when the consumer explicitly cancels the payment. If this URL is not
+   provided, the consumer will be redirected to the ``redirectUrl`` instead — see above.
 
-       .. type:: string
-          :required: true
+   Mollie will always give you status updates via :doc:`webhooks </overview/webhooks>`, including for the ``canceled``
+   status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated
+   consumer-facing flow to handle payment cancellations.
 
-     - The URL your customer will be redirected to after the payment process.
+   The parameter can be omitted for recurring payments (``sequenceType: recurring``) and for Apple Pay payments with an
+   ``applePayPaymentToken``.
 
-       It could make sense for the ``redirectUrl`` to contain a unique identifier – like your order ID – so you can show
-       the right page referencing the order when your customer returns.
+.. parameter:: webhookUrl
+   :type: string
+   :condition: optional
 
-       .. note:: Only for payments with the ``sequenceType`` parameter set to ``recurring``, you can omit this
-          parameter. Additionally, for payments that are created with the ``applePayPaymentToken`` parameter, the
-          redirect URL can also be omitted.
+   Set the webhook URL, where we will send payment status updates to.
 
-   * - ``webhookUrl``
+   The ``webhookUrl`` is optional, but without a webhook you will miss out on important
+   :doc:`status changes </overview/webhooks>` to your payment.
 
-       .. type:: string
-          :required: false
+   The ``webhookUrl`` must be reachable from Mollie's point of view, so you cannot use ``localhost``. If you want to use
+   webhook during development on ``localhost``, you must use a tool like
+   `ngrok <https://lornajane.net/posts/2015/test-incoming-webhooks-locally-with-ngrok>`_ to have the webhooks delivered
+   to your local machine.
 
-     - Set the webhook URL, where we will send payment status updates to.
+.. parameter:: locale
+   :type: string
+   :condition: optional
 
-       .. note:: The ``webhookUrl`` is optional, but without a webhook you will miss out on important
-          :doc:`status changes </guides/webhooks>` to your payment.
+   .. _parameters_locale:
 
-          The ``webhookUrl`` must be reachable from Mollie's point of view, so you cannot use ``localhost``. If
-          you want to use webhook during development on ``localhost``, you must use a tool like
-          `ngrok <https://lornajane.net/posts/2015/test-incoming-webhooks-locally-with-ngrok>`_ to have the webhooks
-          delivered to your local machine.
+   Allows you to preset the language to be used in the hosted payment pages shown to the consumer. Setting a locale is
+   highly recommended and will greatly improve your conversion rate. When this parameter is omitted, the browser
+   language will be used instead if supported by the payment method. You can provide any ``xx_XX`` format ISO 15897
+   locale, but our hosted payment pages currently only support the following languages:
 
-   * - .. param-name:: locale
+   Possible values: ``en_US`` ``en_GB`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
+   ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV`` ``lt_LT``
 
-       .. type:: string
-          :required: false
+.. parameter:: method
+   :type: string|array
+   :condition: optional
 
-       .. _parameters_locale:
+   Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
+   method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+   parameter enables you to fully integrate the payment method selection into your website.
 
-     - Allows you to preset the language to be used in the hosted payment pages shown to the consumer. Setting a
-       locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted, the
-       browser language will be used instead if supported by the payment method. You can provide any ISO 15897 locale,
-       but our hosted payment pages currently only support the following languages:
+   You can also specify the methods in an array. By doing so we will still show the payment method selection screen but
+   will only show the methods specified in the array. For example, you can use this functionality to only show payment
+   methods from a specific country to your customer ``['bancontact', 'belfius']``.
 
-       Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
-       ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
-       ``lt_LT``
+   Possible values: ``applepay`` ``bancontact`` ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``
+   ``giftcard`` ``giropay`` ``ideal`` ``kbc`` ``mybank``  ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort``
 
-   * - ``method``
+   .. note:: If you are looking to create payments with the Klarna Pay now, Klarna Pay later, Klarna Slice it, in3 or
+      voucher payment methods, use :doc:`/reference/v2/orders-api/create-order` instead.
 
-       .. type:: string|array
-          :required: false
+.. parameter:: restrictPaymentMethodsToCountry
+   :type: string
+   :condition: optional
+   :collapse: true
 
-     - Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-       method and your customer will skip the selection screen and is sent directly to the chosen payment method.
-       The parameter enables you to fully integrate the payment method selection into your website.
+   For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+   rates you have used for the order to ensure your customer's country matches the VAT country.
 
-       You can also specify the methods in an array. By doing so we will still show the payment method selection
-       screen but will only show the methods specified in the array. For example, you can use this functionality to only
-       show payment methods from a specific country to your customer ``['bancontact', 'belfius']``.
+   Use this parameter to restrict the payment methods available to your customer to those from a single country.
 
-       Possible values: ``applepay`` ``bancontact`` ``banktransfer`` ``belfius`` ``creditcard`` ``directdebit`` ``eps``
-       ``giftcard`` ``giropay`` ``ideal`` ``kbc`` ``mybank``  ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort``
+   If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
 
-       .. note:: If you are looking to create payments with the Klarna Pay later, Klarna Slice it, or voucher payment
-                 methods, please use the :doc:`/reference/v2/orders-api/create-order` instead.
+   The field expects a country code in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format,
+   for example `NL`.
 
-   * - ``metadata``
+.. parameter:: metadata
+   :type: mixed
+   :condition: optional
+   :collapse: true
 
-       .. type:: mixed
-          :required: false
+   Provide any data you like, for example a string or a JSON object. We will save the data alongside the payment.
+   Whenever you fetch the payment with our API, we will also include the metadata. You can use up to approximately 1kB.
 
-     - Provide any data you like, for example a string or a JSON object. We will save the data alongside the
-       payment. Whenever you fetch the payment with our API, we will also include the metadata. You can use up to
-       approximately 1kB.
+Parameters for recurring payments
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Recurring payments are created through the Payments API by providing a ``sequenceType``. For the ``recurring`` sequence
+type, you have to provide a ``customerId`` to indicate which account you want to charge. You can charge a card by
+providing a ``mandateId``. See our guide on :doc:`Recurring </payments/recurring>` for more information.
 
-   * - ``sequenceType``
+.. parameter:: sequenceType
+   :type: string
+   :condition: required for recurring
+   :collapse: true
 
-       .. type:: string
-          :required: false
+   Indicate which type of payment this is in a recurring sequence. If set to ``first``, a
+   :ref:`first payment <payments/recurring/first-payment>` is created for the customer, allowing the customer to agree
+   to automatic recurring charges taking place on their account in the future. If set to ``recurring``, the customer's
+   card is charged automatically.
 
-     - Indicate which type of payment this is in a recurring sequence. If set to ``first``, a
-       :ref:`first payment <payments/recurring/first-payment>` is created for the customer, allowing the customer to
-       agree to automatic recurring charges taking place on their account in the future. If set to ``recurring``, the
-       customer's card is charged automatically.
+   Defaults to ``oneoff``, which is a regular non-recurring payment.
 
-       Defaults to ``oneoff``, which is a regular non-recurring payment (see also:
-       :doc:`Recurring </payments/recurring>`).
+   Possible values: ``oneoff`` ``first`` ``recurring``
 
-       Possible values: ``oneoff`` ``first`` ``recurring``
+   For PayPal payments, recurring is only possible if PayPal has activated Reference Transactions on your merchant
+   account. Check if you account is eligible via our :doc:`Methods API </reference/v2/methods-api/list-methods>` with
+   parameter ``sequenceType`` set to ``first``. Your account is eligible if PayPal is returned in the method list.
 
-       .. warning:: Using recurring payments with PayPal is only possible if PayPal has activated Reference
-                    Transactions on your merchant account. Check if you account is eligible via our
-                    :doc:`Methods API </reference/v2/methods-api/list-methods>`. Make sure to set the
-                    ``sequenceType`` parameter to ``first``. Your account is eligible if you get PayPal as
-                    method returned.
+.. parameter:: customerId
+   :type: string
+   :condition: required
+   :collapse: true
 
-   * - ``customerId``
+   The ID of the :doc:`customer </reference/v2/customers-api/get-customer>` for whom the payment is being created. This
+   is used primarily for :doc:`recurring payments </payments/recurring>`, but can also be used on regular payments to
+   enable :doc:`single-click payments </payments/hosted-checkout>`.
 
-       .. type:: string
-          :required: false
+   This field needs to be provided for payments with the ``recurring`` sequence type.
 
-     - The ID of the :doc:`Customer </reference/v2/customers-api/get-customer>` for whom the payment is being created.
-       This is used for :doc:`recurring payments </payments/recurring>` and
-       :doc:`single click payments </guides/checkout>`.
+.. parameter:: mandateId
+   :type: string
+   :condition: optional
+   :collapse: true
 
-   * - ``mandateId``
+   When creating recurring payments, the ID of a specific :doc:`mandate </reference/v2/mandates-api/get-mandate>` can be
+   supplied to indicate which of the consumer's accounts should be credited.
 
-       .. type:: string
-          :required: false
+Parameters for pre-authorized payments
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. note:: Pre-authorization is currently in beta.
 
-     - When creating recurring payments, the ID of a specific :doc:`Mandate </reference/v2/mandates-api/get-mandate>`
-       may be supplied to indicate which of the consumer's accounts should be credited.
+Pre-authorized payments are created through the Payments API by providing a ``captureMode``. With the ``manual`` capture
+mode, you decide when to capture the funds. See our guide on
+:doc:`Placing a hold for a payment </payments/place-a-hold-for-a-payment>` for more information.
 
-   * - ``restrictPaymentMethodsToCountry``
+.. parameter:: captureMode
+   :type: string
+   :condition: optional
 
-       .. type:: string
-          :required: false
+   Indicates whether the capture will be scheduled automatically or not. Set to ``manual`` to capture the payment
+   manually using the :doc:`Create capture </reference/v2/captures-api/create-capture>` endpoint.
 
-     - For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
-       rates you have used for the order to ensure your customer's country matches the VAT country.
+   Set to ``automatic`` by default, which indicates the payment will be captured automatically, without having to
+   separately request it. Setting ``automatic`` without a ``captureDelay`` will result in a regular payment.
 
-       Use this parameter to restrict the payment methods available to your customer to those from a single country.
+   Possible values: ``automatic`` ``manual``
 
-       If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+.. parameter:: captureDelay
+   :type: string
+   :condition: optional
+
+   Interval to wait before the payment is captured, for example ``8 hours`` or ``2 days``. In order to schedule an
+   automatic capture, the ``captureMode`` must be set to either ``automatic`` or be omitted.
+
+   Possible values: ``... hours`` ``... days``
+
+   .. note:: The maximum delay is 7 days (``168 hours``).
 
 .. _payment-method-specific-parameters:
 
@@ -204,425 +244,464 @@ payment method.
 
 Apple Pay
 """""""""
-.. list-table::
-   :widths: auto
+.. parameter:: applePayPaymentToken
+   :type: string
+   :condition: optional
 
-   * - ``applePayPaymentToken``
+   The `Apple Pay Payment Token
+   <https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypayment/1916095-token>`_  object (encoded as
+   JSON) that is part of the result of authorizing a payment request. The token contains the payment information needed
+   to authorize the payment.
 
-       .. type:: string
-          :required: false
+   The object should be passed encoded in a JSON string. Example:
 
-     - The `Apple Pay Payment
-       Token <https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypayment/1916095-token>`_  object
-       (encoded as JSON) that is part of the result of authorizing a payment request. The token contains the payment
-       information needed to authorize the payment.
+   ``{"paymentData": {"version": "EC_v1", "data": "vK3BbrCbI/...."}}``
 
-       The object should be passed encoded in a JSON string. Example:
-
-       ``{"paymentData": {"version": "EC_v1", "data": "vK3BbrCbI/...."}}``
-
-       For documentation on how to get this token, see :doc:`/guides/applepay-direct-integration`.
+   For documentation on how to get this token, see :doc:`/wallets/applepay-direct-integration`.
 
 Bank transfer
 """""""""""""
-.. list-table::
-   :widths: auto
+.. parameter:: billingEmail
+   :type: string
+   :condition: optional
 
-   * - .. param-name:: billingEmail
-          :prefix: bankTransfer
+   Consumer's email address, to automatically send the bank transfer details to. **Note:** the payment instructions will
+   will be sent immediately when creating the payment. If you do not specify the ``locale`` parameter, the email will be
+   sent in English, as we haven't yet been able to detect the consumer's browser language.
 
-       .. type:: string
-          :required: false
+.. parameter:: dueDate
+   :type: string
+   :condition: optional
 
-     - Consumer's email address, to automatically send the bank transfer details to. **Please note:** the
-       payment instructions will be sent immediately when creating the payment. If you do not specify the ``locale``
-       parameter, the email will be sent in English, as we haven't yet been able to detect the consumer's browser
-       language.
+   The date the payment should :doc:`expire </payments/status-changes>`, in ``YYYY-MM-DD`` format. **Note:** the minimum
+   date is tomorrow and the maximum date is 100 days after tomorrow.
 
-   * - ``dueDate``
+   After you created the payment, you can still update the ``dueDate`` via
+   :doc:`/reference/v2/payments-api/update-payment`.
 
-       .. type:: string
-          :required: false
+.. parameter:: locale
+   :type: string
+   :condition: optional
 
-     - The date the payment should :doc:`expire </payments/status-changes>`, in ``YYYY-MM-DD`` format.
-       **Please note:** the minimum date is tomorrow and the maximum date is 100 days after tomorrow.
+   For bank transfer payments specifically, the locale will determine the target bank account the customer has to
+   transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the customer
+   use a local bank account greatly increases the conversion and speed of payment.
 
-       After you created the payment, you can still update the ``dueDate`` via the
-       :doc:`/reference/v2/payments-api/update-payment`.
-
-   * - ``locale``
-
-       .. type:: string
-          :required: false
-
-     - The locale will determine the target bank account the customer has to transfer the money to. We have dedicated
-       bank accounts for Belgium, Germany and The Netherlands. Having the customer use a local bank account
-       greatly increases the conversion and speed of payment.
-
-       Possible values: ``en_US`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
-       ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV``
-       ``lt_LT``
+   Possible values: ``en_US`` ``en_GB`` ``nl_NL`` ``nl_BE`` ``fr_FR`` ``fr_BE`` ``de_DE`` ``de_AT`` ``de_CH`` ``es_ES``
+   ``ca_ES`` ``pt_PT`` ``it_IT`` ``nb_NO`` ``sv_SE`` ``fi_FI`` ``da_DK`` ``is_IS`` ``hu_HU`` ``pl_PL`` ``lv_LV`` ``lt_LT``
 
 Credit card
 """""""""""
-.. list-table::
-   :widths: auto
+.. parameter:: billingAddress
+   :type: address object
+   :condition: optional
 
-   * - ``billingAddress``
+   The card holder's address details. We advise to provide these details to improve the credit card fraud protection,
+   and thus improve conversion.
 
-       .. type:: address object
-          :required: false
+   If an address is provided, then the address has to be in a valid format. See the
+   :ref:`address object <address-object>` documentation for more information on which formats are accepted.
 
-     - The card holder's address details. We advise to provide these details to improve the credit card fraud
-       protection, and thus improve conversion.
+   .. parameter:: streetAndNumber
+      :type: string
+      :condition: required
 
-       The following fields can be added to the object:
+      The card holder's street and street number.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: postalCode
+      :type: string
+      :condition: conditional
 
-          * - ``streetAndNumber``
+      The card holder's postal code. This field is required if the provided ``country`` has a postal code system.
 
-              .. type:: string
-                 :required: false
+   .. parameter:: city
+      :type: string
+      :condition: required
 
-            - The card holder's street and street number.
+      The card holder's city.
 
-          * - ``postalCode``
+   .. parameter:: region
+      :type: string
+      :condition: optional
 
-              .. type:: string
-                 :required: false
+      The card holder's region.
 
-            - The card holder's postal code.
+   .. parameter:: country
+      :type: string
+      :condition: required
 
-          * - ``city``
+      The card holder's country in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
 
-              .. type:: string
-                 :required: false
+.. parameter:: cardToken
+   :type: string
+   :condition: optional
 
-            - The card holder's city.
+   The card token you got from :doc:`Mollie Components </components/overview>`.  The token contains the card information
+   (such as card holder, card number, and expiry date) needed to complete the payment.
 
-          * - ``region``
+.. parameter:: shippingAddress
+   :type: address object
+   :condition: optional
 
-              .. type:: string
-                 :required: false
+   The shipping address details. We advise to provide these details to improve the credit card fraud protection, and
+   thus improve conversion.
 
-            - The card holder's region.
+   If an address is provided, then the address has to be in a valid format. See the
+   :ref:`address object <address-object>` documentation for more information on which formats are accepted.
 
-          * - ``country``
+   .. parameter:: streetAndNumber
+      :type: string
+      :condition: required
 
-              .. type:: string
-                 :required: false
+      The street and street number of the shipping address.
 
-            - The card holder's country in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_
-              format.
+   .. parameter:: postalCode
+      :type: string
+      :condition: conditional
 
-       Please refer to the documentation of the :ref:`address object <address-object>`
-       for more information on which inputs are accepted inputs.
+      The postal code of the shipping address. This field is required if the provided ``country`` has a postal code
+      system.
 
-   * - ``cardToken``
+   .. parameter:: city
+      :type: string
+      :condition: required
 
-       .. type:: string
-          :required: false
+      The city of the shipping address.
 
-     - The card token you got from :doc:`Mollie Components </guides/mollie-components/overview>`.  The token contains
-       the card information (such as card holder, card number and expiry date) needed to complete the payment.
+   .. parameter:: region
+      :type: string
+      :condition: optional
 
-   * - ``shippingAddress``
+      The region of the shipping address.
 
-       .. type:: address object
-          :required: false
+   .. parameter:: country
+      :type: string
+      :condition: required
 
-     - The shipping address details. We advise to provide these details to improve the credit card fraud
-       protection, and thus improve conversion.
-
-       The following fields can be added to the object:
-
-       .. list-table::
-          :widths: auto
-
-          * - ``streetAndNumber``
-
-              .. type:: string
-                 :required: false
-
-            - The street and street number of the shipping address.
-
-          * - ``postalCode``
-
-              .. type:: string
-                 :required: false
-
-            - The postal code of the shipping address.
-
-          * - ``city``
-
-              .. type:: string
-                 :required: false
-
-            - The city of the shipping address.
-
-          * - ``region``
-
-              .. type:: string
-                 :required: false
-
-            - The region of the shipping address.
-
-          * - ``country``
-
-              .. type:: string
-                 :required: false
-
-            - The country of the shipping address in
-              `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
-
-       Please refer to the documentation of the :ref:`address object <address-object>`
-       for more information on which inputs are accepted inputs.
+      The country of the shipping address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_
+      format.
 
 Gift cards
 """"""""""
-.. list-table::
-   :widths: auto
+.. parameter:: issuer
+   :type: string
+   :condition: optional
 
-   * - ``issuer``
+   The gift card brand to use for the payment. This is useful when you want to embed the gift card type selection on
+   your own checkout screen. The issuers can be retrieved by using the ``issuers`` :ref:`include <method-includes>` in
+   the Methods API.
 
-       .. type:: string
-          :required: false
+   If you need a brand that is not in the list, contact our support department. We can also support closed-loop cards.
 
-     - The gift card brand to use for the payment. These issuers can be retrieved by using
-       the ``issuers`` :ref:`include in the Methods API <method-includes>`. If you need a brand not in the list, contact
-       our support department. We can also support closed-loop cards.
+   Possible values: ``beautycadeaukaart`` ``bloemencadeaukaart`` ``bloemplantgiftcard`` ``boekenbon`` ``dagiftcard`` ``decadeaukaart``
+   ``delokalecadeaukaart`` ``dinercadeau`` ``doenkadotickets`` ``fashioncheque`` ``festivalcadeau`` ``good4fun`` ``horseandgifts`` ``huistuincadeaukaart``
+   ``jewelcard`` ``kluscadeau`` ``kunstencultuurcadeaukaart`` ``nationalebioscoopbon`` ``nationaleentertainmentcard``
+   ``nationalegolfbon`` ``ohmygood`` ``podiumcadeaukaart`` ``reiscadeau`` ``restaurantcadeau`` ``shoesandsneakerscadeau``
+   ``sodexosportculturepass`` ``sportenfitcadeau`` ``sustainablefashion`` ``travelcheq`` ``vvvgiftcard``
+   ``vvvdinercheque`` ``vvvlekkerweg`` ``webshopgiftcard`` ``wijncadeaukaart`` ``yourgift``
 
-       If only one issuer is activated on your account, you can omit this parameter.
+.. parameter:: voucherNumber
+   :type: string
+   :condition: optional
 
-       Possible values: ``bloemencadeaukaart`` ``boekenbon`` ``decadeaukaart`` ``delokalecadeaukaart`` ``dinercadeau`` ``fashioncheque``
-       ``festivalcadeau`` ``good4fun`` ``kluscadeau`` ``kunstencultuurcadeaukaart`` ``nationalebioscoopbon``
-       ``nationaleentertainmentcard`` ``nationalegolfbon`` ``ohmygood`` ``podiumcadeaukaart`` ``reiscadeau``
-       ``restaurantcadeau`` ``sportenfitcadeau`` ``sustainablefashion`` ``travelcheq`` ``vvvgiftcard`` ``vvvdinercheque``
-       ``vvvlekkerweg`` ``webshopgiftcard`` ``yourgift``
+   The card number on the gift card. You can supply this to prefill the card number.
 
-   * - ``voucherNumber``
+.. parameter:: voucherPin
+   :type: string
+   :condition: optional
 
-       .. type:: string
-          :required: false
-
-     - The card number on the gift card.
-
-   * - ``voucherPin``
-
-       .. type:: string
-          :required: false
-
-     - The PIN code on the gift card. Only required if there is a PIN code printed on the gift card.
+   The PIN code on the gift card. You can supply this to prefill the PIN, if the card has any.
 
 iDEAL
 """""
-.. list-table::
-   :widths: auto
+.. parameter:: issuer
+   :type: string
+   :condition: optional
 
-   * - ``issuer``
-
-       .. type:: string
-          :required: false
-
-     - An iDEAL issuer ID, for example ``ideal_INGBNL2A``. The returned payment URL will deep-link into the
-       specific banking website (ING Bank, in this example). The full list of issuers can be retrieved via the
-       :ref:`Methods API <method-includes>` by using the optional ``issuers`` include.
+   An iDEAL issuer ID, for example ``ideal_INGBNL2A``. This is useful when you want to embed the issuer selection on
+   your own checkout screen. When supplying an issuer ID, the returned payment URL will deep-link to the specific
+   banking website (ING Bank, in this example). The full list of issuers can be retrieved via the
+   :ref:`Methods API <method-includes>` by using the optional ``issuers`` include.
 
 KBC/CBC Payment Button
 """"""""""""""""""""""
-.. list-table::
-   :widths: auto
+.. parameter:: description
+   :type: string
+   :condition: optional
 
-   * - ``description``
+   For the KBC/CBC payment method the description will be truncated to 13 characters.
 
-       .. type:: string
-          :required: true
+.. parameter:: issuer
+   :type: string
+   :condition: optional
 
-     - When KBC/CBC is chosen as the payment method, the description will be truncated to 13 characters.
+   The issuer to use for the KBC/CBC payment. This is useful when you want to embed the selection between KBC and CBC on
+   your own checkout screen. The full list of issuer IDs can be retrieved via the :ref:`Methods API <method-includes>`
+   by using the optional ``issuers`` include.
 
-   * - ``issuer``
+   Possible values: ``kbc`` ``cbc``
 
-       .. type:: string
-          :required: false
-
-     - The issuer to use for the KBC/CBC payment.The full list of issuers can be retrieved via the
-       :ref:`Methods API <method-includes>` by using the optional ``issuers`` include.
-
-       Possible values: ``kbc`` ``cbc``
-
-Klarna Pay later. / Slice it.
-"""""""""""""""""""""""""""""
+Klarna
+""""""""""""""""""""""""""""""""""""""""
 .. note::
     Klarna payments can only be created via the :doc:`Orders API </reference/v2/orders-api/create-order>`.
 
-.. list-table::
-   :widths: auto
+.. parameter:: extraMerchantData
+   :type: object
+   :condition: optional
 
-   * - ``extraMerchantData``
+   For some industries, additional purchase information can be sent to Klarna to increase the authorization rate. You
+   can submit your extra data in this field if you have agreed upon this with Klarna. This field should be an object
+   containing any of the allowed keys and sub objects described at the `Klarna Developer Documentation
+   <https://docs.klarna.com/klarna-payments/api/#tag/Attachment-Schema>`_ under ``attachment.body``.
 
-       .. type:: object
-          :required: false
+   Reach out to your account manager at Mollie to enable this feature with Klarna, and to agree on which fields
+   you can send.
 
-     - For some industries, additional purchase information can be sent to Klarna to increase the authorization rate.
-       You can submit your extra data in this field if you have agreed upon this with Klarna. This field should be an
-       object containing any of the allowed keys and sub objects described at the `Klarna Developer Documentation
-       <https://developers.klarna.com/api/#payments-api__create-a-new-credit-sessionattachment__body>`_ under
-       ``attachment.body``.
+Klarna Pay now. / Pay later. / Slice it.
+""""""""""""""""""""""""""""""""""""""""
+.. note::
+    Klarna payments can only be created via the :doc:`Orders API </reference/v2/orders-api/create-order>`.
 
-       Note that Klarna needs to do some work to make sure this information is incorporated in their risk decisions, so
-       there is no point in sending it without making agreements with Klarna first.
+.. parameter:: extraMerchantData
+   :type: object
+   :condition: optional
 
-       Please reach out to your account manager at Mollie to enable this feature with Klarna.
+   For some industries, additional purchase information can be sent to Klarna to increase the authorization rate. You
+   can submit your extra data in this field if you have agreed upon this with Klarna. This field should be an object
+   containing any of the allowed keys and sub objects described at the `Klarna Developer Documentation
+   <https://docs.klarna.com/klarna-payments/api/#tag/Attachment-Schema>`_ under ``attachment.body``.
+
+   Reach out to your account manager at Mollie to enable this feature with Klarna, and to agree on which fields
+   you can send.
+
+Billie
+""""""
+.. note::
+   Billie payments can only be created via the :doc:`Orders API </reference/v2/orders-api/create-order>`.
+
+.. parameter:: billingAddress
+   :type: address object
+   :condition: optional
+
+   Company address details. We advise to provide these details to improve the Billie's risk system.
+
+   If an address is provided, then the address has to be in a valid format. See the
+   :ref:`address object <address-object>` documentation for more information on which formats are accepted.
+
+   .. parameter:: organizationName
+      :type: string
+      :condition: required
+
+      The organization's name. It is mandatory for Billie orders.
+
+   .. parameter:: givenName
+      :type: string
+      :condition: required
+
+      The given name (first name) of the buyer.
+
+   .. parameter:: familyName
+      :type: string
+      :condition: required
+
+      The family name (surname) of the buyer.
+
+   .. parameter:: email
+      :type: string
+      :condition: required
+
+      The contact email address of the organization.
+
+   .. parameter:: streetAndNumber
+      :type: string
+      :condition: required
+
+   .. parameter:: streetAdditional
+      :type: string
+      :condition: optional
+
+   .. parameter:: postalCode
+      :type: string
+      :condition: conditional
+
+      This field is required if the provided ``country`` has a postal code system.
+
+   .. parameter:: city
+      :type: string
+      :condition: required
+
+   .. parameter:: region
+      :type: string
+      :condition: optional
+
+   .. parameter:: country
+      :type: string
+      :condition: required
+
+      The country of the address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+
+.. parameter:: company
+   :type: object
+   :condition: optional
+
+   Billie is a B2B payment method, thus it requires some extra information to identify the business that is creating the order.
+   It is recommended to include these parameters as part of the create order request for a seamless flow, otherwise the
+   customer will be asked to fill the missing fields at the Billie's checkout page.
+
+   .. parameter:: registrationNumber
+      :type: string
+      :condition: optional
+
+      Organization's registration number.
+
+   .. parameter:: vatNumber
+      :type: string
+      :condition: optional
+
+      Organization's VAT number.
+
+   .. parameter:: entityType
+      :type: string
+      :condition: optional
+
+      Organization's entity type. Must be one of: ``limited-company``, ``public-limited-company``, ``entrepreneurial-company``,
+      ``limited-partnership-limited-company``, ``limited-partnership``, ``general-partnership``, ``registered-sole-trader``,
+      ``sole-trader``, ``civil-law-partnership``, ``public-institution``
 
 .. _paypal-method-details:
 
 PayPal
 """"""
-.. list-table::
-   :widths: auto
+.. parameter:: description
+   :type: string
+   :condition: optional
 
-   * - ``description``
+   For PayPal, we will automatically try to determine the order number from the description string and pass it on to
+   PayPal as the *invoice reference*. This field is searchable in the PayPal merchant dashboard.
 
-       .. type:: string
-          :required: true
+   For example, in the string ``Best Service Order ABS123`` our system will assume "Order ABS123" to be the invoice
+   reference.
 
-     - If a description in the form ``Order <order number>`` is used, the order number is passed to PayPal as the
-       *invoice reference*. This field is searchable in the PayPal merchant dashboard. This field must be unique and
-       should not contain symbols. Alternatively, we will recognize the following keywords:
+   This functionality is a 'best effort' feature based on a list of common keywords like 'order', 'payment', 'invoice',
+   and common translations like 'Zahlung' and 'Pedido'.
 
-       - Cart
-       - Order
-       - Invoice
-       - Payment
+.. parameter:: shippingAddress
+   :type: address object
+   :condition: optional
 
-   * - ``shippingAddress``
+   The shipping address details. We advise to provide these details to improve PayPal's fraud protection, and thus
+   improve conversion.
 
-       .. type:: address object
-          :required: false
+   If an address is provided, then the address has to be in a valid format. See the
+   :ref:`address object <address-object>` documentation for more information on which formats are accepted.
 
-     - The shipping address details. We advise to provide these details to improve PayPal's fraud
-       protection, and thus improve conversion.
+   .. parameter:: givenName
+      :type: string
+      :condition: required
 
-       The following fields can be added to the object:
+      The given name (first name) of the person. The maximum character length of ``givenName`` and ``familyName``
+      combined is 128.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: familyName
+      :type: string
+      :condition: required
 
-          * - ``givenName``
+      The family name (surname) of the person. The maximum character length of ``givenName`` and ``familyName`` combined
+      is 128.
 
-              .. type:: string
-                 :required: false
+   .. parameter:: streetAndNumber
+      :type: string
+      :condition: required
 
-            - The given name (first name) of the person. The maximum character length of ``givenName`` and
-              ``familyName`` combined is 128.
+      The street and street number of the shipping address. The maximum character length is 128.
 
-          * - ``familyName``
+   .. parameter:: postalCode
+      :type: string
+      :condition: conditional
 
-              .. type:: string
-                 :required: false
+      The postal code of the shipping address. This field is required if the provided ``country`` has a postal code
+      system. The maximum character length is 20.
 
-            - The family name (surname) of the person. The maximum character length of ``givenName`` and ``familyName``
-              combined is 128.
+   .. parameter:: city
+      :type: string
+      :condition: required
 
-          * - ``streetAndNumber``
+      The city of the shipping address. The maximum character length is 100.
 
-              .. type:: string
-                 :required: false
+   .. parameter:: region
+      :type: string
+      :condition: optional
 
-            - The street and street number of the shipping address. The maximum character length is 128.
+      The region of the shipping address. The maximum character length is 100. **Note**: this field is required if
+      ``country`` is one of the following countries: ``AR`` ``BR`` ``CA`` ``CN`` ``ID`` ``IN`` ``JP`` ``MX`` ``TH``
+      ``US``
 
-          * - ``postalCode``
+   .. parameter:: country
+      :type: string
+      :condition: required
 
-              .. type:: string
-                 :required: false
+      The country of the shipping address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_
+      format.
 
-            - The postal code of the shipping address. The maximum character length is 20.
+.. parameter:: sessionId
+   :type: string
+   :condition: optional
 
-          * - ``city``
+   The unique ID you have used for the PayPal fraud library. You should include this if you use PayPal for an on-demand
+   payment. The maximum character length is 32.
 
-              .. type:: string
-                 :required: false
+   Refer to the :doc:`Recurring payments guide </payments/recurring>` for more information on how to implement
+   the fraud library.
 
-            - The city of the shipping address. The maximum character length is 100.
+.. parameter:: digitalGoods
+   :type: boolean
+   :condition: optional
 
-          * - ``region``
+   Indicate if you are about to deliver digital goods, like for example a license. Setting this parameter can have
+   consequences for your Seller Protection by PayPal. See
+   `PayPal's help article <https://www.paypal.com/us/brc/article/seller-protection>`_ about Seller Protection for more
+   information.
 
-              .. type:: string
-                 :required: false
-
-            - The region of the shipping address. The maximum character length is 100.
-              **Please note**: this field is required if ``country`` is one of the following countries:
-              ``AR`` ``BR`` ``CA`` ``CN`` ``ID`` ``IN`` ``JP`` ``MX`` ``TH`` ``US``
-
-          * - ``country``
-
-              .. type:: string
-                 :required: false
-
-            - The country of the shipping address in
-              `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
-
-       Please refer to the documentation of the :ref:`address object <address-object>`
-       for more information on which inputs are accepted inputs.
-
-   * - ``sessionId``
-
-       .. type:: string
-          :required: false
-
-     - The unique ID you have used for the PayPal fraud library. You should include this if you use
-       PayPal for an on-demand payment. The maximum character length is 32.
-
-       Please refer to the :doc:`Recurring payments guide </payments/recurring>` for more information
-       on how to implement the fraud library.
-
-   * - ``digitalGoods``
-
-       .. type:: boolean
-          :required: false
-
-     - Indicate if you are about to deliver digital goods, like for example a license. Setting this
-       parameter can have consequences for your Seller Protection by PayPal. Please see
-       `PayPal's help article <https://www.paypal.com/us/brc/article/seller-protection>`_ about
-       Seller Protection for more information.
-
-       **Default**: ``false``
+   Default: ``false``
 
 paysafecard
 """""""""""
-.. list-table::
-   :widths: auto
+.. parameter:: customerReference
+   :type: string
+   :condition: optional
 
-   * - ``customerReference``
+   Used for consumer identification. Use the following guidelines to create your ``customerReference``:
 
-       .. type:: string
-          :required: false
+   * Has to be unique per shopper
+   * Has to remain the same for one shopper
+   * Should be as disconnected from personal data as possible
+   * Must not contain customer sensitive data
+   * Must not contain the timestamp
+   * Must not contain the IP address
 
-     - Used for consumer identification. Use the following guidelines to create your ``customerReference``:
-          * Has to be unique per shopper
-          * Has to remain the same for one shopper
-          * Should be as disconnected from personal data as possible
-          * Must not contain customer sensitive data
-          * Must not contain the timestamp
-          * Must not contain the IP address
+   Due to data privacy regulations, make sure not to use any personal identifiable information in this parameter.
 
-        Due to data privacy regulations, make sure not to use any personal identifiable information in this parameter.
+   If not provided, Mollie will send a hashed version of the shopper IP address.
 
-        If not provided, Mollie will send a hashed version of the shopper IP address.
+Point-of-sale
+"""""""""""""
+.. parameter:: terminalId
+   :type: string
+   :condition: required
+
+   The unique identifier used for referring to a terminal. This ID is used for assigning the payment to a specific terminal
+   and it can be retrieved via :doc:`List terminals </reference/v2/terminals-api/list-terminals>`.
+   For more information about point-of-sale payments, please check our guide
+   :doc:`point-of-sale payments </point-of-sale/overview>`.
 
 Przelewy24
 """"""""""
-.. list-table::
-   :widths: auto
+.. parameter:: billingEmail
+   :type: string
+   :condition: optional
 
-   * - ``billingEmail``
-
-       .. type:: string
-          :required: false
-
-     - Consumer's email address.
+   Consumer's email address.
 
 SEPA Direct Debit
 """""""""""""""""
@@ -630,210 +709,175 @@ SEPA Direct Debit
     One-off SEPA Direct Debit payments using Mollie Checkout can only be created if this is enabled on your account. In
     general, it is not very useful for webshops but may be useful for charities.
 
-    Please contact our support department at info@mollie.com to enable this.
+    Contact our support department to enable this.
 
     If you want to use recurring payments, take a look at our :doc:`Recurring payments guide </payments/recurring>`.
 
-.. list-table::
-   :widths: auto
+.. parameter:: consumerName
+   :type: string
+   :condition: optional
 
-   * - ``consumerName``
+   Beneficiary name of the account holder. Only available if one-off payments are enabled on your account. Supplying
+   this field will pre-fill the beneficiary name in the checkout screen.
 
-       .. type:: string
-          :required: false
+.. parameter:: consumerAccount
+   :type: string
+   :condition: optional
 
-     - Beneficiary name of the account holder. Only available if one-off payments are enabled on your
-       account. Will pre-fill the beneficiary name in the checkout screen if present.
-
-   * - ``consumerAccount``
-
-       .. type:: string
-          :required: false
-
-     - IBAN of the account holder. Only available if one-off payments are enabled on your account. Will
-       pre-fill the IBAN in the checkout screen if present.
+   IBAN of the account holder. Only available if one-off payments are enabled on your account. Supplying this field will
+   pre-fill the IBAN in the checkout screen.
 
 .. _voucher_method_details:
 
 Vouchers
 """"""""
+.. parameter:: issuer
+   :type: string
+   :condition: optional
 
-.. list-table::
-   :widths: auto
-
-   * - ``issuer``
-
-       .. type:: string
-          :required: false
-
-     - A voucher issuer ID, for example ``sodexo-lunchpass``. The returned payment URL will deep link
-       to the specific card website. The full list of issuers can be retrieved via the
-       :ref:`Methods API <method-includes>` by using the optional ``issuers`` include.
+   A voucher issuer ID, for example ``sodexo-lunchpass``. If you supply this parameter, the returned payment URL will
+   deep-link to the specific card website. The full list of issuers can be retrieved via the
+   :ref:`Methods API <method-includes>` by using the optional ``issuers`` include.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you have to specify which profile you are creating the payment for using the
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you have to specify which profile you are creating the payment for using the
 ``profileId`` parameter. Organizations can have multiple profiles for each of their websites. See
-:doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+:doc:`Profiles API </reference/v2/profiles-api/overview>` for more information.
 
 For these authentication methods the optional ``testmode`` parameter is available as well to enable test mode.
 
-.. list-table::
-   :widths: auto
+.. parameter:: profileId
+   :type: string
+   :condition: required for access tokens
+   :collapse: true
 
-   * - ``profileId``
+   The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
 
-       .. type:: string
-          :required: true
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
-
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to make this payment a test payment.
+   Set this to ``true`` to make this payment a test payment.
 
 Mollie Connect parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 With Mollie Connect you can charge fees on payments that are processed through your app, either by defining an
-*application fee* or by *splitting the payment*. To learn more about the difference, please refer to the
-:doc:`Mollie Connect overview </oauth/overview>`.
+*application fee* or by *splitting the payment*. To learn more about the difference, refer to the
+:doc:`Mollie Connect overview </connect/overview>`.
 
-.. list-table::
-   :widths: auto
+.. parameter:: applicationFee
+   :type: object
+   :condition: optional
+   :collapse: true
 
-   * - ``applicationFee``
+   Adding an :doc:`application fee </connect/application-fees>` allows you to charge the merchant a small sum for the
+   payment and transfer this to your own account.
 
-       .. type:: object
-          :required: false
+   .. parameter:: amount
+      :type: amount object
+      :condition: required
 
-     - Adding an :doc:`application fee </oauth/application-fees>` allows you to charge the merchant a small sum for the
-       payment and transfer this to your own account.
+      The fee that the app wants to charge, e.g. ``{"currency":"EUR", "value":"10.00"}`` if the app would want to charge
+      €10.00.
 
-       .. list-table::
-          :widths: auto
+      There need to be enough funds left from the payment to deduct the Mollie payment fees as well. For example, you
+      cannot charge a €0.99 fee on a €1.00 payment. The API will return an error if the requested application fee is too
+      high for the specific payment amount and method.
 
-          * - ``amount``
+      .. parameter:: currency
+         :type: string
+         :condition: required
 
-              .. type:: amount object
-                 :required: true
+         An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
-            - The amount in that the app wants to charge, e.g. ``{"currency":"EUR", "value":"10.00"}`` if the app would
-              want to charge €10.00.
+      .. parameter:: value
+         :type: string
+         :condition: required
 
-              .. list-table::
-                 :widths: auto
+         A string containing the exact amount you want to charge in the given currency. Make sure to send the right
+         amount of decimals. Non-string values are not accepted.
 
-                 * - ``currency``
+   .. parameter:: description
+      :type: string
+      :condition: required
 
-                     .. type:: string
-                        :required: true
+      The description of the application fee. This will appear on settlement reports to the merchant and to you.
 
-                   - An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+      The maximum length is 255 characters.
 
-                 * - ``value``
+.. parameter:: routing
+   :type: array
+   :condition: optional
+   :collapse: true
 
-                     .. type:: string
-                        :required: true
+   .. note:: Split Payments are not enabled by default. To enable them for your organization, reach out to our partner
+            management team.
 
-                   - A string containing the exact amount you want to charge in the given currency. Make sure to send
-                     the right amount of decimals. Non-string values are not accepted.
+   An optional routing configuration which enables you to route a successful payment, or part of the payment, to one or
+   more connected accounts. Additionally, you can schedule (parts of) the payment to become available on the connected
+   account on a future date.
 
-          * - ``description``
+   See the :doc:`Split payments </connect/splitting-payments>` guide for more information on payment routing.
 
-              .. type:: string
-                 :required: true
+   If a routing array is supplied, it must contain one or more routing objects with the following parameters.
 
-            - The description of the application fee. This will appear on settlement reports to the merchant and to you.
+   .. parameter:: amount
+      :type: amount object
+      :condition: conditional
 
-              The maximum length is 255 characters.
+      If more than one routing object is given, the routing objects must indicate what portion of the total payment
+      amount is being routed.
 
-   * - ``routing``
+      .. parameter:: currency
+         :type: string
+         :condition: required
 
-       .. type:: array
-          :required: false
+         An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code. Currently only ``EUR`` payments can be
+         routed.
 
-     - An optional routing configuration which enables you to route a successful payment, or part of the payment, to one
-       or more connected accounts. Additionally, you can schedule (parts of) the payment to become available on the
-       connected account on a future date.
+      .. parameter:: value
+         :type: string
+         :condition: required
 
-       See the :doc:`Split payments </oauth/splitting-payments>` guide for more information on payment routing.
+         A string containing the exact amount of this portion of the payment in the given currency. Make sure to send
+         the right amount of decimals. Non-string values are not accepted.
 
-       If a routing array is supplied, it must contain one or more routing objects with the following parameters:
+   .. parameter:: destination
+      :type: object
+      :condition: required
 
-       .. list-table::
-          :widths: auto
+      The destination of this portion of the payment.
 
-          * - ``amount``
+      .. parameter:: type
+         :type: string
+         :condition: required
 
-              .. type:: amount object
-                 :required: false
+         The type of destination. Currently only the destination type ``organization`` is supported.
 
-            - If more than one routing object is given, the routing objects must indicate what portion of the total
-              payment amount is being routed.
+         Possible values: ``organization``
 
-              .. list-table::
-                 :widths: auto
+      .. parameter:: organizationId
+         :type: string
+         :condition: conditional
 
-                 * - ``currency``
+         Required for destination type ``organization``. The ID of the connected organization the funds should be routed
+         to, for example ``org_12345``.
 
-                     .. type:: string
-                        :required: true
+         **Note:** ``me`` or the ID of the current organization are not accepted as an ``organizationId``. After all
+         portions of the total payment amount have been routed, the amount left will be routed to the current
+         organization automatically.
 
-                   - An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code. Currently only ``EUR``
-                     payments can be routed.
+   .. parameter:: releaseDate
+      :type: date
+      :condition: optional
 
-                 * - ``value``
+      Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date
+      must be given in ``YYYY-MM-DD`` format.
 
-                     .. type:: string
-                        :required: true
-
-                   - A string containing the exact amount of this portion of the payment in the given currency. Make
-                     sure to send the right amount of decimals. Non-string values are not accepted.
-
-          * - ``destination``
-
-              .. type:: object
-                 :required: true
-
-            - The destination of this portion of the payment.
-
-              .. list-table::
-                 :widths: auto
-
-                 * - ``type``
-
-                     .. type:: string
-                        :required: true
-
-                   - The type of destination. Currently only the destination type ``organization`` is supported.
-
-                     Possible values: ``organization``
-
-                 * - ``organizationId``
-
-                     .. type:: string
-                        :required: false
-
-                   - Required for destination type ``organization``. The ID of the connected organization the funds
-                     should be routed to, for example ``org_12345``.
-
-                     **Please note:** ``me`` or the ID of the current organization are not accepted as an
-                     ``organizationId``. After all portions of the total payment amount have been routed, the amount
-                     left will be routed to the current organization automatically.
-
-          * - ``releaseDate``
-
-              .. type:: date
-                 :required: false
-
-            - Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
-              date must be given in ``YYYY-MM-DD`` format.
-
-              If no date is given, the funds become available to the balance as soon as the payment succeeds.
+      If no date is given, the funds become available to the balance as soon as the payment succeeds.
 
 QR codes
 ^^^^^^^^
@@ -895,18 +939,18 @@ Example
       from mollie.api.client import Client
 
       mollie_client = Client()
-      mollie_client.set_api_key('test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM')
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
       payment = mollie_client.payments.create({
-         'amount': {
-               'currency': 'EUR',
-               'value': '10.00'
-         },
-         'description': 'Order #12345',
-         'webhookUrl': 'https://webshop.example.org/order/12345/',
-         'redirectUrl': 'https://webshop.example.org/payments/webhook/',
-         'metadata': {
-               'order_id': '12345'
-         }
+          "amount": {
+              "currency": "EUR",
+              "value": "10.00",
+          },
+          "description": "Order #12345",
+          "redirectUrl": "https://webshop.example.org/payments/webhook/",
+          "webhookUrl": "https://webshop.example.org/order/12345/",
+          "metadata": {
+              "order_id": "12345",
+          }
       })
 
    .. code-block:: ruby
@@ -937,20 +981,18 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const payment = await mollieClient.payments.create({
-          amount: {
-            currency: 'EUR',
-            value: '10.00', // We enforce the correct number of decimals through strings
-          },
-          description: 'Order #12345',
-          redirectUrl: 'https://webshop.example.org/order/12345/',
-          webhookUrl: 'https://webshop.example.org/payments/webhook/',
-          metadata: {
-            order_id: '12345',
-          },
-        });
-      })();
+      const payment = await mollieClient.payments.create({
+        amount: {
+          currency: 'EUR',
+          value: '10.00'
+        },
+        description: 'Order #12345',
+        redirectUrl: 'https://webshop.example.org/order/12345/',
+        webhookUrl: 'https://webshop.example.org/payments/webhook/',
+        metadata: {
+          order_id: '12345'
+        }
+      });
 
 Response
 ^^^^^^^^
@@ -993,7 +1035,7 @@ Response
            },
            "dashboard": {
                "href": "https://www.mollie.com/dashboard/org_12345678/payments/tr_7UhSN1zuXS",
-               "type": "application/json"
+               "type": "text/html"
            },
            "documentation": {
                "href": "https://docs.mollie.com/reference/v2/payments-api/create-payment",

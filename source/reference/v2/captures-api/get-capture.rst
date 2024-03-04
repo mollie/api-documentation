@@ -15,154 +15,147 @@ Get capture
 Retrieve a single capture by its ID. Note the original payment's ID is needed as well.
 
 Captures are used for payments that have the *authorize-then-capture* flow. The only payment methods at the moment
-that have this flow are **Klarna Pay later** and **Klarna Slice it**.
+that have this flow are **Klarna Pay now**, **Klarna Pay later** and **Klarna Slice it**.
 
 Parameters
 ----------
 Replace ``paymentId`` in the endpoint URL by the payment's ID, and replace ``id`` by the capture's ID. For example:
-``/v2/payments/tr_7UhSN1zuXS/captures/cpt_4qqhO89gsT``.
+``/v2/payments/tr_7UhSN1zuXS/captures/cpt_mNepDkEtco6ah3QNPUGYH``.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you can enable test mode through the ``testmode`` query string parameter.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` query string parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to retrieve a test mode capture.
+   Set this to ``true`` to retrieve a test mode capture.
 
 Embedding of related resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This endpoint allows for embedding additional information by appending the following values via the ``embed``
 query string parameter.
 
-* ``payment`` Include the :doc:`payment </reference/v2/payments-api/get-payment>` the capture were created for.
+* ``payment`` Include the :doc:`payment </reference/v2/payments-api/get-payment>` the capture was created for.
 
 Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains a capture object. Will always contain ``capture`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains a capture object. Will always contain ``capture`` for this endpoint.
+   The capture's unique identifier, for example ``cpt_mNepDkEtco6ah3QNPUGYH``.
 
-   * - ``id``
+.. parameter:: mode
+   :type: string
 
-       .. type:: string
+   The mode used to create this capture.
 
-     - The capture's unique identifier, for example ``cpt_4qqhO89gsT``.
+   Possible values: ``live`` ``test``
 
-   * - ``mode``
+.. parameter:: amount
+   :type: amount object
 
-       .. type:: string
+   The amount captured.
 
-     - The mode used to create this capture.
+.. parameter:: status
+   :type: string
 
-       Possible values: ``live`` ``test``
+   The capture's status.
 
-   * - ``amount``
+   Possible values: ``pending`` ``succeeded`` ``failed``
 
-       .. type:: amount object
+.. parameter:: settlementAmount
+   :type: amount object
 
-     - The amount captured.
+   This optional field will contain the approximate amount that will be settled to your account, converted to the
+   currency your account is settled in. It follows the same syntax as the ``amount`` property.
 
-   * - ``settlementAmount``
+   Please note that this amount might be recalculated and changed when the status of the capture changes.
+   We suggest using the :doc:`List balance transactions </reference/v2/balances-api/list-balance-transactions>`
+   endpoint instead to get more accurate settlement amounts for your captures.
 
-       .. type:: amount object
+.. parameter:: paymentId
+   :type: string
 
-     - This optional field will contain the amount that will be settled to your account, converted to the currency
-       your account is settled in. It follows the same syntax as the ``amount`` property.
+   The unique identifier of the payment this capture was created for, for example: ``tr_7UhSN1zuXS``. The full payment
+   object can be retrieved via the ``payment`` URL in the ``_links`` object.
 
-   * - ``paymentId``
+.. parameter:: shipmentId
+   :type: string
+   :condition: optional
 
-       .. type:: string
+   The unique identifier of the shipment that triggered the creation of this capture, for example: ``shp_3wmsgCJN4U``.
+   The full shipment object can be retrieved via the ``shipment`` URL in the ``_links`` object.
 
-     - The unique identifier of the payment this capture was created for, for example: ``tr_7UhSN1zuXS``. The full
-       payment object can be retrieved via the ``payment`` URL in the ``_links`` object.
+.. parameter:: settlementId
+   :type: string
+   :condition: optional
 
-   * - ``shipmentId``
+   The unique identifier of the settlement this capture was settled with, for example: ``stl_jDk30akdN``. The full
+   settlement object can be retrieved via the ``capture`` URL in the ``_links`` object.
 
-       .. type:: string
-          :required: false
+.. parameter:: createdAt
+   :type: datetime
 
-     - The unique identifier of the shipment that triggered the creation of this capture, for example:
-       ``shp_3wmsgCJN4U``. The full shipment object can be retrieved via the ``shipment`` URL in the ``_links`` object.
+   The capture's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
 
-   * - ``settlementId``
+.. parameter:: metadata
+   :type: mixed
+   :condition: optional
 
-       .. type:: string
-          :required: false
+   The optional metadata you provided upon capture creation. Metadata can for example 
+   be used to link an bookkeeping ID to a capture.
 
-     - The unique identifier of the settlement this capture was settled with, for example: ``stl_jDk30akdN``. The full
-       settlement object can be retrieved via the ``capture`` URL in the ``_links`` object.
+.. parameter:: _links
+   :type: object
 
-   * - ``createdAt``
+   An object with several URL objects relevant to the capture. Every URL object will contain an ``href`` and a ``type``
+   field.
 
-       .. type:: datetime
+   .. parameter:: self
+      :type: URL object
 
-     - The capture's date and time of creation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
+      The API resource URL of the capture itself.
 
-   * - ``_links``
+   .. parameter:: payment
+      :type: URL object
 
-       .. type:: object
+      The API resource URL of the payment the capture belongs to.
 
-     - An object with several URL objects relevant to the capture. Every URL object will contain an ``href`` and a
-       ``type`` field.
+   .. parameter:: shipment
+      :type: URL object
+      :condition: optional
 
-       .. list-table::
-          :widths: auto
+      The API resource URL of the shipment that triggered the capture to be created.
 
-          * - ``self``
+   .. parameter:: settlement
+      :type: URL object
+      :condition: optional
 
-              .. type:: URL object
+      The API resource URL of the settlement this capture has been settled with. Not present if not yet settled.
 
-            - The API resource URL of the capture itself.
+   .. parameter:: documentation
+      :type: URL object
 
-          * - ``payment``
-
-              .. type:: URL object
-
-            - The API resource URL of the payment the capture belongs to.
-
-          * - ``shipment``
-
-              .. type:: URL object
-                 :required: false
-
-            - The API resource URL of the shipment that triggered the capture to be created.
-
-          * - ``settlement``
-
-              .. type:: URL object
-                 :required: false
-
-            - The API resource URL of the settlement this capture has been settled with. Not present if not yet settled.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the capture retrieval endpoint documentation.
+      The URL to the capture retrieval endpoint documentation.
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
 
-       curl -X GET https://api.mollie.com/v2/payments/tr_WDqYK6vllg/captures/cpt_4qqhO89gsT \
+       curl -X GET https://api.mollie.com/v2/payments/tr_WDqYK6vllg/captures/cpt_mNepDkEtco6ah3QNPUGYH \
            -H "Authorization: Bearer test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
 
    .. code-block:: php
@@ -173,7 +166,18 @@ Example
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
       $payment = $mollie->payments->get("tr_WDqYK6vllg");
-      $capture = $payment->getCapture("cpt_4qqhO89gsT");
+      $capture = $payment->getCapture("cpt_mNepDkEtco6ah3QNPUGYH");
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      payment = mollie_client.payments.get("tr_WDqYK6vllg")
+      capture = payment.captures.get("cpt_mNepDkEtco6ah3QNPUGYH")
 
    .. code-block:: ruby
       :linenos:
@@ -185,7 +189,7 @@ Example
       end
 
       capture = Mollie::Payment::Capture.get(
-        'cpt_4qqhO89gsT',
+        'cpt_mNepDkEtco6ah3QNPUGYH',
         payment_id: 'tr_WDqYK6vllg'
       )
 
@@ -195,12 +199,9 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const capture = await mollieClient.payments_captures.get(
-          'cpt_4qqhO89gsT',
-          { paymentId: 'tr_WDqYK6vllg' }
-        );
-      })();
+      const capture = await mollieClient.paymentCaptures.get('cpt_mNepDkEtco6ah3QNPUGYH', {
+        paymentId: 'tr_WDqYK6vllg'
+      });
 
 Response
 ^^^^^^^^
@@ -212,12 +213,13 @@ Response
 
    {
        "resource": "capture",
-       "id": "cpt_4qqhO89gsT",
+       "id": "cpt_mNepDkEtco6ah3QNPUGYH",
        "mode": "live",
        "amount": {
            "value": "1027.99",
            "currency": "EUR"
        },
+       "status": "succeeded",
        "settlementAmount": {
            "value": "1027.99",
            "currency": "EUR"
@@ -226,9 +228,12 @@ Response
        "shipmentId": "shp_3wmsgCJN4U",
        "settlementId": "stl_jDk30akdN",
        "createdAt": "2018-08-02T09:29:56+00:00",
+       "metadata": {
+           "bookkeeping_id": 12345
+       },
        "_links": {
            "self": {
-               "href": "https://api.mollie.com/v2/payments/tr_WDqYK6vllg/captures/cpt_4qqhO89gsT",
+               "href": "https://api.mollie.com/v2/payments/tr_WDqYK6vllg/captures/cpt_mNepDkEtco6ah3QNPUGYH",
                "type": "application/hal+json"
            },
            "payment": {
@@ -249,4 +254,3 @@ Response
            }
        }
    }
-

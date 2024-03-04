@@ -3,7 +3,7 @@ Integration partners
 .. note:: Heads up! This section is intended for developers who are integrating the Mollie API into an e-commerce or
           SaaS platform.
 
-          If you are looking to integrate payments for a single customer or webshop, please use the
+          If you are looking to integrate payments for a single customer or web shop, use the
           `overview <https://docs.mollie.com>`_ to get started.
 
 Mollie <3 developers. We have a large community of partners and developers building an ever-growing ecosystem of
@@ -19,4 +19,4 @@ happy to answer your questions.
 
 Questions?
 ----------
-Please reach out to us at support@mollie.com. We are happy to help!
+Reach out to us at support@mollie.com. We are happy to help!

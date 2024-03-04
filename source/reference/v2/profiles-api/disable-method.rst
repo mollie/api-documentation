@@ -57,6 +57,17 @@ Request
 
       $profile->disableMethod('ideal');
 
+  .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_access_token("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ")
+
+      profile = mollie_client.profiles.get("pfl_v9hTwCvYqw")
+      profile.methods.delete("ideal")
+
 Response
 ^^^^^^^^
 .. code-block:: none

@@ -1,0 +1,52 @@
+{% from 'macros/sidebar-item.html' import sidebar_item with context -%}
+
+<p class="sidebar__topic-header">Payments</p>
+
+<ul>
+  {{ sidebar_item('payments/accepting-payments', 'Accepting payments') }}
+  {{ sidebar_item('payments/hosted-checkout', 'Hosted checkout') }}
+  {{ sidebar_item('payments/build-your-own-checkout', 'Build your own checkout') }}
+  {{ sidebar_item('payments/status-changes', 'Status changes') }}
+  {{ sidebar_item('payments/refunds', 'Refunds') }}
+  {{ sidebar_item('payments/recurring', 'Recurring payments') }}
+  {{ sidebar_item('payments/multicurrency', 'Multicurrency') }}
+  {{ sidebar_item('payments/place-a-hold-for-a-payment', 'Place a hold for a payment') }}
+  {{ sidebar_item('payments/qr-codes', 'QR codes') }}
+  {{ sidebar_item('payments/gift-cards', 'Integrating gift cards') }}
+  {{ sidebar_item('payments/migrating-v1-to-v2', 'Migrating from v1 to v2') }}
+</ul>
+
+<p class="sidebar__topic-header">Orders</p>
+
+<ul>
+  {{ sidebar_item('orders/overview', 'Overview') }}
+  {{ sidebar_item('orders/why-use-orders', 'Why use orders?') }}
+  {{ sidebar_item('orders/migrate-to-orders', 'Migrating to the Orders API') }}
+  {{ sidebar_item('orders/handling-discounts', 'Handling discounts') }}
+  {{ sidebar_item('orders/status-changes', 'Status changes') }}
+  {{ sidebar_item('orders/integrating-vouchers', 'Integrating vouchers') }}
+  {{ sidebar_item('orders/paypal-express-checkout-button', 'Integrating PayPal Express Checkout button') }}
+</ul>
+
+<p class="sidebar__topic-header">Wallets</p>
+
+<ul>
+  {{ sidebar_item('wallets/applepay', 'Apple Pay overview') }}
+  {{ sidebar_item('wallets/applepay-direct-integration', 'Direct integration of Apple Pay') }}
+</ul>
+
+<p class="sidebar__topic-header">Point-of-sale</p>
+
+<ul>
+  {{ sidebar_item('point-of-sale/overview', 'Point-of-sale payments') }}
+  {{ sidebar_item('point-of-sale/testing', 'Testing') }}
+</ul>
+
+<p class="sidebar__topic-header">Mollie Components</p>
+
+<ul>
+  {{ sidebar_item('components/overview', 'Overview') }}
+  {{ sidebar_item('components/testing', 'Testing') }}
+  {{ sidebar_item('components/handling-errors', 'Handling errors') }}
+  {{ sidebar_item('components/styling', 'Styling') }}
+</ul>

@@ -40,153 +40,120 @@ Response
 --------
 ``200`` ``application/json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: resource
+   :type: string
 
-   * - ``resource``
+   Indicates the response contains an invoice object. Will always contain ``invoice`` for this endpoint.
 
-       .. type:: string
+.. parameter:: id
+   :type: string
 
-     - Indicates the response contains an invoice object. Will always contain ``invoice`` for this endpoint.
+   The invoice's unique identifier, for example ``inv_FrvewDA3Pr``.
 
-   * - ``id``
+.. parameter:: reference
+   :type: string
 
-       .. type:: string
+   The reference number of the invoice. An example value would be: ``2018.10000``.
 
-     - The invoice's unique identifier, for example ``inv_FrvewDA3Pr``.
+.. parameter:: vatNumber
+   :type: string
 
-   * - ``reference``
+   The VAT number to which the invoice was issued to (if applicable).
 
-       .. type:: string
+.. parameter:: status
+   :type: string
 
-     - The reference number of the invoice. An example value would be: ``2018.10000``.
+   Status of the invoice.
 
-   * - ``vatNumber``
+   Possible values:
 
-       .. type:: string
+   * ``open`` The invoice is not paid yet.
+   * ``paid`` The invoice is paid.
+   * ``overdue`` Payment of the invoice is overdue.
 
-     - The VAT number to which the invoice was issued to (if applicable).
+.. parameter:: issueDate
+   :type: string
 
-   * - ``status``
+   The invoice date in ``YYYY-MM-DD`` format.
 
-       .. type:: string
+.. parameter:: paidDate
+   :type: string
 
-     - Status of the invoice.
+   The date on which the invoice was paid, in ``YYYY-MM-DD`` format. Only for paid invoices.
 
-       Possible values:
+.. parameter:: dueDate
+   :type: string
 
-       * ``open`` The invoice is not paid yet.
-       * ``paid`` The invoice is paid.
-       * ``overdue`` Payment of the invoice is overdue.
+   The date on which the invoice is due, in ``YYYY-MM-DD`` format. Only for due invoices.
 
-   * - ``issueDate``
+.. parameter:: amount
+   :type: object
 
-       .. type:: string
+   The total amount of the invoice with and without VAT.
 
-     - The invoice date in ``YYYY-MM-DD`` format.
+   .. parameter:: net
+      :type: decimal
 
-   * - ``paidDate``
+      Total amount of the invoice excluding VAT.
 
-       .. type:: string
+   .. parameter:: vat
+      :type: decimal
 
-     - The date on which the invoice was paid, in ``YYYY-MM-DD`` format. Only for paid invoices.
+      VAT amount of the invoice. Only for merchants registered in the Netherlands. For EU merchants, VAT will be shifted
+      to the recipient (see article 44 and 196 EU VAT Directive 2006/112). For merchants outside the EU, no VAT will be
+      charged.
 
-   * - ``dueDate``
+   .. parameter:: gross
+      :type: decimal
 
-       .. type:: string
+      Total amount of the invoice including VAT.
 
-     - The date on which the invoice is due, in ``YYYY-MM-DD`` format. Only for due invoices.
+.. parameter:: lines
+   :type: array
 
-   * - ``amount``
+   Only available if you require this field to be included – The collection of products which make up the invoice.
 
-       .. type:: object
+   .. parameter:: period
+      :type: string
 
-     - The total amount of the invoice with and without VAT.
+      The administrative period in ``YYYY-MM`` on which the line should be booked.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: description
+      :type: string
 
-          * - ``net``
+      Description of the product.
 
-              .. type:: decimal
+   .. parameter:: count
+      :type: integer
 
-            - Total amount of the invoice excluding VAT.
+      Number of products invoiced (usually number of payments).
 
-          * - ``vat``
+   .. parameter:: vatPercentage
+      :type: decimal
 
-              .. type:: decimal
+      VAT percentage rate that applies to this product.
 
-            - VAT amount of the invoice. Only for merchants registered in the Netherlands. For EU merchants, VAT will be
-              shifted to recipient; article 44 and 196 EU VAT Directive 2006/112. For merchants outside the EU, no VAT
-              will be charged.
+   .. parameter:: amount
+      :type: decimal
 
-          * - ``gross``
+      Amount excluding VAT.
 
-              .. type:: decimal
+.. parameter:: settlements
+   :type: array
 
-            - Total amount of the invoice including VAT.
+   Only available if you require this field to be included – An array of
+   :doc:`settlements </reference/v1/settlements-api/get-settlement>` that were invoiced on this invoice. You need the
+   ``settlements.read`` permission for this field.
 
-   * - ``lines``
+.. parameter:: links
+   :type: object
 
-       .. type:: array
+   Useful URLs to related resources.
 
-     - Only available if you require this field to be included – The collection of products which make up the invoice.
+   .. parameter:: pdf
+      :type: string
 
-       .. list-table::
-          :widths: auto
-
-          * - ``period``
-
-              .. type:: string
-
-            - The administrative period in ``YYYY-MM`` on which the line should be booked.
-
-          * - ``description``
-
-              .. type:: string
-
-            - Description of the product.
-
-          * - ``count``
-
-              .. type:: integer
-
-            - Number of products invoiced (usually number of payments).
-
-          * - ``vatPercentage``
-
-              .. type:: decimal
-
-            - VAT percentage rate that applies to this product.
-
-          * - ``amount``
-
-              .. type:: decimal
-
-            - Amount excluding VAT.
-
-   * - ``settlements``
-
-       .. type:: array
-
-     - Only available if you require this field to be included – An array of
-       :doc:`settlements </reference/v1/settlements-api/get-settlement>` that were invoiced on this invoice. You need
-       the ``settlements.read`` permission for this field.
-
-   * - ``links``
-
-       .. type:: object
-
-     - Useful URLs to related resources.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``pdf``
-
-              .. type:: string
-
-            - The URL to the PDF version of the invoice. The URL will expire after 60 minutes.
+      The URL to the PDF version of the invoice. The URL will expire after 60 minutes.
 
 Example
 -------

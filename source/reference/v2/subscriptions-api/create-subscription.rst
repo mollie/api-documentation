@@ -34,179 +34,118 @@ Parameters
 Replace ``customerId`` in the endpoint URL by the customer's ID, for example
 ``/v2/customers/cst_8wmqcHMN4U/subscriptions``.
 
-.. list-table::
-   :widths: auto
+.. parameter:: amount
+   :type: amount object
+   :condition: required
 
-   * - ``amount``
+   The amount that you want to charge, e.g. ``{"currency":"EUR", "value":"100.00"}`` if you would want to charge
+   €100.00.
 
-       .. type:: amount object
-          :required: true
+   .. parameter:: currency
+      :type: string
+      :condition: required
 
-     - The amount that you want to charge, e.g. ``{"currency":"EUR", "value":"100.00"}`` if you would want to charge
-       €100.00.
+      An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code. The currencies supported depend on the
+      payment methods that are enabled on your account.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: value
+      :type: string
+      :condition: required
 
-          * - ``currency``
+      A string containing the exact amount you want to charge in the given currency. Make sure to send the right amount
+      of decimals. Non-string values are not accepted.
 
-              .. type:: string
-                 :required: true
+.. parameter:: times
+   :type: integer
+   :condition: optional
 
-            - An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code. The currencies supported depend on
-              the payment methods that are enabled on your account.
+   Total number of charges for the subscription to complete. Leave empty for an ongoing subscription.
 
-          * - ``value``
+   .. note:: Subscriptions in test mode will be canceled automatically after 10 charges.
 
-              .. type:: string
-                 :required: true
+.. parameter:: interval
+   :type: string
+   :condition: required
 
-            - A string containing the exact amount you want to charge in the given currency. Make sure to send the right
-              amount of decimals. Non-string values are not accepted.
+   Interval to wait between charges, for example ``1 month`` or ``14 days``.
 
-   * - ``times``
+   Possible values: ``... months`` ``... weeks`` ``... days``
 
-       .. type:: integer
-          :required: false
+   .. note:: The maximum interval is 1 year (``12 months``, ``52 weeks`` or ``365 days``).
 
-     - Total number of charges for the subscription to complete. Leave empty for an ongoing subscription.
+.. parameter:: startDate
+   :type: date
+   :condition: optional
 
-       .. note::
-          Subscriptions in test mode will be canceled automatically after 10 charges.
+   The start date of the subscription in ``YYYY-MM-DD`` format. This is the first day on which your customer will be
+   charged. When this parameter is not provided, the current date will be used instead.
 
-   * - ``interval``
+.. parameter:: description
+   :type: string
+   :condition: required
 
-       .. type:: string
-          :required: true
+   A description unique per subscription. This will be included in the payment description.
 
-     - Interval to wait between charges, for example ``1 month`` or ``14 days``.
+.. parameter:: method
+   :type: string
+   :condition: optional
 
-       Possible values: ``... months`` ``... weeks`` ``... days``
+   The payment method used for this subscription, either forced on creation or ``null`` if any of the customer's valid
+   mandates may be used. This parameter can not set together with ``mandateId``.
 
-       .. note::
-          The maximum interval is 1 year (``12 months``, ``52 weeks`` or ``365 days``).
+   Possible values: ``creditcard`` ``directdebit`` ``paypal`` ``null``
 
-   * - ``startDate``
+   Using PayPal Reference Transactions is only possible if PayPal has activated this feature on your merchant-account.
 
-       .. type:: date
-          :required: false
+.. parameter:: mandateId
+   :type: string
+   :condition: optional
 
-     - The start date of the subscription in ``YYYY-MM-DD`` format. This is the first day on which your
-       customer will be charged. When this parameter is not provided, the current date will be used instead.
+   The mandate used for this subscription. This parameter can not set together with ``method``.
 
-   * - ``description``
+.. parameter:: webhookUrl
+   :type: string
+   :condition: optional
 
-       .. type:: string
-          :required: true
+   Use this parameter to set a webhook URL for all subscription payments.
 
-     - A description unique per subscription. This will be included in the payment description.
+.. parameter:: metadata
+   :type: mixed
+   :condition: optional
 
-   * - ``method``
-
-       .. type:: string
-          :required: false
-
-     - The payment method used for this subscription, either forced on creation or ``null`` if any of the
-       customer's valid mandates may be used. Please note that this parameter can not set together with ``mandateId``.
-
-       Possible values: ``creditcard`` ``directdebit`` ``paypal`` ``null``
-
-       .. warning:: Using PayPal Reference Transactions is only possible if PayPal has activated this feature on your
-                    merchant-account.
-
-   * - ``mandateId``
-
-       .. type:: string
-          :required: false
-
-     - The mandate used for this subscription. Please note that this parameter can not set together with ``method``.
-
-   * - ``webhookUrl``
-
-       .. type:: string
-          :required: false
-
-     - Use this parameter to set a webhook URL for all subscription payments.
-
-   * - ``metadata``
-
-       .. type:: mixed
-          :required: false
-
-     - Provide any data you like, and we will save the data alongside the subscription. Whenever you fetch the
-       subscription with our API, we will also include the metadata. You can use up to 1kB of JSON.
+   Provide any data you like, and we will save the data alongside the subscription. Whenever you fetch the subscription
+   with our API, we will also include the metadata. You can use up to 1kB of JSON.
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you have to specify which profile you are creating a subscription for using the
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you have to specify which profile you are creating a subscription for using the
 ``profileId`` parameter. Organizations can have multiple profiles for each of their websites. See
-:doc:`Profiles API </reference/v2/profiles-api/get-profile>` for more information.
+:doc:`Profiles API </reference/v2/profiles-api/overview>` for more information.
 
 For these authentication methods the optional ``testmode`` parameter is available as well to enable test mode.
 
-.. list-table::
-   :widths: auto
+.. parameter:: profileId
+   :type: string
+   :condition: required for access tokens
+   :collapse: true
 
-   * - ``profileId``
+   The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
 
-       .. type:: string
-          :required: true
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-     - The website profile's unique identifier, for example ``pfl_3RkSN1zuPE``.
+   Set this to ``true`` to create a test mode subscription.
 
-   * - ``testmode``
+.. parameter:: applicationFee
+   :type: object
+   :condition: optional
+   :collapse: true
 
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to create a test mode subscription.
-
-   * - ``applicationFee``
-
-       .. type:: object
-          :required: false
-
-     - Adding an :doc:`application fee </oauth/application-fees>` allows you to charge the merchant for each payment
-       in the subscription and transfer these amounts to your own account.
-
-       .. list-table::
-          :widths: auto
-
-          * - ``amount``
-
-              .. type:: amount object
-                 :required: true
-
-            - The amount in that the app wants to charge, e.g. ``{"currency":"EUR", "value":"10.00"}`` if the app would
-              want to charge €10.00.
-
-              .. list-table::
-                 :widths: auto
-
-                 * - ``currency``
-
-                     .. type:: string
-                        :required: true
-
-                   - An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
-
-                 * - ``value``
-
-                     .. type:: string
-                        :required: true
-
-                   - A string containing the exact amount you want to charge in the given currency. Make sure to send
-                     the right amount of decimals. Non-string values are not accepted.
-
-          * - ``description``
-
-              .. type:: string
-                 :required: true
-
-            - The description of the application fee. This will appear on settlement reports to the merchant and to you.
-
-              The maximum length is 255 characters.
+   Adding an :doc:`application fee </connect/application-fees>` allows you to charge the merchant for each payment
+   in the subscription and transfer these amounts to your own account.
 
 Response
 --------
@@ -217,7 +156,6 @@ A subscription object is returned, as described in
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -250,6 +188,26 @@ Example
          "webhookUrl" => "https://webshop.example.org/subscriptions/webhook/",
       ]);
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      customer = mollie_client.customers.get("cst_stTC2WHAuS")
+      subscription = customer.subscriptions.create({
+          "amount": {
+              "currency": "EUR",
+              "value": "25.00",
+          },
+          "times": 4,
+          "interval": "3 months",
+          "description": "Quarterly payment",
+          "webhookUrl": "https://webshop.example.org/subscriptions/webhook/",
+      })
+
    .. code-block:: ruby
       :linenos:
 
@@ -274,19 +232,17 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const subscription = await mollieClient.customers_subscriptions.create({
-          customerId: 'cst_stTC2WHAuS',
-          amount: {
-            currency: 'EUR',
-            value: '25.00',
-          },
-          times: 4,
-          interval: '3 months',
-          description: 'Quarterly payment',
-          webhookUrl: 'https://webshop.example.org/subscriptions/webhook/',
-        });
-      })();
+      const subscription = await mollieClient.customerSubscriptions.create({
+        customerId: 'cst_stTC2WHAuS',
+        amount: {
+          currency: 'EUR',
+          value: '25.00'
+        },
+        times: 4,
+        interval: '3 months',
+        description: 'Quarterly payment',
+        webhookUrl: 'https://webshop.example.org/subscriptions/webhook/'
+      });
 
 Response
 ^^^^^^^^

@@ -10,28 +10,28 @@ cards stored on their Apple devices.
 
 Accepting Apple Pay via Mollie
 ------------------------------
-In order to accept Apple Pay via Mollie, you need:
-
-#. The payment method `credit card <https://www.mollie.com/creditcard>`_ must be enabled on your website profile;
-#. You must enable Apple Pay on your website profile in the `Dashboard <https://www.mollie.com/dashboard>`_.
+In order to accept Apple Pay via Mollie, you need to enable both
+`credit card <https://www.mollie.com/payments/credit-card>`_ and Apple Pay on your website profile in your
+`Mollie Dashboard <https://www.mollie.com/dashboard>`_.
 
 Shoppers using an Apple device with Apple Pay configured will automatically be offered Apple Pay in the :doc:`Mollie
-Checkout </guides/checkout>`. Additionally, limited support for integrating Apple Pay in your own checkout is available.
+Checkout </payments/hosted-checkout>`. Additionally, limited support for integrating Apple Pay in your own checkout is
+available.
 
 Using the Mollie Checkout
 -------------------------
-If you are using the Mollie Checkout and the :doc:`Create Payment API </reference/v2/payments-api/create-payment>`
+If you are using the Mollie Checkout and the :doc:`Create payment endpoint </reference/v2/payments-api/create-payment>`
 without the ``method`` parameter, the Apple Pay button will be shown in the checkout during method selection:
 
-.. figure:: images/checkout-with-apple-pay@2x.jpg
+.. image:: images/checkout-with-apple-pay@2x.jpg
 
 Adding Apple Pay to the method selection
 ----------------------------------------
 An easy way to integrate Apple Pay is by adding Apple Pay to the payment method selection. The "Checkout
 with Pay" button will then be shown in the Mollie Checkout.
 
-First, you must indicate to the :doc:`List Methods API </reference/v2/methods-api/list-methods>` which wallets you
-support in your checkout by adding the ``includeWallets=applepay`` parameter.
+First, you must indicate to the :doc:`List methods endpoint </reference/v2/methods-api/list-methods>` on the Methods API
+which wallets you support in your checkout by adding the ``includeWallets=applepay`` parameter.
 
 .. code-block:: bash
    :linenos:
@@ -54,12 +54,12 @@ option when it is actually supported by the device. For more details, see the `a
      // Add ApplePay to the method selection in your checkout
    }
 
-Finally, when the shopper selects Apple Pay from your method selection, you should use the Create Payment API to create
-a payment with the ``method`` parameter set to ``applepay`` and redirect the shopper to the ``_links.checkout`` URL
-returned.
+Finally, when the shopper selects Apple Pay from your method selection, you should use the
+:doc:`Create payment endpoint </reference/v2/payments-api/create-payment>` to create a payment with the ``method``
+parameter set to ``applepay`` and redirect the shopper to the ``_links.checkout`` URL returned.
 
 When the shopper authorizes the payment, Mollie will create a payment with the method ``creditcard``. We will then call
-your :doc:`webhook </guides/webhooks>` and redirect the shopper back to your website as normal.
+your :doc:`webhook </overview/webhooks>` and redirect the shopper back to your website as normal.
 
 Examples
 ^^^^^^^^
@@ -195,4 +195,4 @@ For more details on detecting the support of Apple Pay on a device, see `Apple's
 Direct integration of Apple Pay
 -------------------------------
 Integrating Apple Pay in your own checkout is available. See our
-:doc:`full guide </guides/applepay-direct-integration>`.
+:doc:`full guide </wallets/applepay-direct-integration>`.

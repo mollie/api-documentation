@@ -14,112 +14,85 @@ List customers
 
 Retrieve all customers created.
 
-The results are paginated. See :doc:`pagination </guides/pagination>` for more information.
+The results are paginated. See :doc:`pagination </overview/pagination>` for more information.
 
 Parameters
 ----------
-.. list-table::
-   :widths: auto
+.. parameter:: from
+   :type: string
+   :condition: optional
 
-   * - ``from``
+   Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the customer with this ID. The customer with
+   this ID is included in the result set as well.
 
-       .. type:: string
-          :required: false
+.. parameter:: limit
+   :type: integer
+   :condition: optional
 
-     - Used for :ref:`pagination <pagination-in-v2>`. Offset the result set to the customer with this ID. The customer
-       with this ID is included in the result set as well.
-
-   * - ``limit``
-
-       .. type:: integer
-          :required: false
-
-     - The number of customers to return (with a maximum of 250).
+   The number of customers to return (with a maximum of 250).
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you can enable test mode through the ``testmode`` parameter.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to list test mode customers.
+   Set this to ``true`` to list test mode customers.
 
 Response
 --------
 ``200`` ``application/hal+json``
 
-.. list-table::
-   :widths: auto
+.. parameter:: count
+   :type: integer
 
-   * - ``count``
+   The number of customers found in ``_embedded``, which is either the requested number (with a maximum of 250) or the
+   default number.
 
-       .. type:: integer
+.. parameter:: _embedded
+   :type: object
+   :collapse-children: false
 
-     - The number of customers found in ``_embedded``, which is either the requested number (with a maximum of 250) or
-       the default number.
+   The object containing the queried data.
 
-   * - ``_embedded``
+   .. parameter:: customers
+      :type: array
 
-       .. type:: object
+      An array of customer objects as described in :doc:`Get customer </reference/v2/customers-api/get-customer>`.
 
-     - The object containing the queried data.
+.. parameter:: _links
+   :type: object
 
-       .. list-table::
-          :widths: auto
+   Links to help navigate through the lists of customers. Every URL object will contain an ``href`` and a ``type``
+   field.
 
-          * - ``customers``
+   .. parameter:: self
+      :type: URL object
 
-              .. type:: array
+      The URL to the current set of customers.
 
-            - An array of customer objects as described in
-              :doc:`Get customer </reference/v2/customers-api/get-customer>`.
+   .. parameter:: previous
+      :type: URL object
 
-   * - ``_links``
+      The previous set of customers, if available.
 
-       .. type:: object
+   .. parameter:: next
+      :type: URL object
 
-     - Links to help navigate through the lists of customers. Every URL object will contain an ``href`` and a ``type``
-       field.
+      The next set of customers, if available.
 
-       .. list-table::
-          :widths: auto
+   .. parameter:: documentation
+      :type: URL object
 
-          * - ``self``
-
-              .. type:: URL object
-
-            - The URL to the current set of customers.
-
-          * - ``previous``
-
-              .. type:: URL object
-
-            - The previous set of customers, if available.
-
-          * - ``next``
-
-              .. type:: URL object
-
-            - The next set of customers, if available.
-
-          * - ``documentation``
-
-              .. type:: URL object
-
-            - The URL to the customers list endpoint documentation.
+      The URL to the customers list endpoint documentation.
 
 Example
 -------
-
 .. code-block-selector::
-
    .. code-block:: bash
       :linenos:
 
@@ -139,6 +112,20 @@ Example
       // Next page
       $customers->next();
 
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      # First page
+      customers = mollie_client.customers.list()
+
+      # Next page
+      customers.get_next()
+
    .. code-block:: ruby
       :linenos:
 
@@ -156,13 +143,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        // First page
-        let customers = await mollieClient.customers.page();
-
-        // Next page
-        customers = await customers.nextPage();
-      })();
+      const customers = mollieClient.customers.iterate();
 
 Response
 ^^^^^^^^

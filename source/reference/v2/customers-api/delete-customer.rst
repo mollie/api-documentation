@@ -20,18 +20,15 @@ Replace ``id`` in the endpoint URL by the customer's ID, for example ``cst_8wmqc
 
 Access token parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
-If you are using :doc:`organization access tokens </guides/authentication>` or are creating an
-:doc:`OAuth app </oauth/overview>`, you can enable test mode through the ``testmode`` parameter.
+If you are using :doc:`organization access tokens </overview/authentication>` or are creating an
+:doc:`OAuth app </connect/overview>`, you can enable test mode through the ``testmode`` parameter.
 
-.. list-table::
-   :widths: auto
+.. parameter:: testmode
+   :type: boolean
+   :condition: optional
+   :collapse: true
 
-   * - ``testmode``
-
-       .. type:: boolean
-          :required: false
-
-     - Set this to ``true`` to delete a test mode customer.
+   Set this to ``true`` to delete a test mode customer.
 
 Response
 --------
@@ -39,7 +36,6 @@ Response
 
 Example
 -------
-
 .. code-block-selector::
    .. code-block:: bash
       :linenos:
@@ -54,6 +50,16 @@ Example
       $mollie = new \Mollie\Api\MollieApiClient();
       $mollie->setApiKey("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
       $mollie->customers->delete("cst_8wmqcHMN4U");
+
+   .. code-block:: python
+      :linenos:
+
+      from mollie.api.client import Client
+
+      mollie_client = Client()
+      mollie_client.set_api_key("test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+      mollie_client.customers.delete("cst_8wmqcHMN4U")
 
    .. code-block:: ruby
       :linenos:
@@ -72,9 +78,7 @@ Example
       const { createMollieClient } = require('@mollie/api-client');
       const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-      (async () => {
-        const status = mollieClient.customers.delete('cst_8wmqcHMN4U');
-      })();
+      await mollieClient.customers.delete('cst_8wmqcHMN4U');
 
 Response
 ^^^^^^^^
