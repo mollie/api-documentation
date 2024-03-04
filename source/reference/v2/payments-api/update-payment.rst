@@ -88,6 +88,160 @@ payment method-specific parameters available, see :ref:`below <payment-method-sp
    The field expects a country code in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format,
    for example `NL`.
 
+.. parameter:: billingAddress
+   :type: address object
+   :condition: optional
+
+   The `billingAddress` can only be updated when the payment is `open`.
+
+   The billing details of the person. We advise to provide these details to improve fraud protection,
+   and conversion.
+
+   Refer to the documentation of the :ref:`address object <address-object>` for more information on which formats are
+   accepted.
+
+   .. parameter:: organizationName
+      :type: string
+      :condition: optional
+
+      The person's organization, if applicable.
+      This parameter is required when creating Billie orders.
+
+   .. parameter:: title
+      :type: string
+      :condition: optional
+
+      The title of the person, for example *Mr.* or *Mrs.*.
+
+   .. parameter:: givenName
+      :type: string
+      :condition: optional
+
+      The given name (first name) of the person.
+
+   .. parameter:: familyName
+      :type: string
+      :condition: optional
+
+      The family name (surname) of the person.
+
+   .. parameter:: email
+      :type: string
+      :condition: optional
+
+      The email address of the person.
+
+   .. parameter:: phone
+      :type: phone number
+      :condition: optional
+
+      The phone number of the person. Some payment methods require this information. If you have it, you should pass it
+      so that your customer does not have to enter it again in the checkout. Must be in the
+      `E.164 <https://en.wikipedia.org/wiki/E.164>`_ format. For example ``+31208202070``.
+
+   .. parameter:: streetAndNumber
+      :type: string
+      :condition: optional
+
+   .. parameter:: streetAdditional
+      :type: string
+      :condition: optional
+
+   .. parameter:: postalCode
+      :type: string
+      :condition: optional
+
+   .. parameter:: city
+      :type: string
+      :condition: optional
+
+   .. parameter:: region
+      :type: string
+      :condition: optional
+
+   .. parameter:: country
+      :type: string
+      :condition: optional
+
+      The country of the address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+
+.. parameter:: shippingAddress
+   :type: address object
+   :condition: optional
+
+   The `shippingAddress` can only be updated when the payment is `open`.
+
+   The shipping details related to the payment. We advise to provide these details to improve fraud protection, and
+   improve conversion.
+
+   This field is optional, but if it is provided, then the full name and address have to be in a valid format. See the
+   :ref:`address object <address-object>` documentation for more information on which formats are accepted.
+
+   .. parameter:: organizationName
+      :type: string
+      :condition: optional
+
+      The person's organization, if applicable.
+
+   .. parameter:: title
+      :type: string
+      :condition: optional
+
+      The title of the person, for example *Mr.* or *Mrs.*.
+
+   .. parameter:: givenName
+      :type: string
+      :condition: optional
+
+      The given name (first name) of the person.
+
+   .. parameter:: familyName
+      :type: string
+      :condition: optional
+
+      The family name (surname) of the person.
+
+   .. parameter:: email
+      :type: string
+      :condition: optional
+
+      The email address of the person.
+
+   .. parameter:: phone
+      :type: phone number
+      :condition: optional
+
+      The phone number of the person. Some payment methods require this information. If you have it, you should pass it
+      so that your customer does not have to enter it again in the checkout. Must be in the
+      `E.164 <https://en.wikipedia.org/wiki/E.164>`_ format. For example ``+31208202070``.
+
+   .. parameter:: streetAndNumber
+      :type: string
+      :condition: optional
+
+   .. parameter:: streetAdditional
+      :type: string
+      :condition: optional
+
+   .. parameter:: postalCode
+      :type: string
+      :condition: optional
+
+   .. parameter:: city
+      :type: string
+      :condition: optional
+
+   .. parameter:: region
+      :type: string
+      :condition: optional
+
+   .. parameter:: country
+      :type: string
+      :condition: optional
+
+      The country of the address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
+
+
 .. _payment-method-specific-parameters-update:
 
 Payment method-specific parameters

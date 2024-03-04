@@ -28,35 +28,51 @@ In v2 endpoints, an amount object is always represented as follows.
 
 Address object
 --------------
-In the v2 endpoints, an address object includes at least the following fields.
+In the v2 endpoints, an address object can include the following fields.
+
+.. parameter:: organizationName
+   :type: string
+
+   The person's organization, if applicable.
+
+.. parameter:: title
+   :type: string
+
+   The title of the person, for example *Mr.* or *Mrs.*.
 
 .. parameter:: givenName
    :type: string
-   :condition: required
 
    The given name (first name) of the person should be more than 1 character and cannot contain only numbers.
 
 .. parameter:: familyName
    :type: string
-   :condition: required
 
    The family name (surname) of the person should be more than 1 character and cannot contain only numbers.
 
+.. parameter:: email
+   :type: string
+
+   The email address of the person.
+
+.. parameter:: phone
+   :type: phone number
+
+   All phone numbers must passed as strings in the `E.164 <https://en.wikipedia.org/wiki/E.164>`_ format. 
+   For example, ``+31208202070``.
+
 .. parameter:: streetAndNumber
    :type: string
-   :condition: required
 
    The street and street number of the address.
 
 .. parameter:: streetAdditional
    :type: string
-   :condition: optional
 
    Any additional addressing details, for example an apartment number.
 
 .. parameter:: postalCode
    :type: string
-   :condition: optional
 
    The postal code of the address. Required for countries that use postal codes. May only be
    omitted for these country codes:
@@ -69,28 +85,18 @@ In the v2 endpoints, an address object includes at least the following fields.
 
 .. parameter:: city
    :type: string
-   :condition: required
 
    The city of the address.
 
 .. parameter:: region
    :type: string
-   :condition: optional
 
    The region of the address.
 
 .. parameter:: country
    :type: string
-   :condition: required
 
    The country of the address in `ISO 3166-1 alpha-2 <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>`_ format.
-
-When providing an address object as parameter to a request, the following conditions must be met:
-
-* At least the ``streetAndNumber``, ``city``, and ``country`` fields should be provided to create a valid address.
-* The ``postalCode`` field is required for countries that have postal codes. See the list above.
-* For certain PayPal payments the ``region`` field is required. See the
-  :ref:`Create payment documentation <paypal-method-details>` for more information.
 
 Boolean
 -------
