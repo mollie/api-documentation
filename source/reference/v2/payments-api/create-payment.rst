@@ -105,6 +105,168 @@ Parameters
    `ngrok <https://lornajane.net/posts/2015/test-incoming-webhooks-locally-with-ngrok>`_ to have the webhooks delivered
    to your local machine.
 
+.. parameter:: lines
+   :type: array
+   :condition: optional
+
+   .. _order-lines-details:
+
+   The lines for the payment. Each line contains details such as a description of the item ordered, its price et cetera.
+
+   All lines must have the same currency as the payment. You cannot mix currencies within a single payment.
+
+   .. parameter:: type
+      :type: string
+      :condition: optional
+
+      The type of product bought, for example, a physical or a digital product.
+
+      Possible values: ``physical`` ``discount`` ``digital`` ``shipping_fee`` ``store_credit`` ``gift_card``
+      ``surcharge``
+
+      For information on the ``discount``, ``store_credit`` and ``gift_card`` types, see our guide on
+      :doc:`handling discounts </orders/handling-discounts>`.
+
+      For selling digitally delivered goods through PayPal, request PayPal to `enable this on your account
+      <https://developer.paypal.com/docs/classic/express-checkout/digital-goods/IntroducingExpressCheckoutDG/>`_.
+
+   .. parameter:: category
+      :type: string
+      :condition: optional
+
+      The category of product bought.
+
+      This parameter is optional. However, *one* of your order lines should contain it if you want to accept ``voucher``
+      payments.
+
+      Possible values: ``meal`` ``eco`` ``gift``
+
+   .. parameter:: description
+      :type: string
+      :condition: required
+
+      A description of the line item, for example *LEGO 4440 Forest Police Station*.
+
+   .. parameter:: quantity
+      :type: int
+      :condition: required
+
+      The number of items in the line.
+
+   .. parameter:: quantityUnit
+      :type: string
+      :condition: optional
+
+      The unit for the quantity, for example *pcs*, *kg*, *cm*, etc.
+
+   .. parameter:: unitPrice
+      :type: amount object
+      :condition: required
+
+      The price of a single item including VAT.
+
+      For example: ``{"currency":"EUR", "value":"89.00"}`` if the box of LEGO costs €89.00 each.
+
+      Can be negative in case of discounts, or zero in case of a free item.
+
+      .. parameter:: currency
+         :type: string
+
+         An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+
+      .. parameter:: value
+         :type: string
+
+         A string containing the exact amount in the given currency.
+
+   .. parameter:: discountAmount
+      :type: amount object
+      :condition: optional
+
+      Any :doc:`discounts applied </orders/handling-discounts>` to the line. For example, if you have a
+      two-for-one sale, you should pass the amount discounted as a positive amount.
+
+      For example: ``{"currency":"EUR", "value":"10.00"}`` if you want to give a €10.00 discount on this line.
+
+      .. parameter:: currency
+         :type: string
+
+         An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+
+      .. parameter:: value
+         :type: string
+
+         A string containing the exact amount in the given currency.
+
+   .. parameter:: totalAmount
+      :type: amount object
+      :condition: required
+
+      The total amount of the line, including VAT and discounts. Adding all ``totalAmount`` values together should
+      result in the same amount as the ``amount`` top level property.
+
+      For example: ``{"currency":"EUR", "value":"168.00"}`` if the total amount of this line is €168.00.
+
+      The total amount should match the following formula: ``(unitPrice × quantity) - discountAmount``
+
+      .. parameter:: currency
+         :type: string
+
+         An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+
+      .. parameter:: value
+         :type: string
+
+         A string containing the exact amount in the given currency.
+
+   .. parameter:: vatRate
+      :type: string
+      :condition: required
+
+      The VAT rate applied to the line, for example ``"21.00"`` for 21%. The ``vatRate`` should be passed as a
+      string and not as a float to ensure the correct number of decimals are passed.
+
+   .. parameter:: vatAmount
+      :type: amount object
+      :condition: required
+
+      The amount of value-added tax on the line. The ``totalAmount`` field includes VAT, so the ``vatAmount`` can be
+      calculated with the formula ``totalAmount × (vatRate / (100 + vatRate))``.
+
+      Any deviations from this will result in an error.
+
+      For example, for a ``totalAmount`` of SEK100.00 with a 25.00% VAT rate you would get a VAT amount of
+      ``100.00 × (25 / 125)`` = SEK20.00. The amount should be passed as an amount object, so:
+      ``{"currency":"SEK", "value":"20.00"}``.
+
+      .. parameter:: currency
+         :type: string
+
+         An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
+
+      .. parameter:: value
+         :type: string
+
+         A string containing the exact amount in the given currency.
+
+   .. parameter:: sku
+      :type: string
+      :condition: optional
+
+      The SKU, EAN, ISBN or UPC of the product sold. The maximum character length is 64.
+
+   .. parameter:: imageUrl
+      :type: string
+      :condition: optional
+
+      A link pointing to an image of the product sold.
+
+   .. parameter:: productUrl
+      :type: string
+      :condition: optional
+
+      A link pointing to the product page in your web shop of the product sold.
+
 .. parameter:: locale
    :type: string
    :condition: optional
