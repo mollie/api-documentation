@@ -124,9 +124,6 @@ Parameters
       Possible values: ``physical`` ``discount`` ``digital`` ``shipping_fee`` ``store_credit`` ``gift_card``
       ``surcharge``
 
-      For information on the ``discount``, ``store_credit`` and ``gift_card`` types, see our guide on
-      :doc:`handling discounts </orders/handling-discounts>`.
-
       For selling digitally delivered goods through PayPal, request PayPal to `enable this on your account
       <https://developer.paypal.com/docs/classic/express-checkout/digital-goods/IntroducingExpressCheckoutDG/>`_.
 
