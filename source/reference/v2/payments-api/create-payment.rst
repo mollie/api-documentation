@@ -167,7 +167,7 @@ Parameters
 
       For example: ``{"currency":"EUR", "value":"89.00"}`` if the box of LEGO costs €89.00 each.
 
-      Can be negative in case of discounts, or zero in case of a free item.
+      Should be negative if ``type`` is ``discount``, ``store_credit`` or ``gift_card``, or zero in case of a free item.
 
       .. parameter:: currency
          :type: string
@@ -183,8 +183,8 @@ Parameters
       :type: amount object
       :condition: optional
 
-      Any :doc:`discounts applied </orders/handling-discounts>` to the line. For example, if you have a
-      two-for-one sale, you should pass the amount discounted as a positive amount.
+      Any discounts applied to the line. For example, if you have a two-for-one sale, you should pass the amount discounted 
+      as a positive amount.
 
       For example: ``{"currency":"EUR", "value":"10.00"}`` if you want to give a €10.00 discount on this line.
 
@@ -202,12 +202,12 @@ Parameters
       :type: amount object
       :condition: required
 
-      The total amount of the line, including VAT and discounts. Adding all ``totalAmount`` values together should
-      result in the same amount as the ``amount`` top level property.
+      The total amount of the line, including VAT and discounts. For example: ``{"currency":"EUR", "value":"168.00"}`` if the
+      total amount of this line is €168.00.
 
-      For example: ``{"currency":"EUR", "value":"168.00"}`` if the total amount of this line is €168.00.
-
-      The total amount should match the following formula: ``(unitPrice × quantity) - discountAmount``
+      Should match the following formula: ``(unitPrice × quantity) - discountAmount``. 
+      
+      Adding ``totalAmount`` values of all lines together should result in the same amount as the ``amount`` top level property.
 
       .. parameter:: currency
          :type: string
