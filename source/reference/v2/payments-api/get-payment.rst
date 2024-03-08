@@ -265,6 +265,92 @@ Response
 
    The URL Mollie will call as soon an important status change takes place.
 
+.. parameter:: lines
+   :type: array
+   :condition: optional
+
+   An array of line objects. Each object will have the properties listed below.
+
+   .. parameter:: type
+      :type: string
+      :condition: optional
+
+      The type of product bought, for example, a physical or a digital product.
+
+      Possible values: ``physical`` ``discount`` ``digital`` ``shipping_fee`` ``store_credit`` ``gift_card``
+      ``surcharge``
+
+   .. parameter:: category
+      :type: string
+      :condition: optional
+
+      The category of product bought.
+
+      Possible values: ``meal`` ``eco`` ``gift``
+
+   .. parameter:: description
+      :type: string
+
+      A description of the line, for example *LEGO 4440 Forest Police Station*.
+
+   .. parameter:: quantity
+      :type: int
+
+      The number of items in the order line.
+
+   .. parameter:: quantityUnit
+      :type: string
+      :condition: optional
+
+      The unit of the quantity.
+
+   .. parameter:: unitPrice
+      :type: amount object
+
+      The price of a single item including VAT in the line.
+
+   .. parameter:: discountAmount
+      :type: amount object
+      :condition: optional
+
+      Any discounts applied to the line.
+
+   .. parameter:: totalAmount
+      :type: amount object
+
+      The total amount of the line, including VAT and discounts.
+
+   .. parameter:: vatRate
+      :type: string
+      :condition: optional
+
+      The VAT rate applied to the line, for example ``"21.00"`` for 21%. The ``vatRate`` is passed as a string and
+      not as a float to ensure the correct number of decimals are passed.
+
+   .. parameter:: vatAmount
+      :type: amount object
+      :condition: optional
+
+      The amount of value-added tax on the line.
+
+   .. parameter:: sku
+      :type: string
+      :condition: optional
+
+      The SKU, EAN, ISBN or UPC of the product sold.
+   
+   .. parameter:: imageUrl
+      :type: string
+      :condition: optional
+
+      A link pointing to an image of the product sold.
+
+   .. parameter:: productUrl
+      :type: string
+      :condition: optional
+
+      A link pointing to the product page in your web shop of the product sold.
+
 .. parameter:: locale
    :type: string
    :condition: optional
