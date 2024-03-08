@@ -168,11 +168,13 @@ Parameters
 
       .. parameter:: currency
          :type: string
+         :condition: required
 
          An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
       .. parameter:: value
          :type: string
+         :condition: required
 
          A string containing the exact amount in the given currency.
 
@@ -187,11 +189,13 @@ Parameters
 
       .. parameter:: currency
          :type: string
+         :condition: required
 
          An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
       .. parameter:: value
          :type: string
+         :condition: required
 
          A string containing the exact amount in the given currency.
 
@@ -208,24 +212,26 @@ Parameters
 
       .. parameter:: currency
          :type: string
+         :condition: required
 
          An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
       .. parameter:: value
          :type: string
+         :condition: required
 
          A string containing the exact amount in the given currency.
 
    .. parameter:: vatRate
       :type: string
-      :condition: required
+      :condition: optional
 
       The VAT rate applied to the line, for example ``"21.00"`` for 21%. The ``vatRate`` should be passed as a
       string and not as a float to ensure the correct number of decimals are passed.
 
    .. parameter:: vatAmount
       :type: amount object
-      :condition: required
+      :condition: optional
 
       The amount of value-added tax on the line. The ``totalAmount`` field includes VAT, so the ``vatAmount`` can be
       calculated with the formula ``totalAmount × (vatRate / (100 + vatRate))``.
@@ -238,11 +244,13 @@ Parameters
 
       .. parameter:: currency
          :type: string
+         :condition: required
 
          An `ISO 4217 <https://en.wikipedia.org/wiki/ISO_4217>`_ currency code.
 
       .. parameter:: value
          :type: string
+         :condition: required
 
          A string containing the exact amount in the given currency.
 
