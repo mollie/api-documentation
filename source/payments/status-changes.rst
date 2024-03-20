@@ -21,7 +21,7 @@ them. Then we will show you how the statuses are connected.
 
 ``authorized``
     If the payment method supports captures, the payment method will have this status for as long as new captures can be
-    created.
+    created. Mollie will not call your webhook when this status occurs.
 
     Currently this status is only possible for the payment methods
     `Klarna Pay now <https://www.mollie.com/payments/klarna-pay-now>`_,
