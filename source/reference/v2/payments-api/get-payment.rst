@@ -502,12 +502,11 @@ Response parameters for pre-authorized payments
    Possible values: ``... hours`` ``... days``
 
 .. parameter:: captureBefore
-   :type: datetime
+   :type: date
    :condition: optional
 
-   Indicates the datetime on which the merchant has to have captured the payment, before we can no longer guarantee a
-   successful capture, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format. This parameter is omitted if the
-   payment is not authorized (yet).
+   Indicates the date before which the merchant has to have captured the payment in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format. 
+   From this date we can no longer guarantee a successful capture. This parameter is omitted if the payment is not authorized (yet).
 
 Payment method-specific response parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
