@@ -132,6 +132,7 @@ Response
 
 .. parameter:: canceledAt
    :type: datetime
+   :condition: optional
 
    The subscription's date and time of cancellation, in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ format.
    This parameter is omitted if the payment is not canceled (yet).
