@@ -1,8 +1,7 @@
 Splitting payments with Mollie Connect
 ======================================
 
-.. note:: Split Payments are not enabled by default. To enable them for your organization, reach out to our partner
-          management team.
+.. note:: Split payments are not enabled by default. To enable them for your organization, complete this `request form <https://help.mollie.com/hc/en-us/requests/new?ticket_form_id=17768527320850>`_.
 
 .. warning:: The split payments feature is not available (yet) for third-party payments methods (Gift Cards, Paypal
              and Billie). There is currently a closed beta for all Klarna methods (Klarna Pay now, Klarna Pay later, Klarna
