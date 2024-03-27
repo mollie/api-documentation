@@ -9,6 +9,12 @@ Supported brands
 ----------------
 At the moment, the following brands are supported by Mollie:
 
+* Edenred Cadeau
+* Edenred Eco
+* Edenred Meal
+* Edenred Sports & Culture
+* Edenred Compliments
+* Edenred Consommation
 * Monizze Eco
 * Monizze Gift
 * Monizze Meal

@@ -440,7 +440,7 @@ Parameters
 
    Possible values: ``applepay`` ``bancontact`` ``banktransfer`` ``belfius`` ``billie`` ``creditcard`` ``directdebit`` ``eps``
    ``giftcard`` ``giropay`` ``ideal`` ``in3`` ``kbc`` ``klarna`` ``klarnapaylater`` ``klarnapaynow`` ``klarnasliceit`` ``mybank``
-   ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort`` ``voucher``
+   ``paypal`` ``paysafecard`` ``przelewy24`` ``sofort`` ``twint`` ``voucher``
 
 .. parameter:: payment
    :type: object

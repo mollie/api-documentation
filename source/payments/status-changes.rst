@@ -77,6 +77,7 @@ Expiry times per payment method
 | - Giropay                     |                                   |
 +-------------------------------+-----------------------------------+
 | - MyBank                      | 45 minutes                        |
+| - Twint                       |                                   |
 +-------------------------------+-----------------------------------+
 | - Bancontact                  | 1 hour                            |
 | - Belfius Pay Button          |                                   |
@@ -87,7 +88,8 @@ Expiry times per payment method
 | - SOFORT Banking              | 2 hours                           |
 | - Vouchers                    |                                   |
 +-------------------------------+-----------------------------------+
-| - Klarna Pay now              | 48 hours                          |
+| - Klarna                      | 48 hours                          |
+| - Klarna Pay now              |                                   |
 | - Klarna Pay later            |                                   |
 | - Klarna Slice it             |                                   |
 | - in3                         |                                   |
